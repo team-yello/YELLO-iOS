@@ -16,8 +16,8 @@ extension UIStackView {
      }
     
     func clearSubViews() {
-        self.arrangedSubviews.forEach{
-            self.removeArrangedSubview($0) //superview에서 view 삭제
+        self.arrangedSubviews.forEach {
+            self.removeArrangedSubview($0) // superview에서 view 삭제
             $0.removeFromSuperview() // 자식view에서도 superview 삭제
         }
     }

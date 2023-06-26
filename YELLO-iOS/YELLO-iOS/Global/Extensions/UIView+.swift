@@ -9,7 +9,7 @@ import UIKit
 
 extension UIView {
     
-    func makeShadow (radius : CGFloat, color: UIColor = .darkGray,  offset : CGSize, opacity : Float){
+    func makeShadow (radius: CGFloat, color: UIColor = .darkGray, offset: CGSize, opacity: Float) {
         layer.shadowColor = color.cgColor
         layer.shadowOffset = offset
         layer.shadowRadius = radius
@@ -17,12 +17,12 @@ extension UIView {
         layer.masksToBounds = false
     }
     
-    func makeCornerRound(radius : CGFloat) {
+    func makeCornerRound(radius: CGFloat) {
         layer.cornerRadius = radius
         layer.masksToBounds = true
     }
     
-    func makeBorder(width : CGFloat, color : UIColor) {
+    func makeBorder(width: CGFloat, color: UIColor) {
         layer.borderWidth = width
         layer.borderColor = color.cgColor
     }
