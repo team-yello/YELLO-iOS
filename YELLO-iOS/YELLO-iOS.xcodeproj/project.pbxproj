@@ -44,6 +44,7 @@
 		C3A79A062A49500000D3EFD8 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FD2A494FFF00D3EFD8 /* Pretendard-Medium.otf */; };
 		C3A79A072A49500000D3EFD8 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FE2A494FFF00D3EFD8 /* Pretendard-SemiBold.otf */; };
 		C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */; };
+		C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		C3A799FD2A494FFF00D3EFD8 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		C3A799FE2A494FFF00D3EFD8 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		C3A7998A2A49490A00D3EFD8 = {
 			isa = PBXGroup;
 			children = (
+				C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */,
 				C3A799952A49490A00D3EFD8 /* YELLO-iOS */,
 				C3A799942A49490A00D3EFD8 /* Products */,
 			);
@@ -253,6 +256,7 @@
 				C3A7998F2A49490A00D3EFD8 /* Sources */,
 				C3A799902A49490A00D3EFD8 /* Frameworks */,
 				C3A799912A49490A00D3EFD8 /* Resources */,
+				C3A79A092A4951BE00D3EFD8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -315,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */,
 				C3A79A032A49500000D3EFD8 /* Pretendard-ExtraLight.otf in Resources */,
 				C3A799A32A49490D00D3EFD8 /* LaunchScreen.storyboard in Resources */,
 				C3A79A022A49500000D3EFD8 /* Pretendard-Thin.otf in Resources */,
@@ -330,6 +335,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C3A79A092A4951BE00D3EFD8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C3A7998F2A49490A00D3EFD8 /* Sources */ = {
