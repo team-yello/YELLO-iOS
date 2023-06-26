@@ -12,6 +12,11 @@
 		C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7999A2A49490A00D3EFD8 /* ViewController.swift */; };
 		C3A799A02A49490D00D3EFD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A7999F2A49490D00D3EFD8 /* Assets.xcassets */; };
 		C3A799A32A49490D00D3EFD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A799A12A49490D00D3EFD8 /* LaunchScreen.storyboard */; };
+		C3A799AC2A49499500D3EFD8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799AB2A49499500D3EFD8 /* Then */; };
+		C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799AE2A49499F00D3EFD8 /* SnapKit */; };
+		C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799B12A4949A700D3EFD8 /* Alamofire */; };
+		C3A799B52A4949B100D3EFD8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799B42A4949B100D3EFD8 /* Kingfisher */; };
+		C3A799B82A4949C600D3EFD8 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799B72A4949C600D3EFD8 /* KakaoSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3A799B52A4949B100D3EFD8 /* Kingfisher in Frameworks */,
+				C3A799B82A4949C600D3EFD8 /* KakaoSDK in Frameworks */,
+				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
+				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
+				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +90,13 @@
 			dependencies = (
 			);
 			name = "YELLO-iOS";
+			packageProductDependencies = (
+				C3A799AB2A49499500D3EFD8 /* Then */,
+				C3A799AE2A49499F00D3EFD8 /* SnapKit */,
+				C3A799B12A4949A700D3EFD8 /* Alamofire */,
+				C3A799B42A4949B100D3EFD8 /* Kingfisher */,
+				C3A799B72A4949C600D3EFD8 /* KakaoSDK */,
+			);
 			productName = "YELLO-iOS";
 			productReference = C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +125,13 @@
 				Base,
 			);
 			mainGroup = C3A7998A2A49490A00D3EFD8;
+			packageReferences = (
+				C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */,
+				C3A799AD2A49499F00D3EFD8 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C3A799B02A4949A700D3EFD8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C3A799B32A4949B100D3EFD8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -344,6 +368,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		C3A799AD2A49499F00D3EFD8 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C3A799B02A4949A700D3EFD8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C3A799B32A4949B100D3EFD8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C3A799AB2A49499500D3EFD8 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		C3A799AE2A49499F00D3EFD8 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3A799AD2A49499F00D3EFD8 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		C3A799B12A4949A700D3EFD8 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3A799B02A4949A700D3EFD8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		C3A799B42A4949B100D3EFD8 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3A799B32A4949B100D3EFD8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		C3A799B72A4949C600D3EFD8 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C3A7998B2A49490A00D3EFD8 /* Project object */;
 }
