@@ -66,7 +66,7 @@ extension UIFont {
         return UIFont(name: "Pretendard-Medium", size: 10.0)!
     }
     
-    class var Graphic_01: UIFont {
+    class var Graphic: UIFont {
         return UIFont(name: "Unbounded-Bold", size: 32.0)!
     }
 }
