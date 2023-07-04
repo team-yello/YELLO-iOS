@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
+		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
+		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				C3A799DD2A494D6800D3EFD8 /* UITextField+.swift */,
 				C3A799DE2A494D6800D3EFD8 /* UIView+.swift */,
 				C3A4615A2A4FD44800734EF8 /* adjust+.swift */,
+				367F1CD32A54193700CDF47B /* UIColor+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 		C3A799ED2A494F7D00D3EFD8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */,
 				C3A799FB2A494FFF00D3EFD8 /* Pretendard-Black.otf */,
 				C3A799F72A494FFE00D3EFD8 /* Pretendard-Bold.otf */,
 				C3A799F82A494FFF00D3EFD8 /* Pretendard-ExtraBold.otf */,
@@ -326,6 +332,7 @@
 				C3A79A032A49500000D3EFD8 /* Pretendard-ExtraLight.otf in Resources */,
 				C3A799A32A49490D00D3EFD8 /* LaunchScreen.storyboard in Resources */,
 				C3A79A022A49500000D3EFD8 /* Pretendard-Thin.otf in Resources */,
+				367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */,
 				C3A79A002A49500000D3EFD8 /* Pretendard-Bold.otf in Resources */,
 				C3A79A012A49500000D3EFD8 /* Pretendard-ExtraBold.otf in Resources */,
 				C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */,
@@ -381,6 +388,7 @@
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
+				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
