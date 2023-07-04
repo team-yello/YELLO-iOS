@@ -13,6 +13,7 @@ enum ImageLiterals{
         static var icChevronDown: UIImage { .load(named: "icChevronDown") }
         static var icSearch: UIImage { .load(named: "icSearch") }
         static var icX: UIImage { .load(named: "icX") }
+        static var icXCircle: UIImage { .load(named: "icXCircle")}
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
         static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
     }
