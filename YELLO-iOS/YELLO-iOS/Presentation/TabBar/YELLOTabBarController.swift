@@ -18,6 +18,11 @@ final class YELLOTabBarController: UITabBarController {
         super.viewDidLoad()
         
         setUI()
+        
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
     }
     
     private func setUI() {
@@ -28,8 +33,16 @@ final class YELLOTabBarController: UITabBarController {
     private func setStyle() {
         view.backgroundColor = .white
         
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Pretendard-Medium", size: 10)!], for: .normal)
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Pretendard-Bold", size: 10)!], for: .selected)
+        // 탭 바 아이템들을 순회하면서 개별적으로 폰트를 설정
+        for item in tabBar.items ?? [] {
+            // 일반 상태의 폰트 설정
+            let normalAttributes = [NSAttributedString.Key.font: UIFont.uiCaption03]
+            item.setTitleTextAttributes(normalAttributes, for: .normal)
+            
+            // 선택된 상태의 폰트 설정
+            let selectedAttributes = [NSAttributedString.Key.font: UIFont(name: "Pretendard-Bold", size: 10.0)!]
+            item.setTitleTextAttributes(selectedAttributes, for: .selected)
+        }
         
         tabBar.do {
             $0.isTranslucent = false
@@ -40,7 +53,7 @@ final class YELLOTabBarController: UITabBarController {
         }
         
     }
-
+    
     private func setTabBarControllers() {
         
         // MARK: - firstViewController
