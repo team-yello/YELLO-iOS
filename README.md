@@ -10,6 +10,7 @@
 | <img src="https://github.com/team-yello/YELLO-iOS/assets/109775321/502ca850-21e9-48a4-b43e-4c42d71e582f" width="200px"/> | <img src ="https://github.com/team-yello/YELLO-iOS/assets/109775321/9b8df80b-90fa-49c6-98e6-b87cec4daabc" width = "200px"/> | <img src ="https://github.com/team-yello/YELLO-iOS/assets/109775321/e16d7266-efec-423c-872a-7a07c53275db" width = "200px"/> |
 | [chaentopia](https://github.com/chaentopia)  | [Heyjooo](https://github.com/Heyjooo) | [Zoe0929](https://github.com/Zoe0929) |
 |  추천친구, 내 옐로, 프로필    |     투표 (옐로하기)      |    온보딩    |
+<<<<<<< HEAD
 |   아 옐로💛를 위해 <br>코드짜고 있었는데 미치겠다   |   히주가 ??? 개발하고 싶대 <br> 답 : 옐로 💛   |   행복한 노란색 개발자 💛   |
 
 ## 📚 Library
