@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AA0DBA92A546C4B002B1370 /* YELLOTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBA82A546C4B002B1370 /* YELLOTabBarController.swift */; };
+		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
+		2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */; };
+		2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB32A546E62002B1370 /* VotingViewController.swift */; };
+		2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB52A546E84002B1370 /* MyYelloViewController.swift */; };
+		2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */; };
+		2AA0DBBA2A54732A002B1370 /* YELLOTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB92A54732A002B1370 /* YELLOTabBarItem.swift */; };
+		2AA0DBBC2A54755A002B1370 /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBBB2A54755A002B1370 /* UITabBarController+.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
@@ -51,6 +59,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AA0DBA82A546C4B002B1370 /* YELLOTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarController.swift; sourceTree = "<group>"; };
+		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
+		2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundViewController.swift; sourceTree = "<group>"; };
+		2AA0DBB32A546E62002B1370 /* VotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
+		2AA0DBB52A546E84002B1370 /* MyYelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloViewController.swift; sourceTree = "<group>"; };
+		2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2AA0DBB92A54732A002B1370 /* YELLOTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarItem.swift; sourceTree = "<group>"; };
+		2AA0DBBB2A54755A002B1370 /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
@@ -107,6 +123,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AA0DBA72A546C24002B1370 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0DBA82A546C4B002B1370 /* YELLOTabBarController.swift */,
+				2AA0DBB92A54732A002B1370 /* YELLOTabBarItem.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		2AA0DBAA2A546D12002B1370 /* Around */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */,
+			);
+			path = Around;
+			sourceTree = "<group>";
+		};
+		2AA0DBAB2A546D87002B1370 /* Recommending */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */,
+			);
+			path = Recommending;
+			sourceTree = "<group>";
+		};
+		2AA0DBAC2A546D99002B1370 /* Voting */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0DBB32A546E62002B1370 /* VotingViewController.swift */,
+			);
+			path = Voting;
+			sourceTree = "<group>";
+		};
+		2AA0DBAD2A546DB3002B1370 /* MyYello */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0DBB52A546E84002B1370 /* MyYelloViewController.swift */,
+			);
+			path = MyYello;
+			sourceTree = "<group>";
+		};
+		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		C3A7998A2A49490A00D3EFD8 = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +236,7 @@
 				C3A799DE2A494D6800D3EFD8 /* UIView+.swift */,
 				C3A4615A2A4FD44800734EF8 /* adjust+.swift */,
 				367F1CD32A54193700CDF47B /* UIColor+.swift */,
+				2AA0DBBB2A54755A002B1370 /* UITabBarController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,6 +291,12 @@
 			isa = PBXGroup;
 			children = (
 				C3A799CE2A494C9200D3EFD8 /* Base */,
+				2AA0DBA72A546C24002B1370 /* TabBar */,
+				2AA0DBAB2A546D87002B1370 /* Recommending */,
+				2AA0DBAA2A546D12002B1370 /* Around */,
+				2AA0DBAC2A546D99002B1370 /* Voting */,
+				2AA0DBAD2A546DB3002B1370 /* MyYello */,
+				2AA0DBAE2A546DBC002B1370 /* Profile */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -371,29 +443,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
+				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
 				C3A799EA2A494D6800D3EFD8 /* UIView+.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
+				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
+				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
+				2AA0DBBA2A54732A002B1370 /* YELLOTabBarItem.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
+				2AA0DBA92A546C4B002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
+				2AA0DBBC2A54755A002B1370 /* UITabBarController+.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
+				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
