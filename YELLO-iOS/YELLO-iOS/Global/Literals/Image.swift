@@ -14,7 +14,7 @@ enum ImageLiterals{
         static var icSearch: UIImage { .load(named: "icSearch") }
         static var icX: UIImage { .load(named: "icX") }
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
-        static var kakaoLoginButton: UIImage { .load(named: "kakaoLoginButton")}
+        static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
     }
     enum TabBar{
         // not-Selected
