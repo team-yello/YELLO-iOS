@@ -14,16 +14,6 @@ enum YELLOTabBarItem: String, CaseIterable {
     case MyYello
     case Profile
 
-    var viewController: UIViewController {
-        switch self {
-        case .Recommending: return RecommendingViewController()
-        case .Around: return AroundViewController()
-        case .Voting: return VotingViewController()
-        case .MyYello: return MyYelloViewController()
-        case .Profile: return ProfileViewController()
-        }
-    }
-
     var unselectedImage: UIImage {
         switch self {
         case .Recommending: return ImageLiterals.TabBar.icPlusFriend
