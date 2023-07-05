@@ -19,7 +19,6 @@ final class YELLOTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setTabBarAppearance()
         setTabBarItems()
     }
@@ -27,24 +26,25 @@ final class YELLOTabBarController: UITabBarController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tabBar.frame.size.height = 60.adjusted
-        tabBar.frame.origin.y = view.frame.height - 60.adjusted
+        tabBar.frame.size.height = 60.adjustedHeight
+        tabBar.frame.origin.y = view.frame.height - 60.adjustedHeight
     }
     
     private func setTabBarAppearance() {
         
         view.backgroundColor = .white
         
-        UITabBar.appearance().backgroundColor = .grayscales900
-        UITabBar.appearance().tintColor = .yelloMain500
-        UITabBar.appearance().unselectedItemTintColor = .grayscales600
+        tabBar.backgroundColor = .grayscales900
+        tabBar.tintColor = .yelloMain500
+        tabBar.barTintColor = .grayscales600
         tabBar.roundCorners(cornerRadius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-        
+       
         let fontAttributes = [NSAttributedString.Key.font: UIFont.uiCaption03]
+        let selectedFontAttributes = [NSAttributedString.Key.font: UIFont.uiCaption04]
+    
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
-        
-        let selectedFontAttributes = [NSAttributedString.Key.font: UIFont(name: "Pretendard-Bold", size: 10.0)!]
         UITabBarItem.appearance().setTitleTextAttributes(selectedFontAttributes, for: .selected)
+       
     }
     
     private func setTabBarItems() {
