@@ -25,7 +25,7 @@ final class YELLOTabBarController: UITabBarController {
         self.delegate = self
         
         // 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
-        let offset = UIOffset(horizontal: 0, vertical: -2) // 수직 방향으로 -3만큼 이동
+        let offset = UIOffset(horizontal: 0, vertical: -2) // 수직 방향으로 -2만큼 이동
         tabBar.items?.forEach { item in
             item.titlePositionAdjustment = offset
         }
