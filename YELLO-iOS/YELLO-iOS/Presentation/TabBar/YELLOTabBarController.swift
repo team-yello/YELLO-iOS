@@ -24,8 +24,8 @@ final class YELLOTabBarController: UITabBarController {
         
         self.delegate = self
         
-        // 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
-        let offset = UIOffset(horizontal: 0, vertical: -2) // 수직 방향으로 -2만큼 이동
+        /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
+        let offset = UIOffset(horizontal: 0, vertical: -2) /// 수직 방향으로 -2만큼 이동
         tabBar.items?.forEach { item in
             item.titlePositionAdjustment = offset
         }
@@ -46,13 +46,16 @@ final class YELLOTabBarController: UITabBarController {
         
         view.backgroundColor = .white
         
-        tabBar.backgroundColor = .grayscales900
         tabBar.tintColor = .yelloMain500
         tabBar.barTintColor = .grayscales600
         tabBar.roundCorners(cornerRadius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         
         let fontAttributes = [NSAttributedString.Key.font: UIFont.uiCaption04]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
+                        
+        UITabBar.clearShadow()
+        tabBar.layer.applyShadow(color: UIColor(hex: "668099"), alpha: 0.15, x: 0, y: -2, blur: 5)
+
         
     }
     
