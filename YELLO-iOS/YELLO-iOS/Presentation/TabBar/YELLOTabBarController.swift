@@ -21,14 +21,26 @@ final class YELLOTabBarController: UITabBarController {
         
         setTabBarAppearance()
         setTabBarItems()
+        
+        self.delegate = self
+        
+        // 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
+        let offset = UIOffset(horizontal: 0, vertical: -2) // 수직 방향으로 -3만큼 이동
+        tabBar.items?.forEach { item in
+            item.titlePositionAdjustment = offset
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        tabBar.frame.size.height = 60.adjustedHeight
-        tabBar.frame.origin.y = view.frame.height - 60.adjustedHeight
+            
+        let safeAreaHeight = view.safeAreaInsets.bottom
+        let tabBarHeight: CGFloat = 60.0
+        tabBar.frame.size.height = tabBarHeight + safeAreaHeight
+        tabBar.frame.origin.y = view.frame.height - tabBarHeight - safeAreaHeight
     }
+    
     
     private func setTabBarAppearance() {
         
@@ -38,13 +50,10 @@ final class YELLOTabBarController: UITabBarController {
         tabBar.tintColor = .yelloMain500
         tabBar.barTintColor = .grayscales600
         tabBar.roundCorners(cornerRadius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-       
-        let fontAttributes = [NSAttributedString.Key.font: UIFont.uiCaption03]
-        let selectedFontAttributes = [NSAttributedString.Key.font: UIFont.uiCaption04]
-    
+        
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.uiCaption04]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes(selectedFontAttributes, for: .selected)
-       
+        
     }
     
     private func setTabBarItems() {
@@ -63,5 +72,26 @@ final class YELLOTabBarController: UITabBarController {
         
         setViewControllers(tabs, animated: true)
     }
+    
 }
 
+
+extension YELLOTabBarController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        if let selectedViewController = tabBarController.selectedViewController {
+            let selectedFontAttributes = [NSAttributedString.Key.font: UIFont.uiCaption04]
+            selectedViewController.tabBarItem.setTitleTextAttributes(selectedFontAttributes, for: .normal)
+        }
+        
+        for (index, controller) in tabBarController.viewControllers!.enumerated() {
+            if let tabBarItem = controller.tabBarItem {
+                if index != tabBarController.selectedIndex {
+                    let defaultFontAttributes = [NSAttributedString.Key.font: UIFont.uiCaption03]
+                    tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
+                }
+            }
+        }
+    }
+}
