@@ -14,7 +14,7 @@ enum StringLiterals {
 
     enum TabBar {
         enum ItemTitle {
-            static let recommending = "추천친구"
+            static let recommend = "추천친구"
             static let around = "둘러보기"
             static let home = "옐로하기"
             static let myYello = "내 쪽지"

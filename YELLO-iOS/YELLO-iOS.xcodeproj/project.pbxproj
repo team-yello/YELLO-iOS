@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2AA0DBA92A546C4B002B1370 /* YELLOTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBA82A546C4B002B1370 /* YELLOTabBarController.swift */; };
 		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
 		2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */; };
 		2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB32A546E62002B1370 /* VotingViewController.swift */; };
 		2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB52A546E84002B1370 /* MyYelloViewController.swift */; };
 		2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */; };
+		2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBC02A552D63002B1370 /* YELLOTabBarItem.swift */; };
+		2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
@@ -57,12 +58,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2AA0DBA82A546C4B002B1370 /* YELLOTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarController.swift; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB32A546E62002B1370 /* VotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB52A546E84002B1370 /* MyYelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2AA0DBC02A552D63002B1370 /* YELLOTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarItem.swift; sourceTree = "<group>"; };
+		2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarController.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
@@ -122,7 +124,8 @@
 		2AA0DBA72A546C24002B1370 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				2AA0DBA82A546C4B002B1370 /* YELLOTabBarController.swift */,
+				2AA0DBC02A552D63002B1370 /* YELLOTabBarItem.swift */,
+				2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
+				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
 				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
@@ -453,11 +457,11 @@
 				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
+				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
-				2AA0DBA92A546C4B002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
@@ -604,7 +608,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q827V73L8U;
+				DEVELOPMENT_TEAM = 349HWJV2J8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -632,7 +636,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q827V73L8U;
+				DEVELOPMENT_TEAM = 349HWJV2J8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
