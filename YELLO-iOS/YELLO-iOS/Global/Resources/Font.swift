@@ -66,6 +66,10 @@ extension UIFont {
         return UIFont(name: "Pretendard-Medium", size: 10.0)!
     }
     
+    static var uiCaption04: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 10.0)!
+    }
+    
     static var Graphic: UIFont {
         return UIFont(name: "Unbounded-Bold", size: 32.0)!
     }
