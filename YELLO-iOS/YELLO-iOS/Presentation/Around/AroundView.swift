@@ -10,12 +10,17 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Around
 final class AroundView: UIView {
     
+    // MARK: - Variables
+    // MARK: Component
     private let aroundLabel = UILabel()
     private let aroundDescriptionLabel = UILabel()
     private let aroundImageView = UIImageView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -27,7 +32,10 @@ final class AroundView: UIView {
     }
 }
 
+// MARK: - extension
 extension AroundView {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -64,19 +72,16 @@ extension AroundView {
         
         aroundLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(120.adjusted)
-//            $0.bottom.equalTo(aroundDescriptionLabel.snp.top).offset(-24.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         aroundDescriptionLabel.snp.makeConstraints {
             $0.top.equalTo(aroundLabel.snp.bottom).offset(24.adjusted)
-//            $0.bottom.equalTo(aroundImageView.snp.top).offset(-18.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         aroundImageView.snp.makeConstraints {
             $0.height.width.equalTo(230.adjusted)
-//            $0.top.equalTo(aroundDescriptionLabel.snp.bottom).offset(18.adjusted)
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview().offset(15.adjusted)
             

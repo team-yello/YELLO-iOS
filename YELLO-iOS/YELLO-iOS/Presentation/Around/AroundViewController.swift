@@ -10,18 +10,25 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Around
 final class AroundViewController: UIViewController {
 
+    // MARK: - Variables
+    // MARK: Component
     private let aroundView = AroundView()
 
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
 }
 
+// MARK: - extension
 extension AroundViewController {
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
