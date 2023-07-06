@@ -162,7 +162,6 @@
 		2AA0DBAC2A546D99002B1370 /* Voting */ = {
 			isa = PBXGroup;
 			children = (
-				2AD1A1B52A573A0000CB988B /* BaseInviting */,
 				2AD1A1AA2A57176200CB988B /* Voting */,
 				2AD1A1A92A57175600CB988B /* VotingLocked */,
 				2AD1A1AD2A571ED500CB988B /* BaseVotingView.swift */,
@@ -331,6 +330,7 @@
 			children = (
 				C3A799CE2A494C9200D3EFD8 /* Base */,
 				2AA0DBA72A546C24002B1370 /* TabBar */,
+				2AD1A1B52A573A0000CB988B /* BaseInviting */,
 				2AA0DBAB2A546D87002B1370 /* Recommending */,
 				2AA0DBAA2A546D12002B1370 /* Around */,
 				2AA0DBAC2A546D99002B1370 /* Voting */,
