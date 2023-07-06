@@ -16,6 +16,8 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,14 +25,9 @@ final class YELLOTabBarController: UITabBarController {
         setTabBarItems()
         
         self.delegate = self
-        
-        /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
-        let offset = UIOffset(horizontal: 0, vertical: -2) /// 수직 방향으로 -2만큼 이동
-        tabBar.items?.forEach { item in
-            item.titlePositionAdjustment = offset
-        }
-        
     }
+    
+    // MARK: - TabBar Height
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -41,8 +38,15 @@ final class YELLOTabBarController: UITabBarController {
         tabBar.frame.origin.y = view.frame.height - tabBarHeight - safeAreaHeight
     }
     
+    // MARK: - TabBar Style
     
     private func setTabBarAppearance() {
+        
+        /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
+        let offset = UIOffset(horizontal: 0, vertical: -2) /// 수직 방향으로 -2만큼
+        tabBar.items?.forEach { item in
+            item.titlePositionAdjustment = offset
+        }
         
         view.backgroundColor = .white
         
@@ -58,6 +62,8 @@ final class YELLOTabBarController: UITabBarController {
 
         
     }
+    
+    // MARK: - TabBar Item
     
     private func setTabBarItems() {
         tabs = [
@@ -78,6 +84,7 @@ final class YELLOTabBarController: UITabBarController {
     
 }
 
+// MARK: - TabBar Custom Font
 
 extension YELLOTabBarController: UITabBarControllerDelegate {
     

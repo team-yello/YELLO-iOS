@@ -9,9 +9,6 @@ import Foundation
 
 enum StringLiterals {
 
-//    enum NavigationBar {
-//    }
-
     enum TabBar {
         enum ItemTitle {
             static let recommend = "추천친구"
