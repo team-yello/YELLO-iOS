@@ -1,5 +1,5 @@
 //
-//  VotingLockedViewController.swift
+//  VotingStartViewController.swift
 //  YELLO-iOS
 //
 //  Created by 변희주 on 2023/07/07.
@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
-final class VotingLockedViewController: BaseViewController {
-    
+final class VotingStartViewController: BaseViewController {
+
     private let originView = BaseVotingView()
     
     override func loadView() {
@@ -22,45 +22,45 @@ final class VotingLockedViewController: BaseViewController {
         view.backgroundColor = .black
         
         originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Locked.title, lineHeight: 28)
-        }
-        
-        originView.textLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Locked.text, lineHeight: 20)
-            $0.numberOfLines = 2
+            $0.setTextWithLineHeight(text: StringLiterals.Voting.Start.title, lineHeight: 28)
         }
         
         originView.yellowButton.do {
-            $0.setTitle("친구 초대하기", for: .normal)
+            $0.setTitle("투표 시작!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
         }
     }
     
     override func setLayout() {
-                
+                        
         originView.titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(100.adjusted)
         }
         
-        originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(24)
-        }
-        
         originView.yelloImage.snp.makeConstraints {
             $0.size.equalTo(230.adjusted)
-            $0.centerY.equalToSuperview().inset(15.adjusted)
+            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(28.adjusted)
+        }
+        
+        originView.grayView.snp.makeConstraints {
+            $0.top.equalTo(originView.yelloImage.snp.bottom).offset(32.adjusted)
+            $0.width.equalTo(284.adjustedWidth)
+            $0.height.equalTo(58.adjustedHeight)
         }
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(28.adjusted)
         }
+        
     }
     
     @objc
     func yellowButtonClicked() {
-        let nextViewController = BaseInvitingViewController()
-        nextViewController.modalPresentationStyle = .formSheet
-        self.present(nextViewController, animated: true)
+        let nextViewController = VotingViewController()
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+        self.navigationController?.navigationBar.isHidden = true
     }
+
+    
 
 }

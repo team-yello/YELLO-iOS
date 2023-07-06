@@ -16,7 +16,7 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
-    private let numofFriends = 3 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
+    private let numOfFriends = 4 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
     private var rootViewController = UIViewController()
     
     // MARK: - Life Cycle
@@ -69,10 +69,10 @@ final class YELLOTabBarController: UITabBarController {
     private func setTabBarItems() {
         
         /// 친구 수에 따라 rootViewController가 달라짐
-        if numofFriends < 4 {
+        if numOfFriends < 4 {
             rootViewController = VotingLockedViewController()
         } else {
-            rootViewController = VotingViewController()
+            rootViewController = VotingStartViewController()
         }
         
         tabs = [

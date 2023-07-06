@@ -17,6 +17,7 @@ enum ImageLiterals {
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
         static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
     }
+    
     enum TabBar {
         // not-Selected
         static var icPlusFriend: UIImage { .load(named: "icPlusFriend") }
@@ -37,7 +38,10 @@ enum ImageLiterals {
         static var icClose: UIImage { .load(named: "icClose") }
         static var icKakaoShare: UIImage { .load(named: "icKakaoShare") }
         static var icLinkCopy: UIImage { .load(named: "icLinkCopy") }
-
+    }
+    
+    enum Voting {
+        static var icPoint: UIImage { .load(named: "icPoint") }
     }
     
 }
