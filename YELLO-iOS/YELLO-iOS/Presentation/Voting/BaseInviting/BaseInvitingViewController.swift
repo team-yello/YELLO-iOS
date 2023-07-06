@@ -26,8 +26,8 @@ final class BaseInvitingViewController: BaseViewController {
         
         view.addSubview(originView)
         originView.snp.makeConstraints {
-            $0.width.equalTo(300.adjustedWidth)
-            $0.height.equalTo(374.adjustedHeight)
+            $0.width.equalTo(300)
+            $0.height.equalTo(374)
             $0.center.equalToSuperview()
         }
         
