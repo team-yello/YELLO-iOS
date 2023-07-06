@@ -24,4 +24,11 @@ enum StringLiterals {
         static let aroundDescription = "아직 구현되지 않은 기능이에요.\n조금만 기다려주세요!"
     }
     
+    enum Voting {
+        enum Locked {
+            static let white = "투표를 시작할 수 없어요"
+            static let gray = "친구가 4명 이상 모이면 투표할 수 있어요.\n친구들을 초대해볼까요?"
+        }
+    }
+    
 }

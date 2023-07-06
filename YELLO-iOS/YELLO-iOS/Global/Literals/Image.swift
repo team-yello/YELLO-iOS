@@ -7,8 +7,9 @@
 
 import UIKit
 
-enum ImageLiterals{
-    enum OnBoarding{
+enum ImageLiterals {
+    
+    enum OnBoarding {
         static var icArrowLeft: UIImage { .load(named: "icArrowLeft") }
         static var icChevronDown: UIImage { .load(named: "icChevronDown") }
         static var icSearch: UIImage { .load(named: "icSearch") }
@@ -16,7 +17,7 @@ enum ImageLiterals{
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
         static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
     }
-    enum TabBar{
+    enum TabBar {
         // not-Selected
         static var icPlusFriend: UIImage { .load(named: "icPlusFriend") }
         static var icFriendYello: UIImage { .load(named: "icFriendYello") }
@@ -30,6 +31,13 @@ enum ImageLiterals{
         static var icHomeSelected: UIImage { .load(named: "icHomeSelected") }
         static var icMyYelloSelected: UIImage { .load(named: "icMyYelloSelected") }
         static var icProfileSelected: UIImage { .load(named: "icProfileSelected") }
+    }
+    
+    enum InvitingPopUp {
+        static var icClose: UIImage { .load(named: "icClose") }
+        static var icKakaoShare: UIImage { .load(named: "icKakaoShare") }
+        static var icLinkCopy: UIImage { .load(named: "icLinkCopy") }
+
     }
     
 }
