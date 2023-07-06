@@ -54,6 +54,7 @@ final class BaseInvitingView: BaseView {
             $0.numberOfLines = 2
             $0.textColor = .grayscales600
             $0.font = .uiBody03
+            $0.asColor(targetString: "바로 투표" , color: .black)
         }
         
         purpleLabel.do {

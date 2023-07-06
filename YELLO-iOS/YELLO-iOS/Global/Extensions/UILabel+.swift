@@ -26,4 +26,13 @@ extension UILabel {
             self.numberOfLines = 2
         }
     }
+    
+    /// 특정 Label에 색상 주기
+    func asColor(targetString: String, color: UIColor?) {
+            let fullText = text ?? ""
+            let attributedString = NSMutableAttributedString(string: fullText)
+            let range = (fullText as NSString).range(of: targetString)
+            attributedString.addAttributes([.font: font as Any, .foregroundColor: color as Any], range: range)
+            attributedText = attributedString
+    }
 }
