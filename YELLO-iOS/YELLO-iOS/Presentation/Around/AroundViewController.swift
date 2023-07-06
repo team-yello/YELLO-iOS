@@ -2,28 +2,48 @@
 //  AroundViewController.swift
 //  YELLO-iOS
 //
-//  Created by 변희주 on 2023/07/05.
+//  Created by 정채은 on 2023/07/05.
 //
 
 import UIKit
 
+import SnapKit
+import Then
+
+// MARK: - Around
 final class AroundViewController: UIViewController {
 
+    // MARK: - Variables
+    // MARK: Component
+    private let aroundView = AroundView()
+
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
+    }
+}
 
-        // Do any additional setup after loading the view.
+// MARK: - extension
+extension AroundViewController {
+    
+    // MARK: Layout Helpers
+    private func setUI() {
+        setStyle()
+        setLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setStyle() {
+        view.backgroundColor = .black
     }
-    */
-
+    
+    private func setLayout() {
+        view.addSubviews(aroundView)
+        
+        aroundView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+    }
 }
