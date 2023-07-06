@@ -16,7 +16,7 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
-    private let numOfFriends = 3 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
+    private let numOfFriends = 4 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
     private var rootViewController = UIViewController()
     
     // MARK: - Life Cycle

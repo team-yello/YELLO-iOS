@@ -25,6 +25,14 @@ final class VotingStartViewController: BaseViewController {
             $0.setTextWithLineHeight(text: StringLiterals.Voting.Start.title, lineHeight: 28)
         }
         
+        originView.engPoint.do {
+            $0.setTextWithLineHeight(text: "Point", lineHeight: 22)
+        }
+        
+        originView.realMyPoint.do {
+            $0.setTextWithLineHeight(text: "2500", lineHeight: 22)
+        }
+        
         originView.yellowButton.do {
             $0.setTitle("투표 시작!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
@@ -43,7 +51,7 @@ final class VotingStartViewController: BaseViewController {
         }
         
         originView.grayView.snp.makeConstraints {
-            $0.top.equalTo(originView.yelloImage.snp.bottom).offset(32.adjusted)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-41.adjusted)
             $0.width.equalTo(284.adjustedWidth)
             $0.height.equalTo(58.adjustedHeight)
         }

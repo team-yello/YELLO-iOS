@@ -15,8 +15,13 @@ final class BaseVotingView: BaseView {
     let titleLabel = UILabel()
     let textLabel = UILabel()
     let yelloImage = UIImageView()
-    let yellowButton = UIButton()
+    
     let grayView = UIView()
+    let myPointText = UIButton()
+    let realMyPoint = UILabel()
+    let engPoint = UILabel()
+    
+    let yellowButton = UIButton()
     
     override func setUI() {
         setStyle()
@@ -42,13 +47,32 @@ final class BaseVotingView: BaseView {
             $0.backgroundColor = UIColor(hex: "293036")
             $0.makeCornerRound(radius: 8)
         }
+
+        myPointText.do {
+            $0.setTitle("  내 포인트", for: .normal)
+            $0.setImage(ImageLiterals.Voting.icPoint, for: .normal)
+            $0.setTitleColor(.white, for: .normal)
+            $0.imageView?.contentMode = .scaleAspectFit
+            $0.titleLabel?.font = .uiBodyMedium
+            $0.contentHorizontalAlignment = .center
+            $0.semanticContentAttribute = .forceLeftToRight
+        }
+        
+        realMyPoint.do {
+            $0.textColor = .white
+            $0.font = .uiSubtitle03
+        }
+        
+        engPoint.do {
+            $0.textColor = .grayscales400
+            $0.font = .uiBodyMedium
+        }
         
         yellowButton.do {
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
             $0.backgroundColor = .yelloMain500
             $0.makeCornerRound(radius: 8)
-            
         }
     }
     
@@ -58,6 +82,10 @@ final class BaseVotingView: BaseView {
                          yelloImage,
                          grayView,
                          yellowButton)
+        
+        grayView.addSubviews(myPointText,
+                             realMyPoint,
+                             engPoint)
         
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -73,6 +101,21 @@ final class BaseVotingView: BaseView {
         
         grayView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
+        }
+        
+        myPointText.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(24.adjusted)
+            $0.centerY.equalToSuperview()
+        }
+    
+        realMyPoint.snp.makeConstraints {
+            $0.trailing.equalTo(engPoint.snp.leading).offset(-4)
+            $0.centerY.equalToSuperview()
+        }
+        
+        engPoint.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(24.adjusted)
+            $0.centerY.equalToSuperview()
         }
         
         yellowButton.snp.makeConstraints {
