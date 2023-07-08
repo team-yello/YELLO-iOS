@@ -88,4 +88,8 @@ extension UIFont {
     class var uiLabelBoldSmall: UIFont {
         return UIFont(name: "Pretendard-Bold", size: 10.0)!
     }
+    
+    class var uiPointLabel: UIFont {
+        return UIFont(name: "Unbounded-Medium", size: 16.0)!
+    }
 }

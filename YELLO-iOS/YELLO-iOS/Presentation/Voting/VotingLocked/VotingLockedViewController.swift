@@ -39,7 +39,7 @@ final class VotingLockedViewController: BaseViewController {
     override func setLayout() {
                 
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(100.adjusted)
+            $0.top.equalToSuperview().inset(120.adjusted)
         }
         
         originView.textLabel.snp.makeConstraints {
@@ -51,9 +51,6 @@ final class VotingLockedViewController: BaseViewController {
             $0.centerY.equalToSuperview().inset(15.adjusted)
         }
         
-        originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(28.adjusted)
-        }
     }
     
     @objc

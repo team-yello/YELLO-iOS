@@ -17,6 +17,7 @@ final class BaseInvitingView: BaseView {
     let blackLabel = UILabel()
     let grayLabel = UILabel()
     
+    let backGroundView = UIView()
     let purpleLabel = UILabel()
     let recommenderID = UILabel()
     
@@ -57,6 +58,11 @@ final class BaseInvitingView: BaseView {
             $0.asColor(targetString: "바로 투표" , color: .black)
         }
         
+        backGroundView.do {
+            $0.backgroundColor = .grayscales50
+            $0.makeCornerRound(radius: 8)
+        }
+        
         purpleLabel.do {
             $0.setTextWithLineHeight(text: "내 추천인 코드", lineHeight: 20)
             $0.textColor = .purpleSub500
@@ -82,10 +88,12 @@ final class BaseInvitingView: BaseView {
         self.addSubviews(closeButton,
                          blackLabel,
                          grayLabel,
-                         purpleLabel,
-                         recommenderID,
+                         backGroundView,
                          kakaoButton,
                          copyButton)
+        
+        backGroundView.addSubviews(purpleLabel,
+                                   recommenderID)
         
         closeButton.snp.makeConstraints {
             $0.top.trailing.equalToSuperview().inset(14.adjusted)
@@ -94,6 +102,12 @@ final class BaseInvitingView: BaseView {
         blackLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(50.adjusted)
             $0.centerX.equalToSuperview()
+        }
+        
+        backGroundView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(14.adjusted)
+            $0.top.equalToSuperview().inset(146.adjusted)
+            $0.bottom.equalToSuperview().inset(120.adjusted)
         }
         
         grayLabel.snp.makeConstraints {

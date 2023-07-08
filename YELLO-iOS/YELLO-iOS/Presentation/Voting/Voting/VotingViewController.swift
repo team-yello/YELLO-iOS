@@ -7,23 +7,32 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class VotingViewController: UIViewController {
 
+    private let button = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .black
+        
+        button.setTitle("클릭", for: .normal)
+        button.addTarget(self, action: #selector(clicked), for: .touchUpInside)
+        
+        view.addSubviews(button)
+        button.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc
+    func clicked() {
+        let nextViewController = VotingPointViewController()
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+        self.navigationController?.navigationBar.isHidden = true
     }
-    */
-
+    
 }

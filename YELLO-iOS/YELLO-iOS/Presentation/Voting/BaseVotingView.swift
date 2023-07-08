@@ -12,8 +12,12 @@ import Then
 
 final class BaseVotingView: BaseView {
 
+    let topOfMyPoint = UIButton()
+    
     let titleLabel = UILabel()
     let textLabel = UILabel()
+    
+    let plusPoint = UILabel()
     let yelloImage = UIImageView()
     
     let grayView = UIView()
@@ -29,6 +33,17 @@ final class BaseVotingView: BaseView {
     }
     
     private func setStyle() {
+        
+        topOfMyPoint.do {
+            $0.setTitle("  2500", for: .normal)
+            $0.setImage(ImageLiterals.Voting.icPoint, for: .normal)
+            $0.setTitleColor(.white, for: .normal)
+            $0.imageView?.contentMode = .scaleAspectFit
+            $0.titleLabel?.font = .uiBodyMedium
+            $0.contentHorizontalAlignment = .center
+            $0.semanticContentAttribute = .forceLeftToRight
+        }
+        
         titleLabel.do {
             $0.textColor = .white
             $0.font = .uiHeadline03
@@ -37,6 +52,11 @@ final class BaseVotingView: BaseView {
         textLabel.do {
             $0.textColor = .grayscales500
             $0.font = .uiBodySmall
+        }
+        
+        plusPoint.do {
+            $0.textColor = .white
+            $0.font = .uiPointLabel
         }
         
         yelloImage.do {
@@ -77,8 +97,10 @@ final class BaseVotingView: BaseView {
     }
     
     private func setLayout() {
-        self.addSubviews(titleLabel,
+        self.addSubviews(topOfMyPoint,
+                         titleLabel,
                          textLabel,
+                         plusPoint,
                          yelloImage,
                          grayView,
                          yellowButton)
@@ -92,6 +114,10 @@ final class BaseVotingView: BaseView {
         }
         
         textLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+        }
+        
+        plusPoint.snp.makeConstraints {
             $0.centerX.equalToSuperview()
         }
         
@@ -119,6 +145,7 @@ final class BaseVotingView: BaseView {
         }
         
         yellowButton.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(531.adjusted)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(343.adjustedWidth)
             $0.height.equalTo(48.adjustedHeight)

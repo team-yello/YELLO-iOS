@@ -42,7 +42,7 @@ final class VotingStartViewController: BaseViewController {
     override func setLayout() {
                         
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(100.adjusted)
+            $0.top.equalToSuperview().inset(120.adjusted)
         }
         
         originView.yelloImage.snp.makeConstraints {
@@ -51,13 +51,9 @@ final class VotingStartViewController: BaseViewController {
         }
         
         originView.grayView.snp.makeConstraints {
-            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-41.adjusted)
+            $0.top.equalToSuperview().inset(438.adjusted)
             $0.width.equalTo(284.adjustedWidth)
             $0.height.equalTo(58.adjustedHeight)
-        }
-        
-        originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(28.adjusted)
         }
         
     }

@@ -33,6 +33,11 @@ enum StringLiterals {
             static let title = "누구에게 어떤 메세지를 보낼까?"
             static let myPoint = "내 포인트"
         }
+        
+        enum Point {
+            static let title = "투표 포인트 적립!"
+            static let text = "투표로 포인트를 모아 쪽지를 열어보세요."
+        }
     }
     
 }
