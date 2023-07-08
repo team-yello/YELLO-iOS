@@ -86,13 +86,13 @@ extension RecommendingViewController {
                         .statusBarFrame.height ?? 20
             
             $0.top.equalTo(view.safeAreaInsets).offset(statusBarHeight + 22.adjusted)
-            $0.leading.equalToSuperview().offset(16.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         segmentedControl.snp.makeConstraints {
             $0.height.equalTo(44.adjusted)
             $0.width.equalToSuperview()
-            $0.top.equalTo(recommendingLabel.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(recommendingLabel.snp.bottom).inset(-10.adjusted)
         }
         
         pageViewController.view.snp.makeConstraints {

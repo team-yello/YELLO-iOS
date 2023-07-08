@@ -21,8 +21,6 @@ final class RecommendingSegmentedControl: UISegmentedControl {
         let yPosition = self.bounds.size.height - height
         let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
         let view = UIView(frame: frame)
-        view.backgroundColor = .yelloMain500
-        self.addSubview(view)
         return view
     }()
     
@@ -33,8 +31,6 @@ final class RecommendingSegmentedControl: UISegmentedControl {
         let yPosition = self.bounds.size.height - height
         let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
         let view = UIView(frame: frame)
-        view.backgroundColor = .grayscales700
-        self.addSubview(view)
         return view
     }()
     
@@ -57,12 +53,27 @@ final class RecommendingSegmentedControl: UISegmentedControl {
     // MARK: Layout Helpers
     override func layoutSubviews() {
         super.layoutSubviews()
-        setLayout()
+        setUI()
     }
 }
 
 // MARK: - extension
 extension RecommendingSegmentedControl {
+    
+    private func setUI() {
+        setStyle()
+        setLayout()
+    }
+    
+    private func setStyle() {
+        selectedUnderlineView.do {
+            $0.backgroundColor = .yelloMain500
+        }
+        
+        defaultUnderLineView.do {
+            $0.backgroundColor = .grayscales700
+        }
+    }
     
     private func setLayout() {
         self.addSubviews(
