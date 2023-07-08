@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class BaseVotingView: BaseView {
+class BaseVotingView: BaseView {
 
     let topOfMyPoint = UIButton()
     

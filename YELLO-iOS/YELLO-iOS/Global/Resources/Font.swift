@@ -96,4 +96,8 @@ extension UIFont {
     class var uiPointLabel: UIFont {
         return UIFont(name: "Unbounded-Medium", size: 16.0)!
     }
+    
+    class var uiTimeLabel: UIFont {
+        return UIFont(name: "Unbounded-Bold", size: 25.0)!
+    }
 }

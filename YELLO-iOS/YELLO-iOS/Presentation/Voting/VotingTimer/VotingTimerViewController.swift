@@ -14,15 +14,18 @@ final class VotingTimerViewController: BaseViewController {
     
     private let originView = BaseVotingView()
     
+    private let timerBackGround = UIImageView()
+    private let timerView = VotingTimerView()
+    
     private let speechBubbleBackground = UIImageView()
     private let speechBubbleText = UILabel()
     
     override func loadView() {
         self.view = originView
     }
-    
+
     override func setStyle() {
-        view.backgroundColor = UIColor(patternImage: ImageLiterals.Voting.imgTimerBackground)
+        view.backgroundColor = UIColor(patternImage: ImageLiterals.Voting.imgTimerViewBackground)
         
         originView.titleLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Voting.Timer.title, lineHeight: 28)
@@ -30,6 +33,10 @@ final class VotingTimerViewController: BaseViewController {
         
         originView.textLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Voting.Timer.text, lineHeight: 20)
+        }
+        
+        timerBackGround.do {
+            $0.image = ImageLiterals.Voting.imgTimerBackground
         }
         
         speechBubbleBackground.do {
@@ -58,8 +65,11 @@ final class VotingTimerViewController: BaseViewController {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
-        originView.addSubview(speechBubbleBackground)
+        originView.addSubviews(timerBackGround,
+                               speechBubbleBackground)
+        timerBackGround.addSubview(timerView)
         speechBubbleBackground.addSubview(speechBubbleText)
+        
 
         originView.topOfMyPoint.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjusted)
@@ -72,6 +82,16 @@ final class VotingTimerViewController: BaseViewController {
         
         originView.textLabel.snp.makeConstraints {
             $0.top.equalTo(originView.titleLabel.snp.bottom).offset(2.adjusted)
+        }
+        
+        timerBackGround.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 206.adjusted)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(207.adjusted)
+        }
+        
+        timerView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         
         speechBubbleBackground.snp.makeConstraints {
