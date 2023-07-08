@@ -22,7 +22,7 @@ final class YelloTextFieldView: UIView {
 
 
     //MARK: Components
-    private let titleLabel = UILabel()
+    private let titleLabel = YelloGuideLabel()
     let textField = YelloTextField()
     private let helperLabel = UILabel()
     
@@ -35,9 +35,11 @@ final class YelloTextFieldView: UIView {
     }
     
     ///텍스트필드 상태도 인자로 받아서 분기 처리 할 예정
-    init(title: String, state: iconState, helper: String = "") {
+    init(title: String, state: iconState,
+         placeholder: String = "" ,helper: String = "") {
         super.init(frame: CGRect())
         titleLabel.text = title
+        textField.placeholder = placeholder
         textField.setButtonState(state: state)
         helperLabel.text = helper
         setUI()
@@ -54,21 +56,16 @@ final class YelloTextFieldView: UIView {
     }
     
     private func setStyle() {
-        self.addSubviews(titleLabel,textField,helperLabel)
-        
-        titleLabel.do {
-            $0.font = .uiHeadline01
-            $0.textColor = .black
-        }
-        
+    
         helperLabel.do {
             $0.font = .uiBody04
-            $0.textColor = .gray
+            $0.textColor = .grayscales600
         }
         
     }
     
     private func setLayout() {
+        self.addSubviews(titleLabel,textField,helperLabel)
         titleLabel.snp.makeConstraints {
             $0.leading.top.equalToSuperview()
         }
