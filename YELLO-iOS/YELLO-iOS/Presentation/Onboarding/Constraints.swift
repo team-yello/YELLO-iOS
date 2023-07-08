@@ -8,6 +8,7 @@
 import Foundation
 
 class Constraints {
+    static var round = 8
     static var bigMargin = 16
     static var smallMargin = 12
     static var topMargin = 20
