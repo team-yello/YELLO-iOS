@@ -32,12 +32,4 @@ extension UIView {
             self.addSubview($0)
         }
     }
-    
-    // 원하는 모서리에만 CornerRadius 주기
-    func roundCorners(cornerRadius: CGFloat, maskedCorners: CACornerMask) {
-            clipsToBounds = true
-            layer.cornerRadius = cornerRadius
-            layer.maskedCorners = CACornerMask(arrayLiteral: maskedCorners)
-    }
-    
 }

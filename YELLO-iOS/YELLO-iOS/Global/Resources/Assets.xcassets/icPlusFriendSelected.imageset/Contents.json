@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "plusfriend.png",
+      "filename" : "status=selected-4.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "plusfriend@2x.png",
+      "filename" : "status=selected-4 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "plusfriend@3x.png",
+      "filename" : "status=selected-4 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

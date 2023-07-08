@@ -27,14 +27,6 @@
 		3676759E2A57353D00B8AF0D /* AddFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676759D2A57353D00B8AF0D /* AddFriendsView.swift */; };
 		367675A02A57355500B8AF0D /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676759F2A57355400B8AF0D /* AddFriendsViewController.swift */; };
 		367675A22A5739A500B8AF0D /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367675A12A5739A500B8AF0D /* FriendsTableViewCell.swift */; };
-		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
-		2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */; };
-		2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB32A546E62002B1370 /* VotingViewController.swift */; };
-		2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB52A546E84002B1370 /* MyYelloViewController.swift */; };
-		2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */; };
-		2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBC02A552D63002B1370 /* YELLOTabBarItem.swift */; };
-		2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */; };
-		2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		369275E12A546FA20031D293 /* YelloButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369275E02A546FA20031D293 /* YelloButton.swift */; };
@@ -77,10 +69,6 @@
 		C3A79A072A49500000D3EFD8 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FE2A494FFF00D3EFD8 /* Pretendard-SemiBold.otf */; };
 		C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */; };
 		C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */; };
-		C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC02A56FCA600B84CAA /* AroundView.swift */; };
-		C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */; };
-		C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */; };
-		C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,14 +92,6 @@
 		3676759D2A57353D00B8AF0D /* AddFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsView.swift; sourceTree = "<group>"; };
 		3676759F2A57355400B8AF0D /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		367675A12A5739A500B8AF0D /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
-		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
-		2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundViewController.swift; sourceTree = "<group>"; };
-		2AA0DBB32A546E62002B1370 /* VotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
-		2AA0DBB52A546E84002B1370 /* MyYelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloViewController.swift; sourceTree = "<group>"; };
-		2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		2AA0DBC02A552D63002B1370 /* YELLOTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarItem.swift; sourceTree = "<group>"; };
-		2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarController.swift; sourceTree = "<group>"; };
-		2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		369275E02A546FA20031D293 /* YelloButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloButton.swift; sourceTree = "<group>"; };
@@ -151,10 +131,6 @@
 		C3A799FE2A494FFF00D3EFD8 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		C3C57BC02A56FCA600B84CAA /* AroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundView.swift; sourceTree = "<group>"; };
-		C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingSegmentedControl.swift; sourceTree = "<group>"; };
-		C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendViewController.swift; sourceTree = "<group>"; };
-		C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,57 +215,6 @@
 				367675992A571FF700B8AF0D /* YelloGenderButton.swift */,
 			);
 			path = Helper;
-		2AA0DBA72A546C24002B1370 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				2AA0DBC02A552D63002B1370 /* YELLOTabBarItem.swift */,
-				2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
-		2AA0DBAA2A546D12002B1370 /* Around */ = {
-			isa = PBXGroup;
-			children = (
-				2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */,
-				C3C57BC02A56FCA600B84CAA /* AroundView.swift */,
-			);
-			path = Around;
-			sourceTree = "<group>";
-		};
-		2AA0DBAB2A546D87002B1370 /* Recommending */ = {
-			isa = PBXGroup;
-			children = (
-				2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */,
-				C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */,
-				C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */,
-				C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */,
-			);
-			path = Recommending;
-			sourceTree = "<group>";
-		};
-		2AA0DBAC2A546D99002B1370 /* Voting */ = {
-			isa = PBXGroup;
-			children = (
-				2AA0DBB32A546E62002B1370 /* VotingViewController.swift */,
-			);
-			path = Voting;
-			sourceTree = "<group>";
-		};
-		2AA0DBAD2A546DB3002B1370 /* MyYello */ = {
-			isa = PBXGroup;
-			children = (
-				2AA0DBB52A546E84002B1370 /* MyYelloViewController.swift */,
-			);
-			path = MyYello;
-			sourceTree = "<group>";
-		};
-		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		C3A7998A2A49490A00D3EFD8 = {
@@ -356,7 +281,6 @@
 				C3A799DE2A494D6800D3EFD8 /* UIView+.swift */,
 				C3A4615A2A4FD44800734EF8 /* adjust+.swift */,
 				367F1CD32A54193700CDF47B /* UIColor+.swift */,
-				2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -412,12 +336,6 @@
 			children = (
 				C3A799CE2A494C9200D3EFD8 /* Base */,
 				367F1CD92A546B5100CDF47B /* Onboarding */,
-				2AA0DBA72A546C24002B1370 /* TabBar */,
-				2AA0DBAB2A546D87002B1370 /* Recommending */,
-				2AA0DBAA2A546D12002B1370 /* Around */,
-				2AA0DBAC2A546D99002B1370 /* Voting */,
-				2AA0DBAD2A546DB3002B1370 /* MyYello */,
-				2AA0DBAE2A546DBC002B1370 /* Profile */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -567,15 +485,11 @@
 				3648D5322A54AF9500512FD8 /* FindSchoolView.swift in Sources */,
 				3648D52A2A54A8A900512FD8 /* StudentInfoView.swift in Sources */,
 				3648D5302A54AF5200512FD8 /* FindSchoolViewController.swift in Sources */,
-				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
-				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
 				367675922A56E65800B8AF0D /* OnboardingViewController.swift in Sources */,
-				C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */,
-				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
 				3648D5382A54C13400512FD8 /* UserInfoViewController.swift in Sources */,
@@ -589,14 +503,7 @@
 				3676759A2A571FF700B8AF0D /* YelloGenderButton.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
 				367675942A57028000B8AF0D /* Constraints.swift in Sources */,
-				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
-				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
-				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
-				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
-				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
-				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
-				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				369275E12A546FA20031D293 /* YelloButton.swift in Sources */,
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
@@ -604,7 +511,6 @@
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				3675FA3A2A5473030045F2EB /* YelloTextFieldView.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
-				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				3675FA382A5472DE0045F2EB /* YelloTextField.swift in Sources */,
@@ -620,7 +526,6 @@
 				3648D52E2A54A90D00512FD8 /* StudentInfoViewController.swift in Sources */,
 				3676759E2A57353D00B8AF0D /* AddFriendsView.swift in Sources */,
 				367675962A571EF100B8AF0D /* GenderViewController.swift in Sources */,
-				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,7 +664,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 349HWJV2J8;
+				DEVELOPMENT_TEAM = Q827V73L8U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -787,7 +692,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 349HWJV2J8;
+				DEVELOPMENT_TEAM = Q827V73L8U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

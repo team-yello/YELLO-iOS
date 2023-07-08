@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "myyello.png",
+      "filename" : "status=selected-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "myyello@2x.png",
+      "filename" : "status=selected-1 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "myyello@3x.png",
+      "filename" : "status=selected-1 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
