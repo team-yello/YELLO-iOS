@@ -33,21 +33,17 @@ class BaseViewController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUI()
+    }
+    
+    // MARK: UI
+    func setUI(){
         setStyle()
         setLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    // MARK: UI
-    
     /// Attributes (속성) 설정 메서드
     func setStyle() {
-        
         view.backgroundColor = .white
     }
     
