@@ -42,6 +42,8 @@ enum ImageLiterals {
     
     enum Voting {
         static var icPoint: UIImage { .load(named: "icPoint") }
+        static var lbSpeechBubble: UIImage { .load(named: "lbSpeechBubble") }
+        static var imgTimerBackground: UIImage { .load(named: "imgTimerBackground")}
     }
     
 }

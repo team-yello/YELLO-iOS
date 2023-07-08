@@ -44,6 +44,7 @@ final class VotingPointViewController: BaseViewController {
         
         originView.yellowButton.do {
             $0.setTitle("확인", for: .normal)
+            $0.titleLabel?.font = .uiSubtitle04
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
         }
     }

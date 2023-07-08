@@ -53,8 +53,8 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.yelloImage.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 214.adjusted)
             $0.size.equalTo(230.adjusted)
-            $0.centerY.equalToSuperview().inset(15.adjusted)
         }
         
         originView.yellowButton.snp.makeConstraints {

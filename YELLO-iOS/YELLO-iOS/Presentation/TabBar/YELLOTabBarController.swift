@@ -51,7 +51,7 @@ final class YELLOTabBarController: UITabBarController {
             item.titlePositionAdjustment = offset
         }
         
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         
         tabBar.tintColor = .yelloMain500
         tabBar.barTintColor = .grayscales600
