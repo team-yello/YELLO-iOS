@@ -16,6 +16,9 @@ enum ImageLiterals{
         static var icXCircle: UIImage { .load(named: "icXCircle")}
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
         static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
+        static var icCheckCircle: UIImage { .load(named: "icCheckCircle")}
+        static var icCheckCircleDisable: UIImage { .load(named: "icCheckCircleDisable")}
+        
     }
     enum TabBar{
         // not-Selected
