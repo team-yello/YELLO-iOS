@@ -23,7 +23,7 @@ final class VotingTimerViewController: BaseViewController {
     override func loadView() {
         self.view = originView
     }
-
+    
     override func setStyle() {
         view.backgroundColor = UIColor(patternImage: ImageLiterals.Voting.imgTimerViewBackground)
         
@@ -58,7 +58,7 @@ final class VotingTimerViewController: BaseViewController {
     }
     
     override func setLayout() {
-            
+        
         let statusBarHeight = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .first?
@@ -70,12 +70,12 @@ final class VotingTimerViewController: BaseViewController {
         timerBackGround.addSubview(timerView)
         speechBubbleBackground.addSubview(speechBubbleText)
         
-
+        
         originView.topOfMyPoint.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjusted)
         }
-                        
+        
         originView.titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
         }
@@ -107,14 +107,14 @@ final class VotingTimerViewController: BaseViewController {
         originView.yellowButton.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
         }
-    
+        
     }
     
     @objc
     func yellowButtonClicked() {
-        let nextViewController = BaseInvitingViewController()
-        nextViewController.modalPresentationStyle = .formSheet
+        let nextViewController = InvitingViewController()
+        nextViewController.modalPresentationStyle = .overFullScreen
         self.present(nextViewController, animated: true)
     }
-
+    
 }

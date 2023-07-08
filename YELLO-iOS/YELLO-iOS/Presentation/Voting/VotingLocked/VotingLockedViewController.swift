@@ -65,8 +65,8 @@ final class VotingLockedViewController: BaseViewController {
     
     @objc
     func yellowButtonClicked() {
-        let nextViewController = BaseInvitingViewController()
-        nextViewController.modalPresentationStyle = .formSheet
+        let nextViewController = InvitingViewController()
+        nextViewController.modalPresentationStyle = .overFullScreen
         self.present(nextViewController, animated: true)
     }
 

@@ -35,9 +35,19 @@ extension UIView {
     
     // 원하는 모서리에만 CornerRadius 주기
     func roundCorners(cornerRadius: CGFloat, maskedCorners: CACornerMask) {
-            clipsToBounds = true
-            layer.cornerRadius = cornerRadius
-            layer.maskedCorners = CACornerMask(arrayLiteral: maskedCorners)
+        clipsToBounds = true
+        layer.cornerRadius = cornerRadius
+        layer.maskedCorners = CACornerMask(arrayLiteral: maskedCorners)
+    }
+    
+    // UIView를 UIImage로 변환하는 확장 메서드
+    func asImage() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        return image
     }
     
 }

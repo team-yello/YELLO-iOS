@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class BaseInvitingView: BaseView {
+final class InvitingView: BaseView {
 
     let closeButton = UIButton()
 
