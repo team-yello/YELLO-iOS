@@ -12,37 +12,41 @@ import Then
 
 
 class OnboardingBaseViewController: BaseViewController {
+    // MARK: - Variables
     
-    
-    //MARK: Componenet
+    // MARK: Componenet
     
     private let backButton = UIButton()
+    private let nextButton = YelloButton(buttonText: "다음", state: .enable)
+    var nextViewController: UIViewController?
     
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
-        setNavigationBarAppearance()
+        ConfigUI()
     }
+    // MARK: - Function
     
-    // MARK: UI
-    func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    /// Attributes (속성) 설정 메서드
-    override func setStyle() {
+    // MARK: Custom Function
+    ///ConfigUI 반복 사용되는 부분 설정
+    func ConfigUI() {
         view.backgroundColor = .white
-        
+        setNavigationBarAppearance()
         backButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icArrowLeft, for: .normal)
         }
+        
+        nextButton.do {
+            $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        }
+        view.addSubviews(nextButton)
+        nextButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
+            $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
+        }
     }
     
-    /// Hierarchy, Constraints (계층 및 제약조건) 설정 메서드
-    override func setLayout() {}
     
     func makeBarButtonItem<T: UIView>(with view: T) -> UIBarButtonItem {
         return UIBarButtonItem(customView: view)
@@ -60,6 +64,13 @@ class OnboardingBaseViewController: BaseViewController {
         navigationItem.compactAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         
+    }
+    
+    // MARK: Objc Function
+    @objc func didTapButton(){
+        if let nextViewController = nextViewController {
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        } else {}
     }
     
     
