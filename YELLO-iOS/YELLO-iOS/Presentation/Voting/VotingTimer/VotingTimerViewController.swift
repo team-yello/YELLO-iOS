@@ -7,7 +7,10 @@
 
 import UIKit
 
-class VotingTimerViewController: UIViewController {
+import SnapKit
+import Then
+
+final class VotingTimerViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

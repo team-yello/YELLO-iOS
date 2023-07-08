@@ -135,7 +135,7 @@ final class BaseVotingView: BaseView {
         }
     
         realMyPoint.snp.makeConstraints {
-            $0.trailing.equalTo(engPoint.snp.leading).offset(-4)
+            $0.trailing.equalTo(engPoint.snp.leading).offset(-4.adjusted)
             $0.centerY.equalToSuperview()
         }
         
@@ -145,10 +145,9 @@ final class BaseVotingView: BaseView {
         }
         
         yellowButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(531.adjusted)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(343.adjustedWidth)
-            $0.height.equalTo(48.adjustedHeight)
+            $0.width.equalTo(343.adjusted)
+            $0.height.equalTo(48.adjusted)
         }
     }
 

@@ -38,6 +38,11 @@ enum StringLiterals {
             static let title = "투표 포인트 적립!"
             static let text = "투표로 포인트를 모아 쪽지를 열어보세요."
         }
+        
+        enum Timer {
+            static let title = "다음 투표까지 남은 시간"
+            static let text = "시간이 지나면 다시 투표할 수 있어요!"
+        }
     }
     
 }

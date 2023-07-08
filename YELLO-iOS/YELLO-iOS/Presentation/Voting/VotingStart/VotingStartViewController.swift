@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class VotingStartViewController: BaseViewController {
-
+    
     private let originView = BaseVotingView()
     
     override func loadView() {
@@ -40,20 +40,30 @@ final class VotingStartViewController: BaseViewController {
     }
     
     override func setLayout() {
-                        
+        
+        let statusBarHeight = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
+        
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(120.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
         }
         
         originView.yelloImage.snp.makeConstraints {
             $0.size.equalTo(230.adjusted)
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(28.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 156.adjusted)
         }
         
         originView.grayView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(438.adjusted)
-            $0.width.equalTo(284.adjustedWidth)
-            $0.height.equalTo(58.adjustedHeight)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 418.adjusted)
+            $0.width.equalTo(284.adjusted)
+            $0.height.equalTo(58.adjusted)
+        }
+        
+        originView.yellowButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
         }
         
     }
@@ -64,7 +74,7 @@ final class VotingStartViewController: BaseViewController {
         self.navigationController?.pushViewController(nextViewController, animated: true)
         self.navigationController?.navigationBar.isHidden = true
     }
-
     
-
+    
+    
 }

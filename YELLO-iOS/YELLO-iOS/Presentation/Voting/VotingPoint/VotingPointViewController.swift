@@ -50,13 +50,19 @@ final class VotingPointViewController: BaseViewController {
     
     override func setLayout() {
         
+        let statusBarHeight = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
+        
         originView.topOfMyPoint.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(67.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjusted)
         }
                         
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(120.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
         }
         
         originView.textLabel.snp.makeConstraints {
@@ -64,7 +70,7 @@ final class VotingPointViewController: BaseViewController {
         }
         
         originView.plusPoint.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(218.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 198.adjusted)
         }
         
         originView.yelloImage.snp.makeConstraints {
@@ -74,9 +80,13 @@ final class VotingPointViewController: BaseViewController {
         }
         
         originView.grayView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(442.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 422.adjusted)
             $0.width.equalTo(284.adjustedWidth)
             $0.height.equalTo(58.adjustedHeight)
+        }
+        
+        originView.yellowButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
         }
     }
     
