@@ -12,6 +12,7 @@ import Then
 
 final class InvitingView: BaseView {
 
+    // 컴포넌트 위치 순서대로
     let closeButton = UIButton()
 
     let blackLabel = UILabel()
@@ -29,8 +30,9 @@ final class InvitingView: BaseView {
         setLayout()
     }
     
+    // MARK: - Style
+    
     private func setStyle() {
-        
         self.makeCornerRound(radius: 10)
         self.backgroundColor = .white
         
@@ -84,6 +86,8 @@ final class InvitingView: BaseView {
         }
     }
     
+    // MARK: - Layout
+    
     private func setLayout() {
         self.addSubviews(closeButton,
                          blackLabel,
@@ -135,6 +139,4 @@ final class InvitingView: BaseView {
             $0.bottom.equalToSuperview().inset(50.adjusted)
         }
     }
-
-
 }

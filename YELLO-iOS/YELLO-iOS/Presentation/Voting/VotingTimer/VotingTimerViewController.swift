@@ -14,6 +14,7 @@ final class VotingTimerViewController: BaseViewController {
     
     private let originView = BaseVotingView()
     
+    // Timer 관련 컴포넌트
     private let timerBackGround = UIImageView()
     private let timerView = VotingTimerView()
     
@@ -23,6 +24,8 @@ final class VotingTimerViewController: BaseViewController {
     override func loadView() {
         self.view = originView
     }
+    
+    // MARK: - Style
     
     override func setStyle() {
         view.backgroundColor = UIColor(patternImage: ImageLiterals.Voting.imgTimerViewBackground)
@@ -56,6 +59,8 @@ final class VotingTimerViewController: BaseViewController {
         }
         
     }
+    
+    // MARK: - Layout
     
     override func setLayout() {
         
@@ -109,6 +114,8 @@ final class VotingTimerViewController: BaseViewController {
         }
         
     }
+    
+    // MARK: - 바로 투표하기 버튼 클릭했을 때
     
     @objc
     func yellowButtonClicked() {

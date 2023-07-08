@@ -10,13 +10,17 @@ import UIKit
 import SnapKit
 import Then
 
-import KakaoSDKCommon
-import KakaoSDKTemplate
-import KakaoSDKShare
+//import KakaoSDKCommon
+//import KakaoSDKTemplate
+//import KakaoSDKShare
+
+// MARK: - InvitingViewController
 
 final class InvitingViewController: BaseViewController {
     
     private let originView = InvitingView()
+    
+    // MARK: - Style
     
     override func setStyle() {
         view.backgroundColor = .black
@@ -34,6 +38,8 @@ final class InvitingViewController: BaseViewController {
         }
     }
     
+    // MARK: - Layout
+    
     override func setLayout() {
         
         view.addSubview(originView)
@@ -45,15 +51,21 @@ final class InvitingViewController: BaseViewController {
         
     }
     
+    // MARK: - closeButton 클릭했을 때
+    
     @objc
     func closeButtonClicked() {
         self.dismiss(animated: true)
     }
     
+    // MARK: - kakaoButton 클릭했을 때
+    
     @objc
     func kakaoButtonClicked() {
         /// 카카오톡 연결 시 추후 구현
     }
+    
+    // MARK: - copyButton 클릭했을 때
     
     @objc
     func copyButtonClicked() {
@@ -63,5 +75,4 @@ final class InvitingViewController: BaseViewController {
         UIPasteboard.general.string = recommenderID
         print(UIPasteboard.general.string ?? "")
     }
-
 }

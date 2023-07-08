@@ -12,6 +12,7 @@ import Then
 
 class BaseVotingView: BaseView {
 
+    // 컴포넌트 위치 순서대로
     let topOfMyPoint = UIButton()
     
     let titleLabel = UILabel()
@@ -32,10 +33,11 @@ class BaseVotingView: BaseView {
         setLayout()
     }
     
+    // MARK: - Style
+    
     private func setStyle() {
-        
         topOfMyPoint.do {
-            $0.setTitle("  2500", for: .normal)
+            $0.setTitle("  2900", for: .normal)
             $0.setImage(ImageLiterals.Voting.icPoint, for: .normal)
             $0.setTitleColor(.white, for: .normal)
             $0.imageView?.contentMode = .scaleAspectFit
@@ -96,6 +98,8 @@ class BaseVotingView: BaseView {
         }
     }
     
+    // MARK: - Layout
+    
     private func setLayout() {
         self.addSubviews(topOfMyPoint,
                          titleLabel,
@@ -150,5 +154,4 @@ class BaseVotingView: BaseView {
             $0.height.equalTo(48.adjusted)
         }
     }
-
 }

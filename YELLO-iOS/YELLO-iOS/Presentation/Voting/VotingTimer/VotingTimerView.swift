@@ -32,7 +32,7 @@ final class VotingTimerView: UIView {
             radius: 75,
             startAngle: CGFloat(3 * Double.pi / 2),
             endAngle: CGFloat(-Double.pi / 2),
-            clockwise: false /// 시계 방향과 반대 방향을 나타내기 위해 clockwise 값을 false로 변경
+            clockwise: false // 시계 방향과 반대 방향을 나타내기 위해 clockwise 값을 false로 변경
         )
     }
     
@@ -54,8 +54,7 @@ final class VotingTimerView: UIView {
     
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
-        // TODO: UIBezierPath는 런타임마다 바뀌는 frame값을 참조하여 원의 윤곽 레이아웃을 알아야 하므로,
-        // 이곳에 적용
+        // UIBezierPath는 런타임마다 바뀌는 frame값을 참조하여 원의 윤곽 레이아웃을 알아야 하므로, 이곳에 적용
         self.backgroundLayer.path = self.circularPath.cgPath
         self.progressLayer.path = self.circularPath.cgPath
     }

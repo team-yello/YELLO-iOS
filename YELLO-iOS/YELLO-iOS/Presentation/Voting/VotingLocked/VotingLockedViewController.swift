@@ -18,6 +18,8 @@ final class VotingLockedViewController: BaseViewController {
         self.view = originView
     }
     
+    // MARK: - Style
+    
     override func setStyle() {
         view.backgroundColor = .black
         
@@ -35,6 +37,8 @@ final class VotingLockedViewController: BaseViewController {
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
         }
     }
+    
+    // MARK: - Layout
     
     override func setLayout() {
         
@@ -62,6 +66,8 @@ final class VotingLockedViewController: BaseViewController {
         }
         
     }
+    
+    // MARK: - 친구 추가 버튼 클릭했을 때
     
     @objc
     func yellowButtonClicked() {

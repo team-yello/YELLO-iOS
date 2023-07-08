@@ -18,6 +18,8 @@ final class VotingPointViewController: BaseViewController {
         self.view = originView
     }
     
+    // MARK: - Style
+    
     override func setStyle() {
         view.backgroundColor = .black
         
@@ -39,7 +41,7 @@ final class VotingPointViewController: BaseViewController {
         }
         
         originView.realMyPoint.do {
-            $0.setTextWithLineHeight(text: "2500", lineHeight: 22)
+            $0.setTextWithLineHeight(text: "2900", lineHeight: 22)
         }
         
         originView.yellowButton.do {
@@ -48,6 +50,8 @@ final class VotingPointViewController: BaseViewController {
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
         }
     }
+    
+    // MARK: - Layout
     
     override func setLayout() {
         
@@ -90,6 +94,8 @@ final class VotingPointViewController: BaseViewController {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
         }
     }
+    
+    // MARK: - 확인 버튼 클릭했을 때
     
     @objc
     func yellowButtonClicked() {

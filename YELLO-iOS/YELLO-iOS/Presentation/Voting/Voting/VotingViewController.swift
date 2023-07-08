@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
+/// 추후 구현
 final class VotingViewController: UIViewController {
 
     private let button = UIButton()
