@@ -9,7 +9,9 @@
 import UIKit
 
 final class YelloHelperButton: UIButton {
+    // MARK: - Variables
     
+    //MARK: Property
     var buttonText: String?
     
     
@@ -22,7 +24,13 @@ final class YelloHelperButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+}
+
+
+// MARK: - extension
+extension YelloHelperButton {
+    // MARK: Layout Helpers
     private func setUI(){
         setStyle()
         setLayout()
@@ -39,5 +47,4 @@ final class YelloHelperButton: UIButton {
     private func setLayout() {
         
     }
-    
 }

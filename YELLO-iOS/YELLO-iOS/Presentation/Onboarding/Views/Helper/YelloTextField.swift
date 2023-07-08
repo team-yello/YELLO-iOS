@@ -47,6 +47,10 @@ final class YelloTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+// MARK: - extension
+extension YelloTextField {
     // MARK: Layout Helpers
     private func setUI(){
         setStyle()

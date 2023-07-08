@@ -11,16 +11,10 @@ import UIKit
 import SnapKit
 import Then
 
-// MARK: - TODO
-/// textField 분리하기
-/// delegate 분리
-
 
 final class YelloTextFieldView: UIView {
-    
     // MARK: - Variables
-
-
+    
     //MARK: Components
     private let titleLabel = YelloGuideLabel()
     let textField = YelloTextField()
@@ -48,7 +42,12 @@ final class YelloTextFieldView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+}
+
+
+// MARK: - extension
+extension YelloTextFieldView {
     // MARK: Layout Helpers
     private func setUI(){
         setStyle()
@@ -56,12 +55,10 @@ final class YelloTextFieldView: UIView {
     }
     
     private func setStyle() {
-    
         helperLabel.do {
             $0.font = .uiBody04
             $0.textColor = .grayscales600
         }
-        
     }
     
     private func setLayout() {
@@ -82,5 +79,4 @@ final class YelloTextFieldView: UIView {
         }
     }
 }
-
 

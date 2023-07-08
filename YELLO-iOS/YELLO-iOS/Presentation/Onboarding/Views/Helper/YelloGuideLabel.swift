@@ -9,7 +9,8 @@ import UIKit
 
 
 final class YelloGuideLabel: UILabel {
-    
+    // MARK: - Function
+    // MARK: Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLabelStyle()
@@ -25,6 +26,7 @@ final class YelloGuideLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Custom Function
     private func setLabelStyle(){
         self.font = .uiHeadline01
     }

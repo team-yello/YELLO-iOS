@@ -13,6 +13,7 @@ enum ButtonState {
     case unable
 }
 
+
 final class YelloButton: UIButton {
     
     let roundAmount: CGFloat = 8
@@ -25,6 +26,9 @@ final class YelloButton: UIButton {
         super.init(frame: frame)
     }
     
+    // MARK: - Function
+
+    // MARK: LifeCycle
     init(buttonText: String, state: ButtonState){
         super.init(frame: CGRect(x: 0, y: 0, width: buttonHeight, height: 0))
         self.buttonState = state
@@ -32,6 +36,12 @@ final class YelloButton: UIButton {
         setUI()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension YelloButton {
     private func setUI(){
         setStyle()
         setLayout()
@@ -57,9 +67,4 @@ final class YelloButton: UIButton {
             $0.height.equalTo(buttonHeight)
         }
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
-

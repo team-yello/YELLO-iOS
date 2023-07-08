@@ -24,13 +24,13 @@ class OnboardingBaseViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        ConfigUI()
+        configUI()
     }
     // MARK: - Function
     
     // MARK: Custom Function
     ///ConfigUI 반복 사용되는 부분 설정
-    func ConfigUI() {
+    func configUI() {
         view.backgroundColor = .white
         setNavigationBarAppearance()
         backButton.do {
