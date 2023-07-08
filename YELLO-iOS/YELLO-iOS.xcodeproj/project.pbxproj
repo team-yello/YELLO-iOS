@@ -66,6 +66,9 @@
 		C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */; };
 		C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */; };
 		C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC02A56FCA600B84CAA /* AroundView.swift */; };
+		C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */; };
+		C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */; };
+		C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +128,9 @@
 		C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C3C57BC02A56FCA600B84CAA /* AroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundView.swift; sourceTree = "<group>"; };
+		C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingSegmentedControl.swift; sourceTree = "<group>"; };
+		C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendViewController.swift; sourceTree = "<group>"; };
+		C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */,
+				C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */,
+				C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */,
+				C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */,
 			);
 			path = Recommending;
 			sourceTree = "<group>";
@@ -530,6 +539,7 @@
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
+				C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */,
 				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
@@ -543,7 +553,9 @@
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
+				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
+				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
 				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
 				2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */,

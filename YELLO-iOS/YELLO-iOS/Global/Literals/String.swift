@@ -19,6 +19,14 @@ enum StringLiterals {
         }
     }
     
+    enum Recommending {
+        enum Title {
+            static let recommend = "추천친구"
+            static let kakaoFriend = "카톡 친구들"
+            static let schoolFriend = "학교 친구들"
+        }
+    }
+    
     enum Around {
         static let around = "둘러보기"
         static let aroundDescription = "아직 구현되지 않은 기능이에요.\n조금만 기다려주세요!"
