@@ -7,8 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3648D52A2A54A8A900512FD8 /* StudentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3648D5292A54A8A900512FD8 /* StudentInfoView.swift */; };
+		3648D52E2A54A90D00512FD8 /* StudentInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3648D52D2A54A90D00512FD8 /* StudentInfoViewController.swift */; };
+		3648D5302A54AF5200512FD8 /* FindSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3648D52F2A54AF5200512FD8 /* FindSchoolViewController.swift */; };
+		3648D5322A54AF9500512FD8 /* FindSchoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3648D5312A54AF9500512FD8 /* FindSchoolView.swift */; };
+		3648D5382A54C13400512FD8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3648D5372A54C13400512FD8 /* UserInfoViewController.swift */; };
+		3675FA362A54729E0045F2EB /* YelloHelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675FA352A54729E0045F2EB /* YelloHelperButton.swift */; };
+		3675FA382A5472DE0045F2EB /* YelloTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675FA372A5472DE0045F2EB /* YelloTextField.swift */; };
+		3675FA3A2A5473030045F2EB /* YelloTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675FA392A5473030045F2EB /* YelloTextFieldView.swift */; };
+		3675FA3C2A5474FF0045F2EB /* SchoolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675FA3B2A5474FF0045F2EB /* SchoolSearchView.swift */; };
+		3675FA3E2A5475140045F2EB /* SchoolSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675FA3D2A5475140045F2EB /* SchoolSearchViewController.swift */; };
+		367675902A56E53E00B8AF0D /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676758F2A56E53E00B8AF0D /* UserInfoView.swift */; };
+		367675922A56E65800B8AF0D /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367675912A56E65800B8AF0D /* OnboardingViewController.swift */; };
+		367675942A57028000B8AF0D /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367675932A57028000B8AF0D /* Constraints.swift */; };
+		367675962A571EF100B8AF0D /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367675952A571EF100B8AF0D /* GenderViewController.swift */; };
+		367675982A571F9700B8AF0D /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367675972A571F9700B8AF0D /* GenderView.swift */; };
+		3676759A2A571FF700B8AF0D /* YelloGenderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367675992A571FF700B8AF0D /* YelloGenderButton.swift */; };
+		3676759C2A57233400B8AF0D /* YelloGuideLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676759B2A57233400B8AF0D /* YelloGuideLabel.swift */; };
+		3676759E2A57353D00B8AF0D /* AddFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676759D2A57353D00B8AF0D /* AddFriendsView.swift */; };
+		367675A02A57355500B8AF0D /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676759F2A57355400B8AF0D /* AddFriendsViewController.swift */; };
+		367675A22A5739A500B8AF0D /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367675A12A5739A500B8AF0D /* FriendsTableViewCell.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
+		369275E12A546FA20031D293 /* YelloButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369275E02A546FA20031D293 /* YelloButton.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -51,8 +72,29 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3648D5292A54A8A900512FD8 /* StudentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoView.swift; sourceTree = "<group>"; };
+		3648D52D2A54A90D00512FD8 /* StudentInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoViewController.swift; sourceTree = "<group>"; };
+		3648D52F2A54AF5200512FD8 /* FindSchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindSchoolViewController.swift; sourceTree = "<group>"; };
+		3648D5312A54AF9500512FD8 /* FindSchoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindSchoolView.swift; sourceTree = "<group>"; };
+		3648D5372A54C13400512FD8 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		3675FA352A54729E0045F2EB /* YelloHelperButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloHelperButton.swift; sourceTree = "<group>"; };
+		3675FA372A5472DE0045F2EB /* YelloTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloTextField.swift; sourceTree = "<group>"; };
+		3675FA392A5473030045F2EB /* YelloTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloTextFieldView.swift; sourceTree = "<group>"; };
+		3675FA3B2A5474FF0045F2EB /* SchoolSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchView.swift; sourceTree = "<group>"; };
+		3675FA3D2A5475140045F2EB /* SchoolSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchViewController.swift; sourceTree = "<group>"; };
+		3676758F2A56E53E00B8AF0D /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		367675912A56E65800B8AF0D /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		367675932A57028000B8AF0D /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		367675952A571EF100B8AF0D /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
+		367675972A571F9700B8AF0D /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
+		367675992A571FF700B8AF0D /* YelloGenderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloGenderButton.swift; sourceTree = "<group>"; };
+		3676759B2A57233400B8AF0D /* YelloGuideLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloGuideLabel.swift; sourceTree = "<group>"; };
+		3676759D2A57353D00B8AF0D /* AddFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsView.swift; sourceTree = "<group>"; };
+		3676759F2A57355400B8AF0D /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
+		367675A12A5739A500B8AF0D /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		369275E02A546FA20031D293 /* YelloButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloButton.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +149,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3648D5282A54A83D00512FD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3675FA3B2A5474FF0045F2EB /* SchoolSearchView.swift */,
+				3648D5292A54A8A900512FD8 /* StudentInfoView.swift */,
+				3648D5312A54AF9500512FD8 /* FindSchoolView.swift */,
+				3676758F2A56E53E00B8AF0D /* UserInfoView.swift */,
+				367675972A571F9700B8AF0D /* GenderView.swift */,
+				3676759D2A57353D00B8AF0D /* AddFriendsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		367F1CD92A546B5100CDF47B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				367F1CDA2A546B5A00CDF47B /* ViewController */,
+				367F1CDB2A546B6C00CDF47B /* Views */,
+				367F1CDC2A546B7700CDF47B /* Cells */,
+				367675932A57028000B8AF0D /* Constraints.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		367F1CDA2A546B5A00CDF47B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				367675912A56E65800B8AF0D /* OnboardingViewController.swift */,
+				3675FA3D2A5475140045F2EB /* SchoolSearchViewController.swift */,
+				3648D52F2A54AF5200512FD8 /* FindSchoolViewController.swift */,
+				3648D52D2A54A90D00512FD8 /* StudentInfoViewController.swift */,
+				3648D5372A54C13400512FD8 /* UserInfoViewController.swift */,
+				367675952A571EF100B8AF0D /* GenderViewController.swift */,
+				3676759F2A57355400B8AF0D /* AddFriendsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		367F1CDB2A546B6C00CDF47B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3648D5282A54A83D00512FD8 /* View */,
+				367F1CDD2A546C4900CDF47B /* Helper */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		367F1CDC2A546B7700CDF47B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				367675A12A5739A500B8AF0D /* FriendsTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		367F1CDD2A546C4900CDF47B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				369275E02A546FA20031D293 /* YelloButton.swift */,
+				3675FA352A54729E0045F2EB /* YelloHelperButton.swift */,
+				3676759B2A57233400B8AF0D /* YelloGuideLabel.swift */,
+				3675FA372A5472DE0045F2EB /* YelloTextField.swift */,
+				3675FA392A5473030045F2EB /* YelloTextFieldView.swift */,
+				367675992A571FF700B8AF0D /* YelloGenderButton.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		C3A7998A2A49490A00D3EFD8 = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A799CE2A494C9200D3EFD8 /* Base */,
+				367F1CD92A546B5100CDF47B /* Onboarding */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -371,29 +482,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3648D5322A54AF9500512FD8 /* FindSchoolView.swift in Sources */,
+				3648D52A2A54A8A900512FD8 /* StudentInfoView.swift in Sources */,
+				3648D5302A54AF5200512FD8 /* FindSchoolViewController.swift in Sources */,
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
+				367675922A56E65800B8AF0D /* OnboardingViewController.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
+				3648D5382A54C13400512FD8 /* UserInfoViewController.swift in Sources */,
+				3675FA362A54729E0045F2EB /* YelloHelperButton.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
+				367675A02A57355500B8AF0D /* AddFriendsViewController.swift in Sources */,
 				C3A799EA2A494D6800D3EFD8 /* UIView+.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
+				367675A22A5739A500B8AF0D /* FriendsTableViewCell.swift in Sources */,
+				3676759A2A571FF700B8AF0D /* YelloGenderButton.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
+				367675942A57028000B8AF0D /* Constraints.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
+				369275E12A546FA20031D293 /* YelloButton.swift in Sources */,
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
+				3675FA3A2A5473030045F2EB /* YelloTextFieldView.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
+				3675FA382A5472DE0045F2EB /* YelloTextField.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
+				367675982A571F9700B8AF0D /* GenderView.swift in Sources */,
+				3676759C2A57233400B8AF0D /* YelloGuideLabel.swift in Sources */,
+				3675FA3E2A5475140045F2EB /* SchoolSearchViewController.swift in Sources */,
+				367675902A56E53E00B8AF0D /* UserInfoView.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
+				3675FA3C2A5474FF0045F2EB /* SchoolSearchView.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
+				3648D52E2A54A90D00512FD8 /* StudentInfoViewController.swift in Sources */,
+				3676759E2A57353D00B8AF0D /* AddFriendsView.swift in Sources */,
+				367675962A571EF100B8AF0D /* GenderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
