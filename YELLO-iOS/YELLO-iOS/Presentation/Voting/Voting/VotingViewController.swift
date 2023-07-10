@@ -14,11 +14,11 @@ final class VotingViewController: BaseViewController {
     
     private let originView = BaseVotingMainView()
     
+    static var pushCount = 0
+    
     override func loadView() {
         self.view = originView
     }
-    
-    static var pushCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +27,6 @@ final class VotingViewController: BaseViewController {
     }
     
     override func setStyle() {
-        view.backgroundColor = .black
-        
         originView.button.do {
             $0.addTarget(self, action: #selector(clicked), for: .touchUpInside)
         }
@@ -49,6 +47,14 @@ final class VotingViewController: BaseViewController {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 60.adjusted)
         }
         
+        originView.numOfPage.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 40.adjusted)
+        }
+        
+        originView.questionBackground.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 132.adjusted)
+        }
+    
     }
     
     @objc
@@ -72,10 +78,7 @@ extension VotingViewController: UINavigationControllerDelegate {
         // 현재 뷰 컨트롤러가 자기 자신인 경우에만 pushCount를 증가
         
         if VotingViewController.pushCount < 10 {
-            let dummy = VotingDummy.dummy()
-            self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
-            self.originView.yelloProgress.image =
-                dummy[VotingViewController.pushCount].yelloProgress
+            setVotingView()
         }
         
         if viewController == self {
@@ -86,5 +89,26 @@ extension VotingViewController: UINavigationControllerDelegate {
             tabBarController?.tabBar.isHidden = false
 
         }
+    
+    }
+
+}
+
+extension VotingViewController {
+    private func setVotingView() {
+        let dummy = VotingDummy.dummy()
+        
+        let gradientView = CAGradientLayer()
+        gradientView.frame = view.bounds
+        gradientView.colors = [dummy[VotingViewController.pushCount].backgroundColorTop.cgColor, dummy[VotingViewController.pushCount].backgroundColorBottom.cgColor]
+        
+        gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
+        view.layer.insertSublayer(gradientView, at: 0)
+
+        self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
+        self.originView.yelloProgress.image =
+            dummy[VotingViewController.pushCount].yelloProgress
+        self.originView.numOfPage.text = String(VotingViewController.pushCount + 1)
     }
 }

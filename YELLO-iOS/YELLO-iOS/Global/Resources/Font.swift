@@ -77,6 +77,10 @@ extension UIFont {
         return UIFont(name: "Pretendard-Bold", size: 13.0)!
     }
     
+    class var uiBody05: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 12.0)!
+    }
+    
     class var uiLabelLarge: UIFont {
         return UIFont(name: "Pretendard-Medium", size: 12.0)!
     }
