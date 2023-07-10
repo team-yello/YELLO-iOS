@@ -39,6 +39,14 @@
 		36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427662A5BCE860050B34E /* YelloTextField.swift */; };
 		36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427672A5BCE860050B34E /* YelloTextFieldView.swift */; };
 		36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427682A5BCE860050B34E /* YelloHelperButton.swift */; };
+		36E427772A5BD5AA0050B34E /* FindSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427762A5BD5AA0050B34E /* FindSchoolViewController.swift */; };
+		36E427792A5BD5C90050B34E /* SchoolSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427782A5BD5C90050B34E /* SchoolSearchViewController.swift */; };
+		36E4277B2A5BD5D00050B34E /* StudentInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4277A2A5BD5D00050B34E /* StudentInfoViewController.swift */; };
+		36E4277D2A5BD5D60050B34E /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4277C2A5BD5D60050B34E /* UserInfoViewController.swift */; };
+		36E4277F2A5BD6020050B34E /* FindSchoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4277E2A5BD6020050B34E /* FindSchoolView.swift */; };
+		36E427812A5BD60A0050B34E /* SchoolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427802A5BD60A0050B34E /* SchoolSearchView.swift */; };
+		36E427832A5BD6110050B34E /* StudentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427822A5BD6110050B34E /* StudentInfoView.swift */; };
+		36E427852A5BD6160050B34E /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427842A5BD6160050B34E /* UserInfoView.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -117,6 +125,14 @@
 		36E427662A5BCE860050B34E /* YelloTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelloTextField.swift; sourceTree = "<group>"; };
 		36E427672A5BCE860050B34E /* YelloTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelloTextFieldView.swift; sourceTree = "<group>"; };
 		36E427682A5BCE860050B34E /* YelloHelperButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelloHelperButton.swift; sourceTree = "<group>"; };
+		36E427762A5BD5AA0050B34E /* FindSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindSchoolViewController.swift; sourceTree = "<group>"; };
+		36E427782A5BD5C90050B34E /* SchoolSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolSearchViewController.swift; sourceTree = "<group>"; };
+		36E4277A2A5BD5D00050B34E /* StudentInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInfoViewController.swift; sourceTree = "<group>"; };
+		36E4277C2A5BD5D60050B34E /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		36E4277E2A5BD6020050B34E /* FindSchoolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindSchoolView.swift; sourceTree = "<group>"; };
+		36E427802A5BD60A0050B34E /* SchoolSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolSearchView.swift; sourceTree = "<group>"; };
+		36E427822A5BD6110050B34E /* StudentInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInfoView.swift; sourceTree = "<group>"; };
+		36E427842A5BD6160050B34E /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -305,8 +321,12 @@
 		36E4275A2A5BCE860050B34E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				36E4275B2A5BCE860050B34E /* GenderViewController.swift */,
 				36E4275C2A5BCE860050B34E /* OnboardingViewController.swift */,
+				36E427782A5BD5C90050B34E /* SchoolSearchViewController.swift */,
+				36E427762A5BD5AA0050B34E /* FindSchoolViewController.swift */,
+				36E4277A2A5BD5D00050B34E /* StudentInfoViewController.swift */,
+				36E4277C2A5BD5D60050B34E /* UserInfoViewController.swift */,
+				36E4275B2A5BCE860050B34E /* GenderViewController.swift */,
 				36E4275D2A5BCE860050B34E /* AddFriendsViewController.swift */,
 			);
 			path = ViewController;
@@ -325,7 +345,11 @@
 			isa = PBXGroup;
 			children = (
 				36E427602A5BCE860050B34E /* GenderView.swift */,
+				36E4277E2A5BD6020050B34E /* FindSchoolView.swift */,
 				36E427612A5BCE860050B34E /* AddFriendsView.swift */,
+				36E427802A5BD60A0050B34E /* SchoolSearchView.swift */,
+				36E427822A5BD6110050B34E /* StudentInfoView.swift */,
+				36E427842A5BD6160050B34E /* UserInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -624,6 +648,7 @@
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingView.swift in Sources */,
+				36E427812A5BD60A0050B34E /* SchoolSearchView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
@@ -642,6 +667,7 @@
 				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
 				2AD1A1BB2A59559100CB988B /* VotingPointViewController.swift in Sources */,
 				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
+				36E427792A5BD5C90050B34E /* SchoolSearchViewController.swift in Sources */,
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
@@ -649,24 +675,30 @@
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
+				36E427832A5BD6110050B34E /* StudentInfoView.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				36E4276B2A5BCE860050B34E /* GenderViewController.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
 				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
+				36E4277D2A5BD5D60050B34E /* UserInfoViewController.swift in Sources */,
 				2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
+				36E4277B2A5BD5D00050B34E /* StudentInfoViewController.swift in Sources */,
 				36E427722A5BCE860050B34E /* YelloGenderButton.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
+				36E4277F2A5BD6020050B34E /* FindSchoolView.swift in Sources */,
 				2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
+				36E427852A5BD6160050B34E /* UserInfoView.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
+				36E427772A5BD5AA0050B34E /* FindSchoolViewController.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
