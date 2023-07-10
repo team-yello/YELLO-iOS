@@ -12,12 +12,16 @@ import Then
 
 final class EmptyFriendView: UIView {
     
+    // MARK: - Variables
+    // MARK: Component
     private let containView = UIView()
     private let emptyImageView = UIImageView()
     private let emptyDescriptionLabel = UILabel()
     lazy var inviteButton = UIButton()
     private var invitingView: InvitingView?
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -29,7 +33,10 @@ final class EmptyFriendView: UIView {
     }
 }
 
+// MARK: - extension
 extension EmptyFriendView {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         invitingView = InvitingView()
         setStyle()
@@ -95,6 +102,7 @@ extension EmptyFriendView {
         }
     }
     
+    // MARK: Objc Function
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         

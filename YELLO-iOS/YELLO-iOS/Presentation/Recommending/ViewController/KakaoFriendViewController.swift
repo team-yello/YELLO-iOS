@@ -12,15 +12,22 @@ import Then
 
 final class KakaoFriendViewController: UIViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     private let kakaoFriendView = KakaoFriendView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
 }
 
+// MARK: - extension
 extension KakaoFriendViewController {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()

@@ -12,6 +12,8 @@ import Then
 
 final class KakaoFriendView: UIView {
     
+    // MARK: - Variables
+    // MARK: Property
     var kakaoFriendTableViewModel: [FriendModel] = [
         FriendModel(name: "정채은", school: "이화여자대학교 융합콘텐츠학과 21학번", isButtonSelected: false),
         FriendModel(name: "김채은", school: "이화여자대학교 융합콘텐츠학과 22학번", isButtonSelected: false),
@@ -22,10 +24,13 @@ final class KakaoFriendView: UIView {
         FriendModel(name: "성채은", school: "이화여자대학교 융합콘텐츠학과 27학번", isButtonSelected: false),
         FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false)]
     
+    // MARK: Component
     private let inviteBannerView = InviteBannerView()
     private let emptyFriendView = EmptyFriendView()
     lazy var kakaoFriendTableView = UITableView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -38,8 +43,10 @@ final class KakaoFriendView: UIView {
     }
 }
 
+// MARK: - extension
 extension KakaoFriendView {
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -89,6 +96,7 @@ extension KakaoFriendView {
         kakaoFriendTableView.delegate = self
     }
     
+    // MARK: Objc Function
     @objc func addButtonTapped(_ sender: UIButton) {
         let point = sender.convert(CGPoint.zero, to: kakaoFriendTableView)
         guard let indexPath = kakaoFriendTableView.indexPathForRow(at: point) else { return }
@@ -99,6 +107,7 @@ extension KakaoFriendView {
         }
     }
     
+    // MARK: Custom Function
     private func updateView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             if self.kakaoFriendTableViewModel.isEmpty {
@@ -115,8 +124,10 @@ extension KakaoFriendView {
     }
 }
 
+// MARK: UITableViewDelegate
 extension KakaoFriendView: UITableViewDelegate { }
 
+// MARK: UITableViewDataSource
 extension KakaoFriendView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return kakaoFriendTableViewModel.count

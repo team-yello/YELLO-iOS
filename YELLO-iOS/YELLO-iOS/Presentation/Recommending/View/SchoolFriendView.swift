@@ -12,6 +12,8 @@ import Then
 
 final class SchoolFriendView: UIView {
     
+    // MARK: - Variables
+    // MARK: Property
     var schoolFriendTableViewModel: [FriendModel] = [
         FriendModel(name: "정채은", school: "이화여자대학교 물리학과 21학번", isButtonSelected: false),
         FriendModel(name: "김채은", school: "이화여자대학교 물리학과 22학번", isButtonSelected: false),
@@ -22,10 +24,13 @@ final class SchoolFriendView: UIView {
         FriendModel(name: "성채은", school: "이화여자대학교 물리학과 27학번", isButtonSelected: false),
         FriendModel(name: "박채은", school: "이화여자대학교 물리학과 28학번", isButtonSelected: false)]
     
+    // MARK: Component
     private let inviteBannerView = InviteBannerView()
     private let emptyFriendView = EmptyFriendView()
     lazy var schoolFriendTableView = UITableView()
 
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -38,8 +43,10 @@ final class SchoolFriendView: UIView {
     }
 }
 
+// MARK: - extension
 extension SchoolFriendView {
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -89,6 +96,7 @@ extension SchoolFriendView {
         schoolFriendTableView.delegate = self
     }
 
+    // MARK: Objc Function
     @objc func addButtonTapped(_ sender: UIButton) {
         let point = sender.convert(CGPoint.zero, to: schoolFriendTableView)
         guard let indexPath = schoolFriendTableView.indexPathForRow(at: point) else { return }
@@ -99,6 +107,7 @@ extension SchoolFriendView {
         }
     }
     
+    // MARK: Custom Function
     private func updateView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             if self.schoolFriendTableViewModel.isEmpty {
@@ -115,8 +124,10 @@ extension SchoolFriendView {
     }
 }
 
+// MARK: UITableViewDelegate
 extension SchoolFriendView: UITableViewDelegate { }
 
+// MARK: UITableViewDataSource
 extension SchoolFriendView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return schoolFriendTableViewModel.count

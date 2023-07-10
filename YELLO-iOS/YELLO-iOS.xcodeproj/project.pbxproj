@@ -519,8 +519,8 @@
 				C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */,
 				C3C57BEB2A5C03BA00B84CAA /* InviteBannerView.swift */,
 				C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */,
-				C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */,
 				C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */,
+				C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

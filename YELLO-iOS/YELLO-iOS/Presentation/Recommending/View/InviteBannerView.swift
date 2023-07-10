@@ -11,13 +11,17 @@ import SnapKit
 import Then
 
 final class InviteBannerView: BaseView {
-    
+
+    // MARK: - Variables
+    // MARK: Component
     private let inviteImageView = UIImageView()
     private let inviteLabel = UILabel()
     private let descriptionLabel = UILabel()
     lazy var nextButton = UIButton()
     private var invitingView: InvitingView?
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         invitingView = InvitingView()
         
@@ -74,6 +78,7 @@ final class InviteBannerView: BaseView {
         }
     }
     
+    // MARK: Objc Function
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         

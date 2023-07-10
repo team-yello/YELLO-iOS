@@ -12,15 +12,22 @@ import Then
 
 final class SchoolFriendViewController: UIViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     private let schoolFriendView = SchoolFriendView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
 }
 
+// MARK: - extension
 extension SchoolFriendViewController {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()

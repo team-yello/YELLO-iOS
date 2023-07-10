@@ -12,14 +12,19 @@ import Then
 
 final class FriendTableViewCell: UITableViewCell {
     
+    // MARK: - Variables
+    // MARK: Constants
     static let identifier = "FriendTableViewCell"
     
+    // MARK: Component
     let profileImageView = UIImageView()
     let nameLabel = UILabel()
     let schoolLabel = UILabel()
     lazy var addButton = UIButton()
     var isTapped: Bool = false
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -31,7 +36,10 @@ final class FriendTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - extension
 extension FriendTableViewCell {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -97,6 +105,7 @@ extension FriendTableViewCell {
         }
     }
     
+    // MARK: Custom Function
     func configureFriendCell(_ model: FriendModel) {
         nameLabel.text = model.name
         schoolLabel.text = model.school
@@ -106,6 +115,7 @@ extension FriendTableViewCell {
         addButton.setImage(imageName, for: .normal)
     }
     
+    // MARK: Objc Function
     @objc private func changeAddButton() {
         isTapped.toggle()
         addButton.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .normal)
