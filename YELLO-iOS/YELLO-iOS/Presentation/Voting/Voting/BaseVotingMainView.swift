@@ -27,12 +27,10 @@ final class BaseVotingMainView: BaseView {
     let keywordTwo = UIButton()
     let keywordThree = UIButton()
     let keywordFour = UIButton()
-
+    
     let suffleButton = UIButton()
     let skipButton = UIButton()
-    
-    let button = UIButton()
-
+        
     override func setStyle() {
         yelloBalloon.do {
             $0.image = ImageLiterals.Voting.imgYelloBalloon1
@@ -59,20 +57,93 @@ final class BaseVotingMainView: BaseView {
             $0.makeCornerRound(radius: 32)
         }
         
-        button.do {
-            $0.setTitle("클릭", for: .normal)
+        nameOne.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales700)
+            $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         }
-
+        
+        nameTwo.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales700)
+        }
+        
+        nameThree.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales700)
+        }
+        
+        nameFour.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales700)
+            $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+        }
+        
+        keywordOne.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales700)
+            $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        }
+        
+        keywordTwo.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales700)
+        }
+        
+        keywordThree.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales700)
+        }
+        
+        keywordFour.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales700)
+            $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+        }
+        
+        suffleButton.do {
+            $0.setTitle(" 친구 셔플", for: .normal)
+            $0.setImage(ImageLiterals.Voting.icShuffle, for: .normal)
+            $0.setTitleColor(.black, for: .normal)
+            $0.imageView?.contentMode = .scaleAspectFit
+            $0.titleLabel?.font = .uiBodySmall
+            $0.contentHorizontalAlignment = .center
+            $0.semanticContentAttribute = .forceLeftToRight
+            $0.makeCornerRound(radius: 23)
+            $0.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.35)
+        }
+        
+        skipButton.do {
+            $0.setTitle("이 질문 건너뛰기 ", for: .normal)
+            $0.setImage(ImageLiterals.Voting.icSkip, for: .normal)
+            $0.setTitleColor(.black, for: .normal)
+            $0.imageView?.contentMode = .scaleAspectFit
+            $0.titleLabel?.font = .uiBodySmall
+            $0.contentHorizontalAlignment = .center
+            $0.semanticContentAttribute = .forceRightToLeft
+            $0.makeCornerRound(radius: 23)
+            $0.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.35)
+        }
+        
     }
     
     override func setLayout() {
-
+        
         self.addSubviews(yelloBalloon,
                          yelloProgress,
                          numOfPage,
                          tenPage,
                          questionBackground,
-                         button)
+                         nameOne,
+                         nameTwo,
+                         nameThree,
+                         nameFour,
+                         keywordOne,
+                         keywordTwo,
+                         keywordThree,
+                         keywordFour,
+                         suffleButton,
+                         skipButton)
         
         yelloBalloon.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -96,9 +167,74 @@ final class BaseVotingMainView: BaseView {
             $0.height.equalTo(154.adjusted)
         }
         
-        button.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview()
+        nameOne.snp.makeConstraints {
+            $0.top.equalTo(questionBackground.snp.bottom).offset(4.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(148.adjusted)
+            $0.height.equalTo(70.adjusted)
+        }
+        
+        nameTwo.snp.makeConstraints {
+            $0.top.equalTo(nameOne.snp.bottom)
+            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(148.adjusted)
+            $0.height.equalTo(70.adjusted)
+        }
+        
+        nameThree.snp.makeConstraints {
+            $0.top.equalTo(nameTwo.snp.bottom)
+            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(148.adjusted)
+            $0.height.equalTo(70.adjusted)
+        }
+        
+        nameFour.snp.makeConstraints {
+            $0.top.equalTo(nameThree.snp.bottom)
+            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(148.adjusted)
+            $0.height.equalTo(70.adjusted)
+        }
+        
+        keywordOne.snp.makeConstraints {
+            $0.top.equalTo(questionBackground.snp.bottom).offset(4.adjusted)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(196.adjusted)
+            $0.height.equalTo(70.adjusted)
+        }
+        
+        keywordTwo.snp.makeConstraints {
+            $0.top.equalTo(keywordOne.snp.bottom)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(196.adjusted)
+            $0.height.equalTo(70.adjusted)
+        }
+        
+        keywordThree.snp.makeConstraints {
+            $0.top.equalTo(keywordTwo.snp.bottom)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(196.adjusted)
+            $0.height.equalTo(70.adjusted)
+        }
+        
+        keywordFour.snp.makeConstraints {
+            $0.top.equalTo(keywordThree.snp.bottom)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(196.adjusted)
+            $0.height.equalTo(70.adjusted)
+        }
+        
+        suffleButton.snp.makeConstraints {
+            $0.top.equalTo(nameFour.snp.bottom).offset(10.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(148.adjusted)
+            $0.height.equalTo(48.adjusted)
+        }
+        
+        skipButton.snp.makeConstraints {
+            $0.top.equalTo(nameFour.snp.bottom).offset(10.adjusted)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(192.adjusted)
+            $0.height.equalTo(48.adjusted)
         }
         
     }

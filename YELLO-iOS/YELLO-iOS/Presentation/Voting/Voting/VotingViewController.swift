@@ -27,8 +27,8 @@ final class VotingViewController: BaseViewController {
     }
     
     override func setStyle() {
-        originView.button.do {
-            $0.addTarget(self, action: #selector(clicked), for: .touchUpInside)
+        originView.skipButton.do {
+            $0.addTarget(self, action: #selector(skipButtonClicked), for: .touchUpInside)
         }
     }
     
@@ -54,20 +54,23 @@ final class VotingViewController: BaseViewController {
         originView.questionBackground.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 132.adjusted)
         }
-    
+        
     }
     
     @objc
-    func clicked() {
+    func skipButtonClicked() {
         var viewController = UIViewController()
         // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
         if VotingViewController.pushCount >= 10 {
             viewController = VotingPointViewController()
+            self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             viewController = VotingViewController()
+            UIView.transition(with: self.navigationController!.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                // 전환 시 스르륵 바뀌는 애니메이션 적용
+                self.navigationController?.pushViewController(viewController, animated: false)
+            })
         }
-        self.navigationController?.pushViewController(viewController, animated: true)
-        
     }
     
 }
@@ -87,11 +90,11 @@ extension VotingViewController: UINavigationControllerDelegate {
             // 다른 뷰 컨트롤러로 이동하는 경우 pushCount를 초기화
             VotingViewController.pushCount = 0
             tabBarController?.tabBar.isHidden = false
-
+            
         }
-    
+        
     }
-
+    
 }
 
 extension VotingViewController {
@@ -105,10 +108,10 @@ extension VotingViewController {
         gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
         view.layer.insertSublayer(gradientView, at: 0)
-
+        
         self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
         self.originView.yelloProgress.image =
-            dummy[VotingViewController.pushCount].yelloProgress
+        dummy[VotingViewController.pushCount].yelloProgress
         self.originView.numOfPage.text = String(VotingViewController.pushCount + 1)
     }
 }
