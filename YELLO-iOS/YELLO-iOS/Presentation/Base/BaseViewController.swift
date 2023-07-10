@@ -38,12 +38,6 @@ class BaseViewController: UIViewController {
         setLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
     // MARK: UI
     
     /// Attributes (속성) 설정 메서드
