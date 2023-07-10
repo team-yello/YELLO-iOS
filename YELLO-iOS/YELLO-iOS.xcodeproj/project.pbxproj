@@ -89,6 +89,7 @@
 		C3D266432A5C771F0041C7C7 /* MyProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */; };
 		C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266442A5C776F0041C7C7 /* ProfileView.swift */; };
 		C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */; };
+		C3D266492A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +172,7 @@
 		C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderView.swift; sourceTree = "<group>"; };
 		C3D266442A5C776F0041C7C7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendTableViewCell.swift; sourceTree = "<group>"; };
+		C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewHeaderFooterView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +425,7 @@
 				C3A4615A2A4FD44800734EF8 /* adjust+.swift */,
 				367F1CD32A54193700CDF47B /* UIColor+.swift */,
 				2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */,
+				C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
 				C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */,
 				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
+				C3D266492A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
