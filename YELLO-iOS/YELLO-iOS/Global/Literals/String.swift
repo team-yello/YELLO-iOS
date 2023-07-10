@@ -65,6 +65,12 @@ enum StringLiterals {
             static let profile = "프로필"
             static let setting = "관리"
         }
+        
+        enum Count {
+            static let message = "받은 쪽지"
+            static let friend = "내 친구 수"
+            static let point = "내 포인트"
+        }
     }
     
 }

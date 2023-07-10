@@ -49,8 +49,8 @@ extension NavigationBarView {
     }
     
     private func setLayout() {
-        self.addSubview(profileLabel)
-        self.addSubview(settingButton)
+        self.addSubviews(profileLabel,
+                        settingButton)
         
         let statusBarHeight = UIApplication.shared.connectedScenes
                     .compactMap { $0 as? UIWindowScene }
