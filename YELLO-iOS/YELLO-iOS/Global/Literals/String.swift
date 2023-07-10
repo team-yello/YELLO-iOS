@@ -71,6 +71,10 @@ enum StringLiterals {
             static let friend = "내 친구 수"
             static let point = "내 포인트"
         }
+        
+        enum MyProfile {
+            static let addGroup = "그룹 추가"
+        }
     }
     
 }

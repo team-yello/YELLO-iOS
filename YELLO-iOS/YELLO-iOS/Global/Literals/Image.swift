@@ -48,6 +48,12 @@ enum ImageLiterals {
         static var imgTimerBackground: UIImage { .load(named: "imgTimerBackground")}
     }
     
+    enum Profile {
+        static var imgDefaultProfile: UIImage { .load(named: "imgDefaultProfile") }
+        static var icPlus: UIImage { .load(named: "icPlus") }
+        
+    }
+    
 }
 
 extension UIImage {
