@@ -46,6 +46,18 @@ enum ImageLiterals {
         static var lbSpeechBubble: UIImage { .load(named: "lbSpeechBubble") }
         static var imgTimerViewBackground: UIImage { .load(named: "imgTimerViewBackground")}
         static var imgTimerBackground: UIImage { .load(named: "imgTimerBackground")}
+        static var imgYelloBalloon1: UIImage { .load(named: "imgYelloBalloon1")}
+        static var imgYelloBalloon2: UIImage { .load(named: "imgYelloBalloon2")}
+        static var imgYelloBalloon3: UIImage { .load(named: "imgYelloBalloon3")}
+        static var imgYelloBalloon4: UIImage { .load(named: "imgYelloBalloon4")}
+        static var imgYelloBalloon5: UIImage { .load(named: "imgYelloBalloon5")}
+        static var imgYelloBalloon6: UIImage { .load(named: "imgYelloBalloon6")}
+        static var imgYelloBalloon7: UIImage { .load(named: "imgYelloBalloon7")}
+        static var imgYelloBalloon8: UIImage { .load(named: "imgYelloBalloon8")}
+        static var imgYelloBalloon9: UIImage { .load(named: "imgYelloBalloon9")}
+        static var imgYelloBalloon10: UIImage { .load(named: "imgYelloBalloon10")}
+        static var imgProgress1: UIImage { .load(named: "imgProgress1")}
+
     }
     
 }

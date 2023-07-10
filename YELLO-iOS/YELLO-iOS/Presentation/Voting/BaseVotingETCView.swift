@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BaseVotingView: BaseView {
+final class BaseVotingView: BaseView {
 
     // 컴포넌트 위치 순서대로
     let topOfPointIcon = UIImageView()
