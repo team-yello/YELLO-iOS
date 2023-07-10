@@ -82,6 +82,7 @@
 		C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */; };
 		C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */; };
 		C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */; };
+		C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +158,7 @@
 		C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingSegmentedControl.swift; sourceTree = "<group>"; };
 		C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendViewController.swift; sourceTree = "<group>"; };
 		C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendViewController.swift; sourceTree = "<group>"; };
+		C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
+				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
+				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				36E4276B2A5BCE860050B34E /* GenderViewController.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
