@@ -11,6 +11,7 @@ import UIKit
 import SnapKit
 import Then
 
+@frozen
 enum iconState {
     case normal
     case search
@@ -52,24 +53,24 @@ final class YelloTextField: UITextField {
 // MARK: - extension
 extension YelloTextField {
     // MARK: Layout Helpers
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
     
-    private func setStyle(){
+    private func setStyle() {
         self.do {
             $0.makeBorder(width: 1, color: .grayscales400)
             $0.makeCornerRound(radius: 8)
         }
         
-        cancelButton.do{
+        cancelButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icXCircle, for: .normal)
         }
-        toggleButton.do{
+        toggleButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icChevronDown, for: .normal)
         }
-        searchButton.do{
+        searchButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icSearch, for: .normal)
         }
         
@@ -77,7 +78,7 @@ extension YelloTextField {
         self.addSubview(buttonStackView)
     }
     
-    private func setLayout(){
+    private func setLayout() {
         self.snp.makeConstraints {
             $0.height.equalTo(52)
         }
@@ -88,7 +89,7 @@ extension YelloTextField {
     }
     
     //MARK: Custom Function
-    func setButtonState(state: iconState){
+    func setButtonState(state: iconState) {
         ///텍스트 필드 타입에 따라 subView 다르게
         switch state {
         case iconState.search:
@@ -97,8 +98,10 @@ extension YelloTextField {
             textFieldRightButton = toggleButton
         case iconState.cancel:
             textFieldRightButton = cancelButton
-        default:
-            textFieldRightButton = UIButton()
+        case .normal:
+            textFieldRightButton = cancelButton
+        case .error:
+            textFieldRightButton = cancelButton
         }
         buttonStackView.addSubviews(textFieldRightButton)
         

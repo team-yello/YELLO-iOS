@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 enum ButtonState {
-    case enable
-    case unable
+    case enabled
+    case unabled
 }
 
 
@@ -19,7 +19,7 @@ final class YelloButton: UIButton {
     let roundAmount: CGFloat = 8
     let buttonHeight: CGFloat = 48
     let textSize: CGFloat = 15
-    var buttonState = ButtonState.enable
+    var buttonState = ButtonState.enabled
     var buttonText: String?
     
     override init(frame: CGRect) {
@@ -29,7 +29,7 @@ final class YelloButton: UIButton {
     // MARK: - Function
 
     // MARK: LifeCycle
-    init(buttonText: String, state: ButtonState){
+    init(buttonText: String, state: ButtonState) {
         super.init(frame: CGRect(x: 0, y: 0, width: buttonHeight, height: 0))
         self.buttonState = state
         self.buttonText = buttonText

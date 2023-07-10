@@ -17,7 +17,7 @@ class OnboardingBaseViewController: BaseViewController {
     // MARK: Componenet
     
     private let backButton = UIButton()
-    private let nextButton = YelloButton(buttonText: "다음", state: .enable)
+    private let nextButton = YelloButton(buttonText: "다음", state: .enabled)
     var nextViewController: UIViewController?
     
     
@@ -47,12 +47,11 @@ class OnboardingBaseViewController: BaseViewController {
         }
     }
     
-    
     func makeBarButtonItem<T: UIView>(with view: T) -> UIBarButtonItem {
         return UIBarButtonItem(customView: view)
     }
     
-    func setNavigationBarAppearance(){
+    func setNavigationBarAppearance() {
         let backButtonImage = ImageLiterals.OnBoarding.icArrowLeft.withTintColor(.black, renderingMode: .alwaysOriginal)
         let appearance = UINavigationBarAppearance()
         appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
@@ -67,7 +66,7 @@ class OnboardingBaseViewController: BaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func didTapButton(){
+    @objc func didTapButton() {
         if let nextViewController = nextViewController {
             self.navigationController?.pushViewController(nextViewController, animated: true)
         } else {}
