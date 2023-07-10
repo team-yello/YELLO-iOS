@@ -7,10 +7,33 @@
 
 import UIKit
 
-class KakaoFriendViewController: UIViewController {
+import SnapKit
+import Then
 
+final class KakaoFriendViewController: UIViewController {
+    
+    private let kakaoFriendView = KakaoFriendView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
+    }
+}
 
+extension KakaoFriendViewController {
+    private func setUI() {
+        setStyle()
+        setLayout()
+    }
+    
+    private func setStyle() {
+        view.backgroundColor = .black
+    }
+    
+    private func setLayout() {
+        view.addSubview(kakaoFriendView)
+        kakaoFriendView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
