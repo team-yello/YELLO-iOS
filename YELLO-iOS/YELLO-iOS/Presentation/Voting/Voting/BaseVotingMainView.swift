@@ -29,6 +29,9 @@ final class BaseVotingMainView: BaseView {
     let keywordFour = UIButton()
     
     let suffleButton = UIButton()
+    let suffleIcon = UIImageView()
+    let suffleText = UILabel()
+    let suffleNum = UILabel()
     let skipButton = UIButton()
         
     override func setStyle() {
@@ -102,15 +105,24 @@ final class BaseVotingMainView: BaseView {
         }
         
         suffleButton.do {
-            $0.setTitle(" 친구 셔플", for: .normal)
-            $0.setImage(ImageLiterals.Voting.icShuffle, for: .normal)
-            $0.setTitleColor(.black, for: .normal)
-            $0.imageView?.contentMode = .scaleAspectFit
-            $0.titleLabel?.font = .uiBodySmall
-            $0.contentHorizontalAlignment = .center
-            $0.semanticContentAttribute = .forceLeftToRight
             $0.makeCornerRound(radius: 23)
             $0.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.35)
+        }
+        
+        suffleIcon.do {
+            $0.image = ImageLiterals.Voting.icShuffle
+        }
+        
+        suffleText.do {
+            $0.text = "친구 셔플"
+            $0.textColor = .black
+            $0.font = .uiBodySmall
+        }
+        
+        suffleNum.do {
+            $0.text = "3/3"
+            $0.textColor = .black
+            $0.font = .uiBody05
         }
         
         skipButton.do {
@@ -143,7 +155,10 @@ final class BaseVotingMainView: BaseView {
                          keywordThree,
                          keywordFour,
                          suffleButton,
+                         suffleNum,
                          skipButton)
+        
+        suffleButton.addSubviews(suffleIcon, suffleText, suffleNum)
         
         yelloBalloon.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -228,6 +243,21 @@ final class BaseVotingMainView: BaseView {
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(148.adjusted)
             $0.height.equalTo(48.adjusted)
+        }
+        
+        suffleIcon.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(24.adjusted)
+            $0.centerY.equalToSuperview()
+        }
+        
+        suffleText.snp.makeConstraints {
+            $0.leading.equalTo(suffleIcon.snp.trailing).offset(4.adjusted)
+            $0.centerY.equalToSuperview()
+        }
+        
+        suffleNum.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(25.adjusted)
+            $0.centerY.equalToSuperview()
         }
         
         skipButton.snp.makeConstraints {
