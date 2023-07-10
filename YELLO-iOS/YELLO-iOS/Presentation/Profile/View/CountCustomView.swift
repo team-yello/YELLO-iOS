@@ -40,7 +40,7 @@ extension CountCustomView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Count.title, lineHeight: 15)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Count.message, lineHeight: 15)
             $0.font = .uiLabelMedium
             $0.textColor = .grayscales500
         }

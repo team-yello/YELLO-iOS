@@ -90,14 +90,14 @@ extension MyProfileView {
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.yelloMain500, for: .normal)
             $0.tintColor = .yellow
-            $0.setImage(.icPlus, for: .normal)
+            $0.setImage(ImageLiterals.Profile.icPlus, for: .normal)
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
             $0.setTitle(StringLiterals.Profile.MyProfile.addGroup, for: .normal)
         }
     }
     
     private func setLayout() {
-        self.addSubview(profileImageView,
+        self.addSubviews(profileImageView,
                         nameLabel,
                         instagramLabel,
                         schoolLabel,

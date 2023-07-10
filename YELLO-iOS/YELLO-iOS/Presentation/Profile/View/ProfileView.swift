@@ -36,7 +36,7 @@ extension ProfileView {
         setLayout()
     }
     
-    private func setStyle() {
+    private func setStyle() {        
         self.backgroundColor = .black
         
         myFriendTableView.do {
@@ -52,7 +52,7 @@ extension ProfileView {
         topButton.do {
             $0.backgroundColor = .white
             $0.makeCornerRound(radius: 24)
-            $0.setImage(ImageLiterals.Profile.icArrowUp), for: .normal)
+            $0.setImage(ImageLiterals.Profile.icArrowUp, for: .normal)
             $0.addTarget(self, action: #selector(topButtonTapped), for: .touchUpInside)
             $0.isHidden = true
         }
@@ -113,10 +113,10 @@ extension ProfileView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
-        case 0 :
+        case 0:
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyProfileHeaderView.cellIdentifier) as! MyProfileHeaderView
             return view
-        default :
+        default:
             return UIView()
         }
     }
@@ -124,6 +124,7 @@ extension ProfileView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 304.adjustedHeight : 0
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }

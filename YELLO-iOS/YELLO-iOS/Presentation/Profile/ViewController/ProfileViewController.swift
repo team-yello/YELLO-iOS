@@ -27,6 +27,7 @@ extension ProfileViewController {
     }
     
     private func setStyle() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = .black
     }
     
