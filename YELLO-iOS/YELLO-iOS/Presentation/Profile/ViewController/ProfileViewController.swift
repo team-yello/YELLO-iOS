@@ -7,23 +7,34 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController {
+import SnapKit
+import Then
 
+final class ProfileViewController: UIViewController {
+    
+    private let profileView = ProfileView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension ProfileViewController {
+    private func setUI() {
+        setStyle()
+        setLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setStyle() {
+        view.backgroundColor = .black
     }
-    */
-
+    
+    private func setLayout() {
+        view.addSubview(profileView)
+        
+        profileView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }
