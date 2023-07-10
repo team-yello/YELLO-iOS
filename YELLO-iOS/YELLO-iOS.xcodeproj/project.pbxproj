@@ -86,6 +86,8 @@
 		C3C57BF02A5C06C600B84CAA /* KakaoFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */; };
 		C3C57BF32A5C089600B84CAA /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */; };
 		C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF42A5C093D00B84CAA /* FriendModel.swift */; };
+		C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */; };
+		C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +167,8 @@
 		C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendView.swift; sourceTree = "<group>"; };
 		C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		C3C57BF42A5C093D00B84CAA /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
+		C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFriendView.swift; sourceTree = "<group>"; };
+		C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +519,8 @@
 				C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */,
 				C3C57BEB2A5C03BA00B84CAA /* InviteBannerView.swift */,
 				C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */,
+				C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */,
+				C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -670,6 +676,7 @@
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
+				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
 				C3A799EA2A494D6800D3EFD8 /* UIView+.swift in Sources */,
@@ -687,6 +694,7 @@
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
+				C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */,
 				C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
