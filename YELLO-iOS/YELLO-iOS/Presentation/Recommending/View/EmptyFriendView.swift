@@ -16,6 +16,7 @@ final class EmptyFriendView: UIView {
     private let emptyImageView = UIImageView()
     private let emptyDescriptionLabel = UILabel()
     lazy var inviteButton = UIButton()
+    private var invitingView: InvitingView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,6 +31,7 @@ final class EmptyFriendView: UIView {
 
 extension EmptyFriendView {
     private func setUI() {
+        invitingView = InvitingView()
         setStyle()
         setLayout()
     }
@@ -53,6 +55,7 @@ extension EmptyFriendView {
             $0.titleLabel?.font = .uiSubtitle04
             $0.backgroundColor = .grayscales800
             $0.makeCornerRound(radius: 8)
+            $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         }
     }
     
@@ -90,5 +93,21 @@ extension EmptyFriendView {
             $0.width.equalTo(236)
             $0.height.equalTo(48)
         }
+    }
+    
+    @objc func showAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let invitingView = invitingView {
+            invitingView.removeFromSuperview()
+        }
+        
+        invitingView = InvitingView()
+        invitingView?.frame = viewController.view.bounds
+        invitingView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        invitingView?.updateText(title: StringLiterals.Inviting.recommendTitle, text: StringLiterals.Inviting.recommendText, targetString: "함께 옐로")
+        viewController.view.addSubview(invitingView!)
+        
     }
 }
