@@ -29,12 +29,13 @@ final class YelloTextField: UITextField {
     
     //MARK: Components
     private lazy var cancelButton = UIButton()
-    private lazy var toggleButton = UIButton()
-    private lazy var searchButton = UIButton()
-    private var textFieldRightButton = UIButton()
+    private lazy var toggleImageView = UIImageView()
+    private lazy var searchImageView = UIImageView()
+    private let errorImageView = UIImageView()
+    
+    private var buttonStackView = UIStackView()
     
     private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
-    private lazy var buttonStackView = UIView()
     
     // MARK: - Function
     
@@ -59,51 +60,60 @@ extension YelloTextField {
     }
     
     private func setStyle() {
+        self.addLeftPadding(20)
+        self.rightViewMode = .always
+        
         self.do {
             $0.makeBorder(width: 1, color: .grayscales400)
             $0.makeCornerRound(radius: 8)
         }
         
+        searchImageView.do  {
+            $0.image = ImageLiterals.OnBoarding.icSearch
+        }
+        
         cancelButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icXCircle, for: .normal)
         }
-        toggleButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.icChevronDown, for: .normal)
-        }
-        searchButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.icSearch, for: .normal)
+        
+        toggleImageView.do {
+            $0.image = ImageLiterals.OnBoarding.icChevronDown
         }
         
-        self.addLeftPadding(padding)
-        self.addSubview(buttonStackView)
+        errorImageView.do {
+            $0.image = ImageLiterals.OnBoarding.icXCircle
+                .withTintColor(.semanticStatusRed500, renderingMode: .alwaysOriginal)
+        }
+        
     }
     
     private func setLayout() {
         self.snp.makeConstraints {
             $0.height.equalTo(52)
         }
-        buttonStackView.snp.makeConstraints {
-            $0.top.bottom.trailing.equalToSuperview()
-            $0.width.equalTo(40)
+        
+        paddingView.snp.makeConstraints {
+            $0.width.equalTo(20)
         }
+        
     }
     
     //MARK: Custom Function
     func setButtonState(state: iconState) {
         ///텍스트 필드 타입에 따라 subView 다르게
         switch state {
-        case iconState.search:
-            textFieldRightButton = searchButton
-        case iconState.toggle:
-            textFieldRightButton = toggleButton
-        case iconState.cancel:
-            textFieldRightButton = cancelButton
         case .normal:
-            textFieldRightButton = cancelButton
+            self.rightView = UIView()
+        case .search:
+            buttonStackView.addArrangedSubviews(searchImageView,paddingView)
+        case .cancel:
+            buttonStackView.addArrangedSubviews(cancelButton,paddingView)
+        case .toggle:
+            buttonStackView.addArrangedSubviews(toggleImageView,paddingView)
         case .error:
-            textFieldRightButton = cancelButton
+            buttonStackView.addArrangedSubviews(cancelButton,paddingView)
         }
-        buttonStackView.addSubviews(textFieldRightButton)
+        self.rightView = buttonStackView
         
     }
 }
