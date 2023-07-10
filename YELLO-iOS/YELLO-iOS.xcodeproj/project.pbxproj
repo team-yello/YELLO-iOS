@@ -86,6 +86,7 @@
 		C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */; };
 		C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */; };
 		C3D266412A5C76190041C7C7 /* ProfileCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266402A5C76190041C7C7 /* ProfileCountView.swift */; };
+		C3D266432A5C771F0041C7C7 /* MyProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +166,7 @@
 		C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountCustomView.swift; sourceTree = "<group>"; };
 		C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		C3D266402A5C76190041C7C7 /* ProfileCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCountView.swift; sourceTree = "<group>"; };
+		C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,6 +519,7 @@
 				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
 				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
 				C3D266402A5C76190041C7C7 /* ProfileCountView.swift */,
+				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
 				2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */,
+				C3D266432A5C771F0041C7C7 /* MyProfileHeaderView.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				36E4276E2A5BCE860050B34E /* GenderView.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
