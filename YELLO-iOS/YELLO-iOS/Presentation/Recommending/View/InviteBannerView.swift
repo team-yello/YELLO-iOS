@@ -15,7 +15,7 @@ final class InviteBannerView: BaseView {
     private let inviteImageView = UIImageView()
     private let inviteLabel = UILabel()
     private let descriptionLabel = UILabel()
-    private lazy var nextButton = UIButton()
+    lazy var nextButton = UIButton()
     
     override func setStyle() {
         inviteImageView.do {
@@ -24,14 +24,14 @@ final class InviteBannerView: BaseView {
         }
         
         inviteLabel.do {
-            $0.setTextWithLineHeight(text: "친구 초대하기", lineHeight: 22)
-            $0.font = .uiBodyMedium
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Invite.invite, lineHeight: 22)
+            $0.font = .uiBody01
             $0.textColor = .white
         }
         
         descriptionLabel.do {
             $0.font = .uiLabelMedium
-            $0.setTextWithLineHeight(text: "찾는 친구가 없다면 친구를 초대해 보세요!", lineHeight: 15)
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Invite.inviteDescription, lineHeight: 15)
             $0.textColor = .grayscales600
         }
         

@@ -37,6 +37,11 @@ enum StringLiterals {
             static let title = "지금 추천된 친구가 없어요!\n친구를 초대해볼까요?"
             static let inviteButton = "친구 초대하기"
         }
+        
+        enum Invite {
+            static let invite = "친구 초대하기"
+            static let inviteDescription = "찾는 친구가 없다면 친구를 초대해 보세요!"
+        }
     }
     
     enum Around {

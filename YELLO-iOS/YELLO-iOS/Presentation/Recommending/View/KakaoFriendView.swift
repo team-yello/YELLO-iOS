@@ -54,6 +54,7 @@ extension KakaoFriendView {
             $0.backgroundColor = .black
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
+            $0.showsVerticalScrollIndicator = false
         }
         
         emptyFriendView.do {

@@ -15,7 +15,7 @@ final class EmptyFriendView: UIView {
     private let containView = UIView()
     private let emptyImageView = UIImageView()
     private let emptyDescriptionLabel = UILabel()
-    private lazy var inviteButton = UIButton()
+    lazy var inviteButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

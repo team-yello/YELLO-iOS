@@ -37,4 +37,3 @@ extension SchoolFriendViewController {
         }
     }
 }
-

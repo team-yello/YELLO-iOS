@@ -54,6 +54,7 @@ extension SchoolFriendView {
             $0.backgroundColor = .black
             $0.separatorColor = .gray
             $0.separatorStyle = .singleLine
+            $0.showsVerticalScrollIndicator = false
         }
         
         emptyFriendView.do {
