@@ -84,6 +84,8 @@
 		C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */; };
 		C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BEB2A5C03BA00B84CAA /* InviteBannerView.swift */; };
 		C3C57BF02A5C06C600B84CAA /* KakaoFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */; };
+		C3C57BF32A5C089600B84CAA /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */; };
+		C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF42A5C093D00B84CAA /* FriendModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,6 +163,8 @@
 		C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendViewController.swift; sourceTree = "<group>"; };
 		C3C57BEB2A5C03BA00B84CAA /* InviteBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteBannerView.swift; sourceTree = "<group>"; };
 		C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendView.swift; sourceTree = "<group>"; };
+		C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		C3C57BF42A5C093D00B84CAA /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,8 @@
 			children = (
 				C3C57BEE2A5C066B00B84CAA /* ViewController */,
 				C3C57BED2A5C066200B84CAA /* View */,
+				C3C57BF12A5C087600B84CAA /* Cells */,
+				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
 			);
 			path = Recommending;
 			sourceTree = "<group>";
@@ -523,6 +529,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		C3C57BF12A5C087600B84CAA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -649,6 +663,7 @@
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
+				C3C57BF32A5C089600B84CAA /* FriendTableViewCell.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
 				C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */,
 				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
@@ -664,6 +679,7 @@
 				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
 				2AD1A1BB2A59559100CB988B /* VotingPointViewController.swift in Sources */,
 				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
+				C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */,
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
