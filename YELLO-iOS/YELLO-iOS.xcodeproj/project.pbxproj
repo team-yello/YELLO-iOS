@@ -26,6 +26,7 @@
 		2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */; };
 		2AD1A1D22A5BD13700CB988B /* BaseVotingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */; };
 		2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */; };
+		2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D52A5C952000CB988B /* VotingFunction.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -106,6 +107,7 @@
 		2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerView.swift; sourceTree = "<group>"; };
 		2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingMainView.swift; sourceTree = "<group>"; };
 		2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingDummy.swift; sourceTree = "<group>"; };
+		2AD1A1D52A5C952000CB988B /* VotingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingFunction.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				2AA0DBB32A546E62002B1370 /* VotingViewController.swift */,
 				2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */,
 				2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */,
+				2AD1A1D52A5C952000CB988B /* VotingFunction.swift */,
 			);
 			path = Voting;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */,
+				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,

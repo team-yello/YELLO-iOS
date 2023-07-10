@@ -99,8 +99,7 @@ final class VotingTimerView: BaseView {
         }
         
     }
-    
-    
+   
     func start(duration: TimeInterval) {
         self.remainingSeconds = duration
         // timer

@@ -83,22 +83,30 @@ final class BaseVotingMainView: BaseView {
         }
         
         keywordOne.do {
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = .uiBodyMedium
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
             $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         }
         
         keywordTwo.do {
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = .uiBodyMedium
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
         }
         
         keywordThree.do {
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = .uiBodyMedium
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
         }
         
         keywordFour.do {
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = .uiBodyMedium
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
             $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
@@ -157,7 +165,7 @@ final class BaseVotingMainView: BaseView {
                          suffleButton,
                          suffleNum,
                          skipButton)
-        
+    
         suffleButton.addSubviews(suffleIcon, suffleText, suffleNum)
         
         yelloBalloon.snp.makeConstraints {

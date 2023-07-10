@@ -14,6 +14,11 @@ final class VotingViewController: BaseViewController {
     
     private let originView = BaseVotingMainView()
     
+    var nameTextOne = UILabel()
+    var nameTextTwo = UILabel()
+    var nameTextThree = UILabel()
+    var nameTextFour = UILabel()
+    
     static var pushCount = 0
     
     override func loadView() {
@@ -26,10 +31,63 @@ final class VotingViewController: BaseViewController {
         navigationController?.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     override func setStyle() {
+        
+        let firstLineFont = UIFont.uiBodyMedium
+        let firstLineColor = UIColor.white
+        let secondLineFont = UIFont.uiLabelSmall
+        let secondLineColor = UIColor.grayscales600
+        
+        nameTextOne = createTwoLineLabel(text: StringLiterals.Voting.VoteName.one,
+                                         firstLineFont: firstLineFont,
+                                         firstLineColor: firstLineColor,
+                                         secondLineFont: secondLineFont,
+                                         secondLineColor: secondLineColor)
+        
+        nameTextTwo = createTwoLineLabel(text: StringLiterals.Voting.VoteName.two,
+                                         firstLineFont: firstLineFont,
+                                         firstLineColor: firstLineColor,
+                                         secondLineFont: secondLineFont,
+                                         secondLineColor: secondLineColor)
+        
+        nameTextThree = createTwoLineLabel(text: StringLiterals.Voting.VoteName.three,
+                                           firstLineFont: firstLineFont,
+                                           firstLineColor: firstLineColor,
+                                           secondLineFont: secondLineFont,
+                                           secondLineColor: secondLineColor)
+        
+        nameTextFour = createTwoLineLabel(text: StringLiterals.Voting.VoteName.four,
+                                          firstLineFont: firstLineFont,
+                                          firstLineColor: firstLineColor,
+                                          secondLineFont: secondLineFont,
+                                          secondLineColor: secondLineColor)
+        
+        originView.keywordOne.do {
+            $0.setTitle(StringLiterals.Voting.VoteKeyword.one, for: .normal)
+        }
+        
+        originView.keywordTwo.do {
+            $0.setTitle(StringLiterals.Voting.VoteKeyword.two, for: .normal)
+        }
+        
+        originView.keywordThree.do {
+            $0.setTitle(StringLiterals.Voting.VoteKeyword.three, for: .normal)
+        }
+        
+        originView.keywordFour.do {
+            $0.setTitle(StringLiterals.Voting.VoteKeyword.four, for: .normal)
+        }
+        
         originView.skipButton.do {
             $0.addTarget(self, action: #selector(skipButtonClicked), for: .touchUpInside)
         }
+        
     }
     
     override func setLayout() {
@@ -38,6 +96,27 @@ final class VotingViewController: BaseViewController {
             .first?
             .statusBarManager?
             .statusBarFrame.height ?? 20
+        
+        originView.nameOne.addSubview(nameTextOne)
+        originView.nameTwo.addSubview(nameTextTwo)
+        originView.nameThree.addSubview(nameTextThree)
+        originView.nameFour.addSubview(nameTextFour)
+        
+        nameTextOne.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        nameTextTwo.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        nameTextThree.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        nameTextFour.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
         
         originView.yelloBalloon.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 4.adjusted)
@@ -89,8 +168,6 @@ extension VotingViewController: UINavigationControllerDelegate {
         } else {
             // 다른 뷰 컨트롤러로 이동하는 경우 pushCount를 초기화
             VotingViewController.pushCount = 0
-            tabBarController?.tabBar.isHidden = false
-            
         }
         
     }
@@ -115,3 +192,4 @@ extension VotingViewController {
         self.originView.numOfPage.text = String(VotingViewController.pushCount + 1)
     }
 }
+
