@@ -16,6 +16,9 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
+    private let numOfFriends = 3 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
+    private var rootViewController = UIViewController()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -48,7 +51,7 @@ final class YELLOTabBarController: UITabBarController {
             item.titlePositionAdjustment = offset
         }
         
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         
         tabBar.tintColor = .yelloMain500
         tabBar.barTintColor = .grayscales600
@@ -64,10 +67,18 @@ final class YELLOTabBarController: UITabBarController {
     // MARK: - TabBar Item
     
     private func setTabBarItems() {
+        
+        /// 친구 수에 따라 rootViewController가 달라짐
+        if numOfFriends < 4 {
+            rootViewController = VotingLockedViewController()
+        } else {
+            rootViewController = VotingStartViewController()
+        }
+        
         tabs = [
             UINavigationController(rootViewController: RecommendingViewController()),
             UINavigationController(rootViewController: AroundViewController()),
-            UINavigationController(rootViewController: VotingViewController()),
+            UINavigationController(rootViewController: rootViewController),
             UINavigationController(rootViewController: MyYelloViewController()),
             UINavigationController(rootViewController: ProfileViewController())
         ]

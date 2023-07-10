@@ -4,7 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Unbounded-Bold</string>
+		<string>Unbounded-Medium.ttf</string>
+		<string>Unbounded-Bold.ttf</string>
 		<string>Pretendard-Thin.otf</string>
 		<string>Pretendard-SemiBold.otf</string>
 		<string>Pretendard-Regular.otf</string>
