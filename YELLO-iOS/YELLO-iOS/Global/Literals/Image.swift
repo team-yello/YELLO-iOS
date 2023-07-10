@@ -57,6 +57,9 @@ enum ImageLiterals {
         static var imgYelloBalloon9: UIImage { .load(named: "imgYelloBalloon9")}
         static var imgYelloBalloon10: UIImage { .load(named: "imgYelloBalloon10")}
         static var imgProgress1: UIImage { .load(named: "imgProgress1")}
+    
+        static var icShuffle: UIImage { .load(named: "icShuffle")}
+        static var icSkip: UIImage { .load(named: "icSkip")}
 
     }
     

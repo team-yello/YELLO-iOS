@@ -106,7 +106,6 @@ final class VotingPointViewController: BaseViewController {
     func yellowButtonClicked() {
         let viewController = VotingTimerViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
-        self.navigationController?.navigationBar.isHidden = true
     }
 
 }
