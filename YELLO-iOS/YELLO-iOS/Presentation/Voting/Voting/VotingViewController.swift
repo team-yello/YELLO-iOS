@@ -45,6 +45,10 @@ final class VotingViewController: BaseViewController {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 4.adjusted)
         }
         
+        originView.yelloProgress.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 60.adjusted)
+        }
+        
     }
     
     @objc
@@ -70,6 +74,8 @@ extension VotingViewController: UINavigationControllerDelegate {
         if VotingViewController.pushCount < 10 {
             let dummy = VotingDummy.dummy()
             self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
+            self.originView.yelloProgress.image =
+                dummy[VotingViewController.pushCount].yelloProgress
         }
         
         if viewController == self {
