@@ -61,6 +61,11 @@ final class VotingPointViewController: BaseViewController {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
+        originView.topOfPointIcon.snp.makeConstraints {
+            $0.centerY.equalTo(originView.topOfMyPoint)
+            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjusted)
+        }
+        
         originView.topOfMyPoint.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjusted)
@@ -99,8 +104,8 @@ final class VotingPointViewController: BaseViewController {
     
     @objc
     func yellowButtonClicked() {
-        let nextViewController = VotingTimerViewController()
-        self.navigationController?.pushViewController(nextViewController, animated: true)
+        let viewController = VotingTimerViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
         self.navigationController?.navigationBar.isHidden = true
     }
 

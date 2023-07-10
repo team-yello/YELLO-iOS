@@ -71,9 +71,12 @@ final class VotingLockedViewController: BaseViewController {
     
     @objc
     func yellowButtonClicked() {
-        let nextViewController = InvitingViewController()
-        nextViewController.modalPresentationStyle = .overFullScreen
-        self.present(nextViewController, animated: true)
+        let viewController = InvitingViewController()
+        viewController.originView.titleLabel.text = StringLiterals.Inviting.lockedTitle
+        viewController.originView.textLabel.text = StringLiterals.Inviting.lockedText
+        viewController.originView.textLabel.asColor(targetString: "투표를 시작", color: .black)
+        viewController.modalPresentationStyle = .overFullScreen
+        self.present(viewController, animated: true)
     }
 
 }

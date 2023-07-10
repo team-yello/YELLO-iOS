@@ -18,7 +18,7 @@ import Then
 
 final class InvitingViewController: BaseViewController {
     
-    private let originView = InvitingView()
+    let originView = InvitingView()
     
     // MARK: - Style
     
@@ -44,34 +44,30 @@ final class InvitingViewController: BaseViewController {
         
         view.addSubview(originView)
         originView.snp.makeConstraints {
-            $0.width.equalTo(300)
-            $0.height.equalTo(374)
+            $0.width.equalTo(300.adjusted)
+            $0.height.equalTo(374.adjusted)
             $0.center.equalToSuperview()
         }
         
     }
     
-    // MARK: - closeButton 클릭했을 때
+    // MARK: - Objc Function
     
     @objc
     func closeButtonClicked() {
         self.dismiss(animated: true)
     }
     
-    // MARK: - kakaoButton 클릭했을 때
-    
     @objc
     func kakaoButtonClicked() {
         /// 카카오톡 연결 시 추후 구현
     }
     
-    // MARK: - copyButton 클릭했을 때
-    
     @objc
     func copyButtonClicked() {
         /// 우선 지금은 추천인 코드 복사로 구현해 놓음
-        guard let filteredStr = originView.recommenderID.text else { return }
-        let recommenderID = String(filteredStr.dropFirst())
+        guard let filteredString = originView.recommenderID.text else { return }
+        let recommenderID = String(filteredString.dropFirst())
         UIPasteboard.general.string = recommenderID
         print(UIPasteboard.general.string ?? "")
     }

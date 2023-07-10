@@ -13,7 +13,8 @@ import Then
 class BaseVotingView: BaseView {
 
     // 컴포넌트 위치 순서대로
-    let topOfMyPoint = UIButton()
+    let topOfPointIcon = UIImageView()
+    let topOfMyPoint = UILabel()
     
     let titleLabel = UILabel()
     let textLabel = UILabel()
@@ -22,28 +23,24 @@ class BaseVotingView: BaseView {
     let yelloImage = UIImageView()
     
     let grayView = UIView()
-    let myPointText = UIButton()
+    let myPointIcon = UIImageView()
+    let myPointText = UILabel()
     let realMyPoint = UILabel()
     let engPoint = UILabel()
     
     let yellowButton = UIButton()
-    
-    override func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
+
     // MARK: - Style
     
-    private func setStyle() {
+    override func setStyle() {
+        topOfPointIcon.do {
+            $0.image = ImageLiterals.Voting.icPoint
+        }
+        
         topOfMyPoint.do {
-            $0.setTitle("  2900", for: .normal)
-            $0.setImage(ImageLiterals.Voting.icPoint, for: .normal)
-            $0.setTitleColor(.white, for: .normal)
-            $0.imageView?.contentMode = .scaleAspectFit
-            $0.titleLabel?.font = .uiBodyMedium
-            $0.contentHorizontalAlignment = .center
-            $0.semanticContentAttribute = .forceLeftToRight
+            $0.text = "2900"
+            $0.textColor = .white
+            $0.font = .uiBodyMedium
         }
         
         titleLabel.do {
@@ -69,15 +66,15 @@ class BaseVotingView: BaseView {
             $0.backgroundColor = UIColor(hex: "293036")
             $0.makeCornerRound(radius: 8)
         }
+        
+        myPointIcon.do {
+            $0.image = ImageLiterals.Voting.icPoint
+        }
 
         myPointText.do {
-            $0.setTitle("  내 포인트", for: .normal)
-            $0.setImage(ImageLiterals.Voting.icPoint, for: .normal)
-            $0.setTitleColor(.white, for: .normal)
-            $0.imageView?.contentMode = .scaleAspectFit
-            $0.titleLabel?.font = .uiBodyMedium
-            $0.contentHorizontalAlignment = .center
-            $0.semanticContentAttribute = .forceLeftToRight
+            $0.text = "내 포인트"
+            $0.textColor = .white
+            $0.font = .uiBodyMedium
         }
         
         realMyPoint.do {
@@ -100,8 +97,9 @@ class BaseVotingView: BaseView {
     
     // MARK: - Layout
     
-    private func setLayout() {
-        self.addSubviews(topOfMyPoint,
+    override func setLayout() {
+        self.addSubviews(topOfPointIcon,
+                         topOfMyPoint,
                          titleLabel,
                          textLabel,
                          plusPoint,
@@ -109,7 +107,8 @@ class BaseVotingView: BaseView {
                          grayView,
                          yellowButton)
         
-        grayView.addSubviews(myPointText,
+        grayView.addSubviews(myPointIcon,
+                             myPointText,
                              realMyPoint,
                              engPoint)
         
@@ -133,9 +132,14 @@ class BaseVotingView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
-        myPointText.snp.makeConstraints {
+        myPointIcon.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24.adjusted)
             $0.centerY.equalToSuperview()
+        }
+        
+        myPointText.snp.makeConstraints {
+            $0.leading.equalTo(myPointIcon.snp.trailing).offset(8.adjusted)
+            $0.centerY.equalTo(myPointIcon.snp.centerY)
         }
     
         realMyPoint.snp.makeConstraints {

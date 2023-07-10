@@ -75,6 +75,10 @@ final class VotingTimerViewController: BaseViewController {
         timerBackGround.addSubview(timerView)
         speechBubbleBackground.addSubview(speechBubbleText)
         
+        originView.topOfPointIcon.snp.makeConstraints {
+            $0.centerY.equalTo(originView.topOfMyPoint)
+            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjusted)
+        }
         
         originView.topOfMyPoint.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjusted)
@@ -119,9 +123,9 @@ final class VotingTimerViewController: BaseViewController {
     
     @objc
     func yellowButtonClicked() {
-        let nextViewController = InvitingViewController()
-        nextViewController.modalPresentationStyle = .overFullScreen
-        self.present(nextViewController, animated: true)
+        let viewController = InvitingViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        self.present(viewController, animated: true)
     }
     
 }

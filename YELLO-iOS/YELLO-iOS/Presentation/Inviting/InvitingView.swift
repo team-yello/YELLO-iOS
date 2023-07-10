@@ -15,24 +15,19 @@ final class InvitingView: BaseView {
     // 컴포넌트 위치 순서대로
     let closeButton = UIButton()
 
-    let blackLabel = UILabel()
-    let grayLabel = UILabel()
+    let titleLabel = UILabel()
+    let textLabel = UILabel()
     
     let backGroundView = UIView()
-    let purpleLabel = UILabel()
+    let recommender = UILabel()
     let recommenderID = UILabel()
     
     let kakaoButton = UIButton()
     let copyButton = UIButton()
     
-    override func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
     // MARK: - Style
     
-    private func setStyle() {
+    override func setStyle() {
         self.makeCornerRound(radius: 10)
         self.backgroundColor = .white
         
@@ -46,14 +41,14 @@ final class InvitingView: BaseView {
             $0.semanticContentAttribute = .forceRightToLeft
         }
         
-        blackLabel.do {
-            $0.setTextWithLineHeight(text: "친구 초대하고 기다리지 않기", lineHeight: 24)
+        titleLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedTitle, lineHeight: 24)
             $0.textColor = .black
             $0.font = .uiHeadline04
         }
         
-        grayLabel.do {
-            $0.setTextWithLineHeight(text: "친구가 내 추천인 코드로 가입하면\n기다리지 않고 바로 투표할 수 있어요!", lineHeight: 20)
+        textLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedText, lineHeight: 20)
             $0.numberOfLines = 2
             $0.textColor = .grayscales600
             $0.font = .uiBody03
@@ -65,7 +60,7 @@ final class InvitingView: BaseView {
             $0.makeCornerRound(radius: 8)
         }
         
-        purpleLabel.do {
+        recommender.do {
             $0.setTextWithLineHeight(text: "내 추천인 코드", lineHeight: 20)
             $0.textColor = .purpleSub500
             $0.font = .uiBody04
@@ -88,22 +83,22 @@ final class InvitingView: BaseView {
     
     // MARK: - Layout
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(closeButton,
-                         blackLabel,
-                         grayLabel,
+                         titleLabel,
+                         textLabel,
                          backGroundView,
                          kakaoButton,
                          copyButton)
         
-        backGroundView.addSubviews(purpleLabel,
+        backGroundView.addSubviews(recommender,
                                    recommenderID)
         
         closeButton.snp.makeConstraints {
             $0.top.trailing.equalToSuperview().inset(14.adjusted)
         }
         
-        blackLabel.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(50.adjusted)
             $0.centerX.equalToSuperview()
         }
@@ -114,18 +109,18 @@ final class InvitingView: BaseView {
             $0.bottom.equalToSuperview().inset(120.adjusted)
         }
         
-        grayLabel.snp.makeConstraints {
-            $0.top.equalTo(blackLabel.snp.bottom).offset(12.adjusted)
+        textLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjusted)
             $0.centerX.equalToSuperview()
         }
         
-        purpleLabel.snp.makeConstraints {
-            $0.top.equalTo(grayLabel.snp.bottom).offset(47.adjusted)
+        recommender.snp.makeConstraints {
+            $0.top.equalTo(textLabel.snp.bottom).offset(47.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         recommenderID.snp.makeConstraints {
-            $0.top.equalTo(purpleLabel.snp.bottom).offset(8.adjusted)
+            $0.top.equalTo(recommender.snp.bottom).offset(8.adjusted)
             $0.centerX.equalToSuperview()
         }
         

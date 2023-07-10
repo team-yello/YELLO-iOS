@@ -31,8 +31,8 @@ final class VotingViewController: UIViewController {
     
     @objc
     func clicked() {
-        let nextViewController = VotingPointViewController()
-        self.navigationController?.pushViewController(nextViewController, animated: true)
+        let viewController = VotingPointViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
         self.navigationController?.navigationBar.isHidden = true
     }
     

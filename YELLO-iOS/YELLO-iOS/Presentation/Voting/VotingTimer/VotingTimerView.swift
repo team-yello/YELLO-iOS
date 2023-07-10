@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class VotingTimerView: UIView {
+final class VotingTimerView: BaseView {
     
     private let timeLabel = UILabel()
     
@@ -21,8 +21,9 @@ final class VotingTimerView: UIView {
     
     private var remainingSeconds: TimeInterval? {
         didSet {
-            guard let remainingSeconds = self.remainingSeconds else { return }
-            self.timeLabel.text = String(format: "%02d : %02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
+            if let remainingSeconds {
+                self.timeLabel.text = String(format: "%02d : %02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
+            }
         }
     }
     
@@ -38,7 +39,6 @@ final class VotingTimerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
         
         start(duration: 2400)
     }
@@ -58,13 +58,8 @@ final class VotingTimerView: UIView {
         self.backgroundLayer.path = self.circularPath.cgPath
         self.progressLayer.path = self.circularPath.cgPath
     }
-    
-    func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    func setStyle() {
+
+    override func setStyle() {
         self.backgroundColor = .clear
         
         timeLabel.do {
@@ -94,7 +89,7 @@ final class VotingTimerView: UIView {
         }
     }
     
-    func setLayout() {
+    override func setLayout() {
         self.addSubview(self.timeLabel)
         self.layer.addSublayer(self.backgroundLayer)
         self.layer.addSublayer(self.progressLayer)
