@@ -16,8 +16,11 @@ final class InviteBannerView: BaseView {
     private let inviteLabel = UILabel()
     private let descriptionLabel = UILabel()
     lazy var nextButton = UIButton()
+    private var invitingView: InvitingView?
     
     override func setStyle() {
+        invitingView = InvitingView()
+        
         inviteImageView.do {
             $0.image = ImageLiterals.Recommending.imgBannerInvite
             $0.tintColor = .white
@@ -38,14 +41,15 @@ final class InviteBannerView: BaseView {
         nextButton.do {
             $0.setImage(ImageLiterals.Recommending.icRight, for: .normal)
             $0.tintColor = .white
+            $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         }
     }
     
     override func setLayout() {
         self.addSubviews(inviteImageView,
-                        inviteLabel,
-                        descriptionLabel,
-                        nextButton)
+                         inviteLabel,
+                         descriptionLabel,
+                         nextButton)
         
         inviteImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(8.adjusted)
@@ -68,5 +72,21 @@ final class InviteBannerView: BaseView {
             $0.width.height.equalTo(24.adjusted)
             $0.centerY.equalToSuperview()
         }
+    }
+    
+    @objc func showAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let invitingView = invitingView {
+            invitingView.removeFromSuperview()
+        }
+        
+        invitingView = InvitingView()
+        invitingView?.frame = viewController.view.bounds
+        invitingView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        invitingView?.updateText(title: StringLiterals.Inviting.recommendTitle, text: StringLiterals.Inviting.recommendText, targetString: "함께 옐로")
+        viewController.view.addSubview(invitingView!)
+        
     }
 }

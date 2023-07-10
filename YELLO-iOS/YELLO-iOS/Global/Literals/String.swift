@@ -24,6 +24,8 @@ enum StringLiterals {
         static let lockedText = "친구가 4명 이상 모이면\n투표를 시작할 수 있어요!"
         static let unLockedTitle = "친구 초대하고 기다리지 않기"
         static let unLockedText = "친구가 내 추천인 코드로 가입하면\n기다리지 않고 바로 투표할 수 있어요!"
+        static let recommendTitle  = "친구 초대하기"
+        static let recommendText = "찾는 친구가 없다면 친구를 초대해 보세요!\n함께 옐로할 수 있어요."
     }
     
     enum Recommending {
