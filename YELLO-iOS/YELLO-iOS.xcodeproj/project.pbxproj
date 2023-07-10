@@ -16,7 +16,7 @@
 		2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */; };
 		2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */; };
 		2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1A72A57175100CB988B /* VotingLockedViewController.swift */; };
-		2AD1A1AE2A571ED500CB988B /* BaseVotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1AD2A571ED500CB988B /* BaseVotingView.swift */; };
+		2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */; };
 		2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B12A57395C00CB988B /* InvitingViewController.swift */; };
 		2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B32A5739B300CB988B /* InvitingView.swift */; };
 		2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B72A57476C00CB988B /* VotingStartViewController.swift */; };
@@ -94,7 +94,7 @@
 		2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarController.swift; sourceTree = "<group>"; };
 		2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
 		2AD1A1A72A57175100CB988B /* VotingLockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingLockedViewController.swift; sourceTree = "<group>"; };
-		2AD1A1AD2A571ED500CB988B /* BaseVotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingView.swift; sourceTree = "<group>"; };
+		2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingETCView.swift; sourceTree = "<group>"; };
 		2AD1A1B12A57395C00CB988B /* InvitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitingViewController.swift; sourceTree = "<group>"; };
 		2AD1A1B32A5739B300CB988B /* InvitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitingView.swift; sourceTree = "<group>"; };
 		2AD1A1B72A57476C00CB988B /* VotingStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingStartViewController.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		2AA0DBAC2A546D99002B1370 /* Voting */ = {
 			isa = PBXGroup;
 			children = (
-				2AD1A1AD2A571ED500CB988B /* BaseVotingView.swift */,
+				2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */,
 				2AD1A1A92A57175600CB988B /* VotingLocked */,
 				2AD1A1B62A57475000CB988B /* VotingStart */,
 				2AD1A1AA2A57176200CB988B /* Voting */,
@@ -623,7 +623,7 @@
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
-				2AD1A1AE2A571ED500CB988B /* BaseVotingView.swift in Sources */,
+				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
