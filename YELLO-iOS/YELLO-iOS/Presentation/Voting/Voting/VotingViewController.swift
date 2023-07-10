@@ -66,6 +66,12 @@ extension VotingViewController: UINavigationControllerDelegate {
     /// 뷰 컨트롤러가 푸시될 때마다 호출
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         // 현재 뷰 컨트롤러가 자기 자신인 경우에만 pushCount를 증가
+        
+        if VotingViewController.pushCount < 10 {
+            let dummy = VotingDummy.dummy()
+            self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
+        }
+        
         if viewController == self {
             VotingViewController.pushCount += 1
         } else {
