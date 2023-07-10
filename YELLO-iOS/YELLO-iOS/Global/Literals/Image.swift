@@ -16,6 +16,7 @@ enum ImageLiterals {
         static var icX: UIImage { .load(named: "icX") }
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
         static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
+        static var icXCircle: UIImage { .load(named: "icXCircle")}
     }
     
     enum TabBar {
