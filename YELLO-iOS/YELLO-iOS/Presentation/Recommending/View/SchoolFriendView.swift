@@ -12,23 +12,18 @@ import Then
 
 final class SchoolFriendView: UIView {
     
-    private let inviteBannerView = InviteBannerView()
-    
     var schoolFriendTableViewModel: [FriendModel] = [
         FriendModel(name: "정채은", school: "이화여자대학교 물리학과 21학번", isButtonSelected: false),
-//        FriendModel(name: "김채은", school: "이화여자대학교 물리학과 22학번", isButtonSelected: false),
-//        FriendModel(name: "이채은", school: "이화여자대학교 물리학과 23학번", isButtonSelected: false),
-//        FriendModel(name: "황채은", school: "이화여자대학교 물리학과 24학번", isButtonSelected: false),
-//        FriendModel(name: "최채은", school: "이화여자대학교 물리학과 25학번", isButtonSelected: false),
-//        FriendModel(name: "윤채은", school: "이화여자대학교 물리학과 26학번", isButtonSelected: false),
-//        FriendModel(name: "성채은", school: "이화여자대학교 물리학과 27학번", isButtonSelected: false),
-//        FriendModel(name: "박채은", school: "이화여자대학교 물리학과 28학번", isButtonSelected: false),
-//        FriendModel(name: "방채은", school: "이화여자대학교 물리학과 29학번", isButtonSelected: false),
-//        FriendModel(name: "홍채은", school: "이화여자대학교 물리학과 30학번", isButtonSelected: false),
-        FriendModel(name: "백채은", school: "이화여자대학교 융합콘텐츠학과 20학번", isButtonSelected: false)]
+        FriendModel(name: "김채은", school: "이화여자대학교 물리학과 22학번", isButtonSelected: false),
+        FriendModel(name: "이채은", school: "이화여자대학교 물리학과 23학번", isButtonSelected: false),
+        FriendModel(name: "황채은", school: "이화여자대학교 물리학과 24학번", isButtonSelected: false),
+        FriendModel(name: "최채은", school: "이화여자대학교 물리학과 25학번", isButtonSelected: false),
+        FriendModel(name: "윤채은", school: "이화여자대학교 물리학과 26학번", isButtonSelected: false),
+        FriendModel(name: "성채은", school: "이화여자대학교 물리학과 27학번", isButtonSelected: false),
+        FriendModel(name: "박채은", school: "이화여자대학교 물리학과 28학번", isButtonSelected: false)]
     
-//    var schoolFriendTableViewModel: [FriendModel] = []
-    
+    private let inviteBannerView = InviteBannerView()
+    private let emptyFriendView = EmptyFriendView()
     lazy var schoolFriendTableView = UITableView()
 
     override init(frame: CGRect) {
@@ -60,11 +55,16 @@ extension SchoolFriendView {
             $0.separatorColor = .gray
             $0.separatorStyle = .singleLine
         }
+        
+        emptyFriendView.do {
+            $0.isHidden = true
+        }
     }
     
     private func setLayout() {
-        self.addSubview(inviteBannerView)
-        self.addSubview(schoolFriendTableView)
+        self.addSubviews(inviteBannerView,
+                        schoolFriendTableView,
+                        emptyFriendView)
 
         inviteBannerView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -76,6 +76,10 @@ extension SchoolFriendView {
             $0.top.equalTo(inviteBannerView.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
+        }
+        
+        emptyFriendView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
         }
     }
     
@@ -90,6 +94,22 @@ extension SchoolFriendView {
        schoolFriendTableViewModel.remove(at: indexPath.row)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.schoolFriendTableView.deleteRows(at: [indexPath], with: .right)
+            self.updateView()
+        }
+    }
+    
+    private func updateView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            if self.schoolFriendTableViewModel.isEmpty {
+                self.inviteBannerView.isHidden = true
+                self.schoolFriendTableView.isHidden = true
+                self.emptyFriendView.isHidden = false
+                
+            } else {
+                self.inviteBannerView.isHidden = false
+                self.schoolFriendTableView.isHidden = false
+                self.emptyFriendView.isHidden = true
+            }
         }
     }
 }

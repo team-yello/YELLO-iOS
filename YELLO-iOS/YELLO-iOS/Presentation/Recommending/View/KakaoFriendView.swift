@@ -12,8 +12,6 @@ import Then
 
 final class KakaoFriendView: UIView {
     
-    private let inviteBannerView = InviteBannerView()
-    
     var kakaoFriendTableViewModel: [FriendModel] = [
         FriendModel(name: "정채은", school: "이화여자대학교 융합콘텐츠학과 21학번", isButtonSelected: false),
         FriendModel(name: "김채은", school: "이화여자대학교 융합콘텐츠학과 22학번", isButtonSelected: false),
@@ -22,11 +20,10 @@ final class KakaoFriendView: UIView {
         FriendModel(name: "최채은", school: "이화여자대학교 융합콘텐츠학과 25학번", isButtonSelected: false),
         FriendModel(name: "윤채은", school: "이화여자대학교 융합콘텐츠학과 26학번", isButtonSelected: false),
         FriendModel(name: "성채은", school: "이화여자대학교 융합콘텐츠학과 27학번", isButtonSelected: false),
-        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false),
-        FriendModel(name: "방채은", school: "이화여자대학교 융합콘텐츠학과 29학번", isButtonSelected: false),
-        FriendModel(name: "홍채은", school: "이화여자대학교 융합콘텐츠학과 30학번", isButtonSelected: false),
-        FriendModel(name: "백채은", school: "이화여자대학교 융합콘텐츠학과 20학번", isButtonSelected: false)]
+        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false)]
     
+    private let inviteBannerView = InviteBannerView()
+    private let emptyFriendView = EmptyFriendView()
     lazy var kakaoFriendTableView = UITableView()
     
     override init(frame: CGRect) {
@@ -58,12 +55,17 @@ extension KakaoFriendView {
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
         }
+        
+        emptyFriendView.do {
+            $0.isHidden = true
+        }
     }
     
     private func setLayout() {
         self.addSubviews(
             inviteBannerView,
-            kakaoFriendTableView)
+            kakaoFriendTableView,
+            emptyFriendView)
         
         inviteBannerView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -75,6 +77,10 @@ extension KakaoFriendView {
             $0.top.equalTo(inviteBannerView.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
             $0.bottom.equalToSuperview()
+        }
+        
+        emptyFriendView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
         }
     }
     private func setDelegate() {
@@ -88,6 +94,22 @@ extension KakaoFriendView {
         kakaoFriendTableViewModel.remove(at: indexPath.row)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.kakaoFriendTableView.deleteRows(at: [indexPath], with: .right)
+            self.updateView()
+        }
+    }
+    
+    private func updateView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            if self.kakaoFriendTableViewModel.isEmpty {
+                self.inviteBannerView.isHidden = true
+                self.kakaoFriendTableView.isHidden = true
+                self.emptyFriendView.isHidden = false
+                
+            } else {
+                self.inviteBannerView.isHidden = false
+                self.kakaoFriendTableView.isHidden = false
+                self.emptyFriendView.isHidden = true
+            }
         }
     }
 }

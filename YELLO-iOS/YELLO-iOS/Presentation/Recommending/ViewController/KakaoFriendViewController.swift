@@ -13,7 +13,6 @@ import Then
 final class KakaoFriendViewController: UIViewController {
     
     private let kakaoFriendView = KakaoFriendView()
-    private let emptyFriendView = EmptyFriendView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +31,9 @@ extension KakaoFriendViewController {
     }
     
     private func setLayout() {
-        if kakaoFriendView.kakaoFriendTableViewModel.isEmpty {
-            view.addSubview(emptyFriendView)
-            emptyFriendView.snp.makeConstraints {
-                $0.top.leading.trailing.equalToSuperview()
-            }
-        } else {
-            view.addSubview(kakaoFriendView)
-            kakaoFriendView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
+        view.addSubview(kakaoFriendView)
+        kakaoFriendView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }
