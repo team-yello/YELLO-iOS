@@ -30,4 +30,12 @@ extension VotingViewController {
         
         return label
     }
+    
+    func updateLabelAppearance(_ label: UILabel) {
+        let attributedString = NSMutableAttributedString(string: label.text ?? "")
+        attributedString.addAttributes([.foregroundColor: UIColor.yelloMain500, .font: UIFont.uiBodyMedium], range: NSRange(location: 0, length: 3))
+        attributedString.addAttributes([.foregroundColor: UIColor.grayscales600, .font: UIFont.uiLabelSmall], range: NSRange(location: 3, length: attributedString.length - 3))
+        label.attributedText = attributedString
+    }
+    
 }

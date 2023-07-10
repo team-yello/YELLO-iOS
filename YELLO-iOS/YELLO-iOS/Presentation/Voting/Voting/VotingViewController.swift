@@ -20,6 +20,7 @@ final class VotingViewController: BaseViewController {
     var nameTextFour = UILabel()
     
     static var pushCount = 0
+    static var suffleCount = 0
     
     override func loadView() {
         self.view = originView
@@ -35,6 +36,7 @@ final class VotingViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
+        setSuffleButton()
     }
     
     override func setStyle() {
@@ -68,20 +70,44 @@ final class VotingViewController: BaseViewController {
                                           secondLineFont: secondLineFont,
                                           secondLineColor: secondLineColor)
         
+        originView.nameOne.do {
+            $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
+        }
+        
+        originView.nameTwo.do {
+            $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
+        }
+        
+        originView.nameThree.do {
+            $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
+        }
+        
+        originView.nameFour.do {
+            $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
+        }
+        
         originView.keywordOne.do {
             $0.setTitle(StringLiterals.Voting.VoteKeyword.one, for: .normal)
+            $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordTwo.do {
             $0.setTitle(StringLiterals.Voting.VoteKeyword.two, for: .normal)
+            $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordThree.do {
             $0.setTitle(StringLiterals.Voting.VoteKeyword.three, for: .normal)
+            $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordFour.do {
             $0.setTitle(StringLiterals.Voting.VoteKeyword.four, for: .normal)
+            $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
+        }
+        
+        originView.suffleButton.do {
+            $0.addTarget(self, action: #selector(suffleCountClicked), for: .touchUpInside)
         }
         
         originView.skipButton.do {
@@ -137,6 +163,32 @@ final class VotingViewController: BaseViewController {
     }
     
     @objc
+    func nameButtonClicked(_ sender: UIButton) {
+        // 클릭한 버튼의 레이블 색상 변경
+        if sender == originView.nameOne {
+            updateLabelAppearance(nameTextOne)
+        } else if sender == originView.nameTwo {
+            updateLabelAppearance(nameTextTwo)
+        } else if sender == originView.nameThree {
+            updateLabelAppearance(nameTextThree)
+        } else if sender == originView.nameFour {
+            updateLabelAppearance(nameTextFour)
+        }
+    }
+    
+    @objc
+    func keywordClicked(_ sender: UIButton) {
+        // 클릭한 버튼의 레이블 색상 변경
+        sender.setTitleColor(.yelloMain500, for: .normal)
+    }
+    
+    @objc
+    func suffleCountClicked() {
+        VotingViewController.suffleCount += 1
+        setSuffleButton()
+    }
+    
+    @objc
     func skipButtonClicked() {
         var viewController = UIViewController()
         // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
@@ -157,12 +209,11 @@ final class VotingViewController: BaseViewController {
 extension VotingViewController: UINavigationControllerDelegate {
     /// 뷰 컨트롤러가 푸시될 때마다 호출
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        // 현재 뷰 컨트롤러가 자기 자신인 경우에만 pushCount를 증가
-        
         if VotingViewController.pushCount < 10 {
             setVotingView()
         }
         
+        // 현재 뷰 컨트롤러가 자기 자신인 경우에만 pushCount를 증가
         if viewController == self {
             VotingViewController.pushCount += 1
         } else {
@@ -191,5 +242,19 @@ extension VotingViewController {
         dummy[VotingViewController.pushCount].yelloProgress
         self.originView.numOfPage.text = String(VotingViewController.pushCount + 1)
     }
+    
+    private func setSuffleButton() {
+        if VotingViewController.suffleCount < 3 {
+            originView.suffleNum.text = String(3 - VotingViewController.suffleCount) + "/3"
+        }
+        
+        if VotingViewController.suffleCount == 3 {
+            originView.suffleButton.isEnabled = false
+            originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
+            originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
+            originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
+            originView.suffleNum.text = "0/3"
+        }
+    }
+    
 }
-
