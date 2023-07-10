@@ -85,6 +85,7 @@
 		C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */; };
 		C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */; };
 		C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */; };
+		C3D266412A5C76190041C7C7 /* ProfileCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266402A5C76190041C7C7 /* ProfileCountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +164,7 @@
 		C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountCustomView.swift; sourceTree = "<group>"; };
 		C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		C3D266402A5C76190041C7C7 /* ProfileCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,10 +236,8 @@
 		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
-				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
-				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
-				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
+				C3D2663F2A5C75FA0041C7C7 /* ViewController */,
+				C3D2663E2A5C75EE0041C7C7 /* View */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -510,6 +510,25 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		C3D2663E2A5C75EE0041C7C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
+				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
+				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
+				C3D266402A5C76190041C7C7 /* ProfileCountView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C3D2663F2A5C75FA0041C7C7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -677,6 +696,7 @@
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
+				C3D266412A5C76190041C7C7 /* ProfileCountView.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
