@@ -51,6 +51,7 @@ enum ImageLiterals {
     enum Profile {
         static var imgDefaultProfile: UIImage { .load(named: "imgDefaultProfile") }
         static var icPlus: UIImage { .load(named: "icPlus") }
+        static var icArrowUp: UIImage { .load(named: "icArrowUp") }
         
     }
     

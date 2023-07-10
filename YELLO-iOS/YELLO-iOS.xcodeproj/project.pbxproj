@@ -87,6 +87,8 @@
 		C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */; };
 		C3D266412A5C76190041C7C7 /* ProfileCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266402A5C76190041C7C7 /* ProfileCountView.swift */; };
 		C3D266432A5C771F0041C7C7 /* MyProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */; };
+		C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266442A5C776F0041C7C7 /* ProfileView.swift */; };
+		C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +169,8 @@
 		C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		C3D266402A5C76190041C7C7 /* ProfileCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCountView.swift; sourceTree = "<group>"; };
 		C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderView.swift; sourceTree = "<group>"; };
+		C3D266442A5C776F0041C7C7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,11 +519,13 @@
 		C3D2663E2A5C75EE0041C7C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
 				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
-				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
 				C3D266402A5C76190041C7C7 /* ProfileCountView.swift */,
 				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
+				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
+				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -667,7 +673,9 @@
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
 				C3A799EA2A494D6800D3EFD8 /* UIView+.swift in Sources */,
+				C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
+				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,
 				36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */,
 				36E427712A5BCE860050B34E /* YelloGuideLabel.swift in Sources */,
 				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
