@@ -24,6 +24,7 @@
 		2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BD2A595A2400CB988B /* VotingTimerViewController.swift */; };
 		2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */; };
 		2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */; };
+		2AD1A1D22A5BD13700CB988B /* BaseVotingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -102,6 +103,7 @@
 		2AD1A1BD2A595A2400CB988B /* VotingTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerViewController.swift; sourceTree = "<group>"; };
 		2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Medium.ttf"; sourceTree = "<group>"; };
 		2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerView.swift; sourceTree = "<group>"; };
+		2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingMainView.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA0DBB32A546E62002B1370 /* VotingViewController.swift */,
+				2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */,
 			);
 			path = Voting;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
+				2AD1A1D22A5BD13700CB988B /* BaseVotingMainView.swift in Sources */,
 				2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				36E4276E2A5BCE860050B34E /* GenderView.swift in Sources */,

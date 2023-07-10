@@ -77,6 +77,7 @@ final class VotingStartViewController: BaseViewController {
     @objc
     func yellowButtonClicked() {
         let viewController = VotingViewController()
+        viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
         self.navigationController?.navigationBar.isHidden = true
     }
