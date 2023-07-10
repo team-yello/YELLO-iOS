@@ -32,6 +32,11 @@ enum StringLiterals {
             static let kakaoFriend = "카톡 친구들"
             static let schoolFriend = "학교 친구들"
         }
+        
+        enum Empty {
+            static let title = "지금 추천된 친구가 없어요!\n친구를 초대해볼까요?"
+            static let inviteButton = "친구 초대하기"
+        }
     }
     
     enum Around {
@@ -59,5 +64,4 @@ enum StringLiterals {
             static let text = "시간이 지나면 다시 투표할 수 있어요!"
         }
     }
-    
 }
