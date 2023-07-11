@@ -109,5 +109,11 @@ enum StringLiterals {
             static let keep = "그래도 계속하기"
             static let back = "다시 돌아가기"
         }
+        
+        enum WithdrawalAlert {
+            static let title = "정말 탈퇴하시겠습니까?"
+            static let no = "아니요"
+            static let yes = "네, 탈퇴합니다"
+        }
     }
 }

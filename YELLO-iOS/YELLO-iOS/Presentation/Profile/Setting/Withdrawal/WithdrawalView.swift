@@ -26,7 +26,10 @@ final class WithdrawalView: BaseView {
     private let captionLabel = UILabel()
     lazy var withdrawalButton = UIButton()
     
+    private var withdrawalAlertView: WithdrawalAlertView?
+    
     override func setStyle() {
+        withdrawalAlertView = WithdrawalAlertView()
         self.backgroundColor = .black
         
         scrollView.do {
@@ -96,6 +99,7 @@ final class WithdrawalView: BaseView {
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.semanticStatusRed500, for: .normal)
             $0.setTitle(StringLiterals.Profile.Withdrawal.confirm, for: .normal)
+            $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         }
     }
     
@@ -189,5 +193,20 @@ final class WithdrawalView: BaseView {
             $0.width.equalTo(343)
             $0.height.equalTo(48)
         }
+    }
+    
+    @objc func showAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let withdrawalAlertView = withdrawalAlertView {
+            withdrawalAlertView.removeFromSuperview()
+        }
+        
+        withdrawalAlertView = WithdrawalAlertView()
+        withdrawalAlertView?.frame = viewController.view.bounds
+        withdrawalAlertView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.view.addSubview(withdrawalAlertView!)
+        
     }
 }
