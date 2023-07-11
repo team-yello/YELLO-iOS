@@ -49,7 +49,9 @@ final class VotingViewController: BaseViewController {
     // name, keyword 버튼이 모두 클릭되었을 때 동작
     private var bothButtonClicked: Bool = false {
         didSet {
-            setNextViewController()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.setNextViewController()
+            }
         }
     }
 
@@ -195,8 +197,6 @@ final class VotingViewController: BaseViewController {
     
     @objc
     func nameButtonClicked(_ sender: UIButton) {
-        eitherButtonClicked = true
-        nameButtonClick = true
         // 클릭한 버튼의 레이블 색상 변경
         if sender == originView.nameOne {
             updateLabelAppearance(nameTextOne)
@@ -240,14 +240,15 @@ final class VotingViewController: BaseViewController {
             nameTextTwo.textColor = .grayscales700
             nameTextThree.textColor = .grayscales700
         }
+        
+        eitherButtonClicked = true
+        nameButtonClick = true
     }
     
     @objc
     func keywordClicked(_ sender: UIButton) {
         // 클릭한 버튼의 레이블 색상 변경
         sender.setTitleColor(.yelloMain500, for: .normal)
-        eitherButtonClicked = true
-        keywordButtonClick = true
         
         if sender == originView.keywordOne {
             originView.keywordTwo.isEnabled = false
@@ -286,6 +287,8 @@ final class VotingViewController: BaseViewController {
             originView.keywordThree.setTitleColor(.grayscales700, for: .normal)
         }
         
+        eitherButtonClicked = true
+        keywordButtonClick = true
     }
     
     @objc
