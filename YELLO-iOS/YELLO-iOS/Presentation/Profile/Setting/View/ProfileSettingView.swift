@@ -61,7 +61,6 @@ final class ProfileSettingView: BaseView {
     }
     
     @objc private func withdrawalButtonTapped() {
-        print("여기")
         handleWithdrawalButtonDelegate?.withdrawalButtonTapped()
     }
     

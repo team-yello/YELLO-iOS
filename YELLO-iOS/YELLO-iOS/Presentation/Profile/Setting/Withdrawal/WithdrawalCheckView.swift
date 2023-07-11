@@ -63,10 +63,10 @@ final class WithdrawalCheckView: BaseView {
     
     override func setLayout() {
         let statusBarHeight = UIApplication.shared.connectedScenes
-                    .compactMap { $0 as? UIWindowScene }
-                    .first?
-                    .statusBarManager?
-                    .statusBarFrame.height ?? 20
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
         
         self.addSubviews(withdrawalNavigationBarView,
                          titleLabel,
@@ -87,17 +87,18 @@ final class WithdrawalCheckView: BaseView {
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         withdrawalImageView.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(27.adjusted)
             $0.width.height.equalTo(230)
+            $0.centerX.equalToSuperview()
         }
         
         keepButton.snp.makeConstraints {
-            $0.bottom.equalTo(backButton.snp.top).inset(8)
+            $0.bottom.equalTo(backButton.snp.top).inset(-8)
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
             $0.height.equalTo(48)
         }
@@ -107,7 +108,5 @@ final class WithdrawalCheckView: BaseView {
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
             $0.height.equalTo(48)
         }
-        
     }
-
 }
