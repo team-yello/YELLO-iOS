@@ -91,6 +91,8 @@ final class VotingViewController: BaseViewController {
         }
     }
     
+    // MARK: - Life Cycle
+    
     override func loadView() {
         self.view = originView
     }
@@ -106,6 +108,8 @@ final class VotingViewController: BaseViewController {
         
         tabBarController?.tabBar.isHidden = true
     }
+    
+    // MARK: - Style
     
     override func setStyle() {
         
@@ -251,6 +255,8 @@ final class VotingViewController: BaseViewController {
         
     }
     
+    // MARK: - Layout
+    
     override func setLayout() {
         let statusBarHeight = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
@@ -330,6 +336,8 @@ final class VotingViewController: BaseViewController {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 132.adjusted)
         }
     }
+    
+    // MARK: - Objc Function
     
     @objc
     func nameButtonClicked(_ sender: UIButton) {
@@ -447,6 +455,8 @@ final class VotingViewController: BaseViewController {
     }
 }
 
+// MARK: - UINavigationControllerDelegate
+
 extension VotingViewController: UINavigationControllerDelegate {
     /// 뷰 컨트롤러가 푸시될 때마다 호출
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -463,6 +473,8 @@ extension VotingViewController: UINavigationControllerDelegate {
         }
     }
 }
+
+// MARK: - private function
 
 extension VotingViewController {
     private func setVotingView() {

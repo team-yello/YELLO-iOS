@@ -125,8 +125,8 @@ final class VotingTimerViewController: BaseViewController {
         
     }
     
-    // MARK: - 바로 투표하기 버튼 클릭했을 때
-    
+    // MARK: - Objc Function
+
     @objc
     func yellowButtonClicked() {
         let viewController = InvitingViewController()

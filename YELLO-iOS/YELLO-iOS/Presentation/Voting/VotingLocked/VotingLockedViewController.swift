@@ -67,8 +67,8 @@ final class VotingLockedViewController: BaseViewController {
         
     }
     
-    // MARK: - 친구 추가 버튼 클릭했을 때
-    
+    // MARK: - Objc Function
+
     @objc
     func yellowButtonClicked() {
         let viewController = InvitingViewController()

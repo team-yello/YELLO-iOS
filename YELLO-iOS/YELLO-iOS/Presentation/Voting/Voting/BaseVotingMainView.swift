@@ -34,6 +34,8 @@ final class BaseVotingMainView: BaseView {
     let suffleNum = UILabel()
     let skipButton = UIButton()
         
+    // MARK: - Style
+    
     override func setStyle() {
         yelloBalloon.do {
             $0.image = ImageLiterals.Voting.imgYelloBalloon1
@@ -146,6 +148,8 @@ final class BaseVotingMainView: BaseView {
         }
         
     }
+    
+    // MARK: - Layout
     
     override func setLayout() {
         
