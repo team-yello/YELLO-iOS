@@ -92,6 +92,7 @@
 		C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2664B2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift */; };
 		C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */; };
 		C3D266532A5D20170041C7C7 /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */; };
+		C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +178,7 @@
 		C3D2664B2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigationBarView.swift; sourceTree = "<group>"; };
 		C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
+		C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCustomButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,6 +577,7 @@
 			children = (
 				C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */,
 				C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */,
+				C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
 				2AD1A1BB2A59559100CB988B /* VotingPointViewController.swift in Sources */,
 				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
+				C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */,
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
