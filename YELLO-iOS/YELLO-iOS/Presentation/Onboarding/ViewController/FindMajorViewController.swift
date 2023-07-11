@@ -1,18 +1,18 @@
 //
-//  FindSchoolViewController.swift
+//  FindMajorViewController.swift
 //  YELLO-iOS
 //
-//  Created by 지희의 MAC on 2023/07/05.
+//  Created by 지희의 MAC on 2023/07/11.
 //
 
 import UIKit
 
-class FindSchoolViewController: OnboardingBaseViewController {
+class FindMajorViewController: BaseViewController {
     
-    var allSchool: [String] = ["서울대학교", "서울과학기술대학교", "서울교육대학교", "서울여자대학교", "이화여자대학교", "고려대학교", "연세대학교", "숭실대학교", "홍익대학교"]
-    var filteredSchool: [String] = []
+    var allMajor: [String] = ["컴퓨터공학과", "컴퓨터학부", "소프트웨어학과", "글로벌미디어학부", "응용소프트웨어학부"]
+    var filteredMajor: [String] = []
     
-    let baseView = SearchView(titleText: "우리 학교 검색하기", helperText: "우리 학교가 없나요? 학교를 추가해보세요!")
+    let baseView = SearchView(titleText: "학과 검색하기", helperText: "찾는 과가 없다면 클릭하세요!")
     let searchController = UISearchController(searchResultsController: nil)
     
     override func loadView() {
@@ -37,34 +37,34 @@ class FindSchoolViewController: OnboardingBaseViewController {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-            filteredSchool = allSchool.filter { school in
-                return school.contains(textField.text ?? "")
+            filteredMajor = allMajor.filter { major in
+                return major.contains(textField.text ?? "")
             }
         baseView.searchResultTableView.reloadData()
         }
     
 }
 
-extension FindSchoolViewController: UITextFieldDelegate {
+extension FindMajorViewController: UITextFieldDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         print("✏️✏️✏️\(text)")
-        filteredSchool = allSchool.filter { $0.contains(text) }
+        filteredMajor = allMajor.filter { $0.contains(text) }
         baseView.searchResultTableView.reloadData()
     }
     
 }
 
-extension FindSchoolViewController: UITableViewDataSource {
+extension FindMajorViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        filteredSchool.count
+        filteredMajor.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let school = filteredSchool[indexPath.row]
+        let major = filteredMajor[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "SchoolResultTableViewCell") as! SchoolResultTableViewCell
-        cell.textLabel?.text = school
+        cell.textLabel?.text = major
         return cell
     }
     
