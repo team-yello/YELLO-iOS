@@ -13,6 +13,8 @@ import Then
 final class WithdrawalView: BaseView {
 
     let withdrawalNavigationBarView = SettingNavigationBarView()
+    
+    let scrollView = UIScrollView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let firstLabel = UILabel()
@@ -26,6 +28,13 @@ final class WithdrawalView: BaseView {
     
     override func setStyle() {
         self.backgroundColor = .black
+        
+        scrollView.do {
+            $0.isScrollEnabled = true
+            $0.showsHorizontalScrollIndicator = false
+            $0.showsVerticalScrollIndicator = false
+//            $0.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 906)
+        }
         
         withdrawalNavigationBarView.do {
             $0.titleLabel.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.withdrawal, lineHeight: 24)
@@ -77,6 +86,7 @@ final class WithdrawalView: BaseView {
             $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.caption, lineHeight: 15)
             $0.font = .uiLabelMedium
             $0.textColor = .grayscales600
+            $0.numberOfLines = 3
         }
         
         withdrawalButton.do {
@@ -98,7 +108,9 @@ final class WithdrawalView: BaseView {
             .statusBarFrame.height ?? 20
         
         self.addSubviews(withdrawalNavigationBarView,
-                         titleLabel,
+                         scrollView)
+        
+        scrollView.addSubviews(titleLabel,
                          descriptionLabel,
                          firstLabel,
                          firstImageView,
@@ -115,8 +127,13 @@ final class WithdrawalView: BaseView {
             $0.height.equalTo(48.adjustedHeight)
         }
         
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(withdrawalNavigationBarView.snp.bottom)
+            $0.leading.trailing.bottom.width.equalToSuperview()
+        }
+        
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(withdrawalNavigationBarView.snp.bottom).offset(40.adjusted)
+            $0.top.equalToSuperview().inset(40.adjusted)
             $0.centerX.equalToSuperview()
         }
         
@@ -126,7 +143,7 @@ final class WithdrawalView: BaseView {
         }
         
         firstLabel.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(8.adjusted)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(72.adjusted)
             $0.centerX.equalToSuperview()
         }
         
@@ -150,7 +167,7 @@ final class WithdrawalView: BaseView {
         }
         
         thirdLabel.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(8.adjusted)
+            $0.top.equalTo(secondImageView.snp.bottom).offset(40.adjusted)
             $0.centerX.equalToSuperview()
         }
         
@@ -167,9 +184,10 @@ final class WithdrawalView: BaseView {
         }
         
         withdrawalButton.snp.makeConstraints {
-            $0.top.equalTo(captionLabel.snp.bottom).inset(24.adjusted)
+            $0.top.equalTo(captionLabel.snp.bottom).offset(24.adjusted)
             $0.bottom.equalToSuperview().inset(34.adjusted)
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
+            $0.width.equalTo(343)
             $0.height.equalTo(48)
         }
     }
