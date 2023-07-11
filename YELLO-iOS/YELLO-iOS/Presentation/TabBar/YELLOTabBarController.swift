@@ -36,7 +36,6 @@ final class YELLOTabBarController: UITabBarController {
         super.viewDidLayoutSubviews()
             
         let safeAreaHeight = view.safeAreaInsets.bottom
-//        let safeAreaHeight: CGFloat = 0
         let tabBarHeight: CGFloat = 60.0
         tabBar.frame.size.height = tabBarHeight + safeAreaHeight
         tabBar.frame.origin.y = view.frame.height - tabBarHeight - safeAreaHeight

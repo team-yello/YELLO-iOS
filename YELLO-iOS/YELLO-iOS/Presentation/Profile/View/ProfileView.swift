@@ -56,6 +56,7 @@ extension ProfileView {
             $0.setImage(ImageLiterals.Profile.icArrowUp, for: .normal)
             $0.addTarget(self, action: #selector(topButtonTapped), for: .touchUpInside)
             $0.isHidden = true
+            $0.layer.applyShadow(color: .black, alpha: 0.6, x: 0, y: 0, blur: 8)
         }
     }
     

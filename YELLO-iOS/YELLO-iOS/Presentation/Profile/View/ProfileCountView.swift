@@ -47,7 +47,7 @@ extension FriendCountView {
         }
         
         friendCountLabel.do {
-            $0.setTextWithLineHeight(text: "95명", lineHeight: 16)
+            $0.setTextWithLineHeight(text: "10명", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales300
             $0.asColor(targetString: "명", color: .grayscales500)
