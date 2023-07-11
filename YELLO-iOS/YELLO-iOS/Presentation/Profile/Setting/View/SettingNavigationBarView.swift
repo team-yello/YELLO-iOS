@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleBackButtonDelegate: AnyObject {
+    func popView()
+}
+
 final class SettingNavigationBarView: UIView {
+    
+    weak var handleBackButtonDelegate: HandleBackButtonDelegate?
     
     lazy var backButton = UIButton()
     let titleLabel = UILabel()
@@ -44,6 +50,7 @@ extension SettingNavigationBarView {
         backButton.do {
             $0.setImage(ImageLiterals.Profile.icArrowLeftWhite, for: .normal)
             $0.imageView?.tintColor = .white
+            $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         }
     }
     
@@ -60,5 +67,10 @@ extension SettingNavigationBarView {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(backButton.snp.trailing).offset(8.adjusted)
         }
+    }
+    
+    @objc
+    private func backButtonDidTap() {
+        self.handleBackButtonDelegate?.popView()
     }
 }

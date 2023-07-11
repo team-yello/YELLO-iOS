@@ -31,6 +31,7 @@ extension ProfileSettingViewController {
         tabBarController?.tabBar.isHidden = true
         
         view.backgroundColor = .black
+        profileSettingView.settingNavigationBarView.handleBackButtonDelegate = self
     }
     
     private func setLayout() {
@@ -39,5 +40,12 @@ extension ProfileSettingViewController {
         profileSettingView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+}
+
+extension ProfileSettingViewController: HandleBackButtonDelegate {
+    func popView() {
+        self.navigationController?.popViewController(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
 }

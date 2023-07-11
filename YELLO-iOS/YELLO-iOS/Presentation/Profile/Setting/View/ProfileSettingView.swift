@@ -12,7 +12,7 @@ import Then
 
 final class ProfileSettingView: BaseView {
     
-    private let settingNavigationBarView = SettingNavigationBarView()
+    let settingNavigationBarView = SettingNavigationBarView()
     lazy var centerButton = SettingCustomButton()
     lazy var privacyButton = SettingCustomButton()
     lazy var serviveButton = SettingCustomButton()
