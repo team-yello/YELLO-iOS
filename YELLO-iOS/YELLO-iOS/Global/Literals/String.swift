@@ -81,6 +81,15 @@ enum StringLiterals {
             static let friendNumber = "친구 수"
         }
         
+        enum Friend {
+            static let message = "받은 쪽지"
+            static let friendNumber = "친구 수"
+            static let delete = "친구 끊기"
+            static let description = "정말로 친구를 끊으실 건가요?"
+            static let cancel = "취소"
+            static let confirm = "네, 친구를 끊을게요"
+        }
+        
         enum Setting {
             static let setting = "프로필 관리"
             static let center = "고객센터"

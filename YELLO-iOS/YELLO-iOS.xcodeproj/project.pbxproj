@@ -98,6 +98,8 @@
 		C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */; };
 		C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */; };
 		C3FF24752A5D6E9500A97D40 /* WithdrawalAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */; };
+		C3FF24772A5D796B00A97D40 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24762A5D796B00A97D40 /* FriendProfileViewController.swift */; };
+		C3FF24792A5D798700A97D40 /* FriendProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24782A5D798700A97D40 /* FriendProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +191,8 @@
 		C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckView.swift; sourceTree = "<group>"; };
 		C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckViewController.swift; sourceTree = "<group>"; };
 		C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalAlertView.swift; sourceTree = "<group>"; };
+		C3FF24762A5D796B00A97D40 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
+		C3FF24782A5D798700A97D40 /* FriendProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +548,7 @@
 				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
 				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
 				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
+				C3FF24782A5D798700A97D40 /* FriendProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
+				C3FF24762A5D796B00A97D40 /* FriendProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				36E4276B2A5BCE860050B34E /* GenderViewController.swift in Sources */,
+				C3FF24772A5D796B00A97D40 /* FriendProfileViewController.swift in Sources */,
 				C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
 				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
@@ -791,6 +798,7 @@
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
 				2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */,
 				C3D266432A5C771F0041C7C7 /* MyProfileHeaderView.swift in Sources */,
+				C3FF24792A5D798700A97D40 /* FriendProfileView.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				36E4276E2A5BCE860050B34E /* GenderView.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
