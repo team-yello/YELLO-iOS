@@ -48,6 +48,12 @@ enum ImageLiterals {
         static var imgTimerBackground: UIImage { .load(named: "imgTimerBackground")}
     }
     
+    enum Recommending {
+        static var imgBannerInvite: UIImage { .load(named: "imgBannerInvite")}
+        static var icAddFriendButton: UIImage { .load(named: "icAddFriendButton")}
+        static var icAddFriendButtonTapped: UIImage { .load(named: "icAddFriendButtonTapped")}
+        static var icRight: UIImage { .load(named: "icRight")}
+    }
 }
 
 extension UIImage {
