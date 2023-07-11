@@ -12,17 +12,29 @@ import Then
 
 final class VotingViewController: BaseViewController {
     
+    static var pushCount = 0
+    
     private let originView = BaseVotingMainView()
     
     private var nameCount: Int = 0
     private var keywordCount: Int = 0
+    
+    private let nameStackView = UIStackView()
+    private let nameHead = UILabel()
+    private let nameMiddleBackground = UIView()
+    private let nameMiddleText = UILabel()
+    private let nameFoot = UILabel()
     
     private var nameTextOne = UILabel()
     private var nameTextTwo = UILabel()
     private var nameTextThree = UILabel()
     private var nameTextFour = UILabel()
     
-    static var pushCount = 0
+    private let keywordStackView = UIStackView()
+    private let keywordHead = UILabel()
+    private let keywordMiddleBackground = UIView()
+    private let keywordMiddleText = UILabel()
+    private let keywordFoot = UILabel()
     
     private var nameButtonClick: Bool = false {
         didSet {
@@ -69,7 +81,6 @@ final class VotingViewController: BaseViewController {
             if suffleCount < 3 {
                 originView.suffleNum.text = String(3 - suffleCount) + "/3"
             }
-            
             if suffleCount == 3 {
                 originView.suffleButton.isEnabled = false
                 originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
@@ -77,10 +88,9 @@ final class VotingViewController: BaseViewController {
                 originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
                 originView.suffleNum.text = "0/3"
             }
-            
         }
     }
-
+    
     override func loadView() {
         self.view = originView
     }
@@ -129,7 +139,7 @@ final class VotingViewController: BaseViewController {
                                           secondLineColor: secondLineColor)
         
         originView.nameOne.do {
-           $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
         }
         
         originView.nameTwo.do {
@@ -142,6 +152,73 @@ final class VotingViewController: BaseViewController {
         
         originView.nameFour.do {
             $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
+        }
+        
+        nameStackView.do {
+            $0.axis = .horizontal
+            $0.distribution = .fill
+            $0.alignment = .center
+            $0.spacing = 10
+        }
+        
+        nameHead.do {
+            $0.text = "나는"
+            $0.textColor = .white
+            $0.font = .uiLarge
+        }
+        
+        nameMiddleBackground.do {
+            $0.backgroundColor = .grayscales900
+            $0.makeBorder(width: 1, color: .grayscales700)
+            $0.makeCornerRound(radius: 8)
+        }
+        
+        nameMiddleText.do {
+            $0.textColor = .black
+            $0.font = .uiBodyLarge
+            $0.textAlignment = .center
+            $0.numberOfLines = 1
+            $0.backgroundColor = .yelloMain500
+            $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
+        }
+        
+        nameFoot.do {
+            $0.text = "이/(가)"
+            $0.textColor = .white
+            $0.font = .uiLarge
+        }
+        
+        keywordStackView.do {
+            $0.axis = .horizontal
+            $0.distribution = .fill
+            $0.alignment = .center
+            $0.spacing = 10
+        }
+        
+        keywordHead.do {
+            $0.text = ""
+            $0.textColor = .white
+            $0.font = .uiLarge
+        }
+        
+        keywordMiddleBackground.do {
+            $0.backgroundColor = .grayscales900
+            $0.makeBorder(width: 1, color: .grayscales700)
+            $0.makeCornerRound(radius: 8)
+        }
+        
+        keywordMiddleText.do {
+            $0.textColor = .black
+            $0.font = .uiBodyLarge
+            $0.textAlignment = .center
+            $0.backgroundColor = .yelloMain500
+            $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
+        }
+        
+        keywordFoot.do {
+            $0.text = "닮은 것 같아"
+            $0.textColor = .white
+            $0.font = .uiLarge
         }
         
         originView.keywordOne.do {
@@ -186,6 +263,11 @@ final class VotingViewController: BaseViewController {
         originView.nameThree.addSubview(nameTextThree)
         originView.nameFour.addSubview(nameTextFour)
         
+        originView.questionBackground.addSubviews(nameStackView, keywordStackView)
+        
+        nameStackView.addArrangedSubviews(nameHead, nameMiddleBackground, nameFoot)
+        keywordStackView.addArrangedSubviews(keywordHead, keywordMiddleBackground, keywordFoot)
+        
         nameTextOne.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
@@ -200,6 +282,36 @@ final class VotingViewController: BaseViewController {
         
         nameTextFour.snp.makeConstraints {
             $0.center.equalToSuperview()
+        }
+        
+        nameStackView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(36.adjusted)
+            $0.centerX.equalToSuperview()
+        }
+        
+        nameMiddleBackground.snp.makeConstraints {
+            $0.width.equalTo(86.adjusted)
+            $0.height.equalTo(34.adjusted)
+        }
+        
+        nameMiddleText.snp.makeConstraints {
+            $0.width.equalTo(82.adjusted)
+            $0.height.equalTo(30.adjusted)
+        }
+        
+        keywordStackView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(36.adjusted)
+            $0.centerX.equalToSuperview()
+        }
+        
+        keywordMiddleBackground.snp.makeConstraints {
+            $0.width.equalTo(150.adjusted)
+            $0.height.equalTo(34.adjusted)
+        }
+        
+        keywordMiddleText.snp.makeConstraints {
+            $0.width.equalTo(144.adjusted)
+            $0.height.equalTo(30.adjusted)
         }
         
         originView.yelloBalloon.snp.makeConstraints {
@@ -217,7 +329,6 @@ final class VotingViewController: BaseViewController {
         originView.questionBackground.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 132.adjusted)
         }
-        
     }
     
     @objc
@@ -227,18 +338,20 @@ final class VotingViewController: BaseViewController {
             view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
         nameCount += 1
-
+        
         if sender == originView.nameOne {
             updateLabelAppearance(nameTextOne)
             
             originView.nameTwo.isEnabled = false
             originView.nameThree.isEnabled = false
             originView.nameFour.isEnabled = false
-
+            
             nameTextTwo.textColor = .grayscales700
             nameTextThree.textColor = .grayscales700
             nameTextFour.textColor = .grayscales700
-                        
+            
+            nameMiddleText.text = nameTextOne.text
+            
         } else if sender == originView.nameTwo {
             updateLabelAppearance(nameTextTwo)
             
@@ -249,6 +362,9 @@ final class VotingViewController: BaseViewController {
             nameTextOne.textColor = .grayscales700
             nameTextThree.textColor = .grayscales700
             nameTextFour.textColor = .grayscales700
+            
+            nameMiddleText.text = nameTextTwo.text
+            
         } else if sender == originView.nameThree {
             updateLabelAppearance(nameTextThree)
             
@@ -259,9 +375,12 @@ final class VotingViewController: BaseViewController {
             nameTextOne.textColor = .grayscales700
             nameTextTwo.textColor = .grayscales700
             nameTextFour.textColor = .grayscales700
+            
+            nameMiddleText.text = nameTextThree.text
+            
         } else if sender == originView.nameFour {
             updateLabelAppearance(nameTextFour)
-
+            
             originView.nameOne.isEnabled = false
             originView.nameTwo.isEnabled = false
             originView.nameThree.isEnabled = false
@@ -269,6 +388,13 @@ final class VotingViewController: BaseViewController {
             nameTextOne.textColor = .grayscales700
             nameTextTwo.textColor = .grayscales700
             nameTextThree.textColor = .grayscales700
+            
+            nameMiddleText.text = nameTextFour.text
+        }
+        
+        view.addSubview(nameMiddleText)
+        nameMiddleText.snp.makeConstraints {
+            $0.center.equalTo(nameMiddleBackground)
         }
     }
     
@@ -281,44 +407,21 @@ final class VotingViewController: BaseViewController {
         keywordCount += 1
 
         sender.setTitleColor(.yelloMain500, for: .normal)
-        
-        if sender == originView.keywordOne {
-            originView.keywordTwo.isEnabled = false
-            originView.keywordThree.isEnabled = false
-            originView.keywordFour.isEnabled = false
+        keywordMiddleText.text = sender.titleLabel?.text
 
-            originView.keywordTwo.setTitleColor(.grayscales700, for: .normal)
-            originView.keywordThree.setTitleColor(.grayscales700, for: .normal)
-            originView.keywordFour.setTitleColor(.grayscales700, for: .normal)
-            
-        } else if sender == originView.keywordTwo {
-            originView.keywordOne.isEnabled = false
-            originView.keywordThree.isEnabled = false
-            originView.keywordFour.isEnabled = false
+        let keywordButtons = [originView.keywordOne, originView.keywordTwo, originView.keywordThree, originView.keywordFour]
 
-            originView.keywordOne.setTitleColor(.grayscales700, for: .normal)
-            originView.keywordThree.setTitleColor(.grayscales700, for: .normal)
-            originView.keywordFour.setTitleColor(.grayscales700, for: .normal)
-            
-        } else if sender == originView.keywordThree {
-            originView.keywordOne.isEnabled = false
-            originView.keywordTwo.isEnabled = false
-            originView.keywordFour.isEnabled = false
-
-            originView.keywordOne.setTitleColor(.grayscales700, for: .normal)
-            originView.keywordTwo.setTitleColor(.grayscales700, for: .normal)
-            originView.keywordFour.setTitleColor(.grayscales700, for: .normal)
-            
-        } else if sender == originView.keywordFour {
-            originView.keywordOne.isEnabled = false
-            originView.keywordTwo.isEnabled = false
-            originView.keywordThree.isEnabled = false
-
-            originView.keywordOne.setTitleColor(.grayscales700, for: .normal)
-            originView.keywordTwo.setTitleColor(.grayscales700, for: .normal)
-            originView.keywordThree.setTitleColor(.grayscales700, for: .normal)
+        for button in keywordButtons {
+            button.isEnabled = (button == sender)
+            if sender != button {
+                button.setTitleColor(.grayscales700, for: .normal)
+            }
         }
-        
+
+        view.addSubview(keywordMiddleText)
+        keywordMiddleText.snp.makeConstraints {
+            $0.center.equalTo(keywordMiddleBackground)
+        }
     }
     
     @objc
@@ -358,9 +461,7 @@ extension VotingViewController: UINavigationControllerDelegate {
             // 다른 뷰 컨트롤러로 이동하는 경우 pushCount를 초기화
             VotingViewController.pushCount = 0
         }
-        
     }
-    
 }
 
 extension VotingViewController {

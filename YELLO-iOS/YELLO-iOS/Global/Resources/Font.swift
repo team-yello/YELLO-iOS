@@ -13,6 +13,10 @@ extension UIFont {
         return UIFont(name: "Pretendard-Bold", size: 28.0)!
     }
     
+    class var uiLarge: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 24.0)!
+    }
+    
     class var uiHeadline01: UIFont {
         return UIFont(name: "Pretendard-Bold", size: 22.0)!
     }
