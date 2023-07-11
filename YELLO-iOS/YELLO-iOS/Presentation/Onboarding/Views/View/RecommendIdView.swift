@@ -1,5 +1,5 @@
 //
-//  RecommandIdView.swift
+//  RecommendIdView.swift
 //  YELLO-iOS
 //
 //  Created by 지희의 MAC on 2023/07/11.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class RecommandIdView: BaseView {
+class RecommendIdView: BaseView {
     
     let guideLabel = YelloGuideLabel(labelText: "추천인 코드")
     let subGuideLabel = UILabel()
-    let recommandIdTextField = YelloTextFieldView(title: "", state: .id,
+    let recommendIdTextField = YelloTextFieldView(title: "", state: .id,
                                                   placeholder: "추천인 아이디",
                                                   helper: "추천인의 아이디를 입력해주세요.")
     
@@ -24,7 +24,7 @@ class RecommandIdView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(guideLabel, subGuideLabel, recommandIdTextField)
+        self.addSubviews(guideLabel, subGuideLabel, recommendIdTextField)
         
         guideLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(66)
@@ -36,7 +36,7 @@ class RecommandIdView: BaseView {
             $0.leading.equalToSuperview().inset(Constraints.bigMargin)
         }
         
-        recommandIdTextField.snp.makeConstraints {
+        recommendIdTextField.snp.makeConstraints {
             $0.top.equalTo(subGuideLabel.snp.bottom).offset(Constraints.topMargin)
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
         }

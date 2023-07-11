@@ -1,5 +1,5 @@
 //
-//  RecommandIdViewController.swift
+//  RecommendIdViewController.swift
 //  YELLO-iOS
 //
 //  Created by 지희의 MAC on 2023/07/11.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecommandIdViewController: OnboardingBaseViewController {
+class RecommendIdViewController: OnboardingBaseViewController {
     
     let skipButton = UIButton()
     
@@ -15,7 +15,7 @@ class RecommandIdViewController: OnboardingBaseViewController {
         super.loadView()
         super.isSkipable = true
         super.nextViewController = OnboardingEndViewController()
-        view = RecommandIdView()
+        view = RecommendIdView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
