@@ -32,18 +32,22 @@ final class ProfileSettingView: BaseView {
         
         centerButton.do {
             $0.updateTitle(text: StringLiterals.Profile.Setting.center)
+            $0.addTarget(self, action: #selector(centerButtonTapped), for: .touchUpInside)
         }
         
         privacyButton.do {
             $0.updateTitle(text: StringLiterals.Profile.Setting.privacy)
+            $0.addTarget(self, action: #selector(privacyButtonTapped), for: .touchUpInside)
         }
         
         serviveButton.do {
             $0.updateTitle(text: StringLiterals.Profile.Setting.service)
+            $0.addTarget(self, action: #selector(serviveButtonTapped), for: .touchUpInside)
         }
         
         logoutButton.do {
             $0.updateTitle(text: StringLiterals.Profile.Setting.logout)
+            $0.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
         }
         
         versionLabel.do {
@@ -120,5 +124,31 @@ final class ProfileSettingView: BaseView {
             $0.width.equalTo(49)
             $0.height.equalTo(36)
         }
+    }
+    
+    
+    @objc private func centerButtonTapped() {
+        //고객센터 링크 연결
+        let url = URL(string: "https://www.google.com/")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    
+    @objc private func privacyButtonTapped() {
+        //개인정보 처리방침 링크 연결
+        let url = URL(string: "https://www.google.com/")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    
+    @objc private func serviveButtonTapped() {
+        //이용약관 링크 연결
+        let url = URL(string: "https://www.google.com/")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    
+    @objc private func logoutButtonTapped() {
+        //로그아웃 로직 구현
     }
 }

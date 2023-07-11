@@ -21,7 +21,7 @@ final class MyProfileView: UIView {
     private let friendView = CountCustomView()
     private let pointView = CountCustomView()
     private let addGroupButton = UIButton()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -92,19 +92,20 @@ extension MyProfileView {
             $0.setImage(ImageLiterals.Profile.icPlus, for: .normal)
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
             $0.setTitle(StringLiterals.Profile.MyProfile.addGroup, for: .normal)
+            $0.addTarget(self, action: #selector(addGroupButtonTapped), for: .touchUpInside)
         }
     }
     
     private func setLayout() {
         self.addSubviews(profileImageView,
-                        nameLabel,
-                        instagramLabel,
-                        schoolLabel,
-                        separateView,
-                        messageView,
-                        friendView,
-                        pointView,
-                        addGroupButton)
+                         nameLabel,
+                         instagramLabel,
+                         schoolLabel,
+                         separateView,
+                         messageView,
+                         friendView,
+                         pointView,
+                         addGroupButton)
         
         self.snp.makeConstraints {
             $0.height.equalTo(230.adjustedHeight)
@@ -162,5 +163,10 @@ extension MyProfileView {
             $0.leading.trailing.equalToSuperview().inset(20.adjusted)
             $0.bottom.equalToSuperview().inset(20)
         }
+    }
+    
+    @objc private func addGroupButtonTapped() {
+        let url = URL(string: "https://www.google.com/")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
