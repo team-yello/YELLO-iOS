@@ -7,23 +7,37 @@
 
 import UIKit
 
-class ProfileSettingViewController: UIViewController {
+import SnapKit
+import Then
 
+final class ProfileSettingViewController: UIViewController {
+    
+    private let profileSettingView = ProfileSettingView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension ProfileSettingViewController {
+    private func setUI() {
+        setStyle()
+        setLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setStyle() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        tabBarController?.tabBar.isHidden = true
+        
+        view.backgroundColor = .black
     }
-    */
-
+    
+    private func setLayout() {
+        view.addSubview(profileSettingView)
+        
+        profileSettingView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }
