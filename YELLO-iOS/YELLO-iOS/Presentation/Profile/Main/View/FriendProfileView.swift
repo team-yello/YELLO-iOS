@@ -21,6 +21,10 @@ final class FriendProfileView: BaseView {
     let deleteButton = UIButton()
     private let groupView = UIView()
     
+    private let descriptionLabel = UILabel()
+    private let cancelButton = UIButton()
+    private let confirmButton = UIButton()
+    
     override func setStyle() {
         self.backgroundColor = .black
         
@@ -60,6 +64,29 @@ final class FriendProfileView: BaseView {
         
         deleteButton.do {
             $0.setImage(ImageLiterals.Profile.btnDelete, for: .normal)
+            $0.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        }
+        
+        descriptionLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Friend.description, lineHeight: 22)
+            $0.textColor = .white
+            $0.font = .uiSubtitle02
+        }
+        
+        cancelButton.do {
+            $0.backgroundColor = .grayscales800
+            $0.setTitle(StringLiterals.Profile.Friend.cancel, for: .normal)
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = .uiButton
+            $0.makeCornerRound(radius: 8)
+        }
+        
+        confirmButton.do {
+            $0.backgroundColor = .grayscales800
+            $0.setTitle(StringLiterals.Profile.Friend.confirm, for: .normal)
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = .uiButton
+            $0.makeCornerRound(radius: 8)
         }
     }
     
@@ -117,6 +144,35 @@ final class FriendProfileView: BaseView {
         friendCountView.snp.makeConstraints {
             $0.leading.equalTo(messageCountView.snp.trailing).offset(12.adjusted)
             $0.bottom.equalTo(messageCountView)
+        }
+    }
+    
+    @objc private func deleteButtonTapped() {
+        messageCountView.removeFromSuperview()
+        friendCountView.removeFromSuperview()
+        deleteButton.removeFromSuperview()
+        
+        self.addSubviews(descriptionLabel,
+                         cancelButton,
+                         confirmButton)
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(30.adjusted)
+        }
+        
+        cancelButton.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(28.adjusted)
+            $0.trailing.equalTo(self.snp.centerX).offset(-2)
+            $0.height.equalTo(42)
+            $0.width.equalTo(146)
+        }
+        
+        confirmButton.snp.makeConstraints {
+            $0.top.equalTo(cancelButton)
+            $0.leading.equalTo(self.snp.centerX).offset(2)
+            $0.height.equalTo(42)
+            $0.width.equalTo(146)
         }
     }
 }
