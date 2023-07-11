@@ -93,6 +93,10 @@
 		C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */; };
 		C3D266532A5D20170041C7C7 /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */; };
 		C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */; };
+		C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */; };
+		C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */; };
+		C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */; };
+		C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +183,10 @@
 		C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigationBarView.swift; sourceTree = "<group>"; };
 		C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
 		C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCustomButton.swift; sourceTree = "<group>"; };
+		C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
+		C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalView.swift; sourceTree = "<group>"; };
+		C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckView.swift; sourceTree = "<group>"; };
+		C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -558,6 +566,7 @@
 		C3D2664D2A5D1F4F0041C7C7 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				C3FF246D2A5D477400A97D40 /* Withdrawal */,
 				C3D266502A5D1FA80041C7C7 /* ViewController */,
 				C3D266512A5D1FBA0041C7C7 /* View */,
 			);
@@ -580,6 +589,17 @@
 				C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C3FF246D2A5D477400A97D40 /* Withdrawal */ = {
+			isa = PBXGroup;
+			children = (
+				C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */,
+				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
+				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
+				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
+			);
+			path = Withdrawal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -730,6 +750,7 @@
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
 				36E4276A2A5BCE860050B34E /* Constraints.swift in Sources */,
+				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
@@ -747,10 +768,13 @@
 				C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */,
 				36E427722A5BCE860050B34E /* YelloGenderButton.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
+				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
+				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
 				2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
+				C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
