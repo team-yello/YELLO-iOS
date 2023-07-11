@@ -16,6 +16,7 @@ class GenderViewController: OnboardingBaseViewController {
     }
     override func setLayout() {
         view.addSubview(baseView)
+        
         baseView.snp.makeConstraints {
             $0.top.equalTo(topLayoutGuide.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()

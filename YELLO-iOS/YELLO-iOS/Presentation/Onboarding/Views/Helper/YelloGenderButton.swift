@@ -37,9 +37,9 @@ class YelloGenderButton: UIButton {
     private func setStyle() {
         
         self.do {
-            $0.backgroundColor = .grayscales100
             $0.makeCornerRound(radius: CGFloat(Constraints.round))
-            $0.makeBorder(width: 1, color: .grayscales600)
+            self.backgroundColor = .grayscales50
+            $0.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         }
         
         iconImageView.do {
@@ -69,6 +69,23 @@ class YelloGenderButton: UIButton {
             $0.center.equalToSuperview()
         }
         
+    }
+    
+    @objc func buttonDidTap() {
+        guard !isSelected else { return } // 이미 선택된 버튼이면 무시
+        
+        // 다른 버튼들을 선택 해제
+        superview?.subviews.forEach { subview in
+            if let button = subview as? YelloGenderButton, button != self {
+                button.isSelected = false
+                button.backgroundColor = .grayscales50
+                button.makeBorder(width: 0, color: .white)
+            }
+        }
+        
+        isSelected = true
+        backgroundColor = .grayscales100
+        makeBorder(width: 1, color: .grayscales600)
     }
     
 }
