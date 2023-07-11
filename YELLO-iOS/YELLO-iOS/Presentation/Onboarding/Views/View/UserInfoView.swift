@@ -10,8 +10,11 @@ import UIKit
 class UserInfoView: UIView {
     let padding = 12
     
-    let nameTextField = YelloTextFieldView(title: "이름은", state: .cancel, helper: "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!")
-    let idTextField = YelloTextFieldView(title: "아이디는", state: .normal, helper: "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)")
+    let nameTextField = YelloTextFieldView(title: "이름은", state: .normal, placeholder: "김옐로",
+                                           helper: "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!")
+    let idTextField = YelloTextFieldView(title: "아이디는", state: .id, placeholder: "insta_id",
+                                          helper: "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)")
+    let idLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,17 +24,19 @@ class UserInfoView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
-        
+        idLabel.do {
+            $0.text = "@"
+        }
     }
     
     private func setLayout() {
-        self.addSubviews(nameTextField,idTextField)
+        self.addSubviews(nameTextField, idTextField)
         
         nameTextField.snp.makeConstraints {
             $0.top.equalToSuperview().offset(20)
@@ -42,5 +47,13 @@ class UserInfoView: UIView {
             $0.leading.trailing.equalToSuperview().inset(padding)
         }
         
+    }
+}
+
+// MARK: - extension
+// MARK: UITextFieldDelegate
+extension UserInfoView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.backgroundColor = .grayscales100
     }
 }
