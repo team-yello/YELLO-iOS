@@ -105,8 +105,8 @@ final class InvitingView: BaseView {
         
         contentsView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(300.adjustedWidth)
-            $0.height.equalTo(374.adjustedHeight)
+            $0.width.equalTo(300)
+            $0.height.equalTo(374)
         }
         
         closeButton.snp.makeConstraints {

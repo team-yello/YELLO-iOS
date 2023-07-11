@@ -82,7 +82,7 @@ final class InviteBannerView: BaseView {
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
-        if let invitingView = invitingView {
+        if let invitingView {
             invitingView.removeFromSuperview()
         }
         

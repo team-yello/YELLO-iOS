@@ -118,6 +118,8 @@ extension FriendTableViewCell {
     // MARK: Objc Function
     @objc private func changeAddButton() {
         isTapped.toggle()
-        addButton.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .normal)
+        /// 두 번 이상 누를 수 없도록 disabled 처리
+        addButton.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
+        addButton.isEnabled = false
     }
 }
