@@ -17,6 +17,7 @@ protocol HandleKeepButtonDelegate: AnyObject {
 final class WithdrawalCheckView: BaseView {
     
     weak var handleKeepButtonDelegate: HandleKeepButtonDelegate?
+    weak var handleBackButtonDelegate: HandleBackButtonDelegate?
     
     let withdrawalNavigationBarView = SettingNavigationBarView()
     private let titleLabel = UILabel()
@@ -65,6 +66,7 @@ final class WithdrawalCheckView: BaseView {
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.yelloMain500, for: .normal)
             $0.setTitle(StringLiterals.Profile.WithdrawalCheck.back, for: .normal)
+            $0.addTarget(self, action: #selector(popView), for: .touchUpInside)
         }
     }
     
@@ -119,5 +121,9 @@ final class WithdrawalCheckView: BaseView {
     
     @objc private func keepButtonTapped() {
         handleKeepButtonDelegate?.keepButtonTapped()
+    }
+    
+    @objc private func popView() {
+        handleBackButtonDelegate?.popView()
     }
 }

@@ -33,6 +33,7 @@ extension WithdrawalCheckViewController {
         view.backgroundColor = .black
         withdrawalCheckView.withdrawalNavigationBarView.handleBackButtonDelegate = self
         withdrawalCheckView.handleKeepButtonDelegate = self
+        withdrawalCheckView.handleBackButtonDelegate = self
     }
     
     private func setLayout() {
