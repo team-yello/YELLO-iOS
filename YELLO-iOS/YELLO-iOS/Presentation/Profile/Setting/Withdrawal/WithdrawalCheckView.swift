@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleKeepButtonDelegate: AnyObject {
+    func keepButtonTapped()
+}
+
 final class WithdrawalCheckView: BaseView {
+    
+    weak var handleKeepButtonDelegate: HandleKeepButtonDelegate?
     
     let withdrawalNavigationBarView = SettingNavigationBarView()
     private let titleLabel = UILabel()
@@ -50,6 +56,7 @@ final class WithdrawalCheckView: BaseView {
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.grayscales500, for: .normal)
             $0.setTitle(StringLiterals.Profile.WithdrawalCheck.keep, for: .normal)
+            $0.addTarget(self, action: #selector(keepButtonTapped), for: .touchUpInside)
         }
         
         backButton.do {
@@ -108,5 +115,9 @@ final class WithdrawalCheckView: BaseView {
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
             $0.height.equalTo(48)
         }
+    }
+    
+    @objc private func keepButtonTapped() {
+        handleKeepButtonDelegate?.keepButtonTapped()
     }
 }

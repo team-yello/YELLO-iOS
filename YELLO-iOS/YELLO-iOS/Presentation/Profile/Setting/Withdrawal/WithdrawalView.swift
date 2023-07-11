@@ -33,7 +33,6 @@ final class WithdrawalView: BaseView {
             $0.isScrollEnabled = true
             $0.showsHorizontalScrollIndicator = false
             $0.showsVerticalScrollIndicator = false
-//            $0.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 906)
         }
         
         withdrawalNavigationBarView.do {
