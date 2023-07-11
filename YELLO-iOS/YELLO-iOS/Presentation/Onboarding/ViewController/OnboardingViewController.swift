@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Then
 
-
 class OnboardingBaseViewController: BaseViewController {
     // MARK: - Variables
     
@@ -18,8 +17,9 @@ class OnboardingBaseViewController: BaseViewController {
     
     private let backButton = UIButton()
     private let nextButton = YelloButton(buttonText: "다음", state: .enabled)
+    private let skipButton = UIButton()
     var nextViewController: UIViewController?
-    
+    var isSkipable = false
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class OnboardingBaseViewController: BaseViewController {
     // MARK: - Function
     
     // MARK: Custom Function
-    ///ConfigUI 반복 사용되는 부분 설정
+    /// ConfigUI 반복 사용되는 부분 설정
     func configUI() {
         view.backgroundColor = .white
         setNavigationBarAppearance()
@@ -40,10 +40,25 @@ class OnboardingBaseViewController: BaseViewController {
         nextButton.do {
             $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         }
-        view.addSubviews(nextButton)
+        
+        skipButton.do {
+            $0.setTitle("건너뛰기", for: .normal)
+            $0.titleLabel?.font = .uiBody01
+            $0.setTitleColor(.grayscales700, for: .normal)
+        }
+        
+        skipButton.isHidden = !(isSkipable)
+        view.addSubviews(skipButton, nextButton)
+        
         nextButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
             $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
+        }
+        
+        skipButton.snp.makeConstraints {
+            $0.height.equalTo(36)
+            $0.bottom.equalTo(nextButton.snp.top).offset(14)
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -71,8 +86,4 @@ class OnboardingBaseViewController: BaseViewController {
             self.navigationController?.pushViewController(nextViewController, animated: true)
         } else {}
     }
-    
-    
 }
-
-
