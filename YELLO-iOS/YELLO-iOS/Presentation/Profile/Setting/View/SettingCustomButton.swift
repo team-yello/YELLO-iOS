@@ -14,14 +14,14 @@ final class SettingCustomButton: UIButton {
     
     private let customTitleLabel = UILabel()
 
-    init(frame: CGRect, title: String) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         setUI()
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setUI()
     }
     
@@ -53,4 +53,3 @@ final class SettingCustomButton: UIButton {
         customTitleLabel.text = text
     }
 }
-
