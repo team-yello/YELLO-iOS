@@ -80,6 +80,15 @@ enum StringLiterals {
             static let myFriend = "내 친구들"
             static let friendNumber = "친구 수"
         }
+        
+        enum Setting {
+            static let setting = "프로필 관리"
+            static let center = "고객 센터"
+            static let privacy = "개인정보 처리방침"
+            static let service = "이용약관"
+            static let logout = "로그아웃"
+
+        }
     }
     
 }

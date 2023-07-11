@@ -42,7 +42,6 @@
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
-		C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7999A2A49490A00D3EFD8 /* ViewController.swift */; };
 		C3A799A02A49490D00D3EFD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A7999F2A49490D00D3EFD8 /* Assets.xcassets */; };
 		C3A799A32A49490D00D3EFD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A799A12A49490D00D3EFD8 /* LaunchScreen.storyboard */; };
 		C3A799AC2A49499500D3EFD8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799AB2A49499500D3EFD8 /* Then */; };
@@ -90,6 +89,9 @@
 		C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266442A5C776F0041C7C7 /* ProfileView.swift */; };
 		C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */; };
 		C3D266492A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */; };
+		C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2664B2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift */; };
+		C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */; };
+		C3D266532A5D20170041C7C7 /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,7 +131,6 @@
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C3A7999A2A49490A00D3EFD8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C3A7999F2A49490D00D3EFD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3A799A22A49490D00D3EFD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3A799A42A49490D00D3EFD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -173,6 +174,9 @@
 		C3D266442A5C776F0041C7C7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendTableViewCell.swift; sourceTree = "<group>"; };
 		C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewHeaderFooterView+.swift"; sourceTree = "<group>"; };
+		C3D2664B2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigationBarView.swift; sourceTree = "<group>"; };
+		C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,8 +248,8 @@
 		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C3D2663F2A5C75FA0041C7C7 /* ViewController */,
-				C3D2663E2A5C75EE0041C7C7 /* View */,
+				C3D2664A2A5D1F2D0041C7C7 /* Main */,
+				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -384,7 +388,6 @@
 				C3A799B92A494A6800D3EFD8 /* Application */,
 				C3A799BA2A494A7700D3EFD8 /* Global */,
 				C3A799C92A494B8E00D3EFD8 /* Presentation */,
-				C3A7999A2A49490A00D3EFD8 /* ViewController.swift */,
 				C3A799C82A494B8800D3EFD8 /* Network */,
 			);
 			path = "YELLO-iOS";
@@ -541,6 +544,41 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		C3D2664A2A5D1F2D0041C7C7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C3D2663F2A5C75FA0041C7C7 /* ViewController */,
+				C3D2663E2A5C75EE0041C7C7 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		C3D2664D2A5D1F4F0041C7C7 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C3D266502A5D1FA80041C7C7 /* ViewController */,
+				C3D266512A5D1FBA0041C7C7 /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		C3D266502A5D1FA80041C7C7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3D2664B2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C3D266512A5D1FBA0041C7C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */,
+				C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -666,7 +704,6 @@
 				2AD1A1AE2A571ED500CB988B /* BaseVotingView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
-				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
 				C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */,
 				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
@@ -690,6 +727,7 @@
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
 				36E4276A2A5BCE860050B34E /* Constraints.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
+				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
@@ -708,12 +746,14 @@
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */,
+				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3D266412A5C76190041C7C7 /* ProfileCountView.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
+				C3D266532A5D20170041C7C7 /* ProfileSettingView.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
