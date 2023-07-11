@@ -22,6 +22,37 @@ final class VotingViewController: BaseViewController {
     static var pushCount = 0
     static var suffleCount = 0
     
+    private var nameButtonClick: Bool = false {
+        didSet {
+            if nameButtonClick && keywordButtonClick {
+                bothButtonClicked = true
+            }
+        }
+    }
+    
+    private var keywordButtonClick: Bool = false {
+        didSet {
+            if nameButtonClick && keywordButtonClick {
+                bothButtonClicked = true
+            }
+        }
+    }
+        
+    // name, keyword 중 하나의 버튼이 클릭되었을 때 동작
+    private var eitherButtonClicked: Bool = false {
+        didSet {
+                originView.skipButton.setTitleColor(UIColor(hex: "191919", alpha: 0.4), for: .normal)
+                originView.skipButton.isEnabled = false
+        }
+    }
+    
+    // name, keyword 버튼이 모두 클릭되었을 때 동작
+    private var bothButtonClicked: Bool = false {
+        didSet {
+            setNextViewController()
+        }
+    }
+
     override func loadView() {
         self.view = originView
     }
@@ -164,15 +195,50 @@ final class VotingViewController: BaseViewController {
     
     @objc
     func nameButtonClicked(_ sender: UIButton) {
+        eitherButtonClicked = true
+        nameButtonClick = true
         // 클릭한 버튼의 레이블 색상 변경
         if sender == originView.nameOne {
             updateLabelAppearance(nameTextOne)
+            
+            originView.nameTwo.isEnabled = false
+            originView.nameThree.isEnabled = false
+            originView.nameFour.isEnabled = false
+
+            nameTextTwo.textColor = .grayscales700
+            nameTextThree.textColor = .grayscales700
+            nameTextFour.textColor = .grayscales700
+            
         } else if sender == originView.nameTwo {
             updateLabelAppearance(nameTextTwo)
+            
+            originView.nameOne.isEnabled = false
+            originView.nameThree.isEnabled = false
+            originView.nameFour.isEnabled = false
+            
+            nameTextOne.textColor = .grayscales700
+            nameTextThree.textColor = .grayscales700
+            nameTextFour.textColor = .grayscales700
         } else if sender == originView.nameThree {
             updateLabelAppearance(nameTextThree)
+            
+            originView.nameOne.isEnabled = false
+            originView.nameTwo.isEnabled = false
+            originView.nameFour.isEnabled = false
+            
+            nameTextOne.textColor = .grayscales700
+            nameTextTwo.textColor = .grayscales700
+            nameTextFour.textColor = .grayscales700
         } else if sender == originView.nameFour {
             updateLabelAppearance(nameTextFour)
+
+            originView.nameOne.isEnabled = false
+            originView.nameTwo.isEnabled = false
+            originView.nameThree.isEnabled = false
+            
+            nameTextOne.textColor = .grayscales700
+            nameTextTwo.textColor = .grayscales700
+            nameTextThree.textColor = .grayscales700
         }
     }
     
@@ -180,6 +246,46 @@ final class VotingViewController: BaseViewController {
     func keywordClicked(_ sender: UIButton) {
         // 클릭한 버튼의 레이블 색상 변경
         sender.setTitleColor(.yelloMain500, for: .normal)
+        eitherButtonClicked = true
+        keywordButtonClick = true
+        
+        if sender == originView.keywordOne {
+            originView.keywordTwo.isEnabled = false
+            originView.keywordThree.isEnabled = false
+            originView.keywordFour.isEnabled = false
+
+            originView.keywordTwo.setTitleColor(.grayscales700, for: .normal)
+            originView.keywordThree.setTitleColor(.grayscales700, for: .normal)
+            originView.keywordFour.setTitleColor(.grayscales700, for: .normal)
+            
+        } else if sender == originView.keywordTwo {
+            originView.keywordOne.isEnabled = false
+            originView.keywordThree.isEnabled = false
+            originView.keywordFour.isEnabled = false
+
+            originView.keywordOne.setTitleColor(.grayscales700, for: .normal)
+            originView.keywordThree.setTitleColor(.grayscales700, for: .normal)
+            originView.keywordFour.setTitleColor(.grayscales700, for: .normal)
+            
+        } else if sender == originView.keywordThree {
+            originView.keywordOne.isEnabled = false
+            originView.keywordTwo.isEnabled = false
+            originView.keywordFour.isEnabled = false
+
+            originView.keywordOne.setTitleColor(.grayscales700, for: .normal)
+            originView.keywordTwo.setTitleColor(.grayscales700, for: .normal)
+            originView.keywordFour.setTitleColor(.grayscales700, for: .normal)
+            
+        } else if sender == originView.keywordFour {
+            originView.keywordOne.isEnabled = false
+            originView.keywordTwo.isEnabled = false
+            originView.keywordThree.isEnabled = false
+
+            originView.keywordOne.setTitleColor(.grayscales700, for: .normal)
+            originView.keywordTwo.setTitleColor(.grayscales700, for: .normal)
+            originView.keywordThree.setTitleColor(.grayscales700, for: .normal)
+        }
+        
     }
     
     @objc
@@ -190,18 +296,7 @@ final class VotingViewController: BaseViewController {
     
     @objc
     func skipButtonClicked() {
-        var viewController = UIViewController()
-        // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
-        if VotingViewController.pushCount >= 10 {
-            viewController = VotingPointViewController()
-            self.navigationController?.pushViewController(viewController, animated: false)
-        } else {
-            viewController = VotingViewController()
-            UIView.transition(with: self.navigationController!.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
-                // 전환 시 스르륵 바뀌는 애니메이션 적용
-                self.navigationController?.pushViewController(viewController, animated: false)
-            })
-        }
+        setNextViewController()
     }
     
 }
@@ -254,6 +349,21 @@ extension VotingViewController {
             originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
             originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
             originView.suffleNum.text = "0/3"
+        }
+    }
+    
+    private func setNextViewController() {
+        var viewController = UIViewController()
+        // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
+        if VotingViewController.pushCount >= 10 {
+            viewController = VotingPointViewController()
+            self.navigationController?.pushViewController(viewController, animated: false)
+        } else {
+            viewController = VotingViewController()
+            UIView.transition(with: self.navigationController!.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                // 전환 시 스르륵 바뀌는 애니메이션 적용
+                self.navigationController?.pushViewController(viewController, animated: false)
+            })
         }
     }
     
