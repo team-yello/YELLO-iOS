@@ -48,7 +48,7 @@ final class ProfileSettingView: BaseView {
         
         withdrawalButton.do {
             $0.setTitle(StringLiterals.Profile.Setting.withdrawal, for: .normal)
-            $0.titleLabel?.textColor = .grayscales600
+            $0.setTitleColor(.grayscales600, for: .normal)
             $0.titleLabel?.font = .uiBody02
         }
     }
@@ -105,7 +105,7 @@ final class ProfileSettingView: BaseView {
         
         withdrawalButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(20.adjusted)
-            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(49)
             $0.height.equalTo(36)
         }

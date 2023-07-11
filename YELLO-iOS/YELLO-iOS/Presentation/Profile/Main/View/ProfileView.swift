@@ -12,7 +12,7 @@ import Then
 
 final class ProfileView: UIView {
     
-    private let navigationBarView = NavigationBarView()
+    let navigationBarView = NavigationBarView()
     private let myProfileHeaderView = MyProfileHeaderView()
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
     lazy var topButton = UIButton()

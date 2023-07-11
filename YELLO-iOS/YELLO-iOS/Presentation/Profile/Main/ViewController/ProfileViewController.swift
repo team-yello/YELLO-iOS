@@ -2,7 +2,7 @@
 //  ProfileViewController.swift
 //  YELLO-iOS
 //
-//  Created by 변희주 on 2023/07/05.
+//  Created by 정채은 on 2023/07/05.
 //
 
 import UIKit
@@ -18,17 +18,23 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
 }
 
 extension ProfileViewController {
+    
     private func setUI() {
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .black
+        profileView.navigationBarView.delegate = self
     }
     
     private func setLayout() {
@@ -51,5 +57,12 @@ extension ProfileViewController {
         } else {
             return 0.0
         }
+    }
+}
+
+extension ProfileViewController: NavigationBarViewDelegate {
+    func settingButtonTapped() {
+        let profileSettingViewController = ProfileSettingViewController()
+        navigationController?.pushViewController(profileSettingViewController, animated: true)
     }
 }

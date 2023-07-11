@@ -42,7 +42,7 @@ extension SettingNavigationBarView {
         }
         
         backButton.do {
-            $0.setImage(ImageLiterals.Profile.icArrowLeft, for: .normal)
+            $0.setImage(ImageLiterals.Profile.icArrowLeftWhite, for: .normal)
             $0.imageView?.tintColor = .white
         }
     }

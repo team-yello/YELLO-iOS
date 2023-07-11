@@ -83,12 +83,12 @@ enum StringLiterals {
         
         enum Setting {
             static let setting = "프로필 관리"
-            static let center = "고객 센터"
+            static let center = "고객센터"
             static let privacy = "개인정보 처리방침"
             static let service = "이용약관"
             static let logout = "로그아웃"
             static let version = "버전 1.0"
-            static let withdrawal = "탈퇴"
+            static let withdrawal = "계정 탈퇴"
         }
     }
 }

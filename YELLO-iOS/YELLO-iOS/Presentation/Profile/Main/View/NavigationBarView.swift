@@ -10,10 +10,16 @@ import UIKit
 import SnapKit
 import Then
 
+protocol NavigationBarViewDelegate: AnyObject {
+    func settingButtonTapped()
+}
+
 final class NavigationBarView: UIView {
     
+    weak var delegate: NavigationBarViewDelegate?
+    
     private let profileLabel = UILabel()
-    private lazy var settingButton = UIButton()
+    lazy var settingButton = UIButton()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +33,11 @@ final class NavigationBarView: UIView {
 }
 
 extension NavigationBarView {
+    
+    @objc private func settingButtonTapped() {
+        delegate?.settingButtonTapped()
+    }
+    
     private func setUI() {
         setStyle()
         setLayout()
@@ -45,6 +56,7 @@ extension NavigationBarView {
             $0.setTitle(StringLiterals.Profile.NavigationBar.setting, for: .normal)
             $0.setTitleColor(.grayscales600, for: .normal)
             $0.titleLabel?.font = .uiLabelLarge
+            $0.addTarget(self, action: #selector(settingButtonTapped), for: .touchUpInside)
         }
     }
     
