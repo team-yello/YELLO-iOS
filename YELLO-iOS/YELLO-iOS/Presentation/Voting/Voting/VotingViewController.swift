@@ -14,19 +14,26 @@ final class VotingViewController: BaseViewController {
     
     private let originView = BaseVotingMainView()
     
-    var nameTextOne = UILabel()
-    var nameTextTwo = UILabel()
-    var nameTextThree = UILabel()
-    var nameTextFour = UILabel()
+    private var nameCount: Int = 0
+    private var keywordCount: Int = 0
+    
+    private var nameTextOne = UILabel()
+    private var nameTextTwo = UILabel()
+    private var nameTextThree = UILabel()
+    private var nameTextFour = UILabel()
     
     static var pushCount = 0
-    static var suffleCount = 0
     
     private var nameButtonClick: Bool = false {
         didSet {
             if nameButtonClick && keywordButtonClick {
                 bothButtonClicked = true
+            } else if nameButtonClick || keywordButtonClick {
+                eitherButtonClicked = true
             }
+            originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
+            originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
+            originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
         }
     }
     
@@ -34,15 +41,17 @@ final class VotingViewController: BaseViewController {
         didSet {
             if nameButtonClick && keywordButtonClick {
                 bothButtonClicked = true
+            } else if nameButtonClick || keywordButtonClick {
+                eitherButtonClicked = true
             }
         }
     }
-        
+    
     // name, keyword 중 하나의 버튼이 클릭되었을 때 동작
     private var eitherButtonClicked: Bool = false {
         didSet {
-                originView.skipButton.setTitleColor(UIColor(hex: "191919", alpha: 0.4), for: .normal)
-                originView.skipButton.isEnabled = false
+            originView.skipButton.setTitleColor(UIColor(hex: "191919", alpha: 0.4), for: .normal)
+            originView.skipButton.setImage(ImageLiterals.Voting.icSkipLocked, for: .normal)
         }
     }
     
@@ -52,6 +61,23 @@ final class VotingViewController: BaseViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.setNextViewController()
             }
+        }
+    }
+    
+    private var suffleCount = 0 {
+        didSet {
+            if suffleCount < 3 {
+                originView.suffleNum.text = String(3 - suffleCount) + "/3"
+            }
+            
+            if suffleCount == 3 {
+                originView.suffleButton.isEnabled = false
+                originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
+                originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
+                originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
+                originView.suffleNum.text = "0/3"
+            }
+            
         }
     }
 
@@ -69,7 +95,6 @@ final class VotingViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
-        setSuffleButton()
     }
     
     override func setStyle() {
@@ -104,7 +129,7 @@ final class VotingViewController: BaseViewController {
                                           secondLineColor: secondLineColor)
         
         originView.nameOne.do {
-            $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
+           $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
         }
         
         originView.nameTwo.do {
@@ -140,7 +165,7 @@ final class VotingViewController: BaseViewController {
         }
         
         originView.suffleButton.do {
-            $0.addTarget(self, action: #selector(suffleCountClicked), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(suffleButtonClicked), for: .touchUpInside)
         }
         
         originView.skipButton.do {
@@ -197,7 +222,12 @@ final class VotingViewController: BaseViewController {
     
     @objc
     func nameButtonClicked(_ sender: UIButton) {
-        // 클릭한 버튼의 레이블 색상 변경
+        nameButtonClick = true
+        if nameCount > 0 {
+            view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
+        }
+        nameCount += 1
+
         if sender == originView.nameOne {
             updateLabelAppearance(nameTextOne)
             
@@ -208,7 +238,7 @@ final class VotingViewController: BaseViewController {
             nameTextTwo.textColor = .grayscales700
             nameTextThree.textColor = .grayscales700
             nameTextFour.textColor = .grayscales700
-            
+                        
         } else if sender == originView.nameTwo {
             updateLabelAppearance(nameTextTwo)
             
@@ -240,14 +270,16 @@ final class VotingViewController: BaseViewController {
             nameTextTwo.textColor = .grayscales700
             nameTextThree.textColor = .grayscales700
         }
-        
-        eitherButtonClicked = true
-        nameButtonClick = true
     }
     
     @objc
     func keywordClicked(_ sender: UIButton) {
-        // 클릭한 버튼의 레이블 색상 변경
+        keywordButtonClick = true
+        if keywordCount > 0 {
+            view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
+        }
+        keywordCount += 1
+
         sender.setTitleColor(.yelloMain500, for: .normal)
         
         if sender == originView.keywordOne {
@@ -287,21 +319,29 @@ final class VotingViewController: BaseViewController {
             originView.keywordThree.setTitleColor(.grayscales700, for: .normal)
         }
         
-        eitherButtonClicked = true
-        keywordButtonClick = true
     }
     
     @objc
-    func suffleCountClicked() {
-        VotingViewController.suffleCount += 1
-        setSuffleButton()
+    func suffleButtonClicked() {
+        if nameButtonClick {
+            originView.suffleButton.isEnabled = false
+            view.showToast(message: StringLiterals.Voting.VoteToast.suffle)
+            originView.suffleButton.isEnabled = true
+        } else {
+            suffleCount += 1
+        }
     }
     
     @objc
     func skipButtonClicked() {
-        setNextViewController()
+        if eitherButtonClicked {
+            originView.skipButton.isEnabled = false
+            view.showToast(message: StringLiterals.Voting.VoteToast.skip)
+            originView.skipButton.isEnabled = true
+        } else {
+            setNextViewController()
+        }
     }
-    
 }
 
 extension VotingViewController: UINavigationControllerDelegate {
@@ -341,20 +381,6 @@ extension VotingViewController {
         self.originView.numOfPage.text = String(VotingViewController.pushCount + 1)
     }
     
-    private func setSuffleButton() {
-        if VotingViewController.suffleCount < 3 {
-            originView.suffleNum.text = String(3 - VotingViewController.suffleCount) + "/3"
-        }
-        
-        if VotingViewController.suffleCount == 3 {
-            originView.suffleButton.isEnabled = false
-            originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
-            originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
-            originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
-            originView.suffleNum.text = "0/3"
-        }
-    }
-    
     private func setNextViewController() {
         var viewController = UIViewController()
         // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
@@ -369,5 +395,4 @@ extension VotingViewController {
             })
         }
     }
-    
 }

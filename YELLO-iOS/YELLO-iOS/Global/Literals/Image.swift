@@ -69,6 +69,7 @@ enum ImageLiterals {
         static var icShuffle: UIImage { .load(named: "icShuffle")}
         static var icSuffleLocked: UIImage { .load(named: "icSuffleLocked")}
         static var icSkip: UIImage { .load(named: "icSkip")}
+        static var icSkipLocked: UIImage { .load(named: "icSkipLocked")}
 
     }
     

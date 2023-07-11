@@ -63,6 +63,12 @@ enum StringLiterals {
             static let four = "코딩하는 강동원이랑"
         }
         
+        enum VoteToast {
+            static let skip = "한 번 선택하면 건너뛸 수 없어요."
+            static let cancel = "한 번 선택하면 취소할 수 없어요."
+            static let suffle = "이름을 선택하면 셔플을 사용할 수 없어요."
+        }
+        
         enum Point {
             static let title = "투표 포인트 적립!"
             static let text = "투표로 포인트를 모아 쪽지를 열어보세요."
