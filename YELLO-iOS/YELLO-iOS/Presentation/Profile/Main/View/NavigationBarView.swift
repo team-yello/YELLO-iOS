@@ -10,17 +10,23 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
 protocol NavigationBarViewDelegate: AnyObject {
     func settingButtonTapped()
 }
 
 final class NavigationBarView: UIView {
     
+    // MARK: - Variables
+    // MARK: Property
     weak var delegate: NavigationBarViewDelegate?
     
+    // MARK: Component
     private let profileLabel = UILabel()
     lazy var settingButton = UIButton()
 
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -32,12 +38,15 @@ final class NavigationBarView: UIView {
     }
 }
 
+// MARK: - extension
 extension NavigationBarView {
     
+    // MARK: Objc Function
     @objc private func settingButtonTapped() {
         delegate?.settingButtonTapped()
     }
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()

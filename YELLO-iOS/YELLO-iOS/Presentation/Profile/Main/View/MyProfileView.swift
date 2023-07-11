@@ -12,6 +12,8 @@ import Then
 
 final class MyProfileView: UIView {
     
+    // MARK: - Variables
+    // MARK: Component
     private let profileImageView = UIImageView()
     private let nameLabel = UILabel()
     private let instagramLabel = UILabel()
@@ -22,6 +24,8 @@ final class MyProfileView: UIView {
     private let pointView = CountCustomView()
     private let addGroupButton = UIButton()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -33,7 +37,10 @@ final class MyProfileView: UIView {
     }
 }
 
+// MARK: - extension
 extension MyProfileView {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -165,6 +172,7 @@ extension MyProfileView {
         }
     }
     
+    // MARK: Objc Function
     @objc private func addGroupButtonTapped() {
         let url = URL(string: "https://www.google.com/")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)

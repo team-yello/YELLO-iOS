@@ -10,20 +10,26 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
 protocol HandleFriendCellDelegate: AnyObject {
     func presentModal()
 }
 
 final class ProfileView: UIView {
     
+    // MARK: - Variables
+    // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
     
+    // MARK: Component
     let navigationBarView = NavigationBarView()
     private let myProfileHeaderView = MyProfileHeaderView()
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
     lazy var topButton = UIButton()
     private var isButtonHidden: Bool = false
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -36,7 +42,10 @@ final class ProfileView: UIView {
     }
 }
 
+// MARK: - extension
 extension ProfileView {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -101,10 +110,12 @@ extension ProfileView {
         myFriendTableView.delegate = self
     }
     
+    // MARK: Custom Function
     private func updateButtonVisibility() {
         topButton.isHidden = isButtonHidden
     }
     
+    // MARK: Objc Function
     @objc func topButtonTapped() {
         myFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
@@ -114,6 +125,7 @@ extension ProfileView {
     }
 }
 
+// MARK: UITableViewDelegate
 extension ProfileView: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         isButtonHidden = scrollView.contentOffset.y <= 0
@@ -121,6 +133,7 @@ extension ProfileView: UITableViewDelegate {
     }
 }
 
+// MARK: UITableViewDataSource
 extension ProfileView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

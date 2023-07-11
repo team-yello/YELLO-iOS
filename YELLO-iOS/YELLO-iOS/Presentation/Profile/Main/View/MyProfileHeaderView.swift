@@ -12,9 +12,13 @@ import Then
 
 final class MyProfileHeaderView: UITableViewHeaderFooterView {
     
+    // MARK: - Variables
+    // MARK: Component
     private let myProfileView = MyProfileView()
     private let friendCountView = FriendCountView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setUI()
@@ -26,7 +30,10 @@ final class MyProfileHeaderView: UITableViewHeaderFooterView {
     }
 }
 
+// MARK: - extension
 extension MyProfileHeaderView {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()

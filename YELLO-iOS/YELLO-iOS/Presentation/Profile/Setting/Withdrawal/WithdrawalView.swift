@@ -12,8 +12,9 @@ import Then
 
 final class WithdrawalView: BaseView {
 
+    // MARK: - Variables
+    // MARK: Property
     let withdrawalNavigationBarView = SettingNavigationBarView()
-    
     let scrollView = UIScrollView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -28,6 +29,8 @@ final class WithdrawalView: BaseView {
     
     private var withdrawalAlertView: WithdrawalAlertView?
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         withdrawalAlertView = WithdrawalAlertView()
         self.backgroundColor = .black
@@ -195,6 +198,7 @@ final class WithdrawalView: BaseView {
         }
     }
     
+    // MARK: Objc Function
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         

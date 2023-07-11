@@ -12,11 +12,14 @@ import Then
 
 final class SettingCustomButton: UIButton {
     
+    // MARK: - Variables
+    // MARK: Property
     private let customTitleLabel = UILabel()
 
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setUI()
     }
 
@@ -25,6 +28,7 @@ final class SettingCustomButton: UIButton {
         setUI()
     }
     
+    // MARK: Layout Helpers
     func setUI() {
         setStyle()
         setLayout()
@@ -49,6 +53,7 @@ final class SettingCustomButton: UIButton {
         }
     }
     
+    // MARK: Custom Function
     func updateTitle(text: String) {
         customTitleLabel.text = text
     }

@@ -10,12 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
 protocol HandleKeepButtonDelegate: AnyObject {
     func keepButtonTapped()
 }
 
 final class WithdrawalCheckView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component
     weak var handleKeepButtonDelegate: HandleKeepButtonDelegate?
     weak var handleBackButtonDelegate: HandleBackButtonDelegate?
     
@@ -26,6 +29,8 @@ final class WithdrawalCheckView: BaseView {
     lazy var keepButton = UIButton()
     lazy var backButton = UIButton()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black
         

@@ -12,12 +12,16 @@ import Then
 
 final class WithdrawalAlertView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Property
     let contentsView = UIView()
     
     private let titleLabel = UILabel()
     let noButton = UIButton()
     let yesButton = UIButton()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
@@ -79,7 +83,10 @@ final class WithdrawalAlertView: BaseView {
     }
 }
 
+// MARK: - extension
 extension WithdrawalAlertView {
+    
+    // MARK: Objc Function
     @objc func noButtonClicked() {
         self.isHidden = true
         self.removeFromSuperview()

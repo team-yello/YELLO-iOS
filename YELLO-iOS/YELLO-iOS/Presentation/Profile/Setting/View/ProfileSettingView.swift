@@ -10,23 +10,28 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
 protocol HandleWithdrawalButtonDelegate: AnyObject {
     func withdrawalButtonTapped()
 }
 
 final class ProfileSettingView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Property
     weak var handleWithdrawalButtonDelegate: HandleWithdrawalButtonDelegate?
     
+    // MARK: Component
     let settingNavigationBarView = SettingNavigationBarView()
     lazy var centerButton = SettingCustomButton()
     lazy var privacyButton = SettingCustomButton()
     lazy var serviveButton = SettingCustomButton()
     lazy var logoutButton = SettingCustomButton()
-    
     let versionLabel = UILabel()
     lazy var withdrawalButton = UIButton()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black
         
@@ -63,11 +68,7 @@ final class ProfileSettingView: BaseView {
             $0.addTarget(self, action: #selector(withdrawalButtonTapped), for: .touchUpInside)
         }
     }
-    
-    @objc private func withdrawalButtonTapped() {
-        handleWithdrawalButtonDelegate?.withdrawalButtonTapped()
-    }
-    
+
     override func setLayout() {
         let statusBarHeight = UIApplication.shared.connectedScenes
                     .compactMap { $0 as? UIWindowScene }
@@ -126,6 +127,10 @@ final class ProfileSettingView: BaseView {
         }
     }
     
+    // MARK: Objc Function
+    @objc private func withdrawalButtonTapped() {
+        handleWithdrawalButtonDelegate?.withdrawalButtonTapped()
+    }
     
     @objc private func centerButtonTapped() {
         //고객센터 링크 연결
@@ -133,21 +138,18 @@ final class ProfileSettingView: BaseView {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    
     @objc private func privacyButtonTapped() {
         //개인정보 처리방침 링크 연결
         let url = URL(string: "https://www.google.com/")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-    
-    
+        
     @objc private func serviveButtonTapped() {
         //이용약관 링크 연결
         let url = URL(string: "https://www.google.com/")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-    
-    
+        
     @objc private func logoutButtonTapped() {
         //로그아웃 로직 구현
     }

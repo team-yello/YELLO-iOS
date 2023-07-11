@@ -12,14 +12,19 @@ import Then
 
 final class FriendProfileViewController: BaseViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     let friendProfileView = FriendProfileView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    // MARK: Layout Helpers
     override func setStyle() {
         view.backgroundColor = .black
         friendProfileView.handleBottomSheetButtonDelegate = self
@@ -34,6 +39,8 @@ final class FriendProfileViewController: BaseViewController {
     }
 }
 
+// MARK: - extension
+// MARK: HandleBottomSheetButtonDelegate
 extension FriendProfileViewController: HandleBottomSheetButtonDelegate {
     func dismissView() {
         self.dismiss(animated: true)

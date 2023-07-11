@@ -12,20 +12,26 @@ import Then
 
 final class WithdrawalViewController: UIViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     private let withdrawalView = WithdrawalView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
 }
 
+// MARK: - extension
 extension WithdrawalViewController {
     private func setUI() {
         setStyle()
         setLayout()
     }
     
+    // MARK: Layout Helpers
     private func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         tabBarController?.tabBar.isHidden = true
@@ -43,6 +49,7 @@ extension WithdrawalViewController {
     }
 }
 
+// MARK: HandleBackButtonDelegate
 extension WithdrawalViewController: HandleBackButtonDelegate {
     func popView() {
         self.navigationController?.popViewController(animated: true)

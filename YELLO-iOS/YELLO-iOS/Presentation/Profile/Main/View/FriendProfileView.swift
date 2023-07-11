@@ -10,12 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
 protocol HandleBottomSheetButtonDelegate: AnyObject {
     func dismissView()
 }
 
 final class FriendProfileView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component
     weak var handleBottomSheetButtonDelegate: HandleBottomSheetButtonDelegate?
     
     private let profileImageView = UIImageView()
@@ -31,6 +34,8 @@ final class FriendProfileView: BaseView {
     private let cancelButton = UIButton()
     private let confirmButton = UIButton()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black
         
@@ -155,6 +160,7 @@ final class FriendProfileView: BaseView {
         }
     }
     
+    // MARK: Objc Function
     @objc private func deleteButtonTapped() {
         messageCountView.removeFromSuperview()
         friendCountView.removeFromSuperview()
@@ -192,6 +198,7 @@ final class FriendProfileView: BaseView {
         dismissView()
     }
     
+    // MARK: Layout Helpers
     private func dismissView() {
         handleBottomSheetButtonDelegate?.dismissView()
     }

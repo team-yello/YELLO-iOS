@@ -12,8 +12,12 @@ import Then
 
 final class ProfileViewController: UIViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     private let profileView = ProfileView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -24,15 +28,16 @@ final class ProfileViewController: UIViewController {
     }
 }
 
+// MARK: - extension
 extension ProfileViewController {
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
-//        self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .black
         profileView.navigationBarView.delegate = self
         profileView.handleFriendCellDelegate = self
@@ -43,13 +48,13 @@ extension ProfileViewController {
         let tabbarHeight = 60 + safeAreaBottomInset()
         
         view.addSubview(profileView)
-        
         profileView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
     }
     
+    // MARK: Custom Function
     func safeAreaBottomInset() -> CGFloat {
         if #available(iOS 11.0, *) {
             let window = UIApplication.shared.keyWindow
@@ -61,6 +66,7 @@ extension ProfileViewController {
     }
 }
 
+// MARK: NavigationBarViewDelegate
 extension ProfileViewController: NavigationBarViewDelegate {
     func settingButtonTapped() {
         let profileSettingViewController = ProfileSettingViewController()
@@ -68,6 +74,7 @@ extension ProfileViewController: NavigationBarViewDelegate {
     }
 }
 
+// MARK: HandleFriendCellDelegate
 extension ProfileViewController: HandleFriendCellDelegate {
     func presentModal() {
         let friendProfileViewController = FriendProfileViewController()

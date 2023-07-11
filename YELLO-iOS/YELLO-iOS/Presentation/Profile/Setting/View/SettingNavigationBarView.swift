@@ -10,17 +10,23 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
 protocol HandleBackButtonDelegate: AnyObject {
     func popView()
 }
 
 final class SettingNavigationBarView: UIView {
     
+    // MARK: - Variables
+    // MARK: Property
     weak var handleBackButtonDelegate: HandleBackButtonDelegate?
     
+    // MARK: Component
     lazy var backButton = UIButton()
     let titleLabel = UILabel()
 
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -32,7 +38,10 @@ final class SettingNavigationBarView: UIView {
     }
 }
 
+// MARK: - extension
 extension SettingNavigationBarView {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -69,8 +78,8 @@ extension SettingNavigationBarView {
         }
     }
     
-    @objc
-    private func backButtonDidTap() {
+    // MARK: Objc Function
+    @objc private func backButtonDidTap() {
         self.handleBackButtonDelegate?.popView()
     }
 }

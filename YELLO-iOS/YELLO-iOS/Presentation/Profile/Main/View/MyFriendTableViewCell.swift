@@ -12,12 +12,16 @@ import Then
 
 final class MyFriendTableViewCell: UITableViewCell {
     
+    // MARK: - Variables
+    // MARK: Component
     static let identifier = "MyFriendTableViewCell"
     
     let profileImageView = UIImageView()
     let nameLabel = UILabel()
     let schoolLabel = UILabel()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -28,8 +32,10 @@ final class MyFriendTableViewCell: UITableViewCell {
         super.init(coder: coder)
     }
 }
-
+// MARK: - extension
 extension MyFriendTableViewCell {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -62,9 +68,9 @@ extension MyFriendTableViewCell {
     
     private func setLayout() {
         
-        contentView.addSubview(profileImageView)
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(schoolLabel)
+        contentView.addSubviews(profileImageView,
+                               nameLabel,
+                               schoolLabel)
         
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -83,6 +89,7 @@ extension MyFriendTableViewCell {
         }
     }
     
+    // MARK: Custom Function
     func configureFriendCell(_ model: FriendModel) {
         nameLabel.text = model.name
         schoolLabel.text = model.school

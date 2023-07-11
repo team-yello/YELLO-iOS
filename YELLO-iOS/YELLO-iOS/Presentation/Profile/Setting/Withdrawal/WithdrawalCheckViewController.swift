@@ -12,15 +12,22 @@ import Then
 
 final class WithdrawalCheckViewController: UIViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     private let withdrawalCheckView = WithdrawalCheckView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
 }
 
+// MARK: - extension
 extension WithdrawalCheckViewController {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -45,12 +52,14 @@ extension WithdrawalCheckViewController {
     }
 }
 
+// MARK: HandleBackButtonDelegate
 extension WithdrawalCheckViewController: HandleBackButtonDelegate {
     func popView() {
         self.navigationController?.popViewController(animated: true)
     }
 }
 
+// MARK: HandleKeepButtonDelegate
 extension WithdrawalCheckViewController: HandleKeepButtonDelegate {
     func keepButtonTapped() {
         let withdrawalViewController = WithdrawalViewController()

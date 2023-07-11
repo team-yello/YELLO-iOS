@@ -12,15 +12,22 @@ import Then
 
 final class ProfileSettingViewController: UIViewController {
     
+    // MARK: - Variables
+    // MARK: Property
     private let profileSettingView = ProfileSettingView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
 }
 
+// MARK: - extension
 extension ProfileSettingViewController {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -44,6 +51,7 @@ extension ProfileSettingViewController {
     }
 }
 
+// MARK: HandleBackButtonDelegate
 extension ProfileSettingViewController: HandleBackButtonDelegate {
     func popView() {
         self.navigationController?.popViewController(animated: true)
@@ -51,6 +59,7 @@ extension ProfileSettingViewController: HandleBackButtonDelegate {
     }
 }
 
+// MARK: HandleWithdrawalButtonDelegate
 extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
     func withdrawalButtonTapped() {
         let withdrawalCheckViewController = WithdrawalCheckViewController()

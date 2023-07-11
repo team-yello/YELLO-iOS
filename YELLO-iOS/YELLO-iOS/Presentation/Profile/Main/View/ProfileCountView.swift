@@ -12,10 +12,14 @@ import Then
 
 final class FriendCountView: UIView {
 
+    // MARK: - Variables
+    // MARK: Component
     private let myFriendLabel = UILabel()
     private let friendNumberLabel = UILabel()
     private let friendCountLabel = UILabel()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -27,7 +31,10 @@ final class FriendCountView: UIView {
     }
 }
 
+// MARK: - extension
 extension FriendCountView {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()

@@ -12,9 +12,13 @@ import Then
 
 final class CountCustomView: UIView {
     
+    // MARK: - Variables
+    // MARK: Component
     var countLabel = UILabel()
     var titleLabel = UILabel()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -26,7 +30,10 @@ final class CountCustomView: UIView {
     }
 }
 
+// MARK: - extension
 extension CountCustomView {
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
