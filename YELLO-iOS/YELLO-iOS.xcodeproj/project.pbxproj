@@ -584,8 +584,8 @@
 		C3D266512A5D1FBA0041C7C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */,
 				C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */,
+				C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */,
 				C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */,
 			);
 			path = View;
@@ -594,10 +594,10 @@
 		C3FF246D2A5D477400A97D40 /* Withdrawal */ = {
 			isa = PBXGroup;
 			children = (
-				C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */,
-				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
 				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
 				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
+				C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */,
+				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
 			);
 			path = Withdrawal;
 			sourceTree = "<group>";

@@ -109,6 +109,5 @@ enum StringLiterals {
             static let keep = "그래도 계속하기"
             static let back = "다시 돌아가기"
         }
-        
     }
 }

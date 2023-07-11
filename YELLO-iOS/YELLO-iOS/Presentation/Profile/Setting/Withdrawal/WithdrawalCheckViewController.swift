@@ -7,7 +7,10 @@
 
 import UIKit
 
-class WithdrawalCheckViewController: UIViewController {
+import SnapKit
+import Then
+
+final class WithdrawalCheckViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
