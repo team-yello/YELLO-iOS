@@ -33,8 +33,11 @@ class OnboardingEndView: BaseView {
             $0.backgroundColor = .grayscales200
         }
         
+        
         goToYelloButton.do {
             $0.backgroundColor = .yelloMain500
+            $0.setImage(ImageLiterals.OnBoarding.icYelloFace, for: .normal)
+            $0.semanticContentAttribute = .forceRightToLeft
             $0.setTitle("옐로하러 가기", for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
             $0.setTitleColor(.black, for: .normal)
