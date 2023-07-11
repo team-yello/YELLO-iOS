@@ -42,14 +42,14 @@ extension MyProfileHeaderView {
                         friendCountView)
         
         myProfileView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12.adjusted)
+            $0.top.equalToSuperview().offset(12)
             $0.leading.trailing.equalToSuperview()
         }
         
         friendCountView.snp.makeConstraints {
-            $0.top.equalTo(myProfileView.snp.bottom).offset(32.adjusted)
+            $0.top.equalTo(myProfileView.snp.bottom).offset(32)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(8.adjusted)
+            $0.bottom.equalToSuperview().inset(8)
         }
     }
 }

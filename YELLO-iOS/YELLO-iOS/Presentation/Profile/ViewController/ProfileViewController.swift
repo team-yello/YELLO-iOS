@@ -32,10 +32,24 @@ extension ProfileViewController {
     }
     
     private func setLayout() {
+        
+        let tabbarHeight = 60 + safeAreaBottomInset()
+        
         view.addSubview(profileView)
         
         profileView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(tabbarHeight)
+        }
+    }
+    
+    func safeAreaBottomInset() -> CGFloat {
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            let bottomPadding = window?.safeAreaInsets.bottom
+            return bottomPadding ??  0.0
+        } else {
+            return 0.0
         }
     }
 }

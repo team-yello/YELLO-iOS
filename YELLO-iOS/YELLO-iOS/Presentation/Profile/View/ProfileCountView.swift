@@ -41,7 +41,7 @@ extension FriendCountView {
         }
         
         friendNumberLabel.do {
-            $0.setTextWithLineHeight(text:  StringLiterals.Profile.FriendCount.friendNumber, lineHeight: 16)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.FriendCount.friendNumber, lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales500
         }
@@ -80,4 +80,3 @@ extension FriendCountView {
         }
     }
 }
-

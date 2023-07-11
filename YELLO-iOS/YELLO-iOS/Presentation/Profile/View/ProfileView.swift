@@ -47,6 +47,7 @@ extension ProfileView {
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
+            $0.showsHorizontalScrollIndicator = false
         }
         
         topButton.do {
@@ -84,7 +85,7 @@ extension ProfileView {
         topButton.snp.makeConstraints {
             $0.width.height.equalTo(48.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjusted)
-            $0.bottom.equalToSuperview().inset(76.adjusted)
+            $0.bottom.equalTo(myFriendTableView.snp.bottom).inset(16.adjustedHeight)
         }
     }
     
@@ -122,7 +123,7 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 304.adjustedHeight : 0
+        return section == 0 ? 304.adjusted : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

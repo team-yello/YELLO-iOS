@@ -159,9 +159,9 @@ extension MyProfileView {
         
         addGroupButton.snp.makeConstraints {
             $0.top.equalTo(messageView.snp.bottom).offset(10.adjusted)
-            $0.height.equalTo(48.adjustedHeight)
+            $0.height.equalTo(48.adjusted)
             $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+            $0.bottom.equalToSuperview().inset(20)
         }
-        
     }
 }
