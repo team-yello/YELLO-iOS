@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleFriendCellDelegate: AnyObject {
+    func presentModal()
+}
+
 final class ProfileView: UIView {
+    
+    weak var handleFriendCellDelegate: HandleFriendCellDelegate?
     
     let navigationBarView = NavigationBarView()
     private let myProfileHeaderView = MyProfileHeaderView()
@@ -102,6 +108,10 @@ extension ProfileView {
     @objc func topButtonTapped() {
         myFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
+    
+    private func presentModal() {
+        handleFriendCellDelegate?.presentModal()
+    }
 }
 
 extension ProfileView: UITableViewDelegate {
@@ -140,4 +150,17 @@ extension ProfileView: UITableViewDataSource {
 //        cell.configureFriendCell(myFriendTableViewModel[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Click Cell Number:" + String(indexPath.row))
+        self.presentModal()
+
+//        let weathersDetailVC = WeathersDetailViewController()
+//
+//        weathersDetailVC.configureWeathersDetailCell(cityWeathers[indexPath.row])
+//        weathersDetailVC.weathersCollectionView.reloadData()
+//
+//        self.navigationController?.pushViewController(weathersDetailVC, animated: true)
+    }
+    
 }

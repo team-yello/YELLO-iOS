@@ -35,6 +35,7 @@ extension ProfileViewController {
 //        self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .black
         profileView.navigationBarView.delegate = self
+        profileView.handleFriendCellDelegate = self
     }
     
     private func setLayout() {
@@ -64,5 +65,20 @@ extension ProfileViewController: NavigationBarViewDelegate {
     func settingButtonTapped() {
         let profileSettingViewController = ProfileSettingViewController()
         navigationController?.pushViewController(profileSettingViewController, animated: true)
+    }
+}
+
+extension ProfileViewController: HandleFriendCellDelegate {
+    func presentModal() {
+        let friendProfileViewController = FriendProfileViewController()
+        let nav = UINavigationController(rootViewController: friendProfileViewController)
+        
+//        friendProfileViewController.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 370)
+    
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(nav, animated: true, completion: nil)
     }
 }
