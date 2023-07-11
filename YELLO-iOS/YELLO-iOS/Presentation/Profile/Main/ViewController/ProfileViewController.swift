@@ -72,8 +72,6 @@ extension ProfileViewController: HandleFriendCellDelegate {
     func presentModal() {
         let friendProfileViewController = FriendProfileViewController()
         let nav = UINavigationController(rootViewController: friendProfileViewController)
-        
-//        friendProfileViewController.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: 370)
     
         if let sheet = nav.sheetPresentationController {
             sheet.detents = [.medium()]

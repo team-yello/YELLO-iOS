@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleBottomSheetButtonDelegate: AnyObject {
+    func dismissView()
+}
+
 final class FriendProfileView: BaseView {
+    
+    weak var handleBottomSheetButtonDelegate: HandleBottomSheetButtonDelegate?
     
     private let profileImageView = UIImageView()
     private let nameLabel = UILabel()
@@ -79,6 +85,7 @@ final class FriendProfileView: BaseView {
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiButton
             $0.makeCornerRound(radius: 8)
+            $0.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         }
         
         confirmButton.do {
@@ -87,6 +94,7 @@ final class FriendProfileView: BaseView {
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiButton
             $0.makeCornerRound(radius: 8)
+            $0.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -174,5 +182,17 @@ final class FriendProfileView: BaseView {
             $0.height.equalTo(42)
             $0.width.equalTo(146)
         }
+    }
+    
+    @objc private func cancelButtonTapped() {
+        dismissView()
+    }
+    
+    @objc private func confirmButtonTapped() {
+        dismissView()
+    }
+    
+    private func dismissView() {
+        handleBottomSheetButtonDelegate?.dismissView()
     }
 }

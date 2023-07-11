@@ -22,6 +22,7 @@ final class FriendProfileViewController: BaseViewController {
     
     override func setStyle() {
         view.backgroundColor = .black
+        friendProfileView.handleBottomSheetButtonDelegate = self
     }
     
     override func setLayout() {
@@ -30,5 +31,11 @@ final class FriendProfileViewController: BaseViewController {
         friendProfileView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+}
+
+extension FriendProfileViewController: HandleBottomSheetButtonDelegate {
+    func dismissView() {
+        self.dismiss(animated: true)
     }
 }

@@ -154,13 +154,5 @@ extension ProfileView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Click Cell Number:" + String(indexPath.row))
         self.presentModal()
-
-//        let weathersDetailVC = WeathersDetailViewController()
-//
-//        weathersDetailVC.configureWeathersDetailCell(cityWeathers[indexPath.row])
-//        weathersDetailVC.weathersCollectionView.reloadData()
-//
-//        self.navigationController?.pushViewController(weathersDetailVC, animated: true)
     }
-    
 }
