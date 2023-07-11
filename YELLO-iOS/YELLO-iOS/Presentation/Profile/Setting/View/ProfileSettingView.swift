@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleWithdrawalButtonDelegate: AnyObject {
+    func withdrawalButtonTapped()
+}
+
 final class ProfileSettingView: BaseView {
+    
+    weak var handleWithdrawalButtonDelegate: HandleWithdrawalButtonDelegate?
     
     let settingNavigationBarView = SettingNavigationBarView()
     lazy var centerButton = SettingCustomButton()
@@ -50,7 +56,13 @@ final class ProfileSettingView: BaseView {
             $0.setTitle(StringLiterals.Profile.Setting.withdrawal, for: .normal)
             $0.setTitleColor(.grayscales600, for: .normal)
             $0.titleLabel?.font = .uiBody02
+            $0.addTarget(self, action: #selector(withdrawalButtonTapped), for: .touchUpInside)
         }
+    }
+    
+    @objc private func withdrawalButtonTapped() {
+        print("여기")
+        handleWithdrawalButtonDelegate?.withdrawalButtonTapped()
     }
     
     override func setLayout() {

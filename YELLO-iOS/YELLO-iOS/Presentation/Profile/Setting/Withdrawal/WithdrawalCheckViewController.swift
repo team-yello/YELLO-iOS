@@ -11,22 +11,40 @@ import SnapKit
 import Then
 
 final class WithdrawalCheckViewController: UIViewController {
-
+    
+    private let withdrawalCheckView = WithdrawalCheckView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension WithdrawalCheckViewController {
+    private func setUI() {
+        setStyle()
+        setLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setStyle() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        tabBarController?.tabBar.isHidden = true
+        
+        view.backgroundColor = .black
+        withdrawalCheckView.withdrawalNavigationBarView.handleBackButtonDelegate = self
     }
-    */
+    
+    private func setLayout() {
+        view.addSubview(withdrawalCheckView)
+        
+        withdrawalCheckView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+}
 
+extension WithdrawalCheckViewController: HandleBackButtonDelegate {
+    func popView() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

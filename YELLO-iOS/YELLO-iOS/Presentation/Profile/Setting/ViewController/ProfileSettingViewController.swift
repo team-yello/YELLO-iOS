@@ -32,6 +32,7 @@ extension ProfileSettingViewController {
         
         view.backgroundColor = .black
         profileSettingView.settingNavigationBarView.handleBackButtonDelegate = self
+        profileSettingView.handleWithdrawalButtonDelegate = self
     }
     
     private func setLayout() {
@@ -47,5 +48,13 @@ extension ProfileSettingViewController: HandleBackButtonDelegate {
     func popView() {
         self.navigationController?.popViewController(animated: true)
         self.tabBarController?.tabBar.isHidden = false
+    }
+}
+
+extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
+    func withdrawalButtonTapped() {
+        print("저기")
+        let withdrawalCheckViewController = WithdrawalCheckViewController()
+        navigationController?.pushViewController(withdrawalCheckViewController, animated: true)
     }
 }
