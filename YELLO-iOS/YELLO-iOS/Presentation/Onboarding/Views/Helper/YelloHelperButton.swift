@@ -11,11 +11,10 @@ import UIKit
 final class YelloHelperButton: UIButton {
     // MARK: - Variables
     
-    //MARK: Property
+    // MARK: Property
     var buttonText: String?
     
-    
-    init(buttonText: String){
+    init(buttonText: String) {
         super.init(frame: CGRect())
         self.buttonText = buttonText
         setUI()
@@ -27,11 +26,10 @@ final class YelloHelperButton: UIButton {
 
 }
 
-
 // MARK: - extension
 extension YelloHelperButton {
     // MARK: Layout Helpers
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }

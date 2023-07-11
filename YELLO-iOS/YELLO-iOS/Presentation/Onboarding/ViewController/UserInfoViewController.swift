@@ -24,9 +24,4 @@ class UserInfoViewController: OnboardingBaseViewController {
         }
     }
     
-    
-    @objc func didTapNextButton(){
-        navigationController?.pushViewController(UserInfoViewController(), animated: true)
-    }
-    
 }

@@ -11,11 +11,10 @@ import UIKit
 import SnapKit
 import Then
 
-
 final class YelloTextFieldView: UIView {
     // MARK: - Variables
     
-    //MARK: Components
+    // MARK: Components
     private let titleLabel = YelloGuideLabel()
     let textField = YelloTextField()
     private let helperLabel = UILabel()
@@ -28,9 +27,9 @@ final class YelloTextFieldView: UIView {
         setUI()
     }
     
-    ///텍스트필드 상태도 인자로 받아서 분기 처리 할 예정
+    /// 텍스트필드 상태도 인자로 받아서 분기 처리 할 예정
     init(title: String, state: iconState,
-         placeholder: String = "" ,helper: String = "") {
+         placeholder: String = "", helper: String = "") {
         super.init(frame: CGRect())
         titleLabel.text = title
         textField.placeholder = placeholder
@@ -45,11 +44,10 @@ final class YelloTextFieldView: UIView {
 
 }
 
-
 // MARK: - extension
 extension YelloTextFieldView {
     // MARK: Layout Helpers
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -62,7 +60,7 @@ extension YelloTextFieldView {
     }
     
     private func setLayout() {
-        self.addSubviews(titleLabel,textField,helperLabel)
+        self.addSubviews(titleLabel, textField, helperLabel)
         titleLabel.snp.makeConstraints {
             $0.leading.top.equalToSuperview()
         }
@@ -79,4 +77,3 @@ extension YelloTextFieldView {
         }
     }
 }
-

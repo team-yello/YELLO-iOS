@@ -14,7 +14,6 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
     
     let schoolSearchView = SchoolSearchView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         super.nextViewController = StudentInfoViewController()
@@ -30,17 +29,15 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
         }
     }
     
-    private func setDelegate(){
+    private func setDelegate() {
         schoolSearchView.schoolTextField.textField.delegate = self
     }
     
-    private func addTarget(){
+    private func addTarget() {
         schoolSearchView.schoolTextField.textField.addTarget(self, action: #selector(didTapTextField), for: .touchUpInside)
     }
     
-    
-    
-    @objc func didTapTextField(){
+    @objc func didTapTextField() {
         presentModal()
     }
     
@@ -57,6 +54,6 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
 
 extension SchoolSearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        presentModal()
+        self.present(FindSchoolViewController(), animated: true)
     }
 }

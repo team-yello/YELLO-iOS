@@ -81,6 +81,4 @@ final class VotingStartViewController: BaseViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    
-    
 }

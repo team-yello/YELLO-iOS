@@ -15,23 +15,21 @@ class YelloGenderButton: UIButton {
     let genderLabel = UILabel()
     let stackView = UIStackView()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    init(buttonText: String){
+    init(buttonText: String) {
         super.init(frame: CGRect())
         self.buttonText = buttonText
         setUI()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -53,7 +51,7 @@ class YelloGenderButton: UIButton {
             $0.textColor = .black
         }
         stackView.do {
-            $0.addArrangedSubviews(iconImageView,genderLabel)
+            $0.addArrangedSubviews(iconImageView, genderLabel)
             $0.axis = .vertical
             $0.alignment = .center
             $0.spacing = 4

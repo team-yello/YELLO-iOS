@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 import SnapKit
 import Then
 
@@ -20,14 +19,14 @@ class GenderView: BaseView {
     
     override func setStyle() {
         buttonStackView.do {
-            $0.addArrangedSubviews(maleButton,femaleButton)
+            $0.addArrangedSubviews(maleButton, femaleButton)
             $0.distribution = .fillEqually
             $0.spacing = 9
         }
     }
     
     override func setLayout() {
-        self.addSubviews(guideLabel,buttonStackView)
+        self.addSubviews(guideLabel, buttonStackView)
         
         guideLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Constraints.topMargin)

@@ -5,7 +5,6 @@
 //  Created by 지희의 MAC on 2023/07/05.
 //
 
-
 import UIKit
 
 import SnapKit
@@ -14,6 +13,7 @@ import Then
 @frozen
 enum iconState {
     case normal
+    case id
     case search
     case cancel
     case toggle
@@ -27,15 +27,16 @@ final class YelloTextField: UITextField {
     let padding: CGFloat = 20
     var textFieldState = iconState.normal
     
-    //MARK: Components
+    // MARK: Components
+    private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
     private lazy var cancelButton = UIButton()
     private lazy var toggleImageView = UIImageView()
     private lazy var searchImageView = UIImageView()
     private let errorImageView = UIImageView()
+    private let idLabel = UILabel()
     
     private var buttonStackView = UIStackView()
-    
-    private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
+    private var idLabelStackView = UIStackView()
     
     // MARK: - Function
     
@@ -49,6 +50,12 @@ final class YelloTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
+    init(state: iconState) {
+        super.init(frame: CGRect())
+        setUI()
+        setButtonState(state: state)
+        
+    }
 }
 
 // MARK: - extension
@@ -62,13 +69,14 @@ extension YelloTextField {
     private func setStyle() {
         self.addLeftPadding(20)
         self.rightViewMode = .always
+        self.leftViewMode = .always
         
         self.do {
             $0.makeBorder(width: 1, color: .grayscales400)
             $0.makeCornerRound(radius: 8)
         }
         
-        searchImageView.do  {
+        searchImageView.do {
             $0.image = ImageLiterals.OnBoarding.icSearch
         }
         
@@ -85,6 +93,14 @@ extension YelloTextField {
                 .withTintColor(.semanticStatusRed500, renderingMode: .alwaysOriginal)
         }
         
+        idLabel.do {
+            $0.text = "@"
+            $0.font = .uiBodyLarge
+        }
+        idLabelStackView.do {
+            $0.distribution = .fillEqually
+        }
+        
     }
     
     private func setLayout() {
@@ -96,22 +112,31 @@ extension YelloTextField {
             $0.width.equalTo(20)
         }
         
+        idLabelStackView.snp.makeConstraints {
+            $0.width.equalTo(39)
+        }
+        
     }
     
-    //MARK: Custom Function
+    // MARK: Custom Function
     func setButtonState(state: iconState) {
-        ///텍스트 필드 타입에 따라 subView 다르게
+        /// 텍스트 필드 타입에 따라 subView 다르게
         switch state {
         case .normal:
-            self.rightView = UIView()
+            buttonStackView.addArrangedSubview(paddingView)
         case .search:
-            buttonStackView.addArrangedSubviews(searchImageView,paddingView)
+            buttonStackView.addArrangedSubviews(searchImageView, paddingView)
         case .cancel:
-            buttonStackView.addArrangedSubviews(cancelButton,paddingView)
+            buttonStackView.addArrangedSubviews(cancelButton, paddingView)
         case .toggle:
-            buttonStackView.addArrangedSubviews(toggleImageView,paddingView)
+            buttonStackView.addArrangedSubviews(toggleImageView, paddingView)
         case .error:
-            buttonStackView.addArrangedSubviews(cancelButton,paddingView)
+            buttonStackView.addArrangedSubviews(cancelButton, paddingView)
+        case .id:
+            idLabelStackView.addArrangedSubviews(paddingView, idLabel)
+            self.leftView = idLabelStackView
+            self.rightViewMode = .never
+            
         }
         self.rightView = buttonStackView
         

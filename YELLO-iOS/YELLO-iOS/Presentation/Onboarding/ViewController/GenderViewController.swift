@@ -12,7 +12,7 @@ class GenderViewController: OnboardingBaseViewController {
     let baseView = GenderView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.nextViewController = AddFriendsViewController()
+        super.nextViewController = RecommandIdViewController()
     }
     override func setLayout() {
         view.addSubview(baseView)

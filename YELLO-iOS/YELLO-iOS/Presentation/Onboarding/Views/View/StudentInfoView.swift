@@ -15,14 +15,14 @@ final class StudentInfoView: BaseView {
     let padding = 16
     
     let majorTextField = YelloTextFieldView(title: "무슨 학과인가요?", state: .search)
-    let studentIDTextField = YelloTextFieldView(title: "몇 학번인가요?", state: .toggle)
+    let studentIDTextField = YelloTextFieldView(title: "몇 학번인가요?", state: .toggle, placeholder: "학번을 선택해주세요.")
     
     override func setStyle() {
         self.backgroundColor = .white
     }
     
     override func setLayout() {
-        self.addSubviews(majorTextField,studentIDTextField)
+        self.addSubviews(majorTextField, studentIDTextField)
         
         majorTextField.snp.makeConstraints {
             $0.top.equalToSuperview().offset(20)

@@ -13,7 +13,6 @@ enum ButtonState {
     case unabled
 }
 
-
 final class YelloButton: UIButton {
     
     let roundAmount: CGFloat = 8
@@ -42,7 +41,7 @@ final class YelloButton: UIButton {
 }
 
 extension YelloButton {
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -63,7 +62,7 @@ extension YelloButton {
     }
     
     private func setLayout() {
-        self.snp.makeConstraints{
+        self.snp.makeConstraints {
             $0.height.equalTo(buttonHeight)
         }
     }

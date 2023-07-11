@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 final class YelloGuideLabel: UILabel {
     // MARK: - Function
     // MARK: Life Cycle
@@ -16,7 +15,7 @@ final class YelloGuideLabel: UILabel {
         setLabelStyle()
     }
     
-    init(labelText: String){
+    init(labelText: String) {
         super.init(frame: CGRect())
         self.text = labelText
         setLabelStyle()
@@ -26,8 +25,8 @@ final class YelloGuideLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Custom Function
-    private func setLabelStyle(){
+    // MARK: Custom Function
+    private func setLabelStyle() {
         self.font = .uiHeadline01
     }
     

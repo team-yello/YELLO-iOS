@@ -25,12 +25,11 @@ final class SchoolSearchView: BaseView {
     let schoolTextField = YelloTextFieldView(title: "학교가 어디인가요?", state: iconState.search)
     let nextButton = YelloButton(buttonText: "다음", state: .unabled)
     
-    
     // MARK: - Function
     
     // MARK: Layout Helpers
     override func setStyle() {
-        infoLabel.do{
+        infoLabel.do {
             $0.text = "엘로에 가입하기 위한 절차에요."
             $0.font = .uiBody02
             $0.textColor = .grayscales600
@@ -38,7 +37,7 @@ final class SchoolSearchView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(infoLabel,schoolTextField)
+        self.addSubviews(infoLabel, schoolTextField)
         infoLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(padding)
             $0.top.equalToSuperview().offset(topMargin)
@@ -48,8 +47,7 @@ final class SchoolSearchView: BaseView {
             $0.top.equalTo(infoLabel.snp.bottom).offset(26)
             $0.leading.trailing.equalToSuperview().inset(padding)
         }
-        
-        
+  
     }
 
     // MARK: Custom Function
