@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol SearchResultTableViewSelectDelegate: AnyObject {
+    func didSelectSearchResult(_ result: String)
+}
+
 class SearchBaseViewController: BaseViewController {
     
     var allArr: [String] = []
     var filterdArr: [String] = []
     
     let searchView = SearchView()
+    weak var delegate: SearchResultTableViewSelectDelegate?
     
     override func loadView() {
         super.loadView()
@@ -22,6 +27,7 @@ class SearchBaseViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        searchView.searchTextField.foc
     }
     
     override func viewDidLoad() {
@@ -45,6 +51,11 @@ class SearchBaseViewController: BaseViewController {
     private func setDelegate() {
         searchView.searchTextField.delegate = self
         searchView.searchResultTableView.dataSource = self
+        searchView.searchResultTableView.delegate = self
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -79,7 +90,17 @@ extension SearchBaseViewController: UITableViewDataSource {
         let searchResult = filterdArr[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultTableViewCell") as! SearchResultTableViewCell
         cell.titleLabel.text = searchResult
+        cell.selectionStyle = .none
         return cell
     }
-    
+}
+
+extension SearchBaseViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
+            return
+        }
+        delegate?.didSelectSearchResult(currentCell.titleLabel.text ?? "")
+        self.dismiss(animated: true)
+    }
 }

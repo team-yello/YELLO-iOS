@@ -37,7 +37,9 @@ class SearchView: BaseView {
         
         searchResultTableView.do {
             $0.rowHeight = 64
+            $0.separatorStyle = .none
             $0.register(SearchResultTableViewCell.self, forCellReuseIdentifier: "SearchResultTableViewCell")
+            
         }
         
     }

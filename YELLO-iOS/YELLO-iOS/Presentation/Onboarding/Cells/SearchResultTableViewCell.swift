@@ -7,7 +7,10 @@
 
 import UIKit
 
-class SearchResultTableViewCell: UITableViewCell {
+import SnapKit
+import Then
+
+final class SearchResultTableViewCell: UITableViewCell {
     // MARK: - Variables
     // MARK: Constants
     static let identifier = "SearchResultTableViewCell"
@@ -29,6 +32,7 @@ class SearchResultTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
 }
 
 extension SearchResultTableViewCell {
@@ -72,7 +76,7 @@ extension SearchResultTableViewCell {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(searchView.snp.trailing).offset(8)
         }
-
+        
     }
     
 }

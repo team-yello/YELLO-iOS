@@ -10,10 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+protocol SelectStudentIdDelegate: AnyObject {
+    func didSelectStudentId(_ result: String)
+}
+
 class StudentIdViewController: BaseViewController {
     
-    let studentIdList = (15...23).map { "\($0)학번" }
+    let studentIdList = (15...23).reversed().map { "\($0)학번" }
     let studentIdTableView = UITableView()
+    weak var delegate: SelectStudentIdDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,6 +30,7 @@ class StudentIdViewController: BaseViewController {
         view.addSubview(studentIdTableView)
         studentIdTableView.do {
             $0.dataSource = self
+            $0.delegate = self
             $0.rowHeight = 42 // 셀의 높이를 42로 설정
             $0.separatorStyle = .none
             $0.tableHeaderView = UIView()
@@ -49,6 +55,19 @@ extension StudentIdViewController: UITableViewDataSource {
         cell.textLabel?.text = studentIdList[indexPath.row]
         cell.textLabel?.font = .uiBodyLarge
         cell.textLabel?.textAlignment = .center
+        cell.selectionStyle = .none
         return cell
+    }
+}
+
+extension StudentIdViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let currentCell = tableView.cellForRow(at: indexPath) else {
+            return
+        }
+        if let cellTitle = currentCell.textLabel?.text {
+            delegate?.didSelectStudentId(cellTitle)
+        }
+        self.dismiss(animated: true)
     }
 }

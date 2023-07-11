@@ -54,6 +54,16 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
 
 extension SchoolSearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.present(FindSchoolViewController(), animated: true)
+        let nextViewController = FindSchoolViewController()
+        nextViewController.delegate = self
+        self.present(nextViewController, animated: true)
+    }
+    
+}
+
+extension SchoolSearchViewController: SearchResultTableViewSelectDelegate {
+    func didSelectSearchResult(_ result: String) {
+        schoolSearchView.schoolTextField.textField.backgroundColor = .grayscales50
+        schoolSearchView.schoolTextField.textField.text = result
     }
 }
