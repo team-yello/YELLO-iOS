@@ -14,23 +14,31 @@ import Then
 final class VotingStartViewController: BaseViewController {
     
     private let originView = BaseVotingETCView()
-    private var animationView: LottieAnimationView?
+    private var animationView = LottieAnimationView()
     
     override func loadView() {
         self.view = originView
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         animationView = .init(name: "VotingStart")
-        animationView!.frame = originView.yelloImage.bounds
-        animationView!.contentMode = .scaleAspectFit
-        animationView!.loopMode = .loop
-        animationView!.animationSpeed = 1.1
+        let animationWidth: CGFloat = 230
+        let animationHeight: CGFloat = 230
+        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
         
-        originView.yelloImage.addSubview(animationView!)
-        animationView!.play()
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1.1
+        
+        let centerX = view.bounds.midX
+        let centerY = view.bounds.midY - 40.adjusted
+            
+        animationView.center = CGPoint(x: centerX, y: centerY)
+
+        animationView.play()
+        view.addSubview(animationView)
     }
     
     // MARK: - Style
@@ -68,11 +76,6 @@ final class VotingStartViewController: BaseViewController {
                 
         originView.titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
-        }
-        
-        originView.yelloImage.snp.makeConstraints {
-            $0.size.equalTo(230.adjusted)
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 156.adjusted)
         }
         
         originView.grayView.snp.makeConstraints {
