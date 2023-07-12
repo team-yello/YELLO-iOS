@@ -44,6 +44,6 @@ var MyYelloModelDummy: [Yello] = [
     Yello(id: 4, gender: "M", nameHint: 0, senderName: "김효원", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
     Yello(id: 5, gender: "M", nameHint: 1, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
     Yello(id: 6, gender: "F", nameHint: -1, senderName: "강국희", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: false, createdAt: "1시간 전"),
-    Yello(id: 7, gender: "M", nameHint: -1, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: false, createdAt: "1시간 전"),
+    Yello(id: 7, gender: "M", nameHint: -1, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: false, createdAt: "1시간 전"),
     Yello(id: 8, gender: "F", nameHint: 0, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전")
 ]

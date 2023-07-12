@@ -13,7 +13,7 @@ import Then
 final class MyYelloNameTableViewCell: UITableViewCell {
     
     static let identifier = "MyYelloNameTableViewCell"
-
+    
     let genderImageView = UIImageView()
     let labelView = UIView()
     let initialLabel = UILabel()
@@ -36,7 +36,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
     
@@ -118,14 +118,14 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             $0.top.equalToSuperview().inset(13)
             $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjusted)
         }
-
+        
         sendLabel.snp.makeConstraints {
             $0.top.equalTo(initialLabel)
             $0.leading.equalTo(initialLabel.snp.trailing).inset(-2.adjusted)
         }
         
         labelView.snp.makeConstraints {
-            $0.top.equalTo(initialLabel.snp.bottom).offset(2)
+            $0.top.equalTo(sendLabel.snp.bottom).offset(2)
             $0.height.equalTo(40)
             $0.leading.equalTo(initialLabel)
         }
@@ -158,7 +158,6 @@ final class MyYelloNameTableViewCell: UITableViewCell {
     
     // MARK: Custom Function
     func configureNameCell(_ model: Yello) {
-        
         if model.gender == "M" {
             contentView.backgroundColor = .semanticGenderM700
             genderImageView.image = ImageLiterals.MyYello.imgGenderMale
@@ -172,5 +171,52 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         keywordLabel.text = model.vote.keyword
         keywordFootLabel.text = model.vote.keywordFoot
         timeLabel.text = model.createdAt
+        
+        if model.nameHint == 0 {
+            if let initial = getFirstInitial(model.senderName as NSString, index: 0) {
+                initialLabel.text = initial
+            }
+        } else if model.nameHint == 1 {
+            if let initial = getSecondInitial(model.senderName as NSString, index: 1) {
+                initialLabel.text = initial
+            }
+        }
+    }
+}
+
+extension MyYelloNameTableViewCell {
+    
+    func getFirstInitial(_ str: NSString, index: Int) -> String? {
+        let name = str
+        var initialName: String = ""
+        
+        for i in 0..<1 {
+            let oneChar: UniChar = name.character(at: i)
+            if oneChar >= 0xAC00 && oneChar <= 0xD7A3 {
+                var firstCodeValue = ((oneChar - 0xAC00)/28)/21
+                firstCodeValue += 0x1100
+                initialName = initialName.appending(String(format: "%C", firstCodeValue))
+            } else {
+                initialName = initialName.appending(String(format: "%C", oneChar))
+            }
+        }
+        return initialName
+    }
+    
+    func getSecondInitial(_ str: NSString, index: Int) -> String? {
+        let name = str
+        var initialName: String = ""
+        
+        for i in 1..<2 {
+            let oneChar: UniChar = name.character(at: i)
+            if oneChar >= 0xAC00 && oneChar <= 0xD7A3 {
+                var firstCodeValue = ((oneChar - 0xAC00)/28)/21
+                firstCodeValue += 0x1100
+                initialName = initialName.appending(String(format: "%C", firstCodeValue))
+            } else {
+                initialName = initialName.appending(String(format: "%C", oneChar))
+            }
+        }
+        return initialName
     }
 }
