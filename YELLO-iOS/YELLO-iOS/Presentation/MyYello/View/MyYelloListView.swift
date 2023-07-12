@@ -47,7 +47,9 @@ extension MyYelloListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        myYelloTableView.rowHeight = 66
+        // cell의 높이 + inset 8 더한 값
+        myYelloTableView.rowHeight = 74
+//        myYelloTableView.rowHeight = 98
         guard let defaultCell = myYelloTableView.dequeueReusableCell(withIdentifier: MyYelloKeywordTableViewCell.identifier, for: indexPath) as? MyYelloKeywordTableViewCell else { return UITableViewCell() }
         defaultCell.selectionStyle = .none
         return defaultCell

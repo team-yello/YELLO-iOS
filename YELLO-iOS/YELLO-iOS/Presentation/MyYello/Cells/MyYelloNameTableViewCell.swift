@@ -124,9 +124,8 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             $0.leading.equalTo(initialLabel.snp.trailing).inset(-2.adjusted)
         }
         
-        
         labelView.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(-2)
+            $0.top.equalTo(initialLabel.snp.bottom).offset(2)
             $0.height.equalTo(40)
             $0.leading.equalTo(initialLabel)
         }
