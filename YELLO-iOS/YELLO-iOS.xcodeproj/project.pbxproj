@@ -112,6 +112,7 @@
 		C3FF24872A5E844400A97D40 /* MyYelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24862A5E844400A97D40 /* MyYelloView.swift */; };
 		C3FF248A2A5E845A00A97D40 /* MyYelloEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24892A5E845A00A97D40 /* MyYelloEmptyView.swift */; };
 		C3FF248C2A5E846D00A97D40 /* MyYelloNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF248B2A5E846D00A97D40 /* MyYelloNavigationBarView.swift */; };
+		C3FF248E2A5E8DB700A97D40 /* TabbarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF248D2A5E8DB700A97D40 /* TabbarHeight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +218,7 @@
 		C3FF24862A5E844400A97D40 /* MyYelloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloView.swift; sourceTree = "<group>"; };
 		C3FF24892A5E845A00A97D40 /* MyYelloEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloEmptyView.swift; sourceTree = "<group>"; };
 		C3FF248B2A5E846D00A97D40 /* MyYelloNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloNavigationBarView.swift; sourceTree = "<group>"; };
+		C3FF248D2A5E8DB700A97D40 /* TabbarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarHeight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 			children = (
 				2AA0DBC02A552D63002B1370 /* YELLOTabBarItem.swift */,
 				2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */,
+				C3FF248D2A5E8DB700A97D40 /* TabbarHeight.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
+				C3FF248E2A5E8DB700A97D40 /* TabbarHeight.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,

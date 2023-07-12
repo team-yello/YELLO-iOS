@@ -97,6 +97,11 @@ enum StringLiterals {
             static let myYello = "내 쪽지"
             static let yelloNumber = "받은 쪽지"
         }
+        
+        enum Empty {
+            static let title = "아직 쪽지가 온 게 없어요."
+            static let description = "친구들이 나를 투표해주면 쪽지를 받을 수 있어요!"
+        }
     }
     
     enum Profile {
