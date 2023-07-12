@@ -156,22 +156,23 @@ extension UIColor {
   @nonobjc class var semanticStatusGreen500: UIColor {
     return UIColor(red: 104.0 / 255.0, green: 212.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
   }
+    
+    @nonobjc class var semanticGenderF300: UIColor {
+      return UIColor(red: 1.0, green: 186.0 / 255.0, blue: 232.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var semanticGenderF500: UIColor {
+      return UIColor(red: 242.0 / 255.0, green: 98.0 / 255.0, blue: 193.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var semanticGenderM300: UIColor {
+      return UIColor(red: 172.0 / 255.0, green: 206.0 / 255.0, blue: 1.0, alpha: 1.0)
+    }
 
-  @nonobjc class var semanticGenderF100: UIColor {
-    return UIColor(red: 1.0, green: 242.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
-  }
+    @nonobjc class var semanticGenderM500: UIColor {
+      return UIColor(red: 87.0 / 255.0, green: 154.0 / 255.0, blue: 1.0, alpha: 1.0)
+    }
 
-  @nonobjc class var semanticGenderF500: UIColor {
-    return UIColor(red: 1.0, green: 73.0 / 255.0, blue: 193.0 / 255.0, alpha: 1.0)
-  }
-
-  @nonobjc class var semanticGenderM100: UIColor {
-    return UIColor(red: 240.0 / 255.0, green: 246.0 / 255.0, blue: 1.0, alpha: 1.0)
-  }
-
-  @nonobjc class var semanticGenderM500: UIColor {
-    return UIColor(red: 54.0 / 255.0, green: 127.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
-  }
 
   @nonobjc class var voteEllipseE01: UIColor {
     return UIColor(red: 168.0 / 255.0, green: 146.0 / 255.0, blue: 1.0, alpha: 1.0)
