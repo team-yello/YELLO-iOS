@@ -178,12 +178,6 @@ final class BaseVotingMainView: BaseView {
     // MARK: - Layout
     
     override func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?
-            .statusBarManager?
-            .statusBarFrame.height ?? 20
-        
         let width = UIScreen.main.bounds.size.width
         
         self.addSubviews(yelloBalloon,

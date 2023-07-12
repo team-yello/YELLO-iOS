@@ -20,7 +20,8 @@ final class VotingViewController: BaseViewController {
     
     private let nameStackView = UIStackView()
     private let nameHead = UILabel()
-    let nameMiddleBackground = UIView()
+    let nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 86.adjusted, height: 34.adjusted))
+
     let nameMiddleText = UILabel()
     private let nameFoot = UILabel()
     
@@ -31,7 +32,7 @@ final class VotingViewController: BaseViewController {
     
     private let keywordStackView = UIStackView()
     private let keywordHead = UILabel()
-    let keywordMiddleBackground = UIView()
+    let keywordMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 150.adjusted, height: 34.adjusted))
     let keywordMiddleText = UILabel()
     private let keywordFoot = UILabel()
     
@@ -168,8 +169,8 @@ final class VotingViewController: BaseViewController {
         
         nameMiddleBackground.do {
             $0.backgroundColor = .grayscales900
-            $0.makeBorder(width: 1, color: .grayscales700)
-            $0.makeCornerRound(radius: 8)
+            $0.layer.cornerRadius = 8
+            $0.addDottedBorder()
         }
         
         nameMiddleText.do {
@@ -202,8 +203,8 @@ final class VotingViewController: BaseViewController {
         
         keywordMiddleBackground.do {
             $0.backgroundColor = .grayscales900
-            $0.makeBorder(width: 1, color: .grayscales700)
-            $0.makeCornerRound(radius: 8)
+            $0.layer.cornerRadius = 8
+            $0.addDottedBorder()
         }
         
         keywordMiddleText.do {
