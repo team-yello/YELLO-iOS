@@ -54,7 +54,6 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         
         nameLabel.do {
             $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 20)
-//            $0.text = "술자리에서 너가"
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
