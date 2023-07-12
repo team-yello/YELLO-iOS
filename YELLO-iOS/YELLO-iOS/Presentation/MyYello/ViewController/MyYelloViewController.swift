@@ -21,8 +21,11 @@ final class MyYelloViewController: BaseViewController {
     override func setLayout() {
         view.addSubviews(myYelloView)
         
+        let tabbarHeight = 60 + safeAreaBottomInset()
+
         myYelloView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
     }
 

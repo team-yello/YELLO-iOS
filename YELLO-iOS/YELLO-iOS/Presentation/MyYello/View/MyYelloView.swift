@@ -44,8 +44,6 @@ final class MyYelloView: BaseView {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
-        let tabbarHeight = 60 + safeAreaBottomInset()
-        
         self.addSubviews(myYellowNavigationBarView)
         
         myYellowNavigationBarView.snp.makeConstraints {
@@ -58,24 +56,23 @@ final class MyYelloView: BaseView {
             myYelloEmptyView.snp.makeConstraints {
                 $0.top.equalTo(myYellowNavigationBarView.snp.bottom)
                 $0.width.equalToSuperview()
-                $0.bottom.equalToSuperview().inset(tabbarHeight)
+                $0.bottom.equalToSuperview()
             }
         } else {
             self.addSubviews(myYelloListView)
             myYelloListView.snp.makeConstraints {
                 $0.top.equalTo(myYellowNavigationBarView.snp.bottom)
                 $0.width.equalToSuperview()
-                $0.bottom.equalToSuperview().inset(tabbarHeight)
+                $0.bottom.equalToSuperview()
             }
             
             self.addSubviews(unlockButton)
             unlockButton.snp.makeConstraints {
                 $0.leading.trailing.equalToSuperview().inset(16)
                 $0.height.equalTo(54)
-                $0.bottom.equalToSuperview().inset(tabbarHeight + 28.adjusted)
+                $0.bottom.equalTo(myYelloListView).inset(28)
             }
         }
-
     }
     
     @objc private func unlockButtonTapped() {

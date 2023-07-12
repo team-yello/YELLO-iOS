@@ -44,12 +44,12 @@ final class MyYelloNavigationBarView: BaseView {
                          yelloCountLabel)
         
         self.snp.makeConstraints {
-            $0.height.equalTo(74.adjustedHeight)
+            $0.height.equalTo(74)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10.adjusted)
-            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.top.equalToSuperview().inset(10)
+            $0.leading.equalToSuperview().inset(16)
         }
         
         yelloNumberLabel.snp.makeConstraints {

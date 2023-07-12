@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 func safeAreaBottomInset() -> CGFloat {
     if #available(iOS 11.0, *) {
         let window = UIApplication.shared.keyWindow

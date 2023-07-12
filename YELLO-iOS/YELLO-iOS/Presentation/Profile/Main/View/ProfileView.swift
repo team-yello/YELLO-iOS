@@ -89,7 +89,7 @@ extension ProfileView {
         navigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
             $0.width.equalToSuperview()
-            $0.height.equalTo(48.adjustedHeight)
+            $0.height.equalTo(48)
         }
         
         myFriendTableView.snp.makeConstraints {
