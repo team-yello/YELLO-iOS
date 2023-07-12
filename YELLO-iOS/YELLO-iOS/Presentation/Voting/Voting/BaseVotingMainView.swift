@@ -152,6 +152,11 @@ final class BaseVotingMainView: BaseView {
     // MARK: - Layout
     
     override func setLayout() {
+        let statusBarHeight = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
         
         self.addSubviews(yelloBalloon,
                          yelloProgress,
@@ -174,14 +179,17 @@ final class BaseVotingMainView: BaseView {
         
         yelloBalloon.snp.makeConstraints {
             $0.centerX.equalToSuperview()
+            $0.top.equalTo(self.safeAreaInsets).inset(statusBarHeight + 4.adjusted)
         }
         
         yelloProgress.snp.makeConstraints {
             $0.centerX.equalToSuperview()
+            $0.top.equalTo(self.safeAreaInsets).inset(statusBarHeight + 60.adjusted)
         }
         
         numOfPageLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(307.adjusted)
+            $0.top.equalTo(self.safeAreaInsets).inset(statusBarHeight + 40.adjusted)
         }
         
         tenPageLabel.snp.makeConstraints {
@@ -192,6 +200,7 @@ final class BaseVotingMainView: BaseView {
         questionBackground.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
             $0.height.equalTo(154.adjusted)
+            $0.top.equalTo(self.safeAreaInsets).inset(statusBarHeight + 132.adjusted)
         }
         
         nameOneButton.snp.makeConstraints {

@@ -258,11 +258,6 @@ final class VotingViewController: BaseViewController {
     // MARK: - Layout
     
     override func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?
-            .statusBarManager?
-            .statusBarFrame.height ?? 20
         
         originView.nameOneButton.addSubview(nameTextOne)
         originView.nameTwoButton.addSubview(nameTextTwo)
@@ -318,22 +313,6 @@ final class VotingViewController: BaseViewController {
         keywordMiddleText.snp.makeConstraints {
             $0.width.equalTo(144.adjusted)
             $0.height.equalTo(30.adjusted)
-        }
-        
-        originView.yelloBalloon.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 4.adjusted)
-        }
-        
-        originView.yelloProgress.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 60.adjusted)
-        }
-        
-        originView.numOfPageLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 40.adjusted)
-        }
-        
-        originView.questionBackground.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 132.adjusted)
         }
     }
     
