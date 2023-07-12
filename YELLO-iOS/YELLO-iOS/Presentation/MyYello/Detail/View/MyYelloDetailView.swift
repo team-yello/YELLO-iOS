@@ -137,14 +137,16 @@ extension MyYelloDetailView {
     @objc private func keywordButtonTapped() {
 //        showLackAlert()
 //        showUsePointAlert()
-        showGetHintAlert()
+//        showGetHintAlert()
+//        showUseSenderPointAlert()
+        showGetSenderHintAlert()
     }
     
     @objc private func senderButtonTapped() {
         
     }
 
-    @objc func showLackAlert() {
+    func showLackAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
         if let pointLackView {
@@ -156,10 +158,9 @@ extension MyYelloDetailView {
         pointLackView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         viewController.view.addSubview(pointLackView!)
-        
     }
     
-    @objc func showUsePointAlert() {
+    func showUsePointAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
         if let usePointView {
@@ -171,10 +172,39 @@ extension MyYelloDetailView {
         usePointView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         viewController.view.addSubview(usePointView!)
-        
     }
     
-    @objc func showGetHintAlert() {
+    func showGetHintAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let getHintView {
+            getHintView.removeFromSuperview()
+        }
+        
+        getHintView = GetHintView()
+        getHintView?.frame = viewController.view.bounds
+        getHintView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.view.addSubview(getHintView!)
+    }
+    
+    func showUseSenderPointAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let usePointView {
+            usePointView.removeFromSuperview()
+        }
+        
+        usePointView = UsePointView()
+        usePointView?.frame = viewController.view.bounds
+        usePointView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.view.addSubview(usePointView!)
+        usePointView?.titleLabel.text = "100" + StringLiterals.MyYello.Alert.senderPoint
+        usePointView?.keywordButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
+    }
+    
+    func showGetSenderHintAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
         if let getHintView {
@@ -187,5 +217,18 @@ extension MyYelloDetailView {
         
         viewController.view.addSubview(getHintView!)
         
+        getHintView?.titleLabel.text = StringLiterals.MyYello.Alert.senderTitle
+        getHintView?.hintLabel.text = "ㄱ"
+        
+        getHintView?.descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo((getHintView?.titleLabel.snp.bottom)!).offset(4)
+            $0.centerX.equalToSuperview()
+        }
+        
+        getHintView?.pointView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(18.adjusted)
+            $0.top.equalTo((getHintView?.hintLabel.snp.bottom)!).offset(30.adjusted)
+            $0.height.equalTo(52)
+        }
     }
 }

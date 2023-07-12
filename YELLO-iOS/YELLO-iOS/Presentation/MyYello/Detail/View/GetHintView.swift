@@ -17,7 +17,7 @@ final class GetHintView: BaseView {
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
     
-    let hintLabel = UILabel()
+    let hintLabel = BasePaddingLabel()
     
     let pointView = UIView()
     let pointImageView = UIImageView()
@@ -38,6 +38,12 @@ final class GetHintView: BaseView {
             $0.setTextWithLineHeight(text: StringLiterals.MyYello.Alert.keywordTitle, lineHeight: 24)
             $0.textColor = .white
             $0.font = .uiSubtitle02
+        }
+        
+        descriptionLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Alert.senderDescription, lineHeight: 15)
+            $0.textColor = .grayscales400
+            $0.font = .uiLabelMedium
         }
         
         hintLabel.do {
@@ -110,10 +116,6 @@ final class GetHintView: BaseView {
             $0.top.equalToSuperview().inset(32)
             $0.centerX.equalToSuperview()
         }
-        
-//        descriptionLabel.snp.makeConstraints {
-//            $0.top.equalTo(contentsView.)
-//        }
         
         hintLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(30)

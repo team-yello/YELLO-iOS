@@ -127,6 +127,7 @@
 		C3FF24AC2A5F33F400A97D40 /* PointLackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24AB2A5F33F400A97D40 /* PointLackView.swift */; };
 		C3FF24AF2A5F35FF00A97D40 /* UsePointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24AE2A5F35FF00A97D40 /* UsePointView.swift */; };
 		C3FF24B12A5F361C00A97D40 /* GetHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24B02A5F361C00A97D40 /* GetHintView.swift */; };
+		C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24B22A5F4D1F00A97D40 /* BasePaddingLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -247,6 +248,7 @@
 		C3FF24AB2A5F33F400A97D40 /* PointLackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLackView.swift; sourceTree = "<group>"; };
 		C3FF24AE2A5F35FF00A97D40 /* UsePointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsePointView.swift; sourceTree = "<group>"; };
 		C3FF24B02A5F361C00A97D40 /* GetHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHintView.swift; sourceTree = "<group>"; };
+		C3FF24B22A5F4D1F00A97D40 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -577,6 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A799CA2A494C7500D3EFD8 /* BaseViewController.swift */,
+				C3FF24B22A5F4D1F00A97D40 /* BasePaddingLabel.swift */,
 				C3A799CC2A494C8600D3EFD8 /* BaseView.swift */,
 			);
 			path = Base;
@@ -970,6 +973,7 @@
 				36E427722A5BCE860050B34E /* YelloGenderButton.swift in Sources */,
 				C3FF24B12A5F361C00A97D40 /* GetHintView.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
+				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
