@@ -24,6 +24,8 @@ enum StringLiterals {
         static let lockedText = "친구가 4명 이상 모이면\n투표를 시작할 수 있어요!"
         static let unLockedTitle = "친구 초대하고 기다리지 않기"
         static let unLockedText = "친구가 내 추천인 코드로 가입하면\n기다리지 않고 바로 투표할 수 있어요!"
+        static let recommendTitle  = "친구 초대하기"
+        static let recommendText = "찾는 친구가 없다면 친구를 초대해 보세요!\n함께 옐로할 수 있어요."
     }
     
     enum Recommending {
@@ -31,6 +33,16 @@ enum StringLiterals {
             static let recommend = "추천친구"
             static let kakaoFriend = "카톡 친구들"
             static let schoolFriend = "학교 친구들"
+        }
+        
+        enum Empty {
+            static let title = "지금 추천된 친구가 없어요!\n친구를 초대해볼까요?"
+            static let inviteButton = "친구 초대하기"
+        }
+        
+        enum Invite {
+            static let invite = "친구 초대하기"
+            static let inviteDescription = "찾는 친구가 없다면 친구를 초대해 보세요!"
         }
     }
     
@@ -59,7 +71,7 @@ enum StringLiterals {
             static let text = "시간이 지나면 다시 투표할 수 있어요!"
         }
     }
-    
+  
     enum Profile {
         enum NavigationBar {
             static let profile = "프로필"
