@@ -73,6 +73,19 @@ enum ImageLiterals {
 
     }
     
+    enum Profile {
+        static var imgDefaultProfile: UIImage { .load(named: "imgDefaultProfile") }
+        static var icPlus: UIImage { .load(named: "icPlus") }
+        static var icArrowUp: UIImage { .load(named: "icArrowUp") }
+        static var icArrowLeftWhite: UIImage { .load(named: "icArrowLeftWhite") }
+        static var btnDelete: UIImage { .load(named: "btnDelete") }
+    }
+    enum Recommending {
+        static var imgBannerInvite: UIImage { .load(named: "imgBannerInvite")}
+        static var icAddFriendButton: UIImage { .load(named: "icAddFriendButton")}
+        static var icAddFriendButtonTapped: UIImage { .load(named: "icAddFriendButtonTapped")}
+        static var icRight: UIImage { .load(named: "icRight")}
+    }
 }
 
 extension UIImage {
