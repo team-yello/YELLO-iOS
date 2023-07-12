@@ -128,7 +128,7 @@ enum StringLiterals {
             static let yelloButton = "투표하고 포인트 받기"
             static let keywordPoint = " 포인트로 키워드를 얻을까요?"
             static let senderPoint = " 포인트로 초성을 얻을까요?"
-            static let cancelButton = "아니요"
+            static let noButton = "아니요"
             static let keywordButton = "키워드 얻기"
             static let senderButton = "초성 얻기"
             static let keywordTitle = "쪽지의 키워드를 얻었어요!"

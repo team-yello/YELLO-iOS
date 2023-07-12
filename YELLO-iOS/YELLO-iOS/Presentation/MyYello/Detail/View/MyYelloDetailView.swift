@@ -17,6 +17,7 @@ final class MyYelloDetailView: BaseView {
     let genderLabel = UILabel()
     let detailKeywordView = DetailKeywordView()
     var pointLackView: PointLackView?
+    var usePointView: UsePointView?
     
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
@@ -133,14 +134,15 @@ extension MyYelloDetailView {
     }
     
     @objc private func keywordButtonTapped() {
-        showAlert()
+//        showLackAlert()
+        showUsePointAlert()
     }
     
     @objc private func senderButtonTapped() {
         
     }
 
-    @objc func showAlert() {
+    @objc func showLackAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
         if let pointLackView {
@@ -152,6 +154,21 @@ extension MyYelloDetailView {
         pointLackView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         viewController.view.addSubview(pointLackView!)
+        
+    }
+    
+    @objc func showUsePointAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let usePointView {
+            usePointView.removeFromSuperview()
+        }
+        
+        usePointView = UsePointView()
+        usePointView?.frame = viewController.view.bounds
+        usePointView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.view.addSubview(usePointView!)
         
     }
 }
