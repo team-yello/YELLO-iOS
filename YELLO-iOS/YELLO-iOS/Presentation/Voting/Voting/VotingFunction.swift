@@ -8,36 +8,7 @@
 import UIKit
 
 extension VotingViewController {
-    func createTwoLineLabel(text: String, firstLineFont: UIFont, firstLineColor: UIColor, secondLineFont: UIFont, secondLineColor: UIColor) -> UILabel {
-        let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: text)
-        
-        // 첫 번째 줄 속성 적용
-        attributedText.addAttribute(.font, value: firstLineFont, range: NSRange(location: 0, length: 3))
-        attributedText.addAttribute(.foregroundColor, value: firstLineColor, range: NSRange(location: 0, length: 3))
-        
-        // 두 번째 줄 속성 적용
-        attributedText.addAttribute(.font, value: secondLineFont, range: NSRange(location: 3, length: text.count - 3))
-        attributedText.addAttribute(.foregroundColor, value: secondLineColor, range: NSRange(location: 3, length: text.count - 3))
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.3
-        attributedText.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
-        
-        label.attributedText = attributedText
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        
-        return label
-    }
-    
-    func updateLabelAppearance(_ label: UILabel) {
-        let attributedString = NSMutableAttributedString(string: label.text ?? "")
-        attributedString.addAttributes([.foregroundColor: UIColor.yelloMain500, .font: UIFont.uiBodyMedium], range: NSRange(location: 0, length: 3))
-        attributedString.addAttributes([.foregroundColor: UIColor.grayscales600, .font: UIFont.uiLabelSmall], range: NSRange(location: 3, length: attributedString.length - 3))
-        label.attributedText = attributedString
-    }
-    
+    /// 10개 투표지의 style을 dummy에 따라 설정
     func setVotingView() {
         let dummy = VotingDummy.dummy()
         
@@ -55,6 +26,7 @@ extension VotingViewController {
         self.originView.numOfPageLabel.text = String(VotingViewController.pushCount + 1)
     }
     
+    /// 다음 뷰컨을 지정하는 함수
     func setNextViewController() {
         var viewController = UIViewController()
         // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
@@ -110,7 +82,7 @@ extension VotingViewController {
             
             if button.isEnabled {
                 let selectedText = nameTexts[index]
-                updateLabelAppearance(selectedText)
+                selectedText.updateLabelAppearance()
                 nameMiddleText.text = selectedText.text
             } else {
                 let unselectedText = nameTexts[index]

@@ -117,25 +117,25 @@ final class VotingViewController: BaseViewController {
         let secondLineFont = UIFont.uiLabelSmall
         let secondLineColor = UIColor.grayscales600
         
-        nameTextOne = createTwoLineLabel(text: StringLiterals.Voting.VoteName.one,
+        nameTextOne = UILabel.createTwoLineLabel(text: StringLiterals.Voting.VoteName.one,
                                          firstLineFont: firstLineFont,
                                          firstLineColor: firstLineColor,
                                          secondLineFont: secondLineFont,
                                          secondLineColor: secondLineColor)
         
-        nameTextTwo = createTwoLineLabel(text: StringLiterals.Voting.VoteName.two,
+        nameTextTwo = UILabel.createTwoLineLabel(text: StringLiterals.Voting.VoteName.two,
                                          firstLineFont: firstLineFont,
                                          firstLineColor: firstLineColor,
                                          secondLineFont: secondLineFont,
                                          secondLineColor: secondLineColor)
         
-        nameTextThree = createTwoLineLabel(text: StringLiterals.Voting.VoteName.three,
+        nameTextThree = UILabel.createTwoLineLabel(text: StringLiterals.Voting.VoteName.three,
                                            firstLineFont: firstLineFont,
                                            firstLineColor: firstLineColor,
                                            secondLineFont: secondLineFont,
                                            secondLineColor: secondLineColor)
         
-        nameTextFour = createTwoLineLabel(text: StringLiterals.Voting.VoteName.four,
+        nameTextFour = UILabel.createTwoLineLabel(text: StringLiterals.Voting.VoteName.four,
                                           firstLineFont: firstLineFont,
                                           firstLineColor: firstLineColor,
                                           secondLineFont: secondLineFont,
