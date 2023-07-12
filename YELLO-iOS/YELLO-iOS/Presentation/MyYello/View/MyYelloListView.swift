@@ -16,7 +16,7 @@ final class MyYelloListView: BaseView {
     
     override func setStyle() {
         self.backgroundColor = .black
-        
+
         myYelloTableView.do {
             $0.register(MyYelloDefaultTableViewCell.self, forCellReuseIdentifier: MyYelloDefaultTableViewCell.identifier)
             $0.register(MyYelloKeywordTableViewCell.self, forCellReuseIdentifier: MyYelloKeywordTableViewCell.identifier)
@@ -83,5 +83,13 @@ extension MyYelloListView: UITableViewDataSource {
         } else {
             return 74
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 102
     }
 }
