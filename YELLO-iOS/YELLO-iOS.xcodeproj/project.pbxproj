@@ -42,7 +42,6 @@
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
-		C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7999A2A49490A00D3EFD8 /* ViewController.swift */; };
 		C3A799A02A49490D00D3EFD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A7999F2A49490D00D3EFD8 /* Assets.xcassets */; };
 		C3A799A32A49490D00D3EFD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A799A12A49490D00D3EFD8 /* LaunchScreen.storyboard */; };
 		C3A799AC2A49499500D3EFD8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799AB2A49499500D3EFD8 /* Then */; };
@@ -82,6 +81,25 @@
 		C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */; };
 		C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */; };
 		C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */; };
+		C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */; };
+		C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */; };
+		C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */; };
+		C3D266412A5C76190041C7C7 /* ProfileCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266402A5C76190041C7C7 /* ProfileCountView.swift */; };
+		C3D266432A5C771F0041C7C7 /* MyProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */; };
+		C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266442A5C776F0041C7C7 /* ProfileView.swift */; };
+		C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */; };
+		C3D266492A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */; };
+		C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2664B2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift */; };
+		C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */; };
+		C3D266532A5D20170041C7C7 /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */; };
+		C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */; };
+		C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */; };
+		C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */; };
+		C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */; };
+		C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */; };
+		C3FF24752A5D6E9500A97D40 /* WithdrawalAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */; };
+		C3FF24772A5D796B00A97D40 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24762A5D796B00A97D40 /* FriendProfileViewController.swift */; };
+		C3FF24792A5D798700A97D40 /* FriendProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24782A5D798700A97D40 /* FriendProfileView.swift */; };
 		C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BEB2A5C03BA00B84CAA /* InviteBannerView.swift */; };
 		C3C57BF02A5C06C600B84CAA /* KakaoFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */; };
 		C3C57BF32A5C089600B84CAA /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */; };
@@ -127,7 +145,6 @@
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C3A7999A2A49490A00D3EFD8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C3A7999F2A49490D00D3EFD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3A799A22A49490D00D3EFD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3A799A42A49490D00D3EFD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +180,25 @@
 		C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingSegmentedControl.swift; sourceTree = "<group>"; };
 		C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendViewController.swift; sourceTree = "<group>"; };
 		C3C57BC62A57160000B84CAA /* SchoolFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendViewController.swift; sourceTree = "<group>"; };
+		C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountCustomView.swift; sourceTree = "<group>"; };
+		C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		C3D266402A5C76190041C7C7 /* ProfileCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCountView.swift; sourceTree = "<group>"; };
+		C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderView.swift; sourceTree = "<group>"; };
+		C3D266442A5C776F0041C7C7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendTableViewCell.swift; sourceTree = "<group>"; };
+		C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewHeaderFooterView+.swift"; sourceTree = "<group>"; };
+		C3D2664B2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigationBarView.swift; sourceTree = "<group>"; };
+		C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
+		C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCustomButton.swift; sourceTree = "<group>"; };
+		C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
+		C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalView.swift; sourceTree = "<group>"; };
+		C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckView.swift; sourceTree = "<group>"; };
+		C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckViewController.swift; sourceTree = "<group>"; };
+		C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalAlertView.swift; sourceTree = "<group>"; };
+		C3FF24762A5D796B00A97D40 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
+		C3FF24782A5D798700A97D40 /* FriendProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileView.swift; sourceTree = "<group>"; };
 		C3C57BEB2A5C03BA00B84CAA /* InviteBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteBannerView.swift; sourceTree = "<group>"; };
 		C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendView.swift; sourceTree = "<group>"; };
 		C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -240,7 +276,8 @@
 		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
+				C3D2664A2A5D1F2D0041C7C7 /* Main */,
+				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -379,7 +416,6 @@
 				C3A799B92A494A6800D3EFD8 /* Application */,
 				C3A799BA2A494A7700D3EFD8 /* Global */,
 				C3A799C92A494B8E00D3EFD8 /* Presentation */,
-				C3A7999A2A49490A00D3EFD8 /* ViewController.swift */,
 				C3A799C82A494B8800D3EFD8 /* Network */,
 			);
 			path = "YELLO-iOS";
@@ -420,6 +456,7 @@
 				C3A4615A2A4FD44800734EF8 /* adjust+.swift */,
 				367F1CD32A54193700CDF47B /* UIColor+.swift */,
 				2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */,
+				C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -513,6 +550,17 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		C3D2663E2A5C75EE0041C7C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
+				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
+				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
+				C3D266402A5C76190041C7C7 /* ProfileCountView.swift */,
+				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
+				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
+				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
+				C3FF24782A5D798700A97D40 /* FriendProfileView.swift */,
 		C3C57BED2A5C066200B84CAA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +573,11 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C3D2663F2A5C75FA0041C7C7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
+				C3FF24762A5D796B00A97D40 /* FriendProfileViewController.swift */,
 		C3C57BEE2A5C066B00B84CAA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +588,53 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		C3D2664A2A5D1F2D0041C7C7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C3D2663F2A5C75FA0041C7C7 /* ViewController */,
+				C3D2663E2A5C75EE0041C7C7 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		C3D2664D2A5D1F4F0041C7C7 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C3FF246D2A5D477400A97D40 /* Withdrawal */,
+				C3D266502A5D1FA80041C7C7 /* ViewController */,
+				C3D266512A5D1FBA0041C7C7 /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		C3D266502A5D1FA80041C7C7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3D2664B2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C3D266512A5D1FBA0041C7C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3D266522A5D20170041C7C7 /* ProfileSettingView.swift */,
+				C3D2664E2A5D1FA50041C7C7 /* SettingNavigationBarView.swift */,
+				C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C3FF246D2A5D477400A97D40 /* Withdrawal */ = {
+			isa = PBXGroup;
+			children = (
+				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
+				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
+				C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */,
+				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
+				C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */,
+			);
+			path = Withdrawal;
 		C3C57BF12A5C087600B84CAA /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,6 +773,7 @@
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
 				C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */,
 				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
+				C3D266492A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
@@ -680,45 +781,63 @@
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
 				C3A799EA2A494D6800D3EFD8 /* UIView+.swift in Sources */,
+				C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
+				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,
 				36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */,
+				C3FF24752A5D6E9500A97D40 /* WithdrawalAlertView.swift in Sources */,
 				36E427712A5BCE860050B34E /* YelloGuideLabel.swift in Sources */,
 				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
 				2AD1A1BB2A59559100CB988B /* VotingPointViewController.swift in Sources */,
 				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
+				C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */,
 				C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */,
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
 				36E4276A2A5BCE860050B34E /* Constraints.swift in Sources */,
+				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
+				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
 				C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */,
 				C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
+				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				36E4276B2A5BCE860050B34E /* GenderViewController.swift in Sources */,
+				C3FF24772A5D796B00A97D40 /* FriendProfileViewController.swift in Sources */,
+				C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
 				C3C57BF02A5C06C600B84CAA /* KakaoFriendView.swift in Sources */,
 				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
 				2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
+				C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */,
 				36E427722A5BCE860050B34E /* YelloGenderButton.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
+				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
+				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
 				2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */,
+				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
+				C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
+				C3D266412A5C76190041C7C7 /* ProfileCountView.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
+				C3D266532A5D20170041C7C7 /* ProfileSettingView.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
 				2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */,
+				C3D266432A5C771F0041C7C7 /* MyProfileHeaderView.swift in Sources */,
+				C3FF24792A5D798700A97D40 /* FriendProfileView.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				36E4276E2A5BCE860050B34E /* GenderView.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
@@ -858,6 +977,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q827V73L8U;
@@ -875,6 +995,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "chaen.YELLO-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -886,6 +1007,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q827V73L8U;
@@ -903,6 +1025,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "chaen.YELLO-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
