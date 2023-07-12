@@ -30,6 +30,15 @@ class UserInfoView: UIView {
     }
     
     private func setStyle() {
+        
+        nameTextField.textField.do {
+            $0.delegate = self
+        }
+        
+        idTextField.textField.do {
+            $0.delegate = self
+        }
+        
         idLabel.do {
             $0.text = "@"
         }
@@ -50,10 +59,3 @@ class UserInfoView: UIView {
     }
 }
 
-// MARK: - extension
-// MARK: UITextFieldDelegate
-extension UserInfoView: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.backgroundColor = .grayscales100
-    }
-}

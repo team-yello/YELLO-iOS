@@ -24,4 +24,20 @@ class UserInfoViewController: OnboardingBaseViewController {
         }
     }
     
+    func setDelegate() {
+        
+    }
+    
+    func checkButtonEnable() {
+        let nameText = baseView.nameTextField.textField.text ?? ""
+        let idText = baseView.idTextField.textField.text ?? ""
+        
+        let isNameTextFilled = !nameText.isEmpty
+        let isIDTextFilled = !idText.isEmpty
+        
+        let isButtonEnabled = isNameTextFilled && isIDTextFilled
+        
+        nextButton.setButtonEnable(state: isButtonEnabled)
+    }
+    
 }

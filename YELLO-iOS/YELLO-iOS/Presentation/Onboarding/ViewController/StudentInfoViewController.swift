@@ -59,12 +59,25 @@ extension StudentInfoViewController: UITextFieldDelegate {
             return
         }
     }
+    
+    func checkButtonEnable() {
+        let majorText = baseView.majorTextField.textField.text ?? ""
+        let studentIDText = baseView.studentIDTextField.textField.text ?? ""
+        
+        let isMajorTextFilled = !majorText.isEmpty
+        let isStudentIDTextFilled = !studentIDText.isEmpty
+        
+        let isButtonEnabled = isMajorTextFilled && isStudentIDTextFilled
+        
+        nextButton.setButtonEnable(state: isButtonEnabled)
+    }
 }
 
 extension StudentInfoViewController: SearchResultTableViewSelectDelegate {
     func didSelectSearchResult(_ result: String) {
         baseView.majorTextField.textField.setButtonState(state: .done)
         baseView.majorTextField.textField.text = result
+        checkButtonEnable()
     }
 }
 
@@ -72,5 +85,6 @@ extension StudentInfoViewController: SelectStudentIdDelegate {
     func didSelectStudentId(_ result: String) {
         baseView.studentIDTextField.textField.setButtonState(state: .done)
         baseView.studentIDTextField.textField.text = result
+        checkButtonEnable()
     }
 }
