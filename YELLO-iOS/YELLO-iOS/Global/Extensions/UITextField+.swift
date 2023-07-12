@@ -10,16 +10,16 @@ import UIKit
 extension UITextField {
     
     func setPlaceholderColor(_ placeholderColor: UIColor) {
-                guard let string = self.placeholder else {
-                    return
-                }
-                attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor: placeholderColor])
+        guard let string = self.placeholder else {
+            return
+        }
+        attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor: placeholderColor])
     }
     
     func addLeftPadding(_ value: Double) {
-      let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: value, height: self.frame.height))
-      self.leftView = paddingView
-      self.leftViewMode = ViewMode.always
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: value, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = ViewMode.always
     }
     
     func addRightPadding(_ amount: CGFloat) {
