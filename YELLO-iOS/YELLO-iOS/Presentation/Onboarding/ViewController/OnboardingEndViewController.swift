@@ -9,9 +9,11 @@ import UIKit
 
 class OnboardingEndViewController: BaseViewController {
     
+    let baseView = OnboardingEndView()
+    
     override func loadView() {
         super.loadView()
-        view = OnboardingEndView()
+        view = baseView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,7 +23,15 @@ class OnboardingEndViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addTarget()
+    }
+    
+    private func addTarget() {
+        baseView.goToYelloButton.addTarget(self, action: #selector(yelloButtondidTap), for: .touchUpInside)
+    }
+    
+    @objc func yelloButtondidTap() {
+        navigationController?.pushViewController(VotingStartViewController(), animated: true)
     }
     
 }

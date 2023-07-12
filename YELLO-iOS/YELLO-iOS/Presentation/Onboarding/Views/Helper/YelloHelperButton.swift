@@ -36,7 +36,7 @@ extension YelloHelperButton {
     
     private func setStyle() {
         self.setTitle(buttonText, for: .normal)
-        self.setTitleColor(.gray, for: .normal)
+        self.setTitleColor(.grayscales500, for: .normal)
         self.titleLabel?.font = .systemFont(ofSize: 12)
         self.setUnderline()
 

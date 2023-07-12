@@ -38,17 +38,20 @@ class YelloGenderButton: UIButton {
         
         self.do {
             $0.makeCornerRound(radius: CGFloat(Constraints.round))
-            self.backgroundColor = .grayscales50
+            $0.backgroundColor = .grayscales900
+            $0.makeBorder(width: 1, color: .grayscales400)
             $0.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         }
         
         iconImageView.do {
-            $0.backgroundColor = .grayscales300
+            let genderIconImage = ImageLiterals.OnBoarding.icYelloFace.withTintColor(.semanticGenderM500, renderingMode: .alwaysOriginal).resize(to: CGSize(width: 30, height: 40))
+            $0.image = genderIconImage
+            
         }
         genderLabel.do {
             $0.text = buttonText
             $0.font = .uiSubtitle02
-            $0.textColor = .black
+            $0.textColor = .semanticGenderM500
         }
         stackView.do {
             $0.addArrangedSubviews(iconImageView, genderLabel)
@@ -61,8 +64,8 @@ class YelloGenderButton: UIButton {
     private func setLayout() {
         self.addSubviews(stackView)
         
-        iconImageView.snp.makeConstraints {
-            $0.size.equalTo(98)
+        self.snp.makeConstraints {
+            $0.height.equalTo(146)
         }
         
         stackView.snp.makeConstraints {

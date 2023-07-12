@@ -18,6 +18,7 @@ enum iconState {
     case cancel
     case toggle
     case error
+    case done
 }
 
 final class YelloTextField: UITextField {
@@ -67,17 +68,20 @@ extension YelloTextField {
     }
     
     private func setStyle() {
+        self.backgroundColor = .black
+        self.textColor = .white
         self.addLeftPadding(20)
         self.rightViewMode = .always
         self.leftViewMode = .always
         
         self.do {
-            $0.makeBorder(width: 1, color: .grayscales400)
+            $0.makeBorder(width: 1, color: .grayscales600)
             $0.makeCornerRound(radius: 8)
         }
         
         searchImageView.do {
             $0.image = ImageLiterals.OnBoarding.icSearch
+                .withTintColor(.grayscales600, renderingMode: .alwaysOriginal)
         }
         
         cancelButton.do {
@@ -96,6 +100,7 @@ extension YelloTextField {
         idLabel.do {
             $0.text = "@"
             $0.font = .uiBodyLarge
+            $0.textColor = .white
         }
         idLabelStackView.do {
             $0.distribution = .fillEqually
@@ -136,9 +141,12 @@ extension YelloTextField {
             idLabelStackView.addArrangedSubviews(paddingView, idLabel)
             self.leftView = idLabelStackView
             self.rightViewMode = .never
+        case .done:
+            self.backgroundColor = .grayscales900
+            self.layer.borderColor = UIColor.grayscales500.cgColor
             
         }
         self.rightView = buttonStackView
-        
+    
     }
 }

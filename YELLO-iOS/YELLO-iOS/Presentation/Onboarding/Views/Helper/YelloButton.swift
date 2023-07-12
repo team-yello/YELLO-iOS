@@ -53,8 +53,8 @@ extension YelloButton {
         
         switch self.isEnabled {
         case true:
-            self.backgroundColor = .black
-            self.setTitleColor(.yelloMain500, for: .normal)
+            self.backgroundColor = .yelloMain700
+            self.setTitleColor(.black, for: .normal)
         case false:
             self.backgroundColor = .grayscales500
             self.titleLabel?.textColor = .grayscales400

@@ -38,6 +38,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
         if let sheet = nav.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
+            sheet.invalidateDetents()
         }
         
         present(nav, animated: true, completion: nil)
@@ -62,14 +63,14 @@ extension StudentInfoViewController: UITextFieldDelegate {
 
 extension StudentInfoViewController: SearchResultTableViewSelectDelegate {
     func didSelectSearchResult(_ result: String) {
-        baseView.majorTextField.textField.backgroundColor = .grayscales50
+        baseView.majorTextField.textField.setButtonState(state: .done)
         baseView.majorTextField.textField.text = result
     }
 }
 
 extension StudentInfoViewController: SelectStudentIdDelegate {
     func didSelectStudentId(_ result: String) {
-        baseView.studentIDTextField.textField.backgroundColor = .grayscales50
+        baseView.studentIDTextField.textField.setButtonState(state: .done)
         baseView.studentIDTextField.textField.text = result
     }
 }

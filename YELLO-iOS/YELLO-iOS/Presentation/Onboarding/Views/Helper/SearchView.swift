@@ -25,20 +25,21 @@ class SearchView: BaseView {
     }
     
     override func setStyle() {
-        self.backgroundColor = .white
-        
         titleLabel.do {
             $0.font = .uiSubtitle02
+            $0.textColor = .white
         }
         
         cancelButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.icX, for: .normal)
+            $0.setImage(ImageLiterals.OnBoarding.icX.withTintColor(.white, renderingMode: .alwaysOriginal),
+                        for: .normal)
         }
         
         searchResultTableView.do {
             $0.rowHeight = 64
             $0.separatorStyle = .none
             $0.register(SearchResultTableViewCell.self, forCellReuseIdentifier: "SearchResultTableViewCell")
+            $0.backgroundColor = .black
             
         }
         

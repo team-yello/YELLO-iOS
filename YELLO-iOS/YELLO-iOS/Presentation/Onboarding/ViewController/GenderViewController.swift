@@ -7,12 +7,15 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 class GenderViewController: OnboardingBaseViewController {
     
     let baseView = GenderView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.nextViewController = RecommandIdViewController()
+        super.nextViewController = AddFriendsViewController()
     }
     override func setLayout() {
         view.addSubview(baseView)

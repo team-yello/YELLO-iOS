@@ -26,12 +26,13 @@ class StudentIdViewController: BaseViewController {
     }
     
     override func setStyle() {
-        view.backgroundColor = .white
         view.addSubview(studentIdTableView)
+        view.backgroundColor = .grayscales900
         studentIdTableView.do {
             $0.dataSource = self
             $0.delegate = self
             $0.rowHeight = 42 // 셀의 높이를 42로 설정
+            $0.backgroundColor = .grayscales900
             $0.separatorStyle = .none
             $0.tableHeaderView = UIView()
         }
@@ -54,8 +55,11 @@ extension StudentIdViewController: UITableViewDataSource {
         let cell = UITableViewCell(style: .default, reuseIdentifier: .none)
         cell.textLabel?.text = studentIdList[indexPath.row]
         cell.textLabel?.font = .uiBodyLarge
+        cell.textLabel?.textColor = .white
+        cell.makeCornerRound(radius: CGFloat(Constraints.round))
+        cell.backgroundColor = .grayscales900
         cell.textLabel?.textAlignment = .center
-        cell.selectionStyle = .none
+        cell.selectionStyle = .gray
         return cell
     }
 }

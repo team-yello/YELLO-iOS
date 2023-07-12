@@ -43,17 +43,18 @@ extension SearchResultTableViewCell {
     }
     
     private func setStyle() {
-        
+        self.backgroundColor = .black
         searchView.do {
             $0.makeCornerRound(radius: 21)
-            $0.backgroundColor = .grayscales100
+            $0.backgroundColor = .grayscales800
         }
         
         searchImageView.do {
-            $0.image = ImageLiterals.OnBoarding.icSearch.withTintColor(.grayscales400, renderingMode: .alwaysOriginal)
+            $0.image = ImageLiterals.OnBoarding.icSearch.withTintColor(.grayscales500, renderingMode: .alwaysOriginal)
         }
         titleLabel.do {
             $0.font = .uiBodyLarge
+            $0.textColor = .white
         }
         
     }

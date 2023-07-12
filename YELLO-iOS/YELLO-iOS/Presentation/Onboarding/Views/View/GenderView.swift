@@ -20,6 +20,7 @@ class GenderView: BaseView {
     override func setStyle() {
         buttonStackView.do {
             $0.addArrangedSubviews(maleButton, femaleButton)
+            $0.axis = .vertical
             $0.distribution = .fillEqually
             $0.spacing = 9
         }
@@ -36,7 +37,6 @@ class GenderView: BaseView {
         buttonStackView.snp.makeConstraints {
             $0.top.equalTo(guideLabel.snp.bottom).offset(Constraints.topMargin)
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
-            $0.height.equalTo(146)
         }
         
     }

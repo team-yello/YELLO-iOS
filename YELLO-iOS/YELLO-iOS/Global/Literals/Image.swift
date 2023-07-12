@@ -10,9 +10,9 @@ import UIKit
 enum ImageLiterals {
     
     enum OnBoarding {
-        static var icArrowLeft: UIImage { .load(named: "icArrowLeft") }
-        static var icChevronDown: UIImage { .load(named: "icChevronDown") }
-        static var icSearch: UIImage { .load(named: "icSearch") }
+        static var icArrowLeft: UIImage { .load(named: "icArrowLeft").withTintColor(.white, renderingMode: .alwaysOriginal)}
+        static var icChevronDown: UIImage { .load(named: "icChevronDown").withTintColor(.grayscales500, renderingMode: .alwaysOriginal) }
+        static var icSearch: UIImage { .load(named: "icSearch").withTintColor(.grayscales500, renderingMode: .alwaysOriginal) }
         static var icX: UIImage { .load(named: "icX") }
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
         static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
