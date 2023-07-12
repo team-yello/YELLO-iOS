@@ -13,6 +13,10 @@ struct FriendModel {
     var isButtonSelected: Bool
 }
 
+protocol FriendsTableViewCellDelegate: AnyObject {
+    func friendCell(_ cell: FriendsTableViewCell, didTapButtonAt indexPath: IndexPath, isSelected: Bool)
+}
+
 class FriendsTableViewCell: UITableViewCell {
     
     let profileImageView = UIImageView()
@@ -21,6 +25,7 @@ class FriendsTableViewCell: UITableViewCell {
     lazy var checkButton = UIButton()
     lazy var stackView = UIStackView()
     let selectedOverlayView = UIView()
+    weak var delegate: FriendsTableViewCellDelegate?
     
     var isTapped: Bool = false {
         didSet {
@@ -47,9 +52,17 @@ class FriendsTableViewCell: UITableViewCell {
         schoolLabel.text = model.school
         self.isTapped = model.isButtonSelected
         updateCheckButtonImage()
-        selectedOverlayView.isHidden = !isTapped
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        profileImageView.image = nil
+        nameLabel.text = nil
+        schoolLabel.text = nil
+        isTapped = false
+        selectedOverlayView.isHidden = true
+    }
     
     private func updateCheckButtonImage() {
         let imageName = isTapped ? ImageLiterals.OnBoarding.icCheckCircleEnable : ImageLiterals.OnBoarding.icCheckCircle
@@ -59,21 +72,36 @@ class FriendsTableViewCell: UITableViewCell {
     @objc func checkButtonDidTap() {
         isTapped.toggle()
         
+        updateCheckButtonImage()
+        
         if isTapped {
-            // 흰색 뷰 생성
-            selectedOverlayView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-            contentView.addSubview(selectedOverlayView)
-            contentView.bringSubviewToFront(selectedOverlayView)
-            selectedOverlayView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+            if selectedOverlayView.superview == nil {
+                // 흰색 뷰 생성
+                selectedOverlayView.backgroundColor = .black.withAlphaComponent(0.5)
+                contentView.addSubview(selectedOverlayView)
+                contentView.bringSubviewToFront(selectedOverlayView)
+                selectedOverlayView.snp.makeConstraints {
+                    $0.top.leading.bottom.equalToSuperview()
+                    $0.trailing.equalToSuperview().inset(50)
+                }
+                
             }
-            checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleEnable, for: .normal)
         } else {
             // 선택 해제 시 흰색 뷰 제거
             selectedOverlayView.removeFromSuperview()
-            checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircle, for: .normal)
+        }
+        
+        // FriendModel의 isButtonSelected 값을 변경
+        if let indexPath = getIndexPath() {
+            delegate?.friendCell(self, didTapButtonAt: indexPath, isSelected: isTapped)
         }
     }
+    
+    private func getIndexPath() -> IndexPath? {
+        guard let tableView = superview as? UITableView else { return nil }
+        return tableView.indexPath(for: self)
+    }
+    
 }
 
 extension FriendsTableViewCell {
@@ -97,6 +125,10 @@ extension FriendsTableViewCell {
             $0.textColor = .grayscales400
         }
         
+        checkButton.do {
+            $0.addTarget(self, action: #selector(checkButtonDidTap), for: .touchUpInside)
+        }
+        
         stackView.do {
             $0.addArrangedSubviews(nameLabel, schoolLabel)
             $0.axis = .vertical
@@ -105,13 +137,12 @@ extension FriendsTableViewCell {
         
         selectedOverlayView.do {
             $0.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-            $0.isHidden = true
         }
         
     }
     
     private func setLayout() {
-        self.addSubviews(profileImageView, stackView, checkButton)
+        contentView.addSubviews(profileImageView, stackView, checkButton)
         
         profileImageView.snp.makeConstraints {
             $0.size.equalTo(42)
@@ -129,20 +160,6 @@ extension FriendsTableViewCell {
             $0.centerY.equalToSuperview()
         }
         
-        contentView.addSubview(selectedOverlayView)
-        selectedOverlayView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
     }
     
-}
-
-// MARK: - extension
-/// 버튼이 터치 됐을 때 검사
-extension FriendsTableViewCell {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        checkButtonDidTap()
-    }
 }
