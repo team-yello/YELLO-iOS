@@ -41,13 +41,16 @@ extension UILabel {
         let label = UILabel()
         let attributedText = NSMutableAttributedString(string: text)
         
+        let lines = text.components(separatedBy: "\n")
+        let firstLineLength = lines.first?.count ?? 3
+
         // 첫 번째 줄 속성 적용
-        attributedText.addAttribute(.font, value: firstLineFont, range: NSRange(location: 0, length: 3))
-        attributedText.addAttribute(.foregroundColor, value: firstLineColor, range: NSRange(location: 0, length: 3))
+        attributedText.addAttribute(.font, value: firstLineFont, range: NSRange(location: 0, length: firstLineLength))
+        attributedText.addAttribute(.foregroundColor, value: firstLineColor, range: NSRange(location: 0, length: firstLineLength))
         
         // 두 번째 줄 속성 적용
-        attributedText.addAttribute(.font, value: secondLineFont, range: NSRange(location: 3, length: text.count - 3))
-        attributedText.addAttribute(.foregroundColor, value: secondLineColor, range: NSRange(location: 3, length: text.count - 3))
+        attributedText.addAttribute(.font, value: secondLineFont, range: NSRange(location: firstLineLength, length: text.count - firstLineLength))
+        attributedText.addAttribute(.foregroundColor, value: secondLineColor, range: NSRange(location: firstLineLength, length: text.count - firstLineLength))
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.3
@@ -59,13 +62,16 @@ extension UILabel {
         
         return label
     }
-    
+
     /// 텍스트가 두 줄일 때 첫째줄의 색상만 바꾸는 함수
     func updateLabelAppearance() {
+        let lines = self.text?.components(separatedBy: "\n")
+        let firstLineLength = lines?.first?.count ?? 3
+        
         let attributedString = NSMutableAttributedString(string: self.text ?? "")
-        attributedString.addAttributes([.foregroundColor: UIColor.yelloMain500, .font: UIFont.uiBodyMedium], range: NSRange(location: 0, length: 3))
-        attributedString.addAttributes([.foregroundColor: UIColor.grayscales600, .font: UIFont.uiLabelSmall], range: NSRange(location: 3, length: attributedString.length - 3))
+        attributedString.addAttributes([.foregroundColor: UIColor.yelloMain500, .font: UIFont.uiBodyMedium], range: NSRange(location: 0, length: firstLineLength))
+        attributedString.addAttributes([.foregroundColor: UIColor.grayscales600, .font: UIFont.uiLabelSmall], range: NSRange(location: firstLineLength, length: attributedString.length - firstLineLength))
         self.attributedText = attributedString
     }
-    
+ 
 }
