@@ -113,6 +113,10 @@
 		C3FF248A2A5E845A00A97D40 /* MyYelloEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24892A5E845A00A97D40 /* MyYelloEmptyView.swift */; };
 		C3FF248C2A5E846D00A97D40 /* MyYelloNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF248B2A5E846D00A97D40 /* MyYelloNavigationBarView.swift */; };
 		C3FF248E2A5E8DB700A97D40 /* TabbarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF248D2A5E8DB700A97D40 /* TabbarHeight.swift */; };
+		C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF248F2A5E8ED000A97D40 /* MyYelloListView.swift */; };
+		C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24922A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift */; };
+		C3FF24952A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24942A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift */; };
+		C3FF24972A5E907D00A97D40 /* MyYelloNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24962A5E907D00A97D40 /* MyYelloNameTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +223,10 @@
 		C3FF24892A5E845A00A97D40 /* MyYelloEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloEmptyView.swift; sourceTree = "<group>"; };
 		C3FF248B2A5E846D00A97D40 /* MyYelloNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloNavigationBarView.swift; sourceTree = "<group>"; };
 		C3FF248D2A5E8DB700A97D40 /* TabbarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarHeight.swift; sourceTree = "<group>"; };
+		C3FF248F2A5E8ED000A97D40 /* MyYelloListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloListView.swift; sourceTree = "<group>"; };
+		C3FF24922A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDefaultTableViewCell.swift; sourceTree = "<group>"; };
+		C3FF24942A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloKeywordTableViewCell.swift; sourceTree = "<group>"; };
+		C3FF24962A5E907D00A97D40 /* MyYelloNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloNameTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +293,7 @@
 			children = (
 				C3FF24852A5E843700A97D40 /* ViewController */,
 				C3FF24882A5E844700A97D40 /* View */,
+				C3FF24912A5E900A00A97D40 /* Cells */,
 			);
 			path = MyYello;
 			sourceTree = "<group>";
@@ -686,8 +695,19 @@
 				C3FF24862A5E844400A97D40 /* MyYelloView.swift */,
 				C3FF24892A5E845A00A97D40 /* MyYelloEmptyView.swift */,
 				C3FF248B2A5E846D00A97D40 /* MyYelloNavigationBarView.swift */,
+				C3FF248F2A5E8ED000A97D40 /* MyYelloListView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C3FF24912A5E900A00A97D40 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C3FF24922A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift */,
+				C3FF24942A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift */,
+				C3FF24962A5E907D00A97D40 /* MyYelloNameTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -809,6 +829,7 @@
 			files = (
 				C3FF248A2A5E845A00A97D40 /* MyYelloEmptyView.swift in Sources */,
 				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
+				C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */,
 				36E427702A5BCE860050B34E /* YelloButton.swift in Sources */,
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
@@ -829,6 +850,7 @@
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
+				C3FF24972A5E907D00A97D40 /* MyYelloNameTableViewCell.swift in Sources */,
 				C3A799EA2A494D6800D3EFD8 /* UIView+.swift in Sources */,
 				C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
@@ -845,6 +867,7 @@
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
 				36E4276A2A5BCE860050B34E /* Constraints.swift in Sources */,
+				C3FF24952A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift in Sources */,
 				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
 				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
@@ -893,6 +916,7 @@
 				C3FF24792A5D798700A97D40 /* FriendProfileView.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				36E4276E2A5BCE860050B34E /* GenderView.swift in Sources */,
+				C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
