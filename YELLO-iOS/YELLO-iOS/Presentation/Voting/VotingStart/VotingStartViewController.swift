@@ -7,15 +7,30 @@
 
 import UIKit
 
+import Lottie
 import SnapKit
 import Then
 
 final class VotingStartViewController: BaseViewController {
     
-    private let originView = BaseVotingView()
+    private let originView = BaseVotingETCView()
+    private var animationView: LottieAnimationView?
     
     override func loadView() {
         self.view = originView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        animationView = .init(name: "VotingStart")
+        animationView!.frame = originView.yelloImage.bounds
+        animationView!.contentMode = .scaleAspectFit
+        animationView!.loopMode = .loop
+        animationView!.animationSpeed = 1.1
+        
+        originView.yelloImage.addSubview(animationView!)
+        animationView!.play()
     }
     
     // MARK: - Style
@@ -50,7 +65,7 @@ final class VotingStartViewController: BaseViewController {
             .first?
             .statusBarManager?
             .statusBarFrame.height ?? 20
-        
+                
         originView.titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
         }
@@ -73,7 +88,7 @@ final class VotingStartViewController: BaseViewController {
     }
     
     // MARK: - Objc Function
-
+    
     @objc
     func yellowButtonClicked() {
         let viewController = VotingViewController()

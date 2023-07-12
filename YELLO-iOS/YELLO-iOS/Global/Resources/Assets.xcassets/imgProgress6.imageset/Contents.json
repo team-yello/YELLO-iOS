@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "type=ellipse, order=06.png",
+      "filename" : "progress-5.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "type=ellipse, order=06@2x.png",
+      "filename" : "progress@2x-5.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "type=ellipse, order=06@3x.png",
+      "filename" : "progress@3x-5.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

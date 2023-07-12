@@ -28,6 +28,8 @@
 		2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */; };
 		2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D52A5C952000CB988B /* VotingFunction.swift */; };
 		2ADE23A52A5EA9390088FCB3 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */; };
+		2ADE23A72A5EB6DA0088FCB3 /* VotingStart.json in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE23A62A5EB6DA0088FCB3 /* VotingStart.json */; };
+		2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2ADE23A92A5EB7660088FCB3 /* Lottie */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -134,6 +136,7 @@
 		2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingDummy.swift; sourceTree = "<group>"; };
 		2AD1A1D52A5C952000CB988B /* VotingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingFunction.swift; sourceTree = "<group>"; };
 		2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
+		2ADE23A62A5EB6DA0088FCB3 /* VotingStart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VotingStart.json; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -225,6 +228,7 @@
 				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
 				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
+				2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +326,7 @@
 		2AD1A1B62A57475000CB988B /* VotingStart */ = {
 			isa = PBXGroup;
 			children = (
+				2ADE23A62A5EB6DA0088FCB3 /* VotingStart.json */,
 				2AD1A1B72A57476C00CB988B /* VotingStartViewController.swift */,
 			);
 			path = VotingStart;
@@ -688,6 +693,7 @@
 				C3A799B12A4949A700D3EFD8 /* Alamofire */,
 				C3A799B42A4949B100D3EFD8 /* Kingfisher */,
 				C3A799B72A4949C600D3EFD8 /* KakaoSDK */,
+				2ADE23A92A5EB7660088FCB3 /* Lottie */,
 			);
 			productName = "YELLO-iOS";
 			productReference = C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */;
@@ -723,6 +729,7 @@
 				C3A799B02A4949A700D3EFD8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C3A799B32A4949B100D3EFD8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
@@ -740,6 +747,7 @@
 			files = (
 				C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */,
 				C3A79A032A49500000D3EFD8 /* Pretendard-ExtraLight.otf in Resources */,
+				2ADE23A72A5EB6DA0088FCB3 /* VotingStart.json in Resources */,
 				C3A799A32A49490D00D3EFD8 /* LaunchScreen.storyboard in Resources */,
 				C3A79A022A49500000D3EFD8 /* Pretendard-Thin.otf in Resources */,
 				367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */,
@@ -1081,6 +1089,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -1124,6 +1140,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2ADE23A92A5EB7660088FCB3 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		C3A799AB2A49499500D3EFD8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */;

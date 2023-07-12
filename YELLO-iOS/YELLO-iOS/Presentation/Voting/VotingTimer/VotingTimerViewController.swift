@@ -12,7 +12,7 @@ import Then
 
 final class VotingTimerViewController: BaseViewController {
     
-    private let originView = BaseVotingView()
+    private let originView = BaseVotingETCView()
     
     // Timer 관련 컴포넌트
     private let timerBackGround = UIImageView()

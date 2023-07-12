@@ -12,7 +12,7 @@ import Then
 
 final class VotingPointViewController: BaseViewController {
 
-    private let originView = BaseVotingView()
+    private let originView = BaseVotingETCView()
     
     override func loadView() {
         self.view = originView
