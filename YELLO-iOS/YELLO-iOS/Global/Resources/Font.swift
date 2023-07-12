@@ -112,4 +112,8 @@ extension UIFont {
     class var uiTimeLabel: UIFont {
         return UIFont(name: "Unbounded-Bold", size: 25.0)!
     }
+    
+    class var uiKeywordBold: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 14.0)!
+    }
 }

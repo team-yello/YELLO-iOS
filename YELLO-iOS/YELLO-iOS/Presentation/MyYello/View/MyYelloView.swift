@@ -12,8 +12,11 @@ import Then
 
 final class MyYelloView: BaseView {
     
+    var myYelloCount: Int = 90
+    
     private let myYellowNavigationBar = MyYelloNavigationBarView()
     private let myYelloEmptyView = MyYelloEmptyView()
+    private let myYelloListView = MyYelloListView()
     
     override func setStyle() {
         self.backgroundColor = .black
@@ -28,19 +31,27 @@ final class MyYelloView: BaseView {
         
         let tabbarHeight = 60 + safeAreaBottomInset()
         
-        self.addSubviews(myYellowNavigationBar,
-                         myYelloEmptyView)
+        self.addSubviews(myYellowNavigationBar)
         
         myYellowNavigationBar.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
             $0.width.equalToSuperview()
         }
-
-        myYelloEmptyView.snp.makeConstraints {
-            $0.top.equalTo(myYellowNavigationBar.snp.bottom)
-            $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(tabbarHeight)
+        
+        if myYelloCount == 0 {
+            self.addSubviews(myYelloEmptyView)
+            myYelloEmptyView.snp.makeConstraints {
+                $0.top.equalTo(myYellowNavigationBar.snp.bottom)
+                $0.width.equalToSuperview()
+                $0.bottom.equalToSuperview().inset(tabbarHeight)
+            }
+        } else {
+            self.addSubviews(myYelloListView)
+            myYelloListView.snp.makeConstraints {
+                $0.top.equalTo(myYellowNavigationBar.snp.bottom)
+                $0.width.equalToSuperview()
+                $0.bottom.equalToSuperview().inset(tabbarHeight)
+            }
         }
     }
-
 }
