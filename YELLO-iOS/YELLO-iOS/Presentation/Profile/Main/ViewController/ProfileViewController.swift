@@ -53,17 +53,6 @@ extension ProfileViewController {
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
     }
-    
-    // MARK: Custom Function
-    func safeAreaBottomInset() -> CGFloat {
-        if #available(iOS 11.0, *) {
-            let window = UIApplication.shared.keyWindow
-            let bottomPadding = window?.safeAreaInsets.bottom
-            return bottomPadding ??  0.0
-        } else {
-            return 0.0
-        }
-    }
 }
 
 // MARK: NavigationBarViewDelegate
