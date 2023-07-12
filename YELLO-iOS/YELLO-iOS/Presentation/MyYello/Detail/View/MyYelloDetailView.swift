@@ -16,6 +16,7 @@ final class MyYelloDetailView: BaseView {
     let detailSenderView = DetailSenderView()
     let genderLabel = UILabel()
     let detailKeywordView = DetailKeywordView()
+    var pointLackView: PointLackView?
     
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
@@ -126,15 +127,31 @@ final class MyYelloDetailView: BaseView {
 
 extension MyYelloDetailView {
     
+    // MARK: Objc Function
     @objc private func instagramButtonTapped() {
         
     }
     
     @objc private func keywordButtonTapped() {
-        
+        showAlert()
     }
     
     @objc private func senderButtonTapped() {
+        
+    }
+
+    @objc func showAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let pointLackView {
+            pointLackView.removeFromSuperview()
+        }
+        
+        pointLackView = PointLackView()
+        pointLackView?.frame = viewController.view.bounds
+        pointLackView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.view.addSubview(pointLackView!)
         
     }
 }

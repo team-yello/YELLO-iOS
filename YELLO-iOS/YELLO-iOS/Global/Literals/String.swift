@@ -117,7 +117,25 @@ enum StringLiterals {
             static let male = "익명의 남학생"
             static let instagram = "인스타그램 공유하기"
             static let keywordButton = "100포인트로 키워드 확인하기"
+            static let sendButton = "300포인트로 초성 1개 확인하기"
             static let senderButton = "누가 보냈는지 확인하기"
+        }
+        
+        enum Alert {
+            static let pointLack = "포인트가 부족해요!"
+            static let myPoint = "내 포인트"
+            static let point = "Point"
+            static let yelloButton = "투표하고 포인트 받기"
+            static let keywordPoint = " 포인트로 키워드를 얻을까요?"
+            static let senderPoint = " 포인트로 초성을 얻을까요?"
+            static let cancelButton = "아니요"
+            static let keywordButton = "키워드 얻기"
+            static let senderButton = "초성 얻기"
+            static let keywordTitle = "쪽지의 키워드를 얻었어요!"
+            static let senderTitle = "보낸 사람의 초성을 얻었어요!"
+            static let senderDescription = "이름 중 랜덤으로 뽑은 초성이에요."
+            static let afterPoint = "사용 후 포인트"
+            static let confirmButton = "확인"
         }
     }
     

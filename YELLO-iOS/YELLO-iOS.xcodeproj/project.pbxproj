@@ -124,6 +124,9 @@
 		C3FF24A22A5EEBD600A97D40 /* DetailKeywordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */; };
 		C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */; };
 		C3FF24A62A5EEF7400A97D40 /* Unbounded-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3FF24A52A5EEF7400A97D40 /* Unbounded-SemiBold.ttf */; };
+		C3FF24AC2A5F33F400A97D40 /* PointLackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24AB2A5F33F400A97D40 /* PointLackView.swift */; };
+		C3FF24AF2A5F35FF00A97D40 /* UsePointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24AE2A5F35FF00A97D40 /* UsePointView.swift */; };
+		C3FF24B12A5F361C00A97D40 /* GetHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24B02A5F361C00A97D40 /* GetHintView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -241,6 +244,9 @@
 		C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailKeywordView.swift; sourceTree = "<group>"; };
 		C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSenderView.swift; sourceTree = "<group>"; };
 		C3FF24A52A5EEF7400A97D40 /* Unbounded-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-SemiBold.ttf"; sourceTree = "<group>"; };
+		C3FF24AB2A5F33F400A97D40 /* PointLackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLackView.swift; sourceTree = "<group>"; };
+		C3FF24AE2A5F35FF00A97D40 /* UsePointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsePointView.swift; sourceTree = "<group>"; };
+		C3FF24B02A5F361C00A97D40 /* GetHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHintView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -728,21 +734,9 @@
 			isa = PBXGroup;
 			children = (
 				C3FF24A82A5F32D700A97D40 /* ViewController */,
-				C3FF24A72A5F32CC00A97D40 /* View */,
+				C3FF24AD2A5F340300A97D40 /* View */,
 			);
 			path = Detail;
-			sourceTree = "<group>";
-		};
-		C3FF24A72A5F32CC00A97D40 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C3FF249D2A5EE48200A97D40 /* MyYelloDetailView.swift */,
-				C3FF249F2A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift */,
-				C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */,
-				C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */,
-			);
-			name = View;
-			path = "퍋ㅈ";
 			sourceTree = "<group>";
 		};
 		C3FF24A82A5F32D700A97D40 /* ViewController */ = {
@@ -768,6 +762,20 @@
 				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
 				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
 				C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C3FF24AD2A5F340300A97D40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3FF249D2A5EE48200A97D40 /* MyYelloDetailView.swift */,
+				C3FF249F2A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift */,
+				C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */,
+				C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */,
+				C3FF24AB2A5F33F400A97D40 /* PointLackView.swift */,
+				C3FF24AE2A5F35FF00A97D40 /* UsePointView.swift */,
+				C3FF24B02A5F361C00A97D40 /* GetHintView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -928,6 +936,7 @@
 				2AD1A1BB2A59559100CB988B /* VotingPointViewController.swift in Sources */,
 				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
 				C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */,
+				C3FF24AC2A5F33F400A97D40 /* PointLackView.swift in Sources */,
 				C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */,
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
@@ -959,6 +968,7 @@
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
 				C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */,
 				36E427722A5BCE860050B34E /* YelloGenderButton.swift in Sources */,
+				C3FF24B12A5F361C00A97D40 /* GetHintView.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
@@ -977,6 +987,7 @@
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
 				C3D266532A5D20170041C7C7 /* ProfileSettingView.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
+				C3FF24AF2A5F35FF00A97D40 /* UsePointView.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
 				2AD1A1D22A5BD13700CB988B /* BaseVotingMainView.swift in Sources */,
@@ -1131,6 +1142,8 @@
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -1161,6 +1174,8 @@
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
