@@ -17,8 +17,14 @@ enum ImageLiterals {
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
         static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
         static var icXCircle: UIImage { .load(named: "icXCircle")}
-        static var icCheckCircle: UIImage { .load(named: "icCheckCircle")}
+        static var icCheckCircleYello: UIImage { .load(named: "icCheckCircleYello")}
         static var icCheckCircleEnable: UIImage { .load(named: "icCheckCircleEnable")}
+        static var icCheckCircleFemale: UIImage { .load(named: "icCheckCircleFemale")}
+        static var icCheckCircleMale: UIImage { .load(named: "icCheckCircleMale")}
+        static var icCheckCircleGender: UIImage { .load(named: "icCheckCircleGender")}
+        static var icYelloFaceMale: UIImage { .load(named: "icYelloFaceMale")}
+        static var icYelloFaceFemale: UIImage { .load(named: "icYelloFaceFemale")}
+        static var icCheck: UIImage { .load(named: "icCheck")}
     }
     
     enum TabBar {
