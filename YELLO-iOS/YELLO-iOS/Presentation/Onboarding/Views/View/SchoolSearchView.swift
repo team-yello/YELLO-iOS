@@ -23,7 +23,7 @@ final class SchoolSearchView: BaseView {
     // MARK: Component
     let infoLabel = UILabel()
     let schoolTextField = YelloTextFieldView(title: "학교가 어디인가요?", state: iconState.search)
-    let nextButton = YelloButton(buttonText: "다음", state: .unabled)
+    let nextButton = YelloButton(buttonText: "다음")
     
     // MARK: - Function
     

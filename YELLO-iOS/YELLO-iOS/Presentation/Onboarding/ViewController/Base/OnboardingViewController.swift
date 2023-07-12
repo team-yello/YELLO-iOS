@@ -16,7 +16,7 @@ class OnboardingBaseViewController: BaseViewController {
     // MARK: Componenet
     
     private let backButton = UIButton()
-    let nextButton = YelloButton(buttonText: "다음", state: .enabled)
+    let nextButton = YelloButton(buttonText: "다음")
     private let skipButton = UIButton()
     var nextViewController: UIViewController?
     var isSkipable = false
@@ -44,7 +44,8 @@ class OnboardingBaseViewController: BaseViewController {
         skipButton.do {
             $0.setTitle("건너뛰기", for: .normal)
             $0.titleLabel?.font = .uiBody01
-            $0.setTitleColor(.grayscales700, for: .normal)
+            $0.setTitleColor(.white, for: .normal)
+            $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         }
         
         skipButton.isHidden = !(isSkipable)

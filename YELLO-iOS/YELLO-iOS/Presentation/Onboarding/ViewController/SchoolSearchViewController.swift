@@ -65,5 +65,6 @@ extension SchoolSearchViewController: SearchResultTableViewSelectDelegate {
     func didSelectSearchResult(_ result: String) {
         schoolSearchView.schoolTextField.textField.setButtonState(state: .done)
         schoolSearchView.schoolTextField.textField.text = result
+        super.nextButton.setButtonEnable(state: true)
     }
 }
