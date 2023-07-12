@@ -36,5 +36,6 @@ final class MyYelloDetailViewController: BaseViewController {
 extension MyYelloDetailViewController: HandleBackButtonDelegate {
     func popView() {
         self.navigationController?.popViewController(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
 }
