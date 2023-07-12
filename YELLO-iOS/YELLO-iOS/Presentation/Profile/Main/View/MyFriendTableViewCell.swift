@@ -95,10 +95,3 @@ extension MyFriendTableViewCell {
         schoolLabel.text = model.school
     }
 }
-
-//TODO: 이거 나중에 삭제
-struct FriendModel {
-    let name: String
-    let school: String
-    var isButtonSelected: Bool
-}
