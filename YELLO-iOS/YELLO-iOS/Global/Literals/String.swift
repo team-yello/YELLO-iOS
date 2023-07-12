@@ -92,6 +92,13 @@ enum StringLiterals {
         }
     }
     
+    enum MyYello {
+        enum NavigationBar {
+            static let myYello = "내 쪽지"
+            static let yelloNumber = "받은 쪽지"
+        }
+    }
+    
     enum Profile {
         enum NavigationBar {
             static let profile = "프로필"
