@@ -7,14 +7,160 @@
 
 import UIKit
 
-class GetHintView: UIView {
+import SnapKit
+import Then
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+final class GetHintView: BaseView {
+    
+    let contentsView = UIView()
+    
+    let titleLabel = UILabel()
+    let descriptionLabel = UILabel()
+    
+    let hintLabel = UILabel()
+    
+    let pointView = UIView()
+    let pointImageView = UIImageView()
+    let pointTitleLabel = UILabel()
+    let pointLabel = UILabel()
+    let pointTextLabel = UILabel()
+    
+    lazy var confirmButton = UIButton()
+    // MARK: - Style
+    
+    override func setStyle() {
+        self.backgroundColor = .black.withAlphaComponent(0.7)
+        
+        contentsView.makeCornerRound(radius: 12)
+        contentsView.backgroundColor = .grayscales900
+        
+        titleLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Alert.keywordTitle, lineHeight: 24)
+            $0.textColor = .white
+            $0.font = .uiSubtitle02
+        }
+        
+        hintLabel.do {
+            $0.backgroundColor = .yelloMain500
+            $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
+            $0.setTextWithLineHeight(text: "노래하는 개구리를", lineHeight: 24)
+            $0.font = .uiBodyLarge
+            $0.textColor = UIColor(hex: "000000")
+        }
+        
+        pointView.do {
+            $0.backgroundColor = UIColor(hex: "293036")
+            $0.makeCornerRound(radius: 8)
+        }
+        
+        pointImageView.do {
+            $0.image = ImageLiterals.MyYello.icPoint
+        }
+        
+        pointTitleLabel.do {
+            $0.text = StringLiterals.MyYello.Alert.afterPoint
+            $0.textColor = .white
+            $0.font = .uiBodySmall
+        }
+        
+        pointLabel.do {
+            $0.setTextWithLineHeight(text: "2050", lineHeight: 20)
+            $0.textColor = .white
+            $0.font = .uiKeywordBold
+        }
+        
+        pointTextLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Alert.point, lineHeight: 20)
+            $0.textColor = .grayscales400
+            $0.font = .uiBodySmall
+        }
+        
+        confirmButton.do {
+            $0.backgroundColor = .clear
+            $0.titleLabel?.font = .uiButton
+            $0.setTitleColor(.grayscales300, for: .normal)
+            $0.setTitle(StringLiterals.MyYello.Alert.confirmButton, for: .normal)
+            $0.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+        }
     }
-    */
+    
+    // MARK: - Layout
+    
+    override func setLayout() {
+        self.addSubview(contentsView)
+        
+        contentsView.addSubviews(titleLabel,
+                                 descriptionLabel,
+                                 hintLabel,
+                                 pointView,
+                                 confirmButton)
+        
+        pointView.addSubviews(pointImageView,
+                              pointTitleLabel,
+                              pointLabel,
+                              pointTextLabel)
+        
+        contentsView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalTo(280)
+            $0.height.equalTo(270)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(32)
+            $0.centerX.equalToSuperview()
+        }
+        
+//        descriptionLabel.snp.makeConstraints {
+//            $0.top.equalTo(contentsView.)
+//        }
+        
+        hintLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
+            $0.height.equalTo(30)
+            $0.width.equalTo(143)
+            $0.centerX.equalToSuperview()
+        }
+        
+        pointView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(18.adjusted)
+            $0.top.equalTo(hintLabel.snp.bottom).offset(36.adjusted)
+            $0.height.equalTo(52)
+        }
+        
+        pointImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.centerY.equalToSuperview()
+        }
+        
+        pointTitleLabel.snp.makeConstraints {
+            $0.centerY.equalTo(pointImageView)
+            $0.leading.equalTo(pointImageView.snp.trailing).inset(-4)
+        }
+        
+        pointLabel.snp.makeConstraints {
+            $0.trailing.equalTo(pointTextLabel.snp.leading).inset(-4)
+            $0.centerY.equalToSuperview()
+        }
+        
+        pointTextLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+        }
+        
+        confirmButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(24)
+            $0.width.equalTo(45)
+            $0.bottom.equalToSuperview().inset(30)
+        }
+    }
+}
 
+extension GetHintView {
+    @objc
+    func confirmButtonTapped() {
+        self.isHidden = true
+        self.removeFromSuperview()
+    }
 }

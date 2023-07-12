@@ -18,6 +18,7 @@ final class MyYelloDetailView: BaseView {
     let detailKeywordView = DetailKeywordView()
     var pointLackView: PointLackView?
     var usePointView: UsePointView?
+    var getHintView: GetHintView?
     
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
@@ -135,7 +136,8 @@ extension MyYelloDetailView {
     
     @objc private func keywordButtonTapped() {
 //        showLackAlert()
-        showUsePointAlert()
+//        showUsePointAlert()
+        showGetHintAlert()
     }
     
     @objc private func senderButtonTapped() {
@@ -169,6 +171,21 @@ extension MyYelloDetailView {
         usePointView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         viewController.view.addSubview(usePointView!)
+        
+    }
+    
+    @objc func showGetHintAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let getHintView {
+            getHintView.removeFromSuperview()
+        }
+        
+        getHintView = GetHintView()
+        getHintView?.frame = viewController.view.bounds
+        getHintView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.view.addSubview(getHintView!)
         
     }
 }
