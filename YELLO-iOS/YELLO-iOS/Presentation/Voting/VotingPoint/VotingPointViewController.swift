@@ -18,6 +18,12 @@ final class VotingPointViewController: BaseViewController {
         self.view = originView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: - Style
     
     override func setStyle() {
@@ -100,13 +106,12 @@ final class VotingPointViewController: BaseViewController {
         }
     }
     
-    // MARK: - 확인 버튼 클릭했을 때
-    
+    // MARK: - Objc Function
+
     @objc
     func yellowButtonClicked() {
         let viewController = VotingTimerViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
-        self.navigationController?.navigationBar.isHidden = true
     }
 
 }

@@ -16,7 +16,7 @@
 		2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */; };
 		2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */; };
 		2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1A72A57175100CB988B /* VotingLockedViewController.swift */; };
-		2AD1A1AE2A571ED500CB988B /* BaseVotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1AD2A571ED500CB988B /* BaseVotingView.swift */; };
+		2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */; };
 		2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B12A57395C00CB988B /* InvitingViewController.swift */; };
 		2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B32A5739B300CB988B /* InvitingView.swift */; };
 		2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B72A57476C00CB988B /* VotingStartViewController.swift */; };
@@ -24,6 +24,9 @@
 		2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BD2A595A2400CB988B /* VotingTimerViewController.swift */; };
 		2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */; };
 		2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */; };
+		2AD1A1D22A5BD13700CB988B /* BaseVotingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */; };
+		2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */; };
+		2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D52A5C952000CB988B /* VotingFunction.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -118,7 +121,7 @@
 		2AA0DBC22A553788002B1370 /* YELLOTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YELLOTabBarController.swift; sourceTree = "<group>"; };
 		2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
 		2AD1A1A72A57175100CB988B /* VotingLockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingLockedViewController.swift; sourceTree = "<group>"; };
-		2AD1A1AD2A571ED500CB988B /* BaseVotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingView.swift; sourceTree = "<group>"; };
+		2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingETCView.swift; sourceTree = "<group>"; };
 		2AD1A1B12A57395C00CB988B /* InvitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitingViewController.swift; sourceTree = "<group>"; };
 		2AD1A1B32A5739B300CB988B /* InvitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitingView.swift; sourceTree = "<group>"; };
 		2AD1A1B72A57476C00CB988B /* VotingStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingStartViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +129,9 @@
 		2AD1A1BD2A595A2400CB988B /* VotingTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerViewController.swift; sourceTree = "<group>"; };
 		2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Medium.ttf"; sourceTree = "<group>"; };
 		2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerView.swift; sourceTree = "<group>"; };
+		2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingMainView.swift; sourceTree = "<group>"; };
+		2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingDummy.swift; sourceTree = "<group>"; };
+		2AD1A1D52A5C952000CB988B /* VotingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingFunction.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -255,7 +261,7 @@
 		2AA0DBAC2A546D99002B1370 /* Voting */ = {
 			isa = PBXGroup;
 			children = (
-				2AD1A1AD2A571ED500CB988B /* BaseVotingView.swift */,
+				2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */,
 				2AD1A1A92A57175600CB988B /* VotingLocked */,
 				2AD1A1B62A57475000CB988B /* VotingStart */,
 				2AD1A1AA2A57176200CB988B /* Voting */,
@@ -294,6 +300,9 @@
 			isa = PBXGroup;
 			children = (
 				2AA0DBB32A546E62002B1370 /* VotingViewController.swift */,
+				2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */,
+				2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */,
+				2AD1A1D52A5C952000CB988B /* VotingFunction.swift */,
 			);
 			path = Voting;
 			sourceTree = "<group>";
@@ -761,7 +770,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -775,7 +784,7 @@
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
-				2AD1A1AE2A571ED500CB988B /* BaseVotingView.swift in Sources */,
+				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
@@ -808,6 +817,7 @@
 				36E4276A2A5BCE860050B34E /* Constraints.swift in Sources */,
 				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
+				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
@@ -833,6 +843,7 @@
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
 				2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */,
+				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
 				C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
@@ -845,6 +856,7 @@
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
+				2AD1A1D22A5BD13700CB988B /* BaseVotingMainView.swift in Sources */,
 				2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */,
 				C3D266432A5C771F0041C7C7 /* MyProfileHeaderView.swift in Sources */,
 				C3FF24792A5D798700A97D40 /* FriendProfileView.swift in Sources */,

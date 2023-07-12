@@ -61,6 +61,26 @@ enum StringLiterals {
             static let myPoint = "내 포인트"
         }
         
+        enum VoteName {
+            static let one = "김효원\n@kev_hy1042"
+            static let two = "권세훈\n@hj__p_"
+            static let three = "이강민\n@_euije"
+            static let four = "이의제\n@nahyunyou"
+        }
+        
+        enum VoteKeyword {
+            static let one = "99대장 나선욱이랑"
+            static let two = "skkr하는 송민호랑"
+            static let three = "범죄도시 손석구랑"
+            static let four = "코딩하는 강동원이랑"
+        }
+        
+        enum VoteToast {
+            static let skip = "한 번 선택하면 건너뛸 수 없어요."
+            static let cancel = "한 번 선택하면 취소할 수 없어요."
+            static let suffle = "이름을 선택하면 셔플을 사용할 수 없어요."
+        }
+        
         enum Point {
             static let title = "투표 포인트 적립!"
             static let text = "투표로 포인트를 모아 쪽지를 열어보세요."

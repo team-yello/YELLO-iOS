@@ -46,6 +46,31 @@ enum ImageLiterals {
         static var lbSpeechBubble: UIImage { .load(named: "lbSpeechBubble") }
         static var imgTimerViewBackground: UIImage { .load(named: "imgTimerViewBackground")}
         static var imgTimerBackground: UIImage { .load(named: "imgTimerBackground")}
+        static var imgYelloBalloon1: UIImage { .load(named: "imgYelloBalloon1")}
+        static var imgYelloBalloon2: UIImage { .load(named: "imgYelloBalloon2")}
+        static var imgYelloBalloon3: UIImage { .load(named: "imgYelloBalloon3")}
+        static var imgYelloBalloon4: UIImage { .load(named: "imgYelloBalloon4")}
+        static var imgYelloBalloon5: UIImage { .load(named: "imgYelloBalloon5")}
+        static var imgYelloBalloon6: UIImage { .load(named: "imgYelloBalloon6")}
+        static var imgYelloBalloon7: UIImage { .load(named: "imgYelloBalloon7")}
+        static var imgYelloBalloon8: UIImage { .load(named: "imgYelloBalloon8")}
+        static var imgYelloBalloon9: UIImage { .load(named: "imgYelloBalloon9")}
+        static var imgYelloBalloon10: UIImage { .load(named: "imgYelloBalloon10")}
+        static var imgFace1: UIImage { .load(named: "imgFace1")}
+        static var imgFace2: UIImage { .load(named: "imgFace2")}
+        static var imgFace3: UIImage { .load(named: "imgFace3")}
+        static var imgFace4: UIImage { .load(named: "imgFace4")}
+        static var imgFace5: UIImage { .load(named: "imgFace5")}
+        static var imgFace6: UIImage { .load(named: "imgFace6")}
+        static var imgFace7: UIImage { .load(named: "imgFace7")}
+        static var imgFace8: UIImage { .load(named: "imgFace8")}
+        static var imgFace9: UIImage { .load(named: "imgFace9")}
+        static var imgFace10: UIImage { .load(named: "imgFace10")}
+        static var icShuffle: UIImage { .load(named: "icShuffle")}
+        static var icSuffleLocked: UIImage { .load(named: "icSuffleLocked")}
+        static var icSkip: UIImage { .load(named: "icSkip")}
+        static var icSkipLocked: UIImage { .load(named: "icSkipLocked")}
+
     }
     
     enum Profile {
