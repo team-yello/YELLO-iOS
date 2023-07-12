@@ -220,4 +220,13 @@ extension UIColor {
   @nonobjc class var voteEllipseE12: UIColor {
     return UIColor(red: 252.0 / 255.0, green: 114.0 / 255.0, blue: 179.0 / 255.0, alpha: 1.0)
   }
+    
+    @nonobjc class var semanticGenderF700: UIColor {
+      return UIColor(red: 123.0 / 255.0, green: 36.0 / 255.0, blue: 94.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var semanticGenderM700: UIColor {
+      return UIColor(red: 29.0 / 255.0, green: 73.0 / 255.0, blue: 142.0 / 255.0, alpha: 1.0)
+    }
+
 }
