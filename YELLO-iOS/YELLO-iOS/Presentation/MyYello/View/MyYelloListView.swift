@@ -26,6 +26,7 @@ final class MyYelloListView: BaseView {
             $0.separatorStyle = .none
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
+            $0.backgroundColor = .black
         }
     }
     
@@ -34,7 +35,7 @@ final class MyYelloListView: BaseView {
         
         myYelloTableView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
         }
     }
 }
@@ -46,6 +47,9 @@ extension MyYelloListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        myYelloTableView.rowHeight = 66
+        guard let defaultCell = myYelloTableView.dequeueReusableCell(withIdentifier: MyYelloDefaultTableViewCell.identifier, for: indexPath) as? MyYelloDefaultTableViewCell else { return UITableViewCell() }
+        defaultCell.selectionStyle = .none
+        return defaultCell
     }
 }

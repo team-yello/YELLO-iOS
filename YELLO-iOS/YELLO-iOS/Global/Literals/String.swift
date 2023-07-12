@@ -102,6 +102,12 @@ enum StringLiterals {
             static let title = "아직 쪽지가 온 게 없어요."
             static let description = "친구들이 나를 투표해주면 쪽지를 받을 수 있어요!"
         }
+        
+        enum List {
+            static let maleTitle = "남학생이 보냄"
+            static let femaleTitle = "여학생이 보냄"
+            static let nameTitle = "님이 보냄"
+        }
     }
     
     enum Profile {
