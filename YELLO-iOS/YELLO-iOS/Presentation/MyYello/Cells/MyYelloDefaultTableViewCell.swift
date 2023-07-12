@@ -95,4 +95,18 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
             $0.trailing.equalToSuperview().inset(12.adjusted)
         }
     }
+    
+    // MARK: Custom Function
+    func configureDefaultCell(_ model: Yello) {
+        
+        if model.gender == "M" {
+            genderImageView.image = ImageLiterals.MyYello.imgGenderMale
+        }
+        
+        if model.isRead == true {
+            newView.isHidden = true
+        }
+        
+        timeLabel.text = model.createdAt
+    }
 }

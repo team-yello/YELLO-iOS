@@ -13,7 +13,7 @@ import Then
 final class MyYelloNavigationBarView: BaseView {
     private let titleLabel = UILabel()
     private let yelloNumberLabel = UILabel()
-    private let yelloCountLabel = UILabel()
+    let yelloCountLabel = UILabel()
     
     override func setStyle() {
         self.backgroundColor = .black

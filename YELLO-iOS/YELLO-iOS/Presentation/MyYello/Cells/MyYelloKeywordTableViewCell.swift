@@ -13,7 +13,7 @@ import Then
 final class MyYelloKeywordTableViewCell: UITableViewCell {
     
     static let identifier = "MyYelloKeywordTableViewCell"
-
+    
     let genderImageView = UIImageView()
     let labelView = UIView()
     let nameLabel = UILabel()
@@ -34,7 +34,7 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
     
@@ -128,5 +128,21 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(12.adjusted)
         }
+    }
+    
+    // MARK: Custom Function
+    func configureKeywordCell(_ model: Yello) {
+        
+        if model.gender == "M" {
+            contentView.backgroundColor = .semanticGenderM700
+            genderImageView.image = ImageLiterals.MyYello.imgGenderMale
+            timeLabel.textColor = .semanticGenderM500
+        }
+        
+        nameLabel.text = model.vote.nameHead + " 너" + model.vote.nameFoot
+        keywordHeadLabel.text = model.vote.keywordHead
+        keywordLabel.text = model.vote.keyword
+        keywordFootLabel.text = model.vote.keywordFoot
+        timeLabel.text = model.createdAt
     }
 }

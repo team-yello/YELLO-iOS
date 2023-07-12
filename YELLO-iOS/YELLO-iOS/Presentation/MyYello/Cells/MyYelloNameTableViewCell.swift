@@ -155,4 +155,22 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             $0.trailing.equalToSuperview().inset(12.adjusted)
         }
     }
+    
+    // MARK: Custom Function
+    func configureNameCell(_ model: Yello) {
+        
+        if model.gender == "M" {
+            contentView.backgroundColor = .semanticGenderM700
+            genderImageView.image = ImageLiterals.MyYello.imgGenderMale
+            timeLabel.textColor = .semanticGenderM500
+            initialLabel.textColor = .semanticGenderM300
+            sendLabel.textColor = .semanticGenderM300
+        }
+        
+        nameLabel.text = model.vote.nameHead + " 너" + model.vote.nameFoot
+        keywordHeadLabel.text = model.vote.keywordHead
+        keywordLabel.text = model.vote.keyword
+        keywordFootLabel.text = model.vote.keywordFoot
+        timeLabel.text = model.createdAt
+    }
 }

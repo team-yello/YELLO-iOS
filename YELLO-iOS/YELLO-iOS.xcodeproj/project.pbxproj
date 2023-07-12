@@ -117,6 +117,7 @@
 		C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24922A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift */; };
 		C3FF24952A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24942A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift */; };
 		C3FF24972A5E907D00A97D40 /* MyYelloNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24962A5E907D00A97D40 /* MyYelloNameTableViewCell.swift */; };
+		C3FF24992A5EAEA400A97D40 /* MyYelloModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24982A5EAEA300A97D40 /* MyYelloModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +228,7 @@
 		C3FF24922A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDefaultTableViewCell.swift; sourceTree = "<group>"; };
 		C3FF24942A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloKeywordTableViewCell.swift; sourceTree = "<group>"; };
 		C3FF24962A5E907D00A97D40 /* MyYelloNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloNameTableViewCell.swift; sourceTree = "<group>"; };
+		C3FF24982A5EAEA300A97D40 /* MyYelloModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 				C3FF24852A5E843700A97D40 /* ViewController */,
 				C3FF24882A5E844700A97D40 /* View */,
 				C3FF24912A5E900A00A97D40 /* Cells */,
+				C3FF24982A5EAEA300A97D40 /* MyYelloModel.swift */,
 			);
 			path = MyYello;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */,
 				C3D266492A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift in Sources */,
 				C3FF248C2A5E846D00A97D40 /* MyYelloNavigationBarView.swift in Sources */,
+				C3FF24992A5EAEA400A97D40 /* MyYelloModel.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
