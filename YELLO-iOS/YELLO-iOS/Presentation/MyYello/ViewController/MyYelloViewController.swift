@@ -16,6 +16,8 @@ final class MyYelloViewController: BaseViewController {
     
     override func setStyle() {
         view.backgroundColor = .black
+        
+        myYelloView.myYelloListView.handleMyYelloCellDelegate = self
     }
     
     override func setLayout() {
@@ -28,5 +30,12 @@ final class MyYelloViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
     }
+}
 
+// MARK: HandleMyYelloCellDelegate
+extension MyYelloViewController: HandleMyYelloCellDelegate {
+    func pushMyYelloDetailViewController() {
+        let myYelloDetailViewController = MyYelloDetailViewController()
+        navigationController?.pushViewController(myYelloDetailViewController, animated: true)
+    }
 }

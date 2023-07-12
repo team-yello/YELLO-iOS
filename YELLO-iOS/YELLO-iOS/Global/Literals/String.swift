@@ -109,6 +109,16 @@ enum StringLiterals {
             static let nameTitle = "님이 보냄"
             static let unlockButton = "누가 보냈는지 확인하기"
         }
+        
+        enum Detail {
+            static let sender = "???"
+            static let send = "님이 보냄"
+            static let female = "익명의 여학생"
+            static let male = "익명의 남학생"
+            static let instagram = "인스타그램 공유하기"
+            static let keywordButton = "100포인트로 키워드 확인하기"
+            static let senderButton = "누가 보냈는지 확인하기"
+        }
     }
     
     enum Profile {

@@ -16,7 +16,7 @@ final class MyYelloView: BaseView {
     
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
     private let myYelloEmptyView = MyYelloEmptyView()
-    private let myYelloListView = MyYelloListView()
+    let myYelloListView = MyYelloListView()
     private let unlockButton = UIButton()
     
     override func setStyle() {

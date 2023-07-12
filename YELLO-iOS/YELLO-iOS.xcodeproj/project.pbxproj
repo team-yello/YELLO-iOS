@@ -732,9 +732,9 @@
 			children = (
 				C3FF249A2A5EE46500A97D40 /* MyYelloDetailViewController.swift */,
 				C3FF249D2A5EE48200A97D40 /* MyYelloDetailView.swift */,
-				C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */,
-				C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */,
 				C3FF249F2A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift */,
+				C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */,
+				C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";

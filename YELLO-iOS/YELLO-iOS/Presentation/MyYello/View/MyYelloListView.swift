@@ -10,7 +10,16 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
+protocol HandleMyYelloCellDelegate: AnyObject {
+    func pushMyYelloDetailViewController()
+}
+
 final class MyYelloListView: BaseView {
+    
+    // MARK: - Variables
+    // MARK: Property
+    weak var handleMyYelloCellDelegate: HandleMyYelloCellDelegate?
 
     lazy var myYelloTableView = UITableView()
     
@@ -37,6 +46,10 @@ final class MyYelloListView: BaseView {
             $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
         }
+    }
+    
+    private func pushMyYelloDetailViewController() {
+        handleMyYelloCellDelegate?.pushMyYelloDetailViewController()
     }
 }
 
@@ -91,5 +104,9 @@ extension MyYelloListView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 102
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.pushMyYelloDetailViewController()
     }
 }

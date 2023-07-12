@@ -15,18 +15,18 @@ final class MyYelloDetailViewController: BaseViewController {
     private let myYelloDetailView = MyYelloDetailView()
     
     override func setStyle() {
-        view.backgroundColor = .black
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        tabBarController?.tabBar.isHidden = true
+        
+        view.backgroundColor = UIColor(hex: "000000")
         myYelloDetailView.myYelloDetailNavigationBarView.handleBackButtonDelegate = self
     }
     
     override func setLayout() {
         view.addSubviews(myYelloDetailView)
-        
-        let tabbarHeight = 60 + safeAreaBottomInset()
 
         myYelloDetailView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
 

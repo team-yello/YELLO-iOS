@@ -57,7 +57,7 @@ extension MyYelloDetailNavigationBarView {
         }
         
         pointLabel.do {
-            $0.setTextWithLineHeight(text: "2500", lineHeight: 22)
+            $0.text = "2500"
             $0.font = .uiBodyMedium
             $0.textColor = .white
         }
@@ -65,31 +65,23 @@ extension MyYelloDetailNavigationBarView {
     
     private func setLayout() {
         self.addSubviews(backButton,
-                         pointView)
-        
-        pointView.addSubviews(pointImageView,
-                              pointLabel)
+                         pointImageView,
+                         pointLabel)
         
         backButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
-        pointView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(16.adjusted)
-        }
-        
         pointImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview()
+            $0.centerY.equalTo(backButton)
+            $0.trailing.equalToSuperview().inset(61)
         }
         
         pointLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.centerY.equalTo(backButton)
             $0.leading.equalTo(pointImageView.snp.trailing).inset(-8)
         }
-    
     }
     
     // MARK: Objc Function

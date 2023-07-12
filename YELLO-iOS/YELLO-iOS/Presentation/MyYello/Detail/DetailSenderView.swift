@@ -23,12 +23,13 @@ final class DetailSenderView: BaseView {
         
         senderBackView.do {
             $0.backgroundColor = UIColor(hex: "212529", alpha: 0.6)
+            $0.makeBorder(width: 1, color: .grayscales700)
             $0.makeCornerRound(radius: 6)
         }
         
         senderLabel.do {
             $0.backgroundColor = .yelloMain500
-            $0.transform = .init(rotationAngle: 3)
+            $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
             $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.sender, lineHeight: 20)
             $0.font = .uiSenderLabel
             $0.textColor = UIColor(hex: "000000")
@@ -45,6 +46,10 @@ final class DetailSenderView: BaseView {
         self.addSubviews(senderBackView,
                          senderLabel,
                          sendLabel)
+        self.snp.makeConstraints {
+            $0.width.equalTo(148)
+            $0.height.equalTo(30)
+        }
         
         senderBackView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -60,9 +65,8 @@ final class DetailSenderView: BaseView {
         }
         
         sendLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalTo(senderBackView.snp.trailing).offset(-4)
+            $0.centerY.equalTo(senderBackView)
+            $0.leading.equalTo(senderBackView.snp.trailing).inset(-4)
         }
-        
     }
 }

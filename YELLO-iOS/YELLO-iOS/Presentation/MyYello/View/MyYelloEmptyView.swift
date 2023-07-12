@@ -57,5 +57,4 @@ final class MyYelloEmptyView: BaseView {
             $0.width.height.equalTo(230)
         }
     }
-
 }

@@ -114,7 +114,7 @@ extension UIFont {
     }
     
     class var uiSenderLabel: UIFont {
-        return UIFont(name: "Unbounded-SemiBold", size: 15.0)!
+        return UIFont(name: "Unbounded-SemiBold", size: 16.0)!
     }
     
     class var uiKeywordBold: UIFont {
