@@ -121,6 +121,9 @@
 		C3FF249B2A5EE46500A97D40 /* MyYelloDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF249A2A5EE46500A97D40 /* MyYelloDetailViewController.swift */; };
 		C3FF249E2A5EE48200A97D40 /* MyYelloDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF249D2A5EE48200A97D40 /* MyYelloDetailView.swift */; };
 		C3FF24A02A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF249F2A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift */; };
+		C3FF24A22A5EEBD600A97D40 /* DetailKeywordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */; };
+		C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */; };
+		C3FF24A62A5EEF7400A97D40 /* Unbounded-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3FF24A52A5EEF7400A97D40 /* Unbounded-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -235,6 +238,9 @@
 		C3FF249A2A5EE46500A97D40 /* MyYelloDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailViewController.swift; sourceTree = "<group>"; };
 		C3FF249D2A5EE48200A97D40 /* MyYelloDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailView.swift; sourceTree = "<group>"; };
 		C3FF249F2A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailNavigationBarView.swift; sourceTree = "<group>"; };
+		C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailKeywordView.swift; sourceTree = "<group>"; };
+		C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSenderView.swift; sourceTree = "<group>"; };
+		C3FF24A52A5EEF7400A97D40 /* Unbounded-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -574,6 +580,7 @@
 			isa = PBXGroup;
 			children = (
 				2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */,
+				C3FF24A52A5EEF7400A97D40 /* Unbounded-SemiBold.ttf */,
 				367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */,
 				C3A799FB2A494FFF00D3EFD8 /* Pretendard-Black.otf */,
 				C3A799F72A494FFE00D3EFD8 /* Pretendard-Bold.otf */,
@@ -725,6 +732,8 @@
 			children = (
 				C3FF249A2A5EE46500A97D40 /* MyYelloDetailViewController.swift */,
 				C3FF249D2A5EE48200A97D40 /* MyYelloDetailView.swift */,
+				C3FF24A12A5EEBD600A97D40 /* DetailKeywordView.swift */,
+				C3FF24A32A5EEBF100A97D40 /* DetailSenderView.swift */,
 				C3FF249F2A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift */,
 			);
 			path = Detail;
@@ -810,6 +819,7 @@
 				367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */,
 				C3A79A002A49500000D3EFD8 /* Pretendard-Bold.otf in Resources */,
 				2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */,
+				C3FF24A62A5EEF7400A97D40 /* Unbounded-SemiBold.ttf in Resources */,
 				C3A79A012A49500000D3EFD8 /* Pretendard-ExtraBold.otf in Resources */,
 				C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */,
 				C3A79A052A49500000D3EFD8 /* Pretendard-Regular.otf in Resources */,
@@ -852,6 +862,7 @@
 				C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */,
 				36E427702A5BCE860050B34E /* YelloButton.swift in Sources */,
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
+				C3FF24A22A5EEBD600A97D40 /* DetailKeywordView.swift in Sources */,
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
 				C3FF248E2A5E8DB700A97D40 /* TabbarHeight.swift in Sources */,
@@ -919,6 +930,7 @@
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
+				C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */,
 				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
 				2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
