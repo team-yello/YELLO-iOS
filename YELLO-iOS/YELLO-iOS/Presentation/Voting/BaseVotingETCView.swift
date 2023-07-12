@@ -11,7 +11,6 @@ import SnapKit
 import Then
 
 final class BaseVotingView: BaseView {
-
     // 컴포넌트 위치 순서대로
     let topOfPointIcon = UIImageView()
     let topOfMyPoint = UILabel()

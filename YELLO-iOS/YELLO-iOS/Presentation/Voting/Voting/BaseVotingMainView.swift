@@ -13,20 +13,20 @@ import Then
 final class BaseVotingMainView: BaseView {
     let yelloBalloon = UIImageView()
     let yelloProgress = UIImageView()
-    let numOfPage = UILabel()
-    let tenPage = UILabel()
+    let numOfPageLabel = UILabel()
+    let tenPageLabel = UILabel()
     
     let questionBackground = UIView()
     
-    let nameOne = UIButton()
-    let nameTwo = UIButton()
-    let nameThree = UIButton()
-    let nameFour = UIButton()
+    let nameOneButton = UIButton()
+    let nameTwoButton = UIButton()
+    let nameThreeButton = UIButton()
+    let nameFourButton = UIButton()
     
-    let keywordOne = UIButton()
-    let keywordTwo = UIButton()
-    let keywordThree = UIButton()
-    let keywordFour = UIButton()
+    let keywordOneButton = UIButton()
+    let keywordTwoButton = UIButton()
+    let keywordThreeButton = UIButton()
+    let keywordFourButton = UIButton()
     
     let suffleButton = UIButton()
     let suffleIcon = UIImageView()
@@ -45,13 +45,13 @@ final class BaseVotingMainView: BaseView {
             $0.image = ImageLiterals.Voting.imgFace1
         }
         
-        numOfPage.do {
+        numOfPageLabel.do {
             $0.text = "1"
             $0.textColor = .black
             $0.font = .uiBody05
         }
         
-        tenPage.do {
+        tenPageLabel.do {
             $0.text = "of 10"
             $0.textColor = .black
             $0.font = .uiLabelLarge
@@ -62,29 +62,29 @@ final class BaseVotingMainView: BaseView {
             $0.makeCornerRound(radius: 32)
         }
         
-        nameOne.do {
+        nameOneButton.do {
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
             $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         }
         
-        nameTwo.do {
+        nameTwoButton.do {
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
         }
         
-        nameThree.do {
+        nameThreeButton.do {
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
         }
         
-        nameFour.do {
+        nameFourButton.do {
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
             $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         }
         
-        keywordOne.do {
+        keywordOneButton.do {
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiBodyMedium
             $0.backgroundColor = .black
@@ -92,21 +92,21 @@ final class BaseVotingMainView: BaseView {
             $0.roundCorners(cornerRadius: 32, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         }
         
-        keywordTwo.do {
+        keywordTwoButton.do {
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiBodyMedium
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
         }
         
-        keywordThree.do {
+        keywordThreeButton.do {
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiBodyMedium
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales700)
         }
         
-        keywordFour.do {
+        keywordFourButton.do {
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiBodyMedium
             $0.backgroundColor = .black
@@ -155,17 +155,17 @@ final class BaseVotingMainView: BaseView {
         
         self.addSubviews(yelloBalloon,
                          yelloProgress,
-                         numOfPage,
-                         tenPage,
+                         numOfPageLabel,
+                         tenPageLabel,
                          questionBackground,
-                         nameOne,
-                         nameTwo,
-                         nameThree,
-                         nameFour,
-                         keywordOne,
-                         keywordTwo,
-                         keywordThree,
-                         keywordFour,
+                         nameOneButton,
+                         nameTwoButton,
+                         nameThreeButton,
+                         nameFourButton,
+                         keywordOneButton,
+                         keywordTwoButton,
+                         keywordThreeButton,
+                         keywordFourButton,
                          suffleButton,
                          suffleNum,
                          skipButton)
@@ -180,13 +180,13 @@ final class BaseVotingMainView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
-        numOfPage.snp.makeConstraints {
+        numOfPageLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(307.adjusted)
         }
         
-        tenPage.snp.makeConstraints {
-            $0.leading.equalTo(numOfPage.snp.trailing).offset(4.adjusted)
-            $0.centerY.equalTo(numOfPage)
+        tenPageLabel.snp.makeConstraints {
+            $0.leading.equalTo(numOfPageLabel.snp.trailing).offset(4.adjusted)
+            $0.centerY.equalTo(numOfPageLabel)
         }
         
         questionBackground.snp.makeConstraints {
@@ -194,64 +194,64 @@ final class BaseVotingMainView: BaseView {
             $0.height.equalTo(154.adjusted)
         }
         
-        nameOne.snp.makeConstraints {
+        nameOneButton.snp.makeConstraints {
             $0.top.equalTo(questionBackground.snp.bottom).offset(4.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(148.adjusted)
             $0.height.equalTo(70.adjusted)
         }
         
-        nameTwo.snp.makeConstraints {
-            $0.top.equalTo(nameOne.snp.bottom)
+        nameTwoButton.snp.makeConstraints {
+            $0.top.equalTo(nameOneButton.snp.bottom)
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(148.adjusted)
             $0.height.equalTo(70.adjusted)
         }
         
-        nameThree.snp.makeConstraints {
-            $0.top.equalTo(nameTwo.snp.bottom)
+        nameThreeButton.snp.makeConstraints {
+            $0.top.equalTo(nameTwoButton.snp.bottom)
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(148.adjusted)
             $0.height.equalTo(70.adjusted)
         }
         
-        nameFour.snp.makeConstraints {
-            $0.top.equalTo(nameThree.snp.bottom)
+        nameFourButton.snp.makeConstraints {
+            $0.top.equalTo(nameThreeButton.snp.bottom)
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(148.adjusted)
             $0.height.equalTo(70.adjusted)
         }
         
-        keywordOne.snp.makeConstraints {
+        keywordOneButton.snp.makeConstraints {
             $0.top.equalTo(questionBackground.snp.bottom).offset(4.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(196.adjusted)
             $0.height.equalTo(70.adjusted)
         }
         
-        keywordTwo.snp.makeConstraints {
-            $0.top.equalTo(keywordOne.snp.bottom)
+        keywordTwoButton.snp.makeConstraints {
+            $0.top.equalTo(keywordOneButton.snp.bottom)
             $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(196.adjusted)
             $0.height.equalTo(70.adjusted)
         }
         
-        keywordThree.snp.makeConstraints {
-            $0.top.equalTo(keywordTwo.snp.bottom)
+        keywordThreeButton.snp.makeConstraints {
+            $0.top.equalTo(keywordTwoButton.snp.bottom)
             $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(196.adjusted)
             $0.height.equalTo(70.adjusted)
         }
         
-        keywordFour.snp.makeConstraints {
-            $0.top.equalTo(keywordThree.snp.bottom)
+        keywordFourButton.snp.makeConstraints {
+            $0.top.equalTo(keywordThreeButton.snp.bottom)
             $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(196.adjusted)
             $0.height.equalTo(70.adjusted)
         }
         
         suffleButton.snp.makeConstraints {
-            $0.top.equalTo(nameFour.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(nameFourButton.snp.bottom).offset(10.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(148.adjusted)
             $0.height.equalTo(48.adjusted)
@@ -273,7 +273,7 @@ final class BaseVotingMainView: BaseView {
         }
         
         skipButton.snp.makeConstraints {
-            $0.top.equalTo(nameFour.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(nameFourButton.snp.bottom).offset(10.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(192.adjusted)
             $0.height.equalTo(48.adjusted)

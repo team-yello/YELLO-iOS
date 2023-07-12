@@ -142,19 +142,19 @@ final class VotingViewController: BaseViewController {
                                           secondLineFont: secondLineFont,
                                           secondLineColor: secondLineColor)
         
-        originView.nameOne.do {
+        originView.nameOneButton.do {
             $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
         }
         
-        originView.nameTwo.do {
+        originView.nameTwoButton.do {
             $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
         }
         
-        originView.nameThree.do {
+        originView.nameThreeButton.do {
             $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
         }
         
-        originView.nameFour.do {
+        originView.nameFourButton.do {
             $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
         }
         
@@ -225,22 +225,22 @@ final class VotingViewController: BaseViewController {
             $0.font = .uiLarge
         }
         
-        originView.keywordOne.do {
+        originView.keywordOneButton.do {
             $0.setTitle(StringLiterals.Voting.VoteKeyword.one, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
-        originView.keywordTwo.do {
+        originView.keywordTwoButton.do {
             $0.setTitle(StringLiterals.Voting.VoteKeyword.two, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
-        originView.keywordThree.do {
+        originView.keywordThreeButton.do {
             $0.setTitle(StringLiterals.Voting.VoteKeyword.three, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
-        originView.keywordFour.do {
+        originView.keywordFourButton.do {
             $0.setTitle(StringLiterals.Voting.VoteKeyword.four, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
@@ -264,10 +264,10 @@ final class VotingViewController: BaseViewController {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
-        originView.nameOne.addSubview(nameTextOne)
-        originView.nameTwo.addSubview(nameTextTwo)
-        originView.nameThree.addSubview(nameTextThree)
-        originView.nameFour.addSubview(nameTextFour)
+        originView.nameOneButton.addSubview(nameTextOne)
+        originView.nameTwoButton.addSubview(nameTextTwo)
+        originView.nameThreeButton.addSubview(nameTextThree)
+        originView.nameFourButton.addSubview(nameTextFour)
         
         originView.questionBackground.addSubviews(nameStackView, keywordStackView)
         
@@ -328,7 +328,7 @@ final class VotingViewController: BaseViewController {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 60.adjusted)
         }
         
-        originView.numOfPage.snp.makeConstraints {
+        originView.numOfPageLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 40.adjusted)
         }
         
@@ -347,12 +347,12 @@ final class VotingViewController: BaseViewController {
         }
         nameCount += 1
         
-        if sender == originView.nameOne {
+        if sender == originView.nameOneButton {
             updateLabelAppearance(nameTextOne)
             
-            originView.nameTwo.isEnabled = false
-            originView.nameThree.isEnabled = false
-            originView.nameFour.isEnabled = false
+            originView.nameTwoButton.isEnabled = false
+            originView.nameThreeButton.isEnabled = false
+            originView.nameFourButton.isEnabled = false
             
             nameTextTwo.textColor = .grayscales700
             nameTextThree.textColor = .grayscales700
@@ -360,12 +360,12 @@ final class VotingViewController: BaseViewController {
             
             nameMiddleText.text = nameTextOne.text
             
-        } else if sender == originView.nameTwo {
+        } else if sender == originView.nameTwoButton {
             updateLabelAppearance(nameTextTwo)
             
-            originView.nameOne.isEnabled = false
-            originView.nameThree.isEnabled = false
-            originView.nameFour.isEnabled = false
+            originView.nameOneButton.isEnabled = false
+            originView.nameThreeButton.isEnabled = false
+            originView.nameFourButton.isEnabled = false
             
             nameTextOne.textColor = .grayscales700
             nameTextThree.textColor = .grayscales700
@@ -373,12 +373,12 @@ final class VotingViewController: BaseViewController {
             
             nameMiddleText.text = nameTextTwo.text
             
-        } else if sender == originView.nameThree {
+        } else if sender == originView.nameThreeButton {
             updateLabelAppearance(nameTextThree)
             
-            originView.nameOne.isEnabled = false
-            originView.nameTwo.isEnabled = false
-            originView.nameFour.isEnabled = false
+            originView.nameOneButton.isEnabled = false
+            originView.nameTwoButton.isEnabled = false
+            originView.nameFourButton.isEnabled = false
             
             nameTextOne.textColor = .grayscales700
             nameTextTwo.textColor = .grayscales700
@@ -386,12 +386,12 @@ final class VotingViewController: BaseViewController {
             
             nameMiddleText.text = nameTextThree.text
             
-        } else if sender == originView.nameFour {
+        } else if sender == originView.nameFourButton {
             updateLabelAppearance(nameTextFour)
             
-            originView.nameOne.isEnabled = false
-            originView.nameTwo.isEnabled = false
-            originView.nameThree.isEnabled = false
+            originView.nameOneButton.isEnabled = false
+            originView.nameTwoButton.isEnabled = false
+            originView.nameThreeButton.isEnabled = false
             
             nameTextOne.textColor = .grayscales700
             nameTextTwo.textColor = .grayscales700
@@ -417,7 +417,7 @@ final class VotingViewController: BaseViewController {
         sender.setTitleColor(.yelloMain500, for: .normal)
         keywordMiddleText.text = sender.titleLabel?.text
 
-        let keywordButtons = [originView.keywordOne, originView.keywordTwo, originView.keywordThree, originView.keywordFour]
+        let keywordButtons = [originView.keywordOneButton, originView.keywordTwoButton, originView.keywordThreeButton, originView.keywordFourButton]
 
         for button in keywordButtons {
             button.isEnabled = (button == sender)
@@ -491,7 +491,7 @@ extension VotingViewController {
         self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
         self.originView.yelloProgress.image =
         dummy[VotingViewController.pushCount].yelloProgress
-        self.originView.numOfPage.text = String(VotingViewController.pushCount + 1)
+        self.originView.numOfPageLabel.text = String(VotingViewController.pushCount + 1)
     }
     
     private func setNextViewController() {
