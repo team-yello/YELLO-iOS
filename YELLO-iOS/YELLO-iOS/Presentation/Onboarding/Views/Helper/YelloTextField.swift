@@ -34,6 +34,8 @@ final class YelloTextField: UITextField {
     private lazy var toggleImageView = UIImageView()
     private lazy var searchImageView = UIImageView()
     private let errorImageView = UIImageView()
+    
+    private let labelPaddingView = UIView()
     private let idLabel = UILabel()
     
     private var buttonStackView = UIStackView()
@@ -102,7 +104,9 @@ extension YelloTextField {
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
+        
         idLabelStackView.do {
+            $0.addArrangedSubviews(labelPaddingView, idLabel)
             $0.distribution = .fillEqually
         }
         
@@ -113,8 +117,10 @@ extension YelloTextField {
             $0.height.equalTo(52)
         }
         
-        paddingView.snp.makeConstraints {
-            $0.width.equalTo(20)
+        [labelPaddingView, paddingView].forEach {
+            $0.snp.makeConstraints {
+                $0.width.equalTo(20)
+            }
         }
         
         idLabelStackView.snp.makeConstraints {
@@ -129,24 +135,32 @@ extension YelloTextField {
         switch state {
         case .normal:
             buttonStackView.addArrangedSubview(paddingView)
+            self.backgroundColor = .black.withAlphaComponent(0)
+            self.layer.borderColor = UIColor.grayscales600.cgColor
+            
         case .search:
             buttonStackView.addArrangedSubviews(searchImageView, paddingView)
         case .cancel:
             buttonStackView.addArrangedSubviews(cancelButton, paddingView)
+            self.rightViewMode = .whileEditing
+            self.backgroundColor = .grayscales900
+            self.layer.borderColor = UIColor.grayscales600.cgColor
         case .toggle:
             buttonStackView.addArrangedSubviews(toggleImageView, paddingView)
         case .error:
-            buttonStackView.addArrangedSubviews(cancelButton, paddingView)
+            buttonStackView.addArrangedSubviews(errorImageView, paddingView)
+            self.backgroundColor = .semanticStatusRed500.withAlphaComponent(0.2)
+            self.layer.borderColor = UIColor.semanticStatusRed500.cgColor
         case .id:
-            idLabelStackView.addArrangedSubviews(paddingView, idLabel)
             self.leftView = idLabelStackView
-            self.rightViewMode = .never
+            self.backgroundColor = .black.withAlphaComponent(0)
+            self.layer.borderColor = UIColor.grayscales600.cgColor
+            return
         case .done:
             self.backgroundColor = .grayscales900
             self.layer.borderColor = UIColor.grayscales500.cgColor
-            
         }
         self.rightView = buttonStackView
-    
+        
     }
 }
