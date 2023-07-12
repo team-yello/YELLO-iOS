@@ -76,6 +76,8 @@ final class VotingTimerViewController: BaseViewController {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        
         originView.addSubviews(timerBackGround,
                                speechBubbleBackground)
         timerBackGround.addSubview(timerView)
@@ -100,9 +102,8 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         timerBackGround.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 206.adjusted)
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(207.adjusted)
+            $0.center.equalToSuperview()
+            $0.size.equalTo(250.adjusted)
         }
         
         timerView.snp.makeConstraints {
@@ -110,7 +111,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         speechBubbleBackground.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 458.adjusted)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-11.adjusted)
             $0.centerX.equalToSuperview()
         }
         
@@ -120,7 +121,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjusted)
         }
         
     }

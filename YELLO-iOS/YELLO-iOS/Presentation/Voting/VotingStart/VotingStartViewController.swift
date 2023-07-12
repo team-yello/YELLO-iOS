@@ -67,25 +67,26 @@ final class VotingStartViewController: BaseViewController {
     // MARK: - Layout
     
     override func setLayout() {
-        
         let statusBarHeight = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .first?
             .statusBarManager?
             .statusBarFrame.height ?? 20
                 
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+
         originView.titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
         }
         
         originView.grayView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 418.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 117.adjusted)
             $0.width.equalTo(284.adjusted)
-            $0.height.equalTo(58.adjusted)
+            $0.height.equalTo(52.adjusted)
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjusted)
         }
         
     }

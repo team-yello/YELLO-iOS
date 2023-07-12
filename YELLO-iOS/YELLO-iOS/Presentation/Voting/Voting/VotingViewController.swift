@@ -92,10 +92,6 @@ final class VotingViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
-    override func loadView() {
-        self.view = originView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -257,6 +253,13 @@ final class VotingViewController: BaseViewController {
     // MARK: - Layout
     
     override func setLayout() {
+        view.addSubview(originView)
+        
+        originView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(667.adjusted)
+            $0.centerY.equalToSuperview()
+        }
         
         originView.nameOneButton.addSubview(nameTextOne)
         originView.nameTwoButton.addSubview(nameTextTwo)
