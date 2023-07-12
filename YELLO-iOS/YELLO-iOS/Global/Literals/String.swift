@@ -107,6 +107,7 @@ enum StringLiterals {
             static let maleTitle = "남학생이 보냄"
             static let femaleTitle = "여학생이 보냄"
             static let nameTitle = "님이 보냄"
+            static let unlockButton = "누가 보냈는지 확인하기"
         }
     }
     

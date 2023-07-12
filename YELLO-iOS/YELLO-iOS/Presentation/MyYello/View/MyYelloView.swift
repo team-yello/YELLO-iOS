@@ -17,12 +17,24 @@ final class MyYelloView: BaseView {
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
     private let myYelloEmptyView = MyYelloEmptyView()
     private let myYelloListView = MyYelloListView()
+    private let unlockButton = UIButton()
     
     override func setStyle() {
         self.backgroundColor = .black
         
         myYellowNavigationBarView.yelloCountLabel.text = String(myYelloCount) + "개"
         myYellowNavigationBarView.yelloCountLabel.asColor(targetString: "개", color: .grayscales500)
+        
+        unlockButton.do {
+            $0.backgroundColor = .yelloMain500
+            $0.layer.cornerRadius = 8
+            $0.titleLabel?.font = .uiSubtitle03
+            $0.setTitleColor(.black, for: .normal)
+            $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
+            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
+            $0.setTitle(StringLiterals.MyYello.List.unlockButton, for: .normal)
+            $0.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
+        }
     }
     
     override func setLayout() {
@@ -55,6 +67,18 @@ final class MyYelloView: BaseView {
                 $0.width.equalToSuperview()
                 $0.bottom.equalToSuperview().inset(tabbarHeight)
             }
+            
+            self.addSubviews(unlockButton)
+            unlockButton.snp.makeConstraints {
+                $0.leading.trailing.equalToSuperview().inset(16)
+                $0.height.equalTo(54)
+                $0.bottom.equalToSuperview().inset(tabbarHeight + 28.adjusted)
+            }
         }
+
+    }
+    
+    @objc private func unlockButtonTapped() {
+        print("결제")
     }
 }
