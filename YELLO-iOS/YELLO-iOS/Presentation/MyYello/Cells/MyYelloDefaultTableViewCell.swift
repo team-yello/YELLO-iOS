@@ -101,6 +101,7 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
         
         if model.gender == "M" {
             genderImageView.image = ImageLiterals.MyYello.imgGenderMale
+            titleLabel.text = StringLiterals.MyYello.List.maleTitle
         }
         
         if model.isRead == true {
