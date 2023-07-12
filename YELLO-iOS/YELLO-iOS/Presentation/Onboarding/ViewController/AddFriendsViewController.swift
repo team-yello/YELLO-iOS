@@ -9,7 +9,7 @@ import UIKit
 
 class AddFriendsViewController: OnboardingBaseViewController {
     
-    let baseView = AddFriendsView(count: 0)
+    let baseView = AddFriendsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
