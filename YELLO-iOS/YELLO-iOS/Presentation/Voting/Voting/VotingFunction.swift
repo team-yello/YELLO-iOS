@@ -48,10 +48,67 @@ extension VotingViewController {
 extension VotingViewController: UINavigationControllerDelegate {
     /// 뷰 컨트롤러가 푸시될 때마다 호출
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
         if VotingViewController.pushCount < 10 {
             setVotingView()
         }
         
+        switch VotingViewController.pushCount {
+        case 0:
+            self.originView.yelloProgressBackGroundOne.image = nil
+            self.originView.yelloProgressBackGroundTwo.image = nil
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress1
+            self.originView.yelloProgressBackGroundFour.image = ImageLiterals.Voting.imgProgress2
+        case 1:
+            self.originView.yelloProgressBackGroundOne.image = nil
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress1
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress3
+            self.originView.yelloProgressBackGroundFour.image = ImageLiterals.Voting.imgProgress4
+        case 2:
+            self.originView.yelloProgressBackGroundOne.image = ImageLiterals.Voting.imgProgress1
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress2
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress4
+            self.originView.yelloProgressBackGroundFour.image = ImageLiterals.Voting.imgProgress5
+        case 3:
+            self.originView.yelloProgressBackGroundOne.image = ImageLiterals.Voting.imgProgress2
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress3
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress5
+            self.originView.yelloProgressBackGroundFour.image = ImageLiterals.Voting.imgProgress6
+        case 4:
+            self.originView.yelloProgressBackGroundOne.image = ImageLiterals.Voting.imgProgress3
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress4
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress6
+            self.originView.yelloProgressBackGroundFour.image = ImageLiterals.Voting.imgProgress7
+        case 5:
+            self.originView.yelloProgressBackGroundOne.image = ImageLiterals.Voting.imgProgress4
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress5
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress7
+            self.originView.yelloProgressBackGroundFour.image = ImageLiterals.Voting.imgProgress8
+            
+        case 6:
+            self.originView.yelloProgressBackGroundOne.image = ImageLiterals.Voting.imgProgress5
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress6
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress8
+            self.originView.yelloProgressBackGroundFour.image = ImageLiterals.Voting.imgProgress9
+        case 7:
+            self.originView.yelloProgressBackGroundOne.image = ImageLiterals.Voting.imgProgress6
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress7
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress9
+            self.originView.yelloProgressBackGroundFour.image = ImageLiterals.Voting.imgProgress10
+        case 8:
+            self.originView.yelloProgressBackGroundOne.image = ImageLiterals.Voting.imgProgress7
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress8
+            self.originView.yelloProgressBackGroundThree.image = ImageLiterals.Voting.imgProgress10
+            self.originView.yelloProgressBackGroundFour.image = nil
+        case 9:
+            self.originView.yelloProgressBackGroundOne.image = ImageLiterals.Voting.imgProgress8
+            self.originView.yelloProgressBackGroundTwo.image = ImageLiterals.Voting.imgProgress9
+            self.originView.yelloProgressBackGroundThree.image = nil
+            self.originView.yelloProgressBackGroundFour.image = nil
+        default:
+            break
+        }
+
         // 현재 뷰 컨트롤러가 자기 자신인 경우에만 pushCount를 증가
         if viewController == self {
             VotingViewController.pushCount += 1
