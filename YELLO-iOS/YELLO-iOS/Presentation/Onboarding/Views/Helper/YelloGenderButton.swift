@@ -7,10 +7,19 @@
 
 import UIKit
 
+@frozen
+enum Gender {
+    case female
+    case male
+}
+
 class YelloGenderButton: UIButton {
     
     var buttonText = ""
+    var gender: Gender?
+    var genderIconImage: UIImage?
     
+    let checkButton = UIButton()
     var iconImageView = UIImageView()
     let genderLabel = UILabel()
     let stackView = UIStackView()
@@ -43,15 +52,26 @@ class YelloGenderButton: UIButton {
             $0.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         }
         
+        gender = (self.buttonText == "여자") ? Gender.female : Gender.male
+        
+        switch gender {
+        case .female:
+            genderIconImage = ImageLiterals.OnBoarding.icYelloFaceFemale
+            genderLabel.textColor = .semanticGenderF500
+        case .male:
+            genderIconImage = ImageLiterals.OnBoarding.icYelloFaceMale
+            genderLabel.textColor = .semanticGenderM500
+        case .none:
+            return
+        }
+        
         iconImageView.do {
-            let genderIconImage = ImageLiterals.OnBoarding.icYelloFace.withTintColor(.semanticGenderM500, renderingMode: .alwaysOriginal).resize(to: CGSize(width: 30, height: 40))
             $0.image = genderIconImage
             
         }
         genderLabel.do {
             $0.text = buttonText
             $0.font = .uiSubtitle02
-            $0.textColor = .semanticGenderM500
         }
         stackView.do {
             $0.addArrangedSubviews(iconImageView, genderLabel)
@@ -59,19 +79,45 @@ class YelloGenderButton: UIButton {
             $0.alignment = .center
             $0.spacing = 4
         }
+        checkButton.do {
+            $0.setImage(ImageLiterals.OnBoarding.icCheckCircleGender, for: .normal)
+ 
+        }
     }
     
     private func setLayout() {
-        self.addSubviews(stackView)
+        self.addSubviews(checkButton, stackView)
         
         self.snp.makeConstraints {
             $0.height.equalTo(146)
+        }
+        
+        checkButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(11)
+            $0.leading.equalToSuperview().offset(14)
         }
         
         stackView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
         
+    }
+    
+    private func setSelected() {
+        self.iconImageView.image = genderIconImage?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        self.genderLabel.textColor = .white
+        self.makeBorder(width: 1, color: .white)
+        
+        switch gender {
+        case .female:
+            self.backgroundColor = .semanticGenderF500.withAlphaComponent(0.3)
+            self.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleFemale, for: .normal)
+        case .male:
+            self.backgroundColor = .semanticGenderM500.withAlphaComponent(0.3)
+            self.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleMale, for: .normal)
+        case .none:
+            return
+        }
     }
     
     @objc func buttonDidTap() {
@@ -81,14 +127,16 @@ class YelloGenderButton: UIButton {
         superview?.subviews.forEach { subview in
             if let button = subview as? YelloGenderButton, button != self {
                 button.isSelected = false
-                button.backgroundColor = .grayscales50
-                button.makeBorder(width: 0, color: .white)
+                button.backgroundColor = .grayscales900
+                button.makeBorder(width: 0, color: .grayscales700)
+                button.iconImageView.image = ImageLiterals.OnBoarding.icYelloFaceMale.withTintColor(.grayscales700, renderingMode: .alwaysOriginal)
+                button.genderLabel.textColor = .grayscales700
+                button.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleGender, for: .normal)
             }
         }
         
         isSelected = true
-        backgroundColor = .grayscales100
-        makeBorder(width: 1, color: .grayscales600)
+        setSelected()
     }
     
 }

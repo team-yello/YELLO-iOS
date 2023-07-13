@@ -15,6 +15,7 @@ class GenderView: BaseView {
     let guideLabel = YelloGuideLabel(labelText: "성별은")
     let maleButton = YelloGenderButton(buttonText: "남자")
     let femaleButton = YelloGenderButton(buttonText: "여자")
+    
     private lazy var buttonStackView = UIStackView()
     
     override func setStyle() {
@@ -40,4 +41,5 @@ class GenderView: BaseView {
         }
         
     }
+    
 }
