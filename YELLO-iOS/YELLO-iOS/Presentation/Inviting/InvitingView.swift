@@ -110,43 +110,43 @@ final class InvitingView: BaseView {
         }
         
         closeButton.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview().inset(14.adjusted)
+            $0.top.trailing.equalToSuperview().inset(14)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(50.adjusted)
+            $0.top.equalToSuperview().inset(50)
             $0.centerX.equalToSuperview()
         }
         
         backGroundView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(14.adjusted)
-            $0.top.equalToSuperview().inset(146.adjusted)
-            $0.bottom.equalToSuperview().inset(120.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(14)
+            $0.top.equalToSuperview().inset(146)
+            $0.bottom.equalToSuperview().inset(120)
         }
         
         textLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjusted)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.centerX.equalToSuperview()
         }
         
         recommender.snp.makeConstraints {
-            $0.top.equalTo(textLabel.snp.bottom).offset(47.adjusted)
+            $0.top.equalTo(textLabel.snp.bottom).offset(47)
             $0.centerX.equalToSuperview()
         }
         
         recommenderID.snp.makeConstraints {
-            $0.top.equalTo(recommender.snp.bottom).offset(8.adjusted)
+            $0.top.equalTo(recommender.snp.bottom).offset(8)
             $0.centerX.equalToSuperview()
         }
         
         kakaoButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(100.adjusted)
-            $0.bottom.equalToSuperview().inset(50.adjusted)
+            $0.leading.equalToSuperview().inset(100)
+            $0.bottom.equalToSuperview().inset(50)
         }
         
         copyButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(100.adjusted)
-            $0.bottom.equalToSuperview().inset(50.adjusted)
+            $0.trailing.equalToSuperview().inset(100)
+            $0.bottom.equalToSuperview().inset(50)
         }
     }
 }
