@@ -67,6 +67,7 @@ extension StudentInfoViewController: UITextFieldDelegate {
         let isMajorTextFilled = !majorText.isEmpty
         let isStudentIDTextFilled = !studentIDText.isEmpty
         
+        
         let isButtonEnabled = isMajorTextFilled && isStudentIDTextFilled
         
         nextButton.setButtonEnable(state: isButtonEnabled)

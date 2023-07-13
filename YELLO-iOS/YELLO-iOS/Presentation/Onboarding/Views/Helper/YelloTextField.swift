@@ -88,6 +88,7 @@ extension YelloTextField {
         
         cancelButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icXCircle, for: .normal)
+            $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         }
         
         toggleImageView.do {
@@ -161,6 +162,9 @@ extension YelloTextField {
             self.layer.borderColor = UIColor.grayscales500.cgColor
         }
         self.rightView = buttonStackView
-        
+    }
+    
+    @objc func cancelButtonDidTap() {
+        self.text = ""
     }
 }

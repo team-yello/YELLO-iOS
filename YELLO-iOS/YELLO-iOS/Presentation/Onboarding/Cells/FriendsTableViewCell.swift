@@ -65,7 +65,7 @@ class FriendsTableViewCell: UITableViewCell {
     }
     
     private func updateCheckButtonImage() {
-        let imageName = isTapped ? ImageLiterals.OnBoarding.icCheckCircleEnable : ImageLiterals.OnBoarding.icCheckCircle
+        let imageName = isTapped ? ImageLiterals.OnBoarding.icCheckCircleEnable : ImageLiterals.OnBoarding.icCheckCircleYello
         checkButton.setImage(imageName, for: .normal)
     }
     

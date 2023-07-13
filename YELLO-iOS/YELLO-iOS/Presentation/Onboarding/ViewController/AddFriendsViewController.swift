@@ -14,8 +14,11 @@ class AddFriendsViewController: OnboardingBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         super.nextViewController = RecommendIdViewController()
-        setLayout()
         // Do any additional setup after loading the view.
+    }
+    
+    override func setStyle() {
+        super.nextButton.setButtonEnable(state: true)
     }
     
     override func setLayout() {

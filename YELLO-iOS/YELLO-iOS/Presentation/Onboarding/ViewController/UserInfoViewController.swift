@@ -13,6 +13,7 @@ class UserInfoViewController: OnboardingBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setDelegate()
         super.nextViewController = GenderViewController()
     }
     
@@ -25,7 +26,8 @@ class UserInfoViewController: OnboardingBaseViewController {
     }
     
     func setDelegate() {
-        
+        baseView.idTextField.textField.delegate = self
+        baseView.nameTextField.textField.delegate = self
     }
     
     func checkButtonEnable() {
@@ -40,4 +42,27 @@ class UserInfoViewController: OnboardingBaseViewController {
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
     
+}
+
+// MARK: - extension
+// MARK: UITextFieldDelegate
+extension UserInfoViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == baseView.nameTextField.textField {
+            baseView.nameTextField.textField.setButtonState(state: .cancel)
+        } else {
+            baseView.idTextField.textField.setButtonState(state: .cancel)
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == baseView.nameTextField.textField {
+            baseView.nameTextField.textField.setButtonState(state: .normal)
+        } else {
+            baseView.idTextField.textField.setButtonState(state: .id)
+        }
+        
+        checkButtonEnable()
+        
+    }
 }
