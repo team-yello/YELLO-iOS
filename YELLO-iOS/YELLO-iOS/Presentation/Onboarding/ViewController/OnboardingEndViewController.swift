@@ -36,7 +36,10 @@ class OnboardingEndViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func yelloButtondidTap() {
-        navigationController?.pushViewController(VotingStartViewController(), animated: true)
+//        navigationController?.pushViewController(VotingStartViewController(), animated: true)
+        let yelloTabBarController = YELLOTabBarController()
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
     }
     
 }

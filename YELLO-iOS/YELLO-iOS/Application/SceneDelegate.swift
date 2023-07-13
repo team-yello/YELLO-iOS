@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController(rootViewController: YELLOTabBarController())
+        let navigationController = UINavigationController(rootViewController: SchoolSearchViewController())
         navigationController.navigationBar.isHidden = true
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
