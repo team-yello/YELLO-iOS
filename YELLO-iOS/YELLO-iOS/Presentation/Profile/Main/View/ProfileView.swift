@@ -140,6 +140,9 @@ extension ProfileView: UITableViewDataSource {
         switch section {
         case 0:
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyProfileHeaderView.cellIdentifier) as! MyProfileHeaderView
+            DispatchQueue.main.async {
+                view.addBottomBorderWithColor(color: .black)
+            }
             return view
         default:
             return UIView()
@@ -159,6 +162,15 @@ extension ProfileView: UITableViewDataSource {
             return UITableViewCell()
         }
         
+//        if indexPath.row == 0 {
+//            cell.addHeaderBottomBorderWithColor(color: .black)
+//        }
+        
+        if tableView.isLast(for: indexPath) {
+            DispatchQueue.main.async {
+                cell.addAboveTheBottomBorderWithColor(color: .black)
+            }
+        }
         cell.selectionStyle = .none
 //        cell.configureFriendCell(myFriendTableViewModel[indexPath.row])
         return cell
