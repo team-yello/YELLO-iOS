@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleConfirmButtonDelegate: AnyObject {
+    func confirmButtonTapped()
+}
+
 final class UsePointView: BaseView {
+    
+    weak var handleConfirmButtonDelegate: HandleConfirmButtonDelegate?
     
     let contentsView = UIView()
     
@@ -21,9 +27,10 @@ final class UsePointView: BaseView {
     let pointTitleLabel = UILabel()
     let pointLabel = UILabel()
     let pointTextLabel = UILabel()
+    var getHintView: GetHintView?
     
     lazy var noButton = UIButton()
-    lazy var keywordButton = UIButton()
+    lazy var confirmButton = UIButton()
     // MARK: - Style
     
     override func setStyle() {
@@ -65,13 +72,13 @@ final class UsePointView: BaseView {
             $0.font = .uiBodySmall
         }
         
-        keywordButton.do {
+        confirmButton.do {
             $0.backgroundColor = .yelloMain500
             $0.layer.cornerRadius = 8
             $0.titleLabel?.font = .uiButton
             $0.setTitleColor(.black, for: .normal)
-            $0.setTitle(StringLiterals.MyYello.Alert.yelloButton, for: .normal)
-            $0.addTarget(self, action: #selector(yelloButtonTapped), for: .touchUpInside)
+            $0.setTitle(StringLiterals.MyYello.Alert.keywordButton, for: .normal)
+            $0.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         }
         
         noButton.do {
@@ -91,7 +98,7 @@ final class UsePointView: BaseView {
         contentsView.addSubviews(noButton,
                                  titleLabel,
                                  pointView,
-                                 keywordButton)
+                                 confirmButton)
         
         pointView.addSubviews(pointImageView,
                               pointTitleLabel,
@@ -135,7 +142,7 @@ final class UsePointView: BaseView {
             $0.centerY.equalToSuperview()
         }
         
-        keywordButton.snp.makeConstraints {
+        confirmButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(18)
             $0.height.equalTo(40)
             $0.bottom.equalToSuperview().inset(40)
@@ -146,7 +153,7 @@ final class UsePointView: BaseView {
             $0.leading.equalToSuperview().inset(18)
             $0.height.equalTo(40)
             $0.width.equalTo(90)
-            $0.bottom.equalTo(keywordButton)
+            $0.bottom.equalTo(confirmButton)
         }
     }
 }
@@ -159,7 +166,8 @@ extension UsePointView {
     }
     
     @objc
-    func yelloButtonTapped() {
-        /// 카카오톡 연결 시 추후 구현
+    func confirmButtonTapped() {
+        noButtonTapped()
+        handleConfirmButtonDelegate?.confirmButtonTapped()
     }
 }

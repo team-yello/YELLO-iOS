@@ -24,6 +24,26 @@ final class MyYelloDetailView: BaseView {
     lazy var keywordButton = UIButton()
     lazy var senderButton = UIButton()
     
+    var isKeywordUsed: Bool = false {
+        didSet {
+            if self.isKeywordUsed == true {
+                keywordButton.setTitle(StringLiterals.MyYello.Detail.sendButton, for: .normal)
+            }
+        }
+    }
+    
+    var isSenderUsed: Bool = false {
+        didSet {
+            if self.isSenderUsed == true {
+                keywordButton.isHidden = true
+                senderButton.snp.makeConstraints {
+                    $0.bottom.equalToSuperview().inset(94.adjustedHeight)
+                }
+            }
+        }
+    }
+    var point: Int = 250
+    
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
@@ -107,7 +127,7 @@ final class MyYelloDetailView: BaseView {
         }
         
         instagramButton.snp.makeConstraints {
-            $0.bottom.equalTo(keywordButton.snp.top).inset(-24.adjustedHeight)
+            $0.top.equalTo(detailKeywordView.snp.bottom).offset(118.adjustedHeight)
             $0.height.equalTo(20)
             $0.width.equalTo(129)
             $0.centerX.equalToSuperview()
@@ -135,11 +155,16 @@ extension MyYelloDetailView {
     }
     
     @objc private func keywordButtonTapped() {
-//        showLackAlert()
-//        showUsePointAlert()
-//        showGetHintAlert()
-//        showUseSenderPointAlert()
-        showGetSenderHintAlert()
+        
+        if point == 0 {
+            showLackAlert()
+        } else {
+            if isKeywordUsed == false {
+                showUsePointAlert()
+            } else {
+                showUseSenderPointAlert()
+            }
+        }
     }
     
     @objc private func senderButtonTapped() {
@@ -170,22 +195,9 @@ extension MyYelloDetailView {
         usePointView = UsePointView()
         usePointView?.frame = viewController.view.bounds
         usePointView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        usePointView?.handleConfirmButtonDelegate = self
         
         viewController.view.addSubview(usePointView!)
-    }
-    
-    func showGetHintAlert() {
-        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
-        if let getHintView {
-            getHintView.removeFromSuperview()
-        }
-        
-        getHintView = GetHintView()
-        getHintView?.frame = viewController.view.bounds
-        getHintView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        viewController.view.addSubview(getHintView!)
     }
     
     func showUseSenderPointAlert() {
@@ -198,10 +210,11 @@ extension MyYelloDetailView {
         usePointView = UsePointView()
         usePointView?.frame = viewController.view.bounds
         usePointView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        usePointView?.handleConfirmButtonDelegate = self
         
         viewController.view.addSubview(usePointView!)
         usePointView?.titleLabel.text = "100" + StringLiterals.MyYello.Alert.senderPoint
-        usePointView?.keywordButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
+        usePointView?.confirmButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
     }
     
     func showGetSenderHintAlert() {
@@ -229,6 +242,32 @@ extension MyYelloDetailView {
             $0.leading.trailing.equalToSuperview().inset(18.adjusted)
             $0.top.equalTo((getHintView?.hintLabel.snp.bottom)!).offset(30.adjusted)
             $0.height.equalTo(52)
+        }
+    }
+    
+    func showGetHintAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let getHintView {
+            getHintView.removeFromSuperview()
+        }
+        
+        getHintView = GetHintView()
+        getHintView?.frame = viewController.view.bounds
+        getHintView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.view.addSubview(getHintView!)
+    }
+}
+
+extension MyYelloDetailView: HandleConfirmButtonDelegate {
+    func confirmButtonTapped() {
+        if self.isKeywordUsed == false {
+            showGetHintAlert()
+            self.isKeywordUsed = true
+        } else {
+            showGetSenderHintAlert()
+            self.isSenderUsed = true
         }
     }
 }

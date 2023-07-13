@@ -157,6 +157,6 @@ extension PointLackView {
     
     @objc
     func yelloButtonTapped() {
-        /// 카카오톡 연결 시 추후 구현
+        
     }
 }

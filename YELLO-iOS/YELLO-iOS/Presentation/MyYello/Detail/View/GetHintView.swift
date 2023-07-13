@@ -119,8 +119,6 @@ final class GetHintView: BaseView {
         
         hintLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(30)
-            $0.height.equalTo(30)
-            $0.width.equalTo(143)
             $0.centerX.equalToSuperview()
         }
         
