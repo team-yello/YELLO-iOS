@@ -214,12 +214,17 @@ extension MyYelloDetailView {
     func endInstagram() {
         myYelloDetailNavigationBarView.isHidden = false
         instagramButton.isHidden = false
-        keywordButton.isHidden = false
         senderButton.isHidden = false
         
         logoImageView.isHidden = true
         logoLabel.isHidden = true
         groupImageView.isHidden = true
+        
+        if isSenderUsed == true {
+            keywordButton.isHidden = true
+        } else {
+            keywordButton.isHidden = false
+        }
     }
     
     @objc private func keywordButtonTapped() {
