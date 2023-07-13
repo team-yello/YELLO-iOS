@@ -107,6 +107,60 @@ enum StringLiterals {
         }
     }
     
+    enum MyYello {
+        enum NavigationBar {
+            static let myYello = "내 쪽지"
+            static let yelloNumber = "받은 쪽지"
+        }
+        
+        enum Empty {
+            static let title = "아직 쪽지가 온 게 없어요."
+            static let description = "친구들이 나를 투표해주면 쪽지를 받을 수 있어요!"
+        }
+        
+        enum List {
+            static let maleTitle = "남학생이 보냄"
+            static let femaleTitle = "여학생이 보냄"
+            static let nameTitle = "님이 보냄"
+            static let unlockButton = "누가 보냈는지 확인하기"
+        }
+        
+        enum Detail {
+            static let sender = "???"
+            static let send = "님이 보냄"
+            static let female = "익명의 여학생"
+            static let male = "익명의 남학생"
+            static let instagram = "인스타그램 공유하기"
+            static let keywordButton = "100포인트로 키워드 확인하기"
+            static let sendButton = "300포인트로 초성 1개 확인하기"
+            static let senderButton = "누가 보냈는지 확인하기"
+            static let logoTitle = "지금 누군가가 당신을 생각하고 있어요!"
+        }
+        
+        enum Alert {
+            static let pointLack = "포인트가 부족해요!"
+            static let myPoint = "내 포인트"
+            static let point = "Point"
+            static let yelloButton = "투표하고 포인트 받기"
+            static let keywordPoint = " 포인트로 키워드를 얻을까요?"
+            static let senderPoint = " 포인트로 초성을 얻을까요?"
+            static let noButton = "아니요"
+            static let keywordButton = "키워드 얻기"
+            static let senderButton = "초성 얻기"
+            static let keywordTitle = "쪽지의 키워드를 얻었어요!"
+            static let senderTitle = "보낸 사람의 초성을 얻었어요!"
+            static let senderDescription = "이름 중 랜덤으로 뽑은 초성이에요."
+            static let afterPoint = "사용 후 포인트"
+            static let confirmButton = "확인"
+        }
+        
+        enum Payment {
+            static let title = "구독권 결제"
+            static let description = "결제 기능은 아직 구현되지 않았어요.\n곧 기능을 준비할게요!"
+            static let back = "나가기"
+        }
+    }
+    
     enum Profile {
         enum NavigationBar {
             static let profile = "프로필"

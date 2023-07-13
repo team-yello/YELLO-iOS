@@ -10,30 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
-final class ProfileSettingViewController: UIViewController {
+final class ProfileSettingViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Property
     private let profileSettingView = ProfileSettingView()
     
     // MARK: - Function
-    // MARK: LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUI()
-    }
-}
-
-// MARK: - extension
-extension ProfileSettingViewController {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         tabBarController?.tabBar.isHidden = true
         
@@ -42,7 +27,7 @@ extension ProfileSettingViewController {
         profileSettingView.handleWithdrawalButtonDelegate = self
     }
     
-    private func setLayout() {
+    override func setLayout() {
         view.addSubview(profileSettingView)
         
         profileSettingView.snp.makeConstraints {

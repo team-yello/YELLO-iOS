@@ -2,9 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>instagram-stories</string>
+	</array>
+	<key>META_APP_ID</key>
+	<string>$(META_APP_ID)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Unbounded-Medium.ttf</string>
+		<string>Unbounded-SemiBold.ttf</string>
 		<string>Unbounded-Bold.ttf</string>
 		<string>Pretendard-Thin.otf</string>
 		<string>Pretendard-SemiBold.otf</string>

@@ -46,6 +46,11 @@ final class RecommendingViewController: UIViewController {
         setDelegate()
         setSegmentedControl()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
 }
 
 // MARK: - extension

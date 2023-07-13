@@ -91,6 +91,18 @@ enum ImageLiterals {
 
     }
     
+    enum MyYello {
+        static var imgGenderFemale: UIImage { .load(named: "imgGenderFemale") }
+        static var imgGenderMale: UIImage { .load(named: "imgGenderMale") }
+        static var icPoint: UIImage { .load(named: "icPoint") }
+        static var icPointBlack: UIImage { .load(named: "icPointBlack") }
+        static var icPointWhite: UIImage { .load(named: "icPointWhite") }
+        static var imgInstagram: UIImage { .load(named: "imgInstagram") }
+        static var icLock: UIImage { .load(named: "icLock") }
+        static var imgLogo: UIImage { .load(named: "imgLogo") }
+        static var imgYelloGroup: UIImage { .load(named: "imgYelloGroup") }
+    }
+    
     enum Profile {
         static var imgDefaultProfile: UIImage { .load(named: "imgDefaultProfile") }
         static var icPlus: UIImage { .load(named: "icPlus") }
