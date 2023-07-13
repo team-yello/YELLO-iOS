@@ -12,7 +12,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: Properties
     
     lazy private(set) var className: String = {
-      return type(of: self).description().components(separatedBy: ".").last ?? ""
+        return type(of: self).description().components(separatedBy: ".").last ?? ""
     }()
     
     // MARK: Initializing
@@ -29,13 +29,19 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     deinit {
         print("DEINIT: \(className)")
     }
-
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         setStyle()
         setLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: UI
@@ -48,5 +54,5 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     /// Hierarchy, Constraints (계층 및 제약조건) 설정 메서드
     func setLayout() {}
-   
+    
 }
