@@ -7,23 +7,35 @@
 
 import UIKit
 
-class AddFriendsViewController: UIViewController {
+import SnapKit
+import Then
 
+class AddFriendsViewController: OnboardingBaseViewController {
+    // MARK: - Variables
+    // MARK: Component 
+    let baseView = AddFriendsView()
+    
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        super.nextViewController = RecommendIdViewController()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: Layout Helpers
+    override func setStyle() {
+        super.nextButton.setButtonEnable(state: true)
     }
-    */
-
+    
+    override func setLayout() {
+        view.addSubview(baseView)
+        
+        baseView.snp.makeConstraints {
+            $0.top.equalTo(topLayoutGuide.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        view.bringSubviewToFront(super.nextButton)
+    }
+    
 }

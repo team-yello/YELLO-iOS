@@ -7,14 +7,42 @@
 
 import UIKit
 
-class GenderView: UIView {
+import SnapKit
+import Then
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+class GenderView: BaseView {
+    // MARK: - Variables
+    // MARK: Component 
+    let guideLabel = YelloGuideLabel(labelText: "성별은")
+    let maleButton = YelloGenderButton(buttonText: "남자")
+    let femaleButton = YelloGenderButton(buttonText: "여자")
+    
+    private lazy var buttonStackView = UIStackView()
+    
+    // MARK: - Function
+    // MARK: Layout Helpers
+    override func setStyle() {
+        buttonStackView.do {
+            $0.addArrangedSubviews(maleButton, femaleButton)
+            $0.axis = .vertical
+            $0.distribution = .fillEqually
+            $0.spacing = 9
+        }
     }
-    */
-
+    
+    override func setLayout() {
+        self.addSubviews(guideLabel, buttonStackView)
+        
+        guideLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Constraints.topMargin)
+            $0.leading.equalToSuperview().offset(Constraints.bigMargin)
+        }
+        
+        buttonStackView.snp.makeConstraints {
+            $0.top.equalTo(guideLabel.snp.bottom).offset(Constraints.topMargin)
+            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
+        }
+        
+    }
+    
 }

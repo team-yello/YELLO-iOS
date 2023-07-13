@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+import Then
 
 final class YelloGuideLabel: UILabel {
     // MARK: - Function
@@ -16,7 +18,7 @@ final class YelloGuideLabel: UILabel {
         setLabelStyle()
     }
     
-    init(labelText: String){
+    init(labelText: String) {
         super.init(frame: CGRect())
         self.text = labelText
         setLabelStyle()
@@ -26,9 +28,14 @@ final class YelloGuideLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Custom Function
-    private func setLabelStyle(){
+}
+
+// MARK: - extension
+extension YelloGuideLabel {
+    // MARK: Custom Function
+    private func setLabelStyle() {
         self.font = .uiHeadline01
+        self.setTextWithLineHeight(text: self.text, lineHeight: 30)
+        self.textColor = .white
     }
-    
 }
