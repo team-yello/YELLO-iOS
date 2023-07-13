@@ -107,6 +107,5 @@ extension PaymentReadyViewController {
 extension PaymentReadyViewController: HandleBackButtonDelegate {
     func popView() {
         self.navigationController?.popViewController(animated: true)
-        self.tabBarController?.tabBar.isHidden = false
     }
 }
