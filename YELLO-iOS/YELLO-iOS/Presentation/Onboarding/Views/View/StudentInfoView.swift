@@ -1,0 +1,39 @@
+//
+//  StudentInfoView.swift
+//  YELLO-iOS
+//
+//  Created by 지희의 MAC on 2023/07/05.
+//
+
+import UIKit
+
+import SnapKit
+import Then
+
+final class StudentInfoView: BaseView {
+    // MARK: - Variables
+    // MARK: Constants
+    let padding = 16
+    
+    // MARK: Component (button, label 등 코드로 만들때)
+    let majorTextField = YelloTextFieldView(title: "무슨 학과인가요?", state: .search)
+    let studentIDTextField = YelloTextFieldView(title: "몇 학번인가요?", state: .toggle, placeholder: "학번을 선택해주세요.")
+    
+    // MARK: - Function
+    // MARK: Layout Helpers
+    override func setLayout() {
+        self.addSubviews(majorTextField, studentIDTextField)
+        
+        majorTextField.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.leading.trailing.equalToSuperview().inset(padding)
+        }
+        
+        studentIDTextField.snp.makeConstraints {
+            $0.top.equalTo(majorTextField.snp.bottom).offset(24)
+            $0.leading.trailing.equalToSuperview().inset(padding)
+        }
+        
+    }
+}
+ 

@@ -77,14 +77,30 @@ extension UIView {
         })
     }
     
-    func setLineDot(view: UIView, color: String, radius: CGFloat) {
-        let borderLayer = CAShapeLayer()
-        borderLayer.strokeColor = UIColor(named: color)?.cgColor
-        borderLayer.lineDashPattern = [2, 2]
-        borderLayer.frame = view.bounds
-        borderLayer.fillColor = nil
-        borderLayer.path = UIBezierPath(roundedRect: view.bounds, cornerRadius: radius).cgPath
-        view.layer.addSublayer(borderLayer)
+    /// Border를 점선으로 처리해주는 함수
+    func addDottedBorder() {
+        let dottedBorderLayer = CAShapeLayer()
+        dottedBorderLayer.strokeColor = UIColor.grayscales700.cgColor
+        dottedBorderLayer.lineWidth = 1
+        
+        // 점선 스타일 설정
+        dottedBorderLayer.lineDashPattern = [3, 3]
+        dottedBorderLayer.fillColor = nil
+        
+        let path = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius)
+        dottedBorderLayer.path = path.cgPath
+        
+        layer.addSublayer(dottedBorderLayer)
+    }
+    
+    func setBackgroundImageWithScaling(image: UIImage) {
+        let backgroundImageView = UIImageView(image: image)
+        backgroundImageView.contentMode = .scaleAspectFit
+        
+        addSubview(backgroundImageView)
+        backgroundImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
 }

@@ -12,7 +12,10 @@ import Then
 
 final class VotingTimerViewController: BaseViewController {
     
-    private let originView = BaseVotingView()
+    private let originView = BaseVotingETCView()
+    
+    let myView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    let backgroundImage = ImageLiterals.Voting.imgTimerViewBackground
     
     // Timer 관련 컴포넌트
     private let timerBackGround = UIImageView()
@@ -34,7 +37,11 @@ final class VotingTimerViewController: BaseViewController {
     // MARK: - Style
     
     override func setStyle() {
-        view.backgroundColor = UIColor(patternImage: ImageLiterals.Voting.imgTimerViewBackground)
+
+        myView.do {
+            $0.backgroundColor = UIColor.clear
+            $0.setBackgroundImageWithScaling(image: backgroundImage)
+        }
         
         originView.titleLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Voting.Timer.title, lineHeight: 28)
@@ -69,15 +76,22 @@ final class VotingTimerViewController: BaseViewController {
     // MARK: - Layout
     
     override func setLayout() {
-        
         let statusBarHeight = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .first?
             .statusBarManager?
             .statusBarFrame.height ?? 20
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         
-        originView.addSubviews(timerBackGround,
-                               speechBubbleBackground)
+        originView.addSubview(myView)
+        myView.addSubviews(originView.topOfPointIcon,
+                           originView.topOfMyPoint,
+                           originView.titleLabel,
+                           originView.textLabel,
+                           timerBackGround,
+                           speechBubbleBackground,
+                           originView.yellowButton)
+        
         timerBackGround.addSubview(timerView)
         speechBubbleBackground.addSubview(speechBubbleText)
         
@@ -100,9 +114,8 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         timerBackGround.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 206.adjusted)
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(207.adjusted)
+            $0.center.equalToSuperview()
+            $0.size.equalTo(250.adjusted)
         }
         
         timerView.snp.makeConstraints {
@@ -110,7 +123,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         speechBubbleBackground.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 458.adjusted)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-11.adjusted)
             $0.centerX.equalToSuperview()
         }
         
@@ -120,7 +133,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjusted)
         }
         
     }

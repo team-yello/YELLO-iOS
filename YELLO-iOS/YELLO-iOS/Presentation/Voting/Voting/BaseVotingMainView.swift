@@ -13,6 +13,12 @@ import Then
 final class BaseVotingMainView: BaseView {
     let yelloBalloon = UIImageView()
     let yelloProgress = UIImageView()
+    
+    let yelloProgressBackGroundOne = UIImageView()
+    let yelloProgressBackGroundTwo = UIImageView()
+    let yelloProgressBackGroundThree = UIImageView()
+    let yelloProgressBackGroundFour = UIImageView()
+
     let numOfPageLabel = UILabel()
     let tenPageLabel = UILabel()
     
@@ -43,6 +49,26 @@ final class BaseVotingMainView: BaseView {
         
         yelloProgress.do {
             $0.image = ImageLiterals.Voting.imgFace1
+        }
+        
+        yelloProgressBackGroundOne.do {
+            $0.image = ImageLiterals.Voting.imgProgress1
+            $0.alpha = 0.5
+        }
+        
+        yelloProgressBackGroundTwo.do {
+            $0.image = ImageLiterals.Voting.imgProgress1
+            $0.alpha = 0.5
+        }
+        
+        yelloProgressBackGroundThree.do {
+            $0.image = ImageLiterals.Voting.imgProgress1
+            $0.alpha = 0.5
+        }
+        
+        yelloProgressBackGroundFour.do {
+            $0.image = ImageLiterals.Voting.imgProgress1
+            $0.alpha = 0.5
         }
         
         numOfPageLabel.do {
@@ -152,14 +178,14 @@ final class BaseVotingMainView: BaseView {
     // MARK: - Layout
     
     override func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?
-            .statusBarManager?
-            .statusBarFrame.height ?? 20
+        let width = UIScreen.main.bounds.size.width
         
         self.addSubviews(yelloBalloon,
                          yelloProgress,
+                         yelloProgressBackGroundOne,
+                         yelloProgressBackGroundTwo,
+                         yelloProgressBackGroundThree,
+                         yelloProgressBackGroundFour,
                          numOfPageLabel,
                          tenPageLabel,
                          questionBackground,
@@ -179,17 +205,37 @@ final class BaseVotingMainView: BaseView {
         
         yelloBalloon.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(self.safeAreaInsets).inset(statusBarHeight + 4.adjusted)
+            $0.top.equalToSuperview().inset(17.adjusted)
         }
         
         yelloProgress.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(self.safeAreaInsets).inset(statusBarHeight + 60.adjusted)
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
+        }
+        
+        yelloProgressBackGroundOne.snp.makeConstraints {
+            $0.leading.equalToSuperview()
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
+        }
+        
+        yelloProgressBackGroundTwo.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(width / 5)
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
+        }
+        
+        yelloProgressBackGroundThree.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(width / 5)
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
+        }
+        
+        yelloProgressBackGroundFour.snp.makeConstraints {
+            $0.trailing.equalToSuperview()
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
         }
         
         numOfPageLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(307.adjusted)
-            $0.top.equalTo(self.safeAreaInsets).inset(statusBarHeight + 40.adjusted)
+            $0.top.equalToSuperview().inset(49.adjusted)
         }
         
         tenPageLabel.snp.makeConstraints {
@@ -200,7 +246,7 @@ final class BaseVotingMainView: BaseView {
         questionBackground.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
             $0.height.equalTo(154.adjusted)
-            $0.top.equalTo(self.safeAreaInsets).inset(statusBarHeight + 132.adjusted)
+            $0.top.equalTo(yelloProgress.snp.bottom).offset(12.adjusted)
         }
         
         nameOneButton.snp.makeConstraints {
@@ -260,7 +306,7 @@ final class BaseVotingMainView: BaseView {
         }
         
         suffleButton.snp.makeConstraints {
-            $0.top.equalTo(nameFourButton.snp.bottom).offset(10.adjusted)
+            $0.bottom.equalToSuperview().inset(19.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(148.adjusted)
             $0.height.equalTo(48.adjusted)
@@ -282,7 +328,7 @@ final class BaseVotingMainView: BaseView {
         }
         
         skipButton.snp.makeConstraints {
-            $0.top.equalTo(nameFourButton.snp.bottom).offset(10.adjusted)
+            $0.bottom.equalToSuperview().inset(19.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(192.adjusted)
             $0.height.equalTo(48.adjusted)

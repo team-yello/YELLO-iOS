@@ -12,7 +12,7 @@ import Then
 
 final class VotingPointViewController: BaseViewController {
 
-    private let originView = BaseVotingView()
+    private let originView = BaseVotingETCView()
     
     override func loadView() {
         self.view = originView
@@ -21,7 +21,7 @@ final class VotingPointViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: - Style
@@ -67,6 +67,8 @@ final class VotingPointViewController: BaseViewController {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
             $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjusted)
@@ -96,13 +98,13 @@ final class VotingPointViewController: BaseViewController {
         }
         
         originView.grayView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 422.adjusted)
-            $0.width.equalTo(284.adjustedWidth)
-            $0.height.equalTo(58.adjustedHeight)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 105.adjusted)
+            $0.width.equalTo(284.adjusted)
+            $0.height.equalTo(60.adjusted)
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjusted)
         }
     }
     

@@ -10,13 +10,21 @@ import UIKit
 enum ImageLiterals {
     
     enum OnBoarding {
-        static var icArrowLeft: UIImage { .load(named: "icArrowLeft") }
-        static var icChevronDown: UIImage { .load(named: "icChevronDown") }
-        static var icSearch: UIImage { .load(named: "icSearch") }
+        static var icArrowLeft: UIImage { .load(named: "icArrowLeft").withTintColor(.white, renderingMode: .alwaysOriginal)}
+        static var icChevronDown: UIImage { .load(named: "icChevronDown").withTintColor(.grayscales500, renderingMode: .alwaysOriginal) }
+        static var icSearch: UIImage { .load(named: "icSearch").withTintColor(.grayscales500, renderingMode: .alwaysOriginal) }
         static var icX: UIImage { .load(named: "icX") }
         static var icYelloFace: UIImage { .load(named: "icYelloFace") }
         static var btnKakaoLogin: UIImage { .load(named: "btnKakaoLogin")}
         static var icXCircle: UIImage { .load(named: "icXCircle")}
+        static var icCheckCircleYello: UIImage { .load(named: "icCheckCircleYello")}
+        static var icCheckCircleEnable: UIImage { .load(named: "icCheckCircleEnable")}
+        static var icCheckCircleFemale: UIImage { .load(named: "icCheckCircleFemale")}
+        static var icCheckCircleMale: UIImage { .load(named: "icCheckCircleMale")}
+        static var icCheckCircleGender: UIImage { .load(named: "icCheckCircleGender")}
+        static var icYelloFaceMale: UIImage { .load(named: "icYelloFaceMale")}
+        static var icYelloFaceFemale: UIImage { .load(named: "icYelloFaceFemale")}
+        static var icCheck: UIImage { .load(named: "icCheck")}
     }
     
     enum TabBar {
@@ -70,6 +78,16 @@ enum ImageLiterals {
         static var icSuffleLocked: UIImage { .load(named: "icSuffleLocked")}
         static var icSkip: UIImage { .load(named: "icSkip")}
         static var icSkipLocked: UIImage { .load(named: "icSkipLocked")}
+        static var imgProgress1: UIImage { .load(named: "imgProgress1")}
+        static var imgProgress2: UIImage { .load(named: "imgProgress2")}
+        static var imgProgress3: UIImage { .load(named: "imgProgress3")}
+        static var imgProgress4: UIImage { .load(named: "imgProgress4")}
+        static var imgProgress5: UIImage { .load(named: "imgProgress5")}
+        static var imgProgress6: UIImage { .load(named: "imgProgress6")}
+        static var imgProgress7: UIImage { .load(named: "imgProgress7")}
+        static var imgProgress8: UIImage { .load(named: "imgProgress8")}
+        static var imgProgress9: UIImage { .load(named: "imgProgress9")}
+        static var imgProgress10: UIImage { .load(named: "imgProgress10")}
 
     }
     
