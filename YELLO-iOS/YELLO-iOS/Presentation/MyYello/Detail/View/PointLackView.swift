@@ -10,9 +10,17 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - protocol
+protocol HandleYelloButtonDelegate: AnyObject {
+    func yelloButtonTapped()
+}
+
 final class PointLackView: BaseView {
     
     // MARK: - Variables
+    // MARK: Property
+    weak var handleYelloButtonDelegate: HandleYelloButtonDelegate?
+    
     // MARK: Component
     let contentsView = UIView()
     let closeButton = UIButton()
@@ -155,6 +163,8 @@ extension PointLackView {
     
     @objc func yelloButtonTapped() {
         //투표하고 포인트 받기 로직
+        print("안녕")
+        handleYelloButtonDelegate?.yelloButtonTapped()
         self.isHidden = true
         self.removeFromSuperview()
     }

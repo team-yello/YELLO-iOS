@@ -61,7 +61,7 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
-    var point: Int = 250
+    var point: Int = 0
     
     // MARK: - Function
     // MARK: Layout Helpers
