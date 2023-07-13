@@ -19,7 +19,9 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Function
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     override func setStyle() {
