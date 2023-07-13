@@ -25,7 +25,7 @@ final class MyYelloDetailNavigationBarView: BaseView {
 
     // MARK: - Function
     // MARK: Layout Helpers
-    private func setStyle() {
+    override func setStyle() {
         self.backgroundColor = .clear
 
         backButton.do {
@@ -51,7 +51,7 @@ final class MyYelloDetailNavigationBarView: BaseView {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(backButton,
                          titleLabel,
                          pointImageView,
