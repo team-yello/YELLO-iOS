@@ -49,7 +49,7 @@ final class GetHintView: BaseView {
         hintLabel.do {
             $0.backgroundColor = .yelloMain500
             $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
-            $0.setTextWithLineHeight(text: "노래하는 개구리를", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "모르는 척 하고", lineHeight: 24)
             $0.font = .uiBodyLarge
             $0.textColor = UIColor(hex: "000000")
         }

@@ -40,7 +40,7 @@ final class UsePointView: BaseView {
         contentsView.backgroundColor = .grayscales900
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "300" + StringLiterals.MyYello.Alert.keywordPoint, lineHeight: 24)
+            $0.setTextWithLineHeight(text: "100" + StringLiterals.MyYello.Alert.keywordPoint, lineHeight: 24)
             $0.textColor = .white
             $0.font = .uiSubtitle02
         }

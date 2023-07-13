@@ -28,6 +28,7 @@ final class MyYelloDetailView: BaseView {
         didSet {
             if self.isKeywordUsed == true {
                 keywordButton.setTitle(StringLiterals.MyYello.Detail.sendButton, for: .normal)
+                detailKeywordView.keywordLabel.text = "모르는 척 하고"
             }
         }
     }
@@ -39,6 +40,7 @@ final class MyYelloDetailView: BaseView {
                 senderButton.snp.makeConstraints {
                     $0.bottom.equalToSuperview().inset(94.adjustedHeight)
                 }
+                detailSenderView.senderLabel.text = "ㄱ"
             }
         }
     }
@@ -213,7 +215,7 @@ extension MyYelloDetailView {
         usePointView?.handleConfirmButtonDelegate = self
         
         viewController.view.addSubview(usePointView!)
-        usePointView?.titleLabel.text = "100" + StringLiterals.MyYello.Alert.senderPoint
+        usePointView?.titleLabel.text = "300" + StringLiterals.MyYello.Alert.senderPoint
         usePointView?.confirmButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
     }
     
