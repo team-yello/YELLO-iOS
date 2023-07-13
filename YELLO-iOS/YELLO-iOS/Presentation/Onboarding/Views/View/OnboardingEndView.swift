@@ -20,7 +20,7 @@ class OnboardingEndView: BaseView {
         GuideLabel.do {
             $0.text = "회원가입이 끝났어요!"
             $0.font = .uiHeadline03
-            $0.textColor = .black
+            $0.textColor = .white
         }
         
         subGuideLabel.do {

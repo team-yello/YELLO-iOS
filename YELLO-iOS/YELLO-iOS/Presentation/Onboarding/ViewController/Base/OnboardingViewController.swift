@@ -31,10 +31,10 @@ class OnboardingBaseViewController: BaseViewController {
     // MARK: Custom Function
     /// ConfigUI 반복 사용되는 부분 설정
     func configUI() {
-        
+        view.backgroundColor = .black
         setNavigationBarAppearance()
         backButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.icArrowLeft.imageWithColor(color: .white), for: .normal)
+            $0.setImage(ImageLiterals.OnBoarding.icArrowLeft.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
         }
         
         nextButton.do {
