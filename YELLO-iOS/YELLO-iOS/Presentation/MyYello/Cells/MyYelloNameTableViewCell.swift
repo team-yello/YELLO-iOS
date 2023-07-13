@@ -12,8 +12,11 @@ import Then
 
 final class MyYelloNameTableViewCell: UITableViewCell {
     
+    // MARK: - Variables
+    // MARK: Constants
     static let identifier = "MyYelloNameTableViewCell"
     
+    // MARK: Component
     let genderImageView = UIImageView()
     let labelView = UIView()
     let initialLabel = UILabel()
@@ -24,6 +27,8 @@ final class MyYelloNameTableViewCell: UITableViewCell {
     let keywordFootLabel = UILabel()
     let timeLabel = UILabel()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -40,6 +45,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -184,8 +190,10 @@ final class MyYelloNameTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - extension
 extension MyYelloNameTableViewCell {
     
+    // MARK: Custom Function
     func getFirstInitial(_ str: NSString, index: Int) -> String? {
         let name = str
         var initialName: String = ""

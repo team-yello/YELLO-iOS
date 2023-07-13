@@ -21,8 +21,11 @@ final class MyYelloListView: BaseView {
     // MARK: Property
     weak var handleMyYelloCellDelegate: HandleMyYelloCellDelegate?
 
+    // MARK: Component
     lazy var myYelloTableView = UITableView()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black
 
@@ -48,20 +51,23 @@ final class MyYelloListView: BaseView {
         }
     }
     
+    // MARK: Custom Function
     private func pushMyYelloDetailViewController() {
         handleMyYelloCellDelegate?.pushMyYelloDetailViewController()
     }
 }
 
+// MARK: - extension
+// MARK: UITableViewDelegate
 extension MyYelloListView: UITableViewDelegate { }
 
+// MARK: UITableViewDataSource
 extension MyYelloListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MyYelloModelDummy.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         if MyYelloModelDummy[indexPath.row].isHintUsed == true {
             if MyYelloModelDummy[indexPath.row].nameHint == -1 {
                 guard let keywordCell = myYelloTableView.dequeueReusableCell(withIdentifier: MyYelloKeywordTableViewCell.identifier, for: indexPath) as? MyYelloKeywordTableViewCell else { return UITableViewCell() }

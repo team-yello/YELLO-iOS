@@ -12,21 +12,20 @@ import Then
 
 final class PointLackView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component
     let contentsView = UIView()
-    
     let closeButton = UIButton()
-    
     let titleLabel = UILabel()
-    
     let pointView = UIView()
     let pointImageView = UIImageView()
     let pointTitleLabel = UILabel()
     let pointLabel = UILabel()
     let pointTextLabel = UILabel()
-    
     lazy var yelloButton = UIButton()
-    // MARK: - Style
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.7)
         
@@ -81,8 +80,6 @@ final class PointLackView: BaseView {
             $0.addTarget(self, action: #selector(yelloButtonTapped), for: .touchUpInside)
         }
     }
-    
-    // MARK: - Layout
     
     override func setLayout() {
         self.addSubview(contentsView)
@@ -147,16 +144,18 @@ final class PointLackView: BaseView {
     }
 }
 
+// MARK: - extension
 extension PointLackView {
     
-    @objc
-    func closeButtonClicked() {
+    // MARK: Objc Function
+    @objc func closeButtonClicked() {
         self.isHidden = true
         self.removeFromSuperview()
     }
     
-    @objc
-    func yelloButtonTapped() {
-        
+    @objc func yelloButtonTapped() {
+        //투표하고 포인트 받기 로직
+        self.isHidden = true
+        self.removeFromSuperview()
     }
 }

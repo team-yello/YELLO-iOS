@@ -12,6 +12,8 @@ import Then
 
 final class DetailKeywordView: BaseView {
 
+    // MARK: - Variables
+    // MARK: Component
     let nameKeywordLabel = UILabel()
     let keywordView = UIView()
     let keywordBackView = UIView()

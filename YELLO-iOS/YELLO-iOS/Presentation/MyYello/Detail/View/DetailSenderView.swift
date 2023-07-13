@@ -12,6 +12,8 @@ import Then
 
 final class DetailSenderView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component
     let senderBackView = UIView()
     let senderLabel = UILabel()
     let sendLabel = UILabel()

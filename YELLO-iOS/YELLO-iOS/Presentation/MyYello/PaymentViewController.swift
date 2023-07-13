@@ -12,6 +12,8 @@ import Then
 
 final class PaymentViewController: UIViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     let paymentNavigationBarView = MyYelloDetailNavigationBarView()
     let descriptionLabel = UILabel()
     let nextButton = UIButton()
@@ -31,12 +33,10 @@ final class PaymentViewController: UIViewController {
     }
 }
 
+// MARK: - extension
 extension PaymentViewController {
     
-    private func setDelegate() {
-        paymentNavigationBarView.handleBackButtonDelegate = self
-    }
-    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -97,6 +97,11 @@ extension PaymentViewController {
         }
     }
     
+    private func setDelegate() {
+        paymentNavigationBarView.handleBackButtonDelegate = self
+    }
+    
+    // MARK: Objc Function
     @objc func nextButtonTapped() {
         let paymentReadyViewController = PaymentReadyViewController()
         self.navigationController?.pushViewController(paymentReadyViewController, animated: true)

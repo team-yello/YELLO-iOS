@@ -12,22 +12,21 @@ import Then
 
 final class GetHintView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component
     let contentsView = UIView()
-    
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
-    
     let hintLabel = BasePaddingLabel()
-    
     let pointView = UIView()
     let pointImageView = UIImageView()
     let pointTitleLabel = UILabel()
     let pointLabel = UILabel()
     let pointTextLabel = UILabel()
-    
     lazy var confirmButton = UIButton()
-    // MARK: - Style
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.7)
         
@@ -89,8 +88,6 @@ final class GetHintView: BaseView {
             $0.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         }
     }
-    
-    // MARK: - Layout
     
     override func setLayout() {
         self.addSubview(contentsView)
@@ -156,10 +153,11 @@ final class GetHintView: BaseView {
         }
     }
 }
-
+// MARK: - extension
 extension GetHintView {
-    @objc
-    func confirmButtonTapped() {
+    
+    // MARK: Objc Function
+    @objc func confirmButtonTapped() {
         self.isHidden = true
         self.removeFromSuperview()
     }

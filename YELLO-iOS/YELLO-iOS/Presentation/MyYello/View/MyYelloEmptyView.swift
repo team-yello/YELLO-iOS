@@ -12,10 +12,14 @@ import Then
 
 final class MyYelloEmptyView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let emptyImageView = UIImageView()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black
         

@@ -12,13 +12,18 @@ import Then
 
 final class MyYelloView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Property
     var myYelloCount: Int = MyYelloModelDummy.count
     
+    // MARK: Component
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
     private let myYelloEmptyView = MyYelloEmptyView()
     let myYelloListView = MyYelloListView()
     let unlockButton = UIButton()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black
         

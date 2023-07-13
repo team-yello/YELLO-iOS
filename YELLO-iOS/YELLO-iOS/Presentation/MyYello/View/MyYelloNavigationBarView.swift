@@ -11,10 +11,15 @@ import SnapKit
 import Then
 
 final class MyYelloNavigationBarView: BaseView {
+    
+    // MARK: - Variables
+    // MARK: Component
     private let titleLabel = UILabel()
     private let yelloNumberLabel = UILabel()
     let yelloCountLabel = UILabel()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black
         

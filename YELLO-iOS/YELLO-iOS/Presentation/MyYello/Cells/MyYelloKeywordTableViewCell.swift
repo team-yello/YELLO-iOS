@@ -12,8 +12,11 @@ import Then
 
 final class MyYelloKeywordTableViewCell: UITableViewCell {
     
+    // MARK: - Variables
+    // MARK: Constants
     static let identifier = "MyYelloKeywordTableViewCell"
     
+    // MARK: Component
     let genderImageView = UIImageView()
     let labelView = UIView()
     let nameLabel = UILabel()
@@ -22,6 +25,8 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
     let keywordFootLabel = UILabel()
     let timeLabel = UILabel()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -43,6 +48,7 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         setLayout()
     }
     
+    // MARK: Layout Helpers
     private func setStyle() {
         self.backgroundColor = .black
         contentView.backgroundColor = .semanticGenderF700

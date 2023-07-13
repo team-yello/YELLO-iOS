@@ -12,8 +12,12 @@ import Then
 
 final class MyYelloDetailViewController: BaseViewController {
     
+    // MARK: - Variables
+    // MARK: Constants
     private let myYelloDetailView = MyYelloDetailView()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         tabBarController?.tabBar.isHidden = true
@@ -33,6 +37,7 @@ final class MyYelloDetailViewController: BaseViewController {
     }
 }
 
+// MARK: - extension
 extension MyYelloDetailViewController {
     @objc private func senderButtonTapped() {
         let paymentViewController = PaymentViewController()
@@ -48,6 +53,7 @@ extension MyYelloDetailViewController: HandleBackButtonDelegate {
     }
 }
 
+// MARK: HandleInstagramButtonDelegate
 extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
     @objc func instagramButtonTapped() {
         

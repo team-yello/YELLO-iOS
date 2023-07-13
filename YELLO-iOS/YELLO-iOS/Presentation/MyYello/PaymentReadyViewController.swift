@@ -12,6 +12,8 @@ import Then
 
 final class PaymentReadyViewController: UIViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     let paymentNavigationBarView = MyYelloDetailNavigationBarView()
     let descriptionLabel = UILabel()
     let backButton = UIButton()
@@ -26,17 +28,14 @@ final class PaymentReadyViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         tabBarController?.tabBar.isHidden = true
     }
 }
 
+// MARK: - extension
 extension PaymentReadyViewController {
     
-    private func setDelegate() {
-        paymentNavigationBarView.handleBackButtonDelegate = self
-    }
-    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -97,6 +96,11 @@ extension PaymentReadyViewController {
         }
     }
     
+    private func setDelegate() {
+        paymentNavigationBarView.handleBackButtonDelegate = self
+    }
+    
+    // MARK: Objc Function
     @objc func backButtonTapped() {
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
         self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: false)

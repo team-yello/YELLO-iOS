@@ -12,13 +12,26 @@ import Then
 
 final class MyYelloViewController: BaseViewController {
     
+    // MARK: - Variables
+    // MARK: Component
     private let myYelloView = MyYelloView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setDelegate()
+        setAddTarget()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    // MARK: Layout Helpers
     override func setStyle() {
         view.backgroundColor = .black
-        
-        myYelloView.myYelloListView.handleMyYelloCellDelegate = self
-        myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
     }
     
     override func setLayout() {
@@ -32,12 +45,17 @@ final class MyYelloViewController: BaseViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+    // MARK: Custom Function
+    private func setDelegate() {
+        myYelloView.myYelloListView.handleMyYelloCellDelegate = self
+    }
+    
+    private func setAddTarget() {
+        myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
     }
 }
 
+// MARK: - extension
 extension MyYelloViewController {
     @objc private func unlockButtonTapped() {
         let paymentViewController = PaymentViewController()

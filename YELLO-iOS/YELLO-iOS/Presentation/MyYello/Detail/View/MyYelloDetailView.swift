@@ -10,14 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
 protocol HandleInstagramButtonDelegate: AnyObject {
     func instagramButtonTapped()
 }
 
 final class MyYelloDetailView: BaseView {
     
-    weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
-    
+    // MARK: - Variables
+    // MARK: Component
     let myYelloDetailNavigationBarView = MyYelloDetailNavigationBarView()
     let detailSenderView = DetailSenderView()
     let genderLabel = UILabel()
@@ -34,6 +35,8 @@ final class MyYelloDetailView: BaseView {
     let logoLabel = UILabel()
     let groupImageView = UIImageView()
     
+    // MARK: Property
+    weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
     var isKeywordUsed: Bool = false {
         didSet {
             if self.isKeywordUsed == true {
@@ -57,6 +60,7 @@ final class MyYelloDetailView: BaseView {
             }
         }
     }
+    
     var point: Int = 250
     
     // MARK: - Function
@@ -155,7 +159,6 @@ final class MyYelloDetailView: BaseView {
         }
         
         instagramButton.snp.makeConstraints {
-//            $0.top.equalTo(detailKeywordView.snp.bottom).offset(118.adjustedHeight)
             $0.bottom.equalTo(keywordButton.snp.top).offset(-24.adjustedHeight)
             $0.height.equalTo(20)
             $0.width.equalTo(129)
@@ -176,6 +179,7 @@ final class MyYelloDetailView: BaseView {
     }
 }
 
+// MARK: - extension
 extension MyYelloDetailView {
     
     // MARK: Objc Function
@@ -185,6 +189,7 @@ extension MyYelloDetailView {
         endInstagram()
     }
     
+    // MARK: Custom Function
     func setInstagramUI() {
         myYelloDetailNavigationBarView.isHidden = true
         instagramButton.isHidden = true
@@ -228,19 +233,6 @@ extension MyYelloDetailView {
             keywordButton.isHidden = true
         } else {
             keywordButton.isHidden = false
-        }
-    }
-    
-    @objc private func keywordButtonTapped() {
-        
-        if point == 0 {
-            showLackAlert()
-        } else {
-            if isKeywordUsed == false {
-                showUsePointAlert()
-            } else {
-                showUseSenderPointAlert()
-            }
         }
     }
     
@@ -331,8 +323,22 @@ extension MyYelloDetailView {
         
         viewController.view.addSubview(getHintView!)
     }
+
+    // MARK: Objc Function
+    @objc private func keywordButtonTapped() {
+        if point == 0 {
+            showLackAlert()
+        } else {
+            if isKeywordUsed == false {
+                showUsePointAlert()
+            } else {
+                showUseSenderPointAlert()
+            }
+        }
+    }
 }
 
+// MARK: HandleConfirmButtonDelegate
 extension MyYelloDetailView: HandleConfirmButtonDelegate {
     func confirmButtonTapped() {
         if self.isKeywordUsed == false {

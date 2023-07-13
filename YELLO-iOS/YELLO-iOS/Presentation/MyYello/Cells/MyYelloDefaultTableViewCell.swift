@@ -12,13 +12,18 @@ import Then
 
 final class MyYelloDefaultTableViewCell: UITableViewCell {
     
+    // MARK: - Variables
+    // MARK: Constants
     static let identifier = "MyYelloDefaultTableViewCell"
     
+    // MARK: Component
     let genderImageView = UIImageView()
     let titleLabel = UILabel()
     let newView = UIView()
     let timeLabel = UILabel()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -35,6 +40,7 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
