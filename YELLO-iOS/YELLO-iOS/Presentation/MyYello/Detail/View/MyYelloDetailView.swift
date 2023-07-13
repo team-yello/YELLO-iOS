@@ -50,6 +50,9 @@ final class MyYelloDetailView: BaseView {
                 senderButton.snp.makeConstraints {
                     $0.bottom.equalToSuperview().inset(94.adjustedHeight)
                 }
+                instagramButton.snp.makeConstraints {
+                    $0.bottom.equalTo(senderButton.snp.top).offset(-24.adjustedHeight)
+                }
                 detailSenderView.senderLabel.text = "ㄱ"
             }
         }
@@ -147,12 +150,13 @@ final class MyYelloDetailView: BaseView {
         detailKeywordView.snp.makeConstraints {
             $0.top.equalTo(genderLabel.snp.bottom).offset(42.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(154.adjustedHeight)
+            $0.height.equalTo(154)
             $0.centerX.equalToSuperview()
         }
         
         instagramButton.snp.makeConstraints {
-            $0.top.equalTo(detailKeywordView.snp.bottom).offset(118.adjustedHeight)
+//            $0.top.equalTo(detailKeywordView.snp.bottom).offset(118.adjustedHeight)
+            $0.bottom.equalTo(keywordButton.snp.top).offset(-24.adjustedHeight)
             $0.height.equalTo(20)
             $0.width.equalTo(129)
             $0.centerX.equalToSuperview()

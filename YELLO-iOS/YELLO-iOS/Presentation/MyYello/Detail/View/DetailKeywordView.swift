@@ -74,7 +74,7 @@ final class DetailKeywordView: BaseView {
         }
         
         keywordView.snp.makeConstraints {
-            $0.top.equalTo(nameKeywordLabel.snp.bottom).offset(16)
+            $0.bottom.equalToSuperview().inset(36)
             $0.centerX.equalToSuperview()
         }
         
