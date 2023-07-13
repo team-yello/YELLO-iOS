@@ -17,7 +17,6 @@
 		2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */; };
 		2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1A72A57175100CB988B /* VotingLockedViewController.swift */; };
 		2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */; };
-		2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B12A57395C00CB988B /* InvitingViewController.swift */; };
 		2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B32A5739B300CB988B /* InvitingView.swift */; };
 		2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1B72A57476C00CB988B /* VotingStartViewController.swift */; };
 		2AD1A1BB2A59559100CB988B /* VotingPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BA2A59559100CB988B /* VotingPointViewController.swift */; };
@@ -164,7 +163,6 @@
 		2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
 		2AD1A1A72A57175100CB988B /* VotingLockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingLockedViewController.swift; sourceTree = "<group>"; };
 		2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingETCView.swift; sourceTree = "<group>"; };
-		2AD1A1B12A57395C00CB988B /* InvitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitingViewController.swift; sourceTree = "<group>"; };
 		2AD1A1B32A5739B300CB988B /* InvitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitingView.swift; sourceTree = "<group>"; };
 		2AD1A1B72A57476C00CB988B /* VotingStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingStartViewController.swift; sourceTree = "<group>"; };
 		2AD1A1BA2A59559100CB988B /* VotingPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingPointViewController.swift; sourceTree = "<group>"; };
@@ -402,7 +400,6 @@
 		2AD1A1B52A573A0000CB988B /* Inviting */ = {
 			isa = PBXGroup;
 			children = (
-				2AD1A1B12A57395C00CB988B /* InvitingViewController.swift */,
 				2AD1A1B32A5739B300CB988B /* InvitingView.swift */,
 			);
 			path = Inviting;
@@ -1074,7 +1071,6 @@
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */,
 				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
-				2AD1A1B22A57395C00CB988B /* InvitingViewController.swift in Sources */,
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
