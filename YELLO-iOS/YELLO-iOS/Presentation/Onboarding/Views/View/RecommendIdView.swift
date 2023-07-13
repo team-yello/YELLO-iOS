@@ -18,6 +18,7 @@ class RecommendIdView: BaseView {
     override func setStyle() {
         subGuideLabel.do {
             $0.text = "없다면 건너뛰어도 돼요."
+            $0.setTextWithLineHeight(text: $0.text, lineHeight: 22)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales600
         }

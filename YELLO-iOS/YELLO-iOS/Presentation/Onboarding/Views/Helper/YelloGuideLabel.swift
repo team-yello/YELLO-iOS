@@ -28,6 +28,7 @@ final class YelloGuideLabel: UILabel {
     // MARK: Custom Function
     private func setLabelStyle() {
         self.font = .uiHeadline01
+        self.setTextWithLineHeight(text: self.text, lineHeight: 30)
         self.textColor = .white
     }
     
