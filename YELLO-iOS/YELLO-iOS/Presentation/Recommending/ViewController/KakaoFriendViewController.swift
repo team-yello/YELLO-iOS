@@ -38,9 +38,12 @@ extension KakaoFriendViewController {
     }
     
     private func setLayout() {
+        let tabbarHeight = 60 + safeAreaBottomInset()
+        
         view.addSubview(kakaoFriendView)
         kakaoFriendView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabbarHeight)
         }
     }
 }
