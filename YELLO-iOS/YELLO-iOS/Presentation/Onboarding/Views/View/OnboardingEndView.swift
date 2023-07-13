@@ -37,7 +37,6 @@ class OnboardingEndView: BaseView {
             $0.loopMode = .loop
         }
         
-        
         goToYelloButton.do {
             $0.backgroundColor = .yelloMain500
             $0.setImage(ImageLiterals.OnBoarding.icYelloFace, for: .normal)

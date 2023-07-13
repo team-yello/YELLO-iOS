@@ -54,7 +54,7 @@ extension YelloButton {
         setButtonEnable(state: self.buttonState)
     }
     
-    func setButtonEnable(state: Bool){
+    func setButtonEnable(state: Bool) {
         self.isEnabled = state
         switch self.isEnabled {
         case true:

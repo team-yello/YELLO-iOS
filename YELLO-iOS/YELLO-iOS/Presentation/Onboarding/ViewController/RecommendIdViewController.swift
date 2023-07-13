@@ -28,14 +28,14 @@ class RecommendIdViewController: OnboardingBaseViewController {
         setDelegate()
     }
     
-    func setDelegate(){
+    func setDelegate() {
         baseView.recommendIdTextField.textField.delegate = self
     }
     
     func checkButtonEnable() {
         let idText = baseView.recommendIdTextField.textField.text ?? ""
         
-        var isButtonEnabled = !(idText.isEmpty)
+        let isButtonEnabled = !(idText.isEmpty)
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
     
