@@ -11,14 +11,14 @@ import SnapKit
 import Then
 
 final class InviteBannerView: BaseView {
-
+    
     // MARK: - Variables
     // MARK: Component
     private let inviteImageView = UIImageView()
     private let inviteLabel = UILabel()
     private let descriptionLabel = UILabel()
     lazy var nextButton = UIButton()
-    private var invitingView: InvitingView?
+    private var invitingView = InvitingView()
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -82,16 +82,14 @@ final class InviteBannerView: BaseView {
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
-        if let invitingView {
-            invitingView.removeFromSuperview()
-        }
+        invitingView.removeFromSuperview()
         
         invitingView = InvitingView()
-        invitingView?.frame = viewController.view.bounds
-        invitingView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        invitingView.frame = viewController.view.bounds
+        invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        invitingView?.updateText(title: StringLiterals.Inviting.recommendTitle, text: StringLiterals.Inviting.recommendText, targetString: "함께 옐로")
-        viewController.view.addSubview(invitingView!)
+        invitingView.updateText(title: StringLiterals.Inviting.recommendTitle, text: StringLiterals.Inviting.recommendText, targetString: "함께 옐로")
+        viewController.view.addSubview(invitingView)
         
     }
 }
