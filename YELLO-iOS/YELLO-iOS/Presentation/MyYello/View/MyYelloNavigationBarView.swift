@@ -58,7 +58,7 @@ final class MyYelloNavigationBarView: BaseView {
         }
         
         yelloNumberLabel.snp.makeConstraints {
-            $0.bottom.equalTo(yelloCountLabel)
+            $0.centerY.equalTo(yelloCountLabel)
             $0.trailing.equalTo(yelloCountLabel.snp.leading).inset(-4.adjusted)
         }
         
