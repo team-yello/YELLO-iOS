@@ -177,5 +177,7 @@ extension InvitingView {
         let recommenderID = String(filteredString.dropFirst())
         UIPasteboard.general.string = recommenderID
         print(UIPasteboard.general.string ?? "")
+        
+        self.showToast(message: StringLiterals.Inviting.toastMessage, height: 88.adjustedHeight)
     }
 }
