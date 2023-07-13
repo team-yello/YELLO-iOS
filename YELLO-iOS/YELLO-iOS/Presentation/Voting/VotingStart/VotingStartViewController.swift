@@ -20,6 +20,12 @@ final class VotingStartViewController: BaseViewController {
         self.view = originView
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -39,6 +45,8 @@ final class VotingStartViewController: BaseViewController {
 
         animationView.play()
         view.addSubview(animationView)
+        
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
