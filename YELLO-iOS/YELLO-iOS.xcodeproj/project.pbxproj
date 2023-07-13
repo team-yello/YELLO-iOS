@@ -24,15 +24,13 @@
 		2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BD2A595A2400CB988B /* VotingTimerViewController.swift */; };
 		2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */; };
 		2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */; };
-		3628EAE12A5FC42F00D5FA40 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3628EAE02A5FC42F00D5FA40 /* Lottie */; };
-		3628EAE32A5FC4BC00D5FA40 /* SignAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE22A5FC4BC00D5FA40 /* SignAnimation.json */; };
-		3628EAE52A5FE4A800D5FA40 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAE42A5FE4A800D5FA40 /* FriendModel.swift */; };
 		2AD1A1D22A5BD13700CB988B /* BaseVotingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */; };
 		2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */; };
 		2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1D52A5C952000CB988B /* VotingFunction.swift */; };
 		2ADE23A52A5EA9390088FCB3 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */; };
 		2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2ADE23A92A5EB7660088FCB3 /* Lottie */; };
 		2AEE46EF2A603F9A000B4A9B /* VotingStart.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AEE46EE2A603F9A000B4A9B /* VotingStart.json */; };
+		3628EAE32A5FC4BC00D5FA40 /* SignAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE22A5FC4BC00D5FA40 /* SignAnimation.json */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
@@ -151,13 +149,12 @@
 		2AD1A1BD2A595A2400CB988B /* VotingTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerViewController.swift; sourceTree = "<group>"; };
 		2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Medium.ttf"; sourceTree = "<group>"; };
 		2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerView.swift; sourceTree = "<group>"; };
-		3628EAE22A5FC4BC00D5FA40 /* SignAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignAnimation.json; sourceTree = "<group>"; };
-		3628EAE42A5FE4A800D5FA40 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVotingMainView.swift; sourceTree = "<group>"; };
 		2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingDummy.swift; sourceTree = "<group>"; };
 		2AD1A1D52A5C952000CB988B /* VotingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingFunction.swift; sourceTree = "<group>"; };
 		2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		2AEE46EE2A603F9A000B4A9B /* VotingStart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VotingStart.json; sourceTree = "<group>"; };
+		3628EAE22A5FC4BC00D5FA40 /* SignAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignAnimation.json; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
@@ -399,7 +396,6 @@
 			isa = PBXGroup;
 			children = (
 				36E427592A5BCE860050B34E /* Constraints.swift */,
-				3628EAE42A5FE4A800D5FA40 /* FriendModel.swift */,
 				36E427572A5BCE860050B34E /* Cells */,
 				36E4275A2A5BCE860050B34E /* ViewController */,
 				36E4275E2A5BCE860050B34E /* Views */,
@@ -862,8 +858,7 @@
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
-				2AD1A1AE2A571ED500CB988B /* BaseVotingView.swift in Sources */,
-				3628EAE52A5FE4A800D5FA40 /* FriendModel.swift in Sources */,
+				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				36E427812A5BD60A0050B34E /* SchoolSearchView.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
