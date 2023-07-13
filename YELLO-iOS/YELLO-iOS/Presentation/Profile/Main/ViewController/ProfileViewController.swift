@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
@@ -18,32 +18,17 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Function
     // MARK: LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUI()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
-}
 
-// MARK: - extension
-extension ProfileViewController {
-    
-    // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         view.backgroundColor = .black
         profileView.navigationBarView.delegate = self
         profileView.handleFriendCellDelegate = self
     }
     
-    private func setLayout() {
+    override func setLayout() {
         
         let tabbarHeight = 60 + safeAreaBottomInset()
         

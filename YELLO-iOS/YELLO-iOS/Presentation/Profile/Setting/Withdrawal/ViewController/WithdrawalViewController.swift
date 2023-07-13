@@ -10,29 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
-final class WithdrawalViewController: UIViewController {
+final class WithdrawalViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
     private let withdrawalView = WithdrawalView()
     
     // MARK: - Function
-    // MARK: LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUI()
-    }
-}
-
-// MARK: - extension
-extension WithdrawalViewController {
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
     // MARK: Layout Helpers
-    private func setStyle() {
+    override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         tabBarController?.tabBar.isHidden = true
         
@@ -40,7 +26,7 @@ extension WithdrawalViewController {
         withdrawalView.withdrawalNavigationBarView.handleBackButtonDelegate = self
     }
     
-    private func setLayout() {
+    override func setLayout() {
         view.addSubview(withdrawalView)
         
         withdrawalView.snp.makeConstraints {
