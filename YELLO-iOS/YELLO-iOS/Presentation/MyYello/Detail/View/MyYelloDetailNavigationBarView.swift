@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class MyYelloDetailNavigationBarView: UIView {
+final class MyYelloDetailNavigationBarView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
@@ -24,26 +24,7 @@ final class MyYelloDetailNavigationBarView: UIView {
     let pointLabel = UILabel()
 
     // MARK: - Function
-    // MARK: LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-// MARK: - extension
-extension MyYelloDetailNavigationBarView {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
     private func setStyle() {
         self.backgroundColor = .clear
 
@@ -96,6 +77,9 @@ extension MyYelloDetailNavigationBarView {
             $0.leading.equalTo(pointImageView.snp.trailing).inset(-8)
         }
     }
+}
+// MARK: - extension
+extension MyYelloDetailNavigationBarView {
     
     // MARK: Objc Function
     @objc private func backButtonDidTap() {

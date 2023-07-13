@@ -87,7 +87,6 @@ extension MyYelloDetailViewController: HandleBackButtonDelegate {
 // MARK: HandleInstagramButtonDelegate
 extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
     @objc func instagramButtonTapped() {
-        
         if let storyShareURL = URL(string: "instagram-stories://share?source_application=" + Config.metaAppID) {
             
             if UIApplication.shared.canOpenURL(storyShareURL) {

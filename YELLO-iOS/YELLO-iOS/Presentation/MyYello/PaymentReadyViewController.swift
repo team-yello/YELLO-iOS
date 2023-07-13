@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class PaymentReadyViewController: UIViewController {
+final class PaymentReadyViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
@@ -22,26 +22,11 @@ final class PaymentReadyViewController: UIViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
         setDelegate()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = true
-    }
-}
-
-// MARK: - extension
-extension PaymentReadyViewController {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         
         view.backgroundColor = .black
         
@@ -66,7 +51,7 @@ extension PaymentReadyViewController {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         
         let statusBarHeight = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
@@ -96,6 +81,16 @@ extension PaymentReadyViewController {
         }
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+}
+
+// MARK: - extension
+extension PaymentReadyViewController {
+ 
     private func setDelegate() {
         paymentNavigationBarView.handleBackButtonDelegate = self
     }
