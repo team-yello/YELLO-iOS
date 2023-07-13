@@ -77,13 +77,13 @@ extension KakaoFriendView {
         
         inviteBannerView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-            $0.height.equalTo(76.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(76)
         }
         
         kakaoFriendTableView.snp.makeConstraints {
             $0.top.equalTo(inviteBannerView.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
         }
         
