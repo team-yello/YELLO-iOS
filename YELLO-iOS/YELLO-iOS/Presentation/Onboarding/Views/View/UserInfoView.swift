@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserInfoView: UIView {
+class UserInfoView: BaseView {
     let padding = 12
     
     let nameTextField = YelloTextFieldView(title: "이름은", state: .normal, placeholder: "김옐로",
@@ -16,35 +16,7 @@ class UserInfoView: UIView {
                                           helper: "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)")
     let idLabel = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
-        
-        nameTextField.textField.do {
-            $0.delegate = self
-        }
-        
-        idTextField.textField.do {
-            $0.delegate = self
-        }
-        
-        idLabel.do {
-            $0.text = "@"
-        }
-    }
-    
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(nameTextField, idTextField)
         
         nameTextField.snp.makeConstraints {
@@ -58,4 +30,3 @@ class UserInfoView: UIView {
         
     }
 }
-

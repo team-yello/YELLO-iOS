@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Lottie
+
 class OnboardingEndView: BaseView {
     
     let GuideLabel = UILabel()
@@ -15,6 +17,7 @@ class OnboardingEndView: BaseView {
     let endingImageView = UIImageView()
     
     let goToYelloButton = UIButton()
+    let animationView = LottieAnimationView(name: "SignAnimation")
     
     override func setStyle() {
         GuideLabel.do {
@@ -29,8 +32,9 @@ class OnboardingEndView: BaseView {
             $0.textColor = .grayscales600
         }
         
-        endingImageView.do {
-            $0.backgroundColor = .grayscales200
+        animationView.do {
+            $0.play()
+            $0.loopMode = .loop
         }
         
         
@@ -47,7 +51,7 @@ class OnboardingEndView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(GuideLabel, subGuideLabel, endingImageView, goToYelloButton)
+        self.addSubviews(GuideLabel, subGuideLabel, animationView, goToYelloButton)
         
         GuideLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -59,10 +63,9 @@ class OnboardingEndView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
-        endingImageView.snp.makeConstraints {
+        animationView.snp.makeConstraints {
             $0.top.equalTo(subGuideLabel.snp.bottom).offset(2)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(340)
         }
         
         goToYelloButton.snp.makeConstraints {

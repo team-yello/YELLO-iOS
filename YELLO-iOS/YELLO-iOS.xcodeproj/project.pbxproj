@@ -24,7 +24,8 @@
 		2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BD2A595A2400CB988B /* VotingTimerViewController.swift */; };
 		2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */; };
 		2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */; };
-		3628EADA2A5E87FE00D5FA40 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAD92A5E87FE00D5FA40 /* UIImage+.swift */; };
+		3628EAE12A5FC42F00D5FA40 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3628EAE02A5FC42F00D5FA40 /* Lottie */; };
+		3628EAE32A5FC4BC00D5FA40 /* SignAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE22A5FC4BC00D5FA40 /* SignAnimation.json */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
@@ -120,7 +121,7 @@
 		2AD1A1BD2A595A2400CB988B /* VotingTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerViewController.swift; sourceTree = "<group>"; };
 		2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Medium.ttf"; sourceTree = "<group>"; };
 		2AD1A1C32A5972E000CB988B /* VotingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTimerView.swift; sourceTree = "<group>"; };
-		3628EAD92A5E87FE00D5FA40 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		3628EAE22A5FC4BC00D5FA40 /* SignAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SignAnimation.json; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
 				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
+				3628EAE12A5FC42F00D5FA40 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +380,7 @@
 		36E4275F2A5BCE860050B34E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3628EAE22A5FC4BC00D5FA40 /* SignAnimation.json */,
 				36E427602A5BCE860050B34E /* GenderView.swift */,
 				36E427802A5BD60A0050B34E /* SchoolSearchView.swift */,
 				36E427822A5BD6110050B34E /* StudentInfoView.swift */,
@@ -469,7 +472,6 @@
 				C3A4615A2A4FD44800734EF8 /* adjust+.swift */,
 				367F1CD32A54193700CDF47B /* UIColor+.swift */,
 				2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */,
-				3628EAD92A5E87FE00D5FA40 /* UIImage+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -586,6 +588,7 @@
 				C3A799B12A4949A700D3EFD8 /* Alamofire */,
 				C3A799B42A4949B100D3EFD8 /* Kingfisher */,
 				C3A799B72A4949C600D3EFD8 /* KakaoSDK */,
+				3628EAE02A5FC42F00D5FA40 /* Lottie */,
 			);
 			productName = "YELLO-iOS";
 			productReference = C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */;
@@ -621,6 +624,7 @@
 				C3A799B02A4949A700D3EFD8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C3A799B32A4949B100D3EFD8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				3628EADF2A5FC42F00D5FA40 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
@@ -643,6 +647,7 @@
 				367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */,
 				C3A79A002A49500000D3EFD8 /* Pretendard-Bold.otf in Resources */,
 				2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */,
+				3628EAE32A5FC4BC00D5FA40 /* SignAnimation.json in Resources */,
 				C3A79A012A49500000D3EFD8 /* Pretendard-ExtraBold.otf in Resources */,
 				C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */,
 				C3A79A052A49500000D3EFD8 /* Pretendard-Regular.otf in Resources */,
@@ -693,7 +698,6 @@
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3A7999B2A49490A00D3EFD8 /* ViewController.swift in Sources */,
-				3628EADA2A5E87FE00D5FA40 /* UIImage+.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
 				C3C57BC72A57160000B84CAA /* SchoolFriendViewController.swift in Sources */,
 				36E4278F2A5C93CE0050B34E /* SearchView.swift in Sources */,
@@ -891,9 +895,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q827V73L8U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -921,9 +925,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q827V73L8U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -969,6 +973,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3628EADF2A5FC42F00D5FA40 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -1012,6 +1024,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3628EAE02A5FC42F00D5FA40 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3628EADF2A5FC42F00D5FA40 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
 		C3A799AB2A49499500D3EFD8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */;
