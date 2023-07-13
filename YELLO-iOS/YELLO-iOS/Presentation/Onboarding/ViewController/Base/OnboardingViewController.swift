@@ -22,6 +22,12 @@ class OnboardingBaseViewController: BaseViewController {
     var isSkipable = false
     
     // MARK: Life Cycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
