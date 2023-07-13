@@ -1,5 +1,5 @@
 //
-//  ProfileCountView.swift
+//  FriendCountView.swift
 //  YELLO-iOS
 //
 //  Created by 정채은 on 2023/07/11.
@@ -82,7 +82,7 @@ extension FriendCountView {
         }
         
         friendCountLabel.snp.makeConstraints {
-            $0.top.equalTo(friendNumberLabel)
+            $0.centerY.equalTo(friendNumberLabel)
             $0.trailing.equalToSuperview()
         }
     }
