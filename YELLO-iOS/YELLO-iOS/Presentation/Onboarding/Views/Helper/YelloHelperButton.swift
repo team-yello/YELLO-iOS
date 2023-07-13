@@ -8,14 +8,15 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class YelloHelperButton: UIButton {
     // MARK: - Variables
-    
-    //MARK: Property
+    // MARK: Property
     var buttonText: String?
     
-    
-    init(buttonText: String){
+    init(buttonText: String) {
         super.init(frame: CGRect())
         self.buttonText = buttonText
         setUI()
@@ -27,18 +28,17 @@ final class YelloHelperButton: UIButton {
 
 }
 
-
 // MARK: - extension
 extension YelloHelperButton {
     // MARK: Layout Helpers
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
         self.setTitle(buttonText, for: .normal)
-        self.setTitleColor(.gray, for: .normal)
+        self.setTitleColor(.grayscales500, for: .normal)
         self.titleLabel?.font = .systemFont(ofSize: 12)
         self.setUnderline()
 

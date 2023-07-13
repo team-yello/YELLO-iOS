@@ -10,16 +10,16 @@ import UIKit
 import SnapKit
 import Then
 
-
 class OnboardingBaseViewController: BaseViewController {
     // MARK: - Variables
     
     // MARK: Componenet
     
     private let backButton = UIButton()
-    private let nextButton = YelloButton(buttonText: "다음", state: .enabled)
+    let nextButton = YelloButton(buttonText: "다음")
+    private let skipButton = UIButton()
     var nextViewController: UIViewController?
-    
+    var isSkipable = false
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -29,22 +29,39 @@ class OnboardingBaseViewController: BaseViewController {
     // MARK: - Function
     
     // MARK: Custom Function
-    ///ConfigUI 반복 사용되는 부분 설정
+    /// ConfigUI 반복 사용되는 부분 설정
     func configUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         setNavigationBarAppearance()
         backButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.icArrowLeft, for: .normal)
+            $0.setImage(ImageLiterals.OnBoarding.icArrowLeft.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
         }
         
         nextButton.do {
             $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         }
-        view.addSubviews(nextButton)
+        
+        skipButton.do {
+            $0.setTitle("건너뛰기", for: .normal)
+            $0.titleLabel?.font = .uiBody01
+            $0.setTitleColor(.white, for: .normal)
+            $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        }
+        
+        skipButton.isHidden = !(isSkipable)
+        view.addSubviews(skipButton, nextButton)
+        
         nextButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
             $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
         }
+        
+        skipButton.snp.makeConstraints {
+            $0.height.equalTo(36)
+            $0.bottom.equalTo(nextButton.snp.top).inset(-14)
+            $0.centerX.equalToSuperview()
+        }
+
     }
     
     func makeBarButtonItem<T: UIView>(with view: T) -> UIBarButtonItem {
@@ -52,12 +69,11 @@ class OnboardingBaseViewController: BaseViewController {
     }
     
     func setNavigationBarAppearance() {
-        let backButtonImage = ImageLiterals.OnBoarding.icArrowLeft.withTintColor(.black, renderingMode: .alwaysOriginal)
+        let backButtonImage = ImageLiterals.OnBoarding.icArrowLeft.withTintColor(.white, renderingMode: .alwaysOriginal)
         let appearance = UINavigationBarAppearance()
         appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
         appearance.backButtonAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: -200, vertical: 0)
-        appearance.backButtonAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray]
-        appearance.backgroundColor = .white
+        appearance.backgroundColor = .black
         appearance.shadowColor = .clear
         navigationItem.standardAppearance = appearance
         navigationItem.compactAppearance = appearance
@@ -72,7 +88,7 @@ class OnboardingBaseViewController: BaseViewController {
         } else {}
     }
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
-
-

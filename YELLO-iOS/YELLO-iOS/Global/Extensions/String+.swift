@@ -8,5 +8,15 @@
 import Foundation
 
 extension String {
-
+    func isContainNumberAndAlphabet() -> Bool {
+            let pattern = "^[0-9a-zA-Z]*$"
+        guard self.range(of: pattern, options: .regularExpression) != nil else { return false}
+            return true
+        }
+    
+    func isContainEnglish() -> Bool {
+            let pattern = "[A-Za-z]+"
+        guard self.range(of: pattern, options: .regularExpression) != nil else { return false}
+            return true
+        }
 }

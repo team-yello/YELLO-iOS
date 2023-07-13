@@ -6,33 +6,39 @@
 //
 
 import UIKit
-import SnapKit
 
+import SnapKit
+import Then
+
+// MARK: - enum
+/// 버튼 상태
 enum ButtonState {
     case enabled
     case unabled
 }
 
-
 final class YelloButton: UIButton {
-    
+    // MARK: - Variables
+    // MARK: Constants
     let roundAmount: CGFloat = 8
     let buttonHeight: CGFloat = 48
     let textSize: CGFloat = 15
-    var buttonState = ButtonState.enabled
+    
+    // MARK: Property
+    var buttonState: Bool = false
     var buttonText: String?
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    // MARK: - Function
-
-    // MARK: LifeCycle
-    init(buttonText: String, state: ButtonState) {
+    init(buttonText: String, isEnabled: Bool = false) {
         super.init(frame: CGRect(x: 0, y: 0, width: buttonHeight, height: 0))
-        self.buttonState = state
         self.buttonText = buttonText
+        self.buttonState = isEnabled
+        setButtonEnable(state: buttonState)
         setUI()
     }
     
@@ -41,30 +47,37 @@ final class YelloButton: UIButton {
     }
 }
 
+// MARK: - extension
+// MARK: setUI
 extension YelloButton {
-    private func setUI(){
+    func setUI() {
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
         self.setTitle(buttonText, for: .normal)
-        self.makeCornerRound(radius: roundAmount)
+        self.makeCornerRound(radius: CGFloat(Constraints.round))
         self.titleLabel?.font = .uiButton
-        
-        switch self.isEnabled {
-        case true:
-            self.backgroundColor = .black
-            self.setTitleColor(.yelloMain500, for: .normal)
-        case false:
-            self.backgroundColor = .grayscales500
-            self.titleLabel?.textColor = .grayscales400
-        }
+        setButtonEnable(state: self.buttonState)
     }
     
     private func setLayout() {
-        self.snp.makeConstraints{
+        self.snp.makeConstraints {
             $0.height.equalTo(buttonHeight)
+        }
+    }
+    
+    // MARK: Custom Method
+    func setButtonEnable(state: Bool) {
+        self.isEnabled = state
+        switch self.isEnabled {
+        case true:
+            self.backgroundColor = .yelloMain700
+            self.setTitleColor(.black, for: .normal)
+        case false:
+            self.backgroundColor = .grayscales800
+            self.setTitleColor(.grayscales700, for: .normal)
         }
     }
 }
