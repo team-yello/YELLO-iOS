@@ -18,6 +18,7 @@ final class MyYelloDetailNavigationBarView: UIView {
     
     // MARK: Component
     lazy var backButton = UIButton()
+    let titleLabel = UILabel()
     let pointView = UIView()
     let pointImageView = UIImageView()
     let pointLabel = UILabel()
@@ -52,6 +53,12 @@ extension MyYelloDetailNavigationBarView {
             $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         }
         
+        titleLabel.do {
+            $0.setTextWithLineHeight(text: "", lineHeight: 24)
+            $0.font = .uiSubtitle05
+            $0.textColor = .white
+        }
+        
         pointImageView.do {
             $0.image = ImageLiterals.MyYello.icPointWhite
         }
@@ -65,12 +72,18 @@ extension MyYelloDetailNavigationBarView {
     
     private func setLayout() {
         self.addSubviews(backButton,
+                         titleLabel,
                          pointImageView,
                          pointLabel)
         
         backButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16.adjusted)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(backButton.snp.trailing).inset(-8)
         }
         
         pointImageView.snp.makeConstraints {

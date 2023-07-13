@@ -18,6 +18,7 @@ final class MyYelloViewController: BaseViewController {
         view.backgroundColor = .black
         
         myYelloView.myYelloListView.handleMyYelloCellDelegate = self
+        myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
     }
     
     override func setLayout() {
@@ -29,6 +30,13 @@ final class MyYelloViewController: BaseViewController {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
+    }
+}
+
+extension MyYelloViewController {
+    @objc private func unlockButtonTapped() {
+        let paymentViewController = PaymentViewController()
+        navigationController?.pushViewController(paymentViewController, animated: true)
     }
 }
 

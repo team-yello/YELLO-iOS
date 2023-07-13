@@ -17,7 +17,7 @@ final class MyYelloView: BaseView {
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
     private let myYelloEmptyView = MyYelloEmptyView()
     let myYelloListView = MyYelloListView()
-    private let unlockButton = UIButton()
+    let unlockButton = UIButton()
     
     override func setStyle() {
         self.backgroundColor = .black
@@ -33,7 +33,6 @@ final class MyYelloView: BaseView {
             $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
             $0.setTitle(StringLiterals.MyYello.List.unlockButton, for: .normal)
-            $0.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -73,9 +72,5 @@ final class MyYelloView: BaseView {
                 $0.bottom.equalTo(myYelloListView).inset(28)
             }
         }
-    }
-    
-    @objc private func unlockButtonTapped() {
-        print("결제")
     }
 }

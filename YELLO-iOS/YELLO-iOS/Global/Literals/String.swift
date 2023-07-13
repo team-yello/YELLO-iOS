@@ -138,6 +138,12 @@ enum StringLiterals {
             static let afterPoint = "사용 후 포인트"
             static let confirmButton = "확인"
         }
+        
+        enum Payment {
+            static let title = "구독권 결제"
+            static let description = "결제 기능은 아직 구현되지 않았어요.\n곧 기능을 준비할게요!"
+            static let back = "나가기"
+        }
     }
     
     enum Profile {
