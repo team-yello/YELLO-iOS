@@ -50,4 +50,41 @@ extension UIView {
         return image
     }
     
+    // 토스트 메세지
+    func showToast(message: String) {
+        let toastLabel = UILabel()
+        toastLabel.backgroundColor = UIColor(hex: "343A40", alpha: 0.9)
+        toastLabel.textColor = .grayscales200
+        toastLabel.textAlignment = .center
+        toastLabel.font = .uiLabelLarge
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 8
+        toastLabel.clipsToBounds = true
+        
+        let toastWidth = 253.adjusted
+        let toastHeight = 42.adjusted
+        toastLabel.frame = CGRect(x: self.frame.size.width / 2 - toastWidth / 2,
+                                  y: self.frame.size.height - toastHeight - 25,
+                                  width: toastWidth,
+                                  height: toastHeight)
+        self.addSubview(toastLabel)
+        
+        UIView.animate(withDuration: 3.0, delay: 0.1, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
+    
+    func setLineDot(view: UIView, color: String, radius: CGFloat) {
+        let borderLayer = CAShapeLayer()
+        borderLayer.strokeColor = UIColor(named: color)?.cgColor
+        borderLayer.lineDashPattern = [2, 2]
+        borderLayer.frame = view.bounds
+        borderLayer.fillColor = nil
+        borderLayer.path = UIBezierPath(roundedRect: view.bounds, cornerRadius: radius).cgPath
+        view.layer.addSublayer(borderLayer)
+    }
+    
 }

@@ -25,6 +25,12 @@ final class VotingTimerViewController: BaseViewController {
         self.view = originView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: - Style
     
     override func setStyle() {
@@ -119,8 +125,8 @@ final class VotingTimerViewController: BaseViewController {
         
     }
     
-    // MARK: - 바로 투표하기 버튼 클릭했을 때
-    
+    // MARK: - Objc Function
+
     @objc
     func yellowButtonClicked() {
         let viewController = InvitingViewController()

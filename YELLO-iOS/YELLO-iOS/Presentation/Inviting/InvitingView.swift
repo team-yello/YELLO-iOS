@@ -11,6 +11,8 @@ import SnapKit
 import Then
 
 final class InvitingView: BaseView {
+    
+    let contentsView = UIView()
 
     // 컴포넌트 위치 순서대로
     let closeButton = UIButton()
@@ -22,14 +24,16 @@ final class InvitingView: BaseView {
     let recommender = UILabel()
     let recommenderID = UILabel()
     
-    let kakaoButton = UIButton()
-    let copyButton = UIButton()
+    lazy var kakaoButton = UIButton()
+    lazy var copyButton = UIButton()
     
     // MARK: - Style
     
     override func setStyle() {
-        self.makeCornerRound(radius: 10)
-        self.backgroundColor = .white
+        self.backgroundColor = .black.withAlphaComponent(0.5)
+        
+        contentsView.makeCornerRound(radius: 10)
+        contentsView.backgroundColor = .white
         
         closeButton.do {
             $0.setTitle("닫기", for: .normal)
@@ -39,6 +43,7 @@ final class InvitingView: BaseView {
             $0.titleLabel?.font = .uiLabelLarge
             $0.contentHorizontalAlignment = .center
             $0.semanticContentAttribute = .forceRightToLeft
+            $0.addTarget(self, action: #selector(closeButtonClicked), for: .touchUpInside)
         }
         
         titleLabel.do {
@@ -52,7 +57,7 @@ final class InvitingView: BaseView {
             $0.numberOfLines = 2
             $0.textColor = .grayscales600
             $0.font = .uiBody03
-            $0.asColor(targetString: "바로 투표" , color: .black)
+            $0.asColor(targetString: "바로 투표", color: .black)
         }
         
         backGroundView.do {
@@ -74,17 +79,21 @@ final class InvitingView: BaseView {
         
         kakaoButton.do {
             $0.setImage(ImageLiterals.InvitingPopUp.icKakaoShare, for: .normal)
+            $0.addTarget(self, action: #selector(kakaoButtonClicked), for: .touchUpInside)
         }
         
         copyButton.do {
             $0.setImage(ImageLiterals.InvitingPopUp.icLinkCopy, for: .normal)
+            $0.addTarget(self, action: #selector(copyButtonClicked), for: .touchUpInside)
         }
     }
     
     // MARK: - Layout
     
     override func setLayout() {
-        self.addSubviews(closeButton,
+        self.addSubview(contentsView)
+        
+        contentsView.addSubviews(closeButton,
                          titleLabel,
                          textLabel,
                          backGroundView,
@@ -93,6 +102,12 @@ final class InvitingView: BaseView {
         
         backGroundView.addSubviews(recommender,
                                    recommenderID)
+        
+        contentsView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalTo(300)
+            $0.height.equalTo(374)
+        }
         
         closeButton.snp.makeConstraints {
             $0.top.trailing.equalToSuperview().inset(14.adjusted)
@@ -133,5 +148,34 @@ final class InvitingView: BaseView {
             $0.trailing.equalToSuperview().inset(100.adjusted)
             $0.bottom.equalToSuperview().inset(50.adjusted)
         }
+    }
+}
+
+extension InvitingView {
+    
+    func updateText(title: String, text: String, targetString: String) {
+        titleLabel.setTextWithLineHeight(text: title, lineHeight: 24)
+        textLabel.setTextWithLineHeight(text: text, lineHeight: 20)
+        textLabel.asColor(targetString: targetString, color: .black)
+    }
+    
+    @objc
+    func closeButtonClicked() {
+        self.isHidden = true
+        self.removeFromSuperview()
+    }
+    
+    @objc
+    func kakaoButtonClicked() {
+        /// 카카오톡 연결 시 추후 구현
+    }
+    
+    @objc
+    func copyButtonClicked() {
+        /// 우선 지금은 추천인 코드 복사로 구현해 놓음
+        guard let filteredString = self.recommenderID.text else { return }
+        let recommenderID = String(filteredString.dropFirst())
+        UIPasteboard.general.string = recommenderID
+        print(UIPasteboard.general.string ?? "")
     }
 }

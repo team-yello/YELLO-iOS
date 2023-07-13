@@ -13,6 +13,10 @@ extension UIFont {
         return UIFont(name: "Pretendard-Bold", size: 28.0)!
     }
     
+    class var uiLarge: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 24.0)!
+    }
+    
     class var uiHeadline01: UIFont {
         return UIFont(name: "Pretendard-Bold", size: 22.0)!
     }
@@ -45,6 +49,10 @@ extension UIFont {
         return UIFont(name: "Pretendard-SemiBold", size: 15.0)!
     }
     
+    class var uiSubtitle05: UIFont {
+        return UIFont(name: "Pretendard-Medium", size: 18.0)!
+    }
+    
     class var uiBodyLarge: UIFont {
         return UIFont(name: "Pretendard-Medium", size: 16.0)!
     }
@@ -75,6 +83,10 @@ extension UIFont {
     
     class var uiBody04: UIFont {
         return UIFont(name: "Pretendard-Bold", size: 13.0)!
+    }
+    
+    class var uiBody05: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 12.0)!
     }
     
     class var uiLabelLarge: UIFont {

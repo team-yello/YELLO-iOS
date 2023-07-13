@@ -72,13 +72,12 @@ final class VotingStartViewController: BaseViewController {
         
     }
     
-    // MARK: - 투표시작 버튼 클릭했을 때
-    
+    // MARK: - Objc Function
+
     @objc
     func yellowButtonClicked() {
         let viewController = VotingViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
-        self.navigationController?.navigationBar.isHidden = true
     }
     
 }
