@@ -78,6 +78,16 @@ enum ImageLiterals {
         static var icSuffleLocked: UIImage { .load(named: "icSuffleLocked")}
         static var icSkip: UIImage { .load(named: "icSkip")}
         static var icSkipLocked: UIImage { .load(named: "icSkipLocked")}
+        static var imgProgress1: UIImage { .load(named: "imgProgress1")}
+        static var imgProgress2: UIImage { .load(named: "imgProgress2")}
+        static var imgProgress3: UIImage { .load(named: "imgProgress3")}
+        static var imgProgress4: UIImage { .load(named: "imgProgress4")}
+        static var imgProgress5: UIImage { .load(named: "imgProgress5")}
+        static var imgProgress6: UIImage { .load(named: "imgProgress6")}
+        static var imgProgress7: UIImage { .load(named: "imgProgress7")}
+        static var imgProgress8: UIImage { .load(named: "imgProgress8")}
+        static var imgProgress9: UIImage { .load(named: "imgProgress9")}
+        static var imgProgress10: UIImage { .load(named: "imgProgress10")}
 
     }
     

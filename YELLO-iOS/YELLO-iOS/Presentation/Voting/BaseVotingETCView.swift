@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class BaseVotingView: BaseView {
+final class BaseVotingETCView: BaseView {
     // 컴포넌트 위치 순서대로
     let topOfPointIcon = UIImageView()
     let topOfMyPoint = UILabel()
@@ -55,10 +55,6 @@ final class BaseVotingView: BaseView {
         plusPoint.do {
             $0.textColor = .white
             $0.font = .uiPointLabel
-        }
-        
-        yelloImage.do {
-            $0.makeBorder(width: 1, color: .grayscales700)
         }
         
         grayView.do {

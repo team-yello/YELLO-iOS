@@ -12,7 +12,7 @@ import Then
 
 final class VotingLockedViewController: BaseViewController {
     
-    private let originView = BaseVotingView()
+    private let originView = BaseVotingETCView()
     
     override func loadView() {
         self.view = originView
@@ -47,6 +47,8 @@ final class VotingLockedViewController: BaseViewController {
             .first?
             .statusBarManager?
             .statusBarFrame.height ?? 20
+        
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
                 
         originView.titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
@@ -62,7 +64,7 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 511.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 20.adjusted)
         }
         
     }

@@ -30,7 +30,7 @@ final class VotingTimerView: BaseView {
     private var circularPath: UIBezierPath {
         UIBezierPath(
             arcCenter: CGPoint(x: self.frame.size.width / 2.0, y: self.frame.size.height / 2.0),
-            radius: 75,
+            radius: 95,
             startAngle: CGFloat(3 * Double.pi / 2),
             endAngle: CGFloat(-Double.pi / 2),
             clockwise: false // 시계 방향과 반대 방향을 나타내기 위해 clockwise 값을 false로 변경
@@ -71,7 +71,7 @@ final class VotingTimerView: BaseView {
             $0.path = self.circularPath.cgPath
             $0.fillColor = UIColor.clear.cgColor
             $0.lineCap = .round
-            $0.lineWidth = 13.0
+            $0.lineWidth = 16.0
             $0.strokeStart = 0
             $0.strokeColor = UIColor(hex: "3B3B1E").cgColor
             $0.zPosition = 0
@@ -81,7 +81,7 @@ final class VotingTimerView: BaseView {
             $0.path = self.circularPath.cgPath
             $0.fillColor = UIColor.clear.cgColor
             $0.lineCap = .round
-            $0.lineWidth = 13.0
+            $0.lineWidth = 16.0
             $0.strokeStart = 0
             $0.strokeEnd = 1
             $0.strokeColor = UIColor.yelloMain500.cgColor
