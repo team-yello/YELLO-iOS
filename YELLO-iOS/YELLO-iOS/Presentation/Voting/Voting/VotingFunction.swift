@@ -7,7 +7,11 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 extension VotingViewController {
+    
     /// 10개 투표지의 style을 dummy에 따라 설정
     func setVotingView() {
         let dummy = VotingDummy.dummy()
@@ -24,6 +28,62 @@ extension VotingViewController {
         self.originView.yelloProgress.image =
         dummy[VotingViewController.pushCount].yelloProgress
         self.originView.numOfPageLabel.text = String(VotingViewController.pushCount + 1)
+    }
+    
+    func setNameText(first: String, second: String, third: String, fourth: String) {
+        let firstLineFont = UIFont.uiBodyMedium
+        let firstLineColor = UIColor.white
+        let secondLineFont = UIFont.uiLabelSmall
+        let secondLineColor = UIColor.grayscales600
+        
+        nameTextOne.removeFromSuperview()
+        nameTextOne = UILabel.createTwoLineLabel(text: first,
+                                                 firstLineFont: firstLineFont,
+                                                 firstLineColor: firstLineColor,
+                                                 secondLineFont: secondLineFont,
+                                                 secondLineColor: secondLineColor)
+        
+        nameTextTwo.removeFromSuperview()
+        nameTextTwo = UILabel.createTwoLineLabel(text: second,
+                                                 firstLineFont: firstLineFont,
+                                                 firstLineColor: firstLineColor,
+                                                 secondLineFont: secondLineFont,
+                                                 secondLineColor: secondLineColor)
+        
+        nameTextThree.removeFromSuperview()
+        nameTextThree = UILabel.createTwoLineLabel(text: third,
+                                                   firstLineFont: firstLineFont,
+                                                   firstLineColor: firstLineColor,
+                                                   secondLineFont: secondLineFont,
+                                                   secondLineColor: secondLineColor)
+    
+        nameTextFour.removeFromSuperview()
+        nameTextFour = UILabel.createTwoLineLabel(text: fourth,
+                                                  firstLineFont: firstLineFont,
+                                                  firstLineColor: firstLineColor,
+                                                  secondLineFont: secondLineFont,
+                                                  secondLineColor: secondLineColor)
+        
+        originView.nameOneButton.addSubview(nameTextOne)
+        originView.nameTwoButton.addSubview(nameTextTwo)
+        originView.nameThreeButton.addSubview(nameTextThree)
+        originView.nameFourButton.addSubview(nameTextFour)
+        
+        nameTextOne.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        nameTextTwo.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        nameTextThree.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        nameTextFour.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
     /// 다음 뷰컨을 지정하는 함수

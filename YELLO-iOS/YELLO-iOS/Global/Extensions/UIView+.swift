@@ -93,4 +93,14 @@ extension UIView {
         layer.addSublayer(dottedBorderLayer)
     }
     
+    func setBackgroundImageWithScaling(image: UIImage) {
+        let backgroundImageView = UIImageView(image: image)
+        backgroundImageView.contentMode = .scaleAspectFit
+        
+        addSubview(backgroundImageView)
+        backgroundImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
 }

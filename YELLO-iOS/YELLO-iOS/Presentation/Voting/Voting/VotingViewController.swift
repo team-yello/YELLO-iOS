@@ -78,9 +78,29 @@ final class VotingViewController: BaseViewController {
     
     var suffleCount = 0 {
         didSet {
+            var selectedNames = Set<String>()
+            var selectedTexts = [String]()
+
+            while selectedTexts.count < 4 {
+                if let randomName = StringLiterals.Voting.VoteName.getRandomName(), !selectedNames.contains(randomName) {
+                    selectedNames.insert(randomName)
+                    selectedTexts.append(randomName)
+                }
+            }
+
+            if selectedTexts.count >= 4 {
+                let first = selectedTexts[0]
+                let second = selectedTexts[1]
+                let third = selectedTexts[2]
+                let fourth = selectedTexts[3]
+                
+                setNameText(first: first, second: second, third: third, fourth: fourth)
+            }
+            
             if suffleCount < 3 {
                 originView.suffleNum.text = String(3 - suffleCount) + "/3"
             }
+                
             if suffleCount == 3 {
                 originView.suffleButton.isEnabled = false
                 originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
@@ -109,34 +129,7 @@ final class VotingViewController: BaseViewController {
     
     override func setStyle() {
         
-        let firstLineFont = UIFont.uiBodyMedium
-        let firstLineColor = UIColor.white
-        let secondLineFont = UIFont.uiLabelSmall
-        let secondLineColor = UIColor.grayscales600
-        
-        nameTextOne = UILabel.createTwoLineLabel(text: StringLiterals.Voting.VoteName.one,
-                                         firstLineFont: firstLineFont,
-                                         firstLineColor: firstLineColor,
-                                         secondLineFont: secondLineFont,
-                                         secondLineColor: secondLineColor)
-        
-        nameTextTwo = UILabel.createTwoLineLabel(text: StringLiterals.Voting.VoteName.two,
-                                         firstLineFont: firstLineFont,
-                                         firstLineColor: firstLineColor,
-                                         secondLineFont: secondLineFont,
-                                         secondLineColor: secondLineColor)
-        
-        nameTextThree = UILabel.createTwoLineLabel(text: StringLiterals.Voting.VoteName.three,
-                                           firstLineFont: firstLineFont,
-                                           firstLineColor: firstLineColor,
-                                           secondLineFont: secondLineFont,
-                                           secondLineColor: secondLineColor)
-        
-        nameTextFour = UILabel.createTwoLineLabel(text: StringLiterals.Voting.VoteName.four,
-                                          firstLineFont: firstLineFont,
-                                          firstLineColor: firstLineColor,
-                                          secondLineFont: secondLineFont,
-                                          secondLineColor: secondLineColor)
+        setNameText(first: StringLiterals.Voting.VoteName.one, second: StringLiterals.Voting.VoteName.two, third: StringLiterals.Voting.VoteName.three, fourth: StringLiterals.Voting.VoteName.four)
         
         originView.nameOneButton.do {
             $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
@@ -262,31 +255,10 @@ final class VotingViewController: BaseViewController {
             $0.centerY.equalToSuperview()
         }
         
-        originView.nameOneButton.addSubview(nameTextOne)
-        originView.nameTwoButton.addSubview(nameTextTwo)
-        originView.nameThreeButton.addSubview(nameTextThree)
-        originView.nameFourButton.addSubview(nameTextFour)
-        
         originView.questionBackground.addSubviews(nameStackView, keywordStackView)
         
         nameStackView.addArrangedSubviews(nameHead, nameMiddleBackground, nameFoot)
         keywordStackView.addArrangedSubviews(keywordHead, keywordMiddleBackground, keywordFoot)
-        
-        nameTextOne.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        nameTextTwo.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        nameTextThree.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        nameTextFour.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
         
         nameStackView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(36.adjusted)
