@@ -119,6 +119,7 @@ enum StringLiterals {
             static let keywordButton = "100포인트로 키워드 확인하기"
             static let sendButton = "300포인트로 초성 1개 확인하기"
             static let senderButton = "누가 보냈는지 확인하기"
+            static let logoTitle = "지금 누군가가 당신을 생각하고 있어요!"
         }
         
         enum Alert {

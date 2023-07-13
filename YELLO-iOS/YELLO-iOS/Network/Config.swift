@@ -12,6 +12,7 @@ enum Config {
     enum Keys {
         enum Plist {
             static let baseURL = "BASE_URL"
+            static let metaAppID = "META_APP_ID"
         }
     }
     
@@ -27,6 +28,13 @@ extension Config {
     
     static let baseURL: String = {
         guard let key = Config.infoDictionary[Keys.Plist.baseURL] as? String else {
+            fatalError("Base URL is not set in plist for this configuration.")
+        }
+        return key
+    }()
+    
+    static let metaAppID: String = {
+        guard let key = Config.infoDictionary[Keys.Plist.metaAppID] as? String else {
             fatalError("Base URL is not set in plist for this configuration.")
         }
         return key

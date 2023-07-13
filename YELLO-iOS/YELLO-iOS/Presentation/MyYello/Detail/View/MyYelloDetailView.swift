@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleInstagramButtonDelegate: AnyObject {
+    func instagramButtonTapped()
+}
+
 final class MyYelloDetailView: BaseView {
+    
+    weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
     
     let myYelloDetailNavigationBarView = MyYelloDetailNavigationBarView()
     let detailSenderView = DetailSenderView()
@@ -23,6 +29,10 @@ final class MyYelloDetailView: BaseView {
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
     lazy var senderButton = UIButton()
+    
+    let logoImageView = UIImageView()
+    let logoLabel = UILabel()
+    let groupImageView = UIImageView()
     
     var isKeywordUsed: Bool = false {
         didSet {
@@ -87,6 +97,20 @@ final class MyYelloDetailView: BaseView {
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
             $0.setTitle(StringLiterals.MyYello.Detail.senderButton, for: .normal)
             $0.addTarget(self, action: #selector(senderButtonTapped), for: .touchUpInside)
+        }
+        
+        logoImageView.do {
+            $0.image = ImageLiterals.MyYello.imgLogo
+        }
+        
+        logoLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.logoTitle, lineHeight: 16)
+            $0.font = .uiLabelLarge
+            $0.textColor = .white
+        }
+        
+        groupImageView.do {
+            $0.image = ImageLiterals.MyYello.imgYelloGroup
         }
     }
     
@@ -153,7 +177,50 @@ extension MyYelloDetailView {
     
     // MARK: Objc Function
     @objc private func instagramButtonTapped() {
+        setInstagramUI()
+        handleInstagramButtonDelegate?.instagramButtonTapped()
+        endInstagram()
+    }
+    
+    func setInstagramUI() {
+        myYelloDetailNavigationBarView.isHidden = true
+        instagramButton.isHidden = true
+        keywordButton.isHidden = true
+        senderButton.isHidden = true
         
+        logoImageView.isHidden = false
+        logoLabel.isHidden = false
+        groupImageView.isHidden = false
+
+        self.addSubviews(logoImageView,
+                         logoLabel,
+                         groupImageView)
+        
+        logoImageView.snp.makeConstraints {
+            $0.top.equalTo(detailKeywordView.snp.bottom).offset(87.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        logoLabel.snp.makeConstraints {
+            $0.top.equalTo(logoImageView.snp.bottom).offset(10.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        groupImageView.snp.makeConstraints {
+            $0.top.equalTo(logoLabel.snp.bottom).offset(52.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+    }
+    
+    func endInstagram() {
+        myYelloDetailNavigationBarView.isHidden = false
+        instagramButton.isHidden = false
+        keywordButton.isHidden = false
+        senderButton.isHidden = false
+        
+        logoImageView.isHidden = true
+        logoLabel.isHidden = true
+        groupImageView.isHidden = true
     }
     
     @objc private func keywordButtonTapped() {
