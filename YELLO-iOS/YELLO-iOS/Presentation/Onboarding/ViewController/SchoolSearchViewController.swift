@@ -12,8 +12,12 @@ import Then
 
 final class SchoolSearchViewController: OnboardingBaseViewController {
     
+    // MARK: - Variables
+    // MARK: Component 
     let schoolSearchView = SchoolSearchView()
     
+    // MARK: - Function
+    // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         super.nextViewController = StudentInfoViewController()
@@ -21,6 +25,7 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
         addTarget()
     }
     
+    // MARK: Layout Helpers
     override func setLayout() {
         view.addSubviews(schoolSearchView)
         schoolSearchView.snp.makeConstraints {
@@ -29,16 +34,13 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
         }
     }
     
+    // MARK: Custom Method
     private func setDelegate() {
         schoolSearchView.schoolTextField.textField.delegate = self
     }
     
     private func addTarget() {
         schoolSearchView.schoolTextField.textField.addTarget(self, action: #selector(didTapTextField), for: .touchUpInside)
-    }
-    
-    @objc func didTapTextField() {
-        presentModal()
     }
     
     private func presentModal() {
@@ -50,8 +52,15 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
         }
         present(nav, animated: true, completion: nil)
     }
+    
+    // MARK: objc Function
+    @objc func didTapTextField() {
+        presentModal()
+    }
 }
 
+// MARK: - extension
+// MARK: UITextFieldDelegate
 extension SchoolSearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let nextViewController = FindSchoolViewController()
@@ -61,6 +70,7 @@ extension SchoolSearchViewController: UITextFieldDelegate {
     
 }
 
+// MARK: SearchResultTableViewSelectDelegate
 extension SchoolSearchViewController: SearchResultTableViewSelectDelegate {
     func didSelectSearchResult(_ result: String) {
         schoolSearchView.schoolTextField.textField.setButtonState(state: .done)

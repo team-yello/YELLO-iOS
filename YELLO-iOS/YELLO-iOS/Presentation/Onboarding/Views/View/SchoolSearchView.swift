@@ -7,26 +7,23 @@
 
 import UIKit
 
-import Then
 import SnapKit
+import Then
 
 final class SchoolSearchView: BaseView {
     // MARK: - Variables
-    
     // MARK: Constants
     let padding = 16
     let topMargin = 20
     let bottomMargin = 34
     
     // MARK: Property
-
     // MARK: Component
     let infoLabel = UILabel()
     let schoolTextField = YelloTextFieldView(title: "학교가 어디인가요?", state: iconState.search)
     let nextButton = YelloButton(buttonText: "다음")
     
     // MARK: - Function
-    
     // MARK: Layout Helpers
     override func setStyle() {
         infoLabel.do {
@@ -49,9 +46,5 @@ final class SchoolSearchView: BaseView {
         }
   
     }
-
-    // MARK: Custom Function
-
-    // MARK: Objc Function
-
+    
 }

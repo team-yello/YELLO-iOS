@@ -11,13 +11,16 @@ import SnapKit
 import Then
 
 class GenderView: BaseView {
-    
+    // MARK: - Variables
+    // MARK: Component 
     let guideLabel = YelloGuideLabel(labelText: "성별은")
     let maleButton = YelloGenderButton(buttonText: "남자")
     let femaleButton = YelloGenderButton(buttonText: "여자")
     
     private lazy var buttonStackView = UIStackView()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         buttonStackView.do {
             $0.addArrangedSubviews(maleButton, femaleButton)

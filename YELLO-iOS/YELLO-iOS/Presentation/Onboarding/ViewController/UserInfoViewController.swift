@@ -7,16 +7,22 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 class UserInfoViewController: OnboardingBaseViewController {
-    
+    // MARK: - Variables
+    // MARK: Component 
     private let baseView = UserInfoView()
     
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
         super.nextViewController = GenderViewController()
     }
     
+    // MARK: Layout Helper
     override func setLayout() {
         view.addSubview(baseView)
         baseView.snp.makeConstraints {
@@ -25,6 +31,7 @@ class UserInfoViewController: OnboardingBaseViewController {
         }
     }
     
+    // MARK: Custom Function
     func setDelegate() {
         baseView.idTextField.textField.delegate = self
         baseView.nameTextField.textField.delegate = self
@@ -41,7 +48,7 @@ class UserInfoViewController: OnboardingBaseViewController {
         
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
-    
+
 }
 
 // MARK: - extension
@@ -61,8 +68,6 @@ extension UserInfoViewController: UITextFieldDelegate {
         } else {
             baseView.idTextField.textField.setButtonState(state: .id)
         }
-        
         checkButtonEnable()
-        
     }
 }

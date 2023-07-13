@@ -13,21 +13,19 @@ import Then
 
 final class YelloTextFieldView: UIView {
     // MARK: - Variables
-    
     // MARK: Components
     private let titleLabel = YelloGuideLabel()
     let textField = YelloTextField()
     private let helperLabel = UILabel()
     
     // MARK: - Function
-
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
     }
     
-    /// 텍스트필드 상태도 인자로 받아서 분기 처리 할 예정
+    /// 텍스트필드 상태도 인자로 받아서 분기 처리
     init(title: String, state: iconState,
          placeholder: String = " ", helper: String = "") {
         super.init(frame: CGRect())

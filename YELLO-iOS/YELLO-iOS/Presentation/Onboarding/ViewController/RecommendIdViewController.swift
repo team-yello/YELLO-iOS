@@ -8,26 +8,30 @@
 import UIKit
 
 class RecommendIdViewController: OnboardingBaseViewController {
-    
+    // MARK: - Variables
+    // MARK: Component 
     let baseView = RecommendIdView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func loadView() {
-        super.loadView()
-        super.isSkipable = true
-        super.nextViewController = OnboardingEndViewController()
-        view = baseView
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setDelegate()
-    }
-    
+            super.loadView()
+            super.isSkipable = true
+            super.nextViewController = OnboardingEndViewController()
+            view = baseView
+        }
+        
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            navigationController?.navigationBar.isHidden = true
+        }
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            setDelegate()
+        }
+        
+    // MARK: Custom Function
     func setDelegate() {
         baseView.recommendIdTextField.textField.delegate = self
     }
@@ -40,6 +44,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
 }
+
 // MARK: - extension
 // MARK: UITextFieldDelegate
 extension RecommendIdViewController: UITextFieldDelegate {

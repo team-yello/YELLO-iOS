@@ -7,44 +7,56 @@
 
 import UIKit
 
-@frozen
-enum Gender {
+import SnapKit
+import Then
+
+// MARK: - enum
+/// 성별 구분
+@frozen enum Gender {
     case female
     case male
 }
 
 class YelloGenderButton: UIButton {
-    
+    // MARK: - Variables
+    // MARK: Property
     var buttonText = ""
     var gender: Gender?
     var genderIconImage: UIImage?
     
+    // MARK: Component
     let checkButton = UIButton()
     var iconImageView = UIImageView()
     let genderLabel = UILabel()
     let stackView = UIStackView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    init(buttonText: String) {
-        super.init(frame: CGRect())
-        self.buttonText = buttonText
-        setUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Custom Init
+    init(buttonText: String) {
+        super.init(frame: CGRect())
+        self.buttonText = buttonText
+        setUI()
+    }
+}
+
+// MARK: - extension
+extension YelloGenderButton {
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
-        
         self.do {
             $0.makeCornerRound(radius: CGFloat(Constraints.round))
             $0.backgroundColor = .grayscales900
@@ -100,9 +112,9 @@ class YelloGenderButton: UIButton {
         stackView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        
     }
     
+    // MARK: Custom Function
     private func setSelected() {
         self.iconImageView.image = genderIconImage?.withTintColor(.white, renderingMode: .alwaysOriginal)
         self.genderLabel.textColor = .white
@@ -120,6 +132,7 @@ class YelloGenderButton: UIButton {
         }
     }
     
+    // MARK: Objc Function
     @objc func buttonDidTap() {
         guard !isSelected else { return } // 이미 선택된 버튼이면 무시
         

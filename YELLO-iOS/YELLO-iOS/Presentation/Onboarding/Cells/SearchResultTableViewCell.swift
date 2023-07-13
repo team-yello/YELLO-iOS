@@ -16,7 +16,6 @@ final class SearchResultTableViewCell: UITableViewCell {
     static let identifier = "SearchResultTableViewCell"
     
     // MARK: Component
-    
     let searchView = UIView()
     let searchImageView = UIImageView()
     let titleLabel = UILabel()
@@ -36,7 +35,7 @@ final class SearchResultTableViewCell: UITableViewCell {
 }
 
 extension SearchResultTableViewCell {
-    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()

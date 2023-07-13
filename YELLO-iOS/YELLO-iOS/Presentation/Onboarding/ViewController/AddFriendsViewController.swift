@@ -7,16 +7,22 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 class AddFriendsViewController: OnboardingBaseViewController {
-    
+    // MARK: - Variables
+    // MARK: Component 
     let baseView = AddFriendsView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         super.nextViewController = RecommendIdViewController()
-        // Do any additional setup after loading the view.
     }
     
+    // MARK: Layout Helpers
     override func setStyle() {
         super.nextButton.setButtonEnable(state: true)
     }
@@ -31,5 +37,5 @@ class AddFriendsViewController: OnboardingBaseViewController {
         
         view.bringSubviewToFront(super.nextButton)
     }
-   
+    
 }

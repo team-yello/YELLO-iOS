@@ -11,15 +11,21 @@ import SnapKit
 import Then
 
 class GenderViewController: OnboardingBaseViewController {
-    
-    let baseView = GenderView()
+    // MARK: - Variables
+    // MARK: Property
     var gender: Gender?
     
+    // MARK: Component
+    let baseView = GenderView()
+    
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         super.nextViewController = AddFriendsViewController()
     }
     
+    // MARK: Layout Helpers
     override func setStyle() {
         [baseView.femaleButton, baseView.maleButton].forEach({
             $0.addTarget(self, action: #selector(genderButtonDidTap), for: .touchUpInside)
@@ -35,12 +41,14 @@ class GenderViewController: OnboardingBaseViewController {
         }
     }
     
+    // MARK: Custom Method
     func checkEnableButton() {
         if gender != nil {
             super.nextButton.setButtonEnable(state: true)
         }
     }
     
+    // MARK: Objc Function
     @objc func genderButtonDidTap(_ sender: YelloGenderButton) {
         self.gender = sender.gender
         checkEnableButton()

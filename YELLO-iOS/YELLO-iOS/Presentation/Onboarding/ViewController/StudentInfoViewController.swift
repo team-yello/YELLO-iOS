@@ -7,16 +7,24 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 class StudentInfoViewController: OnboardingBaseViewController {
     
+    // MARK: - Variables
+    // MARK: Component 
     private let baseView = StudentInfoView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         super.nextViewController = UserInfoViewController()
         setDelegate()
     }
     
+    // MARK: Layout Helpers
     override func setLayout() {
         view.addSubview(baseView)
         baseView.snp.makeConstraints {
@@ -25,6 +33,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
         }
     }
     
+    // MARK: Custom Method
     private func setDelegate() {
         baseView.majorTextField.textField.delegate = self
         baseView.studentIDTextField.textField.delegate = self
@@ -45,6 +54,8 @@ class StudentInfoViewController: OnboardingBaseViewController {
     }
 }
 
+// MARK: - extension
+// MARK: UITextFieldDelegate
 extension StudentInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
@@ -73,6 +84,7 @@ extension StudentInfoViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: SearchResultTableViewSelectDelegate
 extension StudentInfoViewController: SearchResultTableViewSelectDelegate {
     func didSelectSearchResult(_ result: String) {
         baseView.majorTextField.textField.setButtonState(state: .done)
@@ -81,6 +93,7 @@ extension StudentInfoViewController: SearchResultTableViewSelectDelegate {
     }
 }
 
+// MARK: SelectStudentIdDelegate
 extension StudentInfoViewController: SelectStudentIdDelegate {
     func didSelectStudentId(_ result: String) {
         baseView.studentIDTextField.textField.setButtonState(state: .done)

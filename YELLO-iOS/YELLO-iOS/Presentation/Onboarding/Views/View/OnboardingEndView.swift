@@ -7,10 +7,14 @@
 
 import UIKit
 
+import SnapKit
+import Then
 import Lottie
 
 class OnboardingEndView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component
     let GuideLabel = UILabel()
     let subGuideLabel = UILabel()
     
@@ -19,6 +23,8 @@ class OnboardingEndView: BaseView {
     let goToYelloButton = UIButton()
     let animationView = LottieAnimationView(name: "SignAnimation")
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         GuideLabel.do {
             $0.text = "회원가입이 끝났어요!"

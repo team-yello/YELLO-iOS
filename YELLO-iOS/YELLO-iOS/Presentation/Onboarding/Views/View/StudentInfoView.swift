@@ -11,12 +11,16 @@ import SnapKit
 import Then
 
 final class StudentInfoView: BaseView {
-    
+    // MARK: - Variables
+    // MARK: Constants
     let padding = 16
     
+    // MARK: Component (button, label 등 코드로 만들때)
     let majorTextField = YelloTextFieldView(title: "무슨 학과인가요?", state: .search)
     let studentIDTextField = YelloTextFieldView(title: "몇 학번인가요?", state: .toggle, placeholder: "학번을 선택해주세요.")
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setLayout() {
         self.addSubviews(majorTextField, studentIDTextField)
         

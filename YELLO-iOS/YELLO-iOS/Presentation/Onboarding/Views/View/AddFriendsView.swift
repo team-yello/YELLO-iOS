@@ -7,8 +7,14 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 class AddFriendsView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Constants
+    /// dummy data
     lazy var kakaoFriendTableViewModel: [FriendModel] = [
         FriendModel(name: "정옐로", school: "솝트대학교 옐로학부 21학번", isButtonSelected: false),
         FriendModel(name: "김옐로", school: "솝트대학교 옐로학부 22학번", isButtonSelected: false),
@@ -35,16 +41,19 @@ class AddFriendsView: BaseView {
         FriendModel(name: "성옐로", school: "솝트대학교 옐로학부 27학번", isButtonSelected: false),
         FriendModel(name: "박옐로", school: "솝트대학교 옐로학부 28학번", isButtonSelected: false)]
     
+    // MARK: Property
     var count = 0
     
+    // MARK: Component
     let addFriendsLabel = YelloGuideLabel(labelText: "친구를 추가하세요!")
     let countFriendLabel = UILabel()
     let friendsTableView = UITableView()
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
-        
         count = kakaoFriendTableViewModel.count
-        
+
         countFriendLabel.do {
             $0.text = "선택된 친구 \(count)명"
             $0.font = .uiLabelLarge
@@ -52,7 +61,7 @@ class AddFriendsView: BaseView {
         }
         
         friendsTableView.do {
-            $0.register(FriendsTableViewCell.self, forCellReuseIdentifier: FriendsTableViewCell.className)
+            $0.register(FriendsTableViewCell.self, forCellReuseIdentifier: FriendsTableViewCell.identifier)
             $0.backgroundColor = .black
             $0.rowHeight = 58
             $0.separatorStyle = .none
@@ -83,13 +92,15 @@ class AddFriendsView: BaseView {
     
 }
 
+// MARK: - extension
+// MARK: UITableViewDataSource
 extension AddFriendsView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return kakaoFriendTableViewModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsTableViewCell") as! FriendsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FriendsTableViewCell.identifier) as! FriendsTableViewCell
         if cell.isTapped == true {
             kakaoFriendTableViewModel[indexPath.row].isButtonSelected = true
         }
@@ -100,6 +111,7 @@ extension AddFriendsView: UITableViewDataSource {
     }
 }
 
+// MARK: FriendsTableViewCellDelegate
 extension AddFriendsView: FriendsTableViewCellDelegate {
     func friendCell(_ cell: FriendsTableViewCell, didTapButtonAt indexPath: IndexPath, isSelected: Bool) {
         // FriendModel의 isButtonSelected 값을 변경
@@ -107,5 +119,4 @@ extension AddFriendsView: FriendsTableViewCellDelegate {
         count = kakaoFriendTableViewModel.filter { !$0.isButtonSelected }.count
         countFriendLabel.text = "선택된 친구 \(count)명"
     }
-    
 }

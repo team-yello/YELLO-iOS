@@ -7,10 +7,15 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 class SearchView: BaseView {
-    
+    // MARK: - Variables
+    // MARK: Constants
     let padding = 16
     
+    // MARK: Component
     let cancelButton = UIButton()
     let titleLabel = UILabel()
     let searchTextField = YelloTextField(state: .search)
@@ -19,11 +24,14 @@ class SearchView: BaseView {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    // MARK: - Function
+    // MARK: LifeCycle
     init() {
         super.init(frame: CGRect())
         setUI()
     }
     
+    // MARK: Layout Helpers
     override func setStyle() {
         titleLabel.do {
             $0.font = .uiSubtitle02
@@ -38,7 +46,7 @@ class SearchView: BaseView {
         searchResultTableView.do {
             $0.rowHeight = 64
             $0.separatorStyle = .none
-            $0.register(SearchResultTableViewCell.self, forCellReuseIdentifier: "SearchResultTableViewCell")
+            $0.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
             $0.backgroundColor = .black
             
         }

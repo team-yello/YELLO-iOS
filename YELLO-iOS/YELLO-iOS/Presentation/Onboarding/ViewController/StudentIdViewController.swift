@@ -15,16 +15,22 @@ protocol SelectStudentIdDelegate: AnyObject {
 }
 
 class StudentIdViewController: BaseViewController {
-    
+    // MARK: - Variables
+    // MARK: Constants
     let studentIdList = (15...23).reversed().map { "\($0)학번" }
     let studentIdTableView = UITableView()
+    
+    // MARK: Property
     weak var delegate: SelectStudentIdDelegate?
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    // MARK: Layout Helpers
     override func setStyle() {
         view.addSubview(studentIdTableView)
         view.backgroundColor = .grayscales900
@@ -46,6 +52,8 @@ class StudentIdViewController: BaseViewController {
     
 }
 
+// MARK: - extension
+// MARK: UITableViewDataSource
 extension StudentIdViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         studentIdList.count
@@ -64,6 +72,7 @@ extension StudentIdViewController: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
 extension StudentIdViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let currentCell = tableView.cellForRow(at: indexPath) else {

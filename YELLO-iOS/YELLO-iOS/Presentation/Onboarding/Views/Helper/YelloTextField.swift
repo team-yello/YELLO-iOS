@@ -10,8 +10,9 @@ import UIKit
 import SnapKit
 import Then
 
-@frozen
-enum iconState {
+// MARK: - enum
+/// textField 악세사리 구분
+@frozen enum iconState {
     case normal
     case id
     case search
@@ -23,7 +24,6 @@ enum iconState {
 
 final class YelloTextField: UITextField {
     // MARK: - Variables
-    
     // MARK: Constants
     let padding: CGFloat = 20
     var textFieldState = iconState.normal
@@ -42,7 +42,6 @@ final class YelloTextField: UITextField {
     private var idLabelStackView = UIStackView()
     
     // MARK: - Function
-    
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -164,6 +163,7 @@ extension YelloTextField {
         self.rightView = buttonStackView
     }
     
+    // MARK: Objc Function
     @objc func cancelButtonDidTap() {
         self.text = ""
     }

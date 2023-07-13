@@ -7,32 +7,37 @@
 
 import UIKit
 
-struct FriendModel {
-    let name: String
-    let school: String
-    var isButtonSelected: Bool
-}
+import SnapKit
+import Then
 
+// MARK: - Protocol
 protocol FriendsTableViewCellDelegate: AnyObject {
     func friendCell(_ cell: FriendsTableViewCell, didTapButtonAt indexPath: IndexPath, isSelected: Bool)
 }
 
 class FriendsTableViewCell: UITableViewCell {
+    // MARK: - Variables
+    // MARK: Constants
+    static let identifier = "FriendsTableViewCellDelegate"
     
-    let profileImageView = UIImageView()
-    let nameLabel = UILabel()
-    let schoolLabel = UILabel()
-    lazy var checkButton = UIButton()
-    lazy var stackView = UIStackView()
-    let selectedOverlayView = UIView()
+    // MARK: Property
     weak var delegate: FriendsTableViewCellDelegate?
-    
     var isTapped: Bool = false {
         didSet {
             updateCheckButtonImage()
         }
     }
     
+    // MARK: Component
+    let profileImageView = UIImageView()
+    let nameLabel = UILabel()
+    let schoolLabel = UILabel()
+    lazy var checkButton = UIButton()
+    lazy var stackView = UIStackView()
+    let selectedOverlayView = UIView()
+    
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -42,18 +47,7 @@ class FriendsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.name
-        schoolLabel.text = model.school
-        self.isTapped = model.isButtonSelected
-        updateCheckButtonImage()
-    }
-    
+    /// 재사용 이슈 해결
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -64,19 +58,34 @@ class FriendsTableViewCell: UITableViewCell {
         selectedOverlayView.isHidden = true
     }
     
+    // MARK: Custom Function
+    /// cell 구성
+    func configureFriendCell(_ model: FriendModel) {
+        nameLabel.text = model.name
+        schoolLabel.text = model.school
+        self.isTapped = model.isButtonSelected
+        updateCheckButtonImage()
+    }
+    
+    /// 버튼 이미지 업데이트
     private func updateCheckButtonImage() {
         let imageName = isTapped ? ImageLiterals.OnBoarding.icCheckCircleEnable : ImageLiterals.OnBoarding.icCheckCircleYello
         checkButton.setImage(imageName, for: .normal)
     }
     
+    /// indexPath 받기
+    private func getIndexPath() -> IndexPath? {
+        guard let tableView = superview as? UITableView else { return nil }
+        return tableView.indexPath(for: self)
+    }
+    
+    // MARK: Objc Function
     @objc func checkButtonDidTap() {
         isTapped.toggle()
-        
         updateCheckButtonImage()
         
         if isTapped {
             if selectedOverlayView.superview == nil {
-                // 흰색 뷰 생성
                 selectedOverlayView.backgroundColor = .black.withAlphaComponent(0.5)
                 contentView.addSubview(selectedOverlayView)
                 contentView.bringSubviewToFront(selectedOverlayView)
@@ -84,30 +93,24 @@ class FriendsTableViewCell: UITableViewCell {
                     $0.top.leading.bottom.equalToSuperview()
                     $0.trailing.equalToSuperview().inset(50)
                 }
-                
             }
         } else {
-            // 선택 해제 시 흰색 뷰 제거
             selectedOverlayView.removeFromSuperview()
         }
-        
-        // FriendModel의 isButtonSelected 값을 변경
         if let indexPath = getIndexPath() {
             delegate?.friendCell(self, didTapButtonAt: indexPath, isSelected: isTapped)
         }
     }
-    
-    private func getIndexPath() -> IndexPath? {
-        guard let tableView = superview as? UITableView else { return nil }
-        return tableView.indexPath(for: self)
-    }
-    
 }
 
 extension FriendsTableViewCell {
+    // MARK: Layout Helpers
+    private func setUI() {
+        setStyle()
+        setLayout()
+    }
     
     private func setStyle() {
-        
         self.backgroundColor = .black
         
         profileImageView.do {

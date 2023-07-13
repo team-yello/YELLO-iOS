@@ -7,14 +7,21 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 class RecommendIdView: BaseView {
     
+    // MARK: - Variables
+    // MARK: Component (button, label 등 코드로 만들때)
     let guideLabel = YelloGuideLabel(labelText: "추천인 코드")
     let subGuideLabel = UILabel()
     let recommendIdTextField = YelloTextFieldView(title: "", state: .id,
                                                   placeholder: "추천인 아이디",
                                                   helper: "추천인의 아이디를 입력해주세요.")
     
+    // MARK: - Function
+    // MARK: Layout Helpers
     override func setStyle() {
         subGuideLabel.do {
             $0.text = "없다면 건너뛰어도 돼요."

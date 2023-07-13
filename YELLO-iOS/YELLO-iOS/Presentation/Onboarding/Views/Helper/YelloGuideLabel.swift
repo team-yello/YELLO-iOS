@@ -7,6 +7,9 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class YelloGuideLabel: UILabel {
     // MARK: - Function
     // MARK: Life Cycle
@@ -25,11 +28,14 @@ final class YelloGuideLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+// MARK: - extension
+extension YelloGuideLabel {
     // MARK: Custom Function
     private func setLabelStyle() {
         self.font = .uiHeadline01
         self.setTextWithLineHeight(text: self.text, lineHeight: 30)
         self.textColor = .white
     }
-    
 }
