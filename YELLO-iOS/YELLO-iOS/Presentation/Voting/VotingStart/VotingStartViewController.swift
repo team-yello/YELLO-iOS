@@ -41,6 +41,12 @@ final class VotingStartViewController: BaseViewController {
         view.addSubview(animationView)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        animationView.removeFromSuperview()
+    }
+    
     // MARK: - Style
     
     override func setStyle() {
