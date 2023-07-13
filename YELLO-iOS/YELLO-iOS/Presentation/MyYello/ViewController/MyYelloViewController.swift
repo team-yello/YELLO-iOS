@@ -31,6 +31,11 @@ final class MyYelloViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
 }
 
 extension MyYelloViewController {

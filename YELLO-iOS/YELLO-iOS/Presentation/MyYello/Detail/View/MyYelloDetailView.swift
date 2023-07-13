@@ -96,7 +96,6 @@ final class MyYelloDetailView: BaseView {
             $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
             $0.setTitle(StringLiterals.MyYello.Detail.senderButton, for: .normal)
-            $0.addTarget(self, action: #selector(senderButtonTapped), for: .touchUpInside)
         }
         
         logoImageView.do {
@@ -236,10 +235,6 @@ extension MyYelloDetailView {
         }
     }
     
-    @objc private func senderButtonTapped() {
-        
-    }
-
     func showLackAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         

@@ -21,6 +21,7 @@ final class MyYelloDetailViewController: BaseViewController {
         view.backgroundColor = UIColor(hex: "000000")
         myYelloDetailView.myYelloDetailNavigationBarView.handleBackButtonDelegate = self
         myYelloDetailView.handleInstagramButtonDelegate = self
+        myYelloDetailView.senderButton.addTarget(self, action: #selector(senderButtonTapped), for: .touchUpInside)
     }
     
     override func setLayout() {
@@ -30,7 +31,13 @@ final class MyYelloDetailViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
     }
+}
 
+extension MyYelloDetailViewController {
+    @objc private func senderButtonTapped() {
+        let paymentViewController = PaymentViewController()
+        navigationController?.pushViewController(paymentViewController, animated: true)
+    }
 }
 
 // MARK: HandleBackButtonDelegate

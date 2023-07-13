@@ -98,8 +98,8 @@ extension PaymentReadyViewController {
     }
     
     @objc func backButtonTapped() {
-        self.navigationController?.popToRootViewController(animated: true)
-        self.tabBarController?.tabBar.isHidden = false
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: false)
     }
 }
 
