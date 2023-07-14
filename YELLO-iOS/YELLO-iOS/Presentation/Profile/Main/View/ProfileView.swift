@@ -20,10 +20,11 @@ final class ProfileView: UIView {
     // MARK: - Variables
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
+    var indexNumber: Int = -1
     
     // MARK: Component
     let navigationBarView = NavigationBarView()
-    private let myProfileHeaderView = MyProfileHeaderView()
+    let myProfileHeaderView = MyProfileHeaderView()
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
     lazy var topButton = UIButton()
     private var isButtonHidden: Bool = false
