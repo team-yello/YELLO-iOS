@@ -13,6 +13,7 @@ import Then
 final class VotingLockedViewController: BaseViewController {
     
     private let originView = BaseVotingETCView()
+    private var invitingView = InvitingView()
     
     override func loadView() {
         self.view = originView
@@ -72,13 +73,16 @@ final class VotingLockedViewController: BaseViewController {
     // MARK: - Objc Function
 
     @objc
-    func yellowButtonClicked() {
-        let viewController = InvitingViewController()
-        viewController.originView.titleLabel.text = StringLiterals.Inviting.lockedTitle
-        viewController.originView.textLabel.text = StringLiterals.Inviting.lockedText
-        viewController.originView.textLabel.asColor(targetString: "투표를 시작", color: .black)
-        viewController.modalPresentationStyle = .overFullScreen
-        self.present(viewController, animated: true)
+    func yellowButtonClicked() {        
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        invitingView.removeFromSuperview()
+        invitingView = InvitingView()
+        invitingView.frame = viewController.view.bounds
+        invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        invitingView.updateText(title: StringLiterals.Inviting.lockedTitle, text: StringLiterals.Inviting.lockedText, targetString: "투표를 시작")
+        viewController.view.addSubview(invitingView)
     }
 
 }

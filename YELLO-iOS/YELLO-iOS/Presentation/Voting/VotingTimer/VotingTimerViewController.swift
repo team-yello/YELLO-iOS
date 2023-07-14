@@ -13,6 +13,7 @@ import Then
 final class VotingTimerViewController: BaseViewController {
     
     private let originView = BaseVotingETCView()
+    private var invitingView = InvitingView()
     
     let myView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     let backgroundImage = ImageLiterals.Voting.imgTimerViewBackground
@@ -37,7 +38,7 @@ final class VotingTimerViewController: BaseViewController {
     // MARK: - Style
     
     override func setStyle() {
-
+        
         myView.do {
             $0.backgroundColor = UIColor.clear
             $0.setBackgroundImageWithScaling(image: backgroundImage)
@@ -142,9 +143,15 @@ final class VotingTimerViewController: BaseViewController {
 
     @objc
     func yellowButtonClicked() {
-        let viewController = InvitingViewController()
-        viewController.modalPresentationStyle = .overFullScreen
-        self.present(viewController, animated: true)
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        invitingView.removeFromSuperview()
+        invitingView = InvitingView()
+        invitingView.frame = viewController.view.bounds
+        invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        invitingView.updateText(title: StringLiterals.Inviting.unLockedTitle, text: StringLiterals.Inviting.unLockedText, targetString: "바로 투표")
+        viewController.view.addSubview(invitingView)
     }
     
 }
