@@ -123,6 +123,10 @@ enum ImageLiterals {
         static var imgPaymentFirst: UIImage { .load(named: "imgPaymentFirst")}
         static var imgPaymentSecond: UIImage { .load(named: "imgPaymentSecond")}
         static var imgPaymentThird: UIImage { .load(named: "imgPaymentThird")}
+        static var btnSubscribe: UIImage { .load(named: "btnSubscribe")}
+        static var btnFirstSubscribe: UIImage { .load(named: "btnFirstSubscribe")}
+        static var btnSecondSubscribe: UIImage { .load(named: "btnSecondSubscribe")}
+        static var btnThirdSubscribe: UIImage { .load(named: "btnThirdSubscribe")}
     }
 }
 

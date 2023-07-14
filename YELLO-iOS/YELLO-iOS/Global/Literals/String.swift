@@ -159,6 +159,9 @@ enum StringLiterals {
             static let title = "구독권 결제"
             static let description = "결제 기능은 아직 구현되지 않았어요.\n곧 기능을 준비할게요!"
             static let back = "나가기"
+            static let paymentTitle = "옐로 플러스로\n친구들의 속마음을 열어보세요!"
+            static let paymentSender = "쪽지를 보낸 사람을 알고 싶다면?"
+            static let paymentSubscribe = "이름 열람권 "
         }
     }
     
