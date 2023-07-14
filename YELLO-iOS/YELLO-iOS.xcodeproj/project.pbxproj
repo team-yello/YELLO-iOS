@@ -64,6 +64,7 @@
 		36E427972A5CA5AF0050B34E /* OnboardingEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */; };
 		C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB32A60657C000F5BA9 /* UITableView+.swift */; };
 		C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB52A607357000F5BA9 /* FriendCountView.swift */; };
+		C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB72A60FE2D000F5BA9 /* NextButton.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -211,6 +212,7 @@
 		36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndView.swift; sourceTree = "<group>"; };
 		C307ECB32A60657C000F5BA9 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		C307ECB52A607357000F5BA9 /* FriendCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCountView.swift; sourceTree = "<group>"; };
+		C307ECB72A60FE2D000F5BA9 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -687,6 +689,7 @@
 			children = (
 				C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */,
 				C3C57BEB2A5C03BA00B84CAA /* InviteBannerView.swift */,
+				C307ECB72A60FE2D000F5BA9 /* NextButton.swift */,
 				C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */,
 				C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */,
 				C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */,
@@ -1106,6 +1109,7 @@
 				C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */,
 				36E427952A5CA59F0050B34E /* OnboardingEndViewController.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
+				C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */,
 				36E427972A5CA5AF0050B34E /* OnboardingEndView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

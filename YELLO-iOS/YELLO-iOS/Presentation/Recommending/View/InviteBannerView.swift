@@ -17,7 +17,7 @@ final class InviteBannerView: BaseView {
     private let inviteImageView = UIImageView()
     private let inviteLabel = UILabel()
     private let descriptionLabel = UILabel()
-    lazy var nextButton = UIButton()
+    lazy var nextButton = NextButton()
     private var invitingView = InvitingView()
     
     // MARK: - Function
