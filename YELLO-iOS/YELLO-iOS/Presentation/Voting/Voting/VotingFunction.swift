@@ -186,7 +186,7 @@ extension VotingViewController {
     func nameButtonClicked(_ sender: UIButton) {
         nameButtonClick = true
         if nameCount > 0 {
-            view.showToast(message: StringLiterals.Voting.VoteToast.cancel, height: 25)
+            view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
         nameCount += 1
         
@@ -217,7 +217,7 @@ extension VotingViewController {
     func keywordClicked(_ sender: UIButton) {
         keywordButtonClick = true
         if keywordCount > 0 {
-            view.showToast(message: StringLiterals.Voting.VoteToast.cancel, height: 25)
+            view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
         keywordCount += 1
 
@@ -243,7 +243,7 @@ extension VotingViewController {
     func suffleButtonClicked() {
         if nameButtonClick {
             originView.suffleButton.isEnabled = false
-            view.showToast(message: StringLiterals.Voting.VoteToast.suffle, height: 25)
+            view.showToast(message: StringLiterals.Voting.VoteToast.suffle)
             originView.suffleButton.isEnabled = true
         } else {
             suffleCount += 1
@@ -254,7 +254,7 @@ extension VotingViewController {
     func skipButtonClicked() {
         if eitherButtonClicked {
             originView.skipButton.isEnabled = false
-            view.showToast(message: StringLiterals.Voting.VoteToast.skip, height: 25)
+            view.showToast(message: StringLiterals.Voting.VoteToast.skip)
             originView.skipButton.isEnabled = true
         } else {
             setNextViewController()

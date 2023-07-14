@@ -190,6 +190,7 @@ enum StringLiterals {
             static let description = "정말로 친구를 끊으실 건가요?"
             static let cancel = "취소"
             static let confirm = "네, 친구를 끊을게요"
+            static let toastMessage = " 님과 친구 끊기를 완료했어요."
         }
         
         enum Setting {
