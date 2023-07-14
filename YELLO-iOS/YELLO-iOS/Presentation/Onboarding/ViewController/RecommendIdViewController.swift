@@ -69,6 +69,10 @@ extension RecommendIdViewController: UITextFieldDelegate {
         baseView.recommendIdTextField.textField.setButtonState(state: .cancel)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         baseView.recommendIdTextField.textField.setButtonState(state: .id)
         checkButtonEnable()

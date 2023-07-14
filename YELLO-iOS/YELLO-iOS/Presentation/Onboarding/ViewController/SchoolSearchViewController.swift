@@ -68,6 +68,10 @@ extension SchoolSearchViewController: UITextFieldDelegate {
         self.present(nextViewController, animated: true)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
+    
 }
 
 // MARK: SearchResultTableViewSelectDelegate
