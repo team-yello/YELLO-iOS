@@ -93,7 +93,7 @@ extension WithdrawalAlertView {
     }
     
     @objc func yesButtonClicked() {
-        //탈퇴 로직 구현
+//        탈퇴 로직 구현
         print("탈퇴")
     }
 }

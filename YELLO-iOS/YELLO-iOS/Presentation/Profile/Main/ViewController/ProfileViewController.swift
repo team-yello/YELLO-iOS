@@ -56,8 +56,7 @@ extension ProfileViewController: NavigationBarViewDelegate {
 extension ProfileViewController: HandleFriendCellDelegate {
     func presentModal(index: Int) {
         profileView.indexNumber = index
-        
-        friendProfileViewController.friendProfileView.configureMyProfileFriendDetailCell(myProfileFriendModelDummy[index])
+        friendProfileViewController.friendProfileView.configureMyProfileFriendDetailCell(profileView.myProfileFriendModelDummy[index])
         let nav = UINavigationController(rootViewController: friendProfileViewController)
     
         if let sheet = nav.sheetPresentationController {
@@ -70,14 +69,8 @@ extension ProfileViewController: HandleFriendCellDelegate {
 
 extension ProfileViewController: HandleDeleteFriendButtonDelegate {
     func deleteFriendButtonTapped() {
-        profileView.showToast(message: myProfileFriendModelDummy[profileView.indexNumber].friendName + StringLiterals.Profile.Friend.toastMessage)
-        myProfileFriendModelDummy.remove(at: profileView.indexNumber)
-        
-        let count = String(myProfileFriendModelDummy.count) + "명"
-        
-        profileView.myProfileHeaderView.friendCountView.friendCountLabel.text = count
-        
+        profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].friendName + StringLiterals.Profile.Friend.toastMessage)
+        profileView.myProfileFriendModelDummy.remove(at: profileView.indexNumber)
         profileView.myFriendTableView.deleteRows(at: [[0, profileView.indexNumber]], with: .right)
-
     }
 }

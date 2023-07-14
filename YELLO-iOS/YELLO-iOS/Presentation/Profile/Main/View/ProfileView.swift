@@ -17,6 +17,25 @@ protocol HandleFriendCellDelegate: AnyObject {
 
 final class ProfileView: UIView {
     
+    var myProfileFriendModelDummy: [MyProfileFriendModel] =
+    [MyProfileFriendModel(id: 1, friendName: "정채은", friendProfileImage: "https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMjBfOCAg/MDAxNjY2MjU5NDAyNDM5.bKNb_vCeAwZz248m7c2iaHFS2-TV9iqN6tkJeO1CoHEg.VKQtm2rfXLiCcE3QLk43kOY6EmPd-FpqJe65yt1QFZYg.PNG.mymo_od/profileImage.png?type=s1", friendGroup: "이화여자대학교 융합콘텐츠학과 20학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 2, friendName: "이지희", friendProfileImage: nil, friendGroup: "숭실대학교 글로벌미디어학과 19학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 3, friendName: "김효원", friendProfileImage: "https://postfiles.pstatic.net/MjAyMzA3MDNfNjYg/MDAxNjg4Mzc4Njc5OTk0.QMGDXIgUlEgoIiS72eYHFVwyG1uxjvz_V_OJiz_Ng0Yg.RY163oyuPRQw1gqvB6Q6I472_QT-EyLlHGh8MtvZsTEg.JPEG.mymo_od/IMG_4750.jpg?type=w966", friendGroup: "이화여자대학교 융합콘텐츠학과 20학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 4, friendName: "변희주", friendProfileImage: "https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMjBfOCAg/MDAxNjY2MjU5NDAyNDM5.bKNb_vCeAwZz248m7c2iaHFS2-TV9iqN6tkJeO1CoHEg.VKQtm2rfXLiCcE3QLk43kOY6EmPd-FpqJe65yt1QFZYg.PNG.mymo_od/profileImage.png?type=s1", friendGroup: "숭실대학교 글로벌미디어학과 19학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 5, friendName: "이의제", friendProfileImage: nil, friendGroup: "이화여자대학교 융합콘텐츠학과 20학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 6, friendName: "김효원", friendProfileImage: "https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMjBfOCAg/MDAxNjY2MjU5NDAyNDM5.bKNb_vCeAwZz248m7c2iaHFS2-TV9iqN6tkJeO1CoHEg.VKQtm2rfXLiCcE3QLk43kOY6EmPd-FpqJe65yt1QFZYg.PNG.mymo_od/profileImage.png?type=s1", friendGroup: "숭실대학교 글로벌미디어학과 19학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 7, friendName: "김상호", friendProfileImage: "https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMjBfOCAg/MDAxNjY2MjU5NDAyNDM5.bKNb_vCeAwZz248m7c2iaHFS2-TV9iqN6tkJeO1CoHEg.VKQtm2rfXLiCcE3QLk43kOY6EmPd-FpqJe65yt1QFZYg.PNG.mymo_od/profileImage.png?type=s1", friendGroup: "이화여자대학교 융합콘텐츠학과 20학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 8, friendName: "전채연", friendProfileImage: nil, friendGroup: "숭실대학교 글로벌미디어학과 19학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 9, friendName: "박민주", friendProfileImage: "https://postfiles.pstatic.net/MjAyMzA3MDNfNjYg/MDAxNjg4Mzc4Njc5OTk0.QMGDXIgUlEgoIiS72eYHFVwyG1uxjvz_V_OJiz_Ng0Yg.RY163oyuPRQw1gqvB6Q6I472_QT-EyLlHGh8MtvZsTEg.JPEG.mymo_od/IMG_4750.jpg?type=w966", friendGroup: "이화여자대학교 융합콘텐츠학과 20학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 10, friendName: "강국희", friendProfileImage: nil, friendGroup: "숭실대학교 글로벌미디어학과 19학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99),
+     MyProfileFriendModel(id: 11, friendName: "김나현", friendProfileImage: "https://postfiles.pstatic.net/MjAyMzA3MDNfNjYg/MDAxNjg4Mzc4Njc5OTk0.QMGDXIgUlEgoIiS72eYHFVwyG1uxjvz_V_OJiz_Ng0Yg.RY163oyuPRQw1gqvB6Q6I472_QT-EyLlHGh8MtvZsTEg.JPEG.mymo_od/IMG_4750.jpg?type=w966", friendGroup: "이화여자대학교 융합콘텐츠학과 20학번", yelloId: "@chaneotopia", yelloCount: 20, friendCount: 99)] {
+        didSet {
+            DispatchQueue.main.async {
+                self.myFriendTableView.reloadData()
+            }
+        }
+    }
+    
     // MARK: - Variables
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
@@ -26,6 +45,7 @@ final class ProfileView: UIView {
     let navigationBarView = NavigationBarView()
     let myProfileHeaderView = MyProfileHeaderView()
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
+
     lazy var topButton = UIButton()
     private var isButtonHidden: Bool = false
     
@@ -141,6 +161,7 @@ extension ProfileView: UITableViewDataSource {
         switch section {
         case 0:
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyProfileHeaderView.cellIdentifier) as! MyProfileHeaderView
+            view.friendCountView.friendCountLabel.text = String(self.myProfileFriendModelDummy.count) + "명"
             DispatchQueue.main.async {
                 view.addBottomBorderWithColor(color: .black)
             }
