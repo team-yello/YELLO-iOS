@@ -57,8 +57,9 @@ class AddFriendsView: BaseView {
         countFriendLabel.do {
             $0.text = "선택된 친구 \(count)명"
             $0.font = .uiLabelLarge
-            $0.textColor = .white
-        }
+            $0.textColor = .purpleSub400
+            
+            $0.asColors(targetStrings: ["선택된 친구", "명"], color: .white)        }
         
         friendsTableView.do {
             $0.register(FriendsTableViewCell.self, forCellReuseIdentifier: FriendsTableViewCell.identifier)

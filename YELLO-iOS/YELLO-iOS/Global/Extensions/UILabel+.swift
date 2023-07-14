@@ -36,6 +36,19 @@ extension UILabel {
         attributedText = attributedString
     }
     
+    func asColors(targetStrings: [String], color: UIColor?) {
+            guard let attributedText = attributedText else { return }
+            
+            let mutableAttributedString = NSMutableAttributedString(attributedString: attributedText)
+            
+            for targetString in targetStrings {
+                let range = (mutableAttributedString.string as NSString).range(of: targetString)
+                mutableAttributedString.addAttribute(.foregroundColor, value: color ?? textColor, range: range)
+            }
+            
+            self.attributedText = mutableAttributedString
+        }
+    
     /// 텍스트가 두 줄일 때 각 줄에 폰트, 색상을 다르게 주는 함수
     static func createTwoLineLabel(text: String, firstLineFont: UIFont, firstLineColor: UIColor, secondLineFont: UIFont, secondLineColor: UIColor) -> UILabel {
         let label = UILabel()
