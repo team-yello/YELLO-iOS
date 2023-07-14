@@ -162,10 +162,8 @@ extension PointLackView {
     }
     
     @objc func yelloButtonTapped() {
-        //투표하고 포인트 받기 로직
-        print("안녕")
-        handleYelloButtonDelegate?.yelloButtonTapped()
         self.isHidden = true
+        MyYelloDetailViewController().isYelloButtonTapped.toggle()
         self.removeFromSuperview()
     }
 }

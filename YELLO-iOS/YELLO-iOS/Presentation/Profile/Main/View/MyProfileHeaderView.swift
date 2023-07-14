@@ -14,8 +14,8 @@ final class MyProfileHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Variables
     // MARK: Component
-    private let myProfileView = MyProfileView()
-    private let friendCountView = FriendCountView()
+    let myProfileView = MyProfileView()
+    let friendCountView = FriendCountView()
     
     // MARK: - Function
     // MARK: LifeCycle

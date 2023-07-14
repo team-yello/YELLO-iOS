@@ -18,7 +18,7 @@ final class EmptyFriendView: UIView {
     private let emptyImageView = UIImageView()
     private let emptyDescriptionLabel = UILabel()
     lazy var inviteButton = UIButton()
-    private var invitingView: InvitingView?
+    private var invitingView = InvitingView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -69,8 +69,8 @@ extension EmptyFriendView {
     private func setLayout() {
         self.addSubview(containView)
         containView.addSubviews(emptyImageView,
-                               emptyDescriptionLabel,
-                               inviteButton)
+                                emptyDescriptionLabel,
+                                inviteButton)
         
         self.snp.makeConstraints {
             $0.height.equalTo(483.adjustedHeight)
@@ -106,16 +106,16 @@ extension EmptyFriendView {
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
-        if let invitingView = invitingView {
-            invitingView.removeFromSuperview()
-        }
+        
+        invitingView.removeFromSuperview()
+        
         
         invitingView = InvitingView()
-        invitingView?.frame = viewController.view.bounds
-        invitingView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        invitingView.frame = viewController.view.bounds
+        invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        invitingView?.updateText(title: StringLiterals.Inviting.recommendTitle, text: StringLiterals.Inviting.recommendText, targetString: "함께 옐로")
-        viewController.view.addSubview(invitingView!)
+        invitingView.updateText(title: StringLiterals.Inviting.recommendTitle, text: StringLiterals.Inviting.recommendText, targetString: "함께 옐로")
+        viewController.view.addSubview(invitingView)
         
     }
 }

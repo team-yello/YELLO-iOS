@@ -16,7 +16,7 @@ final class DetailKeywordView: BaseView {
     // MARK: Component
     let nameKeywordLabel = UILabel()
     let keywordView = UIView()
-    let keywordBackView = UIView()
+    let keywordBackView = UIView(frame: CGRect(x: 0, y: 0, width: 143, height: 34))
     let keywordLabel = UILabel()
     let keywordHeadLabel = UILabel()
     let keywordFootLabel = UILabel()
@@ -35,8 +35,8 @@ final class DetailKeywordView: BaseView {
         
         keywordBackView.do {
             $0.backgroundColor = UIColor(hex: "212529", alpha: 0.6)
-            $0.makeBorder(width: 1, color: .grayscales700)
             $0.makeCornerRound(radius: 6)
+            $0.addDottedBorder()
         }
         
         keywordLabel.do {
