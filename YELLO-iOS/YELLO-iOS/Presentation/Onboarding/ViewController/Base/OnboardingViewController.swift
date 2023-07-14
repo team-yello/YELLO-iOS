@@ -32,6 +32,7 @@ class OnboardingBaseViewController: BaseViewController {
         super.viewDidLoad()
         configUI()
     }
+    
     // MARK: - Function
     
     // MARK: Custom Function

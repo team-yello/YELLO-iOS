@@ -15,7 +15,6 @@ final class KakaoConnectView: BaseView {
     let kakaoConnectButton = UIButton()
     let privacyButton = UIButton()
     
-    
     let stackView = UIStackView()
     
     override func setStyle() {

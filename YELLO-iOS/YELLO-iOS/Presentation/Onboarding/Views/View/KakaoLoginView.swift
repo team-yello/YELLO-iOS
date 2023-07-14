@@ -56,7 +56,11 @@ class KakaoLoginView: BaseView {
 //            $0.center.equalToSuperview()
 //        }
         
-        self.addSubviews(titleLabel,subTitleLabel,imageView,kakaoButton)
+        self.addSubviews(titleLabel,
+                         subTitleLabel,
+                         imageView,
+                         kakaoButton)
+        
         titleLabel.snp.makeConstraints {
             $0.bottom.equalTo(subTitleLabel.snp.top).offset(-8)
             $0.centerX.equalToSuperview()
