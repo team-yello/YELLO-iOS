@@ -162,17 +162,13 @@ extension ProfileView: UITableViewDataSource {
             return UITableViewCell()
         }
         
-//        if indexPath.row == 0 {
-//            cell.addHeaderBottomBorderWithColor(color: .black)
-//        }
-        
         if tableView.isLast(for: indexPath) {
             DispatchQueue.main.async {
                 cell.addAboveTheBottomBorderWithColor(color: .black)
             }
         }
         cell.selectionStyle = .none
-//        cell.configureFriendCell(myFriendTableViewModel[indexPath.row])
+        cell.configureMyProfileFriendCell(myProfileFriendModelDummy[indexPath.row])
         return cell
     }
     
