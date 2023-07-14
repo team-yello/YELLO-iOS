@@ -52,7 +52,7 @@ extension MyYelloDetailViewController {
         myYelloDetailView.handleInstagramButtonDelegate = self
         
         myYelloDetailView.pointLackView = PointLackView()
-        myYelloDetailView.pointLackView?.handleYelloButtonDelegate = self
+        myYelloDetailView.pointLackView.handleYelloButtonDelegate = self
     }
     
     // MARK: objc Function
