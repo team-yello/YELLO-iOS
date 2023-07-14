@@ -90,7 +90,6 @@ class UserInfoViewController: OnboardingBaseViewController {
         }
         
         
-        
         if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly {
             nextButton.setButtonEnable(state: true)
         } else {
