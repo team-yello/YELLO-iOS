@@ -29,6 +29,7 @@ class OnboardingBaseViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
+        setNavigationBarAppearance()
         super.viewDidLoad()
         configUI()
     }

@@ -13,10 +13,12 @@ import Then
 
 final class YelloTextFieldView: UIView {
     // MARK: - Variables
+    var state: iconState = .normal
+    
     // MARK: Components
-    private let titleLabel = YelloGuideLabel()
+    let titleLabel = YelloGuideLabel()
     let textField = YelloTextField()
-    private let helperLabel = UILabel()
+    let helperLabel = YelloHelperLabel()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -33,7 +35,8 @@ final class YelloTextFieldView: UIView {
         textField.placeholder = placeholder
         textField.setPlaceholderColor(.grayscales500)
         textField.setButtonState(state: state)
-        helperLabel.text = helper
+        self.state = state
+        helperLabel.setLabelStyle(text: helper, State: state)
         setUI()
     }
     
@@ -52,10 +55,15 @@ extension YelloTextFieldView {
     }
     
     private func setStyle() {
-        helperLabel.do {
-            $0.font = .uiBody04
-            $0.textColor = .grayscales500
+        if state == .error {
+            textField.setButtonState(state: .error)
+            helperLabel.setLabelStyle(text: "", State: .error)
         }
+        
+        textField.do {
+            $0.autocapitalizationType = .none
+        }
+        
     }
     
     private func setLayout() {

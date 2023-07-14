@@ -97,7 +97,12 @@ enum ImageLiterals {
 
     }
     
+    enum Around {
+        static var imgAround: UIImage { .load(named: "imgAround") }
+    }
+    
     enum MyYello {
+        static var imgMyYelloEmpty: UIImage { .load(named: "imgMyYelloEmpty") }
         static var imgGenderFemale: UIImage { .load(named: "imgGenderFemale") }
         static var imgGenderMale: UIImage { .load(named: "imgGenderMale") }
         static var icPoint: UIImage { .load(named: "icPoint") }
@@ -116,11 +121,29 @@ enum ImageLiterals {
         static var icArrowLeftWhite: UIImage { .load(named: "icArrowLeftWhite") }
         static var btnDelete: UIImage { .load(named: "btnDelete") }
     }
+    
     enum Recommending {
         static var imgBannerInvite: UIImage { .load(named: "imgBannerInvite")}
         static var icAddFriendButton: UIImage { .load(named: "icAddFriendButton")}
         static var icAddFriendButtonTapped: UIImage { .load(named: "icAddFriendButtonTapped")}
         static var icRight: UIImage { .load(named: "icRight")}
+    }
+    
+    enum Payment {
+        static var imgPaymentFirst: UIImage { .load(named: "imgPaymentFirst")}
+        static var imgPaymentSecond: UIImage { .load(named: "imgPaymentSecond")}
+        static var imgPaymentThird: UIImage { .load(named: "imgPaymentThird")}
+        static var btnSubscribe: UIImage { .load(named: "btnSubscribe")}
+        static var btnFirstSubscribe: UIImage { .load(named: "btnFirstSubscribe")}
+        static var btnSecondSubscribe: UIImage { .load(named: "btnSecondSubscribe")}
+        static var btnThirdSubscribe: UIImage { .load(named: "btnThirdSubscribe")}
+    }
+  
+    enum Withdrawal {
+        static var imgWithdrawalCheck: UIImage { .load(named: "imgWithdrawalCheck")}
+        static var imgWithdrawalFirst: UIImage { .load(named: "imgWithdrawalFirst")}
+        static var imgWithdrawalSecond: UIImage { .load(named: "imgWithdrawalSecond")}
+        static var imgWithdrawalThird: UIImage { .load(named: "imgWithdrawalThird")}
     }
 }
 

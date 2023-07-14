@@ -51,7 +51,7 @@ final class WithdrawalCheckView: BaseView {
         }
         
         withdrawalImageView.do {
-            $0.backgroundColor = .grayscales600
+            $0.image = ImageLiterals.Withdrawal.imgWithdrawalCheck
         }
         
         keepButton.do {
@@ -106,9 +106,10 @@ final class WithdrawalCheckView: BaseView {
         }
         
         withdrawalImageView.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(27.adjusted)
-            $0.width.height.equalTo(230)
+            $0.width.equalTo(260)
+            $0.height.equalTo(246)
             $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(6.5.adjustedHeight)
         }
         
         keepButton.snp.makeConstraints {

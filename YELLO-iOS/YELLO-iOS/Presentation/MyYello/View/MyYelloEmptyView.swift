@@ -36,7 +36,7 @@ final class MyYelloEmptyView: BaseView {
         }
         
         emptyImageView.do {
-            $0.backgroundColor = .grayscales600
+            $0.image = ImageLiterals.MyYello.imgMyYelloEmpty
         }
     }
     
@@ -56,9 +56,10 @@ final class MyYelloEmptyView: BaseView {
         }
         
         emptyImageView.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(34.adjusted)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(39.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(230)
+            $0.width.equalTo(288.adjustedHeight)
+            $0.height.equalTo(272.adjustedHeight)
         }
     }
 }
