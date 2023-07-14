@@ -90,17 +90,17 @@ final class VotingStartViewController: BaseViewController {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
 
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
         }
         
         originView.grayView.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 117.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 117.adjustedHeight)
             $0.width.equalTo(284.adjusted)
             $0.height.equalTo(52.adjusted)
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
         }
         
     }
