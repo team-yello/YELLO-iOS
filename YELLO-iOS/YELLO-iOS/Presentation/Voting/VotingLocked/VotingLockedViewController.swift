@@ -33,6 +33,10 @@ final class VotingLockedViewController: BaseViewController {
             $0.numberOfLines = 2
         }
         
+        originView.yelloImage.do {
+            $0.image = ImageLiterals.Voting.imgVotingLocked
+        }
+        
         originView.yellowButton.do {
             $0.setTitle("친구 초대하기", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
@@ -49,23 +53,25 @@ final class VotingLockedViewController: BaseViewController {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
-        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
                 
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(24.adjusted)
+            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(24.adjustedHeight)
         }
         
         originView.yelloImage.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 214.adjusted)
-            $0.size.equalTo(230.adjusted)
+            $0.centerY.equalToSuperview().offset(41.5.adjusted)
+            $0.width.equalTo(278.adjusted)
+            $0.height.equalTo(264.adjusted)
+            
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 20.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
         }
         
     }

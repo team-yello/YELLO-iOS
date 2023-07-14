@@ -90,6 +90,8 @@ enum ImageLiterals {
         static var imgProgress8: UIImage { .load(named: "imgProgress8")}
         static var imgProgress9: UIImage { .load(named: "imgProgress9")}
         static var imgProgress10: UIImage { .load(named: "imgProgress10")}
+        static var imgPointAccumulate: UIImage { .load(named: "imgPointAccumulate")}
+        static var imgVotingLocked: UIImage { .load(named: "imgVotingLocked")}
 
     }
     

@@ -42,6 +42,10 @@ final class VotingPointViewController: BaseViewController {
             $0.asColor(targetString: "400", color: .yelloMain500)
         }
         
+        originView.yelloImage.do {
+            $0.image = ImageLiterals.Voting.imgPointAccumulate
+        }
+        
         originView.engPoint.do {
             $0.setTextWithLineHeight(text: "Point", lineHeight: 22)
         }
@@ -71,40 +75,40 @@ final class VotingPointViewController: BaseViewController {
         
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
-            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjusted)
+            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedWidth)
         }
         
         originView.topOfMyPoint.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjustedHeight)
             $0.trailing.equalToSuperview().inset(16.adjusted)
         }
                         
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(4.adjustedHeight)
         }
         
         originView.plusPoint.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 198.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 198.adjustedHeight)
         }
         
         originView.yelloImage.snp.makeConstraints {
             $0.width.equalTo(240.adjusted)
             $0.height.equalTo(160.adjusted)
-            $0.top.equalTo(originView.plusPoint.snp.bottom).offset(12.adjusted)
+            $0.center.equalToSuperview()
         }
         
         originView.grayView.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 105.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 105.adjustedHeight)
             $0.width.equalTo(284.adjusted)
             $0.height.equalTo(60.adjusted)
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
         }
     }
     
