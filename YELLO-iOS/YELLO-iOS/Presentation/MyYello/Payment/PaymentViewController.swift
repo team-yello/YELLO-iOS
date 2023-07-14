@@ -52,19 +52,22 @@ extension PaymentViewController {
         view.backgroundColor = .black
         
         paymentNavigationBarView.do {
-            $0.titleLabel.text = StringLiterals.MyYello.Payment.title
-            $0.pointImageView.image = ImageLiterals.MyYello.icPoint
+            $0.titleLabel.text = nil
+            $0.pointImageView.image = nil
+            $0.pointLabel.text = nil
         }
         
         titleLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.paymentTitle, lineHeight: 24)
-            $0.font = .uiSubtitle01
+            $0.font = .uiHeadline03
             $0.textColor = .white
+            $0.textAlignment = .left
         }
         
         nextButton.do {
             $0.setImage(ImageLiterals.Payment.btnSubscribe, for: .normal)
             $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+            $0.imageView?.contentMode = .scaleAspectFit
         }
         
         senderLabel.do {
@@ -76,16 +79,19 @@ extension PaymentViewController {
         firstSubscribeButton.do {
             $0.setImage(ImageLiterals.Payment.btnFirstSubscribe, for: .normal)
             $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+            $0.imageView?.contentMode = .scaleAspectFit
         }
         
         secondSubscribeButton.do {
             $0.setImage(ImageLiterals.Payment.btnSecondSubscribe, for: .normal)
             $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+            $0.imageView?.contentMode = .scaleAspectFit
         }
         
         thirdSubscribeButton.do {
             $0.setImage(ImageLiterals.Payment.btnThirdSubscribe, for: .normal)
             $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+            $0.imageView?.contentMode = .scaleAspectFit
         }
     }
     
@@ -113,39 +119,43 @@ extension PaymentViewController {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(paymentNavigationBarView)
+            $0.top.equalTo(paymentNavigationBarView.snp.bottom)
             $0.leading.equalToSuperview().inset(16.adjustedHeight)
         }
         
         paymentView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).inset(16.adjustedHeight)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(16.adjustedHeight)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(202)
+            $0.centerX.equalToSuperview()
         }
         
         nextButton.snp.makeConstraints {
             $0.top.equalTo(paymentView.snp.bottom).offset(10.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
         
         senderLabel.snp.makeConstraints {
             $0.top.equalTo(nextButton.snp.bottom).offset(44.adjustedHeight)
-            $0.leading.equalToSuperview().inset(16)
+            $0.leading.equalTo(firstSubscribeButton)
         }
         
         firstSubscribeButton.snp.makeConstraints {
             $0.top.equalTo(senderLabel.snp.bottom).offset(12.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
         
         secondSubscribeButton.snp.makeConstraints {
             $0.top.equalTo(firstSubscribeButton.snp.bottom).offset(4.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
         
         thirdSubscribeButton.snp.makeConstraints {
             $0.top.equalTo(secondSubscribeButton.snp.bottom).offset(4.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
     
