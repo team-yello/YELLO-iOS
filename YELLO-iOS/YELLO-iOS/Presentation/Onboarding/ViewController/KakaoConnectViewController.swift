@@ -21,7 +21,6 @@ class KakaoConnectViewController: BaseViewController {
     }
     
     func addTarget() {
-        print("타겟 성공!✅✅✅✅✅✅✅")
         baseView.kakaoConnectButton.addTarget(self, action: #selector(connectButtonDidTap), for: .touchUpInside)
     }
     

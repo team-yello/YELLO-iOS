@@ -39,7 +39,8 @@ class OnboardingEndViewController: BaseViewController {
         /// 온보딩 이후 rootViewController 변경
         let yelloTabBarController = YELLOTabBarController()
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-        sceneDelegate.isLoggedIn = true
+        
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
         sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
     }
     

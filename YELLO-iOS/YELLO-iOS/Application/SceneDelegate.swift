@@ -25,8 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.29) { [self] in
             
-            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-            
             let rootViewController = self.isLoggedIn ? YELLOTabBarController() : KakaoLoginViewController()
             
             let navigationController = UINavigationController(rootViewController: rootViewController)
@@ -35,7 +33,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.rootViewController = navigationController
         }
         self.window?.makeKeyAndVisible()
-        
         
     }
 

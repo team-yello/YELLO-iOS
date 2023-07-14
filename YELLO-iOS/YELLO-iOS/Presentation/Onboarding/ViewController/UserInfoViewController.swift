@@ -85,6 +85,7 @@ class UserInfoViewController: OnboardingBaseViewController {
             idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idError, State: .error)
             self.isButtonEnable = false
         } else {
+            
             idTextFieldView.textField.setButtonState(state: .id)
             idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
         }
@@ -92,6 +93,8 @@ class UserInfoViewController: OnboardingBaseViewController {
         
         if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly {
             nextButton.setButtonEnable(state: true)
+            idTextFieldView.textField.setButtonState(state: .done)
+            nameTextFieldView.textField.setButtonState(state: .done)
         } else {
             nextButton.setButtonEnable(state: false)
         }
