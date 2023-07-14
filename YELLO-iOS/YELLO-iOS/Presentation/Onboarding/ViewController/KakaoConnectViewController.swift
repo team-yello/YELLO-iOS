@@ -7,23 +7,26 @@
 
 import UIKit
 
-class KakaoConnectViewController: UIViewController {
+class KakaoConnectViewController: BaseViewController {
+    
+    let baseView = KakaoConnectView()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func loadView() {
+        view = baseView
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addTarget()
     }
-    */
-
+    
+    func addTarget() {
+        print("타겟 성공!✅✅✅✅✅✅✅")
+        baseView.kakaoConnectButton.addTarget(self, action: #selector(connectButtonDidTap), for: .touchUpInside)
+    }
+    
+    @objc func connectButtonDidTap() {
+        navigationController?.pushViewController(SchoolSearchViewController(), animated: true)
+    }
+    
 }
