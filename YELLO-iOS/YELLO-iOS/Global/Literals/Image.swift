@@ -118,6 +118,12 @@ enum ImageLiterals {
         static var icAddFriendButtonTapped: UIImage { .load(named: "icAddFriendButtonTapped")}
         static var icRight: UIImage { .load(named: "icRight")}
     }
+    
+    enum Payment {
+        static var imgPaymentFirst: UIImage { .load(named: "imgPaymentFirst")}
+        static var imgPaymentSecond: UIImage { .load(named: "imgPaymentSecond")}
+        static var imgPaymentThird: UIImage { .load(named: "imgPaymentThird")}
+    }
 }
 
 extension UIImage {
