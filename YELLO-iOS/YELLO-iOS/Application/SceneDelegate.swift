@@ -18,14 +18,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        let splashViewController = SplashViewController()
+        window?.rootViewController = splashViewController
+
+        self.window?.makeKeyAndVisible()
         
-        let rootViewController = isLoggedIn ? YELLOTabBarController() : SchoolSearchViewController()
-        
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        
-        navigationController.navigationBar.isHidden = true
-        self.window?.rootViewController = navigationController
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) { [self] in
+            
+            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            
+            let rootViewController = self.isLoggedIn ? YELLOTabBarController() : SchoolSearchViewController()
+            
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            
+            navigationController.navigationBar.isHidden = true
+            self.window?.rootViewController = navigationController
+        }
         self.window?.makeKeyAndVisible()
         
         
