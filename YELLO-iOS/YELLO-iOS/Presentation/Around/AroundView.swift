@@ -81,10 +81,10 @@ extension AroundView {
         }
         
         aroundImageView.snp.makeConstraints {
-            $0.height.width.equalTo(230.adjusted)
+            $0.width.equalTo(230.adjusted)
+            $0.height.equalTo(218.adjusted)
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(15.adjusted)
-            
+            $0.centerY.equalToSuperview().offset(21.5.adjusted)
         }
         
     }
