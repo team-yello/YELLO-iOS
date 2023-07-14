@@ -10,16 +10,25 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+    
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController(rootViewController: SchoolSearchViewController())
+        
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        
+        let rootViewController = isLoggedIn ? YELLOTabBarController() : SchoolSearchViewController()
+        
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
         navigationController.navigationBar.isHidden = true
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
+        
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
