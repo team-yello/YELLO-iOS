@@ -33,6 +33,7 @@ class SearchBaseViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        searchView.searchTextField.becomeFirstResponder()
     }
     
     override func viewDidLoad() {
