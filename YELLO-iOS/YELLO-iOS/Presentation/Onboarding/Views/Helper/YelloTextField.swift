@@ -26,11 +26,14 @@ final class YelloTextField: UITextField {
     // MARK: - Variables
     // MARK: Constants
     let padding: CGFloat = 20
+    
+    // MARK: Property
     var textFieldState = iconState.normal
+    var isCanceled = false
     
     // MARK: Components
     private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
-    private lazy var cancelButton = UIButton()
+    lazy var cancelButton = UIButton()
     private lazy var toggleImageView = UIImageView()
     private lazy var searchImageView = UIImageView()
     private let errorImageView = UIImageView()
@@ -131,16 +134,24 @@ extension YelloTextField {
     
     // MARK: Custom Function
     func setButtonState(state: iconState) {
+        /// 기본 타입
+        self.backgroundColor = .clear
+        self.makeBorder(width: 1, color: .grayscales500)
+        
         /// 텍스트 필드 타입에 따라 subView 다르게
+        textFieldState = state
+        let xCircleImage = ImageLiterals.OnBoarding.icXCircle
         switch state {
         case .normal:
             buttonStackView.addArrangedSubview(paddingView)
             self.backgroundColor = .black.withAlphaComponent(0)
             self.layer.borderColor = UIColor.grayscales600.cgColor
-            
+            self.rightViewMode = .never
         case .search:
             buttonStackView.addArrangedSubviews(searchImageView, paddingView)
         case .cancel:
+            let cancelImage = xCircleImage.withTintColor(.grayscales600)
+            cancelButton.setImage(cancelImage, for: .normal)
             buttonStackView.addArrangedSubviews(cancelButton, paddingView)
             self.rightViewMode = .whileEditing
             self.backgroundColor = .grayscales900
@@ -148,7 +159,11 @@ extension YelloTextField {
         case .toggle:
             buttonStackView.addArrangedSubviews(toggleImageView, paddingView)
         case .error:
-            buttonStackView.addArrangedSubviews(errorImageView, paddingView)
+            buttonStackView.clearSubViews()
+            let errorImage = xCircleImage.withTintColor(.semanticStatusRed500)
+            cancelButton.setImage(errorImage, for: .normal)
+            buttonStackView.addArrangedSubviews(cancelButton, paddingView)
+            self.rightViewMode = .always
             self.backgroundColor = .semanticStatusRed500.withAlphaComponent(0.2)
             self.layer.borderColor = UIColor.semanticStatusRed500.cgColor
         case .id:
@@ -165,6 +180,9 @@ extension YelloTextField {
     
     // MARK: Objc Function
     @objc func cancelButtonDidTap() {
+        isCanceled.toggle()
+        self.setButtonState(state: .normal)
+        self.rightViewMode = .never
         self.text = ""
     }
 }

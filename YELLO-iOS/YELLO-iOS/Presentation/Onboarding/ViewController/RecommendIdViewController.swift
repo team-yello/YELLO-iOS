@@ -29,6 +29,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             setDelegate()
+            addTarget()
         }
         
     // MARK: Custom Function
@@ -36,11 +37,27 @@ class RecommendIdViewController: OnboardingBaseViewController {
         baseView.recommendIdTextField.textField.delegate = self
     }
     
+    func addTarget() {
+        baseView.recommendIdTextField.textField.cancelButton.addTarget(self, action: #selector(idCancelTapped), for: .touchUpInside)
+    }
+    
     func checkButtonEnable() {
+        let idTextFieldView = baseView.recommendIdTextField
         let idText = baseView.recommendIdTextField.textField.text ?? ""
+        let isValidId = idText.isId()
         
-        let isButtonEnabled = !(idText.isEmpty)
+        if !isValidId {
+            idTextFieldView.textField.setButtonState(state: .error)
+            idTextFieldView.helperLabel.setLabelStyle(text: "존재하지 않는 아이디에요", State: .error)
+        }
+        
+        let isButtonEnabled = !(idText.isEmpty) && isValidId
         nextButton.setButtonEnable(state: isButtonEnabled)
+    }
+    
+    // MARK: Objc Function
+    @objc func idCancelTapped() {
+        baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "추천인의 아이디를 입력해주세요.", State: .normal)
     }
     
 }
