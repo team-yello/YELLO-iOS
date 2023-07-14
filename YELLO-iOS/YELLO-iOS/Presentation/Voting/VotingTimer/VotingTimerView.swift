@@ -40,7 +40,7 @@ final class VotingTimerView: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        start(duration: 10)
+        start(duration: 2400)
     }
     
     required init?(coder: NSCoder) {
@@ -123,7 +123,6 @@ final class VotingTimerView: BaseView {
     
     func stop() {
         self.timer?.invalidate()
-        print("hi")
         self.remainingSeconds = 0
         self.progressLayer.removeFromSuperlayer()
     }
