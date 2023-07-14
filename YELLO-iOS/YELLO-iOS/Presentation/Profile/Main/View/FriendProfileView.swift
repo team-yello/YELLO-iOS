@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -15,11 +16,16 @@ protocol HandleBottomSheetButtonDelegate: AnyObject {
     func dismissView()
 }
 
+protocol HandleDeleteButtonDelegate: AnyObject {
+    func deleteButtonTapped()
+}
+
 final class FriendProfileView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
     weak var handleBottomSheetButtonDelegate: HandleBottomSheetButtonDelegate?
+    weak var handleDeleteButtonDelegate: HandleDeleteButtonDelegate?
     
     private let profileImageView = UIImageView()
     private let nameLabel = UILabel()
@@ -40,8 +46,9 @@ final class FriendProfileView: BaseView {
         self.backgroundColor = .black
         
         profileImageView.do {
-            $0.image = UIImage(systemName: "circle.fill")
-            $0.tintColor = .white            
+            $0.image = ImageLiterals.Profile.imgDefaultProfile
+            $0.contentMode = .scaleAspectFill
+            $0.makeCornerRound(radius: 20)
         }
         
         nameLabel.do {
@@ -196,10 +203,21 @@ final class FriendProfileView: BaseView {
     
     @objc private func confirmButtonTapped() {
         dismissView()
+        self.showToast(message: StringLiterals.Profile.Friend.toastMessage)
+        handleDeleteButtonDelegate?.deleteButtonTapped()
     }
     
     // MARK: Layout Helpers
     private func dismissView() {
         handleBottomSheetButtonDelegate?.dismissView()
+    }
+    
+    func configureMyProfileFriendDetailCell(_ model: MyProfileFriendModel) {
+        profileImageView.kfSetImage(url: model.friendProfileImage)
+        nameLabel.text = model.friendName
+        instagramLabel.text = model.yelloId
+        schoolLabel.text = model.friendGroup
+        messageCountView.countLabel.text = String(model.yelloCount)
+        friendCountView.countLabel.text = String(model.friendCount)
     }
 }

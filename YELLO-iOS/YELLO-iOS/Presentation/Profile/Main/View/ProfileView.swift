@@ -12,7 +12,7 @@ import Then
 
 // MARK: - Protocol
 protocol HandleFriendCellDelegate: AnyObject {
-    func presentModal()
+    func presentModal(index: Int)
 }
 
 final class ProfileView: UIView {
@@ -120,8 +120,8 @@ extension ProfileView {
         myFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-    private func presentModal() {
-        handleFriendCellDelegate?.presentModal()
+    private func presentModal(index: Int) {
+        handleFriendCellDelegate?.presentModal(index: index)
     }
 }
 
@@ -174,6 +174,6 @@ extension ProfileView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Click Cell Number:" + String(indexPath.row))
-        self.presentModal()
+        self.presentModal(index: indexPath.row)
     }
 }

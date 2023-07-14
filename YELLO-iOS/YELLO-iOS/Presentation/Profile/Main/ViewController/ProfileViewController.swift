@@ -52,8 +52,10 @@ extension ProfileViewController: NavigationBarViewDelegate {
 
 // MARK: HandleFriendCellDelegate
 extension ProfileViewController: HandleFriendCellDelegate {
-    func presentModal() {
+    func presentModal(index: Int) {
         let friendProfileViewController = FriendProfileViewController()
+        
+        friendProfileViewController.friendProfileView.configureMyProfileFriendDetailCell(myProfileFriendModelDummy[index])
         let nav = UINavigationController(rootViewController: friendProfileViewController)
     
         if let sheet = nav.sheetPresentationController {

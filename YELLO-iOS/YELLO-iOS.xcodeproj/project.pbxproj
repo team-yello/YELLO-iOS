@@ -65,6 +65,7 @@
 		C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB32A60657C000F5BA9 /* UITableView+.swift */; };
 		C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB52A607357000F5BA9 /* FriendCountView.swift */; };
 		C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB72A60FE2D000F5BA9 /* NextButton.swift */; };
+		C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -213,6 +214,7 @@
 		C307ECB32A60657C000F5BA9 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		C307ECB52A607357000F5BA9 /* FriendCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCountView.swift; sourceTree = "<group>"; };
 		C307ECB72A60FE2D000F5BA9 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
+		C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileFriendModel.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -744,6 +746,7 @@
 			children = (
 				C3D2663F2A5C75FA0041C7C7 /* ViewController */,
 				C3D2663E2A5C75EE0041C7C7 /* View */,
+				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1042,6 +1045,7 @@
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
 				36E4276A2A5BCE860050B34E /* Constraints.swift in Sources */,
 				C3FF24952A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift in Sources */,
+				C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */,
 				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
 				C3FF249E2A5EE48200A97D40 /* MyYelloDetailView.swift in Sources */,
