@@ -29,6 +29,12 @@ final class MyYelloViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+
+    }
+    
     // MARK: Layout Helpers
     override func setStyle() {
         view.backgroundColor = .black
