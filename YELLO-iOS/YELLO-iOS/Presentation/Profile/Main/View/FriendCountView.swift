@@ -16,7 +16,7 @@ final class FriendCountView: UIView {
     // MARK: Component
     private let myFriendLabel = UILabel()
     private let friendNumberLabel = UILabel()
-    private let friendCountLabel = UILabel()
+    let friendCountLabel = UILabel()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -54,7 +54,7 @@ extension FriendCountView {
         }
         
         friendCountLabel.do {
-            $0.setTextWithLineHeight(text: "10명", lineHeight: 16)
+            $0.setTextWithLineHeight(text: String(myProfileFriendModelDummy.count) + "명", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales300
             $0.asColor(targetString: "명", color: .grayscales500)

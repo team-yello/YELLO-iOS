@@ -48,7 +48,7 @@ final class FriendProfileView: BaseView {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 20)
+            $0.makeCornerRound(radius: 36)
         }
         
         nameLabel.do {
