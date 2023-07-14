@@ -122,10 +122,10 @@ extension YelloGenderButton {
         
         switch gender {
         case .female:
-            self.backgroundColor = .semanticGenderF500.withAlphaComponent(0.3)
+            self.backgroundColor = .semanticGenderF700
             self.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleFemale, for: .normal)
         case .male:
-            self.backgroundColor = .semanticGenderM500.withAlphaComponent(0.3)
+            self.backgroundColor = .semanticGenderM700
             self.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleMale, for: .normal)
         case .none:
             return
