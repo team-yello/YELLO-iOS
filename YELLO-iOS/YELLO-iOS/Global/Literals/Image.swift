@@ -12,6 +12,10 @@ enum ImageLiterals {
         static var splashYelloFace: UIImage { .load(named: "SplashYelloFace")}
     }
     enum OnBoarding {
+        static var addFriends: UIImage { .load(named: "addFriends")}
+        static var onboardingStart: UIImage { .load(named: "OnboardingStart")}
+        static var icAlertCircle: UIImage { .load(named: "icAlertCircle")}
+        
         static var icArrowLeft: UIImage { .load(named: "icArrowLeft").withTintColor(.white, renderingMode: .alwaysOriginal)}
         static var icChevronDown: UIImage { .load(named: "icChevronDown").withTintColor(.grayscales500, renderingMode: .alwaysOriginal) }
         static var icSearch: UIImage { .load(named: "icSearch").withTintColor(.grayscales500, renderingMode: .alwaysOriginal) }

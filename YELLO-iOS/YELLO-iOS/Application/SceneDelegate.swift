@@ -23,11 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window?.makeKeyAndVisible()
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.29) { [self] in
             
             UserDefaults.standard.set(true, forKey: "isLoggedIn")
             
-            let rootViewController = self.isLoggedIn ? YELLOTabBarController() : SchoolSearchViewController()
+            let rootViewController = self.isLoggedIn ? YELLOTabBarController() : KakaoLoginViewController()
             
             let navigationController = UINavigationController(rootViewController: rootViewController)
             
