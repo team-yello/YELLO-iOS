@@ -35,6 +35,8 @@
 		3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
+		36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234952A61466A007933E4 /* YelloHelperLabel.swift */; };
+		36B234982A619853007933E4 /* onboarding_end.json in Resources */ = {isa = PBXBuildFile; fileRef = 36B234972A619853007933E4 /* onboarding_end.json */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
 		36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -186,6 +188,8 @@
 		3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashTitleView.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		36B234952A61466A007933E4 /* YelloHelperLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloHelperLabel.swift; sourceTree = "<group>"; };
+		36B234972A619853007933E4 /* onboarding_end.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_end.json; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
 		36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -465,6 +469,7 @@
 		36E427562A5BCE860050B34E /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				36B234972A619853007933E4 /* onboarding_end.json */,
 				36E427592A5BCE860050B34E /* Constraints.swift */,
 				36E427572A5BCE860050B34E /* Cells */,
 				36E4275A2A5BCE860050B34E /* ViewController */,
@@ -512,7 +517,6 @@
 		36E4275F2A5BCE860050B34E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3628EAE22A5FC4BC00D5FA40 /* SignAnimation.json */,
 				36E427602A5BCE860050B34E /* GenderView.swift */,
 				36E427802A5BD60A0050B34E /* SchoolSearchView.swift */,
 				36E427822A5BD6110050B34E /* StudentInfoView.swift */,
@@ -967,7 +971,6 @@
 				C3A79A002A49500000D3EFD8 /* Pretendard-Bold.otf in Resources */,
 				2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */,
 				C3FF24A62A5EEF7400A97D40 /* Unbounded-SemiBold.ttf in Resources */,
-				3628EAE32A5FC4BC00D5FA40 /* SignAnimation.json in Resources */,
 				C3A79A012A49500000D3EFD8 /* Pretendard-ExtraBold.otf in Resources */,
 				C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */,
 				C3A79A052A49500000D3EFD8 /* Pretendard-Regular.otf in Resources */,
@@ -975,6 +978,7 @@
 				C3A79A072A49500000D3EFD8 /* Pretendard-SemiBold.otf in Resources */,
 				C3A799A02A49490D00D3EFD8 /* Assets.xcassets in Resources */,
 				C3A79A062A49500000D3EFD8 /* Pretendard-Medium.otf in Resources */,
+				36B234982A619853007933E4 /* onboarding_end.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

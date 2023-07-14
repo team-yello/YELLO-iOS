@@ -21,7 +21,9 @@ class OnboardingEndView: BaseView {
     let endingImageView = UIImageView()
     
     let goToYelloButton = UIButton()
-    let animationView = LottieAnimationView(name: "SignAnimation")
+    let animationView = LottieAnimationView(name: "onboarding_end")
+    
+    let stackView = UIStackView()
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -29,11 +31,13 @@ class OnboardingEndView: BaseView {
         GuideLabel.do {
             $0.text = "회원가입이 끝났어요!"
             $0.font = .uiHeadline03
+            $0.setTextWithLineHeight(text: $0.text, lineHeight: 28.adjusted)
             $0.textColor = .white
         }
         
         subGuideLabel.do {
             $0.text = "지금 바로 친구들에게 옐로하러 가볼까요?"
+            $0.setTextWithLineHeight(text: $0.text, lineHeight: 22)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales600
         }
@@ -53,24 +57,21 @@ class OnboardingEndView: BaseView {
             $0.makeCornerRound(radius: CGFloat(Constraints.round))
         }
     
+        stackView.do {
+            $0.addArrangedSubviews(GuideLabel,
+                                   subGuideLabel,
+                                   animationView)
+            $0.axis = .vertical
+            $0.spacing = 8
+            $0.alignment = .center
+        }
     }
     
     override func setLayout() {
-        self.addSubviews(GuideLabel, subGuideLabel, animationView, goToYelloButton)
+        self.addSubviews(stackView, goToYelloButton)
         
-        GuideLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.topMargin.equalToSuperview().inset(60)
-        }
-        
-        subGuideLabel.snp.makeConstraints {
-            $0.top.equalTo(GuideLabel.snp.bottom).offset(8)
-            $0.centerX.equalToSuperview()
-        }
-        
-        animationView.snp.makeConstraints {
-            $0.top.equalTo(subGuideLabel.snp.bottom).offset(2)
-            $0.leading.trailing.equalToSuperview()
+        stackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         
         goToYelloButton.snp.makeConstraints {
