@@ -19,7 +19,7 @@ final class VotingTimerView: BaseView {
     private let animationName = "progressAnimation"
     private var timer: Timer?
     
-    private var remainingSeconds: TimeInterval? {
+    var remainingSeconds: TimeInterval? {
         didSet {
             if let remainingSeconds {
                 self.timeLabel.text = String(format: "%02d : %02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
@@ -40,7 +40,7 @@ final class VotingTimerView: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        start(duration: 2400)
+        start(duration: 10)
     }
     
     required init?(coder: NSCoder) {
@@ -123,8 +123,9 @@ final class VotingTimerView: BaseView {
     
     func stop() {
         self.timer?.invalidate()
-        self.progressLayer.removeAnimation(forKey: self.animationName)
-        self.remainingSeconds = 2400
+        print("hi")
+        self.remainingSeconds = 0
+        self.progressLayer.removeFromSuperlayer()
     }
     
     func animateProgress(to value: Float) {
@@ -136,6 +137,7 @@ final class VotingTimerView: BaseView {
         circularProgressAnimation.fillMode = .forwards
         circularProgressAnimation.isRemovedOnCompletion = false
         self.progressLayer.add(circularProgressAnimation, forKey: self.animationName)
+        
     }
     
 }
