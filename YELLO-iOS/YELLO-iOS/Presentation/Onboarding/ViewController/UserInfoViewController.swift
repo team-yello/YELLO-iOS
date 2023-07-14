@@ -39,11 +39,11 @@ class UserInfoViewController: OnboardingBaseViewController {
     }
     
     @objc func idCancelTapped() {
-        baseView.idTextField.helperLabel.setLabelStyle(text: "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)", State: .id)
+        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
     }
     
     @objc func nameCancelTapped() {
-        baseView.nameTextField.helperLabel.setLabelStyle(text: "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!", State: .normal)
+        baseView.nameTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
     }
     
     override func setLayout() {
@@ -73,20 +73,20 @@ class UserInfoViewController: OnboardingBaseViewController {
         if !isNameEmpty, !isKoreanOnly {
             /// 한글로만 이루어져 있지 않으면 에러 처리
             nameTextFieldView.textField.setButtonState(state: .error)
-            nameTextFieldView.helperLabel.setLabelStyle(text: "한글만 입력 가능해요.", State: .error)
+            nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameError, State: .error)
             self.isButtonEnable = false
         } else if isNameEmpty {
             nameTextFieldView.textField.setButtonState(state: .normal)
-            nameTextFieldView.helperLabel.setLabelStyle(text: "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!", State: .normal)
+            nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
         }
         if !isIDEmpty, !isEnglishOnly {
             /// 영어, 온점, 밑줄 이외의 문자가 포함되어 있으면 에러 처리
             idTextFieldView.textField.setButtonState(state: .error)
-            idTextFieldView.helperLabel.setLabelStyle(text: "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요.", State: .error)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idError, State: .error)
             self.isButtonEnable = false
         } else {
             idTextFieldView.textField.setButtonState(state: .id)
-            idTextFieldView.helperLabel.setLabelStyle(text: "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)", State: .id)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
         }
         
         

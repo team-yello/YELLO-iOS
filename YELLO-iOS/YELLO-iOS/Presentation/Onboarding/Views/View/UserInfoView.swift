@@ -18,9 +18,9 @@ class UserInfoView: BaseView {
     
     // MARK: Component (button, label 등 코드로 만들때)
     let nameTextField = YelloTextFieldView(title: "이름은", state: .normal, placeholder: "김옐로",
-                                           helper: "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!")
+                                           helper: StringLiterals.Onboarding.nameHelper)
     let idTextField = YelloTextFieldView(title: "아이디는", state: .id, placeholder: "insta_id",
-                                          helper: "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)")
+                                         helper: StringLiterals.Onboarding.idHelper)
     let idLabel = UILabel()
     
     // MARK: - Function

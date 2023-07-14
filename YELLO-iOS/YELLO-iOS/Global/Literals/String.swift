@@ -19,6 +19,13 @@ enum StringLiterals {
         }
     }
     
+    enum Onboarding {
+        static let nameHelper = "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!"
+        static let idHelper = "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)"
+        static let nameError = "한글만 입력 가능해요."
+        static let idError = "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요."
+    }
+    
     enum Inviting {
         static let lockedTitle = "친구 초대하고 투표 시작하기"
         static let lockedText = "친구가 4명 이상 모이면\n투표를 시작할 수 있어요!"
