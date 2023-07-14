@@ -50,11 +50,6 @@ class KakaoLoginView: BaseView {
     }
     
     override func setLayout() {
-//        self.addSubviews(stackView, kakaoButton)
-//
-//        stackView.snp.makeConstraints {
-//            $0.center.equalToSuperview()
-//        }
         
         self.addSubviews(titleLabel,
                          subTitleLabel,
@@ -72,8 +67,6 @@ class KakaoLoginView: BaseView {
         }
         
         imageView.snp.makeConstraints {
-//            $0.top.equalTo(subTitleLabel.snp.top).offset(2)
-//            $0.centerX.equalToSuperview()
             $0.center.equalToSuperview()
         }
         

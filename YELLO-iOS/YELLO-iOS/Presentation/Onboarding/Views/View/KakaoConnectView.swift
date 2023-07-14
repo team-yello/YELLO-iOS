@@ -82,8 +82,6 @@ final class KakaoConnectView: BaseView {
         }
         
         imageView.snp.makeConstraints {
-//            $0.top.equalTo(subTitleLabel.snp.top).offset(2)
-//            $0.centerX.equalToSuperview()
             $0.center.equalToSuperview()
         }
         
