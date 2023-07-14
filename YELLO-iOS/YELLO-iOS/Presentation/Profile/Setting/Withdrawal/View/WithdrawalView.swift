@@ -64,7 +64,7 @@ final class WithdrawalView: BaseView {
         }
         
         firstImageView.do {
-            $0.backgroundColor = .grayscales700
+            $0.image = ImageLiterals.Withdrawal.imgWithdrawalFirst
         }
         
         secondLabel.do {
@@ -74,7 +74,7 @@ final class WithdrawalView: BaseView {
         }
         
         secondImageView.do {
-            $0.backgroundColor = .grayscales700
+            $0.image = ImageLiterals.Withdrawal.imgWithdrawalSecond
         }
         
         thirdLabel.do {
@@ -84,7 +84,7 @@ final class WithdrawalView: BaseView {
         }
         
         thirdImageView.do {
-            $0.backgroundColor = .grayscales700
+            $0.image = ImageLiterals.Withdrawal.imgWithdrawalThird
         }
         
         captionLabel.do {
@@ -155,37 +155,37 @@ final class WithdrawalView: BaseView {
         
         firstImageView.snp.makeConstraints {
             $0.top.equalTo(firstLabel.snp.bottom).offset(6.adjusted)
-            $0.width.equalTo(276)
-            $0.height.equalTo(118)
+            $0.width.equalTo(252)
+            $0.height.equalTo(51)
             $0.centerX.equalToSuperview()
         }
         
         secondLabel.snp.makeConstraints {
-            $0.top.equalTo(firstImageView.snp.bottom).offset(40.adjusted)
+            $0.top.equalTo(firstImageView.snp.bottom).offset(50.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         secondImageView.snp.makeConstraints {
             $0.top.equalTo(secondLabel.snp.bottom).offset(6.adjusted)
-            $0.width.equalTo(276)
-            $0.height.equalTo(118)
+            $0.width.equalTo(252)
+            $0.height.equalTo(95)
             $0.centerX.equalToSuperview()
         }
         
         thirdLabel.snp.makeConstraints {
-            $0.top.equalTo(secondImageView.snp.bottom).offset(40.adjusted)
+            $0.top.equalTo(secondImageView.snp.bottom).offset(50.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         thirdImageView.snp.makeConstraints {
-            $0.top.equalTo(thirdLabel.snp.bottom).offset(6.adjusted)
-            $0.width.equalTo(276)
-            $0.height.equalTo(118)
+            $0.top.equalTo(thirdLabel.snp.bottom).offset(6.adjustedHeight)
+            $0.width.equalTo(252)
+            $0.height.equalTo(69)
             $0.centerX.equalToSuperview()
         }
         
         captionLabel.snp.makeConstraints {
-            $0.top.equalTo(thirdImageView.snp.bottom).offset(43)
+            $0.top.equalTo(thirdImageView.snp.bottom).offset(80.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
