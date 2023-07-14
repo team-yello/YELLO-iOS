@@ -8,7 +8,9 @@
 import UIKit
 
 enum ImageLiterals {
-    
+    enum Splash {
+        static var splashYelloFace: UIImage { .load(named: "SplashYelloFace")}
+    }
     enum OnBoarding {
         static var icArrowLeft: UIImage { .load(named: "icArrowLeft").withTintColor(.white, renderingMode: .alwaysOriginal)}
         static var icChevronDown: UIImage { .load(named: "icChevronDown").withTintColor(.grayscales500, renderingMode: .alwaysOriginal) }

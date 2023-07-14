@@ -45,5 +45,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UILaunchScreen</key>
+	<false/>
 </dict>
 </plist>
