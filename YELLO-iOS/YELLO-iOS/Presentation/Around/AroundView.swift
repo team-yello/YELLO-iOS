@@ -59,7 +59,7 @@ extension AroundView {
         }
         
         aroundImageView.do {
-            $0.makeBorder(width: 1, color: .grayscales700)
+            $0.image = ImageLiterals.Around.imgAround
         }
     }
     
