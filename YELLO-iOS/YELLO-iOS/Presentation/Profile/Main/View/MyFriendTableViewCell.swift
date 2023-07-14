@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -49,8 +50,9 @@ extension MyFriendTableViewCell {
         selectionStyle = .default
         
         profileImageView.do {
-            $0.image = UIImage(systemName: "circle.fill")
-            $0.tintColor = .white
+            $0.image = ImageLiterals.Profile.imgDefaultProfile
+            $0.contentMode = .scaleAspectFill
+            $0.makeCornerRound(radius: 20)
         }
         
         nameLabel.do {
@@ -90,8 +92,11 @@ extension MyFriendTableViewCell {
     }
     
     // MARK: Custom Function
-    func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.name
-        schoolLabel.text = model.school
+    func configureMyProfileFriendCell(_ model: MyProfileFriendModel) {
+        nameLabel.text = model.friendName
+        if model.friendProfileImage != nil {
+            profileImageView.kfSetImage(url: model.friendProfileImage)
+        }
+        schoolLabel.text = model.friendGroup
     }
 }

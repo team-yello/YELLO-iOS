@@ -18,6 +18,13 @@ final class MyYelloDetailViewController: BaseViewController {
     let dummy = myYelloBackgroundColorDummy
     let hexDummy = myYelloBackgroundColorStringDummy
     var colorIndex: Int = 2
+    var isYelloButtonTapped: Bool = false {
+        didSet {
+            let votingStartViewController = YELLOTabBarController()
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: votingStartViewController)
+        }
+    }
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -50,14 +57,12 @@ extension MyYelloDetailViewController {
     private func setDelegate() {
         myYelloDetailView.myYelloDetailNavigationBarView.handleBackButtonDelegate = self
         myYelloDetailView.handleInstagramButtonDelegate = self
-        
-        myYelloDetailView.pointLackView = PointLackView()
-        myYelloDetailView.pointLackView?.handleYelloButtonDelegate = self
     }
     
     // MARK: objc Function
     private func setAddTarget() {
         myYelloDetailView.senderButton.addTarget(self, action: #selector(senderButtonTapped), for: .touchUpInside)
+                myYelloDetailView.pointLackView = PointLackView()
     }
     
     @objc private func senderButtonTapped() {
@@ -102,7 +107,7 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
                 guard let imageData = renderImage.pngData() else {return}
                 let pasteboardItems: [String: Any] = [
                     "com.instagram.sharedSticker.backgroundImage": imageData,
-                    "com.instagram.sharedSticker.backgroundTopColor": topColor, "com.instagram.sharedSticker.backgroundBottomColor" : bottomColor
+                    "com.instagram.sharedSticker.backgroundTopColor": topColor, "com.instagram.sharedSticker.backgroundBottomColor": bottomColor
                 ]
                 let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)]
                 UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
@@ -114,15 +119,5 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-    }
-}
-
-extension MyYelloDetailViewController: HandleYelloButtonDelegate {
-    func yelloButtonTapped() {
-        print("안녀엉")
-        self.dismiss(animated: true, completion: nil)
-        let votingViewController = VotingViewController()
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: votingViewController)
     }
 }

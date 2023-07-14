@@ -138,6 +138,11 @@ extension SchoolFriendView: UITableViewDataSource {
             return UITableViewCell()
         }
         
+        if tableView.isLast(for: indexPath) {
+            DispatchQueue.main.async {
+                cell.addAboveTheBottomBorderWithColor(color: .black)
+            }
+        }        
         cell.selectionStyle = .none
         cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         cell.configureFriendCell(schoolFriendTableViewModel[indexPath.row])

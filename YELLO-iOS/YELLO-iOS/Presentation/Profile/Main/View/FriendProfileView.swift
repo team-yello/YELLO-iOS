@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -15,11 +16,18 @@ protocol HandleBottomSheetButtonDelegate: AnyObject {
     func dismissView()
 }
 
+protocol HandleDeleteFriendButtonDelegate: AnyObject {
+    func deleteFriendButtonTapped()
+}
+
 final class FriendProfileView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
     weak var handleBottomSheetButtonDelegate: HandleBottomSheetButtonDelegate?
+    
+    //    var indexNumber: Int = -1
+    weak var handleDeleteFriendButtonDelegate: HandleDeleteFriendButtonDelegate?
     
     private let profileImageView = UIImageView()
     private let nameLabel = UILabel()
@@ -40,8 +48,9 @@ final class FriendProfileView: BaseView {
         self.backgroundColor = .black
         
         profileImageView.do {
-            $0.image = UIImage(systemName: "circle.fill")
-            $0.tintColor = .white            
+            $0.image = ImageLiterals.Profile.imgDefaultProfile
+            $0.contentMode = .scaleAspectFill
+            $0.makeCornerRound(radius: 36)
         }
         
         nameLabel.do {
@@ -99,7 +108,7 @@ final class FriendProfileView: BaseView {
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiButton
             $0.makeCornerRound(radius: 8)
-            $0.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(deleteFriendButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -194,12 +203,48 @@ final class FriendProfileView: BaseView {
         dismissView()
     }
     
-    @objc private func confirmButtonTapped() {
+    @objc private func deleteFriendButtonTapped() {
         dismissView()
+        handleDeleteFriendButtonDelegate?.deleteFriendButtonTapped()
     }
     
     // MARK: Layout Helpers
     private func dismissView() {
         handleBottomSheetButtonDelegate?.dismissView()
+        layoutChange()
+    }
+    
+    func configureMyProfileFriendDetailCell(_ model: MyProfileFriendModel) {
+        profileImageView.kfSetImage(url: model.friendProfileImage)
+        nameLabel.text = model.friendName
+        instagramLabel.text = model.yelloId
+        schoolLabel.text = model.friendGroup
+        messageCountView.countLabel.text = String(model.yelloCount)
+        friendCountView.countLabel.text = String(model.friendCount)
+    }
+    
+    private func layoutChange() {
+        self.addSubviews(messageCountView,
+                         friendCountView,
+                         deleteButton)
+        
+        deleteButton.snp.makeConstraints {
+            $0.top.equalTo(messageCountView.snp.bottom).offset(16.adjusted)
+            $0.centerX.equalToSuperview()
+        }
+        
+        messageCountView.snp.makeConstraints {
+            $0.trailing.equalTo(self.snp.centerX).inset(6.adjusted)
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(12.adjusted)
+        }
+        
+        friendCountView.snp.makeConstraints {
+            $0.leading.equalTo(messageCountView.snp.trailing).offset(12.adjusted)
+            $0.bottom.equalTo(messageCountView)
+        }
+        
+        descriptionLabel.removeFromSuperview()
+        cancelButton.removeFromSuperview()
+        confirmButton.removeFromSuperview()
     }
 }

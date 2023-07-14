@@ -23,9 +23,9 @@ final class MyYelloDetailView: BaseView {
     let detailSenderView = DetailSenderView()
     let genderLabel = UILabel()
     let detailKeywordView = DetailKeywordView()
-    var pointLackView: PointLackView?
-    var usePointView: UsePointView?
-    var getHintView: GetHintView?
+    var pointLackView = PointLackView()
+    var usePointView = UsePointView()
+    var getHintView = GetHintView()
     
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
@@ -199,7 +199,7 @@ extension MyYelloDetailView {
         logoImageView.isHidden = false
         logoLabel.isHidden = false
         groupImageView.isHidden = false
-
+        
         self.addSubviews(logoImageView,
                          logoLabel,
                          groupImageView)
@@ -238,92 +238,66 @@ extension MyYelloDetailView {
     
     func showLackAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
-        if let pointLackView {
-            pointLackView.removeFromSuperview()
-        }
-        
+        pointLackView.removeFromSuperview()
         pointLackView = PointLackView()
-        pointLackView?.frame = viewController.view.bounds
-        pointLackView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        viewController.view.addSubview(pointLackView!)
+        pointLackView.frame = viewController.view.bounds
+        pointLackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewController.view.addSubview(pointLackView)
     }
     
     func showUsePointAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
-        if let usePointView {
-            usePointView.removeFromSuperview()
-        }
-        
+        usePointView.removeFromSuperview()
         usePointView = UsePointView()
-        usePointView?.frame = viewController.view.bounds
-        usePointView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        usePointView?.handleConfirmButtonDelegate = self
-        
-        viewController.view.addSubview(usePointView!)
+        usePointView.frame = viewController.view.bounds
+        usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        usePointView.handleConfirmButtonDelegate = self
+        viewController.view.addSubview(usePointView)
     }
     
     func showUseSenderPointAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
-        if let usePointView {
-            usePointView.removeFromSuperview()
-        }
-        
+        usePointView.removeFromSuperview()
         usePointView = UsePointView()
-        usePointView?.frame = viewController.view.bounds
-        usePointView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        usePointView?.handleConfirmButtonDelegate = self
-        
-        viewController.view.addSubview(usePointView!)
-        usePointView?.titleLabel.text = "300" + StringLiterals.MyYello.Alert.senderPoint
-        usePointView?.confirmButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
+        usePointView.frame = viewController.view.bounds
+        usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        usePointView.handleConfirmButtonDelegate = self
+        viewController.view.addSubview(usePointView)
+        usePointView.titleLabel.text = "300" + StringLiterals.MyYello.Alert.senderPoint
+        usePointView.confirmButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
     }
     
     func showGetSenderHintAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
-        if let getHintView {
-            getHintView.removeFromSuperview()
-        }
-        
+        getHintView.removeFromSuperview()
         getHintView = GetHintView()
-        getHintView?.frame = viewController.view.bounds
-        getHintView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        getHintView.frame = viewController.view.bounds
+        getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewController.view.addSubview(getHintView)
+        getHintView.titleLabel.text = StringLiterals.MyYello.Alert.senderTitle
+        getHintView.hintLabel.text = "ㄱ"
         
-        viewController.view.addSubview(getHintView!)
-        
-        getHintView?.titleLabel.text = StringLiterals.MyYello.Alert.senderTitle
-        getHintView?.hintLabel.text = "ㄱ"
-        
-        getHintView?.descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo((getHintView?.titleLabel.snp.bottom)!).offset(4)
+        getHintView.descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(getHintView.titleLabel.snp.bottom).offset(4)
             $0.centerX.equalToSuperview()
         }
         
-        getHintView?.pointView.snp.makeConstraints {
+        getHintView.pointView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(18.adjusted)
-            $0.top.equalTo((getHintView?.hintLabel.snp.bottom)!).offset(30.adjusted)
+            $0.top.equalTo(getHintView.hintLabel.snp.bottom).offset(30.adjusted)
             $0.height.equalTo(52)
         }
     }
     
     func showGetHintAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
-        if let getHintView {
-            getHintView.removeFromSuperview()
-        }
-        
+        getHintView.removeFromSuperview()
         getHintView = GetHintView()
-        getHintView?.frame = viewController.view.bounds
-        getHintView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        viewController.view.addSubview(getHintView!)
+        getHintView.frame = viewController.view.bounds
+        getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewController.view.addSubview(getHintView)
     }
-
+    
     // MARK: Objc Function
     @objc private func keywordButtonTapped() {
         if point == 0 {

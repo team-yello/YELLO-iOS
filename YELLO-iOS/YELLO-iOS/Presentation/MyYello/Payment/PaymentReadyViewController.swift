@@ -31,8 +31,9 @@ final class PaymentReadyViewController: BaseViewController {
         view.backgroundColor = .black
         
         paymentNavigationBarView.do {
-            $0.titleLabel.text = StringLiterals.MyYello.Payment.title
-            $0.pointImageView.image = ImageLiterals.MyYello.icPoint
+            $0.titleLabel.text = nil
+            $0.pointImageView.image = nil
+            $0.pointLabel.text = nil
         }
         
         descriptionLabel.do {

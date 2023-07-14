@@ -37,5 +37,4 @@ class AddFriendsViewController: OnboardingBaseViewController {
         
         view.bringSubviewToFront(super.nextButton)
     }
-    
 }

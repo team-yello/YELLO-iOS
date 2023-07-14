@@ -184,11 +184,10 @@ extension VotingViewController: UINavigationControllerDelegate {
 extension VotingViewController {
     @objc
     func nameButtonClicked(_ sender: UIButton) {
-        nameButtonClick = true
-        if nameCount > 0 {
+        if nameButtonClick {
             view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
-        nameCount += 1
+        nameButtonClick = true
         
         let nameButtons = [originView.nameOneButton, originView.nameTwoButton, originView.nameThreeButton, originView.nameFourButton]
         
@@ -215,12 +214,11 @@ extension VotingViewController {
     
     @objc
     func keywordClicked(_ sender: UIButton) {
-        keywordButtonClick = true
-        if keywordCount > 0 {
+        if keywordButtonClick {
             view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
-        keywordCount += 1
-
+        keywordButtonClick = true
+        
         sender.setTitleColor(.yelloMain500, for: .normal)
         keywordMiddleText.text = sender.titleLabel?.text
 
@@ -243,8 +241,8 @@ extension VotingViewController {
     func suffleButtonClicked() {
         if nameButtonClick {
             originView.suffleButton.isEnabled = false
-            view.showToast(message: StringLiterals.Voting.VoteToast.suffle)
             originView.suffleButton.isEnabled = true
+            view.showToast(message: StringLiterals.Voting.VoteToast.suffle)
         } else {
             suffleCount += 1
         }
@@ -254,8 +252,8 @@ extension VotingViewController {
     func skipButtonClicked() {
         if eitherButtonClicked {
             originView.skipButton.isEnabled = false
-            view.showToast(message: StringLiterals.Voting.VoteToast.skip)
             originView.skipButton.isEnabled = true
+            view.showToast(message: StringLiterals.Voting.VoteToast.skip)
         } else {
             setNextViewController()
         }

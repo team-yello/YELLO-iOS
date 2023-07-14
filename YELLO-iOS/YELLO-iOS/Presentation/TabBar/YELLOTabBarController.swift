@@ -28,6 +28,7 @@ final class YELLOTabBarController: UITabBarController {
         setTabBarItems()
         
         self.delegate = self
+        self.selectedIndex = 2
     }
     
     // MARK: - TabBar Height

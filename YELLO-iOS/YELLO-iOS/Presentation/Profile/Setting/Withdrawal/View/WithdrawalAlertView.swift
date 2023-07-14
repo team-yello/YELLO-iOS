@@ -93,7 +93,10 @@ extension WithdrawalAlertView {
     }
     
     @objc func yesButtonClicked() {
-        //탈퇴 로직 구현
+//        탈퇴 로직 구현
         print("탈퇴")
+        let splashViewController = SchoolSearchViewController()
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: splashViewController)
     }
 }

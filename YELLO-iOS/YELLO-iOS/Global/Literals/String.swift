@@ -33,6 +33,7 @@ enum StringLiterals {
         static let unLockedText = "친구가 내 추천인 코드로 가입하면\n기다리지 않고 바로 투표할 수 있어요!"
         static let recommendTitle  = "친구 초대하기"
         static let recommendText = "찾는 친구가 없다면 친구를 초대해 보세요!\n함께 옐로할 수 있어요."
+        static let toastMessage = "링크가 복사되었습니다."
     }
     
     enum Recommending {
@@ -165,6 +166,8 @@ enum StringLiterals {
             static let title = "구독권 결제"
             static let description = "결제 기능은 아직 구현되지 않았어요.\n곧 기능을 준비할게요!"
             static let back = "나가기"
+            static let paymentTitle = "옐로플러스로\n친구들의 속마음을 열어보세요!"
+            static let paymentSender = "쪽지 보낸 사람을 알고 싶다면?"
         }
     }
     
@@ -196,6 +199,7 @@ enum StringLiterals {
             static let description = "정말로 친구를 끊으실 건가요?"
             static let cancel = "취소"
             static let confirm = "네, 친구를 끊을게요"
+            static let toastMessage = " 님과 친구 끊기를 완료했어요."
         }
         
         enum Setting {

@@ -15,6 +15,7 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     private let profileView = ProfileView()
+    let friendProfileViewController = FriendProfileViewController()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -28,6 +29,7 @@ final class ProfileViewController: BaseViewController {
         view.backgroundColor = .black
         profileView.navigationBarView.delegate = self
         profileView.handleFriendCellDelegate = self
+        friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
     }
     
     override func setLayout() {
@@ -52,8 +54,9 @@ extension ProfileViewController: NavigationBarViewDelegate {
 
 // MARK: HandleFriendCellDelegate
 extension ProfileViewController: HandleFriendCellDelegate {
-    func presentModal() {
-        let friendProfileViewController = FriendProfileViewController()
+    func presentModal(index: Int) {
+        profileView.indexNumber = index
+        friendProfileViewController.friendProfileView.configureMyProfileFriendDetailCell(profileView.myProfileFriendModelDummy[index])
         let nav = UINavigationController(rootViewController: friendProfileViewController)
     
         if let sheet = nav.sheetPresentationController {
@@ -61,5 +64,13 @@ extension ProfileViewController: HandleFriendCellDelegate {
             sheet.prefersGrabberVisible = true
         }
         present(nav, animated: true, completion: nil)
+    }
+}
+
+extension ProfileViewController: HandleDeleteFriendButtonDelegate {
+    func deleteFriendButtonTapped() {
+        profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].friendName + StringLiterals.Profile.Friend.toastMessage)
+        profileView.myProfileFriendModelDummy.remove(at: profileView.indexNumber)
+        profileView.myFriendTableView.deleteRows(at: [[0, profileView.indexNumber]], with: .right)
     }
 }

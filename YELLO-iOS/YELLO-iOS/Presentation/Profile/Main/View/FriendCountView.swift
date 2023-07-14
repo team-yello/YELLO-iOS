@@ -1,5 +1,5 @@
 //
-//  ProfileCountView.swift
+//  FriendCountView.swift
 //  YELLO-iOS
 //
 //  Created by 정채은 on 2023/07/11.
@@ -16,7 +16,7 @@ final class FriendCountView: UIView {
     // MARK: Component
     private let myFriendLabel = UILabel()
     private let friendNumberLabel = UILabel()
-    private let friendCountLabel = UILabel()
+    let friendCountLabel = UILabel()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -54,7 +54,7 @@ extension FriendCountView {
         }
         
         friendCountLabel.do {
-            $0.setTextWithLineHeight(text: "10명", lineHeight: 16)
+            $0.setTextWithLineHeight(text: "0명", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales300
             $0.asColor(targetString: "명", color: .grayscales500)
@@ -82,7 +82,7 @@ extension FriendCountView {
         }
         
         friendCountLabel.snp.makeConstraints {
-            $0.top.equalTo(friendNumberLabel)
+            $0.centerY.equalTo(friendNumberLabel)
             $0.trailing.equalToSuperview()
         }
     }

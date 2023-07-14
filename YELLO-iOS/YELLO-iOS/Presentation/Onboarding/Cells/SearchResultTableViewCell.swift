@@ -55,7 +55,6 @@ extension SearchResultTableViewCell {
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
-        
     }
     
     private func setLayout() {
@@ -76,7 +75,5 @@ extension SearchResultTableViewCell {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(searchView.snp.trailing).offset(8)
         }
-        
     }
-    
 }

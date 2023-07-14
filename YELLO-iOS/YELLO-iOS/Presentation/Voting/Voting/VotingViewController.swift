@@ -14,10 +14,7 @@ final class VotingViewController: BaseViewController {
     static var pushCount = 0
     
     let originView = BaseVotingMainView()
-    
-    var nameCount: Int = 0
-    var keywordCount: Int = 0
-    
+  
     private let nameStackView = UIStackView()
     private let nameHead = UILabel()
     let nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 86.adjusted, height: 34.adjusted))

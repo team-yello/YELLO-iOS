@@ -14,7 +14,7 @@ final class DetailSenderView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
-    let senderBackView = UIView()
+    let senderBackView = UIView(frame: CGRect(x: 0, y: 0, width: 62, height: 28))
     let senderLabel = UILabel()
     let sendLabel = UILabel()
     
@@ -25,8 +25,8 @@ final class DetailSenderView: BaseView {
         
         senderBackView.do {
             $0.backgroundColor = UIColor(hex: "212529", alpha: 0.6)
-            $0.makeBorder(width: 1, color: .grayscales700)
             $0.makeCornerRound(radius: 6)
+            $0.addDottedBorder()
         }
         
         senderLabel.do {
