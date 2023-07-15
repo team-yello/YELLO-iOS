@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window?.makeKeyAndVisible()
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.29) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) { [self] in
             
             let rootViewController = self.isLoggedIn ? YELLOTabBarController() : KakaoLoginViewController()
             

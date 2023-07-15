@@ -23,7 +23,7 @@ class SplashTitleView: BaseView {
     override func setStyle() {
         animationView.do {
             $0.play()
-            $0.loopMode = .loop
+            $0.loopMode = .playOnce
         }
         
         subTitleView.do {
