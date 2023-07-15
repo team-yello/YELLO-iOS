@@ -13,24 +13,24 @@
 		2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A72A62DC90001AAC93 /* BaseResponse.swift */; };
 		2A3705AA2A62DC9F001AAC93 /* APIRequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A92A62DC9F001AAC93 /* APIRequestLoader.swift */; };
 		2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705AB2A62DCB2001AAC93 /* NetworkService.swift */; };
-		2A3705C82A62E297001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C72A62E297001AAC93 /* f.swift */; };
-		2A3705CA2A62E2A2001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C92A62E2A2001AAC93 /* f.swift */; };
+		2A3705C82A62E297001AAC93 /* aa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C72A62E297001AAC93 /* aa.swift */; };
+		2A3705CA2A62E2A2001AAC93 /* b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C92A62E2A2001AAC93 /* b.swift */; };
 		2A3705CC2A62E2BF001AAC93 /* OnboardingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705CB2A62E2BF001AAC93 /* OnboardingTarget.swift */; };
 		2A3705CE2A62E2E3001AAC93 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705CD2A62E2E3001AAC93 /* OnboardingService.swift */; };
-		2A3705D02A62E317001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705CF2A62E317001AAC93 /* f.swift */; };
-		2A3705D22A62E31C001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D12A62E31C001AAC93 /* f.swift */; };
+		2A3705D02A62E317001AAC93 /* c.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705CF2A62E317001AAC93 /* c.swift */; };
+		2A3705D22A62E31C001AAC93 /* d.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D12A62E31C001AAC93 /* d.swift */; };
 		2A3705D42A62E33E001AAC93 /* RecommendingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */; };
 		2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D52A62E346001AAC93 /* RecommendingService.swift */; };
-		2A3705D82A62E35A001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D72A62E35A001AAC93 /* f.swift */; };
+		2A3705D82A62E35A001AAC93 /* e.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D72A62E35A001AAC93 /* e.swift */; };
 		2A3705DA2A62E35F001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D92A62E35F001AAC93 /* f.swift */; };
 		2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DB2A62E386001AAC93 /* VotingTarget.swift */; };
 		2A3705DE2A62E392001AAC93 /* VotingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DD2A62E392001AAC93 /* VotingService.swift */; };
-		2A3705E02A62E398001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DF2A62E398001AAC93 /* f.swift */; };
-		2A3705E22A62E39C001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E12A62E39C001AAC93 /* f.swift */; };
+		2A3705E02A62E398001AAC93 /* g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DF2A62E398001AAC93 /* g.swift */; };
+		2A3705E22A62E39C001AAC93 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E12A62E39C001AAC93 /* h.swift */; };
 		2A3705E42A62E3A8001AAC93 /* MyYelloTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */; };
 		2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */; };
-		2A3705E82A62E3C5001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E72A62E3C5001AAC93 /* f.swift */; };
-		2A3705EA2A62E3C9001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E92A62E3C9001AAC93 /* f.swift */; };
+		2A3705E82A62E3C5001AAC93 /* i.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E72A62E3C5001AAC93 /* i.swift */; };
+		2A3705EA2A62E3C9001AAC93 /* j.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E92A62E3C9001AAC93 /* j.swift */; };
 		2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */; };
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
 		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
@@ -199,24 +199,24 @@
 		2A3705A72A62DC90001AAC93 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		2A3705A92A62DC9F001AAC93 /* APIRequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestLoader.swift; sourceTree = "<group>"; };
 		2A3705AB2A62DCB2001AAC93 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		2A3705C72A62E297001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
-		2A3705C92A62E2A2001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
+		2A3705C72A62E297001AAC93 /* aa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aa.swift; sourceTree = "<group>"; };
+		2A3705C92A62E2A2001AAC93 /* b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = b.swift; sourceTree = "<group>"; };
 		2A3705CB2A62E2BF001AAC93 /* OnboardingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTarget.swift; sourceTree = "<group>"; };
 		2A3705CD2A62E2E3001AAC93 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
-		2A3705CF2A62E317001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
-		2A3705D12A62E31C001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
+		2A3705CF2A62E317001AAC93 /* c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = c.swift; sourceTree = "<group>"; };
+		2A3705D12A62E31C001AAC93 /* d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = d.swift; sourceTree = "<group>"; };
 		2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingTarget.swift; sourceTree = "<group>"; };
 		2A3705D52A62E346001AAC93 /* RecommendingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingService.swift; sourceTree = "<group>"; };
-		2A3705D72A62E35A001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
+		2A3705D72A62E35A001AAC93 /* e.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e.swift; sourceTree = "<group>"; };
 		2A3705D92A62E35F001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
 		2A3705DB2A62E386001AAC93 /* VotingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTarget.swift; sourceTree = "<group>"; };
 		2A3705DD2A62E392001AAC93 /* VotingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingService.swift; sourceTree = "<group>"; };
-		2A3705DF2A62E398001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
-		2A3705E12A62E39C001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
+		2A3705DF2A62E398001AAC93 /* g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = g.swift; sourceTree = "<group>"; };
+		2A3705E12A62E39C001AAC93 /* h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
 		2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloTarget.swift; sourceTree = "<group>"; };
 		2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloService.swift; sourceTree = "<group>"; };
-		2A3705E72A62E3C5001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
-		2A3705E92A62E3C9001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
+		2A3705E72A62E3C5001AAC93 /* i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i.swift; sourceTree = "<group>"; };
+		2A3705E92A62E3C9001AAC93 /* j.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = j.swift; sourceTree = "<group>"; };
 		2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
 		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
@@ -584,7 +584,7 @@
 		2A3705BD2A62E1FD001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705C72A62E297001AAC93 /* f.swift */,
+				2A3705C72A62E297001AAC93 /* aa.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -592,7 +592,7 @@
 		2A3705BE2A62E20B001AAC93 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705C92A62E2A2001AAC93 /* f.swift */,
+				2A3705C92A62E2A2001AAC93 /* b.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -600,7 +600,7 @@
 		2A3705BF2A62E21E001AAC93 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705D12A62E31C001AAC93 /* f.swift */,
+				2A3705D12A62E31C001AAC93 /* d.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -608,7 +608,7 @@
 		2A3705C02A62E226001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705CF2A62E317001AAC93 /* f.swift */,
+				2A3705CF2A62E317001AAC93 /* c.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -624,7 +624,7 @@
 		2A3705C22A62E234001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705D72A62E35A001AAC93 /* f.swift */,
+				2A3705D72A62E35A001AAC93 /* e.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -632,7 +632,7 @@
 		2A3705C32A62E23A001AAC93 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705E12A62E39C001AAC93 /* f.swift */,
+				2A3705E12A62E39C001AAC93 /* h.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -640,7 +640,7 @@
 		2A3705C42A62E23E001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705DF2A62E398001AAC93 /* f.swift */,
+				2A3705DF2A62E398001AAC93 /* g.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -648,7 +648,7 @@
 		2A3705C52A62E244001AAC93 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705E92A62E3C9001AAC93 /* f.swift */,
+				2A3705E92A62E3C9001AAC93 /* j.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -656,7 +656,7 @@
 		2A3705C62A62E248001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705E72A62E3C5001AAC93 /* f.swift */,
+				2A3705E72A62E3C5001AAC93 /* i.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1375,7 +1375,7 @@
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				C3DC4AD82A5FDF4B001DCE04 /* PaymentReadyViewController.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
-				2A3705E22A62E39C001AAC93 /* f.swift in Sources */,
+				2A3705E22A62E39C001AAC93 /* h.swift in Sources */,
 				C3FF248E2A5E8DB700A97D40 /* TabbarHeight.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
@@ -1397,7 +1397,7 @@
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
-				2A3705D82A62E35A001AAC93 /* f.swift in Sources */,
+				2A3705D82A62E35A001AAC93 /* e.swift in Sources */,
 				2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */,
 				2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */,
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
@@ -1410,7 +1410,7 @@
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
 				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,
 				36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */,
-				2A3705E02A62E398001AAC93 /* f.swift in Sources */,
+				2A3705E02A62E398001AAC93 /* g.swift in Sources */,
 				C3FF24752A5D6E9500A97D40 /* WithdrawalAlertView.swift in Sources */,
 				2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */,
 				36E427712A5BCE860050B34E /* YelloGuideLabel.swift in Sources */,
@@ -1422,7 +1422,7 @@
 				C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */,
 				C3FF24AC2A5F33F400A97D40 /* PointLackView.swift in Sources */,
 				C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */,
-				2A3705EA2A62E3C9001AAC93 /* f.swift in Sources */,
+				2A3705EA2A62E3C9001AAC93 /* j.swift in Sources */,
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				2A3705CC2A62E2BF001AAC93 /* OnboardingTarget.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
@@ -1435,11 +1435,11 @@
 				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
 				C32322F52A619E92006DA50B /* PaymentView.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
-				2A3705CA2A62E2A2001AAC93 /* f.swift in Sources */,
+				2A3705CA2A62E2A2001AAC93 /* b.swift in Sources */,
 				C3FF249E2A5EE48200A97D40 /* MyYelloDetailView.swift in Sources */,
 				36E4278B2A5C7C010050B34E /* StudentIdViewController.swift in Sources */,
-				2A3705D22A62E31C001AAC93 /* f.swift in Sources */,
-				2A3705E82A62E3C5001AAC93 /* f.swift in Sources */,
+				2A3705D22A62E31C001AAC93 /* d.swift in Sources */,
+				2A3705E82A62E3C5001AAC93 /* i.swift in Sources */,
 				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
@@ -1491,7 +1491,7 @@
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
-				2A3705C82A62E297001AAC93 /* f.swift in Sources */,
+				2A3705C82A62E297001AAC93 /* aa.swift in Sources */,
 				C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36B234A02A61A6BC007933E4 /* KakaoConnectView.swift in Sources */,
@@ -1501,7 +1501,7 @@
 				36B2349C2A61A22F007933E4 /* KakaoLoginView.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
-				2A3705D02A62E317001AAC93 /* f.swift in Sources */,
+				2A3705D02A62E317001AAC93 /* c.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
 				36E427772A5BD5AA0050B34E /* FindSchoolViewController.swift in Sources */,
@@ -1544,7 +1544,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BASE_URL = "http://3.38.231.223";
+				BASE_URL = "http://3.38.231.223/api/v1";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1595,6 +1595,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1606,7 +1607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BASE_URL = "http://3.38.231.223";
+				BASE_URL = "http://3.38.231.223/api/v1";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1651,6 +1652,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
