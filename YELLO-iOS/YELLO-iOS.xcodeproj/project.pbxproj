@@ -7,6 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A3705A22A62DC27001AAC93 /* HTTPHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A12A62DC27001AAC93 /* HTTPHeaderField.swift */; };
+		2A3705A42A62DC5C001AAC93 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A32A62DC5C001AAC93 /* TargetType.swift */; };
+		2A3705A62A62DC7D001AAC93 /* APIEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A52A62DC7D001AAC93 /* APIEventLogger.swift */; };
+		2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A72A62DC90001AAC93 /* BaseResponse.swift */; };
+		2A3705AA2A62DC9F001AAC93 /* APIRequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A92A62DC9F001AAC93 /* APIRequestLoader.swift */; };
+		2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705AB2A62DCB2001AAC93 /* NetworkService.swift */; };
+		2A3705C82A62E297001AAC93 /* aa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C72A62E297001AAC93 /* aa.swift */; };
+		2A3705CA2A62E2A2001AAC93 /* b.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C92A62E2A2001AAC93 /* b.swift */; };
+		2A3705CC2A62E2BF001AAC93 /* OnboardingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705CB2A62E2BF001AAC93 /* OnboardingTarget.swift */; };
+		2A3705CE2A62E2E3001AAC93 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705CD2A62E2E3001AAC93 /* OnboardingService.swift */; };
+		2A3705D02A62E317001AAC93 /* c.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705CF2A62E317001AAC93 /* c.swift */; };
+		2A3705D22A62E31C001AAC93 /* d.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D12A62E31C001AAC93 /* d.swift */; };
+		2A3705D42A62E33E001AAC93 /* RecommendingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */; };
+		2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D52A62E346001AAC93 /* RecommendingService.swift */; };
+		2A3705D82A62E35A001AAC93 /* e.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D72A62E35A001AAC93 /* e.swift */; };
+		2A3705DA2A62E35F001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D92A62E35F001AAC93 /* f.swift */; };
+		2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DB2A62E386001AAC93 /* VotingTarget.swift */; };
+		2A3705DE2A62E392001AAC93 /* VotingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DD2A62E392001AAC93 /* VotingService.swift */; };
+		2A3705E02A62E398001AAC93 /* g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DF2A62E398001AAC93 /* g.swift */; };
+		2A3705E22A62E39C001AAC93 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E12A62E39C001AAC93 /* h.swift */; };
+		2A3705E42A62E3A8001AAC93 /* MyYelloTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */; };
+		2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */; };
+		2A3705E82A62E3C5001AAC93 /* i.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E72A62E3C5001AAC93 /* i.swift */; };
+		2A3705EA2A62E3C9001AAC93 /* j.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E92A62E3C9001AAC93 /* j.swift */; };
+		2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */; };
+		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
 		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
 		2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */; };
 		2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB32A546E62002B1370 /* VotingViewController.swift */; };
@@ -167,6 +193,32 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A3705A12A62DC27001AAC93 /* HTTPHeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderField.swift; sourceTree = "<group>"; };
+		2A3705A32A62DC5C001AAC93 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		2A3705A52A62DC7D001AAC93 /* APIEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventLogger.swift; sourceTree = "<group>"; };
+		2A3705A72A62DC90001AAC93 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		2A3705A92A62DC9F001AAC93 /* APIRequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestLoader.swift; sourceTree = "<group>"; };
+		2A3705AB2A62DCB2001AAC93 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		2A3705C72A62E297001AAC93 /* aa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aa.swift; sourceTree = "<group>"; };
+		2A3705C92A62E2A2001AAC93 /* b.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = b.swift; sourceTree = "<group>"; };
+		2A3705CB2A62E2BF001AAC93 /* OnboardingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTarget.swift; sourceTree = "<group>"; };
+		2A3705CD2A62E2E3001AAC93 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
+		2A3705CF2A62E317001AAC93 /* c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = c.swift; sourceTree = "<group>"; };
+		2A3705D12A62E31C001AAC93 /* d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = d.swift; sourceTree = "<group>"; };
+		2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingTarget.swift; sourceTree = "<group>"; };
+		2A3705D52A62E346001AAC93 /* RecommendingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingService.swift; sourceTree = "<group>"; };
+		2A3705D72A62E35A001AAC93 /* e.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e.swift; sourceTree = "<group>"; };
+		2A3705D92A62E35F001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
+		2A3705DB2A62E386001AAC93 /* VotingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTarget.swift; sourceTree = "<group>"; };
+		2A3705DD2A62E392001AAC93 /* VotingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingService.swift; sourceTree = "<group>"; };
+		2A3705DF2A62E398001AAC93 /* g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = g.swift; sourceTree = "<group>"; };
+		2A3705E12A62E39C001AAC93 /* h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
+		2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloTarget.swift; sourceTree = "<group>"; };
+		2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloService.swift; sourceTree = "<group>"; };
+		2A3705E72A62E3C5001AAC93 /* i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i.swift; sourceTree = "<group>"; };
+		2A3705E92A62E3C9001AAC93 /* j.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = j.swift; sourceTree = "<group>"; };
+		2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
+		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB32A546E62002B1370 /* VotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
@@ -339,6 +391,276 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A37057B2A62AE80001AAC93 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C3A799CF2A494CEC00D3EFD8 /* Config.swift */,
+				2A3705A12A62DC27001AAC93 /* HTTPHeaderField.swift */,
+				C3A799D12A494CFF00D3EFD8 /* NetworkResult.swift */,
+				2A3705A32A62DC5C001AAC93 /* TargetType.swift */,
+				2A3705A52A62DC7D001AAC93 /* APIEventLogger.swift */,
+				2A3705A72A62DC90001AAC93 /* BaseResponse.swift */,
+				2A3705A92A62DC9F001AAC93 /* APIRequestLoader.swift */,
+				2A3705AB2A62DCB2001AAC93 /* NetworkService.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		2A37057C2A62AE8D001AAC93 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705AE2A62DF6C001AAC93 /* DTO */,
+				2A3705AD2A62DF5E001AAC93 /* Router */,
+				2A3705AF2A62DFB9001AAC93 /* Service */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		2A37057D2A62AEA5001AAC93 /* Recommending */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705B02A62DFE1001AAC93 /* DTO */,
+				2A3705B12A62DFE8001AAC93 /* Router */,
+				2A3705B32A62DFF3001AAC93 /* Service */,
+			);
+			path = Recommending;
+			sourceTree = "<group>";
+		};
+		2A37057E2A62AEAD001AAC93 /* Voting */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705B42A62E024001AAC93 /* DTO */,
+				2A3705B52A62E029001AAC93 /* Router */,
+				2A3705B62A62E02D001AAC93 /* Service */,
+			);
+			path = Voting;
+			sourceTree = "<group>";
+		};
+		2A37057F2A62AECC001AAC93 /* MyYello */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705B72A62E044001AAC93 /* DTO */,
+				2A3705B82A62E04B001AAC93 /* Router */,
+				2A3705B92A62E050001AAC93 /* Service */,
+			);
+			path = MyYello;
+			sourceTree = "<group>";
+		};
+		2A3705802A62AEEC001AAC93 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705BA2A62E06A001AAC93 /* DTO */,
+				2A3705BB2A62E06E001AAC93 /* Router */,
+				2A3705BC2A62E072001AAC93 /* Service */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		2A3705AD2A62DF5E001AAC93 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705CB2A62E2BF001AAC93 /* OnboardingTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		2A3705AE2A62DF6C001AAC93 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705BD2A62E1FD001AAC93 /* Request */,
+				2A3705BE2A62E20B001AAC93 /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		2A3705AF2A62DFB9001AAC93 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705CD2A62E2E3001AAC93 /* OnboardingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2A3705B02A62DFE1001AAC93 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705C02A62E226001AAC93 /* Request */,
+				2A3705BF2A62E21E001AAC93 /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		2A3705B12A62DFE8001AAC93 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		2A3705B32A62DFF3001AAC93 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705D52A62E346001AAC93 /* RecommendingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2A3705B42A62E024001AAC93 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705C22A62E234001AAC93 /* Request */,
+				2A3705C12A62E22E001AAC93 /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		2A3705B52A62E029001AAC93 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705DB2A62E386001AAC93 /* VotingTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		2A3705B62A62E02D001AAC93 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705DD2A62E392001AAC93 /* VotingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2A3705B72A62E044001AAC93 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705C42A62E23E001AAC93 /* Request */,
+				2A3705C32A62E23A001AAC93 /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		2A3705B82A62E04B001AAC93 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		2A3705B92A62E050001AAC93 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2A3705BA2A62E06A001AAC93 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705C62A62E248001AAC93 /* Request */,
+				2A3705C52A62E244001AAC93 /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		2A3705BB2A62E06E001AAC93 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		2A3705BC2A62E072001AAC93 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2A3705BD2A62E1FD001AAC93 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705C72A62E297001AAC93 /* aa.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		2A3705BE2A62E20B001AAC93 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705C92A62E2A2001AAC93 /* b.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		2A3705BF2A62E21E001AAC93 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705D12A62E31C001AAC93 /* d.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		2A3705C02A62E226001AAC93 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705CF2A62E317001AAC93 /* c.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		2A3705C12A62E22E001AAC93 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705D92A62E35F001AAC93 /* f.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		2A3705C22A62E234001AAC93 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705D72A62E35A001AAC93 /* e.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		2A3705C32A62E23A001AAC93 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705E12A62E39C001AAC93 /* h.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		2A3705C42A62E23E001AAC93 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705DF2A62E398001AAC93 /* g.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		2A3705C52A62E244001AAC93 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705E92A62E3C9001AAC93 /* j.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		2A3705C62A62E248001AAC93 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2A3705E72A62E3C5001AAC93 /* i.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		2AA0DBA72A546C24002B1370 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,8 +1002,12 @@
 		C3A799C82A494B8800D3EFD8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C3A799CF2A494CEC00D3EFD8 /* Config.swift */,
-				C3A799D12A494CFF00D3EFD8 /* NetworkResult.swift */,
+				2A37057B2A62AE80001AAC93 /* Base */,
+				2A37057C2A62AE8D001AAC93 /* Onboarding */,
+				2A37057D2A62AEA5001AAC93 /* Recommending */,
+				2A37057E2A62AEAD001AAC93 /* Voting */,
+				2A37057F2A62AECC001AAC93 /* MyYello */,
+				2A3705802A62AEEC001AAC93 /* Profile */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1042,12 +1368,14 @@
 				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
 				C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */,
 				36E427702A5BCE860050B34E /* YelloButton.swift in Sources */,
+				2A3705AA2A62DC9F001AAC93 /* APIRequestLoader.swift in Sources */,
 				36E427912A5C9BD20050B34E /* RecommendIdViewController.swift in Sources */,
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				C3FF24A22A5EEBD600A97D40 /* DetailKeywordView.swift in Sources */,
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				C3DC4AD82A5FDF4B001DCE04 /* PaymentReadyViewController.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
+				2A3705E22A62E39C001AAC93 /* h.swift in Sources */,
 				C3FF248E2A5E8DB700A97D40 /* TabbarHeight.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
@@ -1069,6 +1397,9 @@
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
+				2A3705D82A62E35A001AAC93 /* e.swift in Sources */,
+				2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */,
+				2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */,
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
@@ -1079,26 +1410,36 @@
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
 				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,
 				36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */,
+				2A3705E02A62E398001AAC93 /* g.swift in Sources */,
 				C3FF24752A5D6E9500A97D40 /* WithdrawalAlertView.swift in Sources */,
+				2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */,
 				36E427712A5BCE860050B34E /* YelloGuideLabel.swift in Sources */,
 				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
 				2AD1A1BB2A59559100CB988B /* VotingPointViewController.swift in Sources */,
+				2A3705E42A62E3A8001AAC93 /* MyYelloTarget.swift in Sources */,
 				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
 				36E427792A5BD5C90050B34E /* SchoolSearchViewController.swift in Sources */,
 				C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */,
 				C3FF24AC2A5F33F400A97D40 /* PointLackView.swift in Sources */,
 				C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */,
+				2A3705EA2A62E3C9001AAC93 /* j.swift in Sources */,
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
+				2A3705CC2A62E2BF001AAC93 /* OnboardingTarget.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
+				2A3705A22A62DC27001AAC93 /* HTTPHeaderField.swift in Sources */,
+				2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */,
 				36E4276A2A5BCE860050B34E /* Constraints.swift in Sources */,
 				C3FF24952A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift in Sources */,
 				C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */,
 				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
 				C32322F52A619E92006DA50B /* PaymentView.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
+				2A3705CA2A62E2A2001AAC93 /* b.swift in Sources */,
 				C3FF249E2A5EE48200A97D40 /* MyYelloDetailView.swift in Sources */,
 				36E4278B2A5C7C010050B34E /* StudentIdViewController.swift in Sources */,
+				2A3705D22A62E31C001AAC93 /* d.swift in Sources */,
+				2A3705E82A62E3C5001AAC93 /* i.swift in Sources */,
 				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
@@ -1108,6 +1449,7 @@
 				C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */,
 				C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
+				2A3705DA2A62E35F001AAC93 /* f.swift in Sources */,
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
 				3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */,
 				C3FF24A02A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift in Sources */,
@@ -1118,20 +1460,25 @@
 				C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
 				C3FF24872A5E844400A97D40 /* MyYelloView.swift in Sources */,
+				2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */,
 				C3C57BF02A5C06C600B84CAA /* KakaoFriendView.swift in Sources */,
 				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
+				2A3705A62A62DC7D001AAC93 /* APIEventLogger.swift in Sources */,
 				C3DC4ADE2A6042B5001DCE04 /* MyYelloDetailModel.swift in Sources */,
 				36E4277D2A5BD5D60050B34E /* UserInfoViewController.swift in Sources */,
 				36B2349E2A61A6A8007933E4 /* KakaoConnectViewController.swift in Sources */,
 				2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */,
+				2A3705A42A62DC5C001AAC93 /* TargetType.swift in Sources */,
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
 				2ADE23A52A5EA9390088FCB3 /* BackgroundColor.swift in Sources */,
 				36E4277B2A5BD5D00050B34E /* StudentInfoViewController.swift in Sources */,
 				C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */,
 				36B2349A2A61A20C007933E4 /* KakaoLoginViewController.swift in Sources */,
 				36E427722A5BCE860050B34E /* YelloGenderButton.swift in Sources */,
+				2A3705CE2A62E2E3001AAC93 /* OnboardingService.swift in Sources */,
+				2A3705D42A62E33E001AAC93 /* RecommendingTarget.swift in Sources */,
 				C3FF24B12A5F361C00A97D40 /* GetHintView.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
@@ -1140,17 +1487,21 @@
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */,
 				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
+				2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */,
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
+				2A3705C82A62E297001AAC93 /* aa.swift in Sources */,
 				C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36B234A02A61A6BC007933E4 /* KakaoConnectView.swift in Sources */,
 				36E427852A5BD6160050B34E /* UserInfoView.swift in Sources */,
 				36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */,
+				2A3705DE2A62E392001AAC93 /* VotingService.swift in Sources */,
 				36B2349C2A61A22F007933E4 /* KakaoLoginView.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
+				2A3705D02A62E317001AAC93 /* c.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
 				36E427772A5BD5AA0050B34E /* FindSchoolViewController.swift in Sources */,
@@ -1165,6 +1516,7 @@
 				C3FF24792A5D798700A97D40 /* FriendProfileView.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				36E4276E2A5BCE860050B34E /* GenderView.swift in Sources */,
+				2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */,
 				C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */,
 				36E427952A5CA59F0050B34E /* OnboardingEndViewController.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
@@ -1192,6 +1544,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BASE_URL = "http://3.38.231.223/api/v1";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1242,6 +1595,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1253,6 +1607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BASE_URL = "http://3.38.231.223/api/v1";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1297,6 +1652,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
