@@ -11,6 +11,8 @@ enum HTTPHeaderField: String {
     case authentication = "Authorization"
     case contentType = "Content-Type"
     case acceptType = "Accept"
+    case accessToken = "accessToken"
+    case refreshtoken = "refreshtoken"
 }
 
 enum ContentType: String {
