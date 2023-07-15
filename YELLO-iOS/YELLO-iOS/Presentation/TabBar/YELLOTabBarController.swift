@@ -117,18 +117,18 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
         }
     }
     
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-            // 현재 선택된 탭 인덱스를 확인
-            guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
-                return true
-            }
-        
-            // 원하는 조건에 따라 화면 전환을 막거나 허용
-            if selectedIndex == 2 {
-                return false
-            }
-
-            // 나머지 탭은 기본 동작인 화면 전환을 허용합니다.
-            return true
-        }
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//            // 현재 선택된 탭 인덱스를 확인
+//            guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
+//                return true
+//            }
+//        
+//            // 원하는 조건에 따라 화면 전환을 막거나 허용
+//            if selectedIndex == 2 {
+//                return false
+//            }
+//
+//            // 나머지 탭은 기본 동작인 화면 전환을 허용합니다.
+//            return true
+//        }
 }
