@@ -34,13 +34,13 @@
 		3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
+		36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234952A61466A007933E4 /* YelloHelperLabel.swift */; };
 		36B234982A619853007933E4 /* onboarding_end.json in Resources */ = {isa = PBXBuildFile; fileRef = 36B234972A619853007933E4 /* onboarding_end.json */; };
 		36B2349A2A61A20C007933E4 /* KakaoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234992A61A20C007933E4 /* KakaoLoginViewController.swift */; };
 		36B2349C2A61A22F007933E4 /* KakaoLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349B2A61A22F007933E4 /* KakaoLoginView.swift */; };
 		36B2349E2A61A6A8007933E4 /* KakaoConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */; };
 		36B234A02A61A6BC007933E4 /* KakaoConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */; };
 		36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234A12A61B447007933E4 /* UINavigationController+.swift */; };
-		36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234952A61466A007933E4 /* YelloHelperLabel.swift */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
 		36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -193,16 +193,13 @@
 		3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashTitleView.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
-
+		36B234952A61466A007933E4 /* YelloHelperLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloHelperLabel.swift; sourceTree = "<group>"; };
 		36B234972A619853007933E4 /* onboarding_end.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_end.json; sourceTree = "<group>"; };
 		36B234992A61A20C007933E4 /* KakaoLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginViewController.swift; sourceTree = "<group>"; };
 		36B2349B2A61A22F007933E4 /* KakaoLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginView.swift; sourceTree = "<group>"; };
 		36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectViewController.swift; sourceTree = "<group>"; };
 		36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectView.swift; sourceTree = "<group>"; };
 		36B234A12A61B447007933E4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
-
-		36B234952A61466A007933E4 /* YelloHelperLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloHelperLabel.swift; sourceTree = "<group>"; };
-
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
 		36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -1321,7 +1318,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -1354,7 +1351,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
