@@ -89,8 +89,7 @@ class UserInfoViewController: OnboardingBaseViewController {
             idTextFieldView.textField.setButtonState(state: .id)
             idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
         }
-        
-        
+                
         if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly {
             nextButton.setButtonEnable(state: true)
             idTextFieldView.textField.setButtonState(state: .done)
@@ -125,6 +124,5 @@ extension UserInfoViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.checkButtonEnable()
     }
-    
     
 }

@@ -36,6 +36,19 @@ extension UILabel {
         attributedText = attributedString
     }
     
+    func asColors(targetStrings: [String], color: UIColor?) {
+        guard let attributedText = attributedText else { return }
+        
+        let mutableAttributedString = NSMutableAttributedString(attributedString: attributedText)
+        
+        for targetString in targetStrings {
+            let range = (mutableAttributedString.string as NSString).range(of: targetString)
+            mutableAttributedString.addAttribute(.foregroundColor, value: color ?? textColor, range: range)
+        }
+        
+        self.attributedText = mutableAttributedString
+    }
+    
     /// 텍스트가 두 줄일 때 각 줄에 폰트, 색상을 다르게 주는 함수
     static func createTwoLineLabel(text: String, firstLineFont: UIFont, firstLineColor: UIColor, secondLineFont: UIFont, secondLineColor: UIColor) -> UILabel {
         let label = UILabel()
@@ -43,7 +56,7 @@ extension UILabel {
         
         let lines = text.components(separatedBy: "\n")
         let firstLineLength = lines.first?.count ?? 3
-
+        
         // 첫 번째 줄 속성 적용
         attributedText.addAttribute(.font, value: firstLineFont, range: NSRange(location: 0, length: firstLineLength))
         attributedText.addAttribute(.foregroundColor, value: firstLineColor, range: NSRange(location: 0, length: firstLineLength))
@@ -62,7 +75,7 @@ extension UILabel {
         
         return label
     }
-
+    
     /// 텍스트가 두 줄일 때 첫째줄의 색상만 바꾸는 함수
     func updateLabelAppearance() {
         let lines = self.text?.components(separatedBy: "\n")
@@ -73,5 +86,5 @@ extension UILabel {
         attributedString.addAttributes([.foregroundColor: UIColor.grayscales600, .font: UIFont.uiLabelSmall], range: NSRange(location: firstLineLength, length: attributedString.length - firstLineLength))
         self.attributedText = attributedString
     }
- 
+    
 }

@@ -57,7 +57,9 @@ class AddFriendsView: BaseView {
         countFriendLabel.do {
             $0.text = "선택된 친구 \(count)명"
             $0.font = .uiLabelLarge
-            $0.textColor = .white
+            $0.textColor = .purpleSub400
+            
+            $0.asColors(targetStrings: ["선택된 친구", "명"], color: .white)
         }
         
         friendsTableView.do {
@@ -118,5 +120,6 @@ extension AddFriendsView: FriendsTableViewCellDelegate {
         kakaoFriendTableViewModel[indexPath.row].isButtonSelected = isSelected
         count = kakaoFriendTableViewModel.filter { !$0.isButtonSelected }.count
         countFriendLabel.text = "선택된 친구 \(count)명"
+        countFriendLabel.asColors(targetStrings: ["선택된 친구", "명"], color: .white)
     }
 }

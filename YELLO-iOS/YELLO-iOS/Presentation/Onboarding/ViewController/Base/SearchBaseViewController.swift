@@ -90,6 +90,10 @@ extension SearchBaseViewController: UITextFieldDelegate {
         searchView.searchResultTableView.reloadData()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
+    
 }
 
 // MARK: - extension

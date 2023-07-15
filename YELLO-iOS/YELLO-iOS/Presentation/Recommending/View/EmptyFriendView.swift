@@ -106,10 +106,7 @@ extension EmptyFriendView {
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
-        
         invitingView.removeFromSuperview()
-        
-        
         invitingView = InvitingView()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

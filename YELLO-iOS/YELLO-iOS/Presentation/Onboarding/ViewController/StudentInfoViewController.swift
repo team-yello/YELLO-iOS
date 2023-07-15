@@ -52,6 +52,18 @@ class StudentInfoViewController: OnboardingBaseViewController {
         
         present(nav, animated: true, completion: nil)
     }
+    
+    func checkButtonEnable() {
+        let majorText = baseView.majorTextField.textField.text ?? ""
+        let studentIDText = baseView.studentIDTextField.textField.text ?? ""
+        
+        let isMajorTextFilled = !majorText.isEmpty
+        let isStudentIDTextFilled = !studentIDText.isEmpty
+        
+        let isButtonEnabled = isMajorTextFilled && isStudentIDTextFilled
+        
+        nextButton.setButtonEnable(state: isButtonEnabled)
+    }
 }
 
 // MARK: - extension
@@ -71,16 +83,8 @@ extension StudentInfoViewController: UITextFieldDelegate {
         }
     }
     
-    func checkButtonEnable() {
-        let majorText = baseView.majorTextField.textField.text ?? ""
-        let studentIDText = baseView.studentIDTextField.textField.text ?? ""
-        
-        let isMajorTextFilled = !majorText.isEmpty
-        let isStudentIDTextFilled = !studentIDText.isEmpty
-        
-        let isButtonEnabled = isMajorTextFilled && isStudentIDTextFilled
-        
-        nextButton.setButtonEnable(state: isButtonEnabled)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
     }
 }
 
