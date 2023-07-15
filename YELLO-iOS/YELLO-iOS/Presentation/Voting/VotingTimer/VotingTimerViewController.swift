@@ -98,20 +98,20 @@ final class VotingTimerViewController: BaseViewController {
         
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
-            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjusted)
+            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedHeight)
         }
         
         originView.topOfMyPoint.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjustedHeight)
             $0.trailing.equalToSuperview().inset(16.adjusted)
         }
         
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjusted)
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(2.adjusted)
+            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(2.adjustedHeight)
         }
         
         timerBackGround.snp.makeConstraints {
@@ -124,7 +124,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         speechBubbleBackground.snp.makeConstraints {
-            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-11.adjusted)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-11.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
@@ -134,7 +134,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
         }
         
     }
