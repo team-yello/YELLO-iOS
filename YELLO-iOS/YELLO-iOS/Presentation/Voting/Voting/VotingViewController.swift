@@ -75,23 +75,23 @@ final class VotingViewController: BaseViewController {
     
     var suffleCount = 0 {
         didSet {
-            var selectedNames = Set<String>()
-            var selectedTexts = [String]()
-
-            while selectedTexts.count < 4 {
-                if let randomName = StringLiterals.Voting.VoteName.getRandomName(), !selectedNames.contains(randomName) {
-                    selectedNames.insert(randomName)
-                    selectedTexts.append(randomName)
-                }
-            }
-
-            if selectedTexts.count >= 4 {
-                let first = selectedTexts[0]
-                let second = selectedTexts[1]
-                let third = selectedTexts[2]
-                let fourth = selectedTexts[3]
+            NetworkService.shared.votingService.getVotingSuffle { result in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    
+                    let first = data[0].friendName
+                    let second = data[1].friendName
+                    let third = data[1].friendName
+                    let fourth = data[1].friendName
+                    
+                    self.setNameText(first: first, second: second, third: third, fourth: fourth)
+                    dump(data)
                 
-                setNameText(first: first, second: second, third: third, fourth: fourth)
+                default:
+                    print("network failure")
+                    return
+                }
             }
             
             if suffleCount < 3 {

@@ -11,12 +11,15 @@ import Alamofire
 
 enum VotingTarget {
     case getVotingAvailable
+    case getVotingSuffle
 }
 
 extension VotingTarget: TargetType {
     var method: HTTPMethod {
         switch self {
         case .getVotingAvailable:
+            return .get
+        case .getVotingSuffle:
             return .get
         }
     }
@@ -25,12 +28,16 @@ extension VotingTarget: TargetType {
         switch self {
         case .getVotingAvailable:
             return "/vote/available"
+        case .getVotingSuffle:
+            return "/friend/shuffle"
         }
     }
 
     var parameters: RequestParams {
         switch self {
         case .getVotingAvailable:
+            return .requestPlain
+        case .getVotingSuffle:
             return .requestPlain
         }
     }
