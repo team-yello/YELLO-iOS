@@ -21,8 +21,8 @@
 		2A3705D22A62E31C001AAC93 /* d.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D12A62E31C001AAC93 /* d.swift */; };
 		2A3705D42A62E33E001AAC93 /* RecommendingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */; };
 		2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D52A62E346001AAC93 /* RecommendingService.swift */; };
-		2A3705D82A62E35A001AAC93 /* e.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D72A62E35A001AAC93 /* e.swift */; };
-		2A3705DA2A62E35F001AAC93 /* f.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D92A62E35F001AAC93 /* f.swift */; };
+		2A3705D82A62E35A001AAC93 /* VotingAvailableRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D72A62E35A001AAC93 /* VotingAvailableRequestDTO.swift */; };
+		2A3705DA2A62E35F001AAC93 /* VotingAvailableResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D92A62E35F001AAC93 /* VotingAvailableResponseDTO.swift */; };
 		2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DB2A62E386001AAC93 /* VotingTarget.swift */; };
 		2A3705DE2A62E392001AAC93 /* VotingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DD2A62E392001AAC93 /* VotingService.swift */; };
 		2A3705E02A62E398001AAC93 /* g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705DF2A62E398001AAC93 /* g.swift */; };
@@ -209,8 +209,8 @@
 		2A3705D12A62E31C001AAC93 /* d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = d.swift; sourceTree = "<group>"; };
 		2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingTarget.swift; sourceTree = "<group>"; };
 		2A3705D52A62E346001AAC93 /* RecommendingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingService.swift; sourceTree = "<group>"; };
-		2A3705D72A62E35A001AAC93 /* e.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e.swift; sourceTree = "<group>"; };
-		2A3705D92A62E35F001AAC93 /* f.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = f.swift; sourceTree = "<group>"; };
+		2A3705D72A62E35A001AAC93 /* VotingAvailableRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAvailableRequestDTO.swift; sourceTree = "<group>"; };
+		2A3705D92A62E35F001AAC93 /* VotingAvailableResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAvailableResponseDTO.swift; sourceTree = "<group>"; };
 		2A3705DB2A62E386001AAC93 /* VotingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTarget.swift; sourceTree = "<group>"; };
 		2A3705DD2A62E392001AAC93 /* VotingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingService.swift; sourceTree = "<group>"; };
 		2A3705DF2A62E398001AAC93 /* g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = g.swift; sourceTree = "<group>"; };
@@ -621,7 +621,7 @@
 		2A3705C12A62E22E001AAC93 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705D92A62E35F001AAC93 /* f.swift */,
+				2A3705D92A62E35F001AAC93 /* VotingAvailableResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -629,7 +629,7 @@
 		2A3705C22A62E234001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705D72A62E35A001AAC93 /* e.swift */,
+				2A3705D72A62E35A001AAC93 /* VotingAvailableRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1407,7 +1407,7 @@
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
-				2A3705D82A62E35A001AAC93 /* e.swift in Sources */,
+				2A3705D82A62E35A001AAC93 /* VotingAvailableRequestDTO.swift in Sources */,
 				2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */,
 				2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */,
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
@@ -1459,7 +1459,7 @@
 				C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */,
 				C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
-				2A3705DA2A62E35F001AAC93 /* f.swift in Sources */,
+				2A3705DA2A62E35F001AAC93 /* VotingAvailableResponseDTO.swift in Sources */,
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
 				3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */,
 				C3FF24A02A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift in Sources */,

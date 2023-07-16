@@ -22,7 +22,6 @@ extension TargetType {
     }
 }
 
-
 extension TargetType {
     func asURLRequest() throws -> URLRequest {
         let url = try baseURL.asURL()
@@ -30,8 +29,8 @@ extension TargetType {
             url: url.appendingPathComponent(path),
             method: method
         )
-
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+        urlRequest.setValue("Bearer eyJ0eXBlIjoiYWNjZXNzVG9rZW4iLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOTAyMTQ3MTY5IiwianRpIjoiMTYxIiwiaWF0IjoxNjg5NTMzMjgyLCJleHAiOjE2ODk2MTk2ODJ9.yzO71BRbZLoitkr0iv6R2JYEjp-e2RMUZVQHMm81RDI", forHTTPHeaderField: HTTPHeaderField.authentication.rawValue)
 
         switch parameters {
         case .requestWithBody(let request):

@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct VotingAvailableRequestDTO: Encodable {
+    let accessToken: String
+}
