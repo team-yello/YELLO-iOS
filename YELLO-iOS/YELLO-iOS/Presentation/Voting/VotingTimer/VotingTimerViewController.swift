@@ -206,8 +206,6 @@ final class VotingTimerViewController: BaseViewController {
                     }
                     self?.remainingSeconds = remainingSeconds
                     self?.animateProgress(to: Float(remainingSeconds / duration))
-                    
-                    
                 }
             )
         }

@@ -17,7 +17,7 @@ final class YELLOTabBarController: UITabBarController {
     private var tabs: [UIViewController] = []
     
     private let numOfFriends = 4 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
-    private let timerEnd: Bool = UserDefaults.standard.bool(forKey: "timer")
+    private var timerEnd: Bool = UserDefaults.standard.bool(forKey: "timer")
     
     // MARK: - Life Cycle
     
@@ -117,10 +117,9 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
         guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
             return true
         }
-
         // 원하는 조건에 따라 화면 전환을 막거나 허용
         if selectedIndex == 2 {
-            if UserDefaults.standard.bool(forKey: "timer") {
+            if timerEnd {
                 tabs[2] = UINavigationController(rootViewController: VotingStartViewController())
                 return true
             } else {
