@@ -22,6 +22,11 @@ final class KakaoFriendViewController: UIViewController {
         super.viewDidLoad()
         setUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        recommendingKakaoFriend()
+    }
 }
 
 // MARK: - extension
@@ -44,6 +49,23 @@ extension KakaoFriendViewController {
         kakaoFriendView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabbarHeight)
+        }
+    }
+}
+
+// MARK: - Network
+extension KakaoFriendViewController {
+    func recommendingKakaoFriend() {
+        let queryDTO = RecommendingRequestQueryDTO(page: 0)
+        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"])
+        NetworkService.shared.recommendingService.recommendingKakaoFriend(queryDTO: queryDTO, requestDTO: requestDTO) { response in
+            switch response {
+            case .success:
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
         }
     }
 }

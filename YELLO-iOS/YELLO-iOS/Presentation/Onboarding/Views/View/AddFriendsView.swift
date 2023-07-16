@@ -15,31 +15,31 @@ class AddFriendsView: BaseView {
     // MARK: - Variables
     // MARK: Constants
     /// dummy data
-    lazy var kakaoFriendTableViewModel: [FriendModel] = [
-        FriendModel(name: "정옐로", school: "솝트대학교 옐로학부 21학번", isButtonSelected: false),
-        FriendModel(name: "김옐로", school: "솝트대학교 옐로학부 22학번", isButtonSelected: false),
-        FriendModel(name: "이옐로", school: "솝트대학교 옐로학부 23학번", isButtonSelected: false),
-        FriendModel(name: "황옐로", school: "솝트대학교 옐로학부 24학번", isButtonSelected: false),
-        FriendModel(name: "최옐로", school: "솝트대학교 옐로학부 25학번", isButtonSelected: false),
-        FriendModel(name: "윤옐로", school: "솝트대학교 옐로학부 26학번", isButtonSelected: false),
-        FriendModel(name: "성옐로", school: "솝트대학교 옐로학부 27학번", isButtonSelected: false),
-        FriendModel(name: "박옐로", school: "솝트대학교 옐로학부 28학번", isButtonSelected: false),
-        FriendModel(name: "정옐로", school: "솝트대학교 옐로학부 21학번", isButtonSelected: false),
-        FriendModel(name: "김옐로", school: "솝트대학교 옐로학부 22학번", isButtonSelected: false),
-        FriendModel(name: "이옐로", school: "솝트대학교 옐로학부 23학번", isButtonSelected: false),
-        FriendModel(name: "황옐로", school: "솝트대학교 옐로학부 24학번", isButtonSelected: false),
-        FriendModel(name: "최옐로", school: "솝트대학교 옐로학부 25학번", isButtonSelected: false),
-        FriendModel(name: "윤옐로", school: "솝트대학교 옐로학부 26학번", isButtonSelected: false),
-        FriendModel(name: "성옐로", school: "솝트대학교 옐로학부 27학번", isButtonSelected: false),
-        FriendModel(name: "박옐로", school: "솝트대학교 옐로학부 28학번", isButtonSelected: false),
-        FriendModel(name: "정옐로", school: "솝트대학교 옐로학부 21학번", isButtonSelected: false),
-        FriendModel(name: "김옐로", school: "솝트대학교 옐로학부 22학번", isButtonSelected: false),
-        FriendModel(name: "이옐로", school: "솝트대학교 옐로학부 23학번", isButtonSelected: false),
-        FriendModel(name: "황옐로", school: "솝트대학교 옐로학부 24학번", isButtonSelected: false),
-        FriendModel(name: "최옐로", school: "솝트대학교 옐로학부 25학번", isButtonSelected: false),
-        FriendModel(name: "윤옐로", school: "솝트대학교 옐로학부 26학번", isButtonSelected: false),
-        FriendModel(name: "성옐로", school: "솝트대학교 옐로학부 27학번", isButtonSelected: false),
-        FriendModel(name: "박옐로", school: "솝트대학교 옐로학부 28학번", isButtonSelected: false)]
+    lazy var kakaoFriendTableViewModel: [FriendModel] = []
+//        FriendModel(name: "정옐로", school: "솝트대학교 옐로학부 21학번", isButtonSelected: false),
+//        FriendModel(name: "김옐로", school: "솝트대학교 옐로학부 22학번", isButtonSelected: false),
+//        FriendModel(name: "이옐로", school: "솝트대학교 옐로학부 23학번", isButtonSelected: false),
+//        FriendModel(name: "황옐로", school: "솝트대학교 옐로학부 24학번", isButtonSelected: false),
+//        FriendModel(name: "최옐로", school: "솝트대학교 옐로학부 25학번", isButtonSelected: false),
+//        FriendModel(name: "윤옐로", school: "솝트대학교 옐로학부 26학번", isButtonSelected: false),
+//        FriendModel(name: "성옐로", school: "솝트대학교 옐로학부 27학번", isButtonSelected: false),
+//        FriendModel(name: "박옐로", school: "솝트대학교 옐로학부 28학번", isButtonSelected: false),
+//        FriendModel(name: "정옐로", school: "솝트대학교 옐로학부 21학번", isButtonSelected: false),
+//        FriendModel(name: "김옐로", school: "솝트대학교 옐로학부 22학번", isButtonSelected: false),
+//        FriendModel(name: "이옐로", school: "솝트대학교 옐로학부 23학번", isButtonSelected: false),
+//        FriendModel(name: "황옐로", school: "솝트대학교 옐로학부 24학번", isButtonSelected: false),
+//        FriendModel(name: "최옐로", school: "솝트대학교 옐로학부 25학번", isButtonSelected: false),
+//        FriendModel(name: "윤옐로", school: "솝트대학교 옐로학부 26학번", isButtonSelected: false),
+//        FriendModel(name: "성옐로", school: "솝트대학교 옐로학부 27학번", isButtonSelected: false),
+//        FriendModel(name: "박옐로", school: "솝트대학교 옐로학부 28학번", isButtonSelected: false),
+//        FriendModel(name: "정옐로", school: "솝트대학교 옐로학부 21학번", isButtonSelected: false),
+//        FriendModel(name: "김옐로", school: "솝트대학교 옐로학부 22학번", isButtonSelected: false),
+//        FriendModel(name: "이옐로", school: "솝트대학교 옐로학부 23학번", isButtonSelected: false),
+//        FriendModel(name: "황옐로", school: "솝트대학교 옐로학부 24학번", isButtonSelected: false),
+//        FriendModel(name: "최옐로", school: "솝트대학교 옐로학부 25학번", isButtonSelected: false),
+//        FriendModel(name: "윤옐로", school: "솝트대학교 옐로학부 26학번", isButtonSelected: false),
+//        FriendModel(name: "성옐로", school: "솝트대학교 옐로학부 27학번", isButtonSelected: false),
+//        FriendModel(name: "박옐로", school: "솝트대학교 옐로학부 28학번", isButtonSelected: false)]
     
     // MARK: Property
     var count = 0

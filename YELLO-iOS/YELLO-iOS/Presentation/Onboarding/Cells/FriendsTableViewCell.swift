@@ -61,8 +61,8 @@ class FriendsTableViewCell: UITableViewCell {
     // MARK: Custom Function
     /// cell 구성
     func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.name
-        schoolLabel.text = model.school
+        nameLabel.text = model.recommendingFriendListData[0].name
+        schoolLabel.text = model.recommendingFriendListData[0].group
         self.isTapped = model.isButtonSelected
         updateCheckButtonImage()
     }
