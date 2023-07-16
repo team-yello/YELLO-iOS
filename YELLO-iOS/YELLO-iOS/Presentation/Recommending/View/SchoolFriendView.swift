@@ -14,7 +14,11 @@ final class SchoolFriendView: UIView {
     
     // MARK: - Variables
     // MARK: Property
-    var schoolFriendTableViewModel: [FriendModel] = [
+    var fetchingMore = false
+    var schoolFriendTableViewModel: [FriendModel] = []
+    private var initialSchoolDataCount = 10
+
+    var schoolFriendTableViewDummy: [FriendModel] = [
         FriendModel(name: "정채은", school: "이화여자대학교 물리학과 21학번", isButtonSelected: false),
         FriendModel(name: "김채은", school: "이화여자대학교 물리학과 22학번", isButtonSelected: false),
         FriendModel(name: "이채은", school: "이화여자대학교 물리학과 23학번", isButtonSelected: false),
@@ -70,6 +74,13 @@ extension SchoolFriendView {
     }
     
     private func setLayout() {
+        if schoolFriendTableViewDummy.count < 10 {
+            initialSchoolDataCount = schoolFriendTableViewDummy.count
+        } else {
+            initialSchoolDataCount = 10
+        }
+        schoolFriendTableViewModel = Array(schoolFriendTableViewDummy[0..<initialSchoolDataCount])
+
         self.addSubviews(inviteBannerView,
                         schoolFriendTableView,
                         emptyFriendView)
@@ -147,5 +158,42 @@ extension SchoolFriendView: UITableViewDataSource {
         cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         cell.configureFriendCell(schoolFriendTableViewModel[indexPath.row])
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !fetchingMore {
+                beginBatchFetch()
+            }
+        }
+    }
+    
+    func beginBatchFetch() {
+        fetchingMore = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [self] in
+            if schoolFriendTableViewDummy.count - initialSchoolDataCount < 10 {
+                if schoolFriendTableViewDummy.count - initialSchoolDataCount == 0 {
+                    print("친구 데이터가 더 없어요")
+                } else {
+                    let newItems = (initialSchoolDataCount...schoolFriendTableViewDummy.count - 1).map { index in
+                        schoolFriendTableViewDummy[index]
+                    }
+                    self.schoolFriendTableViewModel.append(contentsOf: newItems)
+                }
+            } else {
+                let newItems = (initialSchoolDataCount...initialSchoolDataCount + 9).map { index in
+                    schoolFriendTableViewDummy[index]
+                }
+                self.schoolFriendTableViewModel.append(contentsOf: newItems)
+            }
+            
+            self.fetchingMore = false
+            self.schoolFriendTableView.reloadData()
+            initialSchoolDataCount = schoolFriendTableViewModel.count
+        }
     }
 }

@@ -14,7 +14,12 @@ final class KakaoFriendView: UIView {
     
     // MARK: - Variables
     // MARK: Property
-    var kakaoFriendTableViewModel: [FriendModel] = [
+    
+    var fetchingMore = false
+    var kakaoFriendTableViewModel: [FriendModel] = []
+    var initialKakaoDataCount = 10
+    
+    var kakaoFriendTableViewDummy: [FriendModel] = [
         FriendModel(name: "정채은", school: "이화여자대학교 융합콘텐츠학과 21학번", isButtonSelected: false),
         FriendModel(name: "김채은", school: "이화여자대학교 융합콘텐츠학과 22학번", isButtonSelected: false),
         FriendModel(name: "이채은", school: "이화여자대학교 융합콘텐츠학과 23학번", isButtonSelected: false),
@@ -22,7 +27,16 @@ final class KakaoFriendView: UIView {
         FriendModel(name: "최채은", school: "이화여자대학교 융합콘텐츠학과 25학번", isButtonSelected: false),
         FriendModel(name: "윤채은", school: "이화여자대학교 융합콘텐츠학과 26학번", isButtonSelected: false),
         FriendModel(name: "성채은", school: "이화여자대학교 융합콘텐츠학과 27학번", isButtonSelected: false),
-        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false)]
+        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false),
+        FriendModel(name: "성채은", school: "이화여자대학교 융합콘텐츠학과 27학번", isButtonSelected: false),
+        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false),
+        FriendModel(name: "방채은", school: "이화여자대학교 융합콘텐츠학과 29학번", isButtonSelected: false),
+        FriendModel(name: "홍채은", school: "이화여자대학교 융합콘텐츠학과 30학번", isButtonSelected: false),
+        FriendModel(name: "백채은", school: "이화여자대학교 융합콘텐츠학과 20학번", isButtonSelected: false),
+        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false),
+        FriendModel(name: "방채은", school: "이화여자대학교 융합콘텐츠학과 29학번", isButtonSelected: false),
+        FriendModel(name: "홍채은", school: "이화여자대학교 융합콘텐츠학과 30학번", isButtonSelected: false),
+        FriendModel(name: "백채은", school: "이화여자대학교 융합콘텐츠학과 20학번", isButtonSelected: false)]
     
     // MARK: Component
     private let inviteBannerView = InviteBannerView()
@@ -70,6 +84,14 @@ extension KakaoFriendView {
     }
     
     private func setLayout() {
+        if kakaoFriendTableViewDummy.count < 10 {
+            initialKakaoDataCount = kakaoFriendTableViewDummy.count
+        } else {
+            initialKakaoDataCount = 10
+        }
+        
+        kakaoFriendTableViewModel = Array(kakaoFriendTableViewDummy[0..<initialKakaoDataCount])
+        
         self.addSubviews(
             inviteBannerView,
             kakaoFriendTableView,
@@ -147,5 +169,43 @@ extension KakaoFriendView: UITableViewDataSource {
         cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         cell.configureFriendCell(kakaoFriendTableViewModel[indexPath.row])
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !fetchingMore {
+                beginBatchFetch()
+            }
+        }
+    }
+    
+    func beginBatchFetch() {
+        fetchingMore = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [self] in
+            if kakaoFriendTableViewDummy.count - initialKakaoDataCount < 10 {
+                if kakaoFriendTableViewDummy.count - initialKakaoDataCount == 0 {
+                    print("친구 데이터가 더 없어요")
+                } else {
+                    let newItems = (initialKakaoDataCount...kakaoFriendTableViewDummy.count - 1).map { index in
+                        kakaoFriendTableViewDummy[index]
+                    }
+                    self.kakaoFriendTableViewModel.append(contentsOf: newItems)
+                }
+            }
+            else {
+                let newItems = (initialKakaoDataCount...initialKakaoDataCount + 9).map { index in
+                    kakaoFriendTableViewDummy[index]
+                }
+                self.kakaoFriendTableViewModel.append(contentsOf: newItems)
+            }
+            
+            self.fetchingMore = false
+            self.kakaoFriendTableView.reloadData()
+            initialKakaoDataCount = kakaoFriendTableViewModel.count
+        }
     }
 }
