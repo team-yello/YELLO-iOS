@@ -12,21 +12,12 @@ import Then
 
 final class VotingTimerView: BaseView {
     
-    private let timeLabel = UILabel()
+    let timeLabel = UILabel()
     
     private let backgroundLayer = CAShapeLayer()
-    private let progressLayer = CAShapeLayer()
+    let progressLayer = CAShapeLayer()
     private let animationName = "progressAnimation"
-    private var timer: Timer?
-    
-    var remainingSeconds: TimeInterval? {
-        didSet {
-            if let remainingSeconds {
-                self.timeLabel.text = String(format: "%02d : %02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
-            }
-        }
-    }
-    
+
     private var circularPath: UIBezierPath {
         UIBezierPath(
             arcCenter: CGPoint(x: self.frame.size.width / 2.0, y: self.frame.size.height / 2.0),
@@ -39,19 +30,12 @@ final class VotingTimerView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        start(duration: 2400)
     }
     
     required init?(coder: NSCoder) {
         fatalError("not implemented")
     }
-    
-    deinit {
-        self.timer?.invalidate()
-        self.timer = nil
-    }
-    
+
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
         // UIBezierPath는 런타임마다 바뀌는 frame값을 참조하여 원의 윤곽 레이아웃을 알아야 하므로, 이곳에 적용
@@ -97,46 +81,5 @@ final class VotingTimerView: BaseView {
         timeLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        
     }
-   
-    func start(duration: TimeInterval) {
-        self.remainingSeconds = duration
-        // timer
-        self.timer?.invalidate()
-        let startDate = Date()
-        self.timer = Timer.scheduledTimer(
-            withTimeInterval: 1,
-            repeats: true,
-            block: { [weak self] _ in
-                let elapsedSeconds = round(abs(startDate.timeIntervalSinceNow))
-                let remainingSeconds = max(duration - elapsedSeconds, 0)
-                guard remainingSeconds > 0 else {
-                    self?.stop()
-                    return
-                }
-                self?.remainingSeconds = remainingSeconds
-                self?.animateProgress(to: Float(remainingSeconds / duration))
-            }
-        )
-    }
-    
-    func stop() {
-        self.timer?.invalidate()
-        self.remainingSeconds = 0
-        self.progressLayer.removeFromSuperlayer()
-    }
-    
-    func animateProgress(to value: Float) {
-        self.progressLayer.removeAnimation(forKey: self.animationName)
-        let circularProgressAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        circularProgressAnimation.duration = 1
-        circularProgressAnimation.fromValue = self.progressLayer.presentation()?.strokeEnd ?? 1.0
-        circularProgressAnimation.toValue = value
-        circularProgressAnimation.fillMode = .forwards
-        circularProgressAnimation.isRemovedOnCompletion = false
-        self.progressLayer.add(circularProgressAnimation, forKey: self.animationName)
-        
-    }
-    
 }
