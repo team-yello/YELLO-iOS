@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) { [self] in
             
-            let rootViewController = YELLOTabBarController()
+            let rootViewController = self.isLoggedIn ? YELLOTabBarController() : KakaoLoginViewController()
             
             let navigationController = UINavigationController(rootViewController: rootViewController)
             
