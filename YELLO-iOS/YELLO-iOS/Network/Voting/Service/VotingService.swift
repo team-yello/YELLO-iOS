@@ -7,17 +7,15 @@
 import Foundation
 
 protocol VotingServiceProtocol {
-    func getVotingAvailable(queryDTO: VotingAvailableRequestDTO, completion: @escaping (NetworkResult<BaseResponse<[VotingAvailableResponseDTO]>>) -> Void)
+    func getVotingAvailable(completion: @escaping (NetworkResult<BaseResponse<VotingAvailableResponseDTO>>) -> Void)
 }
-
 
 final class VotingService: APIRequestLoader<VotingTarget>, VotingServiceProtocol {
     
-    func getVotingAvailable(queryDTO: VotingAvailableRequestDTO, completion: @escaping (NetworkResult<BaseResponse<[VotingAvailableResponseDTO]>>) -> Void) {
+    func getVotingAvailable(completion: @escaping (NetworkResult<BaseResponse<VotingAvailableResponseDTO>>) -> Void) {
 
         fetchData(
-            target: .getVotingAvailable(queryDTO),
-            responseData: BaseResponse<[VotingAvailableResponseDTO]>.self, completion: completion)
+            target: .getVotingAvailable,
+            responseData: BaseResponse<VotingAvailableResponseDTO>.self, completion: completion)
     }
 }
-

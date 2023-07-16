@@ -16,19 +16,20 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
-    private let numOfFriends = 4 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
+    private var canStart: Bool = true
     private let notTimerEnd: Bool = UserDefaults.standard.bool(forKey: "timer")
     
     // MARK: - Life Cycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        setTabBarAppearance()
+        getVotingAvailable()
         setTabBarItems()
-        
-        self.delegate = self
+        setTabBarAppearance()
+
         self.selectedIndex = 2
+        self.delegate = self
     }
     
     // MARK: - TabBar Height
@@ -70,14 +71,14 @@ final class YELLOTabBarController: UITabBarController {
     private func setTabBarItems() {
         var rootViewController: UIViewController
         /// 친구 수에 따라 rootViewController가 달라짐
-        if numOfFriends < 4 {
-            rootViewController = VotingLockedViewController()
-        } else {
+        if canStart {
             if notTimerEnd {
                 rootViewController = VotingTimerViewController()
             } else {
                 rootViewController = VotingStartViewController()
             }
+        } else {
+            rootViewController = VotingLockedViewController()
         }
         
         tabs = [
@@ -131,5 +132,26 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
             return false
         }
         return true
+    }
+}
+
+extension YELLOTabBarController {
+    func getVotingAvailable() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            switch result {
+            case .success(let data):
+                let data = data.status
+                if data == 400 {
+                    self.canStart = false
+                } else {
+                    self.canStart = true
+                }
+                self.setTabBarAppearance()
+                self.setTabBarItems()
+            default:
+                print("network failure")
+            }
+        }
     }
 }

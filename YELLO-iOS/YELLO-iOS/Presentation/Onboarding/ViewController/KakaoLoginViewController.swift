@@ -52,6 +52,7 @@ class KakaoLoginViewController: BaseViewController {
 
                     _ = oauthToken
                     // 관련 메소드 추가
+                    self.navigationController?.pushViewController(KakaoConnectViewController(), animated: true)
                 }
             }
         }

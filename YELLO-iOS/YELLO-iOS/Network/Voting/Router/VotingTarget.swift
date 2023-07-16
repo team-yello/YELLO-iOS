@@ -10,28 +10,28 @@ import Foundation
 import Alamofire
 
 enum VotingTarget {
-    case getVotingAvailable(_ dto: VotingAvailableRequestDTO)
+    case getVotingAvailable
 }
 
 extension VotingTarget: TargetType {
     var method: HTTPMethod {
         switch self {
-        case .getVotingAvailable(_):
+        case .getVotingAvailable:
             return .get
         }
     }
 
     var path: String {
         switch self {
-        case .getVotingAvailable(_):
+        case .getVotingAvailable:
             return "/vote/available"
         }
     }
 
     var parameters: RequestParams {
         switch self {
-        case .getVotingAvailable(let dto):
-            return .requestQuery(dto)
+        case .getVotingAvailable:
+            return .requestPlain
         }
     }
 
