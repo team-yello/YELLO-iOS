@@ -12,6 +12,27 @@ import Then
 
 final class VotingTimerViewController: BaseViewController {
     
+    var timer: Timer?
+
+    var remainingSeconds: TimeInterval? {
+        didSet {
+            if let remainingSeconds {
+                self.timerView.timeLabel.text = String(format: "%02d : %02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
+            }
+            
+            print(remainingSeconds ?? 0.0)
+            if remainingSeconds == 0 {
+                timerEnd = true
+                UserDefaults.standard.set(timerEnd, forKey: "timer")
+            } else {
+                timerEnd = false
+                UserDefaults.standard.set(timerEnd, forKey: "timer")
+            }
+        }
+    }
+    
+    var timerEnd: Bool = true
+    
     private let originView = BaseVotingETCView()
     private var invitingView = InvitingView()
     
@@ -27,6 +48,17 @@ final class VotingTimerViewController: BaseViewController {
     
     override func loadView() {
         self.view = originView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        start(duration: 2400)
+    }
+    
+    deinit {
+        self.timer?.invalidate()
+        self.timer = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,9 +103,8 @@ final class VotingTimerViewController: BaseViewController {
             $0.titleLabel?.font = .uiSubtitle04
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
         }
-        
     }
-    
+        
     // MARK: - Layout
     
     override func setLayout() {
@@ -154,4 +185,50 @@ final class VotingTimerViewController: BaseViewController {
         viewController.view.addSubview(invitingView)
     }
     
+    // MARK: - Function
+    
+    private func start(duration: TimeInterval) {
+        DispatchQueue.main.async {
+            self.remainingSeconds = duration
+            // timer
+            self.timer?.invalidate()
+            let startDate = Date()
+            self.timer = Timer.scheduledTimer(
+                withTimeInterval: 1,
+                repeats: true,
+                block: { [weak self] _ in
+                                    
+                    let elapsedSeconds = round(abs(startDate.timeIntervalSinceNow))
+                    let remainingSeconds = max(duration - elapsedSeconds, 0)
+                    guard remainingSeconds > 0 else {
+                        self?.stop()
+                        return
+                    }
+                    self?.remainingSeconds = remainingSeconds
+                    self?.animateProgress(to: Float(remainingSeconds / duration))
+                    
+                    
+                }
+            )
+        }
+      
+    }
+    
+    private func stop() {
+        self.timer?.invalidate()
+        self.remainingSeconds = 0
+        self.timerView.progressLayer.removeFromSuperlayer()
+    }
+    
+    private func animateProgress(to value: Float) {
+        self.timerView.progressLayer.removeAnimation(forKey: "progressAnimation")
+        let circularProgressAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        circularProgressAnimation.duration = 1
+        circularProgressAnimation.fromValue = self.timerView.progressLayer.presentation()?.strokeEnd ?? 1.0
+        circularProgressAnimation.toValue = value
+        circularProgressAnimation.fillMode = .forwards
+        circularProgressAnimation.isRemovedOnCompletion = false
+        self.timerView.progressLayer.add(circularProgressAnimation, forKey: "progressAnimation")
+        
+    }
 }
