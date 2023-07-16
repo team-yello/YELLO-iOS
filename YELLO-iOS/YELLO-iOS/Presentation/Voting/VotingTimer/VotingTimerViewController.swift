@@ -53,7 +53,7 @@ final class VotingTimerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        start(duration: 10)
+        start(duration: 2400)
     }
     
     deinit {
