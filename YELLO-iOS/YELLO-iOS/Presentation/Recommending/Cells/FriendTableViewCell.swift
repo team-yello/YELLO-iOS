@@ -21,7 +21,12 @@ final class FriendTableViewCell: UITableViewCell {
     let nameLabel = UILabel()
     let schoolLabel = UILabel()
     lazy var addButton = UIButton()
-    var isTapped: Bool = false
+    let separatorLine = UIView()
+    var isTapped: Bool = false {
+        didSet {
+            updateAddButtonImage()
+        }
+    }
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -39,6 +44,8 @@ final class FriendTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         self.addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        isTapped = false
+        separatorLine.isHidden = false
     }
 }
 
@@ -80,6 +87,10 @@ extension FriendTableViewCell {
             $0.tintColor = .yellow
             $0.addTarget(self, action: #selector(changeAddButton), for: .touchUpInside)
         }
+        
+        separatorLine.do {
+            $0.backgroundColor = .grayscales800
+        }
     }
     
     private func setLayout() {
@@ -87,7 +98,8 @@ extension FriendTableViewCell {
         contentView.addSubviews(profileImageView,
                                 nameLabel,
                                 schoolLabel,
-                                addButton)
+                                addButton,
+                                separatorLine)
         
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -109,6 +121,11 @@ extension FriendTableViewCell {
             $0.trailing.equalToSuperview().inset(8.adjusted)
             $0.centerY.equalToSuperview()
         }
+        
+        separatorLine.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
+        }
     }
     
     // MARK: Custom Function
@@ -117,6 +134,10 @@ extension FriendTableViewCell {
         schoolLabel.text = model.school
         isTapped = model.isButtonSelected
         
+        updateAddButtonImage()
+    }
+    
+    private func updateAddButtonImage() {
         let imageName = isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton
         addButton.setImage(imageName, for: .normal)
     }
