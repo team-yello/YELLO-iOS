@@ -34,6 +34,12 @@ final class FriendTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+    }
 }
 
 // MARK: - extension

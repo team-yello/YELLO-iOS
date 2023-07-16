@@ -28,16 +28,16 @@ final class KakaoFriendView: UIView {
         FriendModel(name: "윤채은", school: "이화여자대학교 융합콘텐츠학과 26학번", isButtonSelected: false),
         FriendModel(name: "성채은", school: "이화여자대학교 융합콘텐츠학과 27학번", isButtonSelected: false),
         FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false),
-        FriendModel(name: "성채은", school: "이화여자대학교 융합콘텐츠학과 27학번", isButtonSelected: false),
-        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false),
-        FriendModel(name: "방채은", school: "이화여자대학교 융합콘텐츠학과 29학번", isButtonSelected: false),
-        FriendModel(name: "홍채은", school: "이화여자대학교 융합콘텐츠학과 30학번", isButtonSelected: false),
-        FriendModel(name: "백채은", school: "이화여자대학교 융합콘텐츠학과 20학번", isButtonSelected: false),
-        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 28학번", isButtonSelected: false),
-        FriendModel(name: "방채은", school: "이화여자대학교 융합콘텐츠학과 29학번", isButtonSelected: false),
-        FriendModel(name: "홍채은", school: "이화여자대학교 융합콘텐츠학과 30학번", isButtonSelected: false),
-        FriendModel(name: "백채은", school: "이화여자대학교 융합콘텐츠학과 20학번", isButtonSelected: false)]
-    
+        FriendModel(name: "성채은", school: "이화여자대학교 융합콘텐츠학과 29학번", isButtonSelected: false),
+        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 30학번", isButtonSelected: false),
+        FriendModel(name: "방채은", school: "이화여자대학교 융합콘텐츠학과 31학번", isButtonSelected: false),
+        FriendModel(name: "홍채은", school: "이화여자대학교 융합콘텐츠학과 32학번", isButtonSelected: false),
+        FriendModel(name: "백채은", school: "이화여자대학교 융합콘텐츠학과 33학번", isButtonSelected: false),
+        FriendModel(name: "박채은", school: "이화여자대학교 융합콘텐츠학과 34학번", isButtonSelected: false),
+        FriendModel(name: "방채은", school: "이화여자대학교 융합콘텐츠학과 35학번", isButtonSelected: false),
+        FriendModel(name: "홍채은", school: "이화여자대학교 융합콘텐츠학과 36학번", isButtonSelected: false),
+        FriendModel(name: "백채은", school: "이화여자대학교 융합콘텐츠학과 37학번", isButtonSelected: false)]
+
     // MARK: Component
     private let inviteBannerView = InviteBannerView()
     private let emptyFriendView = EmptyFriendView()
@@ -122,11 +122,18 @@ extension KakaoFriendView {
     @objc func addButtonTapped(_ sender: UIButton) {
         let point = sender.convert(CGPoint.zero, to: kakaoFriendTableView)
         guard let indexPath = kakaoFriendTableView.indexPathForRow(at: point) else { return }
-        kakaoFriendTableViewModel.remove(at: indexPath.row)
+        
+        kakaoFriendTableViewModel[indexPath.row].isButtonSelected.toggle()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.kakaoFriendTableViewModel.remove(at: indexPath.row)
+            self.kakaoFriendTableViewDummy.remove(at: indexPath.row)
             self.kakaoFriendTableView.deleteRows(at: [indexPath], with: .right)
             self.updateView()
         }
+        
+        kakaoFriendTableView.reloadRows(at: [indexPath], with: .none)
+        initialKakaoDataCount -= 1
     }
     
     // MARK: Custom Function
@@ -166,6 +173,7 @@ extension KakaoFriendView: UITableViewDataSource {
             }
         }
         cell.selectionStyle = .none
+        cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
         cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         cell.configureFriendCell(kakaoFriendTableViewModel[indexPath.row])
         return cell
@@ -195,8 +203,7 @@ extension KakaoFriendView: UITableViewDataSource {
                     }
                     self.kakaoFriendTableViewModel.append(contentsOf: newItems)
                 }
-            }
-            else {
+            } else {
                 let newItems = (initialKakaoDataCount...initialKakaoDataCount + 9).map { index in
                     kakaoFriendTableViewDummy[index]
                 }
