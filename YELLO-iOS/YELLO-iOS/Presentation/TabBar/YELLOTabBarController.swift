@@ -17,7 +17,7 @@ final class YELLOTabBarController: UITabBarController {
     private var tabs: [UIViewController] = []
     
     private let numOfFriends = 4 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
-    private var timerEnd: Bool = UserDefaults.standard.bool(forKey: "timer")
+    private let notTimerEnd: Bool = UserDefaults.standard.bool(forKey: "timer")
     
     // MARK: - Life Cycle
     
@@ -68,15 +68,22 @@ final class YELLOTabBarController: UITabBarController {
     // MARK: - TabBar Item
     
     private func setTabBarItems() {
+        var rootViewController: UIViewController
         /// 친구 수에 따라 rootViewController가 달라짐
         if numOfFriends < 4 {
-            tabs[2] = UINavigationController(rootViewController: VotingLockedViewController())
+            rootViewController = VotingLockedViewController()
+        } else {
+            if notTimerEnd {
+                rootViewController = VotingTimerViewController()
+            } else {
+                rootViewController = VotingStartViewController()
+            }
         }
         
         tabs = [
             UINavigationController(rootViewController: RecommendingViewController()),
             UINavigationController(rootViewController: AroundViewController()),
-            UINavigationController(rootViewController: VotingStartViewController()),
+            UINavigationController(rootViewController: rootViewController),
             UINavigationController(rootViewController: MyYelloViewController()),
             UINavigationController(rootViewController: ProfileViewController())
         ]
@@ -110,25 +117,19 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
                 }
             }
         }
+
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        // 현재 선택된 탭 인덱스를 확인
-        guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
+        
+        guard let selectedViewController = tabBarController.selectedViewController else {
             return true
         }
-        // 원하는 조건에 따라 화면 전환을 막거나 허용
-        if selectedIndex == 2 {
-            if timerEnd {
-                tabs[2] = UINavigationController(rootViewController: VotingStartViewController())
-                return true
-            } else {
-                tabs[2] = UINavigationController(rootViewController: VotingTimerViewController())
-                return false
-            }
+        
+        if selectedViewController == viewController && tabBarController.selectedIndex == 2 {
+            // 현재 선택된 뷰 컨트롤러와 선택될 뷰 컨트롤러가 다르고, 3번째 탭이 선택된 경우
+            return false
         }
-        // 나머지 탭은 기본 동작인 화면 전환을 허용
         return true
     }
-
 }

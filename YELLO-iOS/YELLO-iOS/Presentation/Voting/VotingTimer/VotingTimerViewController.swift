@@ -13,25 +13,25 @@ import Then
 final class VotingTimerViewController: BaseViewController {
     
     var timer: Timer?
+    
+    var notTimerEnd: Bool = true
 
     var remainingSeconds: TimeInterval? {
         didSet {
             if let remainingSeconds {
                 self.timerView.timeLabel.text = String(format: "%02d : %02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
             }
-            
-            print(remainingSeconds ?? 0.0)
             if remainingSeconds == 0 {
-                timerEnd = true
-                UserDefaults.standard.set(timerEnd, forKey: "timer")
+                notTimerEnd = false
+                let viewController = VotingStartViewController()
+                self.navigationController?.pushViewController(viewController, animated: false)
             } else {
-                timerEnd = false
-                UserDefaults.standard.set(timerEnd, forKey: "timer")
+                notTimerEnd = true
             }
+            UserDefaults.standard.setValue(notTimerEnd, forKey: "timer")
+
         }
     }
-    
-    var timerEnd: Bool = true
     
     private let originView = BaseVotingETCView()
     private var invitingView = InvitingView()
@@ -53,7 +53,7 @@ final class VotingTimerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        start(duration: 2400)
+        start(duration: 10)
     }
     
     deinit {
@@ -230,3 +230,4 @@ final class VotingTimerViewController: BaseViewController {
         
     }
 }
+
