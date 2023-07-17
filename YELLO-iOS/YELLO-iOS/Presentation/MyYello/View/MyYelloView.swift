@@ -14,7 +14,7 @@ final class MyYelloView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var myYelloCount: Int = MyYelloModelDummy.count
+    lazy var myYelloCount: Int = self.myYelloListView.myYelloModelDummy.count
     
     // MARK: Component
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
