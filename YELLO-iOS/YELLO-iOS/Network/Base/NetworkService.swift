@@ -12,7 +12,7 @@ final class NetworkService {
 
     private init() {}
 
-//    let onboardingService: OnboardingServiceProtocol = OnboardingService(apiLogger: APIEventLogger())
+    let onboardingService: OnboardingServiceProtocol = OnboardingService(apiLogger: APIEventLogger())
 //    let recommendingService: RecommendingServiceProtocol = RecommendingService(apiLogger: APIEventLogger())
 //    let votingService: VotingServiceProtocol = VotingService(apiLogger: APIEventLogger())
 //    let myYelloService: MyYelloServiceProtocol = MyYelloService(apiLogger: APIEventLogger())
