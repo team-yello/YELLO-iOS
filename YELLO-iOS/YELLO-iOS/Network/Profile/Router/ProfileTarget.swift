@@ -11,12 +11,15 @@ import Alamofire
 
 enum ProfileTarget {
     case profileUser(userId: Int)
+    case profileFriend(_ queryDTO: ProfileFriendRequestQueryDTO)
 }
 
 extension ProfileTarget: TargetType {
     var method: HTTPMethod {
         switch self {
         case .profileUser:
+            return .get
+        case .profileFriend:
             return .get
         }
     }
@@ -25,6 +28,8 @@ extension ProfileTarget: TargetType {
         switch self {
         case .profileUser(let userId):
             return "/user/\(userId)"
+        case .profileFriend(_):
+            return "/friend"
         }
     }
 
@@ -32,6 +37,8 @@ extension ProfileTarget: TargetType {
         switch self {
         case .profileUser:
             return .requestPlain
+        case let .profileFriend(queryDTO):
+            return .requestQuery(queryDTO)
         }
     }
 }
