@@ -8,7 +8,7 @@
 import Foundation
 
 struct VotingAvailableResponseDTO: Decodable {
-    let isStart: Bool
     let point: Int
     let createdAt: String
+    let isPossible: Bool
 }

@@ -80,10 +80,10 @@ final class VotingViewController: BaseViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
                     
-                    let first = data[0].friendName
-                    let second = data[1].friendName
-                    let third = data[2].friendName
-                    let fourth = data[3].friendName
+                    let first = data[0].friendName + "\n" + data[0].friendYelloId
+                    let second = data[1].friendName + "\n" + data[1].friendYelloId
+                    let third = data[2].friendName + "\n" + data[2].friendYelloId
+                    let fourth = data[3].friendName + "\n" + data[3].friendYelloId
                     
                     self.setNameText(first: first, second: second, third: third, fourth: fourth)
                     dump(data)

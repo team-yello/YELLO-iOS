@@ -32,6 +32,7 @@
 		2A3705EA2A62E3C9001AAC93 /* j.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E92A62E3C9001AAC93 /* j.swift */; };
 		2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */; };
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
+		2A5FE1AE2A657AA6008F636C /* VotingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1AD2A657AA6008F636C /* VotingList.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
 		2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */; };
 		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
@@ -223,6 +224,7 @@
 		2A3705E92A62E3C9001AAC93 /* j.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = j.swift; sourceTree = "<group>"; };
 		2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
 		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		2A5FE1AD2A657AA6008F636C /* VotingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingList.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingListResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
@@ -684,6 +686,22 @@
 			path = VotingTimer;
 			sourceTree = "<group>";
 		};
+		2A5FE1AF2A657B52008F636C /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		2A5FE1B02A657B6B008F636C /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
 		2AA0DBA72A546C24002B1370 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,7 +735,8 @@
 		2AA0DBAC2A546D99002B1370 /* Voting */ = {
 			isa = PBXGroup;
 			children = (
-				2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */,
+				2A5FE1B02A657B6B008F636C /* BaseView */,
+				2A5FE1AF2A657B52008F636C /* Enum */,
 				2AD1A1A92A57175600CB988B /* VotingLocked */,
 				2AD1A1B62A57475000CB988B /* VotingStart */,
 				2AD1A1AA2A57176200CB988B /* Voting */,
@@ -764,7 +783,7 @@
 				2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */,
 				2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */,
 				2AD1A1D52A5C952000CB988B /* VotingFunction.swift */,
-				2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */,
+				2A5FE1AD2A657AA6008F636C /* VotingList.swift */,
 			);
 			path = Voting;
 			sourceTree = "<group>";
@@ -1395,6 +1414,7 @@
 				C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
 				2A3705E22A62E39C001AAC93 /* h.swift in Sources */,
+				2A5FE1AE2A657AA6008F636C /* VotingList.swift in Sources */,
 				C3FF248E2A5E8DB700A97D40 /* TabBarHeight.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,

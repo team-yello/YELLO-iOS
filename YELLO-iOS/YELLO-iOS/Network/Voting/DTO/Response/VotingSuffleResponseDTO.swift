@@ -10,4 +10,5 @@ import Foundation
 struct VotingSuffleResponseDTO: Decodable {
     let friendId: Int
     let friendName: String
+    let friendYelloId: String
 }
