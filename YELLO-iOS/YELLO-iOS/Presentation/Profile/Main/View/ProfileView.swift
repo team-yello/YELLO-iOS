@@ -21,10 +21,18 @@ final class ProfileView: UIView {
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
     var indexNumber: Int = -1
-    
+    var friendCount: Int = 0 {
+        didSet {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.myFriendTableView.reloadData()
+            }
+        }
+    }
+ 
     var fetchingMore = false
     var myProfileFriendModelModel: [ProfileFriendResponseDetail] = []
-    private var initialProfileFriendDataCount = 10
+    
+    var initialProfileFriendDataCount = 10
     var profileFriendPage: Int = 0
     
     var myProfileFriendModelDummy: [ProfileFriendResponseDetail] = [] {
@@ -155,19 +163,14 @@ extension ProfileView {
             case .success(let data):
                 guard let data = data.data else { return }
                 
-//                let friendModels = data.map { profileFriend in
-//                    return ProfileFriendResponseDetail(from: profileFriend)
-//                }
-                
                 let friendModels = data.friends.map { profileFriend in
                     
                     return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount, point: profileFriend.point)
                 }
                 
                 self.myProfileFriendModelDummy.append(contentsOf: friendModels)
+                self.friendCount = data.totalCount
                 self.myFriendTableView.reloadData()
-//                self.updateView()
-//                print(self.recommendingSchoolFriendTableViewModel)
                 dump(data)
                 print("통신 성공")
             default:
@@ -204,7 +207,7 @@ extension ProfileView: UITableViewDataSource {
         switch section {
         case 0:
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyProfileHeaderView.cellIdentifier) as? MyProfileHeaderView
-            view?.friendCountView.friendCountLabel.text = String(self.myProfileFriendModelDummy.count) + "명"
+            view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
             DispatchQueue.main.async {
                 view?.addBottomBorderWithColor(color: .black)
             }

@@ -71,7 +71,16 @@ extension ProfileViewController: HandleFriendCellDelegate {
 extension ProfileViewController: HandleDeleteFriendButtonDelegate {
     func deleteFriendButtonTapped() {
         profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].name + StringLiterals.Profile.Friend.toastMessage)
+        
+        friendProfileViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
+        
         profileView.myProfileFriendModelDummy.remove(at: profileView.indexNumber)
+        profileView.myProfileFriendModelModel.remove(at: profileView.indexNumber)
         profileView.myFriendTableView.deleteRows(at: [[0, profileView.indexNumber]], with: .right)
+        
+        profileView.initialProfileFriendDataCount -= 1
+        profileView.friendCount -= 1
+        profileView.myFriendTableView.reloadData()
+        profileView.myProfileHeaderView.myProfileView.profileUser(userId: profileView.indexNumber)
     }
 }
