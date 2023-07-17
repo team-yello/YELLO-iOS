@@ -119,7 +119,7 @@ extension KakaoFriendView {
             self.updateView()
         }
         
-        recommendingAddFriend(friendId: recommendingKakaoFriendTableViewModel[indexPath.row].recommendingFriendListData.id)
+        recommendingAddFriend(friendId: recommendingKakaoFriendTableViewDummy[indexPath.row].friends.id)
         kakaoFriendTableView.reloadRows(at: [indexPath], with: .none)
         initialKakaoDataCount -= 1
     }
@@ -150,9 +150,9 @@ extension KakaoFriendView {
             case .success(let data):
                 guard let data = data.data else { return }
                 
-                let friendModels = data.map { recommendingFriend in
+                let friendModels = data.friends.map { recommendingFriend in
                     return FriendModel(
-                        recommendingFriendListData: recommendingFriend,
+                        friends: Friends(id: recommendingFriend.id, name: recommendingFriend.name, group: recommendingFriend.group, profileImage: recommendingFriend.profileImage),
                         isButtonSelected: false
                     )
                 }

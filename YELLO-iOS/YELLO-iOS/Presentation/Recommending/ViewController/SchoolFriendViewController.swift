@@ -25,6 +25,7 @@ final class SchoolFriendViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        schoolFriendView.recommendingSchoolFriend(page: schoolFriendView.schoolPage)
         schoolFriendView.updateView()
         schoolFriendView.beginBatchFetch()
     }

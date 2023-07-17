@@ -32,7 +32,6 @@ final class SchoolFriendView: UIView {
         super.init(frame: frame)
         setUI()
         setDelegate()
-        recommendingSchoolFriend(page: schoolPage)
     }
     
     @available(*, unavailable)
@@ -117,12 +116,14 @@ extension SchoolFriendView {
             self.updateView()
         }
         
-        recommendingAddFriend(friendId: recommendingSchoolFriendTableViewModel[indexPath.row].recommendingFriendListData.id)
+        recommendingAddFriend(friendId: recommendingSchoolFriendTableViewDummy[indexPath.row].friends.id)
+        
         schoolFriendTableView.reloadRows(at: [indexPath], with: .none)
         initialSchoolDataCount -= 1
     }
     
     // MARK: Custom Function
+    /// 친구가 없을 때 초대 뷰를 띄우는 로직
     func updateView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             if self.recommendingSchoolFriendTableViewModel.isEmpty {
@@ -146,9 +147,9 @@ extension SchoolFriendView {
             case .success(let data):
                 guard let data = data.data else { return }
                 
-                let friendModels = data.map { recommendingFriend in
+                let friendModels = data.friends.map { recommendingFriend in
                     return FriendModel(
-                        recommendingFriendListData: recommendingFriend,
+                        friends: Friends(id: recommendingFriend.id, name: recommendingFriend.name, group: recommendingFriend.group, profileImage: recommendingFriend.profileImage),
                         isButtonSelected: false
                     )
                 }
