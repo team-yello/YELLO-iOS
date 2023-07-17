@@ -12,6 +12,7 @@ import Alamofire
 enum MyYelloTarget {
     case myYello(_ queryDTO: MyYelloRequestQueryDTO)
     case myYelloDetail(voteId: Int)
+    case myYelloDetailKeyword(voteId: Int)
 }
 
 extension MyYelloTarget: TargetType {
@@ -21,6 +22,8 @@ extension MyYelloTarget: TargetType {
             return .get
         case .myYelloDetail:
             return .get
+        case .myYelloDetailKeyword:
+            return .patch
         }
     }
     
@@ -30,6 +33,8 @@ extension MyYelloTarget: TargetType {
             return "/vote"
         case .myYelloDetail(let voteId):
             return "/vote/\(voteId)"
+        case .myYelloDetailKeyword(let voteId):
+            return "/vote/\(voteId)/keyword"
         }
     }
 
@@ -38,6 +43,8 @@ extension MyYelloTarget: TargetType {
         case let .myYello(queryDTO):
             return .requestQuery(queryDTO)
         case .myYelloDetail:
+            return .requestPlain
+        case .myYelloDetailKeyword:
             return .requestPlain
         }
     }
