@@ -141,11 +141,11 @@ extension YELLOTabBarController {
             result in
             switch result {
             case .success(let data):
-                let data = data.data
-                if ((data?.isPossible) != nil) {
+                guard let data = data.data else { return }
+                if data.isPossible {
                     self.canStart = true
                 } else {
-                    self.canStart = false
+                    self.canStart = true
                 }
                 
                 self.setTabBarAppearance()

@@ -14,5 +14,7 @@ struct VotingData {
     let keywordFoot: String
     let friendList: [String]
     let keywordList: [String]
+    let questionId: Int
+    let friendId: [Int]
     let questionPoint: Int
 }

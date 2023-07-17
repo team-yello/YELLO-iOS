@@ -127,10 +127,10 @@ extension VotingStartViewController {
             result in
             switch result {
             case .success(let data):
-                let data = data.data
-                let point = data?.point
-                self.originView.realMyPoint.setTextWithLineHeight(text: String(point ?? 0), lineHeight: 22)
-                self.myPoint = point ?? 0
+                guard let data = data.data else { return }
+                let point = data.point
+                self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
+                self.myPoint = point
             default:
                 print("network failure")
                 return
@@ -145,14 +145,16 @@ extension VotingStartViewController {
                 guard let data = data.data else { return }
                 let votingList = data.map { data -> VotingData? in
                     var friends = [String]()
+                    var friendsID = [Int]()
                     for i in 0...3 {
                         friends.append(data.friendList[i].name + "\n" + data.friendList[i].yelloId)
+                        friendsID.append(data.friendList[i].id)
                     }
                     var keywords = [String]()
                     for i in 0...3 {
                         keywords.append(data.keywordList[i])
                     }
-                    return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionPoint: data.questionPoint)
+                    return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
                 }
                 self.votingList = votingList
                 

@@ -13,7 +13,8 @@ struct VotingAnswerListRequestDTO: Encodable {
 }
 
 struct VoteAnswerList: Encodable {
-    let friendID, questionID: Int
+    let friendId: Int
+    let questionId: Int
     let keywordName: String
     let colorIndex: Int
 }

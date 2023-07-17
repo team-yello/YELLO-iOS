@@ -45,6 +45,7 @@ extension VotingViewController {
         nameFoot.text = votingList[VotingViewController.pushCount]?.nameFoot
         keywordHead.text = votingList[VotingViewController.pushCount]?.keywordHead
         keywordFoot.text = votingList[VotingViewController.pushCount]?.keywordFoot
+        
     }
     
     func setNameText(first: String, second: String, third: String, fourth: String) {
@@ -108,12 +109,14 @@ extension VotingViewController {
         // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
         if VotingViewController.pushCount >= 10 {
             let viewController = VotingPointViewController()
+            viewController.votingAnswer = votingAnswer
             viewController.myPoint = myPoint
             viewController.votingPlusPoint = votingPlusPoint
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
+            viewController.votingAnswer = votingAnswer
             viewController.myPoint = myPoint
             viewController.votingPlusPoint = votingPlusPoint
             UIView.transition(with: self.navigationController!.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
@@ -208,8 +211,7 @@ extension VotingViewController {
         if nameButtonClick {
             view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
-        nameButtonClick = true
-        
+                
         let nameButtons = [originView.nameOneButton, originView.nameTwoButton, originView.nameThreeButton, originView.nameFourButton]
         
         let nameTexts = [nameTextOne, nameTextTwo, nameTextThree, nameTextFour]
@@ -225,12 +227,15 @@ extension VotingViewController {
                 let unselectedText = nameTexts[index]
                 unselectedText.textColor = .grayscales700
             }
+            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[index] ?? 0
         }
         
         view.addSubview(nameMiddleText)
         nameMiddleText.snp.makeConstraints {
             $0.center.equalTo(nameMiddleBackground)
         }
+        
+        nameButtonClick = true
     }
     
     @objc
@@ -238,24 +243,35 @@ extension VotingViewController {
         if keywordButtonClick {
             view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
-        keywordButtonClick = true
         
         sender.setTitleColor(.yelloMain500, for: .normal)
         keywordMiddleText.text = sender.titleLabel?.text
 
         let keywordButtons = [originView.keywordOneButton, originView.keywordTwoButton, originView.keywordThreeButton, originView.keywordFourButton]
 
+        if sender == originView.keywordOneButton {
+            keyword = votingList[VotingViewController.pushCount - 1]?.keywordList[0] ?? ""
+        } else if sender == originView.keywordTwoButton {
+            keyword = votingList[VotingViewController.pushCount - 1]?.keywordList[1] ?? ""
+        } else if sender == originView.keywordThreeButton {
+            keyword = votingList[VotingViewController.pushCount - 1]?.keywordList[2] ?? ""
+        } else {
+            keyword = votingList[VotingViewController.pushCount - 1]?.keywordList[3] ?? ""
+        }
+        
         for button in keywordButtons {
             button.isEnabled = (button == sender)
             if sender != button {
                 button.setTitleColor(.grayscales700, for: .normal)
             }
         }
-
+        
         view.addSubview(keywordMiddleText)
         keywordMiddleText.snp.makeConstraints {
             $0.center.equalTo(keywordMiddleBackground)
         }
+        
+        keywordButtonClick = true
     }
     
     @objc

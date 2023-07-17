@@ -15,6 +15,8 @@ final class VotingTimerViewController: BaseViewController {
     var timer: Timer?
     
     var notTimerEnd: Bool = true
+    var myPoint = 0
+    var votingPlusPoint = 0
 
     var remainingSeconds: TimeInterval? {
         didSet {
@@ -65,6 +67,7 @@ final class VotingTimerViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        originView.topOfMyPoint.text = String(myPoint)
     }
     
     // MARK: - Style
@@ -230,4 +233,3 @@ final class VotingTimerViewController: BaseViewController {
         
     }
 }
-

@@ -15,6 +15,7 @@ final class VotingPointViewController: BaseViewController {
     private let originView = BaseVotingETCView()
     var myPoint = 0
     var votingPlusPoint = 0
+    var votingAnswer: [VoteAnswerList] = []
     
     override func loadView() {
         self.view = originView
@@ -113,7 +114,8 @@ final class VotingPointViewController: BaseViewController {
 
     @objc
     func yellowButtonClicked() {
-        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: [VoteAnswerList(friendID: 2, questionID: 4, keywordName: "너랑", colorIndex: 3)], totalPoint: 2)
+        print(votingAnswer)
+        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: votingAnswer, totalPoint: votingPlusPoint)
         NetworkService.shared.votingService.postVotingAnswerList(requestDTO: requestDTO) { result in
             switch result {
             case .success(let data):
@@ -126,6 +128,8 @@ final class VotingPointViewController: BaseViewController {
             }
         }
         let viewController = VotingTimerViewController()
+        viewController.myPoint = myPoint
+        viewController.votingPlusPoint = votingPlusPoint
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 

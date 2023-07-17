@@ -13,6 +13,9 @@ import Then
 final class VotingViewController: BaseViewController {
     static var pushCount = 0
     var votingList: [VotingData?] = []
+    var votingAnswer: [VoteAnswerList] = []
+    var friendID: Int = 0
+    var keyword: String = ""
     var myPoint = 0
     var votingPlusPoint = 0
     
@@ -73,9 +76,11 @@ final class VotingViewController: BaseViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.setNextViewController()
             }
-            if VotingViewController.pushCount < 10 {
-                myPoint += votingList[VotingViewController.pushCount]?.questionPoint ?? 0
-                votingPlusPoint += votingList[VotingViewController.pushCount]?.questionPoint ?? 0
+            if VotingViewController.pushCount <= 10 {
+                myPoint += votingList[VotingViewController.pushCount - 1]?.questionPoint ?? 0
+                votingPlusPoint += votingList[VotingViewController.pushCount - 1]?.questionPoint ?? 0
+                
+                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount - 1]?.questionId ?? 0, keywordName: keyword, colorIndex: VotingViewController.pushCount - 1))
             }
         }
     }
@@ -93,7 +98,6 @@ final class VotingViewController: BaseViewController {
                     let fourth = data[3].friendName + "\n" + data[3].friendYelloId
                     
                     self.setNameText(first: first, second: second, third: third, fourth: fourth)
-                    dump(data)
                 
                 default:
                     print("network failure")
@@ -126,8 +130,6 @@ final class VotingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print(self.myPoint)
-        print(self.votingPlusPoint)
         tabBarController?.tabBar.isHidden = true
     }
     
