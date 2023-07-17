@@ -17,16 +17,9 @@ final class SchoolFriendView: UIView {
     var fetchingMore = false
     var recommendingSchoolFriendTableViewModel: [FriendModel] = []
     private var initialSchoolDataCount = 10
+    var schoolPage: Int = 0
 
     var recommendingSchoolFriendTableViewDummy: [FriendModel] = []
-//        FriendModel(name: "정채은", school: "이화여자대학교 물리학과 21학번", isButtonSelected: false),
-//        FriendModel(name: "김채은", school: "이화여자대학교 물리학과 22학번", isButtonSelected: false),
-//        FriendModel(name: "이채은", school: "이화여자대학교 물리학과 23학번", isButtonSelected: false),
-//        FriendModel(name: "황채은", school: "이화여자대학교 물리학과 24학번", isButtonSelected: false),
-//        FriendModel(name: "최채은", school: "이화여자대학교 물리학과 25학번", isButtonSelected: false),
-//        FriendModel(name: "윤채은", school: "이화여자대학교 물리학과 26학번", isButtonSelected: false),
-//        FriendModel(name: "성채은", school: "이화여자대학교 물리학과 27학번", isButtonSelected: false),
-//        FriendModel(name: "박채은", school: "이화여자대학교 물리학과 28학번", isButtonSelected: false)]
     
     // MARK: Component
     private let inviteBannerView = InviteBannerView()
@@ -39,6 +32,7 @@ final class SchoolFriendView: UIView {
         super.init(frame: frame)
         setUI()
         setDelegate()
+        recommendingSchoolFriend(page: schoolPage)
     }
     
     @available(*, unavailable)
@@ -54,6 +48,7 @@ extension SchoolFriendView {
     private func setUI() {
         setStyle()
         setLayout()
+        updateView()
     }
     
     private func setStyle() {
@@ -127,7 +122,7 @@ extension SchoolFriendView {
     }
     
     // MARK: Custom Function
-    private func updateView() {
+    func updateView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             if self.recommendingSchoolFriendTableViewModel.isEmpty {
                 self.inviteBannerView.isHidden = true
@@ -138,6 +133,33 @@ extension SchoolFriendView {
                 self.inviteBannerView.isHidden = false
                 self.schoolFriendTableView.isHidden = false
                 self.emptyFriendView.isHidden = true
+            }
+        }
+    }
+    
+    // MARK: - Network
+    func recommendingSchoolFriend(page: Int) {
+        let queryDTO = RecommendingRequestQueryDTO(page: page)
+        NetworkService.shared.recommendingService.recommendingSchoolFriend(queryDTO: queryDTO) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                let friendModels = data.map { recommendingFriend in
+                    return FriendModel(
+                        recommendingFriendListData: [recommendingFriend],
+                        isButtonSelected: false
+                    )
+                }
+                
+                self.recommendingSchoolFriendTableViewDummy.append(contentsOf: friendModels)
+                self.schoolFriendTableView.reloadData()
+                self.updateView()
+                print(self.recommendingSchoolFriendTableViewModel)
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
             }
         }
     }
@@ -183,6 +205,8 @@ extension SchoolFriendView: UITableViewDataSource {
         if offsetY > contentHeight - scrollView.frame.height {
             if !fetchingMore {
                 beginBatchFetch()
+                schoolPage += 1
+                recommendingSchoolFriend(page: schoolPage)
             }
         }
     }

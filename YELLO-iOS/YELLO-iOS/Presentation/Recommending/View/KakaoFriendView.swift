@@ -33,7 +33,6 @@ final class KakaoFriendView: UIView {
         setUI()
         setDelegate()
         recommendingKakaoFriend(page: kakaoPage)
-
     }
     
     @available(*, unavailable)
@@ -59,6 +58,8 @@ extension KakaoFriendView {
             $0.rowHeight = 77
             $0.register(FriendTableViewCell.self, forCellReuseIdentifier: FriendTableViewCell.identifier)
             $0.backgroundColor = .black
+            $0.separatorColor = .grayscales800
+            $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
         }
         
@@ -137,6 +138,35 @@ extension KakaoFriendView {
             }
         }
     }
+    
+    // MARK: - Network
+    func recommendingKakaoFriend(page: Int) {
+    
+        let queryDTO = RecommendingRequestQueryDTO(page: page)
+        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"])
+        NetworkService.shared.recommendingService.recommendingKakaoFriend(queryDTO: queryDTO, requestDTO: requestDTO) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                let friendModels = data.map { recommendingFriend in
+                    return FriendModel(
+                        recommendingFriendListData: [recommendingFriend],
+                        isButtonSelected: false
+                    )
+                }
+                
+                self.recommendingKakaoFriendTableViewDummy.append(contentsOf: friendModels)
+                self.kakaoFriendTableView.reloadData()
+                self.updateView()
+                print(self.recommendingKakaoFriendTableViewModel)
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
 }
 
 // MARK: UITableViewDelegate
@@ -208,35 +238,6 @@ extension KakaoFriendView: UITableViewDataSource {
             self.fetchingMore = false
             self.kakaoFriendTableView.reloadData()
             initialKakaoDataCount = recommendingKakaoFriendTableViewModel.count
-        }
-    }
-    
-    // MARK: - Network
-    func recommendingKakaoFriend(page: Int) {
-    
-        let queryDTO = RecommendingRequestQueryDTO(page: page)
-        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"])
-        NetworkService.shared.recommendingService.recommendingKakaoFriend(queryDTO: queryDTO, requestDTO: requestDTO) { response in
-            switch response {
-            case .success(let data):
-                guard let data = data.data else { return }
-                
-                let friendModels = data.map { recommendingFriend in
-                    return FriendModel(
-                        recommendingFriendListData: [recommendingFriend],
-                        isButtonSelected: false
-                    )
-                }
-                
-                self.recommendingKakaoFriendTableViewDummy.append(contentsOf: friendModels)
-                self.kakaoFriendTableView.reloadData()
-                self.updateView()
-                print(self.recommendingKakaoFriendTableViewModel)
-                print("통신 성공")
-            default:
-                print("network fail")
-                return
-            }
         }
     }
 }
