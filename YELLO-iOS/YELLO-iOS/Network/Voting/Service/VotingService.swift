@@ -10,10 +10,10 @@ protocol VotingServiceProtocol {
     func getVotingAvailable(completion: @escaping (NetworkResult<BaseResponse<VotingAvailableResponseDTO>>) -> Void)
     func getVotingSuffle(completion: @escaping (NetworkResult<BaseResponse<[VotingSuffleResponseDTO]>>) -> Void)
     func getVotingList(completion: @escaping (NetworkResult<BaseResponse<[VotingListResponseDTO]>>) -> Void)
+    func postVotingAnswerList(requestDTO: VotingAnswerListRequestDTO, completion: @escaping (NetworkResult<BaseResponse<VotingAnswerListResponseDTO>>) -> Void)
 }
 
 final class VotingService: APIRequestLoader<VotingTarget>, VotingServiceProtocol {
-    
     func getVotingAvailable(completion: @escaping (NetworkResult<BaseResponse<VotingAvailableResponseDTO>>) -> Void) {
 
         fetchData(
@@ -32,5 +32,10 @@ final class VotingService: APIRequestLoader<VotingTarget>, VotingServiceProtocol
         fetchData(
             target: .getVotingList,
             responseData: BaseResponse<[VotingListResponseDTO]>.self, completion: completion)
+    }
+    func postVotingAnswerList(requestDTO: VotingAnswerListRequestDTO, completion: @escaping (NetworkResult<BaseResponse<VotingAnswerListResponseDTO>>) -> Void) {
+        
+        fetchData(target: .postVotingAnswerList(requestDTO),
+                  responseData: BaseResponse<VotingAnswerListResponseDTO>.self, completion: completion)
     }
 }

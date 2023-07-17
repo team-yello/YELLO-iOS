@@ -13,6 +13,7 @@ enum VotingTarget {
     case getVotingAvailable
     case getVotingSuffle
     case getVotingList
+    case postVotingAnswerList(_ requestDTO: VotingAnswerListRequestDTO)
 }
 
 extension VotingTarget: TargetType {
@@ -24,6 +25,8 @@ extension VotingTarget: TargetType {
             return .get
         case .getVotingList:
             return .get
+        case .postVotingAnswerList:
+            return .post
         }
     }
 
@@ -35,6 +38,8 @@ extension VotingTarget: TargetType {
             return "/friend/shuffle"
         case .getVotingList:
             return "/vote/question"
+        case .postVotingAnswerList:
+            return "/vote"
         }
     }
 
@@ -46,6 +51,8 @@ extension VotingTarget: TargetType {
             return .requestPlain
         case .getVotingList:
             return .requestPlain
+        case let .postVotingAnswerList(requestDTO):
+            return .requestWithBody(requestDTO)
         }
     }
 

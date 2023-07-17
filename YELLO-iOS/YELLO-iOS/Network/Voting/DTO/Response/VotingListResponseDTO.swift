@@ -8,15 +8,22 @@
 import Foundation
 
 struct VotingListResponseDTO: Decodable {
-    let question: Question
-    let friendList: [String]
-    let keywordList: [String]
     let questionPoint: Int
+    let keywordList: [String]
+    let question: Question
+    let friendList: [FriendListData]
 }
 
 struct Question: Decodable {
     let questionID: Int
-    let nameHead: String
-    let nameFoot, keywordHead: String?
-    let keywordFoot: String
+    let nameHead: String?
+    let nameFoot: String
+    let keywordHead: String?
+    let keywordFoot: String?
+}
+
+struct FriendListData: Decodable {
+    let id: Int?
+    let yelloId: String?
+    let name: String?
 }

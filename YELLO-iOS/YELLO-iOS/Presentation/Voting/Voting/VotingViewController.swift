@@ -82,8 +82,8 @@ final class VotingViewController: BaseViewController {
                     
                     let first = data[0].friendName
                     let second = data[1].friendName
-                    let third = data[1].friendName
-                    let fourth = data[1].friendName
+                    let third = data[2].friendName
+                    let fourth = data[3].friendName
                     
                     self.setNameText(first: first, second: second, third: third, fourth: fourth)
                     dump(data)

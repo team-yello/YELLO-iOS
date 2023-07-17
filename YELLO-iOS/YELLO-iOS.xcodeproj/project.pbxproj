@@ -34,6 +34,8 @@
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
 		2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */; };
+		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
+		2A8AA7072A65150B005A664D /* VotingAnswerListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */; };
 		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
 		2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */; };
 		2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB32A546E62002B1370 /* VotingViewController.swift */; };
@@ -223,6 +225,8 @@
 		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingListResponseDTO.swift; sourceTree = "<group>"; };
+		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
+		2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListResponseDTO.swift; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB32A546E62002B1370 /* VotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
@@ -626,6 +630,7 @@
 				2A3705D92A62E35F001AAC93 /* VotingAvailableResponseDTO.swift */,
 				2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */,
 				2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */,
+				2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -633,6 +638,7 @@
 		2A3705C22A62E234001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1418,7 +1424,9 @@
 				C3FF24972A5E907D00A97D40 /* MyYelloNameTableViewCell.swift in Sources */,
 				C3FF249B2A5EE46500A97D40 /* MyYelloDetailViewController.swift in Sources */,
 				C3A799EA2A494D6800D3EFD8 /* UIView+.swift in Sources */,
+				2A8AA7072A65150B005A664D /* VotingAnswerListResponseDTO.swift in Sources */,
 				C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */,
+				2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
 				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,
 				36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */,

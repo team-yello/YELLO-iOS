@@ -116,6 +116,18 @@ final class VotingPointViewController: BaseViewController {
 
     @objc
     func yellowButtonClicked() {
+        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: [VoteAnswerList(friendID: 2, questionID: 4, keywordName: "너랑", colorIndex: 3)], totalPoint: 2)
+        NetworkService.shared.votingService.postVotingAnswerList(requestDTO: requestDTO) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                dump(data)
+
+            default:
+                print("network failure")
+                return
+            }
+        }
         let viewController = VotingTimerViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }

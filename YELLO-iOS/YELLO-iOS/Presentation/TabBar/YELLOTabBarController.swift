@@ -143,7 +143,7 @@ extension YELLOTabBarController {
             case .success(let data):
                 let data = data.status
                 if data == 400 {
-                    self.canStart = true
+                    self.canStart = false
                 } else {
                     self.canStart = true
                 }
