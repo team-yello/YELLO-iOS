@@ -119,6 +119,7 @@ final class VotingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getVotingList()
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -285,6 +286,22 @@ final class VotingViewController: BaseViewController {
         keywordMiddleText.snp.makeConstraints {
             $0.width.equalTo(144.adjusted)
             $0.height.equalTo(30.adjusted)
+        }
+    }
+}
+
+extension VotingViewController {
+    func getVotingList() {
+        NetworkService.shared.votingService.getVotingList { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                dump(data)
+
+            default:
+                print("network failure")
+                return
+            }
         }
     }
 }

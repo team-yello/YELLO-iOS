@@ -12,6 +12,7 @@ import Alamofire
 enum VotingTarget {
     case getVotingAvailable
     case getVotingSuffle
+    case getVotingList
 }
 
 extension VotingTarget: TargetType {
@@ -20,6 +21,8 @@ extension VotingTarget: TargetType {
         case .getVotingAvailable:
             return .get
         case .getVotingSuffle:
+            return .get
+        case .getVotingList:
             return .get
         }
     }
@@ -30,6 +33,8 @@ extension VotingTarget: TargetType {
             return "/vote/available"
         case .getVotingSuffle:
             return "/friend/shuffle"
+        case .getVotingList:
+            return "/vote/question"
         }
     }
 
@@ -38,6 +43,8 @@ extension VotingTarget: TargetType {
         case .getVotingAvailable:
             return .requestPlain
         case .getVotingSuffle:
+            return .requestPlain
+        case .getVotingList:
             return .requestPlain
         }
     }

@@ -143,7 +143,7 @@ extension YELLOTabBarController {
             case .success(let data):
                 let data = data.status
                 if data == 400 {
-                    self.canStart = false
+                    self.canStart = true
                 } else {
                     self.canStart = true
                 }
@@ -151,6 +151,7 @@ extension YELLOTabBarController {
                 self.setTabBarItems()
             default:
                 print("network failure")
+                return
             }
         }
     }

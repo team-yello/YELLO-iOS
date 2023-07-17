@@ -9,6 +9,7 @@ import Foundation
 protocol VotingServiceProtocol {
     func getVotingAvailable(completion: @escaping (NetworkResult<BaseResponse<VotingAvailableResponseDTO>>) -> Void)
     func getVotingSuffle(completion: @escaping (NetworkResult<BaseResponse<[VotingSuffleResponseDTO]>>) -> Void)
+    func getVotingList(completion: @escaping (NetworkResult<BaseResponse<[VotingListResponseDTO]>>) -> Void)
 }
 
 final class VotingService: APIRequestLoader<VotingTarget>, VotingServiceProtocol {
@@ -25,5 +26,11 @@ final class VotingService: APIRequestLoader<VotingTarget>, VotingServiceProtocol
         fetchData(
             target: .getVotingSuffle,
             responseData: BaseResponse<[VotingSuffleResponseDTO]>.self, completion: completion)
+    }
+    func getVotingList(completion: @escaping (NetworkResult<BaseResponse<[VotingListResponseDTO]>>) -> Void) {
+        
+        fetchData(
+            target: .getVotingList,
+            responseData: BaseResponse<[VotingListResponseDTO]>.self, completion: completion)
     }
 }
