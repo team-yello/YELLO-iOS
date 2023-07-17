@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VotingList {
+struct VotingData {
     let nameHead: String
     let nameFoot: String
     let keywordHead: String

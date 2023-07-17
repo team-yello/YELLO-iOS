@@ -28,6 +28,13 @@ extension VotingViewController {
         self.originView.yelloProgress.image =
         dummy[VotingViewController.pushCount].yelloProgress
         self.originView.numOfPageLabel.text = String(VotingViewController.pushCount + 1)
+        
+        setNameText(
+            first: votingList[VotingViewController.pushCount]?.friendList[0] ?? "",
+            second: votingList[VotingViewController.pushCount]?.friendList[1] ?? "",
+            third: votingList[VotingViewController.pushCount]?.friendList[2] ?? "",
+            fourth: votingList[VotingViewController.pushCount]?.friendList[3] ?? ""
+        )
     }
     
     func setNameText(first: String, second: String, third: String, fourth: String) {
@@ -88,13 +95,13 @@ extension VotingViewController {
     
     /// 다음 뷰컨을 지정하는 함수
     func setNextViewController() {
-        var viewController = UIViewController()
         // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
         if VotingViewController.pushCount >= 10 {
-            viewController = VotingPointViewController()
+            let viewController = VotingPointViewController()
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
-            viewController = VotingViewController()
+            let viewController = VotingViewController()
+            viewController.votingList = votingList
             UIView.transition(with: self.navigationController!.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 // 전환 시 스르륵 바뀌는 애니메이션 적용
                 self.navigationController?.pushViewController(viewController, animated: false)

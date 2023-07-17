@@ -15,6 +15,7 @@ final class VotingStartViewController: BaseViewController {
     
     private let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
+    private var votingList: [VotingData?] = []
     
     override func loadView() {
         self.view = originView
@@ -23,6 +24,7 @@ final class VotingStartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getVotingList()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
@@ -110,7 +112,35 @@ final class VotingStartViewController: BaseViewController {
     @objc
     func yellowButtonClicked() {
         let viewController = VotingViewController()
+        viewController.votingList = votingList
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+}
+
+extension VotingStartViewController {
+    func getVotingList() {
+        NetworkService.shared.votingService.getVotingList { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                let votingList = data.map { data -> VotingData? in
+                    var friends = [String]()
+                    for i in 0...3 {
+                        friends.append(data.friendList[i].name + "\n" + data.friendList[i].yelloId)
+                    }
+                    var keywords = [String]()
+                    for i in 0...3 {
+                        keywords.append(data.keywordList[i])
+                    }
+                    return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionPoint: data.questionPoint)
+                }
+                self.votingList = votingList
+                
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
 }

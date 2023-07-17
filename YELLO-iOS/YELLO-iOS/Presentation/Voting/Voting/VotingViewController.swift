@@ -12,6 +12,7 @@ import Then
 
 final class VotingViewController: BaseViewController {
     static var pushCount = 0
+    var votingList: [VotingData?] = []
     
     let originView = BaseVotingMainView()
   
@@ -119,15 +120,13 @@ final class VotingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getVotingList()
+        print(self.votingList)
         tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: - Style
     
     override func setStyle() {
-        
-        setNameText(first: StringLiterals.Voting.VoteName.one, second: StringLiterals.Voting.VoteName.two, third: StringLiterals.Voting.VoteName.three, fourth: StringLiterals.Voting.VoteName.four)
         
         originView.nameOneButton.do {
             $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
@@ -286,22 +285,6 @@ final class VotingViewController: BaseViewController {
         keywordMiddleText.snp.makeConstraints {
             $0.width.equalTo(144.adjusted)
             $0.height.equalTo(30.adjusted)
-        }
-    }
-}
-
-extension VotingViewController {
-    func getVotingList() {
-        NetworkService.shared.votingService.getVotingList { result in
-            switch result {
-            case .success(let data):
-                guard let data = data.data else { return }
-                dump(data)
-
-            default:
-                print("network failure")
-                return
-            }
         }
     }
 }
