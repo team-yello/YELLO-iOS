@@ -24,6 +24,11 @@ final class FriendProfileViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.friendProfileView.layoutChange()
+    }
+    
     // MARK: Layout Helpers
     override func setStyle() {
         view.backgroundColor = .black

@@ -210,8 +210,8 @@ final class FriendProfileView: BaseView {
     
     // MARK: Layout Helpers
     private func dismissView() {
-        handleBottomSheetButtonDelegate?.dismissView()
         layoutChange()
+        handleBottomSheetButtonDelegate?.dismissView()
     }
     
     func configureMyProfileFriendDetailCell(_ model: ProfileFriendResponseDetail) {
@@ -223,7 +223,7 @@ final class FriendProfileView: BaseView {
         friendCountView.countLabel.text = String(model.friendCount)
     }
     
-    private func layoutChange() {
+    func layoutChange() {
         self.addSubviews(messageCountView,
                          friendCountView,
                          deleteButton)
