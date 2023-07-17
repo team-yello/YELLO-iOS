@@ -22,6 +22,12 @@ final class KakaoFriendViewController: UIViewController {
         super.viewDidLoad()
         setUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        kakaoFriendView.updateView()
+        kakaoFriendView.beginBatchFetch()
+    }
 }
 
 // MARK: - extension
