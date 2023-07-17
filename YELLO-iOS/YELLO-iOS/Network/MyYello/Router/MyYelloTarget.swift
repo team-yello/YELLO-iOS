@@ -11,12 +11,15 @@ import Alamofire
 
 enum MyYelloTarget {
     case myYello(_ queryDTO: MyYelloRequestQueryDTO)
+    case myYelloDetail(voteId: Int)
 }
 
 extension MyYelloTarget: TargetType {
     var method: HTTPMethod {
         switch self {
         case .myYello:
+            return .get
+        case .myYelloDetail:
             return .get
         }
     }
@@ -25,6 +28,8 @@ extension MyYelloTarget: TargetType {
         switch self {
         case .myYello(_):
             return "/vote"
+        case .myYelloDetail(let voteId):
+            return "/vote/\(voteId)"
         }
     }
 
@@ -32,6 +37,8 @@ extension MyYelloTarget: TargetType {
         switch self {
         case let .myYello(queryDTO):
             return .requestQuery(queryDTO)
+        case .myYelloDetail:
+            return .requestPlain
         }
     }
 }

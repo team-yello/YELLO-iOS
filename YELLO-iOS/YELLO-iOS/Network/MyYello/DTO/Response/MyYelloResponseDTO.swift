@@ -25,7 +25,7 @@ struct Yello: Codable {
     let createdAt: String
 }
 
-// MARK: - VoteVote
+// MARK: - Vote
 struct Vote: Codable {
     let nameHead, nameFoot, keywordHead, keyword: String
     let keywordFoot: String
