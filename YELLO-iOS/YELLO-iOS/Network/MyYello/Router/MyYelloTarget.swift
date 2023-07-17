@@ -14,6 +14,7 @@ enum MyYelloTarget {
     case myYelloDetail(voteId: Int)
     case myYelloDetailKeyword(voteId: Int)
     case myYelloDetailName(voteId: Int)
+    case payCheck(_ requestDTO: PayRequestBodyDTO)
 }
 
 extension MyYelloTarget: TargetType {
@@ -27,6 +28,8 @@ extension MyYelloTarget: TargetType {
             return .patch
         case .myYelloDetailName:
             return .patch
+        case .payCheck:
+            return .post
         }
     }
     
@@ -40,6 +43,8 @@ extension MyYelloTarget: TargetType {
             return "/vote/\(voteId)/keyword"
         case .myYelloDetailName(let voteId):
             return "/vote/\(voteId)/name"
+        case .payCheck(_):
+            return "/pay"
         }
     }
 
@@ -53,6 +58,8 @@ extension MyYelloTarget: TargetType {
             return .requestPlain
         case .myYelloDetailName:
             return .requestPlain
+        case let .payCheck(requestDTO):
+            return .requestWithBody(requestDTO)
         }
     }
 }
