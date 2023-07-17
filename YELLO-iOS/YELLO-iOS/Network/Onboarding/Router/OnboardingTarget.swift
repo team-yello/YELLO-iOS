@@ -13,7 +13,7 @@ enum OnboardingTarget {
     case postTokenChange(_ dto: KakaoLoginRequestDTO) /// 소셜로그인
     case getSchoolList(_ dto: SchoolSearchRequestQueryDTO) /// 학교 검색
     case getMajorList(_ dto: MajorSearchRequestQueryDTO) /// 학과 검색
-    case getCheckDuplicate(_ id: String) /// 아이디 중복 확인
+    case getCheckDuplicate(_ dto: IdValidRequestQueryDTO) /// 아이디 중복 확인
     case postFirendsList( _ dto: AddFriendsRequestQueryDTO) /// 가입한 친구 목록 불러오기
     case postUserInfo(_ accessToken: String, _ requestDTO: SignInRequestDTO ) /// 회원가입
 }
@@ -47,7 +47,7 @@ extension OnboardingTarget: TargetType {
         case .postUserInfo(_, _):
             return "/auth/signup"
         case .getMajorList(_):
-            return ""
+            return "/auth/school/department"
         case .postFirendsList(_):
             return ""
         }
@@ -59,8 +59,8 @@ extension OnboardingTarget: TargetType {
             return .requestWithBody(dto)
         case .getSchoolList(let dto):
             return .requestQuery(dto)
-        case .getCheckDuplicate(let acessToken):
-            return .requestQuery(acessToken)
+        case .getCheckDuplicate(let dto):
+            return .requestQuery(dto)
         case .postUserInfo(let acessToken, let dto):
             return .requestQueryWithBody(acessToken, bodyParameter: dto)
         case .getMajorList(let dto):
