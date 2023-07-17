@@ -54,31 +54,31 @@ final class FriendProfileView: BaseView {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "정채은", lineHeight: 28)
+            $0.setTextWithLineHeight(text: "", lineHeight: 28)
             $0.font = .uiHeadline03
             $0.textColor = .white
         }
         
         instagramLabel.do {
-            $0.setTextWithLineHeight(text: "@chaentopia", lineHeight: 16)
+            $0.setTextWithLineHeight(text: "", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .yelloMain600
         }
         
         schoolLabel.do {
-            $0.setTextWithLineHeight(text: "이화여자대학교 융합콘텐츠학과 20학번\n", lineHeight: 20)
+            $0.setTextWithLineHeight(text: "", lineHeight: 20)
             $0.font = .uiBody02
             $0.textColor = .grayscales500
             $0.textAlignment = .center
         }
         
         messageCountView.do {
-            $0.countLabel.text = "31"
+            $0.countLabel.text = ""
             $0.titleLabel.text = StringLiterals.Profile.Friend.message
         }
         
         friendCountView.do {
-            $0.countLabel.text = "95"
+            $0.countLabel.text = ""
             $0.titleLabel.text = StringLiterals.Profile.Friend.friendNumber
         }
         
@@ -254,7 +254,6 @@ final class FriendProfileView: BaseView {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-//                self.myFriendTableView.reloadData()
                 dump(data)
                 print("통신 성공")
             default:

@@ -23,6 +23,8 @@ final class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
+        self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 161)
+        self.profileView.myFriendTableView.reloadData()
         self.profileView.beginBatchFetch()
     }
 
@@ -74,13 +76,15 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
         
         friendProfileViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
         
-        profileView.myProfileFriendModelDummy.remove(at: profileView.indexNumber)
-        profileView.myProfileFriendModelModel.remove(at: profileView.indexNumber)
-        profileView.myFriendTableView.deleteRows(at: [[0, profileView.indexNumber]], with: .right)
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
+            self.profileView.myProfileFriendModelModel.remove(at: self.profileView.indexNumber)
+            self.profileView.myFriendTableView.deleteRows(at: [[0, self.profileView.indexNumber]], with: .right)
+            self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 161)
+        }
+        self.profileView.myFriendTableView.reloadData()
         profileView.initialProfileFriendDataCount -= 1
         profileView.friendCount -= 1
-        profileView.myFriendTableView.reloadData()
-        profileView.myProfileHeaderView.myProfileView.profileUser(userId: profileView.indexNumber)
+
     }
 }

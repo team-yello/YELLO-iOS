@@ -19,9 +19,9 @@ final class MyProfileView: UIView {
     private let instagramLabel = UILabel()
     private let schoolLabel = UILabel()
     private let separateView = UIView()
-    private let messageView = CountCustomView()
-    private let friendView = CountCustomView()
-    private let pointView = CountCustomView()
+    let messageView = CountCustomView()
+    let friendView = CountCustomView()
+    let pointView = CountCustomView()
     private let addGroupButton = UIButton()
     
     // MARK: - Function
