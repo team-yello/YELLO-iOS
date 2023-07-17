@@ -30,10 +30,6 @@ final class YELLOTabBarController: UITabBarController {
 
         self.selectedIndex = 2
         self.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
     

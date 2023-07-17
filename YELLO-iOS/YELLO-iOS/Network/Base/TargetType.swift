@@ -31,7 +31,6 @@ extension TargetType {
         )
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         
-
         switch parameters {
         case .requestWithBody(let request):
             let params = request?.toDictionary() ?? [:]
