@@ -254,7 +254,11 @@ extension VotingTimerViewController {
                 guard let afterDate = dateFormatter.date(from: data.createdAt) else { return }
                 let afterSecondsSince1970 = afterDate.timeIntervalSince1970
                 
-                let duration = afterSecondsSince1970 - secondsSince1970
+                var duration = afterSecondsSince1970 - secondsSince1970
+                
+                if duration < 0 {
+                    duration = 0
+                }
                 
                 self.start(duration: duration)
             
