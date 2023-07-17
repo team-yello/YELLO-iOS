@@ -29,7 +29,7 @@ extension RecommendingTarget: TargetType {
         case .recommendingKakaoFriend(_, _):
             return "/friend/recommend/kakao"
         case .recommendingSchoolFriend(_):
-            return "/friend/recommend/school?"
+            return "/friend/recommend/school"
         }
     }
 
