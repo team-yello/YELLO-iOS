@@ -134,10 +134,7 @@ extension MyProfileView {
         }
         
         instagramLabel.snp.makeConstraints {
-            let font = UIFont.uiBody02
-            let fontDescender = font.descender
-            
-            $0.bottom.equalTo(nameLabel).offset(-3.adjusted - fontDescender)
+            $0.bottom.equalTo(nameLabel).offset(-3.adjusted)
             $0.leading.equalTo(nameLabel.snp.trailing).offset(8.adjusted)
         }
         
