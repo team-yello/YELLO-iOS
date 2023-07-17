@@ -92,11 +92,9 @@ extension MyFriendTableViewCell {
     }
     
     // MARK: Custom Function
-    func configureMyProfileFriendCell(_ model: MyProfileFriendModel) {
-        nameLabel.text = model.friendName
-        if model.friendProfileImage != nil {
-            profileImageView.kfSetImage(url: model.friendProfileImage)
-        }
-        schoolLabel.text = model.friendGroup
+    func configureMyProfileFriendCell(_ model: ProfileFriendResponseDetail) {
+        nameLabel.text = model.name
+        profileImageView.kfSetImage(url: model.profileImageUrl)
+        schoolLabel.text = model.group
     }
 }

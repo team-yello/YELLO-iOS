@@ -32,8 +32,6 @@
 		2A3705E22A62E39C001AAC93 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E12A62E39C001AAC93 /* h.swift */; };
 		2A3705E42A62E3A8001AAC93 /* MyYelloTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */; };
 		2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */; };
-		2A3705E82A62E3C5001AAC93 /* i.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E72A62E3C5001AAC93 /* i.swift */; };
-		2A3705EA2A62E3C9001AAC93 /* j.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E92A62E3C9001AAC93 /* j.swift */; };
 		2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */; };
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
 		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
@@ -114,6 +112,9 @@
 		C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E73C2A6455CA0031514C /* RecommendingFriendResponseDTO.swift */; };
 		C306E73F2A6457140031514C /* RecommendingRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E73E2A6457140031514C /* RecommendingRequestQueryDTO.swift */; };
 		C306E7412A650CFD0031514C /* RecommendingAddFriendRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7402A650CFC0031514C /* RecommendingAddFriendRequestDTO.swift */; };
+		C306E7432A6520830031514C /* ProfileUserResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7422A6520830031514C /* ProfileUserResponseDTO.swift */; };
+		C306E7452A656AC40031514C /* ProfileFriendResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7442A656AC40031514C /* ProfileFriendResponseDTO.swift */; };
+		C306E7472A656D170031514C /* ProfileFriendRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7462A656D170031514C /* ProfileFriendRequestQueryDTO.swift */; };
 		C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB32A60657C000F5BA9 /* UITableView+.swift */; };
 		C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB52A607357000F5BA9 /* FriendCountView.swift */; };
 		C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB72A60FE2D000F5BA9 /* NextButton.swift */; };
@@ -236,8 +237,6 @@
 		2A3705E12A62E39C001AAC93 /* h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
 		2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloTarget.swift; sourceTree = "<group>"; };
 		2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloService.swift; sourceTree = "<group>"; };
-		2A3705E72A62E3C5001AAC93 /* i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i.swift; sourceTree = "<group>"; };
-		2A3705E92A62E3C9001AAC93 /* j.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = j.swift; sourceTree = "<group>"; };
 		2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
 		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +316,9 @@
 		C306E73C2A6455CA0031514C /* RecommendingFriendResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendResponseDTO.swift; sourceTree = "<group>"; };
 		C306E73E2A6457140031514C /* RecommendingRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C306E7402A650CFC0031514C /* RecommendingAddFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingAddFriendRequestDTO.swift; sourceTree = "<group>"; };
+		C306E7422A6520830031514C /* ProfileUserResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserResponseDTO.swift; sourceTree = "<group>"; };
+		C306E7442A656AC40031514C /* ProfileFriendResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendResponseDTO.swift; sourceTree = "<group>"; };
+		C306E7462A656D170031514C /* ProfileFriendRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C307ECB32A60657C000F5BA9 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		C307ECB52A607357000F5BA9 /* FriendCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCountView.swift; sourceTree = "<group>"; };
 		C307ECB72A60FE2D000F5BA9 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
@@ -695,7 +697,8 @@
 		2A3705C52A62E244001AAC93 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705E92A62E3C9001AAC93 /* j.swift */,
+				C306E7422A6520830031514C /* ProfileUserResponseDTO.swift */,
+				C306E7442A656AC40031514C /* ProfileFriendResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -703,7 +706,7 @@
 		2A3705C62A62E248001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705E72A62E3C5001AAC93 /* i.swift */,
+				C306E7462A656D170031514C /* ProfileFriendRequestQueryDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1435,6 +1438,7 @@
 				C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */,
 				36E427812A5BD60A0050B34E /* SchoolSearchView.swift in Sources */,
 				36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */,
+				C306E7472A656D170031514C /* ProfileFriendRequestQueryDTO.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
@@ -1452,6 +1456,7 @@
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
 				2A3705D82A62E35A001AAC93 /* e.swift in Sources */,
+				C306E7452A656AC40031514C /* ProfileFriendResponseDTO.swift in Sources */,
 				2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */,
 				2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */,
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
@@ -1481,7 +1486,6 @@
 				C3D266552A5D24540041C7C7 /* SettingCustomButton.swift in Sources */,
 				C3FF24AC2A5F33F400A97D40 /* PointLackView.swift in Sources */,
 				C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */,
-				2A3705EA2A62E3C9001AAC93 /* j.swift in Sources */,
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				2A3705CC2A62E2BF001AAC93 /* OnboardingTarget.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
@@ -1498,7 +1502,6 @@
 				2A3705CA2A62E2A2001AAC93 /* KakaoLoginResponseDTO.swift in Sources */,
 				C3FF249E2A5EE48200A97D40 /* MyYelloDetailView.swift in Sources */,
 				36E4278B2A5C7C010050B34E /* StudentIdViewController.swift in Sources */,
-				2A3705E82A62E3C5001AAC93 /* i.swift in Sources */,
 				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				3662A0F62A654B8D00F482EF /* AddFriendsRequestQueryDTO.swift in Sources */,
@@ -1513,6 +1516,7 @@
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
 				3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */,
 				C3FF24A02A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift in Sources */,
+				C306E7432A6520830031514C /* ProfileUserResponseDTO.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */,
 				36E4276B2A5BCE860050B34E /* GenderViewController.swift in Sources */,
@@ -1731,7 +1735,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 349HWJV2J8;
+				DEVELOPMENT_TEAM = Q827V73L8U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1746,7 +1750,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "YELLO-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = chaen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -19,15 +19,16 @@ final class MyProfileView: UIView {
     private let instagramLabel = UILabel()
     private let schoolLabel = UILabel()
     private let separateView = UIView()
-    private let messageView = CountCustomView()
-    private let friendView = CountCustomView()
-    private let pointView = CountCustomView()
+    let messageView = CountCustomView()
+    let friendView = CountCustomView()
+    let pointView = CountCustomView()
     private let addGroupButton = UIButton()
     
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        profileUser(userId: 161)
         setUI()
     }
     
@@ -52,22 +53,24 @@ extension MyProfileView {
         
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
+            $0.contentMode = .scaleAspectFill
+            $0.makeCornerRound(radius: 24.adjusted)
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "정채은", lineHeight: 30)
+            $0.setTextWithLineHeight(text: "", lineHeight: 30)
             $0.font = .uiHeadline02
             $0.textColor = .white
         }
         
         instagramLabel.do {
-            $0.setTextWithLineHeight(text: "@chaentopia", lineHeight: 20)
+            $0.setTextWithLineHeight(text: "", lineHeight: 20)
             $0.font = .uiBody02
             $0.textColor = .yelloMain500
         }
         
         schoolLabel.do {
-            $0.setTextWithLineHeight(text: "이화여자대학교 융합콘텐츠학과 20학번", lineHeight: 16)
+            $0.setTextWithLineHeight(text: "", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales400
         }
@@ -77,17 +80,17 @@ extension MyProfileView {
         }
         
         messageView.do {
-            $0.countLabel.text = "9"
+            $0.countLabel.text = ""
             $0.titleLabel.text = StringLiterals.Profile.Count.message
         }
         
         friendView.do {
-            $0.countLabel.text = "43"
+            $0.countLabel.text = ""
             $0.titleLabel.text = StringLiterals.Profile.Count.friend
         }
         
         pointView.do {
-            $0.countLabel.text = "940"
+            $0.countLabel.text = ""
             $0.titleLabel.text = StringLiterals.Profile.Count.point
         }
         
@@ -131,10 +134,7 @@ extension MyProfileView {
         }
         
         instagramLabel.snp.makeConstraints {
-            let font = UIFont.uiBody02
-            let fontDescender = font.descender
-            
-            $0.bottom.equalTo(nameLabel).inset(3.adjusted - fontDescender)
+            $0.bottom.equalTo(nameLabel).offset(-3.adjusted)
             $0.leading.equalTo(nameLabel.snp.trailing).offset(8.adjusted)
         }
         
@@ -176,5 +176,28 @@ extension MyProfileView {
     @objc private func addGroupButtonTapped() {
         let url = URL(string: "https://www.google.com/")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    // MARK: - Network
+    func profileUser(userId: Int) {
+        NetworkService.shared.profileService.profileUser(userId: userId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.profileImageView.kfSetImage(url: data.profileImageUrl)
+                self.nameLabel.text = data.name
+                self.instagramLabel.text = "@" + data.yelloId
+                self.schoolLabel.text = data.group
+                self.messageView.countLabel.text = String(data.yelloCount)
+                self.friendView.countLabel.text = String(data.friendCount)
+                self.pointView.countLabel.text = String(data.point)
+                
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
     }
 }
