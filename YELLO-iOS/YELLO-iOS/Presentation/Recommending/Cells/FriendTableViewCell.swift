@@ -69,8 +69,6 @@ extension FriendTableViewCell {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
             $0.makeCornerRound(radius: 21)
-            $0.image = UIImage(systemName: "circle.fill")
-            $0.tintColor = .white
         }
         
         nameLabel.do {
