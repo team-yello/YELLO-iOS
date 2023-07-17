@@ -16,5 +16,5 @@ final class NetworkService {
     let recommendingService: RecommendingServiceProtocol = RecommendingService(apiLogger: APIEventLogger())
 //    let votingService: VotingServiceProtocol = VotingService(apiLogger: APIEventLogger())
 //    let myYelloService: MyYelloServiceProtocol = MyYelloService(apiLogger: APIEventLogger())
-//    let profileService: ProfileServiceProtocol = ProfileService(apiLogger: APIEventLogger())
+    let profileService: ProfileServiceProtocol = ProfileService(apiLogger: APIEventLogger())
 }
