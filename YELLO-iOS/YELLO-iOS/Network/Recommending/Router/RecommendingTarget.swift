@@ -12,6 +12,7 @@ import Alamofire
 enum RecommendingTarget {
     case recommendingKakaoFriend(_ queryDTO: RecommendingRequestQueryDTO, _ requestDTO: RecommendingFriendRequestDTO)
     case recommendingSchoolFriend(_ queryDTO: RecommendingRequestQueryDTO)
+    case recommendingAddFriend(_ friendId: Int)
 }
 
 extension RecommendingTarget: TargetType {
@@ -21,15 +22,19 @@ extension RecommendingTarget: TargetType {
             return .post
         case .recommendingSchoolFriend:
             return .get
+        case .recommendingAddFriend:
+            return .post
         }
     }
-
+    
     var path: String {
         switch self {
         case .recommendingKakaoFriend(_, _):
             return "/friend/recommend/kakao"
         case .recommendingSchoolFriend(_):
             return "/friend/recommend/school"
+        case .recommendingAddFriend(let friendId):
+            return "friend/\(friendId)"
         }
     }
 
@@ -39,6 +44,8 @@ extension RecommendingTarget: TargetType {
             return .requestQueryWithBody(queryDTO, bodyParameter: requestDTO)
         case let .recommendingSchoolFriend(queryDTO):
             return .requestQuery(queryDTO)
+        case .recommendingAddFriend:
+            return .requestPlain
         }
     }
 }

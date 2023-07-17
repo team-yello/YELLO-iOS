@@ -117,6 +117,7 @@ extension SchoolFriendView {
             self.updateView()
         }
         
+        recommendingAddFriend(friendId: recommendingSchoolFriendTableViewModel[indexPath.row].recommendingFriendListData.id)
         schoolFriendTableView.reloadRows(at: [indexPath], with: .none)
         initialSchoolDataCount -= 1
     }
@@ -147,7 +148,7 @@ extension SchoolFriendView {
                 
                 let friendModels = data.map { recommendingFriend in
                     return FriendModel(
-                        recommendingFriendListData: [recommendingFriend],
+                        recommendingFriendListData: recommendingFriend,
                         isButtonSelected: false
                     )
                 }
@@ -156,6 +157,23 @@ extension SchoolFriendView {
                 self.schoolFriendTableView.reloadData()
                 self.updateView()
                 print(self.recommendingSchoolFriendTableViewModel)
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
+    func recommendingAddFriend(friendId: Int) {
+        NetworkService.shared.recommendingService.recommendingAddFriend(friendId: friendId) { response in
+            print(friendId)
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.schoolFriendTableView.reloadData()
+                self.updateView()
                 print("통신 성공")
             default:
                 print("network fail")

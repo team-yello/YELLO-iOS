@@ -119,6 +119,7 @@ extension KakaoFriendView {
             self.updateView()
         }
         
+        recommendingAddFriend(friendId: recommendingKakaoFriendTableViewModel[indexPath.row].recommendingFriendListData.id)
         kakaoFriendTableView.reloadRows(at: [indexPath], with: .none)
         initialKakaoDataCount -= 1
     }
@@ -151,7 +152,7 @@ extension KakaoFriendView {
                 
                 let friendModels = data.map { recommendingFriend in
                     return FriendModel(
-                        recommendingFriendListData: [recommendingFriend],
+                        recommendingFriendListData: recommendingFriend,
                         isButtonSelected: false
                     )
                 }
@@ -160,6 +161,23 @@ extension KakaoFriendView {
                 self.kakaoFriendTableView.reloadData()
                 self.updateView()
                 print(self.recommendingKakaoFriendTableViewModel)
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
+    func recommendingAddFriend(friendId: Int) {
+        NetworkService.shared.recommendingService.recommendingAddFriend(friendId: friendId) { response in
+            print(friendId)
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.kakaoFriendTableView.reloadData()
+                self.updateView()
                 print("통신 성공")
             default:
                 print("network fail")

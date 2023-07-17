@@ -133,9 +133,10 @@ extension FriendTableViewCell {
     
     // MARK: Custom Function
     func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.recommendingFriendListData[0].name
-        schoolLabel.text = model.recommendingFriendListData[0].group
-        profileImageView.kfSetImage(url: model.recommendingFriendListData[0].profileImage)
+        nameLabel.text = model.recommendingFriendListData.name
+        schoolLabel.text = model.recommendingFriendListData.group
+        profileImageView.kfSetImage(url: model.recommendingFriendListData
+            .profileImage)
         isTapped = model.isButtonSelected
         
         updateAddButtonImage()

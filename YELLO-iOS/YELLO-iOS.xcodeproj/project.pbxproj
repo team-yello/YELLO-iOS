@@ -99,6 +99,7 @@
 		C306E73B2A64557D0031514C /* RecommendingFriendRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */; };
 		C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E73C2A6455CA0031514C /* RecommendingFriendResponseDTO.swift */; };
 		C306E73F2A6457140031514C /* RecommendingRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E73E2A6457140031514C /* RecommendingRequestQueryDTO.swift */; };
+		C306E7412A650CFD0031514C /* RecommendingAddFriendRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7402A650CFC0031514C /* RecommendingAddFriendRequestDTO.swift */; };
 		C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB32A60657C000F5BA9 /* UITableView+.swift */; };
 		C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB52A607357000F5BA9 /* FriendCountView.swift */; };
 		C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB72A60FE2D000F5BA9 /* NextButton.swift */; };
@@ -287,6 +288,7 @@
 		C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendRequestDTO.swift; sourceTree = "<group>"; };
 		C306E73C2A6455CA0031514C /* RecommendingFriendResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendResponseDTO.swift; sourceTree = "<group>"; };
 		C306E73E2A6457140031514C /* RecommendingRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingRequestQueryDTO.swift; sourceTree = "<group>"; };
+		C306E7402A650CFC0031514C /* RecommendingAddFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingAddFriendRequestDTO.swift; sourceTree = "<group>"; };
 		C307ECB32A60657C000F5BA9 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		C307ECB52A607357000F5BA9 /* FriendCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCountView.swift; sourceTree = "<group>"; };
 		C307ECB72A60FE2D000F5BA9 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 			children = (
 				C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */,
 				C306E73E2A6457140031514C /* RecommendingRequestQueryDTO.swift */,
+				C306E7402A650CFC0031514C /* RecommendingAddFriendRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1429,6 +1432,7 @@
 				36E427712A5BCE860050B34E /* YelloGuideLabel.swift in Sources */,
 				2AA0DBB62A546E84002B1370 /* MyYelloViewController.swift in Sources */,
 				2AD1A1BB2A59559100CB988B /* VotingPointViewController.swift in Sources */,
+				C306E7412A650CFD0031514C /* RecommendingAddFriendRequestDTO.swift in Sources */,
 				C306E73B2A64557D0031514C /* RecommendingFriendRequestDTO.swift in Sources */,
 				2A3705E42A62E3A8001AAC93 /* MyYelloTarget.swift in Sources */,
 				2AA0DBB82A546E93002B1370 /* ProfileViewController.swift in Sources */,
