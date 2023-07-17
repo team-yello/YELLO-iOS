@@ -217,7 +217,7 @@ final class FriendProfileView: BaseView {
     func configureMyProfileFriendDetailCell(_ model: ProfileFriendResponseDetail) {
         profileImageView.kfSetImage(url: model.profileImageUrl)
         nameLabel.text = model.name
-        instagramLabel.text = model.yelloId
+        instagramLabel.text = "@" + model.yelloId
         schoolLabel.text = model.group
         messageCountView.countLabel.text = String(model.yelloCount)
         friendCountView.countLabel.text = String(model.friendCount)
@@ -246,5 +246,21 @@ final class FriendProfileView: BaseView {
         descriptionLabel.removeFromSuperview()
         cancelButton.removeFromSuperview()
         confirmButton.removeFromSuperview()
+    }
+    
+    // MARK: - Network
+    func profileDeleteFriend(id: Int) {
+        NetworkService.shared.profileService.profileDeleteFriend(id: id) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+//                self.myFriendTableView.reloadData()
+                dump(data)
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
     }
 }
