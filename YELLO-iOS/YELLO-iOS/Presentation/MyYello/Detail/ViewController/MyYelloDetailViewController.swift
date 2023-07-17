@@ -21,6 +21,7 @@ final class MyYelloDetailViewController: BaseViewController {
     var isYelloButtonTapped: Bool = false {
         didSet {
             let votingStartViewController = YELLOTabBarController()
+            self.navigationController?.navigationBar.isHidden = true
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
             sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: votingStartViewController)
         }

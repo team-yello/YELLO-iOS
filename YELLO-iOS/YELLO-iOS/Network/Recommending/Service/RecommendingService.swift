@@ -2,7 +2,7 @@
 //  RecommendingService.swift
 //  YELLO-iOS
 //
-//  Created by 변희주 on 2023/07/15.
+//  Created by 정채은 on 2023/07/15.
 //
 
 import Foundation

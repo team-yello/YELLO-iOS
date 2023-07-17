@@ -31,6 +31,11 @@ final class YELLOTabBarController: UITabBarController {
         self.selectedIndex = 2
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - TabBar Height
     
     override func viewDidLayoutSubviews() {

@@ -23,6 +23,9 @@ final class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
+        self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 161)
+        self.profileView.myFriendTableView.reloadData()
+        self.profileView.beginBatchFetch()
     }
 
     override func setStyle() {
@@ -69,8 +72,19 @@ extension ProfileViewController: HandleFriendCellDelegate {
 
 extension ProfileViewController: HandleDeleteFriendButtonDelegate {
     func deleteFriendButtonTapped() {
-        profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].friendName + StringLiterals.Profile.Friend.toastMessage)
-        profileView.myProfileFriendModelDummy.remove(at: profileView.indexNumber)
-        profileView.myFriendTableView.deleteRows(at: [[0, profileView.indexNumber]], with: .right)
+        profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].name + StringLiterals.Profile.Friend.toastMessage)
+        
+        friendProfileViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
+            self.profileView.myProfileFriendModelModel.remove(at: self.profileView.indexNumber)
+            self.profileView.myFriendTableView.deleteRows(at: [[0, self.profileView.indexNumber]], with: .right)
+            self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 161)
+        }
+        self.profileView.myFriendTableView.reloadData()
+        profileView.initialProfileFriendDataCount -= 1
+        profileView.friendCount -= 1
+
     }
 }
