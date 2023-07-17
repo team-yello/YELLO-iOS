@@ -13,8 +13,10 @@ import Then
 
 final class VotingStartViewController: BaseViewController {
     
-    private let originView = BaseVotingETCView()
+    let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
+    private var votingList: [VotingData?] = []
+    private var myPoint = 0
     
     override func loadView() {
         self.view = originView
@@ -23,6 +25,8 @@ final class VotingStartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getVotingAvailable()
+        getVotingList()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
@@ -110,7 +114,54 @@ final class VotingStartViewController: BaseViewController {
     @objc
     func yellowButtonClicked() {
         let viewController = VotingViewController()
+        viewController.votingList = votingList
+        viewController.myPoint = myPoint
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+}
+
+extension VotingStartViewController {
+    func getVotingAvailable() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                let point = data.point
+                self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
+                self.myPoint = point
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
+    func getVotingList() {
+        NetworkService.shared.votingService.getVotingList { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                let votingList = data.map { data -> VotingData? in
+                    var friends = [String]()
+                    var friendsID = [Int]()
+                    for i in 0...3 {
+                        friends.append(data.friendList[i].name + "\n" + data.friendList[i].yelloId)
+                        friendsID.append(data.friendList[i].id)
+                    }
+                    var keywords = [String]()
+                    for i in 0...3 {
+                        keywords.append(data.keywordList[i])
+                    }
+                    return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
+                }
+                self.votingList = votingList
+                
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
 }
