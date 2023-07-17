@@ -17,11 +17,11 @@ final class VotingViewController: BaseViewController {
     let originView = BaseVotingMainView()
   
     private let nameStackView = UIStackView()
-    private let nameHead = UILabel()
+    let nameHead = UILabel()
     let nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 86.adjusted, height: 34.adjusted))
 
     let nameMiddleText = UILabel()
-    private let nameFoot = UILabel()
+    let nameFoot = UILabel()
     
     var nameTextOne = UILabel()
     var nameTextTwo = UILabel()
@@ -29,10 +29,10 @@ final class VotingViewController: BaseViewController {
     var nameTextFour = UILabel()
     
     private let keywordStackView = UIStackView()
-    private let keywordHead = UILabel()
+    let keywordHead = UILabel()
     let keywordMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 150.adjusted, height: 34.adjusted))
     let keywordMiddleText = UILabel()
-    private let keywordFoot = UILabel()
+    let keywordFoot = UILabel()
     
     var nameButtonClick: Bool = false {
         didSet {
@@ -212,22 +212,18 @@ final class VotingViewController: BaseViewController {
         }
         
         originView.keywordOneButton.do {
-            $0.setTitle(StringLiterals.Voting.VoteKeyword.one, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordTwoButton.do {
-            $0.setTitle(StringLiterals.Voting.VoteKeyword.two, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordThreeButton.do {
-            $0.setTitle(StringLiterals.Voting.VoteKeyword.three, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordFourButton.do {
-            $0.setTitle(StringLiterals.Voting.VoteKeyword.four, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         

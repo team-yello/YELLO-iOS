@@ -35,6 +35,16 @@ extension VotingViewController {
             third: votingList[VotingViewController.pushCount]?.friendList[2] ?? "",
             fourth: votingList[VotingViewController.pushCount]?.friendList[3] ?? ""
         )
+        
+        originView.keywordOneButton.setTitle(votingList[VotingViewController.pushCount]?.keywordList[0] ?? "", for: .normal)
+        originView.keywordTwoButton.setTitle(votingList[VotingViewController.pushCount]?.keywordList[1] ?? "", for: .normal)
+        originView.keywordThreeButton.setTitle(votingList[VotingViewController.pushCount]?.keywordList[2] ?? "", for: .normal)
+        originView.keywordFourButton.setTitle(votingList[VotingViewController.pushCount]?.keywordList[3] ?? "", for: .normal)
+        
+        nameHead.text = votingList[VotingViewController.pushCount]?.nameHead
+        nameFoot.text = votingList[VotingViewController.pushCount]?.nameFoot
+        keywordHead.text = votingList[VotingViewController.pushCount]?.keywordHead
+        keywordFoot.text = votingList[VotingViewController.pushCount]?.keywordFoot
     }
     
     func setNameText(first: String, second: String, third: String, fourth: String) {
