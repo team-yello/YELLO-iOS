@@ -21,7 +21,12 @@ final class FriendTableViewCell: UITableViewCell {
     let nameLabel = UILabel()
     let schoolLabel = UILabel()
     lazy var addButton = UIButton()
-    var isTapped: Bool = false
+    let separatorLine = UIView()
+    var isTapped: Bool = false {
+        didSet {
+            updateAddButtonImage()
+        }
+    }
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -33,6 +38,14 @@ final class FriendTableViewCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        isTapped = false
+        separatorLine.isHidden = false
     }
 }
 
@@ -53,8 +66,9 @@ extension FriendTableViewCell {
         selectionStyle = .default
         
         profileImageView.do {
-            $0.image = UIImage(systemName: "circle.fill")
-            $0.tintColor = .white
+            $0.image = ImageLiterals.Profile.imgDefaultProfile
+            $0.contentMode = .scaleAspectFill
+            $0.makeCornerRound(radius: 21)
         }
         
         nameLabel.do {
@@ -74,6 +88,10 @@ extension FriendTableViewCell {
             $0.tintColor = .yellow
             $0.addTarget(self, action: #selector(changeAddButton), for: .touchUpInside)
         }
+        
+        separatorLine.do {
+            $0.backgroundColor = .grayscales800
+        }
     }
     
     private func setLayout() {
@@ -81,7 +99,8 @@ extension FriendTableViewCell {
         contentView.addSubviews(profileImageView,
                                 nameLabel,
                                 schoolLabel,
-                                addButton)
+                                addButton,
+                                separatorLine)
         
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -103,14 +122,25 @@ extension FriendTableViewCell {
             $0.trailing.equalToSuperview().inset(8.adjusted)
             $0.centerY.equalToSuperview()
         }
+        
+        separatorLine.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview()
+        }
     }
     
     // MARK: Custom Function
     func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.name
-        schoolLabel.text = model.school
+        nameLabel.text = model.recommendingFriendListData.name
+        schoolLabel.text = model.recommendingFriendListData.group
+        profileImageView.kfSetImage(url: model.recommendingFriendListData
+            .profileImage)
         isTapped = model.isButtonSelected
         
+        updateAddButtonImage()
+    }
+    
+    private func updateAddButtonImage() {
         let imageName = isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton
         addButton.setImage(imageName, for: .normal)
     }

@@ -8,7 +8,6 @@
 import Foundation
 
 struct FriendModel {
-    let name: String
-    let school: String
+    let recommendingFriendListData: RecommendingFriendResponseDTO
     var isButtonSelected: Bool
 }

@@ -54,6 +54,23 @@ class APIRequestLoader<T: TargetType> {
 
     private func isValidData<M: Decodable>(data: Data, type: M.Type) -> NetworkResult<M> {
         let decoder = JSONDecoder()
+        do {
+           let members = try decoder.decode(M.self, from: data)
+        } catch let DecodingError.dataCorrupted(context) {
+            print(context)
+        } catch let DecodingError.keyNotFound(key, context) {
+            print("Key '\(key)' not found:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch let DecodingError.valueNotFound(value, context) {
+            print("Value '\(value)' not found:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch let DecodingError.typeMismatch(type, context)  {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print("error: ", error)
+            print(error.localizedDescription)
+        }
         guard let decodedData = try? decoder.decode(M.self, from: data) else {
             print("json decoded failed !")
             return .pathErr

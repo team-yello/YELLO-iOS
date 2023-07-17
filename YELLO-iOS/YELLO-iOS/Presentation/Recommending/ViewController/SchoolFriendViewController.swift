@@ -22,6 +22,12 @@ final class SchoolFriendViewController: UIViewController {
         super.viewDidLoad()
         setUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        schoolFriendView.updateView()
+        schoolFriendView.beginBatchFetch()
+    }
 }
 
 // MARK: - extension
