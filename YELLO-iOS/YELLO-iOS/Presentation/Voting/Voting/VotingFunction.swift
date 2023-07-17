@@ -108,10 +108,14 @@ extension VotingViewController {
         // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
         if VotingViewController.pushCount >= 10 {
             let viewController = VotingPointViewController()
+            viewController.myPoint = myPoint
+            viewController.votingPlusPoint = votingPlusPoint
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
+            viewController.myPoint = myPoint
+            viewController.votingPlusPoint = votingPlusPoint
             UIView.transition(with: self.navigationController!.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 // 전환 시 스르륵 바뀌는 애니메이션 적용
                 self.navigationController?.pushViewController(viewController, animated: false)

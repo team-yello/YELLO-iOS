@@ -13,9 +13,10 @@ import Then
 
 final class VotingStartViewController: BaseViewController {
     
-    private let originView = BaseVotingETCView()
+    let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     private var votingList: [VotingData?] = []
+    private var myPoint = 0
     
     override func loadView() {
         self.view = originView
@@ -24,6 +25,7 @@ final class VotingStartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getVotingAvailable()
         getVotingList()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -113,12 +115,29 @@ final class VotingStartViewController: BaseViewController {
     func yellowButtonClicked() {
         let viewController = VotingViewController()
         viewController.votingList = votingList
+        viewController.myPoint = myPoint
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
 
 extension VotingStartViewController {
+    func getVotingAvailable() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            switch result {
+            case .success(let data):
+                let data = data.data
+                let point = data?.point
+                self.originView.realMyPoint.setTextWithLineHeight(text: String(point ?? 0), lineHeight: 22)
+                self.myPoint = point ?? 0
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
     func getVotingList() {
         NetworkService.shared.votingService.getVotingList { result in
             switch result {

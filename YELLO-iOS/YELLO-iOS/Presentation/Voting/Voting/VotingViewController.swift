@@ -13,6 +13,8 @@ import Then
 final class VotingViewController: BaseViewController {
     static var pushCount = 0
     var votingList: [VotingData?] = []
+    var myPoint = 0
+    var votingPlusPoint = 0
     
     let originView = BaseVotingMainView()
   
@@ -71,6 +73,10 @@ final class VotingViewController: BaseViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.setNextViewController()
             }
+            if VotingViewController.pushCount < 10 {
+                myPoint += votingList[VotingViewController.pushCount]?.questionPoint ?? 0
+                votingPlusPoint += votingList[VotingViewController.pushCount]?.questionPoint ?? 0
+            }
         }
     }
     
@@ -120,7 +126,8 @@ final class VotingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print(self.votingList)
+        print(self.myPoint)
+        print(self.votingPlusPoint)
         tabBarController?.tabBar.isHidden = true
     }
     

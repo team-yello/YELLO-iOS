@@ -13,6 +13,8 @@ import Then
 final class VotingPointViewController: BaseViewController {
 
     private let originView = BaseVotingETCView()
+    var myPoint = 0
+    var votingPlusPoint = 0
     
     override func loadView() {
         self.view = originView
@@ -22,6 +24,10 @@ final class VotingPointViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
+        originView.topOfMyPoint.text = String(myPoint)
+        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        originView.plusPoint.setTextWithLineHeight(text: "+ " + String(votingPlusPoint) + " Point", lineHeight: 22)
+        originView.plusPoint.asColor(targetString: String(votingPlusPoint), color: .yelloMain500)
     }
     
     // MARK: - Style
@@ -37,21 +43,12 @@ final class VotingPointViewController: BaseViewController {
             $0.setTextWithLineHeight(text: StringLiterals.Voting.Point.text, lineHeight: 20)
         }
         
-        originView.plusPoint.do {
-            $0.setTextWithLineHeight(text: "+ 400 Point", lineHeight: 22)
-            $0.asColor(targetString: "400", color: .yelloMain500)
-        }
-        
         originView.yelloImage.do {
             $0.image = ImageLiterals.Voting.imgPointAccumulate
         }
         
         originView.engPoint.do {
             $0.setTextWithLineHeight(text: "Point", lineHeight: 22)
-        }
-        
-        originView.realMyPoint.do {
-            $0.setTextWithLineHeight(text: "2900", lineHeight: 22)
         }
         
         originView.yellowButton.do {
