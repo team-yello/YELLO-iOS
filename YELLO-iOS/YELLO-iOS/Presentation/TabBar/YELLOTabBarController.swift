@@ -16,7 +16,7 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
-    private var canStart: Bool = false
+    private var startStatus: Int = 0
     private let notTimerEnd: Bool = UserDefaults.standard.bool(forKey: "timer")
     
     // MARK: - Life Cycle
@@ -71,12 +71,10 @@ final class YELLOTabBarController: UITabBarController {
     private func setTabBarItems() {
         var rootViewController: UIViewController
         /// 친구 수에 따라 rootViewController가 달라짐
-        if canStart {
-            if notTimerEnd {
-                rootViewController = VotingStartViewController()
-            } else {
-                rootViewController = VotingStartViewController()
-            }
+        if startStatus == 1 {
+            rootViewController = VotingStartViewController()
+        } else if startStatus == 2 {
+            rootViewController = VotingTimerViewController()
         } else {
             rootViewController = VotingLockedViewController()
         }
@@ -141,11 +139,16 @@ extension YELLOTabBarController {
             result in
             switch result {
             case .success(let data):
+                let status = data.status
                 guard let data = data.data else { return }
-                if data.isPossible {
-                    self.canStart = true
+                if status == 200 {
+                    if data.isPossible {
+                        self.startStatus = 1
+                    } else {
+                        self.startStatus = 2
+                    }
                 } else {
-                    self.canStart = true
+                    self.startStatus = 3
                 }
                 
                 self.setTabBarAppearance()
