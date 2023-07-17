@@ -49,7 +49,7 @@ class FindSchoolViewController: SearchBaseViewController {
         let offsetY = tableView.contentOffset.y
         let contentHeight = tableView.contentSize.height
         let visibleHeight = tableView.bounds.height
-        
+        self.searchView.searchTextField.endEditing(true)
         if offsetY > contentHeight - visibleHeight, allArr.count < totalItemCount {
             pageCount += 1
             guard let text = searchView.searchTextField.text else { return }
