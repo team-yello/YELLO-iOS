@@ -12,6 +12,7 @@ import Alamofire
 enum ProfileTarget {
     case profileUser(userId: Int)
     case profileFriend(_ queryDTO: ProfileFriendRequestQueryDTO)
+    case profileDeleteFriend(id: Int)
 }
 
 extension ProfileTarget: TargetType {
@@ -21,6 +22,8 @@ extension ProfileTarget: TargetType {
             return .get
         case .profileFriend:
             return .get
+        case .profileDeleteFriend:
+            return .delete
         }
     }
     
@@ -30,6 +33,8 @@ extension ProfileTarget: TargetType {
             return "/user/\(userId)"
         case .profileFriend(_):
             return "/friend"
+        case .profileDeleteFriend(let id):
+            return "/friend/\(id)"
         }
     }
 
@@ -39,6 +44,8 @@ extension ProfileTarget: TargetType {
             return .requestPlain
         case let .profileFriend(queryDTO):
             return .requestQuery(queryDTO)
+        case .profileDeleteFriend:
+            return .requestPlain
         }
     }
 }

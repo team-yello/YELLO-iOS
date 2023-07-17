@@ -27,7 +27,6 @@
 		2A3705E22A62E39C001AAC93 /* h.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E12A62E39C001AAC93 /* h.swift */; };
 		2A3705E42A62E3A8001AAC93 /* MyYelloTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */; };
 		2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */; };
-		2A3705E82A62E3C5001AAC93 /* i.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E72A62E3C5001AAC93 /* i.swift */; };
 		2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */; };
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
 		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
@@ -219,7 +218,6 @@
 		2A3705E12A62E39C001AAC93 /* h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = h.swift; sourceTree = "<group>"; };
 		2A3705E32A62E3A8001AAC93 /* MyYelloTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloTarget.swift; sourceTree = "<group>"; };
 		2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloService.swift; sourceTree = "<group>"; };
-		2A3705E72A62E3C5001AAC93 /* i.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i.swift; sourceTree = "<group>"; };
 		2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
 		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
@@ -672,7 +670,6 @@
 		2A3705C62A62E248001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2A3705E72A62E3C5001AAC93 /* i.swift */,
 				C306E7462A656D170031514C /* ProfileFriendRequestQueryDTO.swift */,
 			);
 			path = Request;
@@ -1464,7 +1461,6 @@
 				2A3705CA2A62E2A2001AAC93 /* b.swift in Sources */,
 				C3FF249E2A5EE48200A97D40 /* MyYelloDetailView.swift in Sources */,
 				36E4278B2A5C7C010050B34E /* StudentIdViewController.swift in Sources */,
-				2A3705E82A62E3C5001AAC93 /* i.swift in Sources */,
 				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
