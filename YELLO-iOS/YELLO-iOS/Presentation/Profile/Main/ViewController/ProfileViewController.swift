@@ -23,6 +23,7 @@ final class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
+        self.profileView.beginBatchFetch()
     }
 
     override func setStyle() {
@@ -69,7 +70,7 @@ extension ProfileViewController: HandleFriendCellDelegate {
 
 extension ProfileViewController: HandleDeleteFriendButtonDelegate {
     func deleteFriendButtonTapped() {
-        profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].friendName + StringLiterals.Profile.Friend.toastMessage)
+        profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].name + StringLiterals.Profile.Friend.toastMessage)
         profileView.myProfileFriendModelDummy.remove(at: profileView.indexNumber)
         profileView.myFriendTableView.deleteRows(at: [[0, profileView.indexNumber]], with: .right)
     }

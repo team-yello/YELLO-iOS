@@ -214,11 +214,11 @@ final class FriendProfileView: BaseView {
         layoutChange()
     }
     
-    func configureMyProfileFriendDetailCell(_ model: MyProfileFriendModel) {
-        profileImageView.kfSetImage(url: model.friendProfileImage)
-        nameLabel.text = model.friendName
+    func configureMyProfileFriendDetailCell(_ model: ProfileFriendResponseDetail) {
+        profileImageView.kfSetImage(url: model.profileImageUrl)
+        nameLabel.text = model.name
         instagramLabel.text = model.yelloId
-        schoolLabel.text = model.friendGroup
+        schoolLabel.text = model.group
         messageCountView.countLabel.text = String(model.yelloCount)
         friendCountView.countLabel.text = String(model.friendCount)
     }
