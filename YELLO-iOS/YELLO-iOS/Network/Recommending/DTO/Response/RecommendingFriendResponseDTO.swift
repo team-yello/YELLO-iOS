@@ -8,11 +8,7 @@
 import Foundation
 
 struct RecommendingFriendResponseDTO: Codable {
-    let recommendingKakaoFriend: [RecommendingFriendListData]
-}
-
-struct RecommendingFriendListData: Codable {
-    let id: String
+    let id: Int
     let name: String
     let group: String
     let profileImage: String?
