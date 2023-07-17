@@ -13,6 +13,7 @@ enum MyYelloTarget {
     case myYello(_ queryDTO: MyYelloRequestQueryDTO)
     case myYelloDetail(voteId: Int)
     case myYelloDetailKeyword(voteId: Int)
+    case myYelloDetailName(voteId: Int)
 }
 
 extension MyYelloTarget: TargetType {
@@ -23,6 +24,8 @@ extension MyYelloTarget: TargetType {
         case .myYelloDetail:
             return .get
         case .myYelloDetailKeyword:
+            return .patch
+        case .myYelloDetailName:
             return .patch
         }
     }
@@ -35,6 +38,8 @@ extension MyYelloTarget: TargetType {
             return "/vote/\(voteId)"
         case .myYelloDetailKeyword(let voteId):
             return "/vote/\(voteId)/keyword"
+        case .myYelloDetailName(let voteId):
+            return "/vote/\(voteId)/name"
         }
     }
 
@@ -45,6 +50,8 @@ extension MyYelloTarget: TargetType {
         case .myYelloDetail:
             return .requestPlain
         case .myYelloDetailKeyword:
+            return .requestPlain
+        case .myYelloDetailName:
             return .requestPlain
         }
     }
