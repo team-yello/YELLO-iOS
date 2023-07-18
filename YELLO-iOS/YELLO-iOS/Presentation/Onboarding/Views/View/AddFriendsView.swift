@@ -96,7 +96,7 @@ extension AddFriendsView: UITableViewDataSource {
             joinedFriendsList[indexPath.row].isAdded = false
         }
         cell.delegate = self
-        cell.configureFriendCell(joinedFriendsList[indexPath.row])
+    //    cell.configureFriendCell(joinedFriendsList[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
