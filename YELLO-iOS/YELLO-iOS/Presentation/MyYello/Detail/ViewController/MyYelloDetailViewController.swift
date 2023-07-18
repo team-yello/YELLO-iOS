@@ -72,14 +72,6 @@ extension MyYelloDetailViewController {
     }
     
     private func setBackgroundView() {
-        let gradientView = CAGradientLayer()
-        gradientView.frame = view.bounds
-        gradientView.colors = [dummy[colorIndex].backgroundColorTop.cgColor, dummy[colorIndex].backgroundColorBottom.cgColor]
-        
-        gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
-        view.layer.insertSublayer(gradientView, at: 0)
-        
         if colorIndex == 1 || colorIndex == 3 || colorIndex == 7 {
             myYelloDetailView.myYelloDetailNavigationBarView.backButton.setImage(ImageLiterals.OnBoarding.icArrowLeft, for: .normal)
             myYelloDetailView.myYelloDetailNavigationBarView.pointImageView.image = ImageLiterals.MyYello.icPointBlack
@@ -88,6 +80,14 @@ extension MyYelloDetailViewController {
             myYelloDetailView.genderLabel.textColor = .black
             myYelloDetailView.instagramButton.setTitleColor(.black, for: .normal)
         }
+        
+        let gradientView = CAGradientLayer()
+        gradientView.frame = view.bounds
+        gradientView.colors = [dummy[colorIndex].backgroundColorTop.cgColor, dummy[colorIndex].backgroundColorBottom.cgColor]
+        
+        gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
+        myYelloDetailView.layer.insertSublayer(gradientView, at: 0)
     }
     
     // MARK: - Network
