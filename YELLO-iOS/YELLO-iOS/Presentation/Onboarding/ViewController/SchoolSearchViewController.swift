@@ -15,12 +15,13 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
     // MARK: - Variables
     // MARK: Component 
     let schoolSearchView = SchoolSearchView()
-    
+    let nextVC = StudentInfoViewController()
+
     // MARK: - Function
     // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.nextViewController = StudentInfoViewController()
+        super.nextViewController = nextVC
         setDelegate()
         addTarget()
     }
@@ -43,6 +44,8 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
         schoolSearchView.schoolTextField.textField.addTarget(self, action: #selector(didTapTextField), for: .touchUpInside)
     }
     
+    
+    
     private func presentModal() {
         let findSchooViewController = FindSchoolViewController()
         let nav = UINavigationController(rootViewController: findSchooViewController)
@@ -52,11 +55,13 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
         }
         present(nav, animated: true, completion: nil)
     }
-    
+        
     // MARK: objc Function
     @objc func didTapTextField() {
         presentModal()
     }
+    
+    
 }
 
 // MARK: - extension
@@ -79,6 +84,7 @@ extension SchoolSearchViewController: SearchResultTableViewSelectDelegate {
     func didSelectSearchResult(_ result: String) {
         schoolSearchView.schoolTextField.textField.setButtonState(state: .done)
         schoolSearchView.schoolTextField.textField.text = result
+        nextVC.schoolName = result
         super.nextButton.setButtonEnable(state: true)
     }
 }

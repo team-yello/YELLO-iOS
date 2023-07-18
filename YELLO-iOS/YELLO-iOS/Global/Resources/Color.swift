@@ -173,7 +173,6 @@ extension UIColor {
       return UIColor(red: 87.0 / 255.0, green: 154.0 / 255.0, blue: 1.0, alpha: 1.0)
     }
 
-
   @nonobjc class var voteEllipseE01: UIColor {
     return UIColor(red: 168.0 / 255.0, green: 146.0 / 255.0, blue: 1.0, alpha: 1.0)
   }

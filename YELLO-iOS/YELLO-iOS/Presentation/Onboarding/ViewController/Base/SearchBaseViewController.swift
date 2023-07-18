@@ -17,7 +17,6 @@ class SearchBaseViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var allArr: [String] = []
-    var filterdArr: [String] = []
     
     // MARK: Component
     let searchView = SearchView()
@@ -43,16 +42,14 @@ class SearchBaseViewController: BaseViewController {
     }
     
     // MARK: Custom Function
-    func customView(titleText: String, helperText: String, allArr: [String]) {
+    func customView(titleText: String, helperText: String) {
         searchView.titleLabel.text = titleText
         searchView.helperButton.setTitle(helperText, for: .normal)
         searchView.helperButton.setUnderline()
-        self.allArr = allArr
     }
     
     private func addTarget() {
         searchView.cancelButton.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
-        searchView.searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     private func setDelegate() {
@@ -66,14 +63,6 @@ class SearchBaseViewController: BaseViewController {
         self.view.endEditing(true)
     }
     
-    // MARK: Objc Function
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        filterdArr = allArr.filter { search in
-            return search.contains(textField.text ?? "")
-        }
-        searchView.searchResultTableView.reloadData()
-    }
-    
     @objc func cancelButtonDidTap() {
         self.dismiss(animated: true)
     }
@@ -83,13 +72,6 @@ class SearchBaseViewController: BaseViewController {
 // MARK: - extension
 // MARK: UITextFieldDelegate
 extension SearchBaseViewController: UITextFieldDelegate {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        filterdArr = allArr.filter { $0.contains(text) }
-        searchView.searchResultTableView.reloadData()
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
     }
@@ -100,11 +82,11 @@ extension SearchBaseViewController: UITextFieldDelegate {
 // MARK: UITableViewDataSource
 extension SearchBaseViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        filterdArr.count
+        allArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let searchResult = filterdArr[indexPath.row]
+        let searchResult = allArr[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier) as! SearchResultTableViewCell
         cell.titleLabel.text = searchResult
         cell.selectionStyle = .none

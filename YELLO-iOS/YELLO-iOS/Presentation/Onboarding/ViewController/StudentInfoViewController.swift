@@ -13,11 +13,18 @@ import Then
 class StudentInfoViewController: OnboardingBaseViewController {
     
     // MARK: - Variables
-    // MARK: Component 
+    
+    // MARK: Component
     private let baseView = StudentInfoView()
+    var schoolName: String = "" {
+        didSet {
+            resetTextField()
+        }
+    }
     
     // MARK: - Function
     // MARK: LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         super.nextViewController = UserInfoViewController()
@@ -37,6 +44,18 @@ class StudentInfoViewController: OnboardingBaseViewController {
     private func setDelegate() {
         baseView.majorTextField.textField.delegate = self
         baseView.studentIDTextField.textField.delegate = self
+    }
+    
+    private func resetTextField() {
+        let majorTextField = baseView.majorTextField.textField
+        let studentIDTextField = baseView.studentIDTextField.textField
+        
+        majorTextField.text = ""
+        studentIDTextField.text = ""
+        majorTextField.setButtonState(state: .search)
+        studentIDTextField.setButtonState(state: .toggle)
+        
+        super.nextButton.setButtonEnable(state: false)
     }
     
     private func presentModal() {
@@ -73,6 +92,7 @@ extension StudentInfoViewController: UITextFieldDelegate {
         switch textField {
         case baseView.majorTextField.textField:
             let nextViewController = FindMajorViewController()
+            nextViewController.schoolName = self.schoolName
             nextViewController.delegate = self
             self.present(nextViewController, animated: true)
         case baseView.studentIDTextField.textField:
