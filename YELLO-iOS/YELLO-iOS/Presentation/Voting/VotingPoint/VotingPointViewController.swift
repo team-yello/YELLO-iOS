@@ -127,7 +127,7 @@ final class VotingPointViewController: BaseViewController {
                 return
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             let viewController = VotingTimerViewController()
             viewController.myPoint = self.myPoint
             viewController.votingPlusPoint = self.votingPlusPoint
