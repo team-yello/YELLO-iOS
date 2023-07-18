@@ -39,7 +39,7 @@ final class MyYelloService: APIRequestLoader<MyYelloTarget>, MyYelloServiceProto
     }
     
     func myYelloDetailName(voteId: Int, completion: @escaping (NetworkResult<BaseResponse<MyYelloDetailNameResponseDTO>>) -> Void) {
-        fetchData(target: .myYelloDetailKeyword(voteId: voteId),
+        fetchData(target: .myYelloDetailName(voteId: voteId),
                   responseData: BaseResponse<MyYelloDetailNameResponseDTO>.self, completion: completion)
     }
     
