@@ -397,7 +397,6 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
         } else {
             showGetSenderHintAlert()
             myYelloDetailName(voteId: voteIdNumber)
-            print("안녕")
             self.isSenderUsed = true
         }
     }

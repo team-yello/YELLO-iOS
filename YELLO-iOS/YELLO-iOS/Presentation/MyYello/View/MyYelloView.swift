@@ -14,7 +14,11 @@ final class MyYelloView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    lazy var myYelloCount: Int = self.myYelloListView.myYelloModelDummy.count
+    var myYelloCount: Int = 0 {
+        didSet {
+            resetLayout()
+        }
+    }
     
     // MARK: Component
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
@@ -54,7 +58,10 @@ final class MyYelloView: BaseView {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
             $0.width.equalToSuperview()
         }
-        
+        resetLayout()
+    }
+    
+    func resetLayout() {
         if myYelloCount == 0 {
             self.addSubviews(myYelloEmptyView)
             myYelloEmptyView.snp.makeConstraints {
@@ -77,5 +84,7 @@ final class MyYelloView: BaseView {
                 $0.bottom.equalTo(myYelloListView).inset(28)
             }
         }
+        
+        myYellowNavigationBarView.yelloCountLabel.text = String(myYelloCount) + "개"
     }
 }

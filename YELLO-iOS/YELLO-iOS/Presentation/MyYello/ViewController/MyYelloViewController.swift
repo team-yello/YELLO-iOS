@@ -29,6 +29,13 @@ final class MyYelloViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    
+        self.myYello(page: self.myYelloView.myYelloListView.myYelloPage)
+        self.myYelloView.resetLayout()
+    }
+    
     // MARK: Layout Helpers
     override func setStyle() {
         view.backgroundColor = .black
@@ -38,7 +45,7 @@ final class MyYelloViewController: BaseViewController {
         view.addSubviews(myYelloView)
         
         let tabbarHeight = 60 + safeAreaBottomInset()
-
+        
         myYelloView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
@@ -52,6 +59,32 @@ final class MyYelloViewController: BaseViewController {
     
     private func setAddTarget() {
         myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
+    }
+    
+    // MARK: - Network
+    func myYello(page: Int) {
+        let queryDTO = MyYelloRequestQueryDTO(page: page)
+        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                let myYelloModels = data.votes.map { myYello in
+                    
+                    return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
+                }
+                
+                self.myYelloView.myYelloCount = data.totalCount
+                self.myYelloView.myYelloListView.myYelloModelDummy.append(contentsOf: myYelloModels)
+                self.myYelloView.myYelloListView.myYelloTableView.reloadData()
+                dump(data)
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+        self.myYelloView.myYelloListView.myYelloPage += 1
     }
 }
 
@@ -69,8 +102,22 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
         let myYelloDetailViewController = MyYelloDetailViewController()
         navigationController?.pushViewController(myYelloDetailViewController, animated: true)
         myYelloView.myYelloListView.indexNumber = index
+        myYelloDetailViewController.myYelloDetailView.voteIdNumber = myYelloView.myYelloListView.myYelloModelDummy[index].id
         myYelloDetailViewController.myYelloDetail(voteId: myYelloView.myYelloListView.myYelloModelDummy[index].id)
-//        myYelloDetailViewController.myYelloDetailView.configureMyYelloDetailCell(myYelloView.myYelloListView.myYelloModelDummy[index])
+    }
+}
+
+extension MyYelloViewController: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
         
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !self.myYelloView.myYelloListView.fetchingMore {
+                self.myYelloView.myYelloListView.beginBatchFetch()
+                self.myYello(page: self.myYelloView.myYelloListView.myYelloPage)
+            }
+        }
     }
 }

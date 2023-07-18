@@ -25,7 +25,6 @@ final class MyYelloListView: BaseView {
     var initialMyYelloDataCount = 10
     var myYelloPage: Int = 0
     var indexNumber: Int = -1
-    var myYelloCount: Int = 0
 
     var myYelloModelDummy: [Yello] = []
 
@@ -69,32 +68,6 @@ final class MyYelloListView: BaseView {
     // MARK: Custom Function
     private func pushMyYelloDetailViewController(index: Int) {
         handleMyYelloCellDelegate?.pushMyYelloDetailViewController(index: index)
-    }
-    
-    // MARK: - Network
-    func myYello(page: Int) {
-        let queryDTO = MyYelloRequestQueryDTO(page: page)
-        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { response in
-            switch response {
-            case .success(let data):
-                guard let data = data.data else { return }
-                
-                let myYelloModels = data.votes.map { myYello in
-                    
-                    return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
-                }
-                
-                self.myYelloCount = data.totalCount
-                self.myYelloModelDummy.append(contentsOf: myYelloModels)
-                self.myYelloTableView.reloadData()
-                dump(data)
-                print("통신 성공")
-            default:
-                print("network fail")
-                return
-            }
-        }
-        self.myYelloPage += 1
     }
 }
 
@@ -155,18 +128,6 @@ extension MyYelloListView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.pushMyYelloDetailViewController(index: indexPath.row)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        
-        if offsetY > contentHeight - scrollView.frame.height {
-            if !fetchingMore {
-                beginBatchFetch()
-                myYello(page: myYelloPage)
-            }
-        }
     }
     
     func beginBatchFetch() {
