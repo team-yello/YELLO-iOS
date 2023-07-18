@@ -111,6 +111,19 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.detailKeywordView.keywordLabel.text = data.vote.keyword
                 self.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
                 
+                self.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
+
+                if data.nameHint == 0 {
+                    self.myYelloDetailView.isSenderUsed = true
+                    if let initial = self.getFirstInitial(data.senderName as NSString, index: 0) {
+                        self.myYelloDetailView.detailSenderView.senderLabel.text = initial
+                    }
+                } else if data.nameHint == 1 {
+                    self.myYelloDetailView.isSenderUsed = true
+                    if let initial = self.getSecondInitial(data.senderName as NSString, index: 1) {
+                        self.myYelloDetailView.detailSenderView.senderLabel.text = initial
+                    }
+                }
                 dump(data)
                 print("통신 성공")
             default:
@@ -118,6 +131,41 @@ extension MyYelloDetailViewController {
                 return
             }
         }
+    }
+    
+    // MARK: Custom Function
+    func getFirstInitial(_ str: NSString, index: Int) -> String? {
+        let name = str
+        var initialName: String = ""
+        
+        for i in 0..<1 {
+            let oneChar: UniChar = name.character(at: i)
+            if oneChar >= 0xAC00 && oneChar <= 0xD7A3 {
+                var firstCodeValue = ((oneChar - 0xAC00)/28)/21
+                firstCodeValue += 0x1100
+                initialName = initialName.appending(String(format: "%C", firstCodeValue))
+            } else {
+                initialName = initialName.appending(String(format: "%C", oneChar))
+            }
+        }
+        return initialName
+    }
+    
+    func getSecondInitial(_ str: NSString, index: Int) -> String? {
+        let name = str
+        var initialName: String = ""
+        
+        for i in 1..<2 {
+            let oneChar: UniChar = name.character(at: i)
+            if oneChar >= 0xAC00 && oneChar <= 0xD7A3 {
+                var firstCodeValue = ((oneChar - 0xAC00)/28)/21
+                firstCodeValue += 0x1100
+                initialName = initialName.appending(String(format: "%C", firstCodeValue))
+            } else {
+                initialName = initialName.appending(String(format: "%C", oneChar))
+            }
+        }
+        return initialName
     }
 }
 
