@@ -49,7 +49,7 @@ class FindMajorViewController: SearchBaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 self?.allArr.append(contentsOf: data.groupList.map { $0.departmentName })
-                self?.totalItemCount = data.totalCount ?? 0
+                self?.totalItemCount = data.totalCount 
                 self?.searchView.searchResultTableView.reloadData()
             default:
                 print(ErrorPointer.self)
@@ -67,5 +67,3 @@ class FindMajorViewController: SearchBaseViewController {
         searchMajor(text)
     }
 }
-
-
