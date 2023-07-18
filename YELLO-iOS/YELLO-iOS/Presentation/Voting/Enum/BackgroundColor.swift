@@ -98,7 +98,6 @@ func selectBottomColors(startIndex: Int) -> [String] {
 }
 
 class Color {
-    
     var startIndex = 0
     var selectedTopColors: [String] = []
     var selectedBottomColors: [String] = []

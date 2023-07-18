@@ -24,7 +24,6 @@ final class VotingPointViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getCreatedAt()
         tabBarController?.tabBar.isHidden = true
         originView.topOfMyPoint.text = String(myPoint)
         originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
@@ -128,10 +127,11 @@ final class VotingPointViewController: BaseViewController {
                 return
             }
         }
-        let viewController = VotingTimerViewController()
-        viewController.myPoint = myPoint
-        viewController.votingPlusPoint = votingPlusPoint
-        self.navigationController?.pushViewController(viewController, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
+            let viewController = VotingTimerViewController()
+            viewController.myPoint = self.myPoint
+            viewController.votingPlusPoint = self.votingPlusPoint
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
-
 }
