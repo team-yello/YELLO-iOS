@@ -25,22 +25,9 @@ final class MyYelloListView: BaseView {
     var initialMyYelloDataCount = 10
     var myYelloPage: Int = 0
     var indexNumber: Int = -1
+    var myYelloCount: Int = 0
 
     var myYelloModelDummy: [Yello] = []
-//        Yello(id: 1, senderGender: "MALE", senderName: "권세훈", nameHint: -1, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 2, senderGender: "FEMALE", senderName: "정채은", nameHint: 0, vote: Vote(nameHead: "나는", nameFoot: "와", keywordHead: "한강에서", keyword: "산책하고", keywordFoot: "싶어"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 3, senderGender: "FEMALE", senderName: "이지희", nameHint: 1, vote: Vote(nameHead: "", nameFoot: "는 학교에서", keywordHead: "", keyword: "연예인", keywordFoot: "역할을 맡을 것 같아"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 4, senderGender: "MALE", senderName: "김효원", nameHint: 0, vote: Vote(nameHead: "세상에", nameFoot: "랑 둘이", keywordHead: "남으면", keyword: "모르는 척 하고", keywordFoot: "싶어"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 5, senderGender: "MALE", senderName: "권세훈", nameHint: 1, vote: Vote(nameHead: "", nameFoot: "의 MBTI는", keywordHead: "", keyword: "CUTE", keywordFoot: "일 것 같아"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 6, senderGender: "FEMALE", senderName: "강국희", nameHint: -1, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: false, createdAt: "1시간 전"),
-//        Yello(id: 7, senderGender: "MALE", senderName: "권세훈", nameHint: -1, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: false, createdAt: "1시간 전"),
-//        Yello(id: 8, senderGender: "FEMALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 8, senderGender: "FEMALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 8, senderGender: "FEMALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 8, senderGender: "FEMALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 8, senderGender: "MALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-//        Yello(id: 8, senderGender: "MALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전")
-//    ]
 
     // MARK: Component
     lazy var myYelloTableView = UITableView()
@@ -48,7 +35,6 @@ final class MyYelloListView: BaseView {
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
-        myYello(page: myYelloPage)
         self.backgroundColor = .black
 
         myYelloTableView.do {
@@ -98,9 +84,9 @@ final class MyYelloListView: BaseView {
                     return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
                 }
                 
+                self.myYelloCount = data.totalCount
                 self.myYelloModelDummy.append(contentsOf: myYelloModels)
-                MyYelloView().myYelloCount = data.totalCount
-//                self.myYelloTableView.reloadData()
+                self.myYelloTableView.reloadData()
                 dump(data)
                 print("통신 성공")
             default:
@@ -108,6 +94,7 @@ final class MyYelloListView: BaseView {
                 return
             }
         }
+        self.myYelloPage += 1
     }
 }
 
@@ -122,10 +109,16 @@ extension MyYelloListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if myYelloModelDummy[indexPath.row].isHintUsed == true {
+        if myYelloModelDummy[indexPath.row].isHintUsed == false {
+            guard let defaultCell = myYelloTableView.dequeueReusableCell(withIdentifier: MyYelloDefaultTableViewCell.identifier, for: indexPath) as? MyYelloDefaultTableViewCell else { return UITableViewCell() }
+            
+            defaultCell.configureDefaultCell(myYelloModelDummy[indexPath.row])
+            defaultCell.selectionStyle = .none
+            return defaultCell
+        } else {
             if myYelloModelDummy[indexPath.row].nameHint == -1 {
                 guard let keywordCell = myYelloTableView.dequeueReusableCell(withIdentifier: MyYelloKeywordTableViewCell.identifier, for: indexPath) as? MyYelloKeywordTableViewCell else { return UITableViewCell() }
-
+                
                 keywordCell.configureKeywordCell(myYelloModelDummy[indexPath.row])
                 keywordCell.selectionStyle = .none
                 return keywordCell
@@ -136,25 +129,19 @@ extension MyYelloListView: UITableViewDataSource {
                 nameCell.selectionStyle = .none
                 return nameCell
             }
-        } else {
-            guard let defaultCell = myYelloTableView.dequeueReusableCell(withIdentifier: MyYelloDefaultTableViewCell.identifier, for: indexPath) as? MyYelloDefaultTableViewCell else { return UITableViewCell() }
-
-            defaultCell.configureDefaultCell(myYelloModelDummy[indexPath.row])
-            defaultCell.selectionStyle = .none
-            return defaultCell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // cell의 높이 + inset 8 더한 값
-        if myYelloModelDummy[indexPath.row].isHintUsed == true {
+        if myYelloModelDummy[indexPath.row].isHintUsed == false {
+                return 74
+        } else {
             if myYelloModelDummy[indexPath.row].nameHint == -1 {
                 return 74
             } else {
                 return 98
             }
-        } else {
-            return 74
         }
     }
     
@@ -177,7 +164,6 @@ extension MyYelloListView: UITableViewDataSource {
         if offsetY > contentHeight - scrollView.frame.height {
             if !fetchingMore {
                 beginBatchFetch()
-                myYelloPage += 1
                 myYello(page: myYelloPage)
             }
         }
