@@ -89,11 +89,15 @@ class OnboardingBaseViewController: BaseViewController {
         
     }
     
+    func setUser() {}
+    
     // MARK: Objc Function
     @objc func didTapButton() {
+        setUser()
         if let nextViewController = nextViewController {
             self.navigationController?.pushViewController(nextViewController, animated: true)
         } else {}
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
