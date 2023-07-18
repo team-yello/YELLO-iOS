@@ -21,7 +21,7 @@ final class MyYelloListView: BaseView {
     // MARK: Property
     weak var handleMyYelloCellDelegate: HandleMyYelloCellDelegate?
     var fetchingMore = false
-    var myYelloModel: [Yello] = []
+//    var myYelloModel: [Yello] = []
     var initialMyYelloDataCount = 10
     var myYelloPage: Int = 0
     var indexNumber: Int = -1
@@ -50,12 +50,12 @@ final class MyYelloListView: BaseView {
     }
     
     override func setLayout() {
-        if myYelloModelDummy.count < 10 {
-            initialMyYelloDataCount = myYelloModelDummy.count
-        } else {
-            initialMyYelloDataCount = 10
-        }
-        myYelloModel = Array(myYelloModelDummy[0..<initialMyYelloDataCount])
+//        if myYelloModelDummy.count < 10 {
+//            initialMyYelloDataCount = myYelloModelDummy.count
+//        } else {
+//            initialMyYelloDataCount = 10
+//        }
+//        myYelloModel = Array(myYelloModelDummy[0..<initialMyYelloDataCount])
         
         self.addSubviews(myYelloTableView)
         
@@ -128,31 +128,5 @@ extension MyYelloListView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.pushMyYelloDetailViewController(index: indexPath.row)
-    }
-    
-    func beginBatchFetch() {
-        fetchingMore = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [self] in
-            if myYelloModelDummy.count - initialMyYelloDataCount < 10 {
-                if myYelloModelDummy.count - initialMyYelloDataCount == 0 {
-                    print("쪽지 데이터가 더 없어요")
-                } else {
-                    let newItems = (initialMyYelloDataCount...myYelloModelDummy.count - 1).map { index in
-                        myYelloModelDummy[index]
-                    }
-                    self.myYelloModel.append(contentsOf: newItems)
-                }
-            } else {
-                let newItems = (initialMyYelloDataCount...initialMyYelloDataCount + 9).map { index in
-                    myYelloModelDummy[index]
-                }
-                self.myYelloModel.append(contentsOf: newItems)
-            }
-            
-            self.fetchingMore = false
-            self.myYelloTableView.reloadData()
-            initialMyYelloDataCount = myYelloModel.count
-        }
     }
 }
