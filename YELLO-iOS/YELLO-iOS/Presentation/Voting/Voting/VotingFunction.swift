@@ -16,8 +16,8 @@ extension VotingViewController {
         let dummy = VotingDummy.dummy()
         let gradientView = UIView(frame: view.bounds)
         gradientView.applyGradientBackground(
-            topColor: UIColor(hex: VotingViewController.selectedTopColors[VotingViewController.pushCount]),
-            bottomColor: UIColor(hex: VotingViewController.selectedBottomColors[VotingViewController.pushCount]))
+            topColor: UIColor(hex: Color.shared.selectedTopColors[VotingViewController.pushCount]),
+            bottomColor: UIColor(hex: Color.shared.selectedBottomColors[VotingViewController.pushCount]))
         view.insertSubview(gradientView, at: 0)
         
         self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
