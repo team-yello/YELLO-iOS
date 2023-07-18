@@ -7,6 +7,9 @@
 
 import UIKit
 
+import KakaoSDKUser
+import KakaoSDKTalk
+
 class KakaoConnectViewController: BaseViewController {
     
     let baseView = KakaoConnectView()
@@ -25,7 +28,16 @@ class KakaoConnectViewController: BaseViewController {
     }
     
     @objc func connectButtonDidTap() {
-        navigationController?.pushViewController(SchoolSearchViewController(), animated: true)
+        TalkApi.shared.profile {(profile, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                _ = profile
+                self.navigationController?.pushViewController(SchoolSearchViewController(), animated: true)
+            }
+        }
+        
     }
     
 }
