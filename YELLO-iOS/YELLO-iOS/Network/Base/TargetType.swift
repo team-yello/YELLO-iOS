@@ -14,14 +14,27 @@ protocol TargetType: URLRequestConvertible {
     var method: HTTPMethod { get }
     var path: String { get }
     var parameters: RequestParams { get }
+    var headerType: HTTPHeaderType { get }
 }
 
 extension TargetType {
     var baseURL: String {
         return Config.baseURL
     }
+    var headers: [String: String]? {
+        switch headerType {
+        case .plain:
+            return [
+                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue
+            ]
+        case .hasAccessToken:
+            return [
+                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
+                HTTPHeaderFieldKey.accessToken.rawValue: HTTPHeaderFieldValue.accessToken.rawValue
+            ]
+        }
+    }
 }
-
 extension TargetType {
     func asURLRequest() throws -> URLRequest {
         let url = try baseURL.asURL()
@@ -29,13 +42,19 @@ extension TargetType {
             url: url.appendingPathComponent(path),
             method: method
         )
-        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-        urlRequest.setValue("Bearer eyJ0eXBlIjoiYWNjZXNzVG9rZW4iLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOTExNzI0MDAyIiwianRpIjoiMTQ4IiwiaWF0IjoxNjg5NjE5NzkzLCJleHAiOjE2ODk3MDYxOTN9.pBvnzLuwAg2wDZZ77HUBbdZvE0-Xvp6XRhqF9ZDA1xc", forHTTPHeaderField: HTTPHeaderField.authentication.rawValue)
+        
+        switch headerType {
+        case .plain:
+            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
+        case .hasAccessToken:
+            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
+            urlRequest.setValue(HTTPHeaderFieldValue.accessToken.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
+        }
 
         switch parameters {
         case .requestWithBody(let request):
             let params = request?.toDictionary() ?? [:]
-
+            
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
         case .requestQuery(let request):
             let params = request?.toDictionary()
@@ -55,11 +74,11 @@ extension TargetType {
                 string: url.appendingPathComponent(path).absoluteString)
             components?.queryItems = queryParams
             urlRequest.url = components?.url
-
+            
             let bodyParams = bodyRequest?.toDictionary() ?? [:]
-
+            
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: bodyParams)
-
+            
         case .requestPlain:
             break
         }
@@ -81,7 +100,7 @@ extension Encodable {
               let jsonData = try? JSONSerialization.jsonObject(with: data),
               let dictionaryData = jsonData as? [String: Any]
         else { return [:] }
-
+        
         return dictionaryData
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A3705A22A62DC27001AAC93 /* HTTPHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A12A62DC27001AAC93 /* HTTPHeaderField.swift */; };
+		2A3705A22A62DC27001AAC93 /* HTTPHeaderFieldKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A12A62DC27001AAC93 /* HTTPHeaderFieldKey.swift */; };
 		2A3705A42A62DC5C001AAC93 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A32A62DC5C001AAC93 /* TargetType.swift */; };
 		2A3705A62A62DC7D001AAC93 /* APIEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A52A62DC7D001AAC93 /* APIEventLogger.swift */; };
 		2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A72A62DC90001AAC93 /* BaseResponse.swift */; };
@@ -210,7 +210,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A3705A12A62DC27001AAC93 /* HTTPHeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderField.swift; sourceTree = "<group>"; };
+		2A3705A12A62DC27001AAC93 /* HTTPHeaderFieldKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderFieldKey.swift; sourceTree = "<group>"; };
 		2A3705A32A62DC5C001AAC93 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		2A3705A52A62DC7D001AAC93 /* APIEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventLogger.swift; sourceTree = "<group>"; };
 		2A3705A72A62DC90001AAC93 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
@@ -430,7 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A799CF2A494CEC00D3EFD8 /* Config.swift */,
-				2A3705A12A62DC27001AAC93 /* HTTPHeaderField.swift */,
+				2A3705A12A62DC27001AAC93 /* HTTPHeaderFieldKey.swift */,
 				C3A799D12A494CFF00D3EFD8 /* NetworkResult.swift */,
 				2A3705A32A62DC5C001AAC93 /* TargetType.swift */,
 				2A3705A52A62DC7D001AAC93 /* APIEventLogger.swift */,
@@ -1508,7 +1508,7 @@
 				2A3705CC2A62E2BF001AAC93 /* OnboardingTarget.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
-				2A3705A22A62DC27001AAC93 /* HTTPHeaderField.swift in Sources */,
+				2A3705A22A62DC27001AAC93 /* HTTPHeaderFieldKey.swift in Sources */,
 				2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */,
 				C306E73F2A6457140031514C /* RecommendingRequestQueryDTO.swift in Sources */,
 				36E4276A2A5BCE860050B34E /* Constraints.swift in Sources */,
