@@ -69,7 +69,7 @@ final class MyYelloDetailView: BaseView {
             self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
             self.getHintView.pointLabel.text = String(self.currentPoint)
             self.pointLackView.pointLabel.text = String(self.currentPoint)
-            self.usePointView.pointLabel.text = String(self.currentPoint)
+//            self.usePointView.pointLabel.text = String(self.currentPoint)
         }
     }
     
@@ -398,11 +398,17 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
         if self.isKeywordUsed == false {
             showGetHintAlert()
             myYelloDetailKeyword(voteId: voteIdNumber)
+            
+            self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint - 100)
+            self.usePointView.pointLabel.text = String(self.currentPoint - 100)
             self.isKeywordUsed.toggle()
         } else {
             showGetSenderHintAlert()
             myYelloDetailName(voteId: voteIdNumber)
             self.isSenderUsed = true
+            
+            self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint - 300)
+            self.usePointView.pointLabel.text = String(self.currentPoint - 300)
         }
     }
 }
