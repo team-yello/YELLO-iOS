@@ -57,8 +57,6 @@ final class MyYelloDetailView: BaseView {
                 instagramButton.snp.makeConstraints {
                     $0.bottom.equalTo(senderButton.snp.top).offset(-24.adjustedHeight)
                 }
-                detailSenderView.senderLabel.text = initialName
-                print(initialName)
             }
         }
     }
