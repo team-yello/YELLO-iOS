@@ -157,6 +157,7 @@
 		C3B472102A65E0A200770530 /* MyYelloDetailKeywordResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4720F2A65E0A200770530 /* MyYelloDetailKeywordResponseDTO.swift */; };
 		C3B472122A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B472112A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift */; };
 		C3B472142A65E24900770530 /* PayRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B472132A65E24900770530 /* PayRequestBodyDTO.swift */; };
+		C3B472162A65EB0900770530 /* PaymenyResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B472152A65EB0900770530 /* PaymenyResponseDTO.swift */; };
 		C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC02A56FCA600B84CAA /* AroundView.swift */; };
 		C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */; };
 		C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */; };
@@ -356,6 +357,7 @@
 		C3B4720F2A65E0A200770530 /* MyYelloDetailKeywordResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailKeywordResponseDTO.swift; sourceTree = "<group>"; };
 		C3B472112A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailNameResponseDTO.swift; sourceTree = "<group>"; };
 		C3B472132A65E24900770530 /* PayRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRequestBodyDTO.swift; sourceTree = "<group>"; };
+		C3B472152A65EB0900770530 /* PaymenyResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymenyResponseDTO.swift; sourceTree = "<group>"; };
 		C3C57BC02A56FCA600B84CAA /* AroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundView.swift; sourceTree = "<group>"; };
 		C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingSegmentedControl.swift; sourceTree = "<group>"; };
 		C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendViewController.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 				C3B472112A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift */,
 				C3B4720F2A65E0A200770530 /* MyYelloDetailKeywordResponseDTO.swift */,
 				C3B4720D2A65DEC700770530 /* MyYelloDetailResponseDTO.swift */,
+				C3B472152A65EB0900770530 /* PaymenyResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1591,6 +1594,7 @@
 				36E427952A5CA59F0050B34E /* OnboardingEndViewController.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
 				C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */,
+				C3B472162A65EB0900770530 /* PaymenyResponseDTO.swift in Sources */,
 				36E427972A5CA5AF0050B34E /* OnboardingEndView.swift in Sources */,
 				C32322F92A61ABF2006DA50B /* PaymentCollectionViewCell.swift in Sources */,
 			);
