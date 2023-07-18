@@ -14,7 +14,7 @@ final class MyYelloDetailViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Constants
-    private let myYelloDetailView = MyYelloDetailView()
+    let myYelloDetailView = MyYelloDetailView()
     let dummy = myYelloBackgroundColorDummy
     let hexDummy = myYelloBackgroundColorStringDummy
     var colorIndex: Int = 2
@@ -26,6 +26,7 @@ final class MyYelloDetailViewController: BaseViewController {
             sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: votingStartViewController)
         }
     }
+//    var currentPage: Int = 0
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -79,6 +80,39 @@ extension MyYelloDetailViewController {
         gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
         view.layer.insertSublayer(gradientView, at: 0)
+    }
+    
+    // MARK: - Network
+    func myYelloDetail(voteId: Int) {
+        NetworkService.shared.myYelloService.myYelloDetail(voteId: voteId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.colorIndex = data.colorIndex
+                self.setBackgroundView()
+                
+                if data.senderGender == "MALE" {
+                    self.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.male
+                } else {
+                    self.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.female
+                }
+                
+                self.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
+                
+                self.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
+                
+                self.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
+                
+                
+                
+                dump(data)
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
     }
 }
 

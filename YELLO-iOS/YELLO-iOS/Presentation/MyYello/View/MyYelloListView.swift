@@ -12,7 +12,7 @@ import Then
 
 // MARK: - Protocol
 protocol HandleMyYelloCellDelegate: AnyObject {
-    func pushMyYelloDetailViewController()
+    func pushMyYelloDetailViewController(index: Int)
 }
 
 final class MyYelloListView: BaseView {
@@ -24,30 +24,31 @@ final class MyYelloListView: BaseView {
     var myYelloModel: [Yello] = []
     var initialMyYelloDataCount = 10
     var myYelloPage: Int = 0
+    var indexNumber: Int = -1
 
-    var myYelloModelDummy: [Yello] = [
-        Yello(id: 1, gender: "M", nameHint: -1, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 2, gender: "F", nameHint: 0, senderName: "정채은", vote: Vote(nameHead: "나는", nameFoot: "와", keywordHead: "한강에서", keyword: "산책하고", keywordFoot: "싶어"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 3, gender: "F", nameHint: 1, senderName: "이지희", vote: Vote(nameHead: "", nameFoot: "는 학교에서", keywordHead: "", keyword: "연예인", keywordFoot: "역할을 맡을 것 같아"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 4, gender: "M", nameHint: 0, senderName: "김효원", vote: Vote(nameHead: "세상에", nameFoot: "랑 둘이", keywordHead: "남으면", keyword: "모르는 척 하고", keywordFoot: "싶어"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 5, gender: "M", nameHint: 1, senderName: "권세훈", vote: Vote(nameHead: "", nameFoot: "의 MBTI는", keywordHead: "", keyword: "CUTE", keywordFoot: "일 것 같아"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 6, gender: "F", nameHint: -1, senderName: "강국희", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: false, createdAt: "1시간 전"),
-        Yello(id: 7, gender: "M", nameHint: -1, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: false, createdAt: "1시간 전"),
-        Yello(id: 8, gender: "F", nameHint: 0, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 8, gender: "F", nameHint: 0, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 8, gender: "F", nameHint: 0, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 8, gender: "F", nameHint: 0, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 8, gender: "F", nameHint: 0, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
-        Yello(id: 8, gender: "F", nameHint: 0, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전")
-    ]
+    var myYelloModelDummy: [Yello] = []
+//        Yello(id: 1, senderGender: "MALE", senderName: "권세훈", nameHint: -1, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 2, senderGender: "FEMALE", senderName: "정채은", nameHint: 0, vote: Vote(nameHead: "나는", nameFoot: "와", keywordHead: "한강에서", keyword: "산책하고", keywordFoot: "싶어"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 3, senderGender: "FEMALE", senderName: "이지희", nameHint: 1, vote: Vote(nameHead: "", nameFoot: "는 학교에서", keywordHead: "", keyword: "연예인", keywordFoot: "역할을 맡을 것 같아"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 4, senderGender: "MALE", senderName: "김효원", nameHint: 0, vote: Vote(nameHead: "세상에", nameFoot: "랑 둘이", keywordHead: "남으면", keyword: "모르는 척 하고", keywordFoot: "싶어"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 5, senderGender: "MALE", senderName: "권세훈", nameHint: 1, vote: Vote(nameHead: "", nameFoot: "의 MBTI는", keywordHead: "", keyword: "CUTE", keywordFoot: "일 것 같아"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 6, senderGender: "FEMALE", senderName: "강국희", nameHint: -1, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: false, createdAt: "1시간 전"),
+//        Yello(id: 7, senderGender: "MALE", senderName: "권세훈", nameHint: -1, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: false, isRead: false, createdAt: "1시간 전"),
+//        Yello(id: 8, senderGender: "FEMALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 8, senderGender: "FEMALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 8, senderGender: "FEMALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 8, senderGender: "FEMALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 8, senderGender: "MALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전"),
+//        Yello(id: 8, senderGender: "MALE", senderName: "권세훈", nameHint: 0, vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"), isHintUsed: true, isRead: true, createdAt: "1시간 전")
+//    ]
 
-    
     // MARK: Component
     lazy var myYelloTableView = UITableView()
     
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
+        myYello(page: myYelloPage)
         self.backgroundColor = .black
 
         myYelloTableView.do {
@@ -166,7 +167,7 @@ extension MyYelloListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.pushMyYelloDetailViewController()
+        self.pushMyYelloDetailViewController(index: indexPath.row)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

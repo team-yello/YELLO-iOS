@@ -310,11 +310,16 @@ extension MyYelloDetailView {
             }
         }
     }
+    
+    func configureMyYelloDetailCell(_ model: Yello) {
+        
+    }
 }
 
 // MARK: HandleConfirmButtonDelegate
 extension MyYelloDetailView: HandleConfirmButtonDelegate {
     func confirmButtonTapped() {
+        ///여기에 서버통신 구현
         if self.isKeywordUsed == false {
             showGetHintAlert()
             self.isKeywordUsed = true
