@@ -116,4 +116,14 @@ extension UIView {
         border.frame = CGRect(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
         self.layer.addSublayer(border)
     }
+    
+    // 그라데이션 배경 적용
+    func applyGradientBackground(topColor: UIColor, bottomColor: UIColor) {
+           let gradientLayer = CAGradientLayer()
+           gradientLayer.frame = bounds
+           gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+           gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+           gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+           layer.insertSublayer(gradientLayer, at: 0)
+       }
 }

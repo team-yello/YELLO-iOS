@@ -11,18 +11,14 @@ import SnapKit
 import Then
 
 extension VotingViewController {
-    
     /// 10개 투표지의 style을 dummy에 따라 설정
     func setVotingView() {
         let dummy = VotingDummy.dummy()
-        
-        let gradientView = CAGradientLayer()
-        gradientView.frame = view.bounds
-        gradientView.colors = [dummy[VotingViewController.pushCount].backgroundColorTop.cgColor, dummy[VotingViewController.pushCount].backgroundColorBottom.cgColor]
-        
-        gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
-        view.layer.insertSublayer(gradientView, at: 0)
+        let gradientView = UIView(frame: view.bounds)
+        gradientView.applyGradientBackground(
+            topColor: UIColor(hex: VotingViewController.selectedTopColors[VotingViewController.pushCount]),
+            bottomColor: UIColor(hex: VotingViewController.selectedBottomColors[VotingViewController.pushCount]))
+        view.insertSubview(gradientView, at: 0)
         
         self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
         self.originView.yelloProgress.image =

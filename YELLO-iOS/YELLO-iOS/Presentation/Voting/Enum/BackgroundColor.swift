@@ -38,3 +38,61 @@ enum BackGroundColor {
         static let tweleve = "FF7CBB"
     }
 }
+
+func selectTopColors(startIndex: Int) -> [String] {
+    let allColors = [
+        BackGroundColor.BackgroundColorTop.one,
+        BackGroundColor.BackgroundColorTop.two,
+        BackGroundColor.BackgroundColorTop.three,
+        BackGroundColor.BackgroundColorTop.four,
+        BackGroundColor.BackgroundColorTop.five,
+        BackGroundColor.BackgroundColorTop.six,
+        BackGroundColor.BackgroundColorTop.seven,
+        BackGroundColor.BackgroundColorTop.eight,
+        BackGroundColor.BackgroundColorTop.nine,
+        BackGroundColor.BackgroundColorTop.ten,
+        BackGroundColor.BackgroundColorTop.eleven,
+        BackGroundColor.BackgroundColorTop.tweleve
+    ]
+    
+    var selectedColors: [String]
+    
+    if startIndex <= 2 {
+        let endIndex = startIndex + 9
+        selectedColors = Array(allColors[startIndex...endIndex])
+    } else {
+        let endIndex = startIndex - 3
+        selectedColors = Array(allColors[startIndex...] + allColors[0...endIndex])
+    }
+    
+    return selectedColors
+}
+
+func selectBottomColors(startIndex: Int) -> [String] {
+    let allColors = [
+        BackGroundColor.BackgroundColorBottom.one,
+        BackGroundColor.BackgroundColorBottom.two,
+        BackGroundColor.BackgroundColorBottom.three,
+        BackGroundColor.BackgroundColorBottom.four,
+        BackGroundColor.BackgroundColorBottom.five,
+        BackGroundColor.BackgroundColorBottom.six,
+        BackGroundColor.BackgroundColorBottom.seven,
+        BackGroundColor.BackgroundColorBottom.eight,
+        BackGroundColor.BackgroundColorBottom.nine,
+        BackGroundColor.BackgroundColorBottom.ten,
+        BackGroundColor.BackgroundColorBottom.eleven,
+        BackGroundColor.BackgroundColorBottom.tweleve
+    ]
+    
+    var selectedColors: [String]
+    
+    if startIndex <= 2 {
+        let endIndex = startIndex + 9
+        selectedColors = Array(allColors[startIndex...endIndex])
+    } else {
+        let endIndex = startIndex - 3
+        selectedColors = Array(allColors[startIndex...] + allColors[0...endIndex])
+    }
+    
+    return selectedColors
+}

@@ -19,6 +19,10 @@ final class VotingViewController: BaseViewController {
     var myPoint = 0
     var votingPlusPoint = 0
     
+    static let startIndex = Int.random(in: 0...11)
+    static let selectedTopColors = selectTopColors(startIndex: startIndex)
+    static let selectedBottomColors = selectBottomColors(startIndex: startIndex)
+    
     let originView = BaseVotingMainView()
   
     private let nameStackView = UIStackView()
