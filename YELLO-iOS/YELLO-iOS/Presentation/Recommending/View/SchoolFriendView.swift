@@ -32,6 +32,7 @@ final class SchoolFriendView: UIView {
         super.init(frame: frame)
         setUI()
         setDelegate()
+        recommendingSchoolFriend(page: schoolPage)
     }
     
     @available(*, unavailable)
