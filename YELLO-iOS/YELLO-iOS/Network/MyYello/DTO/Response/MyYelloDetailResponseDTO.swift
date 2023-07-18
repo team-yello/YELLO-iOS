@@ -12,5 +12,6 @@ struct MyYelloDetailResponseDTO: Codable {
     let colorIndex: Int
     let isAnswerRevealed: Bool
     let senderName: String
+    let senderGender: String
     let vote: Vote
 }
