@@ -24,6 +24,7 @@ enum StringLiterals {
         static let idHelper = "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)"
         static let nameError = "한글만 입력 가능해요."
         static let idError = "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요."
+        static let idDuplicate = "이미 사용하고 있는 아이디에요."
     }
     
     enum Inviting {
