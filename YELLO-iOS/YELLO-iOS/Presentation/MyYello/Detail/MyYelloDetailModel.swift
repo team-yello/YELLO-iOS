@@ -15,14 +15,6 @@ struct MyYelloDetailModel: Codable {
 }
 
 var MyYelloDetailModelDummy: [MyYelloDetailResponseDTO] = []
-//    MyYelloDetailResponseDTO(nameHint: -1, colorIndex: 1, isAnswerRevealed: false, senderName: "권세훈", senderGender: "MALE", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야")),
-//    MyYelloDetailResponseDTO(nameHint: -1, colorIndex: 2, isAnswerRevealed: false, senderName: "정채은", senderGender: "FEMALE", vote: Vote(nameHead: "나는", nameFoot: "와", keywordHead: "한강에서", keyword: "산책하고", keywordFoot: "싶어")),
-//    MyYelloDetailResponseDTO(nameHint: -1, colorIndex: 3, isAnswerRevealed: false, senderName: "이지희", senderGender: "FEMALE", vote: Vote(nameHead: "", nameFoot: "는 학교에서", keywordHead: "", keyword: "연예인", keywordFoot: "역할을 맡을 것 같아")),
-//    MyYelloDetailResponseDTO(nameHint: -1, colorIndex: 4, isAnswerRevealed: false, senderName: "김효원", senderGender: "MALE", vote: Vote(nameHead: "세상에", nameFoot: "랑 둘이", keywordHead: "남으면", keyword: "모르는 척 하고", keywordFoot: "싶어")),
-//    MyYelloDetailResponseDTO(nameHint: -1, colorIndex: 5, isAnswerRevealed: false, senderName: "권세훈", senderGender: "MALE", vote: Vote(nameHead: "", nameFoot: "의 MBTI는", keywordHead: "", keyword: "CUTE", keywordFoot: "일 것 같아")),
-//    MyYelloDetailResponseDTO(nameHint: -1, colorIndex: 6, isAnswerRevealed: false, senderName: "강국희", senderGender: "FEMALE", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야")),
-//    MyYelloDetailResponseDTO(nameHint: -1, colorIndex: 1, isAnswerRevealed: false, senderName: "권세훈", senderGender: "MALE", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"))
-//]
 
 
 struct MyYelloBackgroundColorDummy {
