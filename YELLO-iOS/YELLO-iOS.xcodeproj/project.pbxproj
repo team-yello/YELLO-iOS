@@ -13,7 +13,7 @@
 		2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A72A62DC90001AAC93 /* BaseResponse.swift */; };
 		2A3705AA2A62DC9F001AAC93 /* APIRequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705A92A62DC9F001AAC93 /* APIRequestLoader.swift */; };
 		2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705AB2A62DCB2001AAC93 /* NetworkService.swift */; };
-		2A3705C82A62E297001AAC93 /* SignInResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C72A62E297001AAC93 /* SignInResponseDTO.swift */; };
+		2A3705C82A62E297001AAC93 /* SignUpResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C72A62E297001AAC93 /* SignUpResponseDTO.swift */; };
 		2A3705CA2A62E2A2001AAC93 /* KakaoLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705C92A62E2A2001AAC93 /* KakaoLoginResponseDTO.swift */; };
 		2A3705CC2A62E2BF001AAC93 /* OnboardingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705CB2A62E2BF001AAC93 /* OnboardingTarget.swift */; };
 		2A3705D42A62E33E001AAC93 /* RecommendingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */; };
@@ -60,7 +60,7 @@
 		3662A0E42A63F6C300F482EF /* CheckDuplicateResponeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0E32A63F6C300F482EF /* CheckDuplicateResponeDTO.swift */; };
 		3662A0E82A64414800F482EF /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0E72A64414800F482EF /* OnboardingService.swift */; };
 		3662A0EA2A64437900F482EF /* KakaoLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0E92A64437900F482EF /* KakaoLoginRequestDTO.swift */; };
-		3662A0EC2A64477300F482EF /* SignInRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0EB2A64477300F482EF /* SignInRequestDTO.swift */; };
+		3662A0EC2A64477300F482EF /* SignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0EB2A64477300F482EF /* SignUpRequestDTO.swift */; };
 		3662A0EE2A651AFC00F482EF /* SchoolSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0ED2A651AFC00F482EF /* SchoolSearchRequestQueryDTO.swift */; };
 		3662A0F02A651FD100F482EF /* SchoolSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0EF2A651FD100F482EF /* SchoolSearchResponseDTO.swift */; };
 		3662A0F22A65498800F482EF /* MajorSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0F12A65498800F482EF /* MajorSearchRequestQueryDTO.swift */; };
@@ -220,7 +220,7 @@
 		2A3705A72A62DC90001AAC93 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		2A3705A92A62DC9F001AAC93 /* APIRequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestLoader.swift; sourceTree = "<group>"; };
 		2A3705AB2A62DCB2001AAC93 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		2A3705C72A62E297001AAC93 /* SignInResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseDTO.swift; sourceTree = "<group>"; };
+		2A3705C72A62E297001AAC93 /* SignUpResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseDTO.swift; sourceTree = "<group>"; };
 		2A3705C92A62E2A2001AAC93 /* KakaoLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginResponseDTO.swift; sourceTree = "<group>"; };
 		2A3705CB2A62E2BF001AAC93 /* OnboardingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTarget.swift; sourceTree = "<group>"; };
 		2A3705D32A62E33E001AAC93 /* RecommendingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingTarget.swift; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 		3662A0E32A63F6C300F482EF /* CheckDuplicateResponeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckDuplicateResponeDTO.swift; sourceTree = "<group>"; };
 		3662A0E72A64414800F482EF /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		3662A0E92A64437900F482EF /* KakaoLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginRequestDTO.swift; sourceTree = "<group>"; };
-		3662A0EB2A64477300F482EF /* SignInRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequestDTO.swift; sourceTree = "<group>"; };
+		3662A0EB2A64477300F482EF /* SignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestDTO.swift; sourceTree = "<group>"; };
 		3662A0ED2A651AFC00F482EF /* SchoolSearchRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchRequestQueryDTO.swift; sourceTree = "<group>"; };
 		3662A0EF2A651FD100F482EF /* SchoolSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchResponseDTO.swift; sourceTree = "<group>"; };
 		3662A0F12A65498800F482EF /* MajorSearchRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorSearchRequestQueryDTO.swift; sourceTree = "<group>"; };
@@ -628,7 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				3662A0E92A64437900F482EF /* KakaoLoginRequestDTO.swift */,
-				3662A0EB2A64477300F482EF /* SignInRequestDTO.swift */,
+				3662A0EB2A64477300F482EF /* SignUpRequestDTO.swift */,
 				3662A0ED2A651AFC00F482EF /* SchoolSearchRequestQueryDTO.swift */,
 				3662A0F12A65498800F482EF /* MajorSearchRequestQueryDTO.swift */,
 				3662A0F52A654B8D00F482EF /* JoinedFriendsRequestDTO.swift */,
@@ -642,7 +642,7 @@
 			isa = PBXGroup;
 			children = (
 				3662A0E32A63F6C300F482EF /* CheckDuplicateResponeDTO.swift */,
-				2A3705C72A62E297001AAC93 /* SignInResponseDTO.swift */,
+				2A3705C72A62E297001AAC93 /* SignUpResponseDTO.swift */,
 				2A3705C92A62E2A2001AAC93 /* KakaoLoginResponseDTO.swift */,
 				3662A0EF2A651FD100F482EF /* SchoolSearchResponseDTO.swift */,
 				3662A0F32A654A6000F482EF /* MajorSearchResponseDTO.swift */,
@@ -1482,11 +1482,10 @@
 				C3FF248C2A5E846D00A97D40 /* MyYelloNavigationBarView.swift in Sources */,
 				3662A0F82A6577E000F482EF /* IdValidRequestQueryDTO.swift in Sources */,
 				C3FF24992A5EAEA400A97D40 /* MyYelloModel.swift in Sources */,
-				3662A0EC2A64477300F482EF /* SignInRequestDTO.swift in Sources */,
+				3662A0EC2A64477300F482EF /* SignUpRequestDTO.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
 				C3A799E72A494D6800D3EFD8 /* String+.swift in Sources */,
-				2A3705D82A62E35A001AAC93 /* e.swift in Sources */,
 				C306E7452A656AC40031514C /* ProfileFriendResponseDTO.swift in Sources */,
 				2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */,
 				2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */,
@@ -1592,7 +1591,7 @@
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
-				2A3705C82A62E297001AAC93 /* SignInResponseDTO.swift in Sources */,
+				2A3705C82A62E297001AAC93 /* SignUpResponseDTO.swift in Sources */,
 				C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */,
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36871C7B2A664C69001CA514 /* JoinedFriendsResponseDTO.swift in Sources */,
@@ -1645,7 +1644,6 @@
 /* Begin XCBuildConfiguration section */
 		C3A799A52A49490D00D3EFD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3662A0E02A63052700F482EF /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BASE_URL = "http://3.38.231.223/api/v1";
@@ -1709,7 +1707,6 @@
 		};
 		C3A799A62A49490D00D3EFD8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3662A0E02A63052700F482EF /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BASE_URL = "http://3.38.231.223/api/v1";
@@ -1767,7 +1764,7 @@
 		};
 		C3A799A82A49490D00D3EFD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3662A0E02A63052700F482EF /* Config.xcconfig */;
+			baseConfigurationReference = 3662A0E22A63474000F482EF /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1800,7 +1797,7 @@
 		};
 		C3A799A92A49490D00D3EFD8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3662A0E02A63052700F482EF /* Config.xcconfig */;
+			baseConfigurationReference = 3662A0E22A63474000F482EF /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
