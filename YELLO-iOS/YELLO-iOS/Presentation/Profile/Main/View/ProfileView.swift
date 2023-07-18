@@ -25,6 +25,8 @@ final class ProfileView: UIView {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 self.myFriendTableView.reloadData()
+                self.beginBatchFetch()
+                self.myProfileHeaderView.myProfileView.profileUser(userId: 148)
             }
         }
     }
@@ -228,6 +230,8 @@ extension ProfileView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFriendTableViewCell.identifier, for: indexPath) as? MyFriendTableViewCell else {
+            
+            profileFriend(page: profileFriendPage)
             return UITableViewCell()
         }
         

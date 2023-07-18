@@ -23,7 +23,7 @@ final class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
-        self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 161)
+        self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 148)
         self.profileView.myFriendTableView.reloadData()
         self.profileView.beginBatchFetch()
     }
@@ -80,7 +80,7 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
             self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
             self.profileView.myProfileFriendModelModel.remove(at: self.profileView.indexNumber)
             self.profileView.myFriendTableView.deleteRows(at: [[0, self.profileView.indexNumber]], with: .right)
-            self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 161)
+            self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 148)
         }
         self.profileView.myFriendTableView.reloadData()
         profileView.initialProfileFriendDataCount -= 1

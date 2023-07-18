@@ -80,8 +80,7 @@ final class PaymentReadyViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(48.adjusted)
         }
-    }
-    
+    }    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
