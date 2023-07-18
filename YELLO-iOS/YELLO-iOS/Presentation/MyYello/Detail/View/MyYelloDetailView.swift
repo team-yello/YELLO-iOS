@@ -310,17 +310,17 @@ extension MyYelloDetailView {
     
     // MARK: Objc Function
     @objc private func keywordButtonTapped() {
-        if currentPoint < 300 {
+        if currentPoint < 100 {
             showLackAlert()
         } else {
-            if isKeywordUsed == false {
-                if currentPoint < 100 {
+            if isKeywordUsed == true {
+                if currentPoint < 300 {
                     showLackAlert()
                 } else {
-                    showUsePointAlert()
+                    showUseSenderPointAlert()
                 }
             } else {
-                showUseSenderPointAlert()
+                showUsePointAlert()
             }
         }
     }
