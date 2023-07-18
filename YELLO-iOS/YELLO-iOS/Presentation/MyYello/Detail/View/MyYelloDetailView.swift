@@ -26,6 +26,7 @@ final class MyYelloDetailView: BaseView {
     var pointLackView = PointLackView()
     var usePointView = UsePointView()
     var getHintView = GetHintView()
+    var indexNumber: Int = 0
     
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
@@ -43,6 +44,7 @@ final class MyYelloDetailView: BaseView {
                 keywordButton.setTitle(StringLiterals.MyYello.Detail.sendButton, for: .normal)
                 detailKeywordView.keywordLabel.isHidden = false
                 detailKeywordView.questionLabel.isHidden = true
+                MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
             }
         }
     }
@@ -57,6 +59,7 @@ final class MyYelloDetailView: BaseView {
                 instagramButton.snp.makeConstraints {
                     $0.bottom.equalTo(senderButton.snp.top).offset(-24.adjustedHeight)
                 }
+                MyYelloListView.myYelloModelDummy[indexNumber].nameHint = 0
             }
         }
     }
@@ -65,6 +68,8 @@ final class MyYelloDetailView: BaseView {
         didSet {
             self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
             self.getHintView.pointLabel.text = String(self.currentPoint)
+            self.pointLackView.pointLabel.text = String(self.currentPoint)
+            self.usePointView.pointLabel.text = String(self.currentPoint)
         }
     }
     

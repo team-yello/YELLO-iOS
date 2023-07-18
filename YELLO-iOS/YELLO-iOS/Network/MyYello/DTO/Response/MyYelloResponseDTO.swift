@@ -18,9 +18,9 @@ struct Yello: Codable {
     let id: Int
     let senderGender: String
     let senderName: String
-    let nameHint: Int
+    var nameHint: Int
     let vote: Vote
-    let isHintUsed: Bool
+    var isHintUsed: Bool
     let isRead: Bool
     let createdAt: String
 }
