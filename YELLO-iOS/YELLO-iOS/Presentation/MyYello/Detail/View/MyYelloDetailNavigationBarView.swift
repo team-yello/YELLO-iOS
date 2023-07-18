@@ -30,7 +30,6 @@ final class MyYelloDetailNavigationBarView: BaseView {
 
         backButton.do {
             $0.setImage(ImageLiterals.Profile.icArrowLeftWhite, for: .normal)
-            $0.imageView?.tintColor = .white
             $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         }
         

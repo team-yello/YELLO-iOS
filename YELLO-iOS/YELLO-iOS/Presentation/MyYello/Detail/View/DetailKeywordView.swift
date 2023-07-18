@@ -18,8 +18,11 @@ final class DetailKeywordView: BaseView {
     let keywordView = UIView()
     let keywordBackView = UIView(frame: CGRect(x: 0, y: 0, width: 143, height: 34))
     let keywordLabel = UILabel()
+    let keywordLabelView = UIView()
+    let questionLabel = UILabel()
     let keywordHeadLabel = UILabel()
     let keywordFootLabel = UILabel()
+    var keywordWidth: Int = 143
 
     // MARK: - Function
     // MARK: Layout Helpers
@@ -39,12 +42,22 @@ final class DetailKeywordView: BaseView {
             $0.addDottedBorder()
         }
         
-        keywordLabel.do {
+        keywordLabelView.do {
             $0.backgroundColor = .yelloMain500
             $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
+        }
+        
+        keywordLabel.do {
+            $0.setTextWithLineHeight(text: "", lineHeight: 24)
+            $0.font = .uiBodyLarge
+            $0.textColor = .black
+            $0.isHidden = true
+        }
+        
+        questionLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.sender, lineHeight: 20)
             $0.font = .uiSenderLabel
-            $0.textColor = UIColor(hex: "000000")
+            $0.textColor = .black
         }
         
         keywordHeadLabel.do {
@@ -65,9 +78,12 @@ final class DetailKeywordView: BaseView {
                          keywordView)
         
         keywordView.addSubviews(keywordBackView,
-                                keywordLabel,
+                                keywordLabelView,
                                 keywordHeadLabel,
                                 keywordFootLabel)
+        
+        keywordLabelView.addSubviews(questionLabel,
+                                    keywordLabel)
         
         nameKeywordLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(36)
@@ -88,13 +104,23 @@ final class DetailKeywordView: BaseView {
         
         keywordBackView.snp.makeConstraints {
             $0.top.height.equalTo(keywordView)
-            $0.width.equalTo(143)
+            $0.width.equalTo(keywordLabelView)
             $0.height.equalTo(34)
+        }
+        
+        keywordLabelView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.height.equalTo(30)
+        }
+        
+        questionLabel.snp.makeConstraints {
+            $0.center.equalTo(keywordBackView)
+            $0.height.equalTo(30)
         }
         
         keywordLabel.snp.makeConstraints {
             $0.center.equalTo(keywordBackView)
-            $0.width.equalTo(143)
+            $0.leading.trailing.equalToSuperview().inset(14)
             $0.height.equalTo(30)
         }
         

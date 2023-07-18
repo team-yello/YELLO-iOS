@@ -72,7 +72,7 @@ extension MyYelloDetailViewController {
     
     private func setBackgroundView() {
         if colorIndex == 1 || colorIndex == 3 || colorIndex == 7 {
-            myYelloDetailView.myYelloDetailNavigationBarView.backButton.setImage(ImageLiterals.OnBoarding.icArrowLeft, for: .normal)
+            myYelloDetailView.myYelloDetailNavigationBarView.backButton.setImage(ImageLiterals.MyYello.icArrowLeft, for: .normal)
             myYelloDetailView.myYelloDetailNavigationBarView.pointImageView.image = ImageLiterals.MyYello.icPointBlack
             myYelloDetailView.myYelloDetailNavigationBarView.pointLabel.textColor = .black
             myYelloDetailView.detailSenderView.sendLabel.textColor = .black
@@ -107,9 +107,8 @@ extension MyYelloDetailViewController {
                 }
                 
                 self.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
-                
                 self.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
-                
+                self.myYelloDetailView.detailKeywordView.keywordLabel.text = data.vote.keyword
                 self.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
                 
                 dump(data)
