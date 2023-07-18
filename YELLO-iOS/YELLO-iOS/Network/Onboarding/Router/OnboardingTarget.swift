@@ -19,6 +19,23 @@ enum OnboardingTarget {
 }
 
 extension OnboardingTarget: TargetType {
+    var headerType: HTTPHeaderType {
+        switch self {
+        case .postTokenChange(let _):
+            return .hasAccessToken
+        case .getSchoolList(let _):
+            return .plain
+        case .getMajorList(let _):
+            return .plain
+        case .getCheckDuplicate(let _):
+            return .hasAccessToken
+        case .postFirendsList(let _):
+            return .plain
+        case .postUserInfo(let _, let _2):
+            return .hasAccessToken
+        }
+    }
+    
     var method: HTTPMethod {
         switch self {
         case .postTokenChange:

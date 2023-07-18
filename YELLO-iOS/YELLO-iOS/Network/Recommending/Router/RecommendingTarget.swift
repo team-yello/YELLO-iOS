@@ -16,6 +16,17 @@ enum RecommendingTarget {
 }
 
 extension RecommendingTarget: TargetType {
+    var headerType: HTTPHeaderType {
+        switch self {
+        case .recommendingKakaoFriend(_, _):
+            return .hasAccessToken
+        case .recommendingSchoolFriend(_):
+            return .hasAccessToken
+        case .recommendingAddFriend(_):
+            return .hasAccessToken
+        }
+    }
+    
     var method: HTTPMethod {
         switch self {
         case .recommendingKakaoFriend:

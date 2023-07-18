@@ -124,12 +124,18 @@ final class VotingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if VotingViewController.pushCount == 0 {
+            Color.shared.startIndex = Int.random(in: 0...11)
+            Color.shared.selectedTopColors = selectTopColors(startIndex: Color.shared.startIndex)
+            Color.shared.selectedBottomColors = selectBottomColors(startIndex: Color.shared.startIndex)
+        }
+
         navigationController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         tabBarController?.tabBar.isHidden = true
     }
     

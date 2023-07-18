@@ -17,6 +17,19 @@ enum VotingTarget {
 }
 
 extension VotingTarget: TargetType {
+    var headerType: HTTPHeaderType {
+        switch self {
+        case .getVotingAvailable:
+            return .hasAccessToken
+        case .getVotingSuffle:
+            return .hasAccessToken
+        case .getVotingList:
+            return .hasAccessToken
+        case .postVotingAnswerList(_):
+            return .hasAccessToken
+        }
+    }
+    
     var method: HTTPMethod {
         switch self {
         case .getVotingAvailable:

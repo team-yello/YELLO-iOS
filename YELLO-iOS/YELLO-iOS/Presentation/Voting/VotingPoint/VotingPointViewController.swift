@@ -114,8 +114,8 @@ final class VotingPointViewController: BaseViewController {
 
     @objc
     func yellowButtonClicked() {
-        print(votingAnswer)
-        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: votingAnswer, totalPoint: votingPlusPoint)
+        guard let loadedUserArray = loadUserData() else { return }
+        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: loadedUserArray, totalPoint: votingPlusPoint)
         NetworkService.shared.votingService.postVotingAnswerList(requestDTO: requestDTO) { result in
             switch result {
             case .success(let data):
@@ -127,10 +127,11 @@ final class VotingPointViewController: BaseViewController {
                 return
             }
         }
-        let viewController = VotingTimerViewController()
-        viewController.myPoint = myPoint
-        viewController.votingPlusPoint = votingPlusPoint
-        self.navigationController?.pushViewController(viewController, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let viewController = VotingTimerViewController()
+            viewController.myPoint = self.myPoint
+            viewController.votingPlusPoint = self.votingPlusPoint
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
-
 }

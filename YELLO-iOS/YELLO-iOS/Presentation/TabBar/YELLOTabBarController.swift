@@ -17,7 +17,6 @@ final class YELLOTabBarController: UITabBarController {
     private var tabs: [UIViewController] = []
     
     private var startStatus: Int = 0
-    private let notTimerEnd: Bool = UserDefaults.standard.bool(forKey: "timer")
     
     // MARK: - Life Cycle
     

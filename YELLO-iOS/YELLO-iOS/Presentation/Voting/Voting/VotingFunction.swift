@@ -11,18 +11,14 @@ import SnapKit
 import Then
 
 extension VotingViewController {
-    
     /// 10개 투표지의 style을 dummy에 따라 설정
     func setVotingView() {
         let dummy = VotingDummy.dummy()
-        
-        let gradientView = CAGradientLayer()
-        gradientView.frame = view.bounds
-        gradientView.colors = [dummy[VotingViewController.pushCount].backgroundColorTop.cgColor, dummy[VotingViewController.pushCount].backgroundColorBottom.cgColor]
-        
-        gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
-        view.layer.insertSublayer(gradientView, at: 0)
+        let gradientView = UIView(frame: view.bounds)
+        gradientView.applyGradientBackground(
+            topColor: UIColor(hex: Color.shared.selectedTopColors[VotingViewController.pushCount]),
+            bottomColor: UIColor(hex: Color.shared.selectedBottomColors[VotingViewController.pushCount]))
+        view.insertSubview(gradientView, at: 0)
         
         self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
         self.originView.yelloProgress.image =
@@ -110,6 +106,7 @@ extension VotingViewController {
         if VotingViewController.pushCount >= 10 {
             let viewController = VotingPointViewController()
             viewController.votingAnswer = votingAnswer
+            saveUserData(votingAnswer)
             viewController.myPoint = myPoint
             viewController.votingPlusPoint = votingPlusPoint
             self.navigationController?.pushViewController(viewController, animated: false)
@@ -117,6 +114,7 @@ extension VotingViewController {
             let viewController = VotingViewController()
             viewController.votingList = votingList
             viewController.votingAnswer = votingAnswer
+            saveUserData(votingAnswer)
             viewController.myPoint = myPoint
             viewController.votingPlusPoint = votingPlusPoint
             UIView.transition(with: self.navigationController!.view, duration: 0.3, options: .transitionCrossDissolve, animations: {
