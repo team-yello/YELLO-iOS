@@ -28,13 +28,12 @@ class FindSchoolViewController: SearchBaseViewController {
     
     func searchSchool(_ word: String) {
         let queryDTO: SchoolSearchRequestQueryDTO = SchoolSearchRequestQueryDTO(search: word, page: pageCount)
-        NetworkService.shared.onboardingService.getSchoolList(queryDTO: queryDTO) {
-            result in
+        NetworkService.shared.onboardingService.getSchoolList(queryDTO: queryDTO) { result in
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
                 self.allArr.append(contentsOf: data.groupNameList)
-                self.totalItemCount = data.totalCount ?? 0
+                self.totalItemCount = data.totalCount 
                 self.searchView.searchResultTableView.reloadData()
             default:
                 print(ErrorPointer.self)
