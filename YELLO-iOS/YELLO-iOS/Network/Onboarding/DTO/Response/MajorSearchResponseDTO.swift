@@ -8,7 +8,6 @@
 import Foundation
 
 // MARK: - MajorSearchResponseDTO
-// MARK: - MajorSearchResponseDTO
 struct MajorSearchResponseDTO: Codable {
     let totalCount: Int
     let groupList: [GroupList]

@@ -13,6 +13,8 @@ import Then
 class UserInfoViewController: OnboardingBaseViewController {
     // MARK: - Variables
     var isButtonEnable = false
+    lazy var isIdDuplicate = false
+    var isCheckingDuplicate = false
     
     // MARK: Component
     private let baseView = UserInfoView()
@@ -60,6 +62,7 @@ class UserInfoViewController: OnboardingBaseViewController {
         baseView.nameTextField.textField.delegate = self
     }
     
+    // MARK: Custom Function
     func checkButtonEnable() {
         let nameTextFieldView = baseView.nameTextField
         let idTextFieldView = baseView.idTextField
@@ -71,7 +74,7 @@ class UserInfoViewController: OnboardingBaseViewController {
         guard let isEnglishOnly = idTextFieldView.textField.text?.isId() else { return }
         
         if !isNameEmpty, !isKoreanOnly {
-            /// 한글로만 이루어져 있지 않으면 에러 처리
+            // 한글로만 이루어져 있지 않으면 에러 처리
             nameTextFieldView.textField.setButtonState(state: .error)
             nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameError, State: .error)
             self.isButtonEnable = false
@@ -79,27 +82,64 @@ class UserInfoViewController: OnboardingBaseViewController {
             nameTextFieldView.textField.setButtonState(state: .normal)
             nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
         }
+        
+        if !isIDEmpty {
+            guard let text = idTextFieldView.textField.text else { return }
+            self.checkDuplicate(id: text)
+        } else {
+            self.isIdDuplicate = false
+        }
+        
         if !isIDEmpty, !isEnglishOnly {
-            /// 영어, 온점, 밑줄 이외의 문자가 포함되어 있으면 에러 처리
+            // 영어, 온점, 밑줄 이외의 문자가 포함되어 있으면 에러 처리
             idTextFieldView.textField.setButtonState(state: .error)
             idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idError, State: .error)
             self.isButtonEnable = false
         } else {
-            
             idTextFieldView.textField.setButtonState(state: .id)
             idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
         }
-                
-        if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly {
+        
+        if isIdDuplicate {
+            idTextFieldView.textField.setButtonState(state: .error)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idDuplicate, State: .error)
+        } else if isIdDuplicate == false {
+            idTextFieldView.textField.setButtonState(state: .id)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
+        }
+        
+        if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly, !isIdDuplicate {
             nextButton.setButtonEnable(state: true)
             idTextFieldView.textField.setButtonState(state: .done)
             nameTextFieldView.textField.setButtonState(state: .done)
         } else {
             nextButton.setButtonEnable(state: false)
         }
-        
     }
     
+    func checkDuplicate(id: String) {
+        let queryDTO = IdValidRequestQueryDTO(yelloId: id)
+        NetworkService.shared.onboardingService.getCheckDuplicate(queryDTO: queryDTO) { [weak self] result in
+            switch result {
+            case .success(let data):
+                guard let isValid = data.data else { return }
+                DispatchQueue.main.async {
+                    if data.status == 404 {
+                        self?.isIdDuplicate = false
+                    } else {
+                        self?.isIdDuplicate = isValid
+                    }
+                    self?.checkButtonEnable() // 버튼 상태 업데이트
+                }
+            default:
+                DispatchQueue.main.async {
+                    self?.isIdDuplicate = false
+                    self?.checkButtonEnable() // 버튼 상태 업데이트
+                }
+            }
+        }
+    }
+
 }
 
 // MARK: - extension
@@ -119,9 +159,14 @@ extension UserInfoViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == baseView.idTextField.textField {
+            guard let idText = textField.text else { return }
+            self.checkDuplicate(id: idText)
+        }
         self.checkButtonEnable()
     }
     

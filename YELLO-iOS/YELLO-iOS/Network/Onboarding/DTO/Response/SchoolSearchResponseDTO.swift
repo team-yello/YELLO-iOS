@@ -9,7 +9,6 @@ import Foundation
 
 // MARK: - SchoolSearchResponseDTO
 struct SchoolSearchResponseDTO: Codable {
-    let totalCount: Int
     let groupNameList: [String]
+    let totalCount: Int
 }
-
