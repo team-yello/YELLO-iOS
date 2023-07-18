@@ -10,6 +10,7 @@ import Foundation
 struct MyYelloDetailResponseDTO: Codable {
     let nameHint: Int
     let colorIndex: Int
+    let currentPoint: Int
     let isAnswerRevealed: Bool
     let senderName: String
     let senderGender: String

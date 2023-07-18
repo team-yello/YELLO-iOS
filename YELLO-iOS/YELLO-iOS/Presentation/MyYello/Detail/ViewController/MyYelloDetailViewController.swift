@@ -26,7 +26,6 @@ final class MyYelloDetailViewController: BaseViewController {
             sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: votingStartViewController)
         }
     }
-//    var currentPage: Int = 0
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -98,6 +97,7 @@ extension MyYelloDetailViewController {
                 guard let data = data.data else { return }
                 
                 self.colorIndex = data.colorIndex
+                self.myYelloDetailView.currentPoint = data.currentPoint
                 self.setBackgroundView()
                 
                 if data.senderGender == "MALE" {

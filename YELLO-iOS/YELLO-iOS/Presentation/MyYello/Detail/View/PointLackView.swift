@@ -28,7 +28,7 @@ final class PointLackView: BaseView {
     let pointView = UIView()
     let pointImageView = UIImageView()
     let pointTitleLabel = UILabel()
-    let pointLabel = UILabel()
+    var pointLabel = UILabel()
     let pointTextLabel = UILabel()
     lazy var yelloButton = UIButton()
     

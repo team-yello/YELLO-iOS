@@ -61,7 +61,12 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
-    var point: Int = 10
+    var currentPoint: Int = 0 {
+        didSet {
+            self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
+            self.getHintView.pointLabel.text = String(self.currentPoint)
+        }
+    }
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -241,6 +246,7 @@ extension MyYelloDetailView {
         pointLackView.removeFromSuperview()
         pointLackView = PointLackView()
         pointLackView.frame = viewController.view.bounds
+        pointLackView.pointLabel.text = String(self.currentPoint)
         pointLackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(pointLackView)
     }
@@ -249,6 +255,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         usePointView.removeFromSuperview()
         usePointView = UsePointView()
+        usePointView.pointLabel.text = String(self.currentPoint)
         usePointView.frame = viewController.view.bounds
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
@@ -259,6 +266,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         usePointView.removeFromSuperview()
         usePointView = UsePointView()
+        usePointView.pointLabel.text = String(self.currentPoint)
         usePointView.frame = viewController.view.bounds
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
@@ -271,6 +279,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         getHintView.removeFromSuperview()
         getHintView = GetHintView()
+        getHintView.pointLabel.text = String(self.currentPoint)
         getHintView.frame = viewController.view.bounds
         getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(getHintView)
@@ -293,6 +302,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         getHintView.removeFromSuperview()
         getHintView = GetHintView()
+        self.getHintView.pointLabel.text = String(self.currentPoint)
         getHintView.frame = viewController.view.bounds
         getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(getHintView)
@@ -300,11 +310,15 @@ extension MyYelloDetailView {
     
     // MARK: Objc Function
     @objc private func keywordButtonTapped() {
-        if point == 0 {
+        if currentPoint < 300 {
             showLackAlert()
         } else {
             if isKeywordUsed == false {
-                showUsePointAlert()
+                if currentPoint < 100 {
+                    showLackAlert()
+                } else {
+                    showUsePointAlert()
+                }
             } else {
                 showUseSenderPointAlert()
             }
