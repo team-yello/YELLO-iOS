@@ -74,6 +74,8 @@ final class DetailKeywordView: BaseView {
     }
     
     override func setLayout() {
+//        let keywordViewWidth = keywordHeadLabel.snp.width + keywordBackView.snp.width + keywordFootLabel.snp.width + 20
+        
         self.addSubviews(nameKeywordLabel,
                          keywordView)
         
@@ -93,6 +95,7 @@ final class DetailKeywordView: BaseView {
         
         keywordView.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(36)
+            $0.height.equalTo(34)
             $0.centerX.equalToSuperview()
         }
         
@@ -103,13 +106,13 @@ final class DetailKeywordView: BaseView {
         }
         
         keywordBackView.snp.makeConstraints {
-            $0.top.height.equalTo(keywordView)
+            $0.top.equalTo(keywordView)
             $0.width.equalTo(keywordLabelView)
             $0.height.equalTo(34)
         }
         
         keywordLabelView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerY.equalToSuperview()
             $0.height.equalTo(30)
         }
         
