@@ -18,7 +18,6 @@ class SearchBaseViewController: BaseViewController {
     // MARK: Property
     var allArr: [String] = []
     
-    
     // MARK: Component
     let searchView = SearchView()
     weak var delegate: SearchResultTableViewSelectDelegate?

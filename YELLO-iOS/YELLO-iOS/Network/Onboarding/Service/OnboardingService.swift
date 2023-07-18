@@ -15,6 +15,7 @@ protocol OnboardingServiceProtocol {
     func postUserInfo(queryDTO: SignInRequestDTO, completion: @escaping (NetworkResult<BaseResponse<[SignInResponseDTO]>>) -> Void)
     func getSchoolList(queryDTO: SchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<SchoolSearchResponseDTO>>) -> Void)
     func getMajorList(queryDTO: MajorSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<MajorSearchResponseDTO>>) -> Void)
+    func postJoinedFriends(queryDTO: JoinedFriendsRequestQueryDTO, requestDTO: JoinedFriendsRequestDTO, completion: @escaping (NetworkResult<BaseResponse<JoinedFriendsResponseDTO>>) -> Void)
 }
 
 final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingServiceProtocol {
@@ -37,6 +38,10 @@ final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingSer
     
     func getMajorList(queryDTO: MajorSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<MajorSearchResponseDTO>>) -> Void) {
         fetchData(target: .getMajorList(queryDTO), responseData: BaseResponse<MajorSearchResponseDTO>.self, completion: completion)
+    }
+    
+    func postJoinedFriends(queryDTO: JoinedFriendsRequestQueryDTO, requestDTO: JoinedFriendsRequestDTO, completion: @escaping (NetworkResult<BaseResponse<JoinedFriendsResponseDTO>>) -> Void) {
+        fetchData(target: .postFirendsList(queryDTO, requestDTO), responseData: BaseResponse<JoinedFriendsResponseDTO>.self, completion: completion)
     }
     
 }

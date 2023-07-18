@@ -73,6 +73,8 @@ class UserInfoViewController: OnboardingBaseViewController {
         
         guard let isEnglishOnly = idTextFieldView.textField.text?.isId() else { return }
         
+        nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
+        
         if !isNameEmpty, !isKoreanOnly {
             // 한글로만 이루어져 있지 않으면 에러 처리
             nameTextFieldView.textField.setButtonState(state: .error)
@@ -83,34 +85,26 @@ class UserInfoViewController: OnboardingBaseViewController {
             nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
         }
         
-        if !isIDEmpty {
-            guard let text = idTextFieldView.textField.text else { return }
-            self.checkDuplicate(id: text)
-        } else {
-            self.isIdDuplicate = false
-        }
-        
         if !isIDEmpty, !isEnglishOnly {
             // 영어, 온점, 밑줄 이외의 문자가 포함되어 있으면 에러 처리
             idTextFieldView.textField.setButtonState(state: .error)
             idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idError, State: .error)
             self.isButtonEnable = false
         } else {
-            idTextFieldView.textField.setButtonState(state: .id)
-            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
-        }
-        
-        if isIdDuplicate {
-            idTextFieldView.textField.setButtonState(state: .error)
-            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idDuplicate, State: .error)
-        } else if isIdDuplicate == false {
-            idTextFieldView.textField.setButtonState(state: .id)
-            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
+            if isIdDuplicate {
+                idTextFieldView.textField.setButtonState(state: .error)
+                idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idDuplicate, State: .error)
+            } else {
+                idTextFieldView.textField.rightViewMode = .never
+                idTextFieldView.textField.setButtonState(state: .id)
+                idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
+            }
         }
         
         if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly, !isIdDuplicate {
             nextButton.setButtonEnable(state: true)
             idTextFieldView.textField.setButtonState(state: .done)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .done)
             nameTextFieldView.textField.setButtonState(state: .done)
         } else {
             nextButton.setButtonEnable(state: false)
@@ -122,20 +116,16 @@ class UserInfoViewController: OnboardingBaseViewController {
         NetworkService.shared.onboardingService.getCheckDuplicate(queryDTO: queryDTO) { [weak self] result in
             switch result {
             case .success(let data):
-                guard let isValid = data.data else { return }
-                DispatchQueue.main.async {
-                    if data.status == 404 {
-                        self?.isIdDuplicate = false
-                    } else {
-                        self?.isIdDuplicate = isValid
-                    }
-                    self?.checkButtonEnable() // 버튼 상태 업데이트
-                }
-            default:
-                DispatchQueue.main.async {
+                if data.status == 404 {
                     self?.isIdDuplicate = false
-                    self?.checkButtonEnable() // 버튼 상태 업데이트
+                } else {
+                    guard let data = data.data else { return }
+                    self?.isIdDuplicate = data
                 }
+                self?.checkButtonEnable() // 중복 확인 요청이 완료된 후에만 호출
+            default:
+                self?.isIdDuplicate = false
+                self?.checkButtonEnable() // 요청이 실패한 경우에도 호출
             }
         }
     }
@@ -149,7 +139,7 @@ extension UserInfoViewController: UITextFieldDelegate {
         
         let nameTextField = baseView.nameTextField.textField
         let idTextField = baseView.idTextField.textField
-        
+    
         if textField == nameTextField {
             nameTextField.setButtonState(state: .cancel)
         } else {
