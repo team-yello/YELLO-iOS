@@ -60,10 +60,11 @@ class FriendsTableViewCell: UITableViewCell {
     
     // MARK: Custom Function
     /// cell 구성
-    func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.recommendingFriendListData.name
-        schoolLabel.text = model.recommendingFriendListData.group
-        self.isTapped = model.isButtonSelected
+    func configureFriendCell(_ model: OnboardingFriendList) {
+        nameLabel.text = model.name
+        schoolLabel.text = model.groupName
+        profileImageView.kfSetImage(url: model.profileImage)
+       // self.isTapped = model.isButtonSelected
         updateCheckButtonImage()
     }
     
