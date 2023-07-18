@@ -162,20 +162,38 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        genderImageView.image = nil
+        initialLabel.text = nil
+        sendLabel.text = nil
+        nameLabel.text = nil
+        keywordHeadLabel.text = nil
+        keywordLabel.text = nil
+        keywordFootLabel.text = nil
+        timeLabel.text = nil
+    }
+    
     // MARK: Custom Function
     func configureNameCell(_ model: Yello) {
-        if model.gender == "M" {
+        if model.senderGender == "MALE" {
             contentView.backgroundColor = .semanticGenderM700
             genderImageView.image = ImageLiterals.MyYello.imgGenderMale
             timeLabel.textColor = .semanticGenderM500
             initialLabel.textColor = .semanticGenderM300
             sendLabel.textColor = .semanticGenderM300
+        } else {
+            contentView.backgroundColor = .semanticGenderF700
+            genderImageView.image = ImageLiterals.MyYello.imgGenderFemale
+            timeLabel.textColor = .semanticGenderF500
+            initialLabel.textColor = .semanticGenderF300
+            sendLabel.textColor = .semanticGenderF300
         }
         
-        nameLabel.text = model.vote.nameHead + " 너" + model.vote.nameFoot
-        keywordHeadLabel.text = model.vote.keywordHead
+        nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
+        keywordHeadLabel.text = model.vote.keywordHead ?? ""
         keywordLabel.text = model.vote.keyword
-        keywordFootLabel.text = model.vote.keywordFoot
+        keywordFootLabel.text = model.vote.keywordFoot ?? ""
         timeLabel.text = model.createdAt
         
         if model.nameHint == 0 {
