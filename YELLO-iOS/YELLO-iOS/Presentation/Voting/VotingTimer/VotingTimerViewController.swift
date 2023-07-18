@@ -38,7 +38,13 @@ final class VotingTimerViewController: BaseViewController {
     private let originView = BaseVotingETCView()
     private var invitingView = InvitingView()
     
-    let myView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    let statusBarHeight = UIApplication.shared.connectedScenes
+        .compactMap { $0 as? UIWindowScene }
+        .first?
+        .statusBarManager?
+        .statusBarFrame.height ?? 20
+        
+    lazy var myView = UIView(frame: CGRect(x: 0, y: -statusBarHeight, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + statusBarHeight))
     let backgroundImage = ImageLiterals.Voting.imgTimerViewBackground
     
     // Timer 관련 컴포넌트
@@ -54,7 +60,6 @@ final class VotingTimerViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     deinit {
@@ -74,7 +79,7 @@ final class VotingTimerViewController: BaseViewController {
     override func setStyle() {
         
         myView.do {
-            $0.backgroundColor = UIColor.clear
+            $0.backgroundColor = UIColor.black
             $0.setBackgroundImageWithScaling(image: backgroundImage)
         }
         
@@ -110,11 +115,6 @@ final class VotingTimerViewController: BaseViewController {
     // MARK: - Layout
     
     override func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?
-            .statusBarManager?
-            .statusBarFrame.height ?? 20
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         
         originView.addSubview(myView)
@@ -131,20 +131,20 @@ final class VotingTimerViewController: BaseViewController {
         
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
-            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedHeight)
+            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjusted)
         }
         
         originView.topOfMyPoint.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjustedHeight)
+            $0.bottom.equalTo(originView.titleLabel.snp.top).offset(-29.adjustedHeight)
             $0.trailing.equalToSuperview().inset(16.adjusted)
         }
         
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
+            $0.bottom.equalTo(originView.textLabel.snp.top).offset(-2.adjustedHeight)
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(2.adjustedHeight)
+            $0.bottom.equalTo(timerBackGround.snp.top).offset(-52.adjustedHeight)
         }
         
         timerBackGround.snp.makeConstraints {
@@ -207,7 +207,7 @@ final class VotingTimerViewController: BaseViewController {
                         return
                     }
                     self?.remainingSeconds = remainingSeconds
-                    self?.animateProgress(to: Float(remainingSeconds / duration))
+                    self?.animateProgress(to: Float(remainingSeconds / 2400))
                 }
             )
         }
@@ -252,7 +252,7 @@ extension VotingTimerViewController {
                 let secondsSince1970 = date.timeIntervalSince1970
                 
                 guard let afterDate = dateFormatter.date(from: data.createdAt) else { return }
-                let afterSecondsSince1970 = afterDate.timeIntervalSince1970
+                let afterSecondsSince1970 = afterDate.timeIntervalSince1970 + 2400
                 
                 var duration = afterSecondsSince1970 - secondsSince1970
                 
