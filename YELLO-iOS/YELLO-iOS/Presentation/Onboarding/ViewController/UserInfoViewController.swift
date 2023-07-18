@@ -129,6 +129,14 @@ class UserInfoViewController: OnboardingBaseViewController {
             }
         }
     }
+    
+    override func setUser() {
+        guard let name = baseView.nameTextField.textField.text else { return }
+        guard let id = baseView.idTextField.textField.text else { return }
+        
+        User.shared.name = name
+        User.shared.yelloId = id
+    }
 
 }
 

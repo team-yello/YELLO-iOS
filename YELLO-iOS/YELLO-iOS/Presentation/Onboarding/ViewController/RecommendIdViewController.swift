@@ -99,6 +99,11 @@ class RecommendIdViewController: OnboardingBaseViewController {
         baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "추천인의 아이디를 입력해주세요.", State: .normal)
     }
     
+    override func setUser() {
+        guard let text = baseView.recommendIdTextField.textField.text else { return }
+        User.shared.recommendId = text
+    }
+    
 }
 
 // MARK: - extension
