@@ -61,15 +61,15 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
-    var point: Int = 0
+    var point: Int = 10
     
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
-        self.backgroundColor = .clear
+        self.backgroundColor = .black
         
         genderLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.female, lineHeight: 16)
+            $0.setTextWithLineHeight(text: "", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .white
         }
