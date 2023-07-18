@@ -101,7 +101,6 @@ class UserInfoViewController: OnboardingBaseViewController {
             }
         }
         
-        
         if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly, !isIdDuplicate {
             nextButton.setButtonEnable(state: true)
             idTextFieldView.textField.setButtonState(state: .done)
@@ -117,15 +116,10 @@ class UserInfoViewController: OnboardingBaseViewController {
         NetworkService.shared.onboardingService.getCheckDuplicate(queryDTO: queryDTO) { [weak self] result in
             switch result {
             case .success(let data):
-                print("\(data.status)")
                 if data.status == 404 {
                     self?.isIdDuplicate = false
-                    print("성공!✅✅✅✅✅✅✅")
                 } else {
-                    guard let data = data.data else {
-                        print (data.status)
-                        return
-                    }
+                    guard let data = data.data else { return }
                     self?.isIdDuplicate = data
                 }
                 self?.checkButtonEnable() // 중복 확인 요청이 완료된 후에만 호출
@@ -136,7 +130,6 @@ class UserInfoViewController: OnboardingBaseViewController {
         }
     }
 
-    
 }
 
 // MARK: - extension
@@ -147,7 +140,6 @@ extension UserInfoViewController: UITextFieldDelegate {
         let nameTextField = baseView.nameTextField.textField
         let idTextField = baseView.idTextField.textField
     
-        
         if textField == nameTextField {
             nameTextField.setButtonState(state: .cancel)
         } else {

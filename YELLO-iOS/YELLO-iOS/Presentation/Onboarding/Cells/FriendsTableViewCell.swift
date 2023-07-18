@@ -164,5 +164,4 @@ extension FriendsTableViewCell {
         }
         
     }
-    
 }
