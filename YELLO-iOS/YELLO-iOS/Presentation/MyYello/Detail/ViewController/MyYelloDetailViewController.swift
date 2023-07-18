@@ -17,7 +17,7 @@ final class MyYelloDetailViewController: BaseViewController {
     let myYelloDetailView = MyYelloDetailView()
     let dummy = myYelloBackgroundColorDummy
     let hexDummy = myYelloBackgroundColorStringDummy
-    var colorIndex: Int = 2
+    var colorIndex: Int = 0
     var isYelloButtonTapped: Bool = false {
         didSet {
             let votingStartViewController = YELLOTabBarController()
@@ -79,6 +79,15 @@ extension MyYelloDetailViewController {
         gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
         view.layer.insertSublayer(gradientView, at: 0)
+        
+        if colorIndex == 1 || colorIndex == 3 || colorIndex == 7 {
+            myYelloDetailView.myYelloDetailNavigationBarView.backButton.setImage(ImageLiterals.OnBoarding.icArrowLeft, for: .normal)
+            myYelloDetailView.myYelloDetailNavigationBarView.pointImageView.image = ImageLiterals.MyYello.icPointBlack
+            myYelloDetailView.myYelloDetailNavigationBarView.pointLabel.textColor = .black
+            myYelloDetailView.detailSenderView.sendLabel.textColor = .black
+            myYelloDetailView.genderLabel.textColor = .black
+            myYelloDetailView.instagramButton.setTitleColor(.black, for: .normal)
+        }
     }
     
     // MARK: - Network
@@ -102,8 +111,6 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
                 
                 self.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
-                
-                
                 
                 dump(data)
                 print("통신 성공")
