@@ -189,7 +189,8 @@ extension InvitingView {
             }
         } else {
             // 카카오톡 미설치: 웹 공유 사용 권장
-            if ShareApi.shared.makeCustomUrl(templateId: Int64(templateId), templateArgs:["title":"제목입니다.", "description":"설명입니다."]) != nil {
+            if ShareApi.shared.makeCustomUrl(templateId: Int64(templateId),
+                                             templateArgs: ["${KEY}": "제목입니다."]) != nil {
                 print("error")
             }
         }
