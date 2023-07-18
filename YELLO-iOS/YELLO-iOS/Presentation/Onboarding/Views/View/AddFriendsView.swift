@@ -4,6 +4,9 @@
 //
 //  Created by 지희의 MAC on 2023/07/07.
 //
+/// TO DO
+/// 싱글톤으로
+/// 뷰 안에서 상태관리하는 게 더 좋을 것 같다!
 
 import UIKit
 
@@ -88,6 +91,7 @@ extension AddFriendsView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendsTableViewCell.identifier) as! FriendsTableViewCell
+        
         if cell.isTapped == true {
             joinedFriendsList[indexPath.row].isAdded = false
         }

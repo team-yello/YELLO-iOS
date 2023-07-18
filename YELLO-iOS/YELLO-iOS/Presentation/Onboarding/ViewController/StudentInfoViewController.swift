@@ -17,7 +17,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
     // MARK: Component
     private let baseView = StudentInfoView()
     var schoolName: String = "" {
-        didSet{
+        didSet {
             resetTextField()
         }
     }
