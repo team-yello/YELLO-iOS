@@ -61,7 +61,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         initialLabel.do {
-            $0.setTextWithLineHeight(text: "ㄱ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiKeywordBold
             $0.textColor = .semanticGenderF300
         }
@@ -73,31 +73,31 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: "사라진다면", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordLabel.do {
-            $0.setTextWithLineHeight(text: "달빛산책간 거", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiKeywordBold
             $0.textColor = .white
         }
         
         keywordFootLabel.do {
-            $0.setTextWithLineHeight(text: "(이)야", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .semanticGenderF500
         }
@@ -131,7 +131,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         labelView.snp.makeConstraints {
-            $0.top.equalTo(sendLabel.snp.bottom).offset(2)
+            $0.top.equalTo(initialLabel.snp.bottom).offset(2)
             $0.height.equalTo(40)
             $0.leading.equalTo(initialLabel)
         }
@@ -166,7 +166,6 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         super.prepareForReuse()
         genderImageView.image = nil
         initialLabel.text = nil
-        sendLabel.text = nil
         nameLabel.text = nil
         keywordHeadLabel.text = nil
         keywordLabel.text = nil

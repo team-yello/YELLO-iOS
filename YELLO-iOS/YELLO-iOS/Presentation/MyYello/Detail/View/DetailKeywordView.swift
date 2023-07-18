@@ -22,7 +22,6 @@ final class DetailKeywordView: BaseView {
     let questionLabel = UILabel()
     let keywordHeadLabel = UILabel()
     let keywordFootLabel = UILabel()
-    var keywordWidth: Int = 143
 
     // MARK: - Function
     // MARK: Layout Helpers
@@ -74,7 +73,6 @@ final class DetailKeywordView: BaseView {
     }
     
     override func setLayout() {
-//        let keywordViewWidth = keywordHeadLabel.snp.width + keywordBackView.snp.width + keywordFootLabel.snp.width + 20
         
         self.addSubviews(nameKeywordLabel,
                          keywordView)

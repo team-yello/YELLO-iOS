@@ -69,31 +69,31 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: "사라진다면", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordLabel.do {
-            $0.setTextWithLineHeight(text: "달빛산책간 거", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiKeywordBold
             $0.textColor = .white
         }
         
         keywordFootLabel.do {
-            $0.setTextWithLineHeight(text: "(이)야", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .semanticGenderF500
         }

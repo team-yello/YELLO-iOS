@@ -41,7 +41,8 @@ final class MyYelloDetailView: BaseView {
         didSet {
             if self.isKeywordUsed == true {
                 keywordButton.setTitle(StringLiterals.MyYello.Detail.sendButton, for: .normal)
-                detailKeywordView.keywordLabel.text = "모르는 척 하고"
+                detailKeywordView.keywordLabel.isHidden = false
+                detailKeywordView.questionLabel.isHidden = true
             }
         }
     }
@@ -56,7 +57,8 @@ final class MyYelloDetailView: BaseView {
                 instagramButton.snp.makeConstraints {
                     $0.bottom.equalTo(senderButton.snp.top).offset(-24.adjustedHeight)
                 }
-                detailSenderView.senderLabel.text = "ㄱ"
+                detailSenderView.senderLabel.text = initialName
+                print(initialName)
             }
         }
     }
@@ -67,6 +69,9 @@ final class MyYelloDetailView: BaseView {
             self.getHintView.pointLabel.text = String(self.currentPoint)
         }
     }
+    
+    var voteIdNumber: Int = 0
+    var initialName: String = ""
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -284,7 +289,6 @@ extension MyYelloDetailView {
         getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(getHintView)
         getHintView.titleLabel.text = StringLiterals.MyYello.Alert.senderTitle
-        getHintView.hintLabel.text = "ㄱ"
         
         getHintView.descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(getHintView.titleLabel.snp.bottom).offset(4)
@@ -325,20 +329,77 @@ extension MyYelloDetailView {
         }
     }
     
-    func configureMyYelloDetailCell(_ model: Yello) {
+    // MARK: - Network
+    func myYelloDetailKeyword(voteId: Int) {
+        NetworkService.shared.myYelloService.myYelloDetailKeyword(voteId: voteId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.detailKeywordView.keywordLabel.isHidden = false
+                self.detailKeywordView.questionLabel.isHidden = true
+                self.detailKeywordView.keywordLabel.text = data.answer
+                self.getHintView.hintLabel.text = data.answer
+                
+                dump(data)
+                print("키워드 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
+    func myYelloDetailName(voteId: Int) {
+        NetworkService.shared.myYelloService.myYelloDetailName(voteId: voteId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                if let initial = self.getFirstInitial(data.name as NSString, index: 0) {
+                    self.initialName = initial
+                    self.detailSenderView.senderLabel.text = initial
+                    self.getHintView.hintLabel.text = initial
+                }
+                
+                dump(data)
+                print("이름 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
+    func getFirstInitial(_ str: NSString, index: Int) -> String? {
+        let name = str
+        var initialName: String = ""
         
+        for i in 0..<1 {
+            let oneChar: UniChar = name.character(at: i)
+            if oneChar >= 0xAC00 && oneChar <= 0xD7A3 {
+                var firstCodeValue = ((oneChar - 0xAC00)/28)/21
+                firstCodeValue += 0x1100
+                initialName = initialName.appending(String(format: "%C", firstCodeValue))
+            } else {
+                initialName = initialName.appending(String(format: "%C", oneChar))
+            }
+        }
+        return initialName
     }
 }
 
 // MARK: HandleConfirmButtonDelegate
 extension MyYelloDetailView: HandleConfirmButtonDelegate {
     func confirmButtonTapped() {
-        ///여기에 서버통신 구현
         if self.isKeywordUsed == false {
             showGetHintAlert()
-            self.isKeywordUsed = true
+            myYelloDetailKeyword(voteId: voteIdNumber)
+            self.isKeywordUsed.toggle()
         } else {
             showGetSenderHintAlert()
+            myYelloDetailName(voteId: voteIdNumber)
+            print("안녕")
             self.isSenderUsed = true
         }
     }
