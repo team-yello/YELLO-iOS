@@ -67,5 +67,3 @@ class FindMajorViewController: SearchBaseViewController {
         searchMajor(text)
     }
 }
-
-
