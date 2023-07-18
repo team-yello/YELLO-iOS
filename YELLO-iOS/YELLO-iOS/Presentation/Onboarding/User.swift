@@ -24,4 +24,3 @@ struct User {
     
     private init() {}
 }
-

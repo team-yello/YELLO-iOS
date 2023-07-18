@@ -44,8 +44,6 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
         schoolSearchView.schoolTextField.textField.addTarget(self, action: #selector(didTapTextField), for: .touchUpInside)
     }
     
-    
-    
     private func presentModal() {
         let findSchooViewController = FindSchoolViewController()
         let nav = UINavigationController(rootViewController: findSchooViewController)
@@ -60,7 +58,6 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
     @objc func didTapTextField() {
         presentModal()
     }
-    
     
 }
 
