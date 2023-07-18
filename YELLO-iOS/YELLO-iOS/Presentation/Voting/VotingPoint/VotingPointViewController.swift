@@ -24,6 +24,7 @@ final class VotingPointViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getCreatedAt()
         tabBarController?.tabBar.isHidden = true
         originView.topOfMyPoint.text = String(myPoint)
         originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
@@ -114,8 +115,8 @@ final class VotingPointViewController: BaseViewController {
 
     @objc
     func yellowButtonClicked() {
-        print(votingAnswer)
-        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: votingAnswer, totalPoint: votingPlusPoint)
+        guard let loadedUserArray = loadUserData() else { return }
+        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: loadedUserArray, totalPoint: votingPlusPoint)
         NetworkService.shared.votingService.postVotingAnswerList(requestDTO: requestDTO) { result in
             switch result {
             case .success(let data):

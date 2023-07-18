@@ -106,6 +106,7 @@ extension VotingViewController {
         if VotingViewController.pushCount >= 10 {
             let viewController = VotingPointViewController()
             viewController.votingAnswer = votingAnswer
+            saveUserData(votingAnswer)
             viewController.myPoint = myPoint
             viewController.votingPlusPoint = votingPlusPoint
             self.navigationController?.pushViewController(viewController, animated: false)
@@ -113,6 +114,7 @@ extension VotingViewController {
             let viewController = VotingViewController()
             viewController.votingList = votingList
             viewController.votingAnswer = votingAnswer
+            saveUserData(votingAnswer)
             viewController.myPoint = myPoint
             viewController.votingPlusPoint = votingPlusPoint
             UIView.transition(with: self.navigationController!.view, duration: 0.3, options: .transitionCrossDissolve, animations: {

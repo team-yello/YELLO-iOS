@@ -71,7 +71,6 @@ final class VotingTimerViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
-        getCreatedAt()
     }
     
     // MARK: - Style
@@ -230,42 +229,5 @@ final class VotingTimerViewController: BaseViewController {
         circularProgressAnimation.isRemovedOnCompletion = false
         self.timerView.progressLayer.add(circularProgressAnimation, forKey: "progressAnimation")
         
-    }
-}
-
-extension VotingTimerViewController {
-    func getCreatedAt() {
-        NetworkService.shared.votingService.getVotingAvailable {
-            result in
-            switch result {
-            case .success(let data):
-                guard let data = data.data else { return }
-                self.originView.topOfMyPoint.text = String(data.point)
-                
-                let currentDate = Date()
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
-                let currentDateString = dateFormatter.string(from: currentDate)
-                
-                guard let date = dateFormatter.date(from: currentDateString) else { return }
-                let secondsSince1970 = date.timeIntervalSince1970
-                
-                guard let afterDate = dateFormatter.date(from: data.createdAt) else { return }
-                let afterSecondsSince1970 = afterDate.timeIntervalSince1970 + 2400
-                
-                var duration = afterSecondsSince1970 - secondsSince1970
-                
-                if duration < 0 {
-                    duration = 0
-                }
-                
-                self.start(duration: duration)
-            
-            default:
-                print("network failure")
-                return
-            }
-        }
     }
 }
