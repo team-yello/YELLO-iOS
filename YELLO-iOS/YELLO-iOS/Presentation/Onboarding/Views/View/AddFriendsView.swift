@@ -18,14 +18,19 @@ class AddFriendsView: BaseView {
     // MARK: - Variables
     // MARK: Constants
     /// dummy data
-    lazy var joinedFriendsList: [FriendList] = [] {
-        didSet{
+    lazy var joinedFriendsList: [FriendAdd] = [] {
+        didSet {
             self.friendsTableView.reloadData()
         }
     }
     
     // MARK: Property
-    var count = 0
+    var count = 0 {
+        didSet {
+            countFriendLabel.text = "선택된 친구 \(count)명"
+            countFriendLabel.asColors(targetStrings: ["선택된 친구", "명"], color: .white)
+        }
+    }
     
     // MARK: Component
     let addFriendsLabel = YelloGuideLabel(labelText: "친구를 추가하세요!")
@@ -88,10 +93,10 @@ extension AddFriendsView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendsTableViewCell.identifier) as! FriendsTableViewCell
         
         if cell.isTapped == true {
-     //       joinedFriendsList[indexPath.row].isButtonSelected = true
+            joinedFriendsList[indexPath.row].isAdded = false
         }
         cell.delegate = self
-   //     cell.configureFriendCell(joinedFriendsList[indexPath.row])
+        cell.configureFriendCell(joinedFriendsList[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
@@ -101,9 +106,9 @@ extension AddFriendsView: UITableViewDataSource {
 extension AddFriendsView: FriendsTableViewCellDelegate {
     func friendCell(_ cell: FriendsTableViewCell, didTapButtonAt indexPath: IndexPath, isSelected: Bool) {
         // FriendModel의 isButtonSelected 값을 변경
-     //   joinedFriendsList[indexPath.row].isButtonSelected = isSelected
-       // count = joinedFriendsList.filter { !$0.isButtonSelected }.count
-        countFriendLabel.text = "선택된 친구 \(count)명"
+        joinedFriendsList[indexPath.row].isAdded = isSelected
+        var currentCount =  count - joinedFriendsList.filter { $0.isAdded }.count
+        countFriendLabel.text = "선택된 친구 \(currentCount)명"
         countFriendLabel.asColors(targetStrings: ["선택된 친구", "명"], color: .white)
     }
 }
