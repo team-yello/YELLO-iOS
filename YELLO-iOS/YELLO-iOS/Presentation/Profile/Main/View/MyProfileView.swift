@@ -28,7 +28,7 @@ final class MyProfileView: UIView {
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        profileUser(userId: 161)
+        profileUser(userId: 148)
         setUI()
     }
     
