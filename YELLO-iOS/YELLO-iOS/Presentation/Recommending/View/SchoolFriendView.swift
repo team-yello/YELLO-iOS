@@ -15,9 +15,9 @@ final class SchoolFriendView: UIView {
     // MARK: - Variables
     // MARK: Property
     var fetchingMore = false
-    var recommendingSchoolFriendTableViewModel: [FriendModel] = []
+    var isFinishPaging = false
     private var initialSchoolDataCount = 10
-    var schoolPage: Int = 0
+    var schoolPage: Int = -1
 
     var recommendingSchoolFriendTableViewDummy: [FriendModel] = []
     
@@ -32,7 +32,6 @@ final class SchoolFriendView: UIView {
         super.init(frame: frame)
         setUI()
         setDelegate()
-        recommendingSchoolFriend(page: schoolPage)
     }
     
     @available(*, unavailable)
@@ -69,12 +68,6 @@ extension SchoolFriendView {
     }
     
     private func setLayout() {
-        if recommendingSchoolFriendTableViewDummy.count < 10 {
-            initialSchoolDataCount = recommendingSchoolFriendTableViewDummy.count
-        } else {
-            initialSchoolDataCount = 10
-        }
-        recommendingSchoolFriendTableViewModel = Array(recommendingSchoolFriendTableViewDummy[0..<initialSchoolDataCount])
 
         self.addSubviews(inviteBannerView,
                         schoolFriendTableView,
@@ -107,11 +100,10 @@ extension SchoolFriendView {
         let point = sender.convert(CGPoint.zero, to: schoolFriendTableView)
         guard let indexPath = schoolFriendTableView.indexPathForRow(at: point) else { return }
         
-        recommendingSchoolFriendTableViewModel[indexPath.row].isButtonSelected = true
-        print(recommendingSchoolFriendTableViewModel[indexPath.row])
+        recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
+        print(recommendingSchoolFriendTableViewDummy[indexPath.row])
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.recommendingSchoolFriendTableViewModel.remove(at: indexPath.row)
             self.recommendingSchoolFriendTableViewDummy.remove(at: indexPath.row)
             self.schoolFriendTableView.deleteRows(at: [indexPath], with: .right)
             self.updateView()
@@ -127,7 +119,7 @@ extension SchoolFriendView {
     /// 친구가 없을 때 초대 뷰를 띄우는 로직
     func updateView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if self.recommendingSchoolFriendTableViewModel.isEmpty {
+            if self.recommendingSchoolFriendTableViewDummy.isEmpty {
                 self.inviteBannerView.isHidden = true
                 self.schoolFriendTableView.isHidden = true
                 self.emptyFriendView.isHidden = false
@@ -141,28 +133,48 @@ extension SchoolFriendView {
     }
     
     // MARK: - Network
-    func recommendingSchoolFriend(page: Int) {
-        let queryDTO = RecommendingRequestQueryDTO(page: page)
-        NetworkService.shared.recommendingService.recommendingSchoolFriend(queryDTO: queryDTO) { response in
-            switch response {
-            case .success(let data):
-                guard let data = data.data else { return }
-                
-                let friendModels = data.friends.map { recommendingFriend in
-                    return FriendModel(
-                        friends: Friends(id: recommendingFriend.id, name: recommendingFriend.name, group: recommendingFriend.group, profileImage: recommendingFriend.profileImage),
-                        isButtonSelected: false
-                    )
+    func recommendingSchoolFriend() {
+        if fetchingMore { // 이미 데이터를 가져오는 중이면 리턴
+            return
+        }
+        self.schoolPage += 1
+        let queryDTO = RecommendingRequestQueryDTO(page: schoolPage)
+        
+        if isFinishPaging {
+            return
+        }
+        
+        fetchingMore = true
+        
+        NetworkService.shared.recommendingService.recommendingSchoolFriend(queryDTO: queryDTO) { [weak self] response in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    
+                    let totalPage = (data.totalCount) / 10
+                    if self.schoolPage >= totalPage {
+                        self.isFinishPaging = true
+                    }
+                    
+                    let friendModels = data.friends.map { recommendingFriend in
+                        return FriendModel(
+                            friends: Friends(id: recommendingFriend.id, name: recommendingFriend.name, group: recommendingFriend.group, profileImage: recommendingFriend.profileImage),
+                            isButtonSelected: false
+                        )
+                    }
+                    
+                    self.recommendingSchoolFriendTableViewDummy.append(contentsOf: friendModels)
+                    self.schoolFriendTableView.reloadData()
+                    self.updateView()
+                    self.fetchingMore = false
+                    print("통신 성공")
+                default:
+                    print("network fail")
+                    return
                 }
-                
-                self.recommendingSchoolFriendTableViewDummy.append(contentsOf: friendModels)
-                self.schoolFriendTableView.reloadData()
-                self.updateView()
-                print(self.recommendingSchoolFriendTableViewModel)
-                print("통신 성공")
-            default:
-                print("network fail")
-                return
             }
         }
     }
@@ -186,12 +198,23 @@ extension SchoolFriendView {
 }
 
 // MARK: UITableViewDelegate
-extension SchoolFriendView: UITableViewDelegate { }
+extension SchoolFriendView: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let tableView = self.schoolFriendTableView
+        let offsetY = tableView.contentOffset.y
+        let contentHeight = tableView.contentSize.height
+        let visibleHeight = tableView.bounds.height
+        if offsetY > contentHeight - visibleHeight {
+                self.recommendingSchoolFriend()
+        }
+    }
+}
 
 // MARK: UITableViewDataSource
 extension SchoolFriendView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recommendingSchoolFriendTableViewModel.count
+        return recommendingSchoolFriendTableViewDummy.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -208,52 +231,13 @@ extension SchoolFriendView: UITableViewDataSource {
         cell.selectionStyle = .none
         
         if cell.isTapped == true {
-            recommendingSchoolFriendTableViewModel[indexPath.row].isButtonSelected = true
+            recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
         }
         cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
         
         cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
         cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-        cell.configureFriendCell(recommendingSchoolFriendTableViewModel[indexPath.row])
+        cell.configureFriendCell(recommendingSchoolFriendTableViewDummy[indexPath.row])
         return cell
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        
-        if offsetY > contentHeight - scrollView.frame.height {
-            if !fetchingMore {
-                beginBatchFetch()
-                schoolPage += 1
-                recommendingSchoolFriend(page: schoolPage)
-            }
-        }
-    }
-    
-    func beginBatchFetch() {
-        fetchingMore = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [self] in
-            if recommendingSchoolFriendTableViewDummy.count - initialSchoolDataCount < 10 {
-                if recommendingSchoolFriendTableViewDummy.count - initialSchoolDataCount == 0 {
-                    print("친구 데이터가 더 없어요")
-                } else {
-                    let newItems = (initialSchoolDataCount...recommendingSchoolFriendTableViewDummy.count - 1).map { index in
-                        recommendingSchoolFriendTableViewDummy[index]
-                    }
-                    self.recommendingSchoolFriendTableViewModel.append(contentsOf: newItems)
-                }
-            } else {
-                let newItems = (initialSchoolDataCount...initialSchoolDataCount + 9).map { index in
-                    recommendingSchoolFriendTableViewDummy[index]
-                }
-                self.recommendingSchoolFriendTableViewModel.append(contentsOf: newItems)
-            }
-            
-            self.fetchingMore = false
-            self.schoolFriendTableView.reloadData()
-            initialSchoolDataCount = recommendingSchoolFriendTableViewModel.count
-        }
     }
 }
