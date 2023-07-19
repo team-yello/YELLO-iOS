@@ -39,6 +39,7 @@ final class MyYelloDetailViewController: BaseViewController {
     override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         tabBarController?.tabBar.isHidden = true
+        myYelloDetailView.isRead = true
     }
     
     override func setLayout() {
