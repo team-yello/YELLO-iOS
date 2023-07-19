@@ -95,20 +95,20 @@ extension WithdrawalAlertView {
     
     @objc func yesButtonClicked() {
         NetworkService.shared.profileService.userDelete { result in
-            switch result{
+            switch result {
             case .success(let data):
-                if data.status == 200{
+                if data.status == 200 {
                     UserApi.shared.unlink {(error) in
                         if let error = error {
                             print(error)
-                        }
-                        else {
+                        } else {
                             print("unlink() success.")
                         }
                     }
+                    
+                    KeychainHandler.shared.removeAll()
                     let splashViewController = KakaoLoginViewController()
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-                    
                     sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: splashViewController)
                 }
             default:
