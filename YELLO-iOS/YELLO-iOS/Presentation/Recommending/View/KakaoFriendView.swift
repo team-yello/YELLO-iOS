@@ -240,6 +240,11 @@ extension KakaoFriendView: UITableViewDataSource {
         if self.kakaoFriendCount == 0 {
             guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: FriendEmptyTableViewCell.identifier, for: indexPath) as? FriendEmptyTableViewCell else { return UITableViewCell() }
             emptyCell.selectionStyle = .none
+            if tableView.isLast(for: indexPath) {
+                DispatchQueue.main.async {
+                    emptyCell.addAboveTheBottomBorderWithColor(color: .black)
+                }
+            }
             return emptyCell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
@@ -269,7 +274,7 @@ extension KakaoFriendView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // cell의 높이 + inset 8 더한 값
         if self.kakaoFriendCount == 0 {
-            return 500
+            return 406.adjustedHeight
         } else {
             return 77
         }

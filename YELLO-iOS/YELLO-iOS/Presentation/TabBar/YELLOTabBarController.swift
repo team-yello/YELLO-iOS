@@ -20,12 +20,16 @@ final class YELLOTabBarController: UITabBarController {
     
     // MARK: - Life Cycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         getVotingAvailable()
         setTabBarItems()
         setTabBarAppearance()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         self.selectedIndex = 2
         self.delegate = self
@@ -129,6 +133,13 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
             // 현재 선택된 뷰 컨트롤러와 선택될 뷰 컨트롤러가 다르고, 3번째 탭이 선택된 경우
             return false
         }
+        
+        if let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) {
+            if selectedIndex == 2 {
+                getVotingAvailable()
+            }
+        }
+        
         return true
     }
 }
