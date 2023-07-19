@@ -48,7 +48,9 @@ class OnboardingEndViewController: BaseViewController {
                     print("성공!✅✅✅✅✅✅✅")
                     dump(data)
                     KeychainHandler.shared.accessToken = data.accessToken
-                    
+                    setAcessToken(accessToken: data.accessToken)
+                    setRefreshToken(refreshToken: data.refreshToken)
+                    setUsername(username: data.yelloID)
                 default:
                     return
                 }
