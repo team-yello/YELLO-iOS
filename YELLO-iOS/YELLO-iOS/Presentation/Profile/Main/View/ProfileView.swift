@@ -21,13 +21,7 @@ final class ProfileView: UIView {
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
     var indexNumber: Int = -1
-    var friendCount: Int = 0 {
-        didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.myFriendTableView.reloadData()
-            }
-        }
-    }
+    var friendCount: Int = 0
     
     var initialProfileFriendDataCount = 10
     var fetchingMore = false
@@ -42,6 +36,7 @@ final class ProfileView: UIView {
     let navigationBarView = NavigationBarView()
     let myProfileHeaderView = MyProfileHeaderView()
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
+    let refreshControl = UIRefreshControl()
 
     lazy var topButton = UIButton()
     private var isButtonHidden: Bool = false
@@ -71,6 +66,12 @@ extension ProfileView {
     
     private func setStyle() {        
         self.backgroundColor = .black
+        
+        refreshControl.do {
+            myFriendTableView.refreshControl = $0
+            $0.tintColor = .grayscales400
+            $0.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
+        }
         
         myFriendTableView.do {
             $0.rowHeight = 77
@@ -134,6 +135,16 @@ extension ProfileView {
     }
     
     // MARK: Objc Function
+    @objc func refreshTable(refresh: UIRefreshControl) {
+        self.pageCount = -1
+        self.isFinishPaging = false
+        self.fetchingMore = false
+        self.myProfileFriendModelDummy = []
+        self.profileFriend()
+        refresh.endRefreshing()
+        print(self.myProfileFriendModelDummy)
+    }
+    
     @objc func topButtonTapped() {
         myFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
@@ -147,13 +158,14 @@ extension ProfileView {
         if fetchingMore { // 이미 데이터를 가져오는 중이면 리턴
             return
         }
-        self.pageCount += 1
-        let queryDTO = ProfileFriendRequestQueryDTO(page: pageCount)
         
         if isFinishPaging {
             return
         }
         
+        self.pageCount += 1
+        let queryDTO = ProfileFriendRequestQueryDTO(page: pageCount)
+
         fetchingMore = true
         
         NetworkService.shared.profileService.profileFriend(queryDTO: queryDTO) { [weak self] response in
@@ -179,7 +191,9 @@ extension ProfileView {
                     }
                     
                     self.myProfileFriendModelDummy.append(contentsOf: friendModels)
-                    self.myFriendTableView.reloadData()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        self.myFriendTableView.reloadData()
+                    }
                     self.fetchingMore = false
                     dump(data)
                     print("통신 성공")
@@ -203,7 +217,7 @@ extension ProfileView: UITableViewDelegate {
         let contentHeight = tableView.contentSize.height
         let visibleHeight = tableView.bounds.height
         if offsetY > contentHeight - visibleHeight {
-                self.profileFriend()
+            self.profileFriend()
         }
     }
 }

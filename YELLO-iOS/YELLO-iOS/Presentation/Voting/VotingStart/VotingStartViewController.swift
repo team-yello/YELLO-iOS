@@ -73,7 +73,7 @@ final class VotingStartViewController: BaseViewController {
         }
         
         originView.realMyPoint.do {
-            $0.setTextWithLineHeight(text: "2500", lineHeight: 22)
+            $0.setTextWithLineHeight(text: "0", lineHeight: 22)
         }
         
         originView.yellowButton.do {

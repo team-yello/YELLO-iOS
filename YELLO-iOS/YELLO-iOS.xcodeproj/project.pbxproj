@@ -193,6 +193,8 @@
 		C3DC4AD82A5FDF4B001DCE04 /* PaymentReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC4AD72A5FDF4B001DCE04 /* PaymentReadyViewController.swift */; };
 		C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC4AD92A5FE713001DCE04 /* PaymentViewController.swift */; };
 		C3DC4ADE2A6042B5001DCE04 /* MyYelloDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC4ADD2A6042B5001DCE04 /* MyYelloDetailModel.swift */; };
+		C3E4B6FF2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */; };
+		C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */; };
 		C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */; };
 		C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */; };
 		C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */; };
@@ -404,6 +406,8 @@
 		C3DC4AD72A5FDF4B001DCE04 /* PaymentReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReadyViewController.swift; sourceTree = "<group>"; };
 		C3DC4AD92A5FE713001DCE04 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		C3DC4ADD2A6042B5001DCE04 /* MyYelloDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailModel.swift; sourceTree = "<group>"; };
+		C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
 		C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalView.swift; sourceTree = "<group>"; };
 		C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckView.swift; sourceTree = "<group>"; };
@@ -1189,6 +1193,7 @@
 			isa = PBXGroup;
 			children = (
 				C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */,
+				C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1289,6 +1294,7 @@
 				C3FF24922A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift */,
 				C3FF24942A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift */,
 				C3FF24962A5E907D00A97D40 /* MyYelloNameTableViewCell.swift */,
+				C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1525,6 +1531,7 @@
 				C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */,
 				2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */,
 				3662A0F42A654A6000F482EF /* MajorSearchResponseDTO.swift in Sources */,
+				C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
 				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,
 				36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */,
@@ -1592,6 +1599,7 @@
 				C3B4720A2A65B1CB00770530 /* MyYelloRequestQueryDTO.swift in Sources */,
 				2A3705A62A62DC7D001AAC93 /* APIEventLogger.swift in Sources */,
 				C3DC4ADE2A6042B5001DCE04 /* MyYelloDetailModel.swift in Sources */,
+				C3E4B6FF2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift in Sources */,
 				36E4277D2A5BD5D60050B34E /* UserInfoViewController.swift in Sources */,
 				36B2349E2A61A6A8007933E4 /* KakaoConnectViewController.swift in Sources */,
 				2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */,
@@ -1804,7 +1812,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8D8H8KC6DH;
+				DEVELOPMENT_TEAM = 349HWJV2J8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1837,7 +1845,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8D8H8KC6DH;
+				DEVELOPMENT_TEAM = 349HWJV2J8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

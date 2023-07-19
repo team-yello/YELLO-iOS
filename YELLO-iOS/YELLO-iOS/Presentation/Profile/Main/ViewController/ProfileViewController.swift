@@ -33,11 +33,7 @@ final class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.profileView.myFriendTableView.reloadData()
+        self.profileView.myProfileHeaderView.myProfileView.profileUser()
     }
     
     override func setStyle() {
