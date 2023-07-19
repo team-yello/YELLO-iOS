@@ -13,7 +13,7 @@ struct SignUpRequestDTO: Codable {
     let groupID, groupAdmissionYear: Int
     let name, yelloID, gender: String
     let friends: [Int]
-  //  let recommendID: String
+    let recommendID: String?
 
     enum CodingKeys: String, CodingKey {
         case social, uuid, email, profileImage
@@ -21,6 +21,6 @@ struct SignUpRequestDTO: Codable {
         case groupAdmissionYear, name
         case yelloID = "yelloId"
         case gender, friends
-        //case recommendID = "recommendId"
+        case recommendID = "recommendId"
     }
 }

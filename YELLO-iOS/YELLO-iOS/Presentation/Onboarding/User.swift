@@ -20,6 +20,7 @@ struct User {
     var yelloId: String = ""
     var gender: String = ""
     var friends: [Int] = []
+    var kakaoFriends: [String] = []
     var recommendId: String = ""
     
     private init() {}
