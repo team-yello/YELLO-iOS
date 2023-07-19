@@ -31,6 +31,7 @@ final class InvitingView: BaseView {
     // MARK: - Style
     
     override func setStyle() {
+        profileUserYelloId()
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
         contentsView.makeCornerRound(radius: 10)
@@ -73,7 +74,7 @@ final class InvitingView: BaseView {
         }
         
         recommenderID.do {
-            $0.setTextWithLineHeight(text: "@nahyunyou", lineHeight: 32)
+            $0.setTextWithLineHeight(text: "@", lineHeight: 32)
             $0.textColor = .black
             $0.font = .uiExtraLarge
         }
@@ -206,4 +207,21 @@ extension InvitingView {
         
         self.showToast(message: StringLiterals.Inviting.toastMessage)
     }
+    
+    // MARK: - Network
+    func profileUserYelloId() {
+        NetworkService.shared.profileService.profileUser { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.recommenderID.text = "@" + data.yelloId
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+
 }
