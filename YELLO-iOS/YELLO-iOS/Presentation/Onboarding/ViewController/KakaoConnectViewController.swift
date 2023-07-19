@@ -28,11 +28,15 @@ class KakaoConnectViewController: BaseViewController {
     }
     
     @objc func connectButtonDidTap() {
-        TalkApi.shared.profile {(profile, error) in
+        TalkApi.shared.friends {(friends, error) in
             if let error = error {
                 print(error)
             } else {
-                _ = profile
+                var allFriends: [String] = []
+                friends?.elements?.forEach({
+                    allFriends.append($0.uuid)
+                })
+                User.shared.kakaoFriends = allFriends
                 self.navigationController?.pushViewController(SchoolSearchViewController(), animated: true)
             }
         }
