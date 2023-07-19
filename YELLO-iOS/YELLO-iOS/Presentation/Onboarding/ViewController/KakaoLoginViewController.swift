@@ -31,25 +31,47 @@ class KakaoLoginViewController: BaseViewController {
         if UserApi.isKakaoTalkLoginAvailable() {
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
-                    print(error)
+                    print("🚩🚩\(error)")
                 } else {
                     print("----🚩카카오 톡으로 로그인 성공🚩----")
                     
                     guard let kakaoToken = oauthToken?.accessToken else { return }
-                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "Kakao")
-                    
+                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO")
                     NetworkService.shared.onboardingService.postTokenChange(queryDTO: queryDTO) { result in
-                        
                         switch result {
                         case .success(let data):
                             if data.status == 403 {
-                                self.navigationController?.pushViewController(KakaoConnectViewController(), animated: true)
+                                UserApi.shared.me() {(user, error) in
+                                    if let error = error {
+                                        print(error)
+                                    } else {
+                                        print("me() success.")
+                                        _ = user
+                                        guard let user = user else { return }
+                                        guard let uuidInt = user.id else { return }
+                                        let uuid = String(uuidInt)
+                                        
+                                        guard let email = user.kakaoAccount?.email else { return }
+                                        guard let profile = user.kakaoAccount?.profile?.profileImageUrl else {return}
+                                        User.shared.social = "KAKAO"
+                                        User.shared.uuid = uuid
+                                        User.shared.email = email
+                                        User.shared.profileImage = profile.absoluteString
+                                        
+                                    }
+                                }
+                                
+                                let kakaoConnectViewController = (KakaoConnectViewController())
+                                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                               sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: kakaoConnectViewController)
+//                                self.navigationController?.pushViewController(KakaoConnectViewController(), animated: true)
                             } else if data.status == 201 {
+                                guard let data = data.data else { return }
+                                KeychainHandler.shared.accessToken = data.accessToken
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
                             }
                         default:
                             print("network failure")
-                            
                             return
                         }
                     }
@@ -73,7 +95,7 @@ class KakaoLoginViewController: BaseViewController {
                             if data.status == 403 {
                                 UserApi.shared.me() {(user, error) in
                                     if let error = error {
-                                        print(error)
+                                        print("🚩🚩\(error)")
                                     } else {
                                         print("me() success.")
                                         _ = user

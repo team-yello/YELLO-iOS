@@ -21,7 +21,7 @@ class AddFriendsViewController: OnboardingBaseViewController {
     var isLoadingData = false
     
     var pageCount = -1
-    var friendsKakaoID: [String] = []
+    var friendsKakaoID: [String] = User.shared.kakaoFriends
     var groupId = User.shared.groupId
     
     var data: JoinedFriendsResponseDTO?
@@ -100,6 +100,12 @@ class AddFriendsViewController: OnboardingBaseViewController {
                 }
             }
         }
+    }
+    
+    override func setUser() {
+        let friends = baseView.joinedFriendsList.filter {$0.isAdded == false}.map { $0.friendInfo.id }
+        print(friends)
+        User.shared.friends = friends
     }
 
 }
