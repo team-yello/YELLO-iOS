@@ -13,6 +13,7 @@ enum ProfileTarget {
     case profileUser(userId: Int)
     case profileFriend(_ queryDTO: ProfileFriendRequestQueryDTO)
     case profileDeleteFriend(id: Int)
+    case deleteUser
 }
 
 extension ProfileTarget: TargetType {
@@ -23,6 +24,8 @@ extension ProfileTarget: TargetType {
         case .profileFriend(let _):
             return .hasAccessToken
         case .profileDeleteFriend(let id):
+            return .hasAccessToken
+        case .deleteUser:
             return .hasAccessToken
         }
     }
@@ -35,6 +38,8 @@ extension ProfileTarget: TargetType {
             return .get
         case .profileDeleteFriend:
             return .delete
+        case .deleteUser:
+            return .delete
         }
     }
     
@@ -46,6 +51,8 @@ extension ProfileTarget: TargetType {
             return "/friend"
         case .profileDeleteFriend(let id):
             return "/friend/\(id)"
+        case .deleteUser:
+            return "/user"
         }
     }
 
@@ -56,6 +63,8 @@ extension ProfileTarget: TargetType {
         case let .profileFriend(queryDTO):
             return .requestQuery(queryDTO)
         case .profileDeleteFriend:
+            return .requestPlain
+        case .deleteUser:
             return .requestPlain
         }
     }
