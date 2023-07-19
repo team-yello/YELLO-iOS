@@ -65,7 +65,7 @@ class KakaoLoginViewController: BaseViewController {
                     print("카카오 계정으로 로그인 성공")
                     
                     guard let kakaoToken = oauthToken?.accessToken else { return }
-                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "Kakao")
+                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO")
                     
                     NetworkService.shared.onboardingService.postTokenChange(queryDTO: queryDTO) { result in
                         switch result {
@@ -92,8 +92,10 @@ class KakaoLoginViewController: BaseViewController {
                                 }
                                 self.navigationController?.pushViewController(KakaoConnectViewController(), animated: true)
                             } else if data.status == 201 {
+                                guard let data = data.data else { return }
+                                KeychainHandler.shared.accessToken = data.accessToken
+                                UserDefaults.standard.set(true, forKey: "isLoggedIn")
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
-                                print(data.data)
                             }
                         default:
                             print("network failure")
