@@ -19,11 +19,11 @@ enum ProfileTarget {
 extension ProfileTarget: TargetType {
     var headerType: HTTPHeaderType {
         switch self {
-        case .profileUser(let userId):
+        case .profileUser:
             return .hasAccessToken
-        case .profileFriend(let _):
+        case .profileFriend:
             return .hasAccessToken
-        case .profileDeleteFriend(let id):
+        case .profileDeleteFriend:
             return .hasAccessToken
         case .deleteUser:
             return .hasAccessToken

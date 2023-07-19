@@ -94,7 +94,6 @@ class KakaoLoginViewController: BaseViewController {
                             } else if data.status == 201 {
                                 guard let data = data.data else { return }
                                 KeychainHandler.shared.accessToken = data.accessToken
-                                UserDefaults.standard.set(true, forKey: "isLoggedIn")
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
                             }
                         default:
