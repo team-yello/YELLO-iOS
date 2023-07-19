@@ -7,13 +7,22 @@
 
 import UIKit
 
+// MARK: - Protocol
+// MARK: FindMajorViewControllerDelegate
+protocol FindMajorViewControllerDelegate: AnyObject {
+    func didDismissFindMajorViewController(with groupList: GroupList)
+}
+
 class FindMajorViewController: SearchBaseViewController {
     // MARK: - Variables
     // MARK: Property
-    var allMajor: [String] = []
+    var allMajor: [GroupList] = []
     var schoolName: String = ""
+    
     var pageCount: Int = 0
     var totalItemCount: Int = 0
+    
+    weak var majorDelegate: FindMajorViewControllerDelegate?
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -21,6 +30,8 @@ class FindMajorViewController: SearchBaseViewController {
         super.viewDidLoad()
         super.customView(titleText: "학과 검색하기", helperText: "찾는 과가 없다면 클릭하세요!")
         addTarget()
+        searchView.searchTextField.delegate = self
+        searchView.searchResultTableView.delegate = self
     }
     
     func addTarget() {
@@ -48,8 +59,9 @@ class FindMajorViewController: SearchBaseViewController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
+                self?.allMajor.append(contentsOf: data.groupList)
                 self?.allArr.append(contentsOf: data.groupList.map { $0.departmentName })
-                self?.totalItemCount = data.totalCount 
+                self?.totalItemCount = data.totalCount
                 self?.searchView.searchResultTableView.reloadData()
             default:
                 print(ErrorPointer.self)
@@ -65,5 +77,14 @@ class FindMajorViewController: SearchBaseViewController {
         allMajor.removeAll()
         allArr.removeAll()
         searchMajor(text)
+    }
+}
+
+extension FindMajorViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        super.tableView(tableView, didSelectRowAt: indexPath)
+        let selectedItem = allMajor[indexPath.row]
+        print(selectedItem.groupID)
+        majorDelegate?.didDismissFindMajorViewController(with: selectedItem)
     }
 }

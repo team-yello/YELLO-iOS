@@ -41,7 +41,7 @@ class AddFriendsView: BaseView {
     // MARK: Layout Helpers
     override func setStyle() {
         count = joinedFriendsList.count
-
+        
         countFriendLabel.do {
             $0.text = "선택된 친구 \(count)명"
             $0.font = .uiLabelLarge
@@ -93,10 +93,10 @@ extension AddFriendsView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendsTableViewCell.identifier) as! FriendsTableViewCell
         
         if cell.isTapped == true {
-            joinedFriendsList[indexPath.row].isAdded = false
+            joinedFriendsList[indexPath.row].isAdded = true
         }
         cell.delegate = self
-    //    cell.configureFriendCell(joinedFriendsList[indexPath.row])
+        cell.configureFriendCell(joinedFriendsList[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }

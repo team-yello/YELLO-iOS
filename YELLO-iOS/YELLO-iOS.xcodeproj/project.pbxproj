@@ -109,6 +109,7 @@
 		36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427922A5C9BE30050B34E /* RecommendIdView.swift */; };
 		36E427952A5CA59F0050B34E /* OnboardingEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427942A5CA59F0050B34E /* OnboardingEndViewController.swift */; };
 		36E427972A5CA5AF0050B34E /* OnboardingEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */; };
+		36EA2AB72A66FC0B003603C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA2AB62A66FC0B003603C7 /* User.swift */; };
 		C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7262A630BB70031514C /* KeychainHandler.swift */; };
 		C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C306E7292A630BD10031514C /* SwiftKeychainWrapper */; };
 		C306E73B2A64557D0031514C /* RecommendingFriendRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */; };
@@ -317,6 +318,7 @@
 		36E427922A5C9BE30050B34E /* RecommendIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendIdView.swift; sourceTree = "<group>"; };
 		36E427942A5CA59F0050B34E /* OnboardingEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndViewController.swift; sourceTree = "<group>"; };
 		36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndView.swift; sourceTree = "<group>"; };
+		36EA2AB62A66FC0B003603C7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C306E7262A630BB70031514C /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendRequestDTO.swift; sourceTree = "<group>"; };
 		C306E73C2A6455CA0031514C /* RecommendingFriendResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendResponseDTO.swift; sourceTree = "<group>"; };
@@ -884,6 +886,7 @@
 			isa = PBXGroup;
 			children = (
 				36B234972A619853007933E4 /* onboarding_end.json */,
+				36EA2AB62A66FC0B003603C7 /* User.swift */,
 				36E427592A5BCE860050B34E /* Constraints.swift */,
 				36E427572A5BCE860050B34E /* Cells */,
 				36E4275A2A5BCE860050B34E /* ViewController */,
@@ -1600,6 +1603,7 @@
 				2AD1A1A62A55D6C700CB988B /* UITabBarController+.swift in Sources */,
 				36871C7B2A664C69001CA514 /* JoinedFriendsResponseDTO.swift in Sources */,
 				36B234A02A61A6BC007933E4 /* KakaoConnectView.swift in Sources */,
+				36EA2AB72A66FC0B003603C7 /* User.swift in Sources */,
 				36E427852A5BD6160050B34E /* UserInfoView.swift in Sources */,
 				36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */,
 				2A3705DE2A62E392001AAC93 /* VotingService.swift in Sources */,

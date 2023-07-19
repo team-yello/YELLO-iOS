@@ -43,6 +43,7 @@ class FindSchoolViewController: SearchBaseViewController {
         }
         
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let tableView = self.searchView.searchResultTableView
         let offsetY = tableView.contentOffset.y

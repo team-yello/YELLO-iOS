@@ -1,5 +1,5 @@
 //
-//  SignInRequestDTO.swift
+//  SignUpRequestDTO.swift
 //  YELLO-iOS
 //
 //  Created by 지희의 MAC on 2023/07/17.
@@ -7,7 +7,20 @@
 
 import Foundation
 
-// MARK: - SignInRequestDTO
-struct SignInRequestDTO: Codable {
-    let accessToken: String
+// MARK: - SignUpRequestDTO
+struct SignUpRequestDTO: Codable {
+    let social, uuid, email, profileImage: String
+    let groupID, groupAdmissionYear: Int
+    let name, yelloID, gender: String
+    let friends: [Int]
+  //  let recommendID: String
+
+    enum CodingKeys: String, CodingKey {
+        case social, uuid, email, profileImage
+        case groupID = "groupId"
+        case groupAdmissionYear, name
+        case yelloID = "yelloId"
+        case gender, friends
+        //case recommendID = "recommendId"
+    }
 }

@@ -22,7 +22,7 @@ class AddFriendsViewController: OnboardingBaseViewController {
     
     var pageCount = -1
     var friendsKakaoID: [String] = []
-    var groupId = 1
+    var groupId = User.shared.groupId
     
     var data: JoinedFriendsResponseDTO?
     var addFriends: [FriendAdd] = []

@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 protocol SelectStudentIdDelegate: AnyObject {
-    func didSelectStudentId(_ result: String)
+    func didSelectStudentId(_ result: Int)
 }
 
 class StudentIdViewController: BaseViewController {
@@ -75,12 +75,15 @@ extension StudentIdViewController: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension StudentIdViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let currentCell = tableView.cellForRow(at: indexPath) else {
+        guard let currentCell = tableView.cellForRow(at: indexPath),
+              let cellTitle = currentCell.textLabel?.text else {
             return
         }
-        if let cellTitle = currentCell.textLabel?.text {
-            delegate?.didSelectStudentId(cellTitle)
-        }
+        
+        // 학번 문자열에서 숫자 부분 추출
+        let studentId = cellTitle.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        guard let studentId = Int(studentId) else { return }
+        delegate?.didSelectStudentId(studentId)
         self.dismiss(animated: true)
     }
 }
