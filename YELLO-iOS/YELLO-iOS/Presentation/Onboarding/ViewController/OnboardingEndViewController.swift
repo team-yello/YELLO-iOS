@@ -47,12 +47,12 @@ class OnboardingEndViewController: BaseViewController {
                     }
                     print("성공!✅✅✅✅✅✅✅")
                     dump(data)
+                    
                 default:
                     return
                 }
             }
             
-        
     }
     
     // MARK: Objc Function
@@ -61,8 +61,8 @@ class OnboardingEndViewController: BaseViewController {
         let yelloTabBarController = YELLOTabBarController()
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
         postUserInfo()
-       // UserDefaults.standard.set(true, forKey: "isLoggedIn")
-       // sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
+       UserDefaults.standard.set(true, forKey: "isLoggedIn")
+       sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
     }
     
 }
