@@ -50,12 +50,12 @@ final class VotingTimerViewController: BaseViewController {
     
     override func loadView() {
         self.view = originView
+        
+        getCreatedAt()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getCreatedAt()
     }
     
     deinit {
