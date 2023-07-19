@@ -21,12 +21,12 @@ final class KakaoFriendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        self.kakaoFriendView.recommendingKakaoFriend()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         kakaoFriendView.updateView()
-        kakaoFriendView.beginBatchFetch()
     }
 }
 
