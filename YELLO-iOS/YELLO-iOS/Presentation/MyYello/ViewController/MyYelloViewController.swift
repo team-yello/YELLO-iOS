@@ -20,24 +20,23 @@ final class MyYelloViewController: BaseViewController {
     
     var pageCount = -1
     
-    
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
+        self.myYello()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        self.myYello()
         self.myYelloView.resetLayout()
     }
     
@@ -102,7 +101,7 @@ final class MyYelloViewController: BaseViewController {
                     }
                     
                     //                    self.myYelloView.myYelloCount = data.totalCount
-                    self.myYelloView.myYelloListView.myYelloModelDummy.append(contentsOf: myYelloModels)
+                    MyYelloListView.myYelloModelDummy.append(contentsOf: myYelloModels)
                     self.myYelloView.myYelloListView.myYelloTableView.reloadData()
                     dump(data)
                     print("통신 성공")
@@ -129,20 +128,20 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
         let myYelloDetailViewController = MyYelloDetailViewController()
         navigationController?.pushViewController(myYelloDetailViewController, animated: true)
         myYelloView.myYelloListView.indexNumber = index
-        myYelloDetailViewController.myYelloDetailView.voteIdNumber = myYelloView.myYelloListView.myYelloModelDummy[index].id
-        myYelloDetailViewController.myYelloDetail(voteId: myYelloView.myYelloListView.myYelloModelDummy[index].id)
+        myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
+        myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
+        myYelloDetailViewController.myYelloDetailView.indexNumber = index
     }
 }
 
 extension MyYelloViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if let lastIndexPath = indexPaths.last,
-           lastIndexPath.row >= myYelloView.myYelloListView.myYelloModelDummy.count - 1 {
+           lastIndexPath.row >= MyYelloListView.myYelloModelDummy.count - 1 {
             myYello()
         }
     }
 }
-
 
 extension MyYelloViewController: UITableViewDelegate {
     
@@ -154,5 +153,6 @@ extension MyYelloViewController: UITableViewDelegate {
         if offsetY > contentHeight - visibleHeight {
             myYello()
         }
+        print("내려왔어요")
     }
 }

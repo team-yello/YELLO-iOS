@@ -9,4 +9,5 @@ import Foundation
 
 struct MyYelloDetailNameResponseDTO: Codable {
     let name: String
+    let nameIndex: Int
 }

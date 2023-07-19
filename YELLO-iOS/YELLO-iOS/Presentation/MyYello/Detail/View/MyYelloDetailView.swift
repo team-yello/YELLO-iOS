@@ -27,6 +27,11 @@ final class MyYelloDetailView: BaseView {
     var usePointView = UsePointView()
     var getHintView = GetHintView()
     var indexNumber: Int = 0
+    var nameIndex: Int = 0 {
+        didSet {
+            MyYelloListView.myYelloModelDummy[indexNumber].nameHint = nameIndex
+        }
+    }
     
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
@@ -38,6 +43,11 @@ final class MyYelloDetailView: BaseView {
     
     // MARK: Property
     weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
+    var isRead: Bool = false {
+        didSet {
+            MyYelloListView.myYelloModelDummy[indexNumber].isRead = self.isRead
+        }
+    }
     var isKeywordUsed: Bool = false {
         didSet {
             if self.isKeywordUsed == true {
@@ -59,7 +69,6 @@ final class MyYelloDetailView: BaseView {
                 instagramButton.snp.makeConstraints {
                     $0.bottom.equalTo(senderButton.snp.top).offset(-24.adjustedHeight)
                 }
-                MyYelloListView.myYelloModelDummy[indexNumber].nameHint = 0
             }
         }
     }
@@ -69,7 +78,6 @@ final class MyYelloDetailView: BaseView {
             self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
             self.getHintView.pointLabel.text = String(self.currentPoint)
             self.pointLackView.pointLabel.text = String(self.currentPoint)
-//            self.usePointView.pointLabel.text = String(self.currentPoint)
         }
     }
     
@@ -287,7 +295,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         getHintView.removeFromSuperview()
         getHintView = GetHintView()
-        getHintView.pointLabel.text = String(self.currentPoint)
+//        getHintView.pointLabel.text = String(self.currentPoint)
         getHintView.frame = viewController.view.bounds
         getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(getHintView)
@@ -309,7 +317,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         getHintView.removeFromSuperview()
         getHintView = GetHintView()
-        self.getHintView.pointLabel.text = String(self.currentPoint)
+//        self.getHintView.pointLabel.text = String(self.currentPoint)
         getHintView.frame = viewController.view.bounds
         getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(getHintView)
@@ -364,6 +372,7 @@ extension MyYelloDetailView {
                     self.detailSenderView.senderLabel.text = initial
                     self.getHintView.hintLabel.text = initial
                 }
+                self.nameIndex = data.nameIndex
                 
                 dump(data)
                 print("이름 통신 성공")
@@ -399,16 +408,16 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
             showGetHintAlert()
             myYelloDetailKeyword(voteId: voteIdNumber)
             
-            self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint - 100)
-            self.usePointView.pointLabel.text = String(self.currentPoint - 100)
+            self.currentPoint -= 100
             self.isKeywordUsed.toggle()
         } else {
             showGetSenderHintAlert()
             myYelloDetailName(voteId: voteIdNumber)
             self.isSenderUsed = true
-            
-            self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint - 300)
-            self.usePointView.pointLabel.text = String(self.currentPoint - 300)
+            self.currentPoint -= 300
         }
+        
+        self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
+        self.usePointView.pointLabel.text = String(self.currentPoint)
     }
 }

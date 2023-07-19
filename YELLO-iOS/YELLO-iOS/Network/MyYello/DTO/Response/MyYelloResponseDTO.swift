@@ -21,7 +21,7 @@ struct Yello: Codable {
     var nameHint: Int
     let vote: Vote
     var isHintUsed: Bool
-    let isRead: Bool
+    var isRead: Bool
     let createdAt: String
 }
 
