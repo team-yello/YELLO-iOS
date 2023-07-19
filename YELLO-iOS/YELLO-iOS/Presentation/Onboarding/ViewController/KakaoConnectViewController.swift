@@ -34,7 +34,8 @@ class KakaoConnectViewController: BaseViewController {
             } else {
                 var allFriends: [String] = []
                 friends?.elements?.forEach({
-                    allFriends.append($0.uuid)
+                    guard let id = $0.id else { return }
+                    allFriends.append(String(id))
                 })
                 User.shared.kakaoFriends = allFriends
                 self.navigationController?.pushViewController(SchoolSearchViewController(), animated: true)
