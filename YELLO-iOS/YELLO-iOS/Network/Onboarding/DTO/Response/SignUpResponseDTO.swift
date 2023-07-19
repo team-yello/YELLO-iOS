@@ -8,20 +8,12 @@
 import Foundation
 
 // MARK: - SignIn
-struct SignInResponseDTO: Codable {
-    let social, email: String
-    let profileImage: String
-    let groupID, groupAdmissionYear: Int
-    let name, yelloID, gender: String
-    let friends: [Int]
-    let recommendID: String
+// MARK: - SignUpResponseDTO
+struct SignUpResponseDTO: Codable {
+    let yelloID, accessToken, refreshToken: String
 
     enum CodingKeys: String, CodingKey {
-        case social, email, profileImage
-        case groupID = "groupId"
-        case groupAdmissionYear, name
         case yelloID = "yelloId"
-        case gender, friends
-        case recommendID = "recommendId"
+        case accessToken, refreshToken
     }
 }

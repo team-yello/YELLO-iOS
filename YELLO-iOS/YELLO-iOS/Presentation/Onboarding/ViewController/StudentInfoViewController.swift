@@ -13,6 +13,8 @@ import Then
 class StudentInfoViewController: OnboardingBaseViewController {
     
     // MARK: - Variables
+    let majorSearchViewController = FindMajorViewController()
+    let studentIdViewController = StudentIdViewController()
     
     // MARK: Component
     private let baseView = StudentInfoView()
@@ -21,6 +23,8 @@ class StudentInfoViewController: OnboardingBaseViewController {
             resetTextField()
         }
     }
+    var groupId = 0
+    var groupAdmissionYear = 0
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -28,6 +32,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         super.nextViewController = UserInfoViewController()
+        
         setDelegate()
     }
     
@@ -44,6 +49,8 @@ class StudentInfoViewController: OnboardingBaseViewController {
     private func setDelegate() {
         baseView.majorTextField.textField.delegate = self
         baseView.studentIDTextField.textField.delegate = self
+        majorSearchViewController.majorDelegate = self
+        studentIdViewController.delegate = self
     }
     
     private func resetTextField() {
@@ -59,7 +66,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
     }
     
     private func presentModal() {
-        let studentIdViewController = StudentIdViewController()
+        
         let nav = UINavigationController(rootViewController: studentIdViewController)
         studentIdViewController.delegate = self
         
@@ -82,7 +89,15 @@ class StudentInfoViewController: OnboardingBaseViewController {
         let isButtonEnabled = isMajorTextFilled && isStudentIDTextFilled
         
         nextButton.setButtonEnable(state: isButtonEnabled)
+        
     }
+    
+    override func setUser() {
+        print("id: \(groupId), year: \(groupAdmissionYear)")
+        User.shared.groupId = groupId
+        User.shared.groupAdmissionYear = groupAdmissionYear
+    }
+
 }
 
 // MARK: - extension
@@ -91,7 +106,7 @@ extension StudentInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case baseView.majorTextField.textField:
-            let nextViewController = FindMajorViewController()
+            let nextViewController = majorSearchViewController
             nextViewController.schoolName = self.schoolName
             nextViewController.delegate = self
             self.present(nextViewController, animated: true)
@@ -106,6 +121,7 @@ extension StudentInfoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
     }
+    
 }
 
 // MARK: SearchResultTableViewSelectDelegate
@@ -119,9 +135,16 @@ extension StudentInfoViewController: SearchResultTableViewSelectDelegate {
 
 // MARK: SelectStudentIdDelegate
 extension StudentInfoViewController: SelectStudentIdDelegate {
-    func didSelectStudentId(_ result: String) {
+    func didSelectStudentId(_ result: Int) {
         baseView.studentIDTextField.textField.setButtonState(state: .done)
-        baseView.studentIDTextField.textField.text = result
+        baseView.studentIDTextField.textField.text = "\(result)학번"
+        groupAdmissionYear = result
         checkButtonEnable()
+    }
+}
+
+extension StudentInfoViewController: FindMajorViewControllerDelegate {
+    func didDismissFindMajorViewController(with groupList: GroupList) {
+        self.groupId = groupList.groupID
     }
 }

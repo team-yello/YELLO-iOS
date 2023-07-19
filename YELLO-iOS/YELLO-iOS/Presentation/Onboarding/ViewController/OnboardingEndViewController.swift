@@ -9,7 +9,7 @@ import UIKit
 
 class OnboardingEndViewController: BaseViewController {
     // MARK: - Variables
-    // MARK: Component 
+    // MARK: Component
     let baseView = OnboardingEndView()
     
     // MARK: - Function
@@ -34,14 +34,35 @@ class OnboardingEndViewController: BaseViewController {
         baseView.goToYelloButton.addTarget(self, action: #selector(yelloButtondidTap), for: .touchUpInside)
     }
     
+    private func postUserInfo() {
+        let user = User.shared
+        let requestDTO = SignUpRequestDTO(social: user.social, uuid: user.uuid, email: user.email, profileImage: user.profileImage, groupID: user.groupId, groupAdmissionYear: user.groupAdmissionYear, name: user.name, yelloID: user.yelloId, gender: user.gender, friends: [])
+ 
+            NetworkService.shared.onboardingService.postUserInfo(requestDTO: requestDTO) { result in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data else {
+                        print("no data")
+                        return
+                    }
+                    print("성공!✅✅✅✅✅✅✅")
+                    dump(data)
+                default:
+                    return
+                }
+            }
+            
+        
+    }
+    
     // MARK: Objc Function
     @objc func yelloButtondidTap() {
         /// 온보딩 이후 rootViewController 변경
         let yelloTabBarController = YELLOTabBarController()
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-        
-        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
+        postUserInfo()
+       // UserDefaults.standard.set(true, forKey: "isLoggedIn")
+       // sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
     }
     
 }
