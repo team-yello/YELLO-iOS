@@ -175,7 +175,7 @@ extension ProfileView: UITableViewDataSource {
                 view?.addBottomBorderWithColor(color: .black)
                 view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
                 view?.myProfileView.friendView.countLabel.text = String(self.friendCount)
-                view?.myProfileView.profileUser(userId: 148)
+                view?.myProfileView.profileUser()
             }
             return view
         default:

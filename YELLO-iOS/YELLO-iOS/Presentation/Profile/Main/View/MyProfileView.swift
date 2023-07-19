@@ -178,8 +178,8 @@ extension MyProfileView {
     }
     
     // MARK: - Network
-    func profileUser(userId: Int) {
-        NetworkService.shared.profileService.profileUser(userId: userId) { response in
+    func profileUser() {
+        NetworkService.shared.profileService.profileUser { response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum ProfileTarget {
-    case profileUser(userId: Int)
+    case profileUser
     case profileFriend(_ queryDTO: ProfileFriendRequestQueryDTO)
     case profileDeleteFriend(id: Int)
 }
@@ -29,8 +29,8 @@ extension ProfileTarget: TargetType {
     
     var path: String {
         switch self {
-        case .profileUser(let userId):
-            return "/user/\(userId)"
+        case .profileUser:
+            return "/user"
         case .profileFriend(_):
             return "/friend"
         case .profileDeleteFriend(let id):
