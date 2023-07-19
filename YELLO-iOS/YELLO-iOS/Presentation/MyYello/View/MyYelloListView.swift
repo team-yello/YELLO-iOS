@@ -100,9 +100,9 @@ final class MyYelloListView: BaseView {
                         return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
                     }
                     
-                    if self.pageCount == 0 {
-                        MyYelloView.myYelloCount = data.totalCount
-                    }
+//                    if self.pageCount == 0 {
+//                        MyYelloView.myYelloCount = data.totalCount
+//                    }
                     
 //                    self.myYelloView.myYelloCount = data.totalCount
                     MyYelloListView.myYelloModelDummy.append(contentsOf: myYelloModels)

@@ -23,6 +23,7 @@ final class MyYelloViewController: BaseViewController {
         setDelegate()
         setAddTarget()
         self.myYelloView.myYelloListView.myYello()
+        self.myYelloCount()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,5 +80,30 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
         myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
         myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
         myYelloDetailViewController.myYelloDetailView.indexNumber = index
+    }
+}
+
+extension MyYelloViewController {
+    func myYelloCount() {
+        
+        let queryDTO = MyYelloRequestQueryDTO(page: 0)
+        
+        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    
+                    self.myYelloView.myYelloCount = data.totalCount
+//                    self.myYelloTableView.reloadData()
+                    print("내 옐로 count 통신 성공")
+                default:
+                    print("network fail")
+                    return
+                }
+            }
+        }
     }
 }
