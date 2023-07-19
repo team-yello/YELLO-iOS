@@ -139,7 +139,7 @@ extension KakaoFriendView {
         self.kakaoPage += 1
     
         let queryDTO = RecommendingRequestQueryDTO(page: kakaoPage)
-        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"])
+        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: User.shared.friends)
         
         if isFinishPaging {
             return
@@ -158,7 +158,6 @@ extension KakaoFriendView {
                     if self.kakaoPage >= totalPage {
                         self.isFinishPaging = true
                     }
-                    
                     
                     let friendModels = data.friends.map { recommendingFriend in
                         return FriendModel(

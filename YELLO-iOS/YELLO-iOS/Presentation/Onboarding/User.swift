@@ -19,7 +19,7 @@ struct User {
     var name: String = ""
     var yelloId: String = ""
     var gender: String = ""
-    var friends: [Int] = []
+    var friends: [String] = []
     var recommendId: String = ""
     
     private init() {}
