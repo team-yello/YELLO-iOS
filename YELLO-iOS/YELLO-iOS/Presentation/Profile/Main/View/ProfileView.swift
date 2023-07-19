@@ -141,7 +141,9 @@ extension ProfileView {
         self.fetchingMore = false
         self.myProfileFriendModelDummy = []
         self.profileFriend()
-        refresh.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            refresh.endRefreshing()
+        }
         print(self.myProfileFriendModelDummy)
     }
     
@@ -191,7 +193,7 @@ extension ProfileView {
                     }
                     
                     self.myProfileFriendModelDummy.append(contentsOf: friendModels)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         self.myFriendTableView.reloadData()
                     }
                     self.fetchingMore = false
