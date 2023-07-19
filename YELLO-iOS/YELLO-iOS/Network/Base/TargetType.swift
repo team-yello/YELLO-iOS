@@ -30,7 +30,7 @@ extension TargetType {
         case .hasAccessToken:
             return [
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
-                HTTPHeaderFieldKey.accessToken.rawValue: HTTPHeaderFieldValue.accessToken.rawValue
+                HTTPHeaderFieldKey.accessToken.rawValue: KeychainHandler.shared.accessToken
             ]
         }
     }
@@ -48,7 +48,7 @@ extension TargetType {
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
         case .hasAccessToken:
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
-            urlRequest.setValue(HTTPHeaderFieldValue.accessToken.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
+            urlRequest.setValue(KeychainHandler.shared.accessToken, forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
         }
 
         switch parameters {

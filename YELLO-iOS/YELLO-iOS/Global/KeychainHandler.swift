@@ -23,7 +23,8 @@ struct KeychainHandler {
     
     var accessToken: String {
         get {
-            return KeychainWrapper.standard.string(forKey: accessTokenKey) ?? ""
+            
+            return "Bearer \(KeychainWrapper.standard.string(forKey: accessTokenKey) ?? "")"
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: accessTokenKey)
@@ -136,7 +137,7 @@ func deleteUsername() {
 func isFirstTime() -> Bool {
     let defaults = UserDefaults.standard
     if defaults.object(forKey: "isFirstTime") == nil {
-        defaults.set("No", forKey:"isFirstTime")
+        defaults.set("No", forKey: "isFirstTime")
         return true
     } else {
         return false

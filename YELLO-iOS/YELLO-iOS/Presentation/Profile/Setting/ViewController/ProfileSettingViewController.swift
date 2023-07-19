@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import KakaoSDKUser
 
 final class ProfileSettingViewController: BaseViewController {
     
@@ -25,6 +26,7 @@ final class ProfileSettingViewController: BaseViewController {
         view.backgroundColor = .black
         profileSettingView.settingNavigationBarView.handleBackButtonDelegate = self
         profileSettingView.handleWithdrawalButtonDelegate = self
+        profileSettingView.logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
     }
     
     override func setLayout() {
@@ -49,5 +51,23 @@ extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
     func withdrawalButtonTapped() {
         let withdrawalCheckViewController = WithdrawalCheckViewController()
         navigationController?.pushViewController(withdrawalCheckViewController, animated: true)
+    }
+    
+    @objc private func logoutButtonTapped() {
+        // 로그아웃 로직 구현
+        UserApi.shared.logout {(error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("logout() success.")
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                
+               UserDefaults.standard.set(false, forKey: "isLoggedIn")
+               sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
+                
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            
+        }
     }
 }

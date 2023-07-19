@@ -31,8 +31,7 @@ class KakaoConnectViewController: BaseViewController {
         TalkApi.shared.profile {(profile, error) in
             if let error = error {
                 print(error)
-            }
-            else {
+            } else {
                 _ = profile
                 self.navigationController?.pushViewController(SchoolSearchViewController(), animated: true)
             }

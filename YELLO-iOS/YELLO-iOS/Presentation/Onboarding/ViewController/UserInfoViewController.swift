@@ -104,7 +104,7 @@ class UserInfoViewController: OnboardingBaseViewController {
         if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly, !isIdDuplicate {
             nextButton.setButtonEnable(state: true)
             idTextFieldView.textField.setButtonState(state: .done)
-            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .done)
+            idTextFieldView.helperLabel.setLabelStyle(text: "", State: .done)
             nameTextFieldView.textField.setButtonState(state: .done)
         } else {
             nextButton.setButtonEnable(state: false)
