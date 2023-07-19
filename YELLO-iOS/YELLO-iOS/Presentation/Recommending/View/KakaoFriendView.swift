@@ -150,13 +150,8 @@ extension KakaoFriendView {
         
         self.kakaoPage += 1
         
-        var kakaoFriendsUUID: [String] = []
-        for i in User.shared.friends {
-            kakaoFriendsUUID.append(String(i))
-        }
-    
         let queryDTO = RecommendingRequestQueryDTO(page: kakaoPage)
-        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: kakaoFriendsUUID)
+        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: User.shared.kakaoFriends)
         
         fetchingMore = true
         
