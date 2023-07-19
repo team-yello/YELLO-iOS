@@ -201,7 +201,7 @@ extension InvitingView {
     func copyButtonClicked() {
         guard let recommender = self.recommenderID.text else { return }
         let filteredID = String(recommender.dropFirst())
-        let recommenderID = "추천인코드: " + filteredID + "\n\n우리 같이 YELL:O 해요!\n가입 시 추천인코드 입력하면 “100포인트” 추가 지급\n(여기에는 다운로드 링크)"
+        let recommenderID = "추천인코드: " + filteredID + "\n\n우리 같이 YELL:O 해요!\n(여기에는 다운로드 링크)"
         UIPasteboard.general.string = recommenderID
         print(UIPasteboard.general.string ?? "")
         
