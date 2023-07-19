@@ -55,7 +55,6 @@ class FriendsTableViewCell: UITableViewCell {
         nameLabel.text = nil
         schoolLabel.text = nil
         isTapped = false
-        selectedOverlayView.isHidden = true
     }
     
     // MARK: Custom Function
@@ -72,18 +71,6 @@ class FriendsTableViewCell: UITableViewCell {
     private func updateCheckButtonImage() {
         let imageName = isTapped ? ImageLiterals.OnBoarding.icCheckCircleEnable : ImageLiterals.OnBoarding.icCheckCircleYello
         checkButton.setImage(imageName, for: .normal)
-    }
-    
-    /// indexPath 받기
-    private func getIndexPath() -> IndexPath? {
-        guard let tableView = superview as? UITableView else { return nil }
-        return tableView.indexPath(for: self)
-    }
-    
-    // MARK: Objc Function
-    @objc func checkButtonDidTap() {
-        isTapped.toggle()
-        updateCheckButtonImage()
         
         if isTapped {
             if selectedOverlayView.superview == nil {
@@ -98,9 +85,21 @@ class FriendsTableViewCell: UITableViewCell {
         } else {
             selectedOverlayView.removeFromSuperview()
         }
+    }
+    
+    /// indexPath 받기
+    private func getIndexPath() -> IndexPath? {
+        guard let tableView = superview as? UITableView else { return nil }
+        return tableView.indexPath(for: self)
+    }
+    
+    // MARK: Objc Function
+    @objc func checkButtonDidTap() {
+        isTapped.toggle()
         if let indexPath = getIndexPath() {
             delegate?.friendCell(self, didTapButtonAt: indexPath, isSelected: isTapped)
         }
+        updateCheckButtonImage()
     }
 }
 
@@ -116,6 +115,7 @@ extension FriendsTableViewCell {
         
         profileImageView.do {
             $0.backgroundColor = .yelloMain300
+            $0.contentMode = .scaleAspectFill
             $0.makeCornerRound(radius: 21)
         }
         
