@@ -24,6 +24,7 @@ class FindSchoolViewController: SearchBaseViewController {
     
     func addTarget() {
         super.searchView.searchTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        super.searchView.helperButton.addTarget(self, action: #selector(helperButtonDidTap), for: .touchUpInside)
     }
     
     func searchSchool(_ word: String) {
@@ -62,6 +63,11 @@ class FindSchoolViewController: SearchBaseViewController {
         pageCount = 0
         allArr.removeAll()
         searchSchool(text)
+    }
+    
+    @objc func helperButtonDidTap() {
+        let url = URL(string: "https://www.google.com/")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
 }
