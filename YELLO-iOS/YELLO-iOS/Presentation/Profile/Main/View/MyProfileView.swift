@@ -14,10 +14,10 @@ final class MyProfileView: UIView {
     
     // MARK: - Variables
     // MARK: Component
-    private let profileImageView = UIImageView()
-    private let nameLabel = UILabel()
-    private let instagramLabel = UILabel()
-    private let schoolLabel = UILabel()
+    let profileImageView = UIImageView()
+    let nameLabel = UILabel()
+    let instagramLabel = UILabel()
+    let schoolLabel = UILabel()
     private let separateView = UIView()
     let messageView = CountCustomView()
     let friendView = CountCustomView()
@@ -28,7 +28,6 @@ final class MyProfileView: UIView {
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        profileUser(userId: 161)
         setUI()
     }
     
@@ -179,8 +178,8 @@ extension MyProfileView {
     }
     
     // MARK: - Network
-    func profileUser(userId: Int) {
-        NetworkService.shared.profileService.profileUser(userId: userId) { response in
+    func profileUser() {
+        NetworkService.shared.profileService.profileUser { response in
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }

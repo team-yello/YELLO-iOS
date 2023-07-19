@@ -17,17 +17,29 @@ final class ProfileViewController: BaseViewController {
     private let profileView = ProfileView()
     let friendProfileViewController = FriendProfileViewController()
     
+    var isFinishPaging = false
+    var isLoadingData = false
+    
+    var pageCount = -1
+    
     // MARK: - Function
     // MARK: LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.profileView.profileFriend()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
-        self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 161)
-        self.profileView.myFriendTableView.reloadData()
-        self.profileView.beginBatchFetch()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.profileView.myFriendTableView.reloadData()
+    }
+    
     override func setStyle() {
         view.backgroundColor = .black
         profileView.navigationBarView.delegate = self
@@ -78,13 +90,12 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
-            self.profileView.myProfileFriendModelModel.remove(at: self.profileView.indexNumber)
             self.profileView.myFriendTableView.deleteRows(at: [[0, self.profileView.indexNumber]], with: .right)
-            self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 161)
+            self.profileView.myProfileHeaderView.myProfileView.profileUser()
         }
         self.profileView.myFriendTableView.reloadData()
         profileView.initialProfileFriendDataCount -= 1
-        profileView.friendCount -= 1
+        profileView.friendCount -= 1 
 
     }
 }

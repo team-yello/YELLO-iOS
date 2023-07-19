@@ -23,7 +23,7 @@ final class UsePointView: BaseView {
     let pointView = UIView()
     let pointImageView = UIImageView()
     let pointTitleLabel = UILabel()
-    let pointLabel = UILabel()
+    var pointLabel = UILabel()
     let pointTextLabel = UILabel()
     var getHintView: GetHintView?
     lazy var noButton = UIButton()

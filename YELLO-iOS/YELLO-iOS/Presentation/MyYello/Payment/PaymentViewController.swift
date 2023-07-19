@@ -78,19 +78,19 @@ extension PaymentViewController {
         
         firstSubscribeButton.do {
             $0.setImage(ImageLiterals.Payment.btnFirstSubscribe, for: .normal)
-            $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(firstButtonTapped), for: .touchUpInside)
             $0.imageView?.contentMode = .scaleAspectFit
         }
         
         secondSubscribeButton.do {
             $0.setImage(ImageLiterals.Payment.btnSecondSubscribe, for: .normal)
-            $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(secondButtonTapped), for: .touchUpInside)
             $0.imageView?.contentMode = .scaleAspectFit
         }
         
         thirdSubscribeButton.do {
             $0.setImage(ImageLiterals.Payment.btnThirdSubscribe, for: .normal)
-            $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(thirdButtonTapped), for: .touchUpInside)
             $0.imageView?.contentMode = .scaleAspectFit
         }
     }
@@ -162,11 +162,45 @@ extension PaymentViewController {
     private func setDelegate() {
         paymentNavigationBarView.handleBackButtonDelegate = self
     }
+
+    func pushPaymentReadyViewController() {
+        let paymentReadyViewController = PaymentReadyViewController()
+        self.navigationController?.pushViewController(paymentReadyViewController, animated: true)
+    }
+    
+    // MARK: - Network
+    func payCheck(index: Int) {
+        let requestDTO = PayRequestBodyDTO(index: index)
+        NetworkService.shared.myYelloService.payCheck(requestDTO: requestDTO) { response in
+            switch response {
+            case .success:
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
     
     // MARK: Objc Function
     @objc func nextButtonTapped() {
-        let paymentReadyViewController = PaymentReadyViewController()
-        self.navigationController?.pushViewController(paymentReadyViewController, animated: true)
+        payCheck(index: 0)
+        pushPaymentReadyViewController()
+    }
+    
+    @objc func firstButtonTapped() {
+        payCheck(index: 1)
+        pushPaymentReadyViewController()
+    }
+    
+    @objc func secondButtonTapped() {
+        payCheck(index: 2)
+        pushPaymentReadyViewController()
+    }
+    
+    @objc func thirdButtonTapped() {
+        payCheck(index: 3)
+        pushPaymentReadyViewController()
     }
 }
 

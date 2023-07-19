@@ -8,6 +8,11 @@
 import Foundation
 
 struct RecommendingFriendResponseDTO: Codable {
+    let totalCount: Int
+    let friends: [Friends]
+}
+
+struct Friends: Codable {
     let id: Int
     let name: String
     let group: String

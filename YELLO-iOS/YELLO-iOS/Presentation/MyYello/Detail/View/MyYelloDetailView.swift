@@ -26,6 +26,12 @@ final class MyYelloDetailView: BaseView {
     var pointLackView = PointLackView()
     var usePointView = UsePointView()
     var getHintView = GetHintView()
+    var indexNumber: Int = 0
+    var nameIndex: Int = 0 {
+        didSet {
+            MyYelloListView.myYelloModelDummy[indexNumber].nameHint = nameIndex
+        }
+    }
     
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
@@ -37,11 +43,18 @@ final class MyYelloDetailView: BaseView {
     
     // MARK: Property
     weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
+    var isRead: Bool = false {
+        didSet {
+            MyYelloListView.myYelloModelDummy[indexNumber].isRead = self.isRead
+        }
+    }
     var isKeywordUsed: Bool = false {
         didSet {
             if self.isKeywordUsed == true {
                 keywordButton.setTitle(StringLiterals.MyYello.Detail.sendButton, for: .normal)
-                detailKeywordView.keywordLabel.text = "모르는 척 하고"
+                detailKeywordView.keywordLabel.isHidden = false
+                detailKeywordView.questionLabel.isHidden = true
+                MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
             }
         }
     }
@@ -56,20 +69,28 @@ final class MyYelloDetailView: BaseView {
                 instagramButton.snp.makeConstraints {
                     $0.bottom.equalTo(senderButton.snp.top).offset(-24.adjustedHeight)
                 }
-                detailSenderView.senderLabel.text = "ㄱ"
             }
         }
     }
     
-    var point: Int = 0
+    var currentPoint: Int = 0 {
+        didSet {
+            self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
+            self.getHintView.pointLabel.text = String(self.currentPoint)
+            self.pointLackView.pointLabel.text = String(self.currentPoint)
+        }
+    }
+    
+    var voteIdNumber: Int = 0
+    var initialName: String = ""
     
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
-        self.backgroundColor = .clear
+        self.backgroundColor = .black
         
         genderLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.female, lineHeight: 16)
+            $0.setTextWithLineHeight(text: "", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .white
         }
@@ -241,6 +262,7 @@ extension MyYelloDetailView {
         pointLackView.removeFromSuperview()
         pointLackView = PointLackView()
         pointLackView.frame = viewController.view.bounds
+        pointLackView.pointLabel.text = String(self.currentPoint)
         pointLackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(pointLackView)
     }
@@ -249,6 +271,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         usePointView.removeFromSuperview()
         usePointView = UsePointView()
+        usePointView.pointLabel.text = String(self.currentPoint)
         usePointView.frame = viewController.view.bounds
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
@@ -259,6 +282,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         usePointView.removeFromSuperview()
         usePointView = UsePointView()
+        usePointView.pointLabel.text = String(self.currentPoint)
         usePointView.frame = viewController.view.bounds
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
@@ -275,7 +299,6 @@ extension MyYelloDetailView {
         getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(getHintView)
         getHintView.titleLabel.text = StringLiterals.MyYello.Alert.senderTitle
-        getHintView.hintLabel.text = "ㄱ"
         
         getHintView.descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(getHintView.titleLabel.snp.bottom).offset(4)
@@ -300,15 +323,79 @@ extension MyYelloDetailView {
     
     // MARK: Objc Function
     @objc private func keywordButtonTapped() {
-        if point == 0 {
+        if currentPoint < 100 {
             showLackAlert()
         } else {
-            if isKeywordUsed == false {
-                showUsePointAlert()
+            if isKeywordUsed == true {
+                if currentPoint < 300 {
+                    showLackAlert()
+                } else {
+                    showUseSenderPointAlert()
+                }
             } else {
-                showUseSenderPointAlert()
+                showUsePointAlert()
             }
         }
+    }
+    
+    // MARK: - Network
+    func myYelloDetailKeyword(voteId: Int) {
+        NetworkService.shared.myYelloService.myYelloDetailKeyword(voteId: voteId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.detailKeywordView.keywordLabel.isHidden = false
+                self.detailKeywordView.questionLabel.isHidden = true
+                self.detailKeywordView.keywordLabel.text = data.answer
+                self.getHintView.hintLabel.text = data.answer
+                
+                dump(data)
+                print("키워드 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
+    func myYelloDetailName(voteId: Int) {
+        NetworkService.shared.myYelloService.myYelloDetailName(voteId: voteId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                if let initial = self.getFirstInitial(data.name as NSString, index: 0) {
+                    self.initialName = initial
+                    self.detailSenderView.senderLabel.text = initial
+                    self.getHintView.hintLabel.text = initial
+                }
+                self.nameIndex = data.nameIndex
+                
+                dump(data)
+                print("이름 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
+    func getFirstInitial(_ str: NSString, index: Int) -> String? {
+        let name = str
+        var initialName: String = ""
+        
+        for i in 0..<1 {
+            let oneChar: UniChar = name.character(at: i)
+            if oneChar >= 0xAC00 && oneChar <= 0xD7A3 {
+                var firstCodeValue = ((oneChar - 0xAC00)/28)/21
+                firstCodeValue += 0x1100
+                initialName = initialName.appending(String(format: "%C", firstCodeValue))
+            } else {
+                initialName = initialName.appending(String(format: "%C", oneChar))
+            }
+        }
+        return initialName
     }
 }
 
@@ -317,10 +404,18 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
     func confirmButtonTapped() {
         if self.isKeywordUsed == false {
             showGetHintAlert()
-            self.isKeywordUsed = true
+            myYelloDetailKeyword(voteId: voteIdNumber)
+            
+            self.currentPoint -= 100
+            self.isKeywordUsed.toggle()
         } else {
             showGetSenderHintAlert()
+            myYelloDetailName(voteId: voteIdNumber)
             self.isSenderUsed = true
+            self.currentPoint -= 300
         }
+        
+        self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
+        self.usePointView.pointLabel.text = String(self.currentPoint)
     }
 }

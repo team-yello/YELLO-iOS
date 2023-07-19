@@ -61,7 +61,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         initialLabel.do {
-            $0.setTextWithLineHeight(text: "ㄱ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiKeywordBold
             $0.textColor = .semanticGenderF300
         }
@@ -73,31 +73,31 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: "사라진다면", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordLabel.do {
-            $0.setTextWithLineHeight(text: "달빛산책간 거", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiKeywordBold
             $0.textColor = .white
         }
         
         keywordFootLabel.do {
-            $0.setTextWithLineHeight(text: "(이)야", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .semanticGenderF500
         }
@@ -131,7 +131,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         labelView.snp.makeConstraints {
-            $0.top.equalTo(sendLabel.snp.bottom).offset(2)
+            $0.top.equalTo(initialLabel.snp.bottom).offset(2)
             $0.height.equalTo(40)
             $0.leading.equalTo(initialLabel)
         }
@@ -162,20 +162,37 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        genderImageView.image = nil
+        initialLabel.text = nil
+        nameLabel.text = nil
+        keywordHeadLabel.text = nil
+        keywordLabel.text = nil
+        keywordFootLabel.text = nil
+        timeLabel.text = nil
+    }
+    
     // MARK: Custom Function
     func configureNameCell(_ model: Yello) {
-        if model.gender == "M" {
+        if model.senderGender == "MALE" {
             contentView.backgroundColor = .semanticGenderM700
             genderImageView.image = ImageLiterals.MyYello.imgGenderMale
             timeLabel.textColor = .semanticGenderM500
             initialLabel.textColor = .semanticGenderM300
             sendLabel.textColor = .semanticGenderM300
+        } else {
+            contentView.backgroundColor = .semanticGenderF700
+            genderImageView.image = ImageLiterals.MyYello.imgGenderFemale
+            timeLabel.textColor = .semanticGenderF500
+            initialLabel.textColor = .semanticGenderF300
+            sendLabel.textColor = .semanticGenderF300
         }
         
-        nameLabel.text = model.vote.nameHead + " 너" + model.vote.nameFoot
-        keywordHeadLabel.text = model.vote.keywordHead
+        nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
+        keywordHeadLabel.text = model.vote.keywordHead ?? ""
         keywordLabel.text = model.vote.keyword
-        keywordFootLabel.text = model.vote.keywordFoot
+        keywordFootLabel.text = model.vote.keywordFoot ?? ""
         timeLabel.text = model.createdAt
         
         if model.nameHint == 0 {

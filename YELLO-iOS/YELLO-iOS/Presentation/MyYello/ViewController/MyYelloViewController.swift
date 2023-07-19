@@ -22,11 +22,19 @@ final class MyYelloViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
+        self.myYelloView.myYelloListView.myYello()
+        self.myYelloCount()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.myYelloView.resetLayout()
     }
     
     // MARK: Layout Helpers
@@ -38,7 +46,7 @@ final class MyYelloViewController: BaseViewController {
         view.addSubviews(myYelloView)
         
         let tabbarHeight = 60 + safeAreaBottomInset()
-
+        
         myYelloView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
@@ -65,8 +73,36 @@ extension MyYelloViewController {
 
 // MARK: HandleMyYelloCellDelegate
 extension MyYelloViewController: HandleMyYelloCellDelegate {
-    func pushMyYelloDetailViewController() {
+    func pushMyYelloDetailViewController(index: Int) {
         let myYelloDetailViewController = MyYelloDetailViewController()
         navigationController?.pushViewController(myYelloDetailViewController, animated: true)
+        myYelloView.myYelloListView.indexNumber = index
+        myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
+        myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
+        myYelloDetailViewController.myYelloDetailView.indexNumber = index
+    }
+}
+
+extension MyYelloViewController {
+    func myYelloCount() {
+        
+        let queryDTO = MyYelloRequestQueryDTO(page: 0)
+        
+        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    
+                    self.myYelloView.myYelloCount = data.totalCount
+                    print("내 옐로 count 통신 성공")
+                default:
+                    print("network fail")
+                    return
+                }
+            }
+        }
     }
 }

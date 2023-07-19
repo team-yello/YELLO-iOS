@@ -43,6 +43,16 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        genderImageView.image = nil
+        nameLabel.text = nil
+        keywordHeadLabel.text = nil
+        keywordLabel.text = nil
+        keywordFootLabel.text = nil
+        timeLabel.text = nil
+    }
+    
     private func setUI() {
         setStyle()
         setLayout()
@@ -59,31 +69,31 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: "사라진다면", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordLabel.do {
-            $0.setTextWithLineHeight(text: "달빛산책간 거", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiKeywordBold
             $0.textColor = .white
         }
         
         keywordFootLabel.do {
-            $0.setTextWithLineHeight(text: "(이)야", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .semanticGenderF500
         }
@@ -139,16 +149,20 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
     // MARK: Custom Function
     func configureKeywordCell(_ model: Yello) {
         
-        if model.gender == "M" {
+        if model.senderGender == "MALE" {
             contentView.backgroundColor = .semanticGenderM700
             genderImageView.image = ImageLiterals.MyYello.imgGenderMale
             timeLabel.textColor = .semanticGenderM500
+        } else {
+            contentView.backgroundColor = .semanticGenderF700
+            genderImageView.image = ImageLiterals.MyYello.imgGenderFemale
+            timeLabel.textColor = .semanticGenderF500
         }
         
-        nameLabel.text = model.vote.nameHead + " 너" + model.vote.nameFoot
-        keywordHeadLabel.text = model.vote.keywordHead
+        nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
+        keywordHeadLabel.text = (model.vote.keywordHead ?? "")
         keywordLabel.text = model.vote.keyword
-        keywordFootLabel.text = model.vote.keywordFoot
+        keywordFootLabel.text = (model.vote.keywordFoot ?? "")
         timeLabel.text = model.createdAt
     }
 }

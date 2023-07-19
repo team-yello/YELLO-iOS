@@ -40,6 +40,13 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        genderImageView.image = nil
+        titleLabel.text = nil
+        timeLabel.text = nil
+    }
+    
     // MARK: Layout Helpers
     private func setUI() {
         setStyle()
@@ -105,13 +112,18 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
     // MARK: Custom Function
     func configureDefaultCell(_ model: Yello) {
         
-        if model.gender == "M" {
+        if model.senderGender == "MALE" {
             genderImageView.image = ImageLiterals.MyYello.imgGenderMale
             titleLabel.text = StringLiterals.MyYello.List.maleTitle
+        } else {
+            genderImageView.image = ImageLiterals.MyYello.imgGenderFemale
+            titleLabel.text = StringLiterals.MyYello.List.femaleTitle
         }
         
         if model.isRead == true {
             newView.isHidden = true
+        } else {
+            newView.isHidden = false
         }
         
         timeLabel.text = model.createdAt

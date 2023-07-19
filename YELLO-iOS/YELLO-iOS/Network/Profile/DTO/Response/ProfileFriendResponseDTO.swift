@@ -20,5 +20,4 @@ struct ProfileFriendResponseDetail: Codable {
     let yelloId: String
     let yelloCount: Int
     let friendCount: Int
-    let point: Int
 }

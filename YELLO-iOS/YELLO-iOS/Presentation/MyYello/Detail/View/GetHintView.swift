@@ -17,11 +17,11 @@ final class GetHintView: BaseView {
     let contentsView = UIView()
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
-    let hintLabel = BasePaddingLabel()
+    var hintLabel = BasePaddingLabel()
     let pointView = UIView()
     let pointImageView = UIImageView()
     let pointTitleLabel = UILabel()
-    let pointLabel = UILabel()
+    var pointLabel = UILabel()
     let pointTextLabel = UILabel()
     lazy var confirmButton = UIButton()
     
@@ -48,7 +48,8 @@ final class GetHintView: BaseView {
         hintLabel.do {
             $0.backgroundColor = .yelloMain500
             $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
-            $0.setTextWithLineHeight(text: "모르는 척 하고", lineHeight: 24)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 24)
+            $0.numberOfLines = 1
             $0.font = .uiBodyLarge
             $0.textColor = UIColor(hex: "000000")
         }

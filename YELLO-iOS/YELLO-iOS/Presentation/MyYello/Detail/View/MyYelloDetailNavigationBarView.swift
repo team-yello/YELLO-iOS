@@ -21,7 +21,7 @@ final class MyYelloDetailNavigationBarView: BaseView {
     let titleLabel = UILabel()
     let pointView = UIView()
     let pointImageView = UIImageView()
-    let pointLabel = UILabel()
+    var pointLabel = UILabel()
 
     // MARK: - Function
     // MARK: Layout Helpers
@@ -30,7 +30,6 @@ final class MyYelloDetailNavigationBarView: BaseView {
 
         backButton.do {
             $0.setImage(ImageLiterals.Profile.icArrowLeftWhite, for: .normal)
-            $0.imageView?.tintColor = .white
             $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         }
         

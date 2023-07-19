@@ -21,12 +21,12 @@ final class SchoolFriendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        self.schoolFriendView.recommendingSchoolFriend()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         schoolFriendView.updateView()
-        schoolFriendView.beginBatchFetch()
     }
 }
 

@@ -18,6 +18,8 @@ final class DetailKeywordView: BaseView {
     let keywordView = UIView()
     let keywordBackView = UIView(frame: CGRect(x: 0, y: 0, width: 143, height: 34))
     let keywordLabel = UILabel()
+    let keywordLabelView = UIView()
+    let questionLabel = UILabel()
     let keywordHeadLabel = UILabel()
     let keywordFootLabel = UILabel()
 
@@ -28,7 +30,7 @@ final class DetailKeywordView: BaseView {
         self.makeCornerRound(radius: 32)
         
         nameKeywordLabel.do {
-            $0.setTextWithLineHeight(text: "나는 너와", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "", lineHeight: 24)
             $0.font = .uiLarge
             $0.textColor = .white
         }
@@ -39,35 +41,49 @@ final class DetailKeywordView: BaseView {
             $0.addDottedBorder()
         }
         
-        keywordLabel.do {
+        keywordLabelView.do {
             $0.backgroundColor = .yelloMain500
             $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
+        }
+        
+        keywordLabel.do {
+            $0.setTextWithLineHeight(text: "", lineHeight: 24)
+            $0.font = .uiBodyLarge
+            $0.textColor = .black
+            $0.isHidden = true
+        }
+        
+        questionLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.sender, lineHeight: 20)
             $0.font = .uiSenderLabel
-            $0.textColor = UIColor(hex: "000000")
+            $0.textColor = .black
         }
         
         keywordHeadLabel.do {
-            $0.text = "한강에서"
+            $0.text = ""
             $0.font = .uiLarge
             $0.textColor = .white
         }
         
         keywordFootLabel.do {
-            $0.text = "싶어"
+            $0.text = ""
             $0.font = .uiLarge
             $0.textColor = .white
         }
     }
     
     override func setLayout() {
+        
         self.addSubviews(nameKeywordLabel,
                          keywordView)
         
         keywordView.addSubviews(keywordBackView,
-                                keywordLabel,
+                                keywordLabelView,
                                 keywordHeadLabel,
                                 keywordFootLabel)
+        
+        keywordLabelView.addSubviews(questionLabel,
+                                    keywordLabel)
         
         nameKeywordLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(36)
@@ -77,6 +93,7 @@ final class DetailKeywordView: BaseView {
         
         keywordView.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(36)
+            $0.height.equalTo(34)
             $0.centerX.equalToSuperview()
         }
         
@@ -87,14 +104,24 @@ final class DetailKeywordView: BaseView {
         }
         
         keywordBackView.snp.makeConstraints {
-            $0.top.height.equalTo(keywordView)
-            $0.width.equalTo(143)
+            $0.top.equalTo(keywordView)
+            $0.width.equalTo(keywordLabelView)
             $0.height.equalTo(34)
+        }
+        
+        keywordLabelView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(30)
+        }
+        
+        questionLabel.snp.makeConstraints {
+            $0.center.equalTo(keywordBackView)
+            $0.height.equalTo(30)
         }
         
         keywordLabel.snp.makeConstraints {
             $0.center.equalTo(keywordBackView)
-            $0.width.equalTo(143)
+            $0.leading.trailing.equalToSuperview().inset(14)
             $0.height.equalTo(30)
         }
         
