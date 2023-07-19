@@ -22,7 +22,7 @@ extension OnboardingTarget: TargetType {
     var headerType: HTTPHeaderType {
         switch self {
         case .postTokenChange:
-            return .hasAccessToken
+            return .plain
         case .getSchoolList:
             return .plain
         case .getMajorList:

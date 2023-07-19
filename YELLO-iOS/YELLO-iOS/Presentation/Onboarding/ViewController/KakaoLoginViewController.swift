@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import KakaoSDKUser
 
 class KakaoLoginViewController: BaseViewController {
@@ -64,11 +65,11 @@ class KakaoLoginViewController: BaseViewController {
                                 
                                 let kakaoConnectViewController = (KakaoConnectViewController())
                                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                               sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: kakaoConnectViewController)
-//                                self.navigationController?.pushViewController(KakaoConnectViewController(), animated: true)
+                                self.navigationController?.pushViewController(KakaoConnectViewController(), animated: true)
                             } else if data.status == 201 {
                                 guard let data = data.data else { return }
                                 KeychainHandler.shared.accessToken = data.accessToken
+                                UserDefaults.standard.setValue(true, forKey: "isLoggined")
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
                             }
                         default:
@@ -117,6 +118,7 @@ class KakaoLoginViewController: BaseViewController {
                             } else if data.status == 201 {
                                 guard let data = data.data else { return }
                                 KeychainHandler.shared.accessToken = data.accessToken
+                                UserDefaults.standard.setValue(true, forKey: "isLoggined")
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
                             }
                         default:

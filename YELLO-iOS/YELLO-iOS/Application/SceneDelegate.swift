@@ -12,7 +12,7 @@ import KakaoSDKAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+    let isLoggined = UserDefaults.standard.bool(forKey: "isLoggined")
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -24,11 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window?.makeKeyAndVisible()
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) { [self] in
-            guard let accessToken = accessToken as? String else { return }
-            var isEmpty = accessToken.isEmpty
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) { 
             
-            let rootViewController = isEmpty ? KakaoLoginViewController() : YELLOTabBarController()
+            let rootViewController = self.isLoggined ? YELLOTabBarController() : KakaoLoginViewController()
             
             let navigationController = UINavigationController(rootViewController: rootViewController)
             navigationController.navigationBar.isHidden = true

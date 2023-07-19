@@ -46,8 +46,10 @@ class OnboardingEndViewController: BaseViewController {
                         return
                     }
                     print("성공!✅✅✅✅✅✅✅")
+                    
                     dump(data)
                     KeychainHandler.shared.accessToken = data.accessToken
+                    UserDefaults.standard.setValue(true, forKey: "isLoggined")
                     setAcessToken(accessToken: data.accessToken)
                     setRefreshToken(refreshToken: data.refreshToken)
                     setUsername(username: data.yelloID)
