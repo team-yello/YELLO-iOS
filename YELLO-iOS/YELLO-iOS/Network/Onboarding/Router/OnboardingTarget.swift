@@ -31,7 +31,7 @@ extension OnboardingTarget: TargetType {
             return .hasAccessToken
         case .postFirendsList(let _):
             return .plain
-        case .postUserInfo(let _, let _2):
+        case .postUserInfo(let _):
             return .hasAccessToken
         }
     }

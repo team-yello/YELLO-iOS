@@ -52,7 +52,6 @@ final class ProfileSettingView: BaseView {
         
         logoutButton.do {
             $0.updateTitle(text: StringLiterals.Profile.Setting.logout)
-            $0.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
         }
         
         versionLabel.do {
@@ -133,24 +132,22 @@ final class ProfileSettingView: BaseView {
     }
     
     @objc private func centerButtonTapped() {
-        //고객센터 링크 연결
+        // 고객센터 링크 연결
         let url = URL(string: "https://www.google.com/")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     @objc private func privacyButtonTapped() {
-        //개인정보 처리방침 링크 연결
+        // 개인정보 처리방침 링크 연결
         let url = URL(string: "https://www.google.com/")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
         
     @objc private func serviveButtonTapped() {
-        //이용약관 링크 연결
+        // 이용약관 링크 연결
         let url = URL(string: "https://www.google.com/")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
         
-    @objc private func logoutButtonTapped() {
-        //로그아웃 로직 구현
-    }
+    
 }
