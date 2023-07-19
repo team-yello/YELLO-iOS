@@ -27,11 +27,7 @@ final class MyYelloDetailView: BaseView {
     var usePointView = UsePointView()
     var getHintView = GetHintView()
     var indexNumber: Int = 0
-    var nameIndex: Int = 0 {
-        didSet {
-            MyYelloListView.myYelloModelDummy[indexNumber].nameHint = nameIndex
-        }
-    }
+    var nameIndex: Int = 0
     
     lazy var instagramButton = UIButton()
     lazy var keywordButton = UIButton()
@@ -54,7 +50,6 @@ final class MyYelloDetailView: BaseView {
                 keywordButton.setTitle(StringLiterals.MyYello.Detail.sendButton, for: .normal)
                 detailKeywordView.keywordLabel.isHidden = false
                 detailKeywordView.questionLabel.isHidden = true
-                MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
             }
         }
     }

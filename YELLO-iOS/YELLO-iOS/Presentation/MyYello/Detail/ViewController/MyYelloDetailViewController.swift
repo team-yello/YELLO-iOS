@@ -202,10 +202,8 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
                 UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
                 UIApplication.shared.open(storyShareURL, options: [:], completionHandler: nil)
             } else {
-                let alert = UIAlertController(title: "알림", message: "인스타그램이 필요합니다", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
+                let url = URL(string: "https://apps.apple.com/kr/app/instagram/id389801252")!
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }

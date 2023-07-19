@@ -31,6 +31,7 @@ final class InvitingView: BaseView {
     // MARK: - Style
     
     override func setStyle() {
+        profileUserYelloId()
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
         contentsView.makeCornerRound(radius: 10)
@@ -73,7 +74,7 @@ final class InvitingView: BaseView {
         }
         
         recommenderID.do {
-            $0.setTextWithLineHeight(text: "@nahyunyou", lineHeight: 32)
+            $0.setTextWithLineHeight(text: "@", lineHeight: 32)
             $0.textColor = .black
             $0.font = .uiExtraLarge
         }
@@ -198,12 +199,29 @@ extension InvitingView {
     
     @objc
     func copyButtonClicked() {
-        /// 우선 지금은 추천인 코드 복사로 구현해 놓음
-        guard let filteredString = self.recommenderID.text else { return }
-        let recommenderID = String(filteredString.dropFirst())
+        guard let recommender = self.recommenderID.text else { return }
+        let filteredID = String(recommender.dropFirst())
+        let recommenderID = "추천인코드: " + filteredID + "\n\n우리 같이 YELL:O 해요!\n(여기에는 다운로드 링크)"
         UIPasteboard.general.string = recommenderID
         print(UIPasteboard.general.string ?? "")
         
         self.showToast(message: StringLiterals.Inviting.toastMessage)
     }
+    
+    // MARK: - Network
+    func profileUserYelloId() {
+        NetworkService.shared.profileService.profileUser { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.recommenderID.text = "@" + data.yelloId
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+
 }
