@@ -16,7 +16,7 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     private var votingList: [VotingData?] = []
-    private var myPoint = 0
+    var myPoint = 0
     
     override func loadView() {
         self.view = originView

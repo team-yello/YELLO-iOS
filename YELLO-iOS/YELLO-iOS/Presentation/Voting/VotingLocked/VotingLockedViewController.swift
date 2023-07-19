@@ -17,6 +17,8 @@ final class VotingLockedViewController: BaseViewController {
     
     override func loadView() {
         self.view = originView
+        
+        getVotingAvailable()
     }
     
     // MARK: - Style
@@ -90,5 +92,27 @@ final class VotingLockedViewController: BaseViewController {
         invitingView.updateText(title: StringLiterals.Inviting.lockedTitle, text: StringLiterals.Inviting.lockedText, targetString: "투표를 시작")
         viewController.view.addSubview(invitingView)
     }
+}
 
+extension VotingLockedViewController {
+    func getVotingAvailable() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            switch result {
+            case .success(let data):
+                let status = data.status
+                guard let data = data.data else { return }
+                if status == 200 {
+                    if data.isPossible {
+                        let viewController = VotingStartViewController()
+                        viewController.myPoint = data.point
+                        self.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                }
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
 }
