@@ -13,20 +13,24 @@ class APIRequestLoader<T: TargetType> {
     private let configuration: URLSessionConfiguration
     private let apiLogger: APIEventLogger
     private let session: Session
-
+    
     init(
         configuration: URLSessionConfiguration = .default,
         apiLogger: APIEventLogger
     ) {
         self.configuration = configuration
         self.apiLogger = apiLogger
-        self.session = Session(configuration: configuration, eventMonitors: [apiLogger])
+        // Create an instance of MyRequestInterceptor
+        let interceptor = MyRequestInterceptor()
+        
+        // Create Session with the interceptor
+        self.session = Session(configuration: configuration, interceptor: interceptor, eventMonitors: [apiLogger])
     }
-
+    
     func fetchData<M: Decodable>(
-      target: T,
-      responseData: M.Type,
-      completion: @escaping (NetworkResult<M>) -> Void
+        target: T,
+        responseData: M.Type,
+        completion: @escaping (NetworkResult<M>) -> Void
     ) {
         let dataRequest = session.request(target)
         dataRequest.responseData { response in
@@ -34,7 +38,7 @@ class APIRequestLoader<T: TargetType> {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let value = response.value else { return }
-
+                
                 let networkRequest = self.judgeStatus(by: statusCode, value, type: M.self)
                 completion(networkRequest)
             case .failure:
@@ -42,7 +46,7 @@ class APIRequestLoader<T: TargetType> {
             }
         }
     }
-
+    
     private func judgeStatus<M: Decodable>(by statusCode: Int, _ data: Data, type: M.Type) -> NetworkResult<M> {
         switch statusCode {
         case 200, 201: return isValidData(data: data, type: M.self)
@@ -51,11 +55,11 @@ class APIRequestLoader<T: TargetType> {
         default: return .networkErr
         }
     }
-
+    
     private func isValidData<M: Decodable>(data: Data, type: M.Type) -> NetworkResult<M> {
         let decoder = JSONDecoder()
         do {
-           let members = try decoder.decode(M.self, from: data)
+            let members = try decoder.decode(M.self, from: data)
         } catch let DecodingError.dataCorrupted(context) {
             print(context)
         } catch let DecodingError.keyNotFound(key, context) {
@@ -75,7 +79,7 @@ class APIRequestLoader<T: TargetType> {
             print("json decoded failed !")
             return .pathErr
         }
-
+        
         return .success(decodedData)
     }
 }

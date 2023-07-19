@@ -11,7 +11,7 @@ import Alamofire
 
 final class MyRequestInterceptor: RequestInterceptor {
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        guard urlRequest.url?.absoluteString.hasPrefix("https://api.agify.io") == true
+        guard urlRequest.url?.absoluteString.hasPrefix(Config.baseURL) == true
                else {
                   completion(.success(urlRequest))
                   return
