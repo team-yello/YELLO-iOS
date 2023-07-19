@@ -159,7 +159,6 @@ extension KakaoFriendView {
                         self.isFinishPaging = true
                     }
                     
-                    
                     let friendModels = data.friends.map { recommendingFriend in
                         return FriendModel(
                             friends: Friends(id: recommendingFriend.id, name: recommendingFriend.name, group: recommendingFriend.group, profileImage: recommendingFriend.profileImage),
