@@ -71,14 +71,30 @@ class KakaoLoginViewController: BaseViewController {
                         switch result {
                         case .success(let data):
                             if data.status == 403 {
+                                UserApi.shared.me() {(user, error) in
+                                    if let error = error {
+                                        print(error)
+                                    } else {
+                                        print("me() success.")
+                                        _ = user
+                                        guard let user = user else { return }
+                                        guard let uuidInt = user.id else { return }
+                                        let uuid = String(uuidInt)
+                                        
+                                        guard let email = user.kakaoAccount?.email else { return }
+                                        guard let profile = user.kakaoAccount?.profile?.profileImageUrl else {return}
+                                        User.shared.social = "KAKAO"
+                                        User.shared.uuid = uuid
+                                        User.shared.email = email
+                                        User.shared.profileImage = profile.absoluteString
+                                        
+                                    }
+                                }
                                 self.navigationController?.pushViewController(KakaoConnectViewController(), animated: true)
                             } else if data.status == 201 {
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
+                                print(data.data)
                             }
-//                            guard let data = data.data else {
-//                                print("no data")
-//                                return
-//                            }
                         default:
                             print("network failure")
                             return

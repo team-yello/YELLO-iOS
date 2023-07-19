@@ -24,6 +24,7 @@ enum StringLiterals {
         static let idHelper = "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)"
         static let nameError = "한글만 입력 가능해요."
         static let idError = "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요."
+        static let idDuplicate = "이미 사용하고 있는 아이디에요."
     }
     
     enum Inviting {
@@ -67,35 +68,6 @@ enum StringLiterals {
         enum Start {
             static let title = "누구에게 어떤 메세지를 보낼까?"
             static let myPoint = "내 포인트"
-        }
-        
-        enum VoteName {
-            static let one = "김효원\n@kev_hy1042"
-            static let two = "박현정\n@hj__p_"
-            static let three = "이의제\n@_euije"
-            static let four = "김나현\n@nahyunyou"
-            static let five = "김상호\n@sangho.kk"
-            static let six = "권세훈\n@sehoonq"
-            static let seven = "변희주\n@hj_byunn"
-            static let eight = "이강민\n@k.mean.e"
-            static let nine = "박민주\n@filminju_"
-            static let ten = "여민서\n@minseo_mx"
-            static let eleven = "전채연\n@chae.yeon1004"
-            static let twelve = "정채은\n@chaentopia"
-            static let thirteen = "이지희\n@9.ysaeee29"
-            static let fourteen = "강국희\n@kangcookie"
-            
-            static func getRandomName() -> String? {
-                let names = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen]
-                return names.randomElement()
-            }
-        }
-        
-        enum VoteKeyword {
-            static let one = "99대장 나선욱이랑"
-            static let two = "skkr하는 송민호랑"
-            static let three = "범죄도시 손석구랑"
-            static let four = "코딩하는 강동원이랑"
         }
         
         enum VoteToast {

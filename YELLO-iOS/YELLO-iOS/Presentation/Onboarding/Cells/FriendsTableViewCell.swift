@@ -60,10 +60,11 @@ class FriendsTableViewCell: UITableViewCell {
     
     // MARK: Custom Function
     /// cell 구성
-    func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.friends.name
-        schoolLabel.text = model.friends.group
-        self.isTapped = model.isButtonSelected
+    func configureFriendCell(_ model: FriendAdd) {
+        nameLabel.text = model.friendInfo.name
+        schoolLabel.text = model.friendInfo.groupName
+        profileImageView.kfSetImage(url: model.friendInfo.profileImage)
+        self.isTapped = model.isAdded
         updateCheckButtonImage()
     }
     
@@ -164,5 +165,4 @@ extension FriendsTableViewCell {
         }
         
     }
-    
 }

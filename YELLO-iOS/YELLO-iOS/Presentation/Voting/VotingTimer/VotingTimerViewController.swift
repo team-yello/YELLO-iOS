@@ -14,29 +14,31 @@ final class VotingTimerViewController: BaseViewController {
     
     var timer: Timer?
     
-    var notTimerEnd: Bool = true
-
+    var myPoint = 0
+    var votingPlusPoint = 0
+    
     var remainingSeconds: TimeInterval? {
         didSet {
             if let remainingSeconds {
                 self.timerView.timeLabel.text = String(format: "%02d : %02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
             }
             if remainingSeconds == 0 {
-                notTimerEnd = false
                 let viewController = VotingStartViewController()
                 self.navigationController?.pushViewController(viewController, animated: false)
-            } else {
-                notTimerEnd = true
             }
-            UserDefaults.standard.setValue(notTimerEnd, forKey: "timer")
-
         }
     }
     
     private let originView = BaseVotingETCView()
     private var invitingView = InvitingView()
     
-    let myView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    let statusBarHeight = UIApplication.shared.connectedScenes
+        .compactMap { $0 as? UIWindowScene }
+        .first?
+        .statusBarManager?
+        .statusBarFrame.height ?? 20
+    
+    lazy var myView = UIView(frame: CGRect(x: 0, y: -statusBarHeight, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + statusBarHeight))
     let backgroundImage = ImageLiterals.Voting.imgTimerViewBackground
     
     // Timer 관련 컴포넌트
@@ -53,7 +55,7 @@ final class VotingTimerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        start(duration: 2400)
+        getCreatedAt()
     }
     
     deinit {
@@ -72,7 +74,7 @@ final class VotingTimerViewController: BaseViewController {
     override func setStyle() {
         
         myView.do {
-            $0.backgroundColor = UIColor.clear
+            $0.backgroundColor = UIColor.black
             $0.setBackgroundImageWithScaling(image: backgroundImage)
         }
         
@@ -104,15 +106,10 @@ final class VotingTimerViewController: BaseViewController {
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
         }
     }
-        
+    
     // MARK: - Layout
     
     override func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?
-            .statusBarManager?
-            .statusBarFrame.height ?? 20
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         
         originView.addSubview(myView)
@@ -129,20 +126,20 @@ final class VotingTimerViewController: BaseViewController {
         
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
-            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedHeight)
+            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjusted)
         }
         
         originView.topOfMyPoint.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 47.adjustedHeight)
+            $0.bottom.equalTo(originView.titleLabel.snp.top).offset(-29.adjustedHeight)
             $0.trailing.equalToSuperview().inset(16.adjusted)
         }
         
         originView.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
+            $0.bottom.equalTo(originView.textLabel.snp.top).offset(-2.adjustedHeight)
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(2.adjustedHeight)
+            $0.bottom.equalTo(timerBackGround.snp.top).offset(-52.adjustedHeight)
         }
         
         timerBackGround.snp.makeConstraints {
@@ -171,7 +168,7 @@ final class VotingTimerViewController: BaseViewController {
     }
     
     // MARK: - Objc Function
-
+    
     @objc
     func yellowButtonClicked() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
@@ -189,7 +186,6 @@ final class VotingTimerViewController: BaseViewController {
     
     private func start(duration: TimeInterval) {
         DispatchQueue.main.async {
-            self.remainingSeconds = duration
             // timer
             self.timer?.invalidate()
             let startDate = Date()
@@ -197,7 +193,7 @@ final class VotingTimerViewController: BaseViewController {
                 withTimeInterval: 1,
                 repeats: true,
                 block: { [weak self] _ in
-                                    
+                    
                     let elapsedSeconds = round(abs(startDate.timeIntervalSinceNow))
                     let remainingSeconds = max(duration - elapsedSeconds, 0)
                     guard remainingSeconds > 0 else {
@@ -205,11 +201,11 @@ final class VotingTimerViewController: BaseViewController {
                         return
                     }
                     self?.remainingSeconds = remainingSeconds
-                    self?.animateProgress(to: Float(remainingSeconds / duration))
+                    self?.animateProgress(to: Float(remainingSeconds / 2400))
                 }
             )
         }
-      
+        
     }
     
     private func stop() {
@@ -231,3 +227,40 @@ final class VotingTimerViewController: BaseViewController {
     }
 }
 
+extension VotingTimerViewController {
+    func getCreatedAt() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self.originView.topOfMyPoint.text = String(data.point)
+                
+                let currentDate = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                
+                let currentDateString = dateFormatter.string(from: currentDate)
+                
+                guard let date = dateFormatter.date(from: currentDateString) else { return }
+                let secondsSince1970 = date.timeIntervalSince1970
+                
+                guard let afterDate = dateFormatter.date(from: data.createdAt) else { return }
+                let afterSecondsSince1970 = afterDate.timeIntervalSince1970 + 2400
+                
+                var duration = afterSecondsSince1970 - secondsSince1970
+                
+                if duration < 0 {
+                    duration = 0
+                }
+                
+                self.remainingSeconds = duration
+                self.start(duration: duration)
+                
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+}

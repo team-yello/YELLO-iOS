@@ -14,6 +14,7 @@ class GenderViewController: OnboardingBaseViewController {
     // MARK: - Variables
     // MARK: Property
     var gender: Gender?
+    var genderString: String = ""
     
     // MARK: Component
     let baseView = GenderView()
@@ -51,6 +52,14 @@ class GenderViewController: OnboardingBaseViewController {
     // MARK: Objc Function
     @objc func genderButtonDidTap(_ sender: YelloGenderButton) {
         self.gender = sender.gender
+        guard let gender = self.gender else { return }
+        switch gender {
+        case .female:
+            genderString = "FEMALE"
+        case .male:
+            genderString = "MALE"
+        }
+        User.shared.gender = genderString
         checkEnableButton()
     }
 }

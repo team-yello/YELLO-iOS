@@ -126,10 +126,6 @@ extension YelloTextField {
             }
         }
         
-        idLabelStackView.snp.makeConstraints {
-            $0.width.equalTo(39)
-        }
-        
     }
     
     // MARK: Custom Function
@@ -148,6 +144,8 @@ extension YelloTextField {
             self.layer.borderColor = UIColor.grayscales600.cgColor
             self.rightViewMode = .never
         case .search:
+            self.backgroundColor = .black.withAlphaComponent(0)
+            self.layer.borderColor = UIColor.grayscales600.cgColor
             buttonStackView.addArrangedSubviews(searchImageView, paddingView)
         case .cancel:
             let cancelImage = xCircleImage.withTintColor(.grayscales600)
@@ -157,6 +155,8 @@ extension YelloTextField {
             self.backgroundColor = .grayscales900
             self.layer.borderColor = UIColor.grayscales600.cgColor
         case .toggle:
+            self.backgroundColor = .black.withAlphaComponent(0)
+            self.layer.borderColor = UIColor.grayscales600.cgColor
             buttonStackView.addArrangedSubviews(toggleImageView, paddingView)
         case .error:
             buttonStackView.clearSubViews()

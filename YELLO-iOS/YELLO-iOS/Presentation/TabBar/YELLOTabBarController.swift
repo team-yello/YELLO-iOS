@@ -16,23 +16,19 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
-    private let numOfFriends = 4 /// 친구 수 임의로 지정 (서버 통신으로 받아와야 함)
-    private let notTimerEnd: Bool = UserDefaults.standard.bool(forKey: "timer")
+    private var startStatus: Int = 0
     
     // MARK: - Life Cycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setTabBarAppearance()
-        setTabBarItems()
-        
-        self.delegate = self
-        self.selectedIndex = 2
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        getVotingAvailable()
+        setTabBarItems()
+        setTabBarAppearance()
+
+        self.selectedIndex = 2
+        self.delegate = self
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -75,14 +71,12 @@ final class YELLOTabBarController: UITabBarController {
     private func setTabBarItems() {
         var rootViewController: UIViewController
         /// 친구 수에 따라 rootViewController가 달라짐
-        if numOfFriends < 4 {
-            rootViewController = VotingLockedViewController()
+        if startStatus == 1 {
+            rootViewController = VotingStartViewController()
+        } else if startStatus == 2 {
+            rootViewController = VotingTimerViewController()
         } else {
-            if notTimerEnd {
-                rootViewController = VotingTimerViewController()
-            } else {
-                rootViewController = VotingStartViewController()
-            }
+            rootViewController = VotingLockedViewController()
         }
         
         tabs = [
@@ -136,5 +130,33 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
             return false
         }
         return true
+    }
+}
+
+extension YELLOTabBarController {
+    func getVotingAvailable() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            switch result {
+            case .success(let data):
+                let status = data.status
+                guard let data = data.data else { return }
+                if status == 200 {
+                    if data.isPossible {
+                        self.startStatus = 1
+                    } else {
+                        self.startStatus = 2
+                    }
+                } else {
+                    self.startStatus = 3
+                }
+                
+                self.setTabBarAppearance()
+                self.setTabBarItems()
+            default:
+                print("network failure")
+                return
+            }
+        }
     }
 }

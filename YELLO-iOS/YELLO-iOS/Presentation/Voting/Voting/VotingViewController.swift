@@ -12,15 +12,21 @@ import Then
 
 final class VotingViewController: BaseViewController {
     static var pushCount = 0
+    var votingList: [VotingData?] = []
+    var votingAnswer: [VoteAnswerList] = []
+    var friendID: Int = 0
+    var keyword: String = ""
+    var myPoint = 0
+    var votingPlusPoint = 0
     
     let originView = BaseVotingMainView()
   
     private let nameStackView = UIStackView()
-    private let nameHead = UILabel()
+    let nameHead = UILabel()
     let nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 86.adjusted, height: 34.adjusted))
 
     let nameMiddleText = UILabel()
-    private let nameFoot = UILabel()
+    let nameFoot = UILabel()
     
     var nameTextOne = UILabel()
     var nameTextTwo = UILabel()
@@ -28,10 +34,10 @@ final class VotingViewController: BaseViewController {
     var nameTextFour = UILabel()
     
     private let keywordStackView = UIStackView()
-    private let keywordHead = UILabel()
+    let keywordHead = UILabel()
     let keywordMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 150.adjusted, height: 34.adjusted))
     let keywordMiddleText = UILabel()
-    private let keywordFoot = UILabel()
+    let keywordFoot = UILabel()
     
     var nameButtonClick: Bool = false {
         didSet {
@@ -70,28 +76,33 @@ final class VotingViewController: BaseViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.setNextViewController()
             }
+            if VotingViewController.pushCount <= 10 {
+                myPoint += votingList[VotingViewController.pushCount - 1]?.questionPoint ?? 0
+                votingPlusPoint += votingList[VotingViewController.pushCount - 1]?.questionPoint ?? 0
+                
+                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount - 1]?.questionId ?? 0, keywordName: keyword, colorIndex: VotingViewController.pushCount - 1))
+            }
         }
     }
     
     var suffleCount = 0 {
         didSet {
-            var selectedNames = Set<String>()
-            var selectedTexts = [String]()
-
-            while selectedTexts.count < 4 {
-                if let randomName = StringLiterals.Voting.VoteName.getRandomName(), !selectedNames.contains(randomName) {
-                    selectedNames.insert(randomName)
-                    selectedTexts.append(randomName)
-                }
-            }
-
-            if selectedTexts.count >= 4 {
-                let first = selectedTexts[0]
-                let second = selectedTexts[1]
-                let third = selectedTexts[2]
-                let fourth = selectedTexts[3]
+            NetworkService.shared.votingService.getVotingSuffle { result in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    
+                    let first = data[0].friendName + "\n" + data[0].friendYelloId
+                    let second = data[1].friendName + "\n" + data[1].friendYelloId
+                    let third = data[2].friendName + "\n" + data[2].friendYelloId
+                    let fourth = data[3].friendName + "\n" + data[3].friendYelloId
+                    
+                    self.setNameText(first: first, second: second, third: third, fourth: fourth)
                 
-                setNameText(first: first, second: second, third: third, fourth: fourth)
+                default:
+                    print("network failure")
+                    return
+                }
             }
             
             if suffleCount < 3 {
@@ -113,20 +124,24 @@ final class VotingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if VotingViewController.pushCount == 0 {
+            Color.shared.startIndex = Int.random(in: 0...11)
+            Color.shared.selectedTopColors = selectTopColors(startIndex: Color.shared.startIndex)
+            Color.shared.selectedBottomColors = selectBottomColors(startIndex: Color.shared.startIndex)
+        }
+
         navigationController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: - Style
     
     override func setStyle() {
-        
-        setNameText(first: StringLiterals.Voting.VoteName.one, second: StringLiterals.Voting.VoteName.two, third: StringLiterals.Voting.VoteName.three, fourth: StringLiterals.Voting.VoteName.four)
         
         originView.nameOneButton.do {
             $0.addTarget(self, action: #selector(nameButtonClicked), for: .touchUpInside)
@@ -212,22 +227,18 @@ final class VotingViewController: BaseViewController {
         }
         
         originView.keywordOneButton.do {
-            $0.setTitle(StringLiterals.Voting.VoteKeyword.one, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordTwoButton.do {
-            $0.setTitle(StringLiterals.Voting.VoteKeyword.two, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordThreeButton.do {
-            $0.setTitle(StringLiterals.Voting.VoteKeyword.three, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
         originView.keywordFourButton.do {
-            $0.setTitle(StringLiterals.Voting.VoteKeyword.four, for: .normal)
             $0.addTarget(self, action: #selector(keywordClicked), for: .touchUpInside)
         }
         
