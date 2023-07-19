@@ -21,10 +21,12 @@ final class MyYelloListView: BaseView {
     // MARK: Property
     weak var handleMyYelloCellDelegate: HandleMyYelloCellDelegate?
     var fetchingMore = false
-//    var myYelloModel: [Yello] = []
     var initialMyYelloDataCount = 10
     var myYelloPage: Int = 0
     var indexNumber: Int = -1
+    var isFinishPaging = false
+    var pageCount = -1
+    var myYelloCount = 0
 
     static var myYelloModelDummy: [Yello] = []
 
@@ -50,12 +52,6 @@ final class MyYelloListView: BaseView {
     }
     
     override func setLayout() {
-//        if myYelloModelDummy.count < 10 {
-//            initialMyYelloDataCount = myYelloModelDummy.count
-//        } else {
-//            initialMyYelloDataCount = 10
-//        }
-//        myYelloModel = Array(myYelloModelDummy[0..<initialMyYelloDataCount])
         
         self.addSubviews(myYelloTableView)
         
@@ -69,11 +65,76 @@ final class MyYelloListView: BaseView {
     private func pushMyYelloDetailViewController(index: Int) {
         handleMyYelloCellDelegate?.pushMyYelloDetailViewController(index: index)
     }
+    
+    // MARK: - Network
+    func myYello() {
+        if fetchingMore { // 이미 데이터를 가져오는 중이면 리턴
+            return
+        }
+        
+        self.pageCount += 1
+        
+        let queryDTO = MyYelloRequestQueryDTO(page: pageCount)
+        
+        if isFinishPaging {
+            return
+        }
+        
+        fetchingMore = true
+        
+        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    
+                    let totalPage = (data.totalCount) / 10
+                    if self.pageCount >= totalPage {
+                        self.isFinishPaging = true
+                    }
+                    
+                    let myYelloModels = data.votes.map { myYello in
+                        
+                        return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
+                    }
+                    
+                    if self.pageCount == 0 {
+                        MyYelloView.myYelloCount = data.totalCount
+                    }
+                    
+//                    self.myYelloView.myYelloCount = data.totalCount
+                    MyYelloListView.myYelloModelDummy.append(contentsOf: myYelloModels)
+                    self.myYelloTableView.reloadData()
+                    
+                    self.fetchingMore = false
+                    
+                    dump(data)
+                    print("통신 성공")
+                default:
+                    print("network fail")
+                    return
+                }
+            }
+        }
+    }
 }
 
 // MARK: - extension
 // MARK: UITableViewDelegate
-extension MyYelloListView: UITableViewDelegate { }
+extension MyYelloListView: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let tableView = self.myYelloTableView
+        let offsetY = tableView.contentOffset.y
+        let contentHeight = tableView.contentSize.height
+        let visibleHeight = tableView.bounds.height
+        if offsetY > contentHeight - visibleHeight {
+                self.myYello()
+        }
+    }
+}
 
 // MARK: UITableViewDataSource
 extension MyYelloListView: UITableViewDataSource {

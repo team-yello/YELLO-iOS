@@ -14,11 +14,7 @@ final class MyYelloView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var myYelloCount: Int = 0 {
-        didSet {
-            resetLayout()
-        }
-    }
+    static var myYelloCount: Int = 0
     
     // MARK: Component
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
@@ -31,7 +27,7 @@ final class MyYelloView: BaseView {
     override func setStyle() {
         self.backgroundColor = .black
         
-        myYellowNavigationBarView.yelloCountLabel.text = String(myYelloCount) + "개"
+        myYellowNavigationBarView.yelloCountLabel.text = String(MyYelloView.myYelloCount) + "개"
         myYellowNavigationBarView.yelloCountLabel.asColor(targetString: "개", color: .grayscales500)
         
         unlockButton.do {
@@ -62,7 +58,7 @@ final class MyYelloView: BaseView {
     }
     
     func resetLayout() {
-        if myYelloCount == 0 {
+        if MyYelloView.myYelloCount == 0 {
             self.addSubviews(myYelloEmptyView)
             myYelloEmptyView.snp.makeConstraints {
                 $0.top.equalTo(myYellowNavigationBarView.snp.bottom)
@@ -85,6 +81,6 @@ final class MyYelloView: BaseView {
             }
         }
         
-        myYellowNavigationBarView.yelloCountLabel.text = String(myYelloCount) + "개"
+        myYellowNavigationBarView.yelloCountLabel.text = String(MyYelloView.myYelloCount) + "개"
     }
 }

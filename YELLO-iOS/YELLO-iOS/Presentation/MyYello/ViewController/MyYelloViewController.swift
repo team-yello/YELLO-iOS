@@ -15,10 +15,6 @@ final class MyYelloViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     private let myYelloView = MyYelloView()
-    var isFinishPaging = false
-    var isLoadingData = false
-    
-    var pageCount = -1
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -26,7 +22,7 @@ final class MyYelloViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
-        self.myYello()
+        self.myYelloView.myYelloListView.myYello()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,54 +60,6 @@ final class MyYelloViewController: BaseViewController {
     private func setAddTarget() {
         myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
     }
-    
-    // MARK: - Network
-    func myYello() {
-        self.pageCount += 1
-        let queryDTO = MyYelloRequestQueryDTO(page: pageCount)
-        
-        if isFinishPaging {
-            return
-        }
-        
-        isLoadingData = false
-        
-        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                self.isLoadingData = false
-                
-                switch response {
-                case .success(let data):
-                    guard let data = data.data else { return }
-                    
-                    let totalPage = (data.totalCount) / 10
-                    if self.pageCount >= totalPage {
-                        self.isFinishPaging = true
-                    }
-                    
-                    let myYelloModels = data.votes.map { myYello in
-                        
-                        return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
-                    }
-                    
-                    if self.pageCount == 0 {
-                        self.myYelloView.myYelloCount = data.totalCount
-                    }
-                    
-                    //                    self.myYelloView.myYelloCount = data.totalCount
-                    MyYelloListView.myYelloModelDummy.append(contentsOf: myYelloModels)
-                    self.myYelloView.myYelloListView.myYelloTableView.reloadData()
-                    dump(data)
-                    print("통신 성공")
-                default:
-                    print("network fail")
-                    return
-                }
-            }
-        }
-    }
 }
 
 // MARK: - extension
@@ -131,28 +79,5 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
         myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
         myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
         myYelloDetailViewController.myYelloDetailView.indexNumber = index
-    }
-}
-
-extension MyYelloViewController: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        if let lastIndexPath = indexPaths.last,
-           lastIndexPath.row >= MyYelloListView.myYelloModelDummy.count - 1 {
-            myYello()
-        }
-    }
-}
-
-extension MyYelloViewController: UITableViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let tableView = self.myYelloView.myYelloListView.myYelloTableView
-        let offsetY = tableView.contentOffset.y
-        let contentHeight = tableView.contentSize.height
-        let visibleHeight = tableView.bounds.height
-        if offsetY > contentHeight - visibleHeight {
-            myYello()
-        }
-        print("내려왔어요")
     }
 }
