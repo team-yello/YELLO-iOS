@@ -22,19 +22,25 @@ final class MyYelloViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
-        self.myYelloView.myYelloListView.myYello()
-        self.myYelloCount()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
+        self.myYelloCount()
+        self.myYelloView.myYelloListView.isFinishPaging = false
+        self.myYelloView.myYelloListView.fetchingMore = false
+        self.myYelloView.myYelloListView.pageCount = -1
+        self.myYelloView.myYelloListView.myYello()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.myYelloView.resetLayout()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        MyYelloListView.myYelloModelDummy = []
     }
     
     // MARK: Layout Helpers
@@ -60,6 +66,11 @@ final class MyYelloViewController: BaseViewController {
     
     private func setAddTarget() {
         myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
+        myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshCount), for: .valueChanged)
+    }
+    
+    @objc func refreshCount() {
+        self.myYelloCount()
     }
 }
 
@@ -85,24 +96,26 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
 
 extension MyYelloViewController {
     func myYelloCount() {
-        
+
         let queryDTO = MyYelloRequestQueryDTO(page: 0)
-        
+
         NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
             guard let self = self else { return }
-            
-            DispatchQueue.main.async {
+
+//            DispatchQueue.main.async {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
-                    
-                    self.myYelloView.myYelloCount = data.totalCount
+
+                    MyYelloView.myYelloCount = data.totalCount
+                    print(MyYelloView.myYelloCount)
                     print("내 옐로 count 통신 성공")
+                    self.myYelloView.resetLayout()
                 default:
                     print("network fail")
                     return
                 }
-            }
+//            }
         }
     }
 }
