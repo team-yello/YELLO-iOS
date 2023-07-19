@@ -97,7 +97,6 @@ extension MyYelloViewController {
                     guard let data = data.data else { return }
                     
                     self.myYelloView.myYelloCount = data.totalCount
-//                    self.myYelloTableView.reloadData()
                     print("내 옐로 count 통신 성공")
                 default:
                     print("network fail")

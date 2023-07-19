@@ -17,17 +17,29 @@ final class ProfileViewController: BaseViewController {
     private let profileView = ProfileView()
     let friendProfileViewController = FriendProfileViewController()
     
+    var isFinishPaging = false
+    var isLoadingData = false
+    
+    var pageCount = -1
+    
     // MARK: - Function
     // MARK: LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.profileView.profileFriend()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
-        self.profileView.myProfileHeaderView.myProfileView.profileUser(userId: 148)
-        self.profileView.myFriendTableView.reloadData()
-        self.profileView.beginBatchFetch()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.profileView.myFriendTableView.reloadData()
+    }
+    
     override func setStyle() {
         view.backgroundColor = .black
         profileView.navigationBarView.delegate = self

@@ -30,15 +30,13 @@ final class ProfileView: UIView {
     }
     
     var initialProfileFriendDataCount = 10
+    var fetchingMore = false
+    var isFinishPaging = false
+    var pageCount = -1
+    var myYelloCount = 0
     var profileFriendPage: Int = 0
     
-    var myProfileFriendModelDummy: [ProfileFriendResponseDetail] = [] {
-        didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.myFriendTableView.reloadData()
-            }
-        }
-    }    
+    var myProfileFriendModelDummy: [ProfileFriendResponseDetail] = [] 
     
     // MARK: Component
     let navigationBarView = NavigationBarView()
@@ -143,6 +141,55 @@ extension ProfileView {
     private func presentModal(index: Int) {
         handleFriendCellDelegate?.presentModal(index: index)
     }
+    
+    // MARK: - Network
+    func profileFriend() {
+        if fetchingMore { // 이미 데이터를 가져오는 중이면 리턴
+            return
+        }
+        self.pageCount += 1
+        let queryDTO = ProfileFriendRequestQueryDTO(page: pageCount)
+        
+        if isFinishPaging {
+            return
+        }
+        
+        fetchingMore = true
+        
+        NetworkService.shared.profileService.profileFriend(queryDTO: queryDTO) { [weak self] response in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    
+                    let totalPage = (data.totalCount) / 10
+                    if self.pageCount >= totalPage {
+                        self.isFinishPaging = true
+                    }
+                    
+                    let friendModels = data.friends.map { profileFriend in
+                        
+                        return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount)
+                    }
+                    
+                    if self.pageCount == 0 {
+                        self.friendCount = data.totalCount
+                    }
+                    
+                    self.myProfileFriendModelDummy.append(contentsOf: friendModels)
+                    self.myFriendTableView.reloadData()
+                    self.fetchingMore = false
+                    dump(data)
+                    print("통신 성공")
+                default:
+                    print("network fail")
+                    return
+                }
+            }
+        }
+    }
 }
 
 // MARK: UITableViewDelegate
@@ -151,16 +198,13 @@ extension ProfileView: UITableViewDelegate {
         isButtonHidden = scrollView.contentOffset.y <= 0
         updateButtonVisibility()
         
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//        
-//        if offsetY > contentHeight - scrollView.frame.height {
-//            if !fetchingMore {
-//                beginBatchFetch()
-//                profileFriendPage += 1
-//                profileFriend(page: profileFriendPage)
-//            }
-//        }
+        let tableView = self.myFriendTableView
+        let offsetY = tableView.contentOffset.y
+        let contentHeight = tableView.contentSize.height
+        let visibleHeight = tableView.bounds.height
+        if offsetY > contentHeight - visibleHeight {
+                self.profileFriend()
+        }
     }
 }
 
