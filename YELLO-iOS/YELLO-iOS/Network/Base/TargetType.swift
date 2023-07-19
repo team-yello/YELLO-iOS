@@ -54,7 +54,6 @@ extension TargetType {
         switch parameters {
         case .requestWithBody(let request):
             let params = request?.toDictionary() ?? [:]
-            
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
         case .requestQuery(let request):
             let params = request?.toDictionary()

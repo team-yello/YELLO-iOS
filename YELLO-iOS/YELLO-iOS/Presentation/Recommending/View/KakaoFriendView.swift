@@ -171,9 +171,8 @@ extension KakaoFriendView {
                     if self.kakaoPage >= totalPage {
                         self.isFinishPaging = true
                     }
-                    
                     self.kakaoFriendCount = data.totalCount
-                    
+
                     let friendModels = data.friends.map { recommendingFriend in
                         return FriendModel(
                             friends: Friends(id: recommendingFriend.id, name: recommendingFriend.name, group: recommendingFriend.group, profileImage: recommendingFriend.profileImage),

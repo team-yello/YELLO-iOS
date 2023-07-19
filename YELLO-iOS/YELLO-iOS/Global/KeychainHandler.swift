@@ -21,10 +21,10 @@ struct KeychainHandler {
     private let accessTokenKey = "accessToken"
     private let refreshTokenKey = "refreshToken"
     
+    
     var accessToken: String {
         get {
-            
-            return "Bearer \(KeychainWrapper.standard.string(forKey: accessTokenKey) ?? "")"
+            return KeychainWrapper.standard.string(forKey: accessTokenKey) ?? "" 
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: accessTokenKey)
@@ -34,6 +34,7 @@ struct KeychainHandler {
     var refreshToken: String {
         get {
             return KeychainWrapper.standard.string(forKey: refreshTokenKey) ?? ""
+            
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: refreshTokenKey)
@@ -120,6 +121,15 @@ func isUserTokenOnKeyChain(tokenName: String) -> Bool {
 func setUsername(username: String) {
     UserDefaults.standard.setValue(username, forKey: "username")
 }
+
+func setAcessToken(accessToken: String) {
+    UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
+}
+
+func setRefreshToken(refreshToken: String) {
+    UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
+}
+
 
 func getUsername() -> String {
     if let username = UserDefaults.standard.string(forKey: "username") {

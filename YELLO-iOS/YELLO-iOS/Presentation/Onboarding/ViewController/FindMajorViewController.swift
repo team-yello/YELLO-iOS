@@ -36,6 +36,7 @@ class FindMajorViewController: SearchBaseViewController {
     
     func addTarget() {
         super.searchView.searchTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        super.searchView.helperButton.addTarget(self, action: #selector(helperButtonDidTap), for: .touchUpInside)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -77,6 +78,10 @@ class FindMajorViewController: SearchBaseViewController {
         allMajor.removeAll()
         allArr.removeAll()
         searchMajor(text)
+    }
+    @objc func helperButtonDidTap() {
+        let url = URL(string: "https://www.google.com/")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 

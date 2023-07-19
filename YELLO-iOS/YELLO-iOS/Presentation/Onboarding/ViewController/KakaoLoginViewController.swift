@@ -37,6 +37,7 @@ class KakaoLoginViewController: BaseViewController {
                     
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO")
+
                     NetworkService.shared.onboardingService.postTokenChange(queryDTO: queryDTO) { result in
                         switch result {
                         case .success(let data):
