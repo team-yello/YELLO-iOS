@@ -295,7 +295,6 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         getHintView.removeFromSuperview()
         getHintView = GetHintView()
-//        getHintView.pointLabel.text = String(self.currentPoint)
         getHintView.frame = viewController.view.bounds
         getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(getHintView)
@@ -317,7 +316,6 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         getHintView.removeFromSuperview()
         getHintView = GetHintView()
-//        self.getHintView.pointLabel.text = String(self.currentPoint)
         getHintView.frame = viewController.view.bounds
         getHintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(getHintView)

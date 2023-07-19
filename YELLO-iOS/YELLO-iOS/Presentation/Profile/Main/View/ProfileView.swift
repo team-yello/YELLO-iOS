@@ -217,9 +217,8 @@ extension ProfileView: UITableViewDataSource {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyProfileHeaderView.cellIdentifier) as? MyProfileHeaderView
             DispatchQueue.main.async {
                 view?.addBottomBorderWithColor(color: .black)
-                view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
-                view?.myProfileView.friendView.countLabel.text = String(self.friendCount)
                 view?.myProfileView.profileUser()
+                view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
             }
             return view
         default:

@@ -95,7 +95,7 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
         }
         self.profileView.myFriendTableView.reloadData()
         profileView.initialProfileFriendDataCount -= 1
-        profileView.friendCount -= 1
+        profileView.friendCount -= 1 
 
     }
 }
