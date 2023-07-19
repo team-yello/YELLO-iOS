@@ -23,7 +23,8 @@ struct KeychainHandler {
     
     var accessToken: String {
         get {
-            return KeychainWrapper.standard.string(forKey: accessTokenKey) ?? ""
+            
+            return "Bearer \(KeychainWrapper.standard.string(forKey: accessTokenKey) ?? "")"
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: accessTokenKey)

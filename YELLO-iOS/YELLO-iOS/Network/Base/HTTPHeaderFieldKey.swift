@@ -17,7 +17,7 @@ enum HTTPHeaderFieldKey: String {
 
 enum HTTPHeaderFieldValue: String {
     case json = "Application/json"
-    case accessToken = "Bearer eyJ0eXBlIjoiYWNjZXNzVG9rZW4iLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOTExNzI0MDAyIiwianRpIjoiMTQ4IiwiaWF0IjoxNjg5NjE5NzkzLCJleHAiOjE2ODk3MDYxOTN9.pBvnzLuwAg2wDZZ77HUBbdZvE0-Xvp6XRhqF9ZDA1xc"
+    case accessToken
 }
 
 enum HTTPHeaderType {
