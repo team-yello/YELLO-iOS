@@ -21,17 +21,17 @@ enum OnboardingTarget {
 extension OnboardingTarget: TargetType {
     var headerType: HTTPHeaderType {
         switch self {
-        case .postTokenChange(let _):
+        case .postTokenChange:
             return .hasAccessToken
-        case .getSchoolList(let _):
+        case .getSchoolList:
             return .plain
-        case .getMajorList(let _):
+        case .getMajorList:
             return .plain
-        case .getCheckDuplicate(let _):
+        case .getCheckDuplicate:
             return .hasAccessToken
-        case .postFirendsList(let _):
+        case .postFirendsList:
             return .plain
-        case .postUserInfo(let _):
+        case .postUserInfo:
             return .hasAccessToken
         }
     }
@@ -42,7 +42,7 @@ extension OnboardingTarget: TargetType {
             return .post
         case .getSchoolList:
             return .get
-        case .getMajorList(_):
+        case .getMajorList:
             return .get
         case .getCheckDuplicate:
             return .get
@@ -55,17 +55,17 @@ extension OnboardingTarget: TargetType {
     
     var path: String {
         switch self {
-        case .postTokenChange(_):
+        case .postTokenChange:
             return "/auth/oauth"
-        case .getSchoolList(let dto):
+        case .getSchoolList:
             return "/auth/school/school"
-        case .getCheckDuplicate(let id):
+        case .getCheckDuplicate:
             return "/auth/valid"
-        case .postUserInfo(_):
+        case .postUserInfo:
             return "/auth/signup"
-        case .getMajorList(_):
+        case .getMajorList:
             return "/auth/school/department"
-        case .postFirendsList(_):
+        case .postFirendsList:
             return "/auth/friend"
         }
     }
@@ -82,7 +82,7 @@ extension OnboardingTarget: TargetType {
             return .requestWithBody(dto)
         case .getMajorList(let dto):
             return .requestQuery(dto)
-        case .postFirendsList(let query,let dto):
+        case .postFirendsList(let query, let dto):
             return .requestQueryWithBody(query, bodyParameter: dto)
         }
     }

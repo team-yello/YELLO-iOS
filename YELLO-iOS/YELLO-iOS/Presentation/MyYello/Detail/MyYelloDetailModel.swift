@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 // MARK: - MyYelloDetailModel
 struct MyYelloDetailModel: Codable {
     let status: Int
@@ -32,7 +31,6 @@ var MyYelloDetailModelDummy: [MyYelloDetailModelData] = [
     MyYelloDetailModelData(nameHint: -1, colorIndex: 6, isAnswerRevealed: false, senderName: "강국희", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야")),
     MyYelloDetailModelData(nameHint: -1, colorIndex: 1, isAnswerRevealed: false, senderName: "권세훈", vote: Vote(nameHead: "술자리에서", nameFoot: "가", keywordHead: "사라진다면", keyword: "달빛산책간 거", keywordFoot: "(이)야"))
 ]
-
 
 struct MyYelloBackgroundColorDummy {
     let backgroundColorTop: UIColor
