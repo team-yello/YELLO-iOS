@@ -1,0 +1,50 @@
+//
+//  MyYelloEmptyTableViewCell.swift
+//  YELLO-iOS
+//
+//  Created by 정채은 on 2023/07/19.
+//
+
+import UIKit
+
+import SnapKit
+import Then
+
+final class MyYelloEmptyTableViewCell: UITableViewCell {
+    
+    // MARK: - Variables
+    // MARK: Constants
+    static let identifier = "MyYelloEmptyTableViewCell"
+    
+    // MARK: Component
+    let myYelloEmptyView = MyYelloEmptyView()
+    
+    // MARK: - Function
+    // MARK: LifeCycle
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setUI()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    // MARK: Layout Helpers
+    private func setUI() {
+        setStyle()
+        setLayout()
+    }
+    
+    private func setStyle() {
+        self.backgroundColor = .black
+    }
+    
+    private func setLayout() {
+        contentView.addSubview(myYelloEmptyView)
+        myYelloEmptyView.snp.makeConstraints {
+            $0.top.width.bottom.equalToSuperview()
+        }
+    }
+}
