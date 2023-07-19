@@ -47,6 +47,7 @@ class OnboardingEndViewController: BaseViewController {
                     }
                     print("성공!✅✅✅✅✅✅✅")
                     dump(data)
+                    KeychainHandler.shared.accessToken = data.accessToken
                     
                 default:
                     return
@@ -61,7 +62,7 @@ class OnboardingEndViewController: BaseViewController {
         let yelloTabBarController = YELLOTabBarController()
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
         postUserInfo()
-       UserDefaults.standard.set(true, forKey: "isLoggedIn")
+      // UserDefaults.standard.set(true, forKey: "isLoggedIn")
        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
     }
     
