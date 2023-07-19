@@ -18,13 +18,18 @@ final class SchoolFriendView: UIView {
     var isFinishPaging = false
     private var initialSchoolDataCount = 10
     var schoolPage: Int = -1
+    var schoolFriendCount: Int = 0 {
+        didSet {
+            updateView()
+        }
+    }
 
     var recommendingSchoolFriendTableViewDummy: [FriendModel] = []
     
     // MARK: Component
     private let inviteBannerView = InviteBannerView()
-    private let emptyFriendView = EmptyFriendView()
     lazy var schoolFriendTableView = UITableView()
+    let refreshControl = UIRefreshControl()
 
     // MARK: - Function
     // MARK: LifeCycle
@@ -53,25 +58,26 @@ extension SchoolFriendView {
     private func setStyle() {
         self.backgroundColor = .black
         
+        refreshControl.do {
+            schoolFriendTableView.refreshControl = $0
+            $0.tintColor = .grayscales400
+            $0.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
+        }
+        
         schoolFriendTableView.do {
-            $0.rowHeight = 77
+            $0.register(FriendEmptyTableViewCell.self, forCellReuseIdentifier: FriendEmptyTableViewCell.identifier)
             $0.register(FriendTableViewCell.self, forCellReuseIdentifier: FriendTableViewCell.identifier)
             $0.backgroundColor = .black
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
         }
-        
-        emptyFriendView.do {
-            $0.isHidden = true
-        }
     }
     
     private func setLayout() {
 
         self.addSubviews(inviteBannerView,
-                        schoolFriendTableView,
-                        emptyFriendView)
+                        schoolFriendTableView)
 
         inviteBannerView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -83,10 +89,6 @@ extension SchoolFriendView {
             $0.top.equalTo(inviteBannerView.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
-        }
-        
-        emptyFriendView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
         }
     }
     
@@ -110,26 +112,30 @@ extension SchoolFriendView {
         }
         
         recommendingAddFriend(friendId: recommendingSchoolFriendTableViewDummy[indexPath.row].friends.id)
-        
         schoolFriendTableView.reloadRows(at: [indexPath], with: .none)
         initialSchoolDataCount -= 1
+    }
+    
+    @objc func refreshTable(refresh: UIRefreshControl) {
+        self.schoolPage = -1
+        self.isFinishPaging = false
+        self.fetchingMore = false
+        self.recommendingSchoolFriendTableViewDummy = []
+        self.recommendingSchoolFriend()
+        self.updateView()
+        refresh.endRefreshing()
+        print(self.recommendingSchoolFriendTableViewDummy)
     }
     
     // MARK: Custom Function
     /// 친구가 없을 때 초대 뷰를 띄우는 로직
     func updateView() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if self.recommendingSchoolFriendTableViewDummy.isEmpty {
-                self.inviteBannerView.isHidden = true
-                self.schoolFriendTableView.isHidden = true
-                self.emptyFriendView.isHidden = false
-                
-            } else {
-                self.inviteBannerView.isHidden = false
-                self.schoolFriendTableView.isHidden = false
-                self.emptyFriendView.isHidden = true
-            }
+        if self.schoolFriendCount == 0 {
+            self.inviteBannerView.isHidden = true
+        } else {
+            self.inviteBannerView.isHidden = false
         }
+        self.schoolFriendTableView.reloadData()
     }
     
     // MARK: - Network
@@ -137,13 +143,14 @@ extension SchoolFriendView {
         if fetchingMore { // 이미 데이터를 가져오는 중이면 리턴
             return
         }
-        self.schoolPage += 1
-        let queryDTO = RecommendingRequestQueryDTO(page: schoolPage)
         
         if isFinishPaging {
             return
         }
         
+        self.schoolPage += 1
+        let queryDTO = RecommendingRequestQueryDTO(page: schoolPage)
+
         fetchingMore = true
         
         NetworkService.shared.recommendingService.recommendingSchoolFriend(queryDTO: queryDTO) { [weak self] response in
@@ -159,6 +166,8 @@ extension SchoolFriendView {
                         self.isFinishPaging = true
                     }
                     
+                    self.schoolFriendCount = data.totalCount
+                    
                     let friendModels = data.friends.map { recommendingFriend in
                         return FriendModel(
                             friends: Friends(id: recommendingFriend.id, name: recommendingFriend.name, group: recommendingFriend.group, profileImage: recommendingFriend.profileImage),
@@ -167,7 +176,9 @@ extension SchoolFriendView {
                     }
                     
                     self.recommendingSchoolFriendTableViewDummy.append(contentsOf: friendModels)
-                    self.schoolFriendTableView.reloadData()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        self.schoolFriendTableView.reloadData()
+                    }
                     self.updateView()
                     self.fetchingMore = false
                     print("통신 성공")
@@ -214,30 +225,49 @@ extension SchoolFriendView: UITableViewDelegate {
 // MARK: UITableViewDataSource
 extension SchoolFriendView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recommendingSchoolFriendTableViewDummy.count
+        if self.schoolFriendCount == 0 {
+            return 1
+        } else {
+            return recommendingSchoolFriendTableViewDummy.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        if tableView.isLast(for: indexPath) {
-            DispatchQueue.main.async {
-                cell.addAboveTheBottomBorderWithColor(color: .black)
+        if self.schoolFriendCount == 0 {
+            guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: FriendEmptyTableViewCell.identifier, for: indexPath) as? FriendEmptyTableViewCell else { return UITableViewCell() }
+            emptyCell.selectionStyle = .none
+            return emptyCell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
+                return UITableViewCell()
             }
+            
+            if tableView.isLast(for: indexPath) {
+                DispatchQueue.main.async {
+                    cell.addAboveTheBottomBorderWithColor(color: .black)
+                }
+            }
+            
+            cell.selectionStyle = .none
+            
+            if cell.isTapped == true {
+                recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
+            }
+            cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
+            
+            cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+            cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+            cell.configureFriendCell(recommendingSchoolFriendTableViewDummy[indexPath.row])
+            return cell
         }
-        
-        cell.selectionStyle = .none
-        
-        if cell.isTapped == true {
-            recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // cell의 높이 + inset 8 더한 값
+        if self.schoolFriendCount == 0 {
+            return 500
+        } else {
+            return 77
         }
-        cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
-        
-        cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
-        cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-        cell.configureFriendCell(recommendingSchoolFriendTableViewDummy[indexPath.row])
-        return cell
     }
 }
