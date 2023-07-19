@@ -70,7 +70,7 @@ final class GetHintView: BaseView {
         }
         
         pointLabel.do {
-            $0.setTextWithLineHeight(text: "2050", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.textColor = .white
             $0.font = .uiKeywordBold
         }

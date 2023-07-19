@@ -44,7 +44,7 @@ final class MyYelloDetailNavigationBarView: BaseView {
         }
         
         pointLabel.do {
-            $0.text = "2500"
+            $0.text = " "
             $0.font = .uiBodyMedium
             $0.textColor = .white
         }
