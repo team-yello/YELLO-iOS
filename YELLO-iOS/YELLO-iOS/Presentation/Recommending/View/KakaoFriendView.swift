@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import KakaoSDKTalk
 
 final class KakaoFriendView: UIView {
     
@@ -149,7 +150,7 @@ extension KakaoFriendView {
         }
         
         self.kakaoPage += 1
-        
+        kakaoFriends()
         let queryDTO = RecommendingRequestQueryDTO(page: kakaoPage)
         let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: User.shared.kakaoFriends)
         
@@ -203,6 +204,20 @@ extension KakaoFriendView {
             default:
                 print("network fail")
                 return
+            }
+        }
+    }
+    func kakaoFriends(){
+        TalkApi.shared.friends {(friends, error) in
+            if let error = error {
+                print(error)
+            } else {
+                var allFriends: [String] = []
+                friends?.elements?.forEach({
+                    guard let id = $0.id else { return }
+                    allFriends.append(String(id))
+                })
+                User.shared.kakaoFriends = allFriends
             }
         }
     }
