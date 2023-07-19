@@ -262,6 +262,9 @@ extension SchoolFriendView: UITableViewDataSource {
             
             cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
             cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+            if recommendingSchoolFriendTableViewDummy.isEmpty {
+                return cell
+            }
             cell.configureFriendCell(recommendingSchoolFriendTableViewDummy[indexPath.row])
             return cell
         }

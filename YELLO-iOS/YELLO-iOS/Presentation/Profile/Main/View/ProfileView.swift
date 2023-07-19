@@ -261,6 +261,9 @@ extension ProfileView: UITableViewDataSource {
             }
         }
         cell.selectionStyle = .none
+        if myProfileFriendModelDummy.isEmpty {
+            return cell
+        }
         cell.configureMyProfileFriendCell(myProfileFriendModelDummy[indexPath.row])
         return cell
     }

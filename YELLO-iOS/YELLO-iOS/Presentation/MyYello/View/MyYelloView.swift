@@ -62,7 +62,7 @@ final class MyYelloView: BaseView {
         unlockButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(54)
-            $0.bottom.equalTo(myYelloListView).inset(28)
+            $0.bottom.equalTo(myYelloListView).inset(28.adjustedHeight)
         }
     }
     

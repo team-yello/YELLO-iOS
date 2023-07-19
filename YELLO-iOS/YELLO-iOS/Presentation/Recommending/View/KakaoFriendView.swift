@@ -276,6 +276,9 @@ extension KakaoFriendView: UITableViewDataSource {
             
             cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
             cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+            if recommendingKakaoFriendTableViewDummy.isEmpty {
+                return cell
+            }
             cell.configureFriendCell(recommendingKakaoFriendTableViewDummy[indexPath.row])
             return cell
         }
