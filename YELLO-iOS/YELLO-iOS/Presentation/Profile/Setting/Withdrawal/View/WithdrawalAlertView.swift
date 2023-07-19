@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import KakaoSDKUser
 
 final class WithdrawalAlertView: BaseView {
     
@@ -93,10 +94,28 @@ extension WithdrawalAlertView {
     }
     
     @objc func yesButtonClicked() {
-//        탈퇴 로직 구현
-        print("탈퇴")
-        let splashViewController = SchoolSearchViewController()
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: splashViewController)
+        NetworkService.shared.profileService.userDelete { result in
+            switch result{
+            case .success(let data):
+                if data.status == 200{
+                    UserApi.shared.unlink {(error) in
+                        if let error = error {
+                            print(error)
+                        }
+                        else {
+                            print("unlink() success.")
+                        }
+                    }
+                    let splashViewController = KakaoLoginViewController()
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    
+                    sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: splashViewController)
+                }
+            default:
+                print("NetWorkFaliure")
+                return
+            }
+        }
+        
     }
 }
