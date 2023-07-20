@@ -55,6 +55,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
         baseView.studentIDTextField.textField.delegate = self
         majorSearchViewController.majorDelegate = self
         studentIdView.idDelegate = self
+        studentIdViewController.delegate = self
     }
     
     private func resetTextField() {
@@ -71,15 +72,15 @@ class StudentInfoViewController: OnboardingBaseViewController {
     
     private func presentModal() {
         
-        if #available(iOS 15.0, *) {
+        if #available(iOS 16.0, *) {
             let nav = UINavigationController(rootViewController: studentIdViewController)
             if let sheet = nav.sheetPresentationController {
                 sheet.detents = [.medium()]
                 sheet.prefersGrabberVisible = true
-                if #available(iOS 16.0, *) {
-                    sheet.invalidateDetents()
-                }
+                sheet.invalidateDetents()
+                present(nav, animated: true, completion: nil)
             }
+            
         } else {
             
             bottomSheet.setCustomView(view: studentIdView)
@@ -121,7 +122,6 @@ extension StudentInfoViewController: UITextFieldDelegate {
             self.present(nextViewController, animated: true)
         case baseView.studentIDTextField.textField:
             textField.resignFirstResponder()
-            
             presentModal()
         default:
             return
