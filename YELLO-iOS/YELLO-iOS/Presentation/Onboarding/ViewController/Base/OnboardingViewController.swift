@@ -18,6 +18,7 @@ class OnboardingBaseViewController: BaseViewController {
     private let backButton = UIButton()
     let nextButton = YelloButton(buttonText: "다음")
     private let skipButton = UIButton()
+    let navigationBarView = UIView()
     var nextViewController: UIViewController?
     var isSkipable = false
     
@@ -26,12 +27,17 @@ class OnboardingBaseViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
     }
     
     override func viewDidLoad() {
-        setNavigationBarAppearance()
-        super.viewDidLoad()
         configUI()
+        super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.bringSubviewToFront(nextButton)
     }
     
     // MARK: - Function
@@ -69,7 +75,7 @@ class OnboardingBaseViewController: BaseViewController {
             $0.bottom.equalTo(nextButton.snp.top).inset(-14)
             $0.centerX.equalToSuperview()
         }
-
+        
     }
     
     func makeBarButtonItem<T: UIView>(with view: T) -> UIBarButtonItem {
@@ -79,14 +85,25 @@ class OnboardingBaseViewController: BaseViewController {
     func setNavigationBarAppearance() {
         let backButtonImage = ImageLiterals.OnBoarding.icArrowLeft.withTintColor(.white, renderingMode: .alwaysOriginal)
         let appearance = UINavigationBarAppearance()
-        appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-        appearance.backButtonAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: -200, vertical: 0)
-        appearance.backgroundColor = .black
-        appearance.shadowColor = .clear
-        navigationItem.standardAppearance = appearance
-        navigationItem.compactAppearance = appearance
-        navigationItem.scrollEdgeAppearance = appearance
-        
+        if #available(iOS 15.0, *) {
+            appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
+            appearance.backButtonAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: -200, vertical: 0)
+            appearance.backgroundColor = .black
+            appearance.shadowColor = .clear
+            navigationItem.standardAppearance = appearance
+            navigationItem.compactAppearance = appearance
+            navigationItem.scrollEdgeAppearance = appearance
+        } else {
+            // 타이틀 숨기기
+               navigationItem.title = ""
+               
+               // 배경을 투명색으로 설정
+               navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+               navigationController?.navigationBar.shadowImage = UIImage()
+               
+               // BackButton 커스텀
+               navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
+        }
     }
     
     func setUser() {}
@@ -98,6 +115,15 @@ class OnboardingBaseViewController: BaseViewController {
             self.navigationController?.pushViewController(nextViewController, animated: true)
         } else {}
         
+    }
+    
+    @objc private func backButtonTapped() {
+        // BackButton 동작 처리
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func didTapBackButton() {
+        navigationController?.popViewController(animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

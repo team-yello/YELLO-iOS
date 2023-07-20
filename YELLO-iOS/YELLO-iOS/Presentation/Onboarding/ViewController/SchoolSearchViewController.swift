@@ -46,14 +46,9 @@ final class SchoolSearchViewController: OnboardingBaseViewController {
     
     private func presentModal() {
         let findSchooViewController = FindSchoolViewController()
-        let nav = UINavigationController(rootViewController: findSchooViewController)
-        nav.modalPresentationStyle = .pageSheet
-        if let sheet = nav.sheetPresentationController {
-            sheet.detents = [.large()]
-        }
-        present(nav, animated: true, completion: nil)
+        self.present(findSchooViewController, animated: true)
     }
-        
+    
     // MARK: objc Function
     @objc func didTapTextField() {
         presentModal()
