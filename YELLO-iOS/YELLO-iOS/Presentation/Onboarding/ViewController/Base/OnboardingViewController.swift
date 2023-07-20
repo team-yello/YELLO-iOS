@@ -87,12 +87,12 @@ class OnboardingBaseViewController: BaseViewController {
         let appearance = UINavigationBarAppearance()
         if #available(iOS 15.0, *) {
             appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-            appearance.backButtonAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: -200, vertical: 0)
             appearance.backgroundColor = .black
             appearance.shadowColor = .clear
             navigationItem.standardAppearance = appearance
             navigationItem.compactAppearance = appearance
             navigationItem.scrollEdgeAppearance = appearance
+            navigationItem.title = ""
         } else {
             // 타이틀 숨기기
                navigationItem.title = ""
