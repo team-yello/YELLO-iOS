@@ -133,21 +133,19 @@ final class ProfileSettingView: BaseView {
     
     @objc private func centerButtonTapped() {
         // 고객센터 링크 연결
-        let url = URL(string: "https://www.google.com/")!
+        let url = URL(string: "https://yell0.notion.site/YELLO-34028220a873416b91d5d2f1cd827432?pvs=4")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     @objc private func privacyButtonTapped() {
         // 개인정보 처리방침 링크 연결
-        let url = URL(string: "https://www.google.com/")!
+        let url = URL(string: "https://yell0.notion.site/97f57eaed6c749bbb134c7e8dc81ab3f")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
         
     @objc private func serviveButtonTapped() {
         // 이용약관 링크 연결
-        let url = URL(string: "https://www.google.com/")!
+        let url = URL(string: "https://yell0.notion.site/2afc2a1e60774dfdb47c4d459f01b1d9")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-        
-    
 }

@@ -80,7 +80,7 @@ class FindMajorViewController: SearchBaseViewController {
         searchMajor(text)
     }
     @objc func helperButtonDidTap() {
-        let url = URL(string: "https://www.google.com/")!
+        let url = URL(string: "https://bit.ly/3pO0ijD")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }

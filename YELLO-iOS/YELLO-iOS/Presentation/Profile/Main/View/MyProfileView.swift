@@ -173,7 +173,7 @@ extension MyProfileView {
     
     // MARK: Objc Function
     @objc private func addGroupButtonTapped() {
-        let url = URL(string: "https://www.google.com/")!
+        let url = URL(string: "https://bit.ly/44xDDqC")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
