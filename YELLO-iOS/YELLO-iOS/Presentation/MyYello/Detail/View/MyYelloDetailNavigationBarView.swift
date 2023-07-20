@@ -68,7 +68,6 @@ final class MyYelloDetailNavigationBarView: BaseView {
         
         pointImageView.snp.makeConstraints {
             $0.centerY.equalTo(backButton)
-//            $0.trailing.equalToSuperview().inset(61)
         }
         
         pointLabel.snp.makeConstraints {
