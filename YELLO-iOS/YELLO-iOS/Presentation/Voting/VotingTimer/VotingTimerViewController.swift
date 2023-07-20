@@ -50,8 +50,6 @@ final class VotingTimerViewController: BaseViewController {
     
     override func loadView() {
         self.view = originView
-        
-        getCreatedAt()
     }
     
     override func viewDidLoad() {
@@ -66,6 +64,7 @@ final class VotingTimerViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getCreatedAt()
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -252,6 +251,11 @@ extension VotingTimerViewController {
                 
                 if duration < 0 {
                     duration = 0
+                }
+                
+                if data.isPossible {
+                    let viewController = VotingStartViewController()
+                    self.navigationController?.pushViewController(viewController, animated: false)
                 }
                 
                 self.remainingSeconds = duration
