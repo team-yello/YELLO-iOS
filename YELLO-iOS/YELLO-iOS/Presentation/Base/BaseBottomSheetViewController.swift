@@ -7,32 +7,25 @@
 import UIKit
 import SnapKit
 
-protocol LoginNameDataBindProtocol: AnyObject {
-    func nicknameDataBind(text: String)
-}
-
-
-final class BottomSheetViewController: UIViewController {
+class BaseBottomViewController: UIViewController {
     
-    var defaultHeight: CGFloat = Constant.Screen.height.isHalf
-    weak var delegate: LoginNameDataBindProtocol?
+    var height = UIScreen.main.bounds.height
+    lazy var defaultHeight: CGFloat = (height)/2
     
-    //MARK: UIComponent
+    // MARK: UIComponent
     private let dimmedView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.darkGray.withAlphaComponent(0.7)
+        view.backgroundColor = UIColor.grayscales900.withAlphaComponent(0.4)
         return view
     }()
     
-    private let bottomSheetView: UIView = {
+    let bottomSheetView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
         view.layer.cornerRadius = 10
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.clipsToBounds = true
         return view
     }()
-    
     
     //MARK: life Cycle
     override func viewDidLoad() {
@@ -46,15 +39,44 @@ final class BottomSheetViewController: UIViewController {
         showBottomSheet()
     }
     
-    //MARK: Custom Method
+    func setUI() {
+        setViewHierarchy()
+        setLayout()
+    }
+    
+    func setViewHierarchy( ) {
+        view.addSubviews(dimmedView, bottomSheetView)
+    }
+    
+    func setLayout() {
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        bottomSheetView.snp.makeConstraints {
+            $0.height.equalTo(defaultHeight)
+            $0.top.equalTo(view.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+    }
+    
+    // MARK: Custom Method
+    func setCustomView(view: UIView) {
+        bottomSheetView.addSubview(view)
+        view.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
     
     private func showBottomSheet() {
-        bottomSheetView.snp.remakeConstraints{
+        dimmedView.isHidden = false
+        bottomSheetView.snp.remakeConstraints {
             $0.height.equalTo(defaultHeight)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.top.equalToSuperview().inset(defaultHeight)
         }
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
         
@@ -67,31 +89,24 @@ final class BottomSheetViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
         }
         
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
-            self.dimmedView.alpha = 0.0
+            self.dimmedView.isHidden = true
         }){ _ in
             if self.presentingViewController != nil {
-                self.dismiss(animated: false, completion: nil)
+               self.dismiss(animated: false, completion: nil)
             }
-        }
-        
-        if let text = nicknameSettingView.nickNameTextField.text {
-            delegate?.nicknameDataBind(text: text)
         }
     }
     
-    private func addTarget(){
-        nicknameSettingView.settingButton.addTarget(self, action: #selector(settingButtonDidTap), for: .touchUpInside)
-        
+    private func addTarget() {
         let dimmedTap = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped(_:)))
         dimmedView.addGestureRecognizer(dimmedTap)
         dimmedView.isUserInteractionEnabled = true
     }
     
-    //MARK: Action
-    
-    @objc func settingButtonDidTap(){
+    // MARK: Action
+    @objc func settingButtonDidTap() {
         hideBottomSheetAndGoBack()
     }
     
@@ -99,36 +114,4 @@ final class BottomSheetViewController: UIViewController {
         hideBottomSheetAndGoBack()
     }
     
-    
-}
-
-private extension BottomSheetViewController {
-    func setUI(){
-        setViewHierarchy()
-        setLayout()
-    }
-    
-    func setViewHierarchy(){
-        view.addSubviews(dimmedView,bottomSheetView)
-        bottomSheetView.addSubview(nicknameSettingView)
-        //bottomSheetView.addSubviews(nickNameLabel,nickNameTextField,settingButton)
-    }
-    
-    func setLayout(){
-        dimmedView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
-        }
-        
-        bottomSheetView.snp.makeConstraints{
-            $0.height.equalTo(defaultHeight)
-            $0.top.equalTo(view.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
-        }
-        
-        nicknameSettingView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
-        }
-        
-        
-    }
 }
