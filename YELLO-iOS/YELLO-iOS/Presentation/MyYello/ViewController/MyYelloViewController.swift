@@ -101,8 +101,6 @@ extension MyYelloViewController {
 
         NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
             guard let self = self else { return }
-
-//            DispatchQueue.main.async {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
@@ -115,7 +113,6 @@ extension MyYelloViewController {
                     print("network fail")
                     return
                 }
-//            }
         }
     }
 }

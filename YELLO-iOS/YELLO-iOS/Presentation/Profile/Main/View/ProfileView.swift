@@ -235,6 +235,7 @@ extension ProfileView: UITableViewDataSource {
                 view?.addBottomBorderWithColor(color: .black)
                 view?.myProfileView.profileUser()
                 view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
+                view?.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
             }
             return view
         default:
