@@ -160,7 +160,7 @@ extension MyYelloListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if MyYelloView.myYelloCount == 0 {
+        if MyYelloListView.myYelloModelDummy.isEmpty {
             guard let emptyCell = myYelloTableView.dequeueReusableCell(withIdentifier: MyYelloEmptyTableViewCell.identifier, for: indexPath) as? MyYelloEmptyTableViewCell else { return UITableViewCell() }
             emptyCell.selectionStyle = .none
             return emptyCell
@@ -191,7 +191,7 @@ extension MyYelloListView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // cell의 높이 + inset 8 더한 값
-        if MyYelloView.myYelloCount == 0 {
+        if MyYelloListView.myYelloModelDummy.isEmpty {
             return 500
         } else {
             if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false {
@@ -211,7 +211,7 @@ extension MyYelloListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if MyYelloView.myYelloCount == 0 {
+        if MyYelloListView.myYelloModelDummy.isEmpty {
             return 0
         } else {
             return 102
@@ -219,7 +219,7 @@ extension MyYelloListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if MyYelloView.myYelloCount == 0 {
+        if MyYelloListView.myYelloModelDummy.isEmpty {
             return 
         }
         self.pushMyYelloDetailViewController(index: indexPath.row)

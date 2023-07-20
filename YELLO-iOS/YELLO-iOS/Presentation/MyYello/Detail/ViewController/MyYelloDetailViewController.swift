@@ -107,7 +107,12 @@ extension MyYelloDetailViewController {
                     self.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.female
                 }
                 
-                self.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
+                if data.vote.nameHead == nil {
+                    self.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = "너" + (data.vote.nameFoot ?? "")
+                } else {
+                    self.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
+                }
+                
                 self.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
                 self.myYelloDetailView.detailKeywordView.keywordLabel.text = data.vote.keyword
                 self.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")

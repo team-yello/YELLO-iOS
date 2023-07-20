@@ -159,7 +159,11 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
             timeLabel.textColor = .semanticGenderF500
         }
         
-        nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
+        if model.vote.nameHead == nil {
+            nameLabel.text = "너" + (model.vote.nameFoot ?? "")
+        } else {
+            nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
+        }
         keywordHeadLabel.text = (model.vote.keywordHead ?? "")
         keywordLabel.text = model.vote.keyword
         keywordFootLabel.text = (model.vote.keywordFoot ?? "")
