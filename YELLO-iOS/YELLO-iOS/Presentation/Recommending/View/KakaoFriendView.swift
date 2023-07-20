@@ -179,9 +179,9 @@ extension KakaoFriendView {
                     self.recommendingKakaoFriendTableViewDummy.append(contentsOf: friendModels)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self.kakaoFriendTableView.reloadData()
+                        self.fetchingMore = false
                     }
                     self.updateView()
-                    self.fetchingMore = false
                     print("통신 성공")
                 default:
                     print("network fail")
