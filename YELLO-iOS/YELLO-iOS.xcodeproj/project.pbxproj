@@ -56,6 +56,7 @@
 		3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAE72A608F0200D5FA40 /* SplashViewController.swift */; };
 		3628EAEA2A60903A00D5FA40 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE92A60903A00D5FA40 /* splash.json */; };
 		3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */; };
+		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
 		3662A0E42A63F6C300F482EF /* CheckDuplicateResponeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0E32A63F6C300F482EF /* CheckDuplicateResponeDTO.swift */; };
 		3662A0E82A64414800F482EF /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0E72A64414800F482EF /* OnboardingService.swift */; };
 		3662A0EA2A64437900F482EF /* KakaoLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0E92A64437900F482EF /* KakaoLoginRequestDTO.swift */; };
@@ -272,6 +273,7 @@
 		3628EAE72A608F0200D5FA40 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3628EAE92A60903A00D5FA40 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashTitleView.swift; sourceTree = "<group>"; };
+		36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
 		3662A0E22A63474000F482EF /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		3662A0E32A63F6C300F482EF /* CheckDuplicateResponeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckDuplicateResponeDTO.swift; sourceTree = "<group>"; };
 		3662A0E72A64414800F482EF /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
@@ -1143,6 +1145,7 @@
 				C3A799CA2A494C7500D3EFD8 /* BaseViewController.swift */,
 				C3FF24B22A5F4D1F00A97D40 /* BasePaddingLabel.swift */,
 				C3A799CC2A494C8600D3EFD8 /* BaseView.swift */,
+				36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1479,6 +1482,7 @@
 				C3FF248A2A5E845A00A97D40 /* MyYelloEmptyView.swift in Sources */,
 				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
 				36871C7D2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift in Sources */,
+				36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */,
 				C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */,
 				36E427702A5BCE860050B34E /* YelloButton.swift in Sources */,
 				C3B472102A65E0A200770530 /* MyYelloDetailKeywordResponseDTO.swift in Sources */,
@@ -1821,7 +1825,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1854,7 +1858,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
