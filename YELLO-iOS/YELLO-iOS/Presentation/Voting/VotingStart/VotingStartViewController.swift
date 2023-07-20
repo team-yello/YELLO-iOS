@@ -24,9 +24,8 @@ final class VotingStartViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getVotingAvailable()
-        getVotingList()
+
+        getPoint()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
@@ -51,6 +50,9 @@ final class VotingStartViewController: BaseViewController {
         view.addSubview(animationView)
         
         tabBarController?.tabBar.isHidden = false
+        
+        getVotingAvailable()
+        getVotingList()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -122,7 +124,7 @@ final class VotingStartViewController: BaseViewController {
 }
 
 extension VotingStartViewController {
-    func getVotingAvailable() {
+    func getPoint() {
         NetworkService.shared.votingService.getVotingAvailable {
             result in
             switch result {
@@ -158,6 +160,24 @@ extension VotingStartViewController {
                 }
                 self.votingList = votingList
                 
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
+    func getVotingAvailable() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            print(result)
+            switch result {
+            case .success(let data):
+                let status = data.status
+                if status == 400 {
+                    let viewController = VotingLockedViewController()
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
             default:
                 print("network failure")
                 return
