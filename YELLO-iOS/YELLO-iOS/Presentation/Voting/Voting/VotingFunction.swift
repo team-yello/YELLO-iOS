@@ -214,6 +214,16 @@ extension VotingViewController {
         
         let nameTexts = [nameTextOne, nameTextTwo, nameTextThree, nameTextFour]
         
+        if sender == originView.nameOneButton {
+            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[0] ?? 0
+        } else if sender == originView.nameTwoButton {
+            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[1] ?? 0
+        } else if sender == originView.nameThreeButton {
+            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[2] ?? 0
+        } else {
+            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[3] ?? 0
+        }
+        
         for (index, button) in nameButtons.enumerated() {
             button.isEnabled = (button == sender)
             
@@ -225,7 +235,6 @@ extension VotingViewController {
                 let unselectedText = nameTexts[index]
                 unselectedText.textColor = .grayscales700
             }
-            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[index] ?? 0
         }
         
         view.addSubview(nameMiddleText)
