@@ -149,7 +149,7 @@ extension VotingStartViewController {
                     var friends = [String]()
                     var friendsID = [Int]()
                     for i in 0...3 {
-                        friends.append(data.friendList[i].name + "\n" + data.friendList[i].yelloId)
+                        friends.append(data.friendList[i].name + "\n@" + data.friendList[i].yelloId)
                         friendsID.append(data.friendList[i].id)
                     }
                     var keywords = [String]()
