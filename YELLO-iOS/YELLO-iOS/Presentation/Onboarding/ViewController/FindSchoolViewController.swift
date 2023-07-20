@@ -66,7 +66,7 @@ class FindSchoolViewController: SearchBaseViewController {
     }
     
     @objc func helperButtonDidTap() {
-        let url = URL(string: "https://www.google.com/")!
+        let url = URL(string: "https://bit.ly/46Yv0Hc")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
