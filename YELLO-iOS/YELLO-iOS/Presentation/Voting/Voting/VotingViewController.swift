@@ -124,6 +124,19 @@ final class VotingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setBackground()
+        navigationController?.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    // MARK: - Private Function
+    
+    private func setBackground() {
         let maxNameLength = votingList[VotingViewController.pushCount]?.friendList.compactMap { $0.components(separatedBy: "\n").first?.count }.max() ?? 0
         let nameLength = (maxNameLength * 14).adjusted + 28.adjusted
         
@@ -172,14 +185,6 @@ final class VotingViewController: BaseViewController {
             Color.shared.selectedTopColors = selectTopColors(startIndex: Color.shared.startIndex)
             Color.shared.selectedBottomColors = selectBottomColors(startIndex: Color.shared.startIndex)
         }
-        
-        navigationController?.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    
-        tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: - Style
