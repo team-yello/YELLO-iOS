@@ -23,7 +23,7 @@ final class VotingViewController: BaseViewController {
   
     private let nameStackView = UIStackView()
     let nameHead = UILabel()
-    let nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 86.adjusted, height: 34.adjusted))
+    var nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 70.adjusted, height: 34.adjusted))
 
     let nameMiddleText = UILabel()
     let nameFoot = UILabel()
@@ -35,7 +35,7 @@ final class VotingViewController: BaseViewController {
     
     private let keywordStackView = UIStackView()
     let keywordHead = UILabel()
-    let keywordMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 150.adjusted, height: 34.adjusted))
+    var keywordMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 150.adjusted, height: 34.adjusted))
     let keywordMiddleText = UILabel()
     let keywordFoot = UILabel()
     
@@ -123,13 +123,56 @@ final class VotingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let maxNameLength = votingList[VotingViewController.pushCount]?.friendList.compactMap { $0.components(separatedBy: "\n").first?.count }.max() ?? 0
+        let nameLength = (maxNameLength * 14).adjusted + 28.adjusted
+        
+        let maxKeywordLength = votingList[VotingViewController.pushCount]?.keywordList.compactMap { $0.count }.max() ?? 0
+        let keywordLength = (maxKeywordLength * 14).adjusted + 28.adjusted
+        
+        nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: nameLength, height: 34.adjusted))
+        keywordMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: keywordLength, height: 34.adjusted))
+        
+        nameMiddleBackground.do {
+            $0.backgroundColor = .grayscales900
+            $0.layer.cornerRadius = 8
+            $0.addDottedBorder()
+        }
+        
+        keywordMiddleBackground.do {
+            $0.backgroundColor = .grayscales900
+            $0.layer.cornerRadius = 8
+            $0.addDottedBorder()
+        }
+        
+        nameStackView.addArrangedSubviews(nameHead, nameMiddleBackground, nameFoot)
+        keywordStackView.addArrangedSubviews(keywordHead, keywordMiddleBackground, keywordFoot)
+        
+        nameMiddleBackground.snp.makeConstraints {
+            $0.width.equalTo(nameLength)
+            $0.height.equalTo(34.adjusted)
+        }
+        
+        nameMiddleText.snp.makeConstraints {
+            $0.width.equalTo(nameLength)
+            $0.height.equalTo(30.adjusted)
+        }
+        
+        keywordMiddleBackground.snp.makeConstraints {
+            $0.width.equalTo(keywordLength)
+            $0.height.equalTo(34.adjusted)
+        }
+        keywordMiddleText.snp.makeConstraints {
+            $0.width.equalTo(keywordLength)
+            $0.height.equalTo(30.adjusted)
+        }
         
         if VotingViewController.pushCount == 0 {
             Color.shared.startIndex = Int.random(in: 0...11)
             Color.shared.selectedTopColors = selectTopColors(startIndex: Color.shared.startIndex)
             Color.shared.selectedBottomColors = selectBottomColors(startIndex: Color.shared.startIndex)
         }
-
+        
         navigationController?.delegate = self
     }
     
@@ -206,12 +249,6 @@ final class VotingViewController: BaseViewController {
             $0.font = .uiLarge
         }
         
-        keywordMiddleBackground.do {
-            $0.backgroundColor = .grayscales900
-            $0.layer.cornerRadius = 8
-            $0.addDottedBorder()
-        }
-        
         keywordMiddleText.do {
             $0.textColor = .black
             $0.font = .uiBodyLarge
@@ -265,37 +302,14 @@ final class VotingViewController: BaseViewController {
         
         originView.questionBackground.addSubviews(nameStackView, keywordStackView)
         
-        nameStackView.addArrangedSubviews(nameHead, nameMiddleBackground, nameFoot)
-        keywordStackView.addArrangedSubviews(keywordHead, keywordMiddleBackground, keywordFoot)
-        
         nameStackView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(36.adjusted)
             $0.centerX.equalToSuperview()
         }
         
-        nameMiddleBackground.snp.makeConstraints {
-            $0.width.equalTo(86.adjusted)
-            $0.height.equalTo(34.adjusted)
-        }
-        
-        nameMiddleText.snp.makeConstraints {
-            $0.width.equalTo(82.adjusted)
-            $0.height.equalTo(30.adjusted)
-        }
-        
         keywordStackView.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(36.adjusted)
             $0.centerX.equalToSuperview()
-        }
-        
-        keywordMiddleBackground.snp.makeConstraints {
-            $0.width.equalTo(150.adjusted)
-            $0.height.equalTo(34.adjusted)
-        }
-        
-        keywordMiddleText.snp.makeConstraints {
-            $0.width.equalTo(144.adjusted)
-            $0.height.equalTo(30.adjusted)
         }
     }
 }
