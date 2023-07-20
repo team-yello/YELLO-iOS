@@ -64,7 +64,7 @@ class OnboardingEndViewController: BaseViewController {
     @objc func yelloButtondidTap() {
         /// 온보딩 이후 rootViewController 변경
         postUserInfo()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             let yelloTabBarController = YELLOTabBarController()
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
