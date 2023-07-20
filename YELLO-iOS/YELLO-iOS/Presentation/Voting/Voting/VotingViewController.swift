@@ -125,6 +125,7 @@ final class VotingViewController: BaseViewController {
         super.viewDidLoad()
 
         setBackground()
+        setBackgroundColor()
         navigationController?.delegate = self
     }
     
@@ -179,7 +180,9 @@ final class VotingViewController: BaseViewController {
             $0.width.equalTo(keywordLength)
             $0.height.equalTo(30.adjusted)
         }
-        
+    }
+    
+    private func setBackgroundColor() {
         if VotingViewController.pushCount == 0 {
             Color.shared.startIndex = Int.random(in: 0...11)
             Color.shared.selectedTopColors = selectTopColors(startIndex: Color.shared.startIndex)
