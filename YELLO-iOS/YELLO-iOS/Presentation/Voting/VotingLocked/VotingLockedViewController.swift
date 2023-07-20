@@ -17,7 +17,10 @@ final class VotingLockedViewController: BaseViewController {
     
     override func loadView() {
         self.view = originView
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getVotingAvailable()
     }
     
