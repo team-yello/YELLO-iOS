@@ -195,8 +195,8 @@ extension ProfileView {
                     self.myProfileFriendModelDummy.append(contentsOf: friendModels)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         self.myFriendTableView.reloadData()
+                        self.fetchingMore = false
                     }
-                    self.fetchingMore = false
                     dump(data)
                     print("통신 성공")
                 default:
@@ -235,6 +235,7 @@ extension ProfileView: UITableViewDataSource {
                 view?.addBottomBorderWithColor(color: .black)
                 view?.myProfileView.profileUser()
                 view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
+                view?.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
             }
             return view
         default:

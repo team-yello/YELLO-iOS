@@ -10,11 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
+
 class StudentInfoViewController: OnboardingBaseViewController {
     
     // MARK: - Variables
     let majorSearchViewController = FindMajorViewController()
     let studentIdViewController = StudentIdViewController()
+    let bottomSheet = BaseBottomViewController()
+    let studentIdView = StudentIdView()
     
     // MARK: Component
     private let baseView = StudentInfoView()
@@ -25,6 +28,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
     }
     var groupId = 0
     var groupAdmissionYear = 0
+    weak var delegate: SelectStudentIdDelegate?
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -50,6 +54,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
         baseView.majorTextField.textField.delegate = self
         baseView.studentIDTextField.textField.delegate = self
         majorSearchViewController.majorDelegate = self
+        studentIdView.idDelegate = self
         studentIdViewController.delegate = self
     }
     
@@ -67,16 +72,21 @@ class StudentInfoViewController: OnboardingBaseViewController {
     
     private func presentModal() {
         
-        let nav = UINavigationController(rootViewController: studentIdViewController)
-        studentIdViewController.delegate = self
-        
-        if let sheet = nav.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
-            sheet.invalidateDetents()
+        if #available(iOS 16.0, *) {
+            let nav = UINavigationController(rootViewController: studentIdViewController)
+            if let sheet = nav.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.prefersGrabberVisible = true
+                sheet.invalidateDetents()
+                present(nav, animated: true, completion: nil)
+            }
+            
+        } else {
+            
+            bottomSheet.setCustomView(view: studentIdView)
+            bottomSheet.modalPresentationStyle = .overFullScreen
+            present(bottomSheet, animated: false)
         }
-        
-        present(nav, animated: true, completion: nil)
     }
     
     func checkButtonEnable() {
@@ -97,7 +107,7 @@ class StudentInfoViewController: OnboardingBaseViewController {
         User.shared.groupId = groupId
         User.shared.groupAdmissionYear = groupAdmissionYear
     }
-
+    
 }
 
 // MARK: - extension
@@ -140,6 +150,24 @@ extension StudentInfoViewController: SelectStudentIdDelegate {
         baseView.studentIDTextField.textField.text = "\(result)학번"
         groupAdmissionYear = result
         checkButtonEnable()
+        bottomSheet.dismiss(animated: false)
+    }
+}
+
+
+// MARK: StudentIdView
+extension StudentInfoViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let currentCell = tableView.cellForRow(at: indexPath),
+              let cellTitle = currentCell.textLabel?.text else {
+            return
+        }
+        
+        // 학번 문자열에서 숫자 부분 추출
+        let studentId = cellTitle.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        guard let studentId = Int(studentId) else { return }
+        delegate?.didSelectStudentId(studentId)
+        self.dismiss(animated: true)
     }
 }
 

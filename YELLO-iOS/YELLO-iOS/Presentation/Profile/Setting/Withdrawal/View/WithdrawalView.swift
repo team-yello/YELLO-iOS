@@ -192,8 +192,8 @@ final class WithdrawalView: BaseView {
         withdrawalButton.snp.makeConstraints {
             $0.top.equalTo(captionLabel.snp.bottom).offset(24.adjusted)
             $0.bottom.equalToSuperview().inset(34.adjusted)
+            $0.centerX.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-            $0.width.equalTo(343)
             $0.height.equalTo(48)
         }
     }

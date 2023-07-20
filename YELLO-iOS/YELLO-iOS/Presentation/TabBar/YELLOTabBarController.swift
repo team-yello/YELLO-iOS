@@ -134,12 +134,6 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
             return false
         }
         
-        if let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) {
-            if selectedIndex == 2 {
-                getVotingAvailable()
-            }
-        }
-        
         return true
     }
 }

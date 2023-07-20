@@ -178,9 +178,9 @@ extension SchoolFriendView {
                     self.recommendingSchoolFriendTableViewDummy.append(contentsOf: friendModels)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self.schoolFriendTableView.reloadData()
+                        self.fetchingMore = false
                     }
                     self.updateView()
-                    self.fetchingMore = false
                     print("통신 성공")
                 default:
                     print("network fail")

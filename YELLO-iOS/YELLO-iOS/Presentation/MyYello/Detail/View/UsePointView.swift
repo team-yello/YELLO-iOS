@@ -62,13 +62,13 @@ final class UsePointView: BaseView {
         }
         
         pointLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
             $0.textColor = .white
             $0.font = .uiKeywordBold
+            $0.textAlignment = .right
         }
         
         pointTextLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Alert.point, lineHeight: 20)
+            $0.text =  StringLiterals.MyYello.Alert.point
             $0.textColor = .grayscales400
             $0.font = .uiBodySmall
         }
@@ -133,12 +133,13 @@ final class UsePointView: BaseView {
         
         pointLabel.snp.makeConstraints {
             $0.trailing.equalTo(pointTextLabel.snp.leading).inset(-4)
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(pointTitleLabel)
+            $0.width.equalTo(103)
         }
         
         pointTextLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(pointTitleLabel)
         }
         
         confirmButton.snp.makeConstraints {

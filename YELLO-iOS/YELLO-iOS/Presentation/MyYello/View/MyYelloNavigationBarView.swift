@@ -30,13 +30,13 @@ final class MyYelloNavigationBarView: BaseView {
         }
         
         yelloNumberLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.NavigationBar.yelloNumber, lineHeight: 16)
+            $0.text = StringLiterals.MyYello.NavigationBar.yelloNumber
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales500
         }
         
         yelloCountLabel.do {
-            $0.setTextWithLineHeight(text: "개", lineHeight: 16)
+            $0.text = "0개"
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales200
             $0.asColor(targetString: "개", color: .grayscales500)

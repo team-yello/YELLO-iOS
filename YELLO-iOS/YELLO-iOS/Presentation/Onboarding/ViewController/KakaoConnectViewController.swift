@@ -15,6 +15,7 @@ class KakaoConnectViewController: BaseViewController {
     let baseView = KakaoConnectView()
 
     override func loadView() {
+        navigationItem.title = ""
         view = baseView
     }
     

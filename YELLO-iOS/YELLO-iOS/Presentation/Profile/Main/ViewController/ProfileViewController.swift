@@ -16,6 +16,7 @@ final class ProfileViewController: BaseViewController {
     // MARK: Component
     private let profileView = ProfileView()
     let friendProfileViewController = FriendProfileViewController()
+    let bottomSheetViewController = BottomFriendProfileViewController()
     
     var isFinishPaging = false
     var isLoadingData = false
@@ -41,6 +42,7 @@ final class ProfileViewController: BaseViewController {
         profileView.navigationBarView.delegate = self
         profileView.handleFriendCellDelegate = self
         friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
+        bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
     }
     
     override func setLayout() {
@@ -68,13 +70,21 @@ extension ProfileViewController: HandleFriendCellDelegate {
     func presentModal(index: Int) {
         profileView.indexNumber = index
         friendProfileViewController.friendProfileView.configureMyProfileFriendDetailCell(profileView.myProfileFriendModelDummy[index])
+        bottomSheetViewController.friendProfileView.configureMyProfileFriendDetailCell(profileView.myProfileFriendModelDummy[index])
+        
         let nav = UINavigationController(rootViewController: friendProfileViewController)
     
-        if let sheet = nav.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
+        if #available(iOS 15.0, *) {
+            if let sheet = nav.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.prefersGrabberVisible = true
+                present(nav, animated: true, completion: nil)
+            }
+        } else {
+            bottomSheetViewController.modalPresentationStyle = .overFullScreen
+            present(bottomSheetViewController, animated: false)
         }
-        present(nav, animated: true, completion: nil)
+        
     }
 }
 
@@ -83,6 +93,7 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
         profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].name + StringLiterals.Profile.Friend.toastMessage)
         
         friendProfileViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
+        bottomSheetViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
