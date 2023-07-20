@@ -195,8 +195,8 @@ extension ProfileView {
                     self.myProfileFriendModelDummy.append(contentsOf: friendModels)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         self.myFriendTableView.reloadData()
+                        self.fetchingMore = false
                     }
-                    self.fetchingMore = false
                     dump(data)
                     print("통신 성공")
                 default:

@@ -121,8 +121,8 @@ final class MyYelloListView: BaseView {
                     MyYelloListView.myYelloModelDummy.append(contentsOf: myYelloModels)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self.myYelloTableView.reloadData()
+                        self.fetchingMore = false
                     }
-                    self.fetchingMore = false
                     dump(data)
                     print("통신 성공")
                 default:
