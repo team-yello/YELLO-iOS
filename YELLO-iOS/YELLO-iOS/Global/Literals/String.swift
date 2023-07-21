@@ -115,6 +115,7 @@ enum StringLiterals {
             static let sendButton = "300포인트로 초성 1개 확인하기"
             static let senderButton = "누가 보냈는지 확인하기"
             static let logoTitle = "지금 누군가가 당신을 생각하고 있어요!"
+            static let instagramID = "@yelloworld_official"
         }
         
         enum Alert {
@@ -191,7 +192,7 @@ enum StringLiterals {
             static let first = "회원님의 좋아하는 친구 마음을 알 수 없어요."
             static let second = "회원님의 마음을 친구에게 전달할 수 없어요."
             static let third = "친구들이 받은 쪽지를 볼 수 없어요."
-            static let caption = "계정 삭세 시 yell:o를 이용한 데이터는\n즉시 삭제되지 않고 30일간 보관됩니다.\n30일 이내에 로그인 시 데이터가 복구됩니다."
+            static let caption = "계정 삭제 시 yell:o를 이용한 데이터는\n즉시 삭제되지 않고 30일간 보관됩니다.\n30일 이내에 로그인 시 데이터가 복구됩니다."
             static let confirm = "탈퇴하기"
         }
         

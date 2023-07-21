@@ -124,6 +124,7 @@ extension MyYelloDetailViewController {
                     if let initial = self.getFirstInitial(data.senderName as NSString, index: 0) {
                         self.myYelloDetailView.detailSenderView.senderLabel.text = initial
                     }
+//                    self.myYelloDetailView.ind
                 } else if data.nameHint == 1 {
                     self.myYelloDetailView.isSenderUsed = true
                     if let initial = self.getSecondInitial(data.senderName as NSString, index: 1) {
