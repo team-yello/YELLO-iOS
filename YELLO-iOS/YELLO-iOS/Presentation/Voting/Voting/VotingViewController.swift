@@ -38,6 +38,8 @@ final class VotingViewController: BaseViewController {
     var keywordMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 150.adjusted, height: 34.adjusted))
     let keywordMiddleText = UILabel()
     let keywordFoot = UILabel()
+    var nameButtonTouch = false
+    var keywordButtonTouch = false
     
     var nameButtonClick: Bool = false {
         didSet {
@@ -73,7 +75,7 @@ final class VotingViewController: BaseViewController {
     // name, keyword 버튼이 모두 클릭되었을 때 동작
     var bothButtonClicked: Bool = false {
         didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
                 self.setNextViewController()
             }
             if VotingViewController.pushCount <= 10 {

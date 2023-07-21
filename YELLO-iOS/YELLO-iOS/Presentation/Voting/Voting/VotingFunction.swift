@@ -209,7 +209,11 @@ extension VotingViewController {
         if nameButtonClick {
             view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
-                
+        if nameButtonTouch == true {
+            return
+        }
+        nameButtonTouch = true
+
         let nameButtons = [originView.nameOneButton, originView.nameTwoButton, originView.nameThreeButton, originView.nameFourButton]
         
         let nameTexts = [nameTextOne, nameTextTwo, nameTextThree, nameTextFour]
@@ -243,6 +247,7 @@ extension VotingViewController {
         }
         
         nameButtonClick = true
+        nameButtonTouch = false
     }
     
     @objc
@@ -250,6 +255,10 @@ extension VotingViewController {
         if keywordButtonClick {
             view.showToast(message: StringLiterals.Voting.VoteToast.cancel)
         }
+        if keywordButtonTouch == true {
+            return
+        }
+        keywordButtonTouch = true
         
         sender.setTitleColor(.yelloMain500, for: .normal)
         keywordMiddleText.text = sender.titleLabel?.text
@@ -279,6 +288,7 @@ extension VotingViewController {
         }
         
         keywordButtonClick = true
+        keywordButtonTouch = false
     }
     
     @objc
