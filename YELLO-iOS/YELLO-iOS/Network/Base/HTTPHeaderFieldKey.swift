@@ -23,4 +23,5 @@ enum HTTPHeaderFieldValue: String {
 enum HTTPHeaderType {
     case plain
     case hasAccessToken
+    case hasToken
 }
