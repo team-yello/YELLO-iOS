@@ -75,6 +75,7 @@
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		36871C7B2A664C69001CA514 /* JoinedFriendsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */; };
 		36871C7D2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36871C7C2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift */; };
+		369BF9682A6AFC640091CB85 /* TokenRefreshResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */; };
 		36AD441A2A6812420087D7E0 /* MyRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AD44192A6812420087D7E0 /* MyRequestInterceptor.swift */; };
 		36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234952A61466A007933E4 /* YelloHelperLabel.swift */; };
 		36B234982A619853007933E4 /* onboarding_end.json in Resources */ = {isa = PBXBuildFile; fileRef = 36B234972A619853007933E4 /* onboarding_end.json */; };
@@ -198,6 +199,7 @@
 		C3DC4ADE2A6042B5001DCE04 /* MyYelloDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC4ADD2A6042B5001DCE04 /* MyYelloDetailModel.swift */; };
 		C3E4B6FF2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */; };
 		C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */; };
+		C3EC57332A6AB2F300676388 /* Unbounded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3EC57322A6AB2F300676388 /* Unbounded-Regular.ttf */; };
 		C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */; };
 		C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */; };
 		C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */; };
@@ -295,6 +297,7 @@
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsResponseDTO.swift; sourceTree = "<group>"; };
 		36871C7C2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsRequestQueryDTO.swift; sourceTree = "<group>"; };
+		369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshResponseDTO.swift; sourceTree = "<group>"; };
 		36AD44192A6812420087D7E0 /* MyRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRequestInterceptor.swift; sourceTree = "<group>"; };
 		36B234952A61466A007933E4 /* YelloHelperLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloHelperLabel.swift; sourceTree = "<group>"; };
 		36B234972A619853007933E4 /* onboarding_end.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_end.json; sourceTree = "<group>"; };
@@ -414,6 +417,7 @@
 		C3DC4ADD2A6042B5001DCE04 /* MyYelloDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailModel.swift; sourceTree = "<group>"; };
 		C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		C3EC57322A6AB2F300676388 /* Unbounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Regular.ttf"; sourceTree = "<group>"; };
 		C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
 		C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalView.swift; sourceTree = "<group>"; };
 		C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckView.swift; sourceTree = "<group>"; };
@@ -675,6 +679,7 @@
 				3662A0F32A654A6000F482EF /* MajorSearchResponseDTO.swift */,
 				3662A0FB2A65795200F482EF /* IdValidResponseDTO.swift */,
 				36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */,
+				369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1160,6 +1165,7 @@
 			children = (
 				2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */,
 				C3FF24A52A5EEF7400A97D40 /* Unbounded-SemiBold.ttf */,
+				C3EC57322A6AB2F300676388 /* Unbounded-Regular.ttf */,
 				367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */,
 				C3A799FB2A494FFF00D3EFD8 /* Pretendard-Black.otf */,
 				C3A799F72A494FFE00D3EFD8 /* Pretendard-Bold.otf */,
@@ -1439,6 +1445,7 @@
 				C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */,
 				C3A79A032A49500000D3EFD8 /* Pretendard-ExtraLight.otf in Resources */,
 				2AEE46EF2A603F9A000B4A9B /* VotingStart.json in Resources */,
+				C3EC57332A6AB2F300676388 /* Unbounded-Regular.ttf in Resources */,
 				C3A799A32A49490D00D3EFD8 /* LaunchScreen.storyboard in Resources */,
 				C3A79A022A49500000D3EFD8 /* Pretendard-Thin.otf in Resources */,
 				367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */,
@@ -1502,6 +1509,7 @@
 				C3DC4AD82A5FDF4B001DCE04 /* PaymentReadyViewController.swift in Sources */,
 				C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
+				369BF9682A6AFC640091CB85 /* TokenRefreshResponseDTO.swift in Sources */,
 				2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */,
 				C3FF248E2A5E8DB700A97D40 /* TabBarHeight.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,

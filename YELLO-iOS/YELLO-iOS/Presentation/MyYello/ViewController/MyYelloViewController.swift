@@ -22,16 +22,17 @@ final class MyYelloViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
         self.myYelloCount()
         self.myYelloView.myYelloListView.isFinishPaging = false
         self.myYelloView.myYelloListView.fetchingMore = false
         self.myYelloView.myYelloListView.pageCount = -1
         self.myYelloView.myYelloListView.myYello()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,7 +41,7 @@ final class MyYelloViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        MyYelloListView.myYelloModelDummy = []
+//        MyYelloListView.myYelloModelDummy = []
     }
     
     // MARK: Layout Helpers

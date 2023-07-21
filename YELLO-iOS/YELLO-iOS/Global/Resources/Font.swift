@@ -120,4 +120,8 @@ extension UIFont {
     class var uiKeywordBold: UIFont {
         return UIFont(name: "Pretendard-Bold", size: 14.0)!
     }
+    
+    class var uiInstagram: UIFont {
+        return UIFont(name: "Unbounded-Regular", size: 10.0)!
+    }
 }

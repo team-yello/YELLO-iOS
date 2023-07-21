@@ -110,6 +110,10 @@ extension VotingLockedViewController {
                         let viewController = VotingStartViewController()
                         viewController.myPoint = data.point
                         self.navigationController?.pushViewController(viewController, animated: true)
+                    } else {
+                        let viewController = VotingTimerViewController()
+                        viewController.myPoint = data.point
+                        self.navigationController?.pushViewController(viewController, animated: true)
                     }
                 }
             default:
