@@ -198,6 +198,7 @@
 		C3DC4ADE2A6042B5001DCE04 /* MyYelloDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC4ADD2A6042B5001DCE04 /* MyYelloDetailModel.swift */; };
 		C3E4B6FF2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */; };
 		C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */; };
+		C3EC57332A6AB2F300676388 /* Unbounded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3EC57322A6AB2F300676388 /* Unbounded-Regular.ttf */; };
 		C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */; };
 		C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */; };
 		C3FF24712A5D47DD00A97D40 /* WithdrawalCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */; };
@@ -414,6 +415,7 @@
 		C3DC4ADD2A6042B5001DCE04 /* MyYelloDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailModel.swift; sourceTree = "<group>"; };
 		C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		C3EC57322A6AB2F300676388 /* Unbounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Regular.ttf"; sourceTree = "<group>"; };
 		C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
 		C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalView.swift; sourceTree = "<group>"; };
 		C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalCheckView.swift; sourceTree = "<group>"; };
@@ -1160,6 +1162,7 @@
 			children = (
 				2AD1A1BF2A595FB900CB988B /* Unbounded-Medium.ttf */,
 				C3FF24A52A5EEF7400A97D40 /* Unbounded-SemiBold.ttf */,
+				C3EC57322A6AB2F300676388 /* Unbounded-Regular.ttf */,
 				367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */,
 				C3A799FB2A494FFF00D3EFD8 /* Pretendard-Black.otf */,
 				C3A799F72A494FFE00D3EFD8 /* Pretendard-Bold.otf */,
@@ -1439,6 +1442,7 @@
 				C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */,
 				C3A79A032A49500000D3EFD8 /* Pretendard-ExtraLight.otf in Resources */,
 				2AEE46EF2A603F9A000B4A9B /* VotingStart.json in Resources */,
+				C3EC57332A6AB2F300676388 /* Unbounded-Regular.ttf in Resources */,
 				C3A799A32A49490D00D3EFD8 /* LaunchScreen.storyboard in Resources */,
 				C3A79A022A49500000D3EFD8 /* Pretendard-Thin.otf in Resources */,
 				367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */,
