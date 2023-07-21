@@ -36,6 +36,7 @@ final class MyYelloDetailView: BaseView {
     let logoImageView = UIImageView()
     let logoLabel = UILabel()
     let groupImageView = UIImageView()
+    let instagramIDLabel = UILabel()
     
     // MARK: Property
     weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
@@ -134,6 +135,13 @@ final class MyYelloDetailView: BaseView {
         groupImageView.do {
             $0.image = ImageLiterals.MyYello.imgYelloGroup
         }
+        
+        instagramIDLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.instagramID, lineHeight: 20)
+            $0.font = .uiInstagram
+            $0.textColor = .white
+            $0.alpha = 0.6
+        }
     }
     
     override func setLayout() {
@@ -215,10 +223,12 @@ extension MyYelloDetailView {
         logoImageView.isHidden = false
         logoLabel.isHidden = false
         groupImageView.isHidden = false
+        instagramIDLabel.isHidden = false
         
         self.addSubviews(logoImageView,
                          logoLabel,
-                         groupImageView)
+                         groupImageView,
+                         instagramIDLabel)
         
         logoImageView.snp.makeConstraints {
             $0.top.equalTo(detailKeywordView.snp.bottom).offset(87.adjustedHeight)
@@ -234,6 +244,11 @@ extension MyYelloDetailView {
             $0.top.equalTo(logoLabel.snp.bottom).offset(52.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
+        
+        instagramIDLabel.snp.makeConstraints {
+            $0.top.equalTo(groupImageView.snp.bottom).offset(6.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     func endInstagram() {
@@ -244,6 +259,7 @@ extension MyYelloDetailView {
         logoImageView.isHidden = true
         logoLabel.isHidden = true
         groupImageView.isHidden = true
+        instagramIDLabel.isHidden = true
         
         if isSenderUsed == true {
             keywordButton.isHidden = true
