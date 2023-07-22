@@ -85,8 +85,9 @@ extension MyYelloDetailViewController {
         gradientView.frame = view.bounds
         if dummy.isEmpty {
             gradientView.colors = [UIColor.black.cgColor, UIColor.black.cgColor]
+        } else {
+                gradientView.colors = [self.dummy[self.colorIndex].backgroundColorTop.cgColor, self.dummy[self.colorIndex].backgroundColorBottom.cgColor]
         }
-        gradientView.colors = [dummy[colorIndex].backgroundColorTop.cgColor, dummy[colorIndex].backgroundColorBottom.cgColor]
         
         gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
