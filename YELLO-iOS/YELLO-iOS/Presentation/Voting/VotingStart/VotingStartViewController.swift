@@ -26,6 +26,7 @@ final class VotingStartViewController: BaseViewController {
         super.viewDidLoad()
 
         getPoint()
+        getVotingList()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
@@ -52,7 +53,6 @@ final class VotingStartViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = false
         
         getVotingAvailable()
-        getVotingList()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
