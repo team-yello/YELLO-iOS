@@ -25,8 +25,7 @@ final class VotingStartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getPoint()
-        getVotingList()
+        getVotingAvailable()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
@@ -50,9 +49,8 @@ final class VotingStartViewController: BaseViewController {
         animationView.play()
         view.addSubview(animationView)
         
-        tabBarController?.tabBar.isHidden = false
-        
         getVotingAvailable()
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -124,28 +122,10 @@ final class VotingStartViewController: BaseViewController {
 }
 
 extension VotingStartViewController {
-    func getPoint() {
-        NetworkService.shared.votingService.getVotingAvailable {
-            result in
-            switch result {
-            case .success(let data):
-                guard let data = data.data else { return }
-                let point = data.point
-                self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
-                self.myPoint = point
-            default:
-                print("network failure")
-                return
-            }
-        }
-    }
-    
     func getVotingList() {
-        originView.yellowButton.isEnabled = false
         NetworkService.shared.votingService.getVotingList { result in
             switch result {
             case .success(let data):
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
                     guard let data = data.data else { return }
                     let votingList = data.map { data -> VotingData? in
                         var friends = [String]()
@@ -162,7 +142,6 @@ extension VotingStartViewController {
                     }
                     self.votingList = votingList
                     self.originView.yellowButton.isEnabled = true
-                }
             default:
                 print("network failure")
                 return
@@ -173,10 +152,19 @@ extension VotingStartViewController {
     func getVotingAvailable() {
         NetworkService.shared.votingService.getVotingAvailable {
             result in
-            print(result)
             switch result {
             case .success(let data):
                 let status = data.status
+                if status == 200 {
+                    guard let data = data.data else { return }
+                    if data.isPossible {
+                        let point = data.point
+                        self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
+                        self.myPoint = point
+                        self.originView.yellowButton.isEnabled = false
+                        self.getVotingList()
+                    }
+                }
                 if status == 400 {
                     let viewController = VotingLockedViewController()
                     self.navigationController?.pushViewController(viewController, animated: true)
