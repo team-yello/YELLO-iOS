@@ -176,7 +176,6 @@ final class VotingTimerViewController: BaseViewController {
         invitingView = InvitingView()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         invitingView.updateText(title: StringLiterals.Inviting.unLockedTitle, text: StringLiterals.Inviting.unLockedText, targetString: "바로 투표")
         viewController.view.addSubview(invitingView)
     }

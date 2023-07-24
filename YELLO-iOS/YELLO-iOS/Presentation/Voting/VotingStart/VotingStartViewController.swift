@@ -123,33 +123,6 @@ final class VotingStartViewController: BaseViewController {
 }
 
 extension VotingStartViewController {
-    func getVotingList() {
-        NetworkService.shared.votingService.getVotingList { result in
-            switch result {
-            case .success(let data):
-                    guard let data = data.data else { return }
-                    let votingList = data.map { data -> VotingData? in
-                        var friends = [String]()
-                        var friendsID = [Int]()
-                        for i in 0...3 {
-                            friends.append(data.friendList[i].name + "\n@" + data.friendList[i].yelloId)
-                            friendsID.append(data.friendList[i].id)
-                        }
-                        var keywords = [String]()
-                        for i in 0...3 {
-                            keywords.append(data.keywordList[i])
-                        }
-                        return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
-                    }
-                    self.votingList = votingList
-                    self.originView.yellowButton.isEnabled = true
-            default:
-                print("network failure")
-                return
-            }
-        }
-    }
-    
     func getVotingAvailable() {
         NetworkService.shared.votingService.getVotingAvailable {
             result in
@@ -176,4 +149,37 @@ extension VotingStartViewController {
             }
         }
     }
+    
+    func getVotingList() {
+        NetworkService.shared.votingService.getVotingList { result in
+            switch result {
+            case .success(let data):
+                    guard let data = data.data else { return }
+                    let votingList = data.map { data -> VotingData? in
+                        var friends = [String]()
+                        var friendsID = [Int]()
+                        
+                        let friendListCount = min(data.friendList.count, 4)
+                        for i in 0..<friendListCount {
+                            friends.append(data.friendList[i].name + "\n@" + data.friendList[i].yelloId)
+                            friendsID.append(data.friendList[i].id)
+                        }
+                        
+                        var keywords = [String]()
+                        let keywordListCount = min(data.keywordList.count, 4)
+                        for i in 0..<keywordListCount {
+                            keywords.append(data.keywordList[i])
+                        }
+                        
+                        return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
+                    }
+                    self.votingList = votingList
+                    self.originView.yellowButton.isEnabled = true
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
 }
