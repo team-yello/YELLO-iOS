@@ -152,12 +152,18 @@ extension VotingViewController: UINavigationControllerDelegate {
             [8, 9, nil, nil]
         ]
 
-        let imageIndexes = progressBackGroundsImages[VotingViewController.pushCount]
+        if VotingViewController.pushCount < progressBackGroundsImages.count {
+            let imageIndexes = progressBackGroundsImages[VotingViewController.pushCount]
 
-        for (index, imageView) in imageViews.enumerated() {
-            if let imageIndex = imageIndexes[index] {
-                imageView.image = images[imageIndex]
-            } else {
+            for (index, imageView) in imageViews.enumerated() {
+                if let imageIndex = imageIndexes[index] {
+                    imageView.image = images[imageIndex]
+                } else {
+                    imageView.image = nil
+                }
+            }
+        } else {
+            for imageView in imageViews {
                 imageView.image = nil
             }
         }

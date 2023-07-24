@@ -25,6 +25,7 @@ final class VotingStartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        originView.yellowButton.isEnabled = false
         getVotingAvailable()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
