@@ -298,6 +298,7 @@
 		36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsResponseDTO.swift; sourceTree = "<group>"; };
 		36871C7C2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsRequestQueryDTO.swift; sourceTree = "<group>"; };
 		369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshResponseDTO.swift; sourceTree = "<group>"; };
+		369BF96B2A6E67DD0091CB85 /* YELLO-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YELLO-iOS.entitlements"; sourceTree = "<group>"; };
 		36AD44192A6812420087D7E0 /* MyRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRequestInterceptor.swift; sourceTree = "<group>"; };
 		36B234952A61466A007933E4 /* YelloHelperLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloHelperLabel.swift; sourceTree = "<group>"; };
 		36B234972A619853007933E4 /* onboarding_end.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_end.json; sourceTree = "<group>"; };
@@ -1030,6 +1031,7 @@
 		C3A799952A49490A00D3EFD8 /* YELLO-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				369BF96B2A6E67DD0091CB85 /* YELLO-iOS.entitlements */,
 				C3A799C72A494B7800D3EFD8 /* Storyboard */,
 				C3A799B92A494A6800D3EFD8 /* Application */,
 				C3A799BA2A494A7700D3EFD8 /* Global */,
@@ -1830,6 +1832,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "$(BASE_URL)";
+				CODE_SIGN_ENTITLEMENTS = "YELLO-iOS/YELLO-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1866,6 +1869,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "$(BASE_URL)";
+				CODE_SIGN_ENTITLEMENTS = "YELLO-iOS/YELLO-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
