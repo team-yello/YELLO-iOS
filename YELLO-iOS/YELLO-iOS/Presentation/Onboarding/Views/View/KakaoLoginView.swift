@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class KakaoLoginView: BaseView {
 
@@ -13,8 +14,10 @@ class KakaoLoginView: BaseView {
     let subTitleLabel = UILabel()
     let imageView = UIImageView()
     let kakaoButton = UIButton()
+    let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .white)
     
     let stackView = UIStackView()
+    let loginStackView = UIStackView()
     
     override func setStyle() {
         
@@ -44,9 +47,16 @@ class KakaoLoginView: BaseView {
             $0.alignment = .center
         }
         
+        loginStackView.do {
+            $0.addArrangedSubviews(kakaoButton, authorizationButton)
+            $0.axis = .vertical
+            $0.spacing = 10
+        }
+        
         kakaoButton.do {
             $0.setImage(ImageLiterals.OnBoarding.btnKakaoLogin, for: .normal)
         }
+        
     }
     
     override func setLayout() {
@@ -54,7 +64,7 @@ class KakaoLoginView: BaseView {
         self.addSubviews(titleLabel,
                          subTitleLabel,
                          imageView,
-                         kakaoButton)
+                         loginStackView)
         
         titleLabel.snp.makeConstraints {
             $0.bottom.equalTo(subTitleLabel.snp.top).offset(-8)
@@ -70,9 +80,18 @@ class KakaoLoginView: BaseView {
             $0.center.equalToSuperview()
         }
         
-        kakaoButton.snp.makeConstraints {
+        authorizationButton.snp.makeConstraints {
+            $0.height.equalTo(48)
+        }
+        
+        loginStackView.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(91)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
+    func setupProviderLoginView() {
+     
+     
+    }
+    
 }

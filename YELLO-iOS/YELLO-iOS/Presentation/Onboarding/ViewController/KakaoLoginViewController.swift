@@ -8,6 +8,7 @@
 import UIKit
 
 import KakaoSDKUser
+import AuthenticationServices
 
 class KakaoLoginViewController: BaseViewController {
     
@@ -23,6 +24,7 @@ class KakaoLoginViewController: BaseViewController {
     
     func addTarget() {
         baseView.kakaoButton.addTarget(self, action: #selector(kakaoLoginButtonDidTap), for: .touchUpInside)
+        baseView.authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
     }
     
     @objc func kakaoLoginButtonDidTap() {
@@ -38,7 +40,7 @@ class KakaoLoginViewController: BaseViewController {
                     
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO")
-
+                    
                     NetworkService.shared.onboardingService.postTokenChange(queryDTO: queryDTO) { result in
                         switch result {
                         case .success(let data):
@@ -91,7 +93,12 @@ class KakaoLoginViewController: BaseViewController {
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO")
                     
+                    print(queryDTO)
+                    
+                    print(Config.baseURL)
+                    
                     NetworkService.shared.onboardingService.postTokenChange(queryDTO: queryDTO) { result in
+                        print(result)
                         switch result {
                         case .success(let data):
                             if data.status == 403 {
@@ -118,6 +125,7 @@ class KakaoLoginViewController: BaseViewController {
                             } else if data.status == 201 {
                                 guard let data = data.data else { return }
                                 KeychainHandler.shared.accessToken = data.accessToken
+                                KeychainHandler.shared.refreshToken = data.refreshToken
                                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
                             }
@@ -135,4 +143,48 @@ class KakaoLoginViewController: BaseViewController {
         }
     }
     
+    @objc
+    func handleAuthorizationAppleIDButtonPress() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            let accessToken = appleIDCredential.authorizationCode
+            print("-----🍎애플 로그인 성공!🍎------")
+            
+        case let passwordCredential as ASPasswordCredential:
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+        default:
+            break
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+    }
+    
+}
+
+extension KakaoLoginViewController: ASAuthorizationControllerDelegate {
+    
+}
+
+extension KakaoLoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
 }
