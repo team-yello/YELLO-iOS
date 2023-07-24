@@ -24,6 +24,7 @@ final class VotingTimerViewController: BaseViewController {
             }
             if remainingSeconds == 0 {
                 let viewController = VotingStartViewController()
+                viewController.originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
                 self.navigationController?.pushViewController(viewController, animated: false)
             }
         }
