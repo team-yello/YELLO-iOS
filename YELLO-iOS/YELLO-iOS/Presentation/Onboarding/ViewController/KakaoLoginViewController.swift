@@ -10,7 +10,7 @@ import UIKit
 import KakaoSDKUser
 import AuthenticationServices
 
-class KakaoLoginViewController: BaseViewController {
+final class KakaoLoginViewController: BaseViewController {
     
     let baseView = KakaoLoginView()
     override func loadView() {

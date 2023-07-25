@@ -8,7 +8,7 @@
 import UIKit
 import AuthenticationServices
 
-class KakaoLoginView: BaseView {
+final class KakaoLoginView: BaseView {
 
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
