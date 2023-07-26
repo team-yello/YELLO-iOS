@@ -24,6 +24,7 @@ final class VotingTimerViewController: BaseViewController {
             }
             if remainingSeconds == 0 {
                 let viewController = VotingStartViewController()
+                viewController.originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
                 self.navigationController?.pushViewController(viewController, animated: false)
             }
         }
@@ -176,7 +177,6 @@ final class VotingTimerViewController: BaseViewController {
         invitingView = InvitingView()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         invitingView.updateText(title: StringLiterals.Inviting.unLockedTitle, text: StringLiterals.Inviting.unLockedText, targetString: "바로 투표")
         viewController.view.addSubview(invitingView)
     }

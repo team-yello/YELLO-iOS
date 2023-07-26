@@ -25,8 +25,8 @@ final class VotingStartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getPoint()
-        getVotingList()
+        originView.yellowButton.isEnabled = false
+        getVotingAvailable()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
@@ -50,9 +50,8 @@ final class VotingStartViewController: BaseViewController {
         animationView.play()
         view.addSubview(animationView)
         
-        tabBarController?.tabBar.isHidden = false
-        
         getVotingAvailable()
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -124,59 +123,22 @@ final class VotingStartViewController: BaseViewController {
 }
 
 extension VotingStartViewController {
-    func getPoint() {
-        NetworkService.shared.votingService.getVotingAvailable {
-            result in
-            switch result {
-            case .success(let data):
-                guard let data = data.data else { return }
-                let point = data.point
-                self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
-                self.myPoint = point
-            default:
-                print("network failure")
-                return
-            }
-        }
-    }
-    
-    func getVotingList() {
-        originView.yellowButton.isEnabled = false
-        NetworkService.shared.votingService.getVotingList { result in
-            switch result {
-            case .success(let data):
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
-                    guard let data = data.data else { return }
-                    let votingList = data.map { data -> VotingData? in
-                        var friends = [String]()
-                        var friendsID = [Int]()
-                        for i in 0...3 {
-                            friends.append(data.friendList[i].name + "\n@" + data.friendList[i].yelloId)
-                            friendsID.append(data.friendList[i].id)
-                        }
-                        var keywords = [String]()
-                        for i in 0...3 {
-                            keywords.append(data.keywordList[i])
-                        }
-                        return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
-                    }
-                    self.votingList = votingList
-                    self.originView.yellowButton.isEnabled = true
-                }
-            default:
-                print("network failure")
-                return
-            }
-        }
-    }
-    
     func getVotingAvailable() {
         NetworkService.shared.votingService.getVotingAvailable {
             result in
-            print(result)
             switch result {
             case .success(let data):
                 let status = data.status
+                if status == 200 {
+                    guard let data = data.data else { return }
+                    if data.isPossible {
+                        let point = data.point
+                        self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
+                        self.myPoint = point
+                        self.originView.yellowButton.isEnabled = false
+                        self.getVotingList()
+                    }
+                }
                 if status == 400 {
                     let viewController = VotingLockedViewController()
                     self.navigationController?.pushViewController(viewController, animated: true)
@@ -187,4 +149,37 @@ extension VotingStartViewController {
             }
         }
     }
+    
+    func getVotingList() {
+        NetworkService.shared.votingService.getVotingList { result in
+            switch result {
+            case .success(let data):
+                    guard let data = data.data else { return }
+                    let votingList = data.map { data -> VotingData? in
+                        var friends = [String]()
+                        var friendsID = [Int]()
+                        
+                        let friendListCount = min(data.friendList.count, 4)
+                        for i in 0..<friendListCount {
+                            friends.append(data.friendList[i].name + "\n@" + data.friendList[i].yelloId)
+                            friendsID.append(data.friendList[i].id)
+                        }
+                        
+                        var keywords = [String]()
+                        let keywordListCount = min(data.keywordList.count, 4)
+                        for i in 0..<keywordListCount {
+                            keywords.append(data.keywordList[i])
+                        }
+                        
+                        return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
+                    }
+                    self.votingList = votingList
+                    self.originView.yellowButton.isEnabled = true
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
 }

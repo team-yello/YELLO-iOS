@@ -108,6 +108,7 @@ extension VotingLockedViewController {
                 if status == 200 {
                     if data.isPossible {
                         let viewController = VotingStartViewController()
+                        viewController.originView.yellowButton.isEnabled = false
                         viewController.myPoint = data.point
                         self.navigationController?.pushViewController(viewController, animated: true)
                     } else {
