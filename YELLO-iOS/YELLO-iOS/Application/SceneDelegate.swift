@@ -29,6 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let className = UserDefaults.standard.string(forKey: "lastViewController")
             let viewControllerCreators = [
                 "VotingViewController": { VotingViewController(nibName: nil, bundle: nil) },
+                "VotingPointViewController": { VotingPointViewController(nibName: nil, bundle: nil) },
                 // Add more view controller creators here...
             ]
             

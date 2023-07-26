@@ -105,18 +105,26 @@ extension VotingViewController {
         // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
         if VotingViewController.pushCount >= 10 {
             let viewController = VotingPointViewController()
+            
+            let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
+            viewController.myPoint = myPoint + myPlusPoint
+            viewController.votingPlusPoint = myPlusPoint
+            
             viewController.votingAnswer = votingAnswer
-            saveUserData(votingAnswer)
-            viewController.myPoint = myPoint
-            viewController.votingPlusPoint = votingPlusPoint
+            let previousData = loadUserData() ?? []
+            let combinedData = previousData + votingAnswer
+            saveUserData(combinedData)
+            
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
             viewController.votingAnswer = votingAnswer
-            saveUserData(votingAnswer)
-            viewController.myPoint = myPoint
-            viewController.votingPlusPoint = votingPlusPoint
+            
+            let previousData = loadUserData() ?? []
+            let combinedData = previousData + votingAnswer
+            saveUserData(combinedData)
+            
             UIView.transition(with: self.navigationController!.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 // 전환 시 스르륵 바뀌는 애니메이션 적용
                 self.navigationController?.pushViewController(viewController, animated: false)

@@ -115,7 +115,7 @@ final class VotingStartViewController: BaseViewController {
     func yellowButtonClicked() {
         let viewController = VotingViewController()
         viewController.votingList = loadVotingData() ?? []
-        viewController.myPoint = myPoint
+        viewController.myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -134,6 +134,7 @@ extension VotingStartViewController {
                         let point = data.point
                         self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
                         self.myPoint = point
+                        UserDefaults.standard.set(point, forKey: "UserPoint")
                         self.originView.yellowButton.isEnabled = false
                         self.getVotingList()
                     }

@@ -86,8 +86,12 @@ final class VotingViewController: BaseViewController {
                 self.setNextViewController()
             }
             if VotingViewController.pushCount <= 10 {
-                myPoint += votingList[VotingViewController.pushCount - 1].questionPoint
-                votingPlusPoint += votingList[VotingViewController.pushCount - 1].questionPoint
+                
+                DispatchQueue.global(qos: .background).async {
+                    let existingPoints: Int = UserDefaults.standard.integer(forKey: "UserPlusPoint")
+                    let newPoints = existingPoints + self.votingList[VotingViewController.pushCount - 1].questionPoint
+                    UserDefaults.standard.set(newPoints, forKey: "UserPlusPoint")
+                }
                 
                 votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount - 1].questionId, keywordName: keyword, colorIndex: VotingViewController.pushCount - 1))
             }
@@ -140,6 +144,7 @@ final class VotingViewController: BaseViewController {
 
         Color.shared.restoreFromUserDefaults()
         votingList = loadVotingData() ?? []
+        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         setBackground()
         setBackgroundColor()
         navigationController?.delegate = self
