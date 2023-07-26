@@ -15,7 +15,6 @@ final class VotingStartViewController: BaseViewController {
     
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
-    private var votingList: [VotingData?] = []
     var myPoint = 0
     
     override func loadView() {
@@ -115,7 +114,7 @@ final class VotingStartViewController: BaseViewController {
     @objc
     func yellowButtonClicked() {
         let viewController = VotingViewController()
-        viewController.votingList = votingList
+        viewController.votingList = loadVotingData() ?? []
         viewController.myPoint = myPoint
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -155,7 +154,7 @@ extension VotingStartViewController {
             switch result {
             case .success(let data):
                     guard let data = data.data else { return }
-                    let votingList = data.map { data -> VotingData? in
+                    let votingList = data.map { data -> VotingData in
                         var friends = [String]()
                         var friendsID = [Int]()
                         
@@ -173,7 +172,7 @@ extension VotingStartViewController {
                         
                         return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
                     }
-                    self.votingList = votingList
+                    saveVotingData(votingList)
                     self.originView.yellowButton.isEnabled = true
             default:
                 print("network failure")

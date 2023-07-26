@@ -16,8 +16,8 @@ extension VotingViewController {
         let dummy = VotingDummy.dummy()
         let gradientView = UIView(frame: view.bounds)
         gradientView.applyGradientBackground(
-            topColor: UIColor(hex: Color.shared.selectedTopColors[VotingViewController.pushCount]),
-            bottomColor: UIColor(hex: Color.shared.selectedBottomColors[VotingViewController.pushCount]))
+            topColor: UIColor(hex: Color.shared.selectedTopColors?[VotingViewController.pushCount] ?? ""),
+            bottomColor: UIColor(hex: Color.shared.selectedBottomColors?[VotingViewController.pushCount] ?? ""))
         view.insertSubview(gradientView, at: 0)
         
         self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
@@ -26,21 +26,21 @@ extension VotingViewController {
         self.originView.numOfPageLabel.text = String(VotingViewController.pushCount + 1)
         
         setNameText(
-            first: votingList[VotingViewController.pushCount]?.friendList[0] ?? "",
-            second: votingList[VotingViewController.pushCount]?.friendList[1] ?? "",
-            third: votingList[VotingViewController.pushCount]?.friendList[2] ?? "",
-            fourth: votingList[VotingViewController.pushCount]?.friendList[3] ?? ""
+            first: votingList[VotingViewController.pushCount].friendList[0],
+            second: votingList[VotingViewController.pushCount].friendList[1],
+            third: votingList[VotingViewController.pushCount].friendList[2],
+            fourth: votingList[VotingViewController.pushCount].friendList[3]
         )
         
-        originView.keywordOneButton.setTitle(votingList[VotingViewController.pushCount]?.keywordList[0] ?? "", for: .normal)
-        originView.keywordTwoButton.setTitle(votingList[VotingViewController.pushCount]?.keywordList[1] ?? "", for: .normal)
-        originView.keywordThreeButton.setTitle(votingList[VotingViewController.pushCount]?.keywordList[2] ?? "", for: .normal)
-        originView.keywordFourButton.setTitle(votingList[VotingViewController.pushCount]?.keywordList[3] ?? "", for: .normal)
+        originView.keywordOneButton.setTitle(votingList[VotingViewController.pushCount].keywordList[0], for: .normal)
+        originView.keywordTwoButton.setTitle(votingList[VotingViewController.pushCount].keywordList[1], for: .normal)
+        originView.keywordThreeButton.setTitle(votingList[VotingViewController.pushCount].keywordList[2], for: .normal)
+        originView.keywordFourButton.setTitle(votingList[VotingViewController.pushCount].keywordList[3], for: .normal)
         
-        nameHead.text = votingList[VotingViewController.pushCount]?.nameHead
-        nameFoot.text = votingList[VotingViewController.pushCount]?.nameFoot
-        keywordHead.text = votingList[VotingViewController.pushCount]?.keywordHead
-        keywordFoot.text = votingList[VotingViewController.pushCount]?.keywordFoot
+        nameHead.text = votingList[VotingViewController.pushCount].nameHead
+        nameFoot.text = votingList[VotingViewController.pushCount].nameFoot
+        keywordHead.text = votingList[VotingViewController.pushCount].keywordHead
+        keywordFoot.text = votingList[VotingViewController.pushCount].keywordFoot
         
     }
     
@@ -196,13 +196,13 @@ extension VotingViewController {
         let nameTexts = [nameTextOne, nameTextTwo, nameTextThree, nameTextFour]
         
         if sender == originView.nameOneButton {
-            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[0] ?? 0
+            friendID = votingList[VotingViewController.pushCount - 1].friendId[0]
         } else if sender == originView.nameTwoButton {
-            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[1] ?? 0
+            friendID = votingList[VotingViewController.pushCount - 1].friendId[1]
         } else if sender == originView.nameThreeButton {
-            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[2] ?? 0
+            friendID = votingList[VotingViewController.pushCount - 1].friendId[2]
         } else {
-            friendID = votingList[VotingViewController.pushCount - 1]?.friendId[3] ?? 0
+            friendID = votingList[VotingViewController.pushCount - 1].friendId[3]
         }
         
         for (index, button) in nameButtons.enumerated() {
@@ -243,13 +243,13 @@ extension VotingViewController {
         let keywordButtons = [originView.keywordOneButton, originView.keywordTwoButton, originView.keywordThreeButton, originView.keywordFourButton]
 
         if sender == originView.keywordOneButton {
-            keyword = votingList[VotingViewController.pushCount - 1]?.keywordList[0] ?? ""
+            keyword = votingList[VotingViewController.pushCount - 1].keywordList[0]
         } else if sender == originView.keywordTwoButton {
-            keyword = votingList[VotingViewController.pushCount - 1]?.keywordList[1] ?? ""
+            keyword = votingList[VotingViewController.pushCount - 1].keywordList[1]
         } else if sender == originView.keywordThreeButton {
-            keyword = votingList[VotingViewController.pushCount - 1]?.keywordList[2] ?? ""
+            keyword = votingList[VotingViewController.pushCount - 1].keywordList[2]
         } else {
-            keyword = votingList[VotingViewController.pushCount - 1]?.keywordList[3] ?? ""
+            keyword = votingList[VotingViewController.pushCount - 1].keywordList[3]
         }
         
         for button in keywordButtons {

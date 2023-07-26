@@ -24,13 +24,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window?.makeKeyAndVisible()
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) { 
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) {
             
-            let rootViewController = self.isLoggined ? YELLOTabBarController() : KakaoLoginViewController()
+            let className = UserDefaults.standard.string(forKey: "lastViewController")
+            let viewControllerCreators = [
+                "VotingViewController": { VotingViewController(nibName: nil, bundle: nil) },
+                // Add more view controller creators here...
+            ]
             
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            navigationController.navigationBar.isHidden = true
-            self.window?.rootViewController = navigationController
+            if let className = className,
+               let creator = viewControllerCreators[className] {
+                let rootViewController = creator()
+                let navigationController = UINavigationController(rootViewController: rootViewController)
+                navigationController.navigationBar.isHidden = true
+                self.window?.rootViewController = navigationController
+            } else {
+                // Fallback to a default view controller if the last one was not found or could not be restored
+                let rootViewController = self.isLoggined ? YELLOTabBarController() : KakaoLoginViewController()
+                let navigationController = UINavigationController(rootViewController: rootViewController)
+                navigationController.navigationBar.isHidden = true
+                self.window?.rootViewController = navigationController
+            }
+            
         }
         self.window?.makeKeyAndVisible()
         
@@ -46,10 +61,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        guard let windowScene = scene as? UIWindowScene else { return }
+        guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
+        
+        // Save the class name of topViewController to UserDefaults
+        let className = "\(String(describing: type(of: topViewController)))"
+        UserDefaults.standard.set(className, forKey: "lastViewController")
+        VotingViewController.pushCount = VotingViewController.pushCount - 1
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -76,3 +94,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
 }
 
+func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    if let navigationController = controller as? UINavigationController {
+        return topViewController(controller: navigationController.visibleViewController)
+    }
+    if let tabController = controller as? UITabBarController {
+        if let selected = tabController.selectedViewController {
+            return topViewController(controller: selected)
+        }
+    }
+    if let presented = controller?.presentedViewController {
+        return topViewController(controller: presented)
+    }
+    return controller
+}
