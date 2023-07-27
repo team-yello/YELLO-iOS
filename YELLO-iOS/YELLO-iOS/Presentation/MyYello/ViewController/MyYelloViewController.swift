@@ -88,10 +88,10 @@ extension MyYelloViewController {
 // MARK: HandleMyYelloCellDelegate
 extension MyYelloViewController: HandleMyYelloCellDelegate {
     func pushMyYelloDetailViewController(index: Int) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            
             let myYelloDetailViewController = MyYelloDetailViewController()
             self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             self.myYelloView.myYelloListView.indexNumber = index
             myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
             myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
