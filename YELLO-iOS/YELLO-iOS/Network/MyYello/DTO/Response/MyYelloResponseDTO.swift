@@ -14,7 +14,7 @@ struct MyYelloResponseDTO: Codable {
 }
 
 // MARK: - VoteElement
-struct Yello: Codable {
+struct Yello: Codable, Hashable {
     let id: Int
     let senderGender: String
     let senderName: String
@@ -23,6 +23,22 @@ struct Yello: Codable {
     var isHintUsed: Bool
     var isRead: Bool
     let createdAt: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: Yello, rhs: Yello) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+// Diffable Data Source를 적용할 때 사용할 스냅샷 구조체
+struct MyYelloSnapshot {
+    var items: [Yello]
+    static var empty: MyYelloSnapshot {
+        return MyYelloSnapshot(items: [])
+    }
 }
 
 // MARK: - Vote

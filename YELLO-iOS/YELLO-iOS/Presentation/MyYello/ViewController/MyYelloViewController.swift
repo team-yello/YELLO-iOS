@@ -32,7 +32,10 @@ final class MyYelloViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
+        self.myYelloView.myYelloListView.applySnapshot(animated: true)
+        if MyYelloListView.myYelloModelDummy.isEmpty == false {
+            self.myYelloView.myYelloListView.myYelloTableView.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
