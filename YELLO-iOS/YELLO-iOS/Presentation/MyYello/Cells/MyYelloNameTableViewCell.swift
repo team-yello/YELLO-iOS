@@ -195,6 +195,12 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
         }
         
+        if model.vote.keywordHead == nil {
+            keywordLabel.snp.makeConstraints {
+                $0.leading.equalToSuperview()
+            }
+        }
+        
         keywordHeadLabel.text = model.vote.keywordHead ?? ""
         keywordLabel.text = model.vote.keyword
         keywordFootLabel.text = model.vote.keywordFoot ?? ""
