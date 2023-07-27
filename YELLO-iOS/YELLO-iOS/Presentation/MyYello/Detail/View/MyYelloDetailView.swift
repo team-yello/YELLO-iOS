@@ -84,12 +84,21 @@ final class MyYelloDetailView: BaseView {
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
-        self.backgroundColor = .black
+        self.backgroundColor = .grayscales900
+        
+        detailSenderView.do {
+            $0.isHidden = true
+        }
+        
+        detailKeywordView.do {
+            $0.isHidden = true
+        }
         
         genderLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 16)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.female, lineHeight: 16)
             $0.font = .uiLabelLarge
             $0.textColor = .white
+            $0.isHidden = true
         }
         
         instagramButton.do {
@@ -101,6 +110,7 @@ final class MyYelloDetailView: BaseView {
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
             $0.setTitle(StringLiterals.MyYello.Detail.instagram, for: .normal)
             $0.addTarget(self, action: #selector(instagramButtonTapped), for: .touchUpInside)
+            $0.isHidden = true
         }
         
         keywordButton.do {
@@ -111,6 +121,7 @@ final class MyYelloDetailView: BaseView {
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
             $0.setTitle(StringLiterals.MyYello.Detail.keywordButton, for: .normal)
             $0.addTarget(self, action: #selector(keywordButtonTapped), for: .touchUpInside)
+            $0.isHidden = true
         }
         
         senderButton.do {
@@ -121,6 +132,7 @@ final class MyYelloDetailView: BaseView {
             $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
             $0.setTitle(StringLiterals.MyYello.Detail.senderButton, for: .normal)
+            $0.isHidden = true
         }
         
         logoImageView.do {

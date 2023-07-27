@@ -35,6 +35,11 @@ final class MyYelloDetailViewController: BaseViewController {
         setAddTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     // MARK: Layout Helpers
     override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -84,7 +89,7 @@ extension MyYelloDetailViewController {
         let gradientView = CAGradientLayer()
         gradientView.frame = view.bounds
         if dummy.isEmpty {
-            gradientView.colors = [UIColor.black.cgColor, UIColor.black.cgColor]
+            gradientView.colors = [UIColor(hex: "6437FF"), UIColor(hex: "A892FF")]
         } else {
                 gradientView.colors = [self.dummy[self.colorIndex].backgroundColorTop.cgColor, self.dummy[self.colorIndex].backgroundColorBottom.cgColor]
         }
@@ -103,6 +108,12 @@ extension MyYelloDetailViewController {
                 
                 self.colorIndex = data.colorIndex
                 self.myYelloDetailView.currentPoint = data.currentPoint
+                self.myYelloDetailView.detailSenderView.isHidden = false
+                self.myYelloDetailView.detailKeywordView.isHidden = false
+                self.myYelloDetailView.genderLabel.isHidden = false
+                self.myYelloDetailView.instagramButton.isHidden = false
+                self.myYelloDetailView.keywordButton.isHidden = false
+                self.myYelloDetailView.senderButton.isHidden = false
                 self.setBackgroundView()
                 
                 if data.senderGender == "MALE" {
