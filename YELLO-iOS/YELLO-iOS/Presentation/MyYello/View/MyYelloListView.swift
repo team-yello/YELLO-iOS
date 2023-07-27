@@ -274,7 +274,7 @@ extension MyYelloListView: UITableViewDataSource {
         self.pushMyYelloDetailViewController(index: indexPath.row)
         tableView.isUserInteractionEnabled = false
         
-        // 일정 시간(예: 0.5초) 이후에 다시 사용자 상호 작용을 활성화
+        /// 0.5초 이후에 다시 사용자 상호 작용을 활성화
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             tableView.isUserInteractionEnabled = true
         }
