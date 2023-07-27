@@ -62,8 +62,6 @@ final class MyYelloListView: BaseView {
     
     private func configureDataSource() {
         dataSource = UITableViewDiffableDataSource<Int, Yello>(tableView: myYelloTableView) { [weak self] (tableView, indexPath, yello) -> UITableViewCell? in
-            // Diffable Data Source를 이용하여 셀 구성 로직을 작성합니다.
-            // ... (기존 cellForRowAt 메서드의 내용을 이동)
             if MyYelloListView.myYelloModelDummy.isEmpty {
                 guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: MyYelloEmptyTableViewCell.identifier, for: indexPath) as? MyYelloEmptyTableViewCell else { return UITableViewCell() }
                 emptyCell.selectionStyle = .none
@@ -122,7 +120,7 @@ final class MyYelloListView: BaseView {
     
     // MARK: - Network
     func myYello() {
-        if fetchingMore { // 이미 데이터를 가져오는 중이면 리턴
+        if fetchingMore { /// 이미 데이터를 가져오는 중이면 리턴
             return
         }
         
@@ -150,29 +148,18 @@ final class MyYelloListView: BaseView {
                     
                     MyYelloView.myYelloCount = data.totalCount
                     
-//                    let myYelloModels = data.votes.map { myYello in
-//
-//                        return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
-//                    }
-//
-//                    MyYelloListView.myYelloModelDummy.append(contentsOf: myYelloModels)
-                    
-                    // 기존에 가져온 데이터와 새로 가져온 데이터를 비교하여 중복된 아이템은 제외하고 추가합니다.
+                    /// 기존에 가져온 데이터와 새로 가져온 데이터를 비교하여 중복된 아이템은 제외하고 추가합니다.
                     let newMyYelloModels = data.votes.filter { myYello in
-                        // 기존 데이터에 이미 존재하는지 확인하여 중복된 경우 필터링
+                        /// 기존 데이터에 이미 존재하는지 확인하여 중복된 경우 필터링
                         !MyYelloListView.myYelloModelDummy.contains { $0.id == myYello.id }
                     }.map { myYello in
                         return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
                     }
                     
-                    // 새로운 데이터만 추가하도록 필터링하여 더미 데이터에 추가합니다.
+                    /// 새로운 데이터만 추가하도록 필터링하여 더미 데이터에 추가합니다.
                     MyYelloListView.myYelloModelDummy.append(contentsOf: newMyYelloModels.compactMap { $0 })
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                        self.myYelloTableView.reloadData()
-                        self.applySnapshot(animated: true) // 데이터 갱신 시 Diffable Data Source를 업데이트합니다.
-
+                        self.applySnapshot(animated: true)
                         self.fetchingMore = false
-//                    }
                     dump(data)
                     print("통신 성공")
                 default:
@@ -181,10 +168,9 @@ final class MyYelloListView: BaseView {
                 }
             }
         }
-//        applySnapshot(animated: true) // 데이터 갱신 시 Diffable Data Source를 업데이트합니다.
     }
     
-    // Diffable Data Source를 업데이트하는 함수를 추가합니다.
+    /// Diffable Data Source를 업데이트하는 함수
     func applySnapshot(animated: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Yello>()
         snapshot.appendSections([0])

@@ -44,7 +44,6 @@ final class MyYelloViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        MyYelloListView.myYelloModelDummy = []
     }
     
     // MARK: Layout Helpers
