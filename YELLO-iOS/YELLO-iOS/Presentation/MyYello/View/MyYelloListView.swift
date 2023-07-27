@@ -71,6 +71,8 @@ final class MyYelloListView: BaseView {
                     guard let defaultCell = tableView.dequeueReusableCell(withIdentifier: MyYelloDefaultTableViewCell.identifier, for: indexPath) as? MyYelloDefaultTableViewCell else { return UITableViewCell() }
                     
                     defaultCell.configureDefaultCell(MyYelloListView.myYelloModelDummy[indexPath.row])
+                    defaultCell.isRead = MyYelloListView.myYelloModelDummy[indexPath.row].isRead
+                    defaultCell.newView.isHidden = defaultCell.isRead
                     defaultCell.selectionStyle = .none
                     return defaultCell
                 } else {
@@ -218,6 +220,8 @@ extension MyYelloListView: UITableViewDataSource {
                 guard let defaultCell = myYelloTableView.dequeueReusableCell(withIdentifier: MyYelloDefaultTableViewCell.identifier, for: indexPath) as? MyYelloDefaultTableViewCell else { return UITableViewCell() }
                 
                 defaultCell.configureDefaultCell(MyYelloListView.myYelloModelDummy[indexPath.row])
+                defaultCell.isRead = MyYelloListView.myYelloModelDummy[indexPath.row].isRead
+                defaultCell.newView.isHidden = defaultCell.isRead
                 defaultCell.selectionStyle = .none
                 return defaultCell
             } else {

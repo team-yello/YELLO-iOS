@@ -57,13 +57,13 @@ extension MyFriendTableViewCell {
         
         nameLabel.do {
             $0.font = .boldSystemFont(ofSize: 18)
-            $0.setTextWithLineHeight(text: "정채은", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "", lineHeight: 24)
             $0.textColor = .white
         }
         
         schoolLabel.do {
             $0.font = .systemFont(ofSize: 11)
-            $0.setTextWithLineHeight(text: "이화여자대학교 융합콘텐츠학과 20학번", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "", lineHeight: 15)
             $0.textColor = .gray
         }
     }
