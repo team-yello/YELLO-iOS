@@ -109,6 +109,10 @@ final class MyYelloListView: BaseView {
         self.fetchingMore = false
         MyYelloListView.myYelloModelDummy = []
         self.myYello()
+        if self.fetchingMore == true {
+            print("기다리삼")
+            self.applySnapshot(animated: true)
+        }
         refresh.endRefreshing()
         print(MyYelloListView.myYelloModelDummy)
     }
