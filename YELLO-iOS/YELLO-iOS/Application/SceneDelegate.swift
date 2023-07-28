@@ -49,7 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         }
         self.window?.makeKeyAndVisible()
-        
     }
     
     /// 카카오 로그인
@@ -90,6 +89,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        guard let windowScene = scene as? UIWindowScene else { return }
+        guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
+        
+        // Save the class name of topViewController to UserDefaults
+        let className = "\(String(describing: type(of: topViewController)))"
+        print(className)
+        UserDefaults.standard.set(className, forKey: "lastViewController")
+        
     }
     
     
