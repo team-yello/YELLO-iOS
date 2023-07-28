@@ -28,6 +28,7 @@ struct KeychainHandler {
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: accessTokenKey)
+            setAcessToken(accessToken: newValue)
         }
     }
     
@@ -38,6 +39,7 @@ struct KeychainHandler {
         }
         set {
             KeychainWrapper.standard.set(newValue, forKey: refreshTokenKey)
+            setRefreshToken(refreshToken: newValue)
         }
     }
     

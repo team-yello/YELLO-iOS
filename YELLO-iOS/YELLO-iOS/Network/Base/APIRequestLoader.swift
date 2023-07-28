@@ -13,6 +13,7 @@ class APIRequestLoader<T: TargetType> {
     private let configuration: URLSessionConfiguration
     private let apiLogger: APIEventLogger
     private let session: Session
+    let interceptor = MyRequestInterceptor()
     
     init(
         configuration: URLSessionConfiguration = .default,
@@ -20,11 +21,9 @@ class APIRequestLoader<T: TargetType> {
     ) {
         self.configuration = configuration
         self.apiLogger = apiLogger
-        // Create an instance of MyRequestInterceptor
-        let interceptor = MyRequestInterceptor()
         
-        // Create Session with the interceptor
-        self.session = Session(configuration: configuration, interceptor: interceptor, eventMonitors: [apiLogger])
+        session = Session(configuration: configuration, interceptor: interceptor, eventMonitors: [apiLogger])
+        
     }
     
     func fetchData<M: Decodable>(
@@ -38,9 +37,21 @@ class APIRequestLoader<T: TargetType> {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let value = response.value else { return }
-                
                 let networkRequest = self.judgeStatus(by: statusCode, value, type: M.self)
                 completion(networkRequest)
+                
+                if statusCode == 401 {
+                    self.interceptor.refreshToken { [weak self] isSuccess in
+                        if isSuccess {
+                            // 토큰 갱신 성공하면 다시 fetchData를 호출하여 재시도
+                            self?.fetchData(target: target, responseData: responseData, completion: completion)
+                        } else {
+                            // 토큰 갱신 실패로 실패 처리
+                            completion(.failure)
+                        }
+                    }
+                    return
+                }
             case .failure:
                 completion(.networkErr)
             }
@@ -50,8 +61,9 @@ class APIRequestLoader<T: TargetType> {
     private func judgeStatus<M: Decodable>(by statusCode: Int, _ data: Data, type: M.Type) -> NetworkResult<M> {
         switch statusCode {
         case 200...299: return isValidData(data: data, type: M.self)
-        case 400...499: return isValidData(data: data, type: M.self)
+        case 402...499: return isValidData(data: data, type: M.self)
         case 500: return .serverErr
+        case 401: return .failure
         default: return .networkErr
         }
     }

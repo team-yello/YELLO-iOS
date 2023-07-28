@@ -7,7 +7,19 @@
 
 import Foundation
 
-// MARK: - KakaoLoginRequestDTO
+// MARK: - SignUpResponseDTO
 struct TokenRefreshResponseDTO: Codable {
-    let accessToken, refreshToken : String
+    let status: Int
+    let message: String
+    let data: DataClass
 }
+
+// MARK: - DataClass
+struct DataClass: Codable {
+    let accessToken, refreshToken: String
+}
+
+//// MARK: - KakaoLoginRequestDTO
+//struct TokenRefreshResponseDTO: Codable {
+//    let accessToken, refreshToken : String
+//}
