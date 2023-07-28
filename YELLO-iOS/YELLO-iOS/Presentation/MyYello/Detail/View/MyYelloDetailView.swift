@@ -40,7 +40,13 @@ final class MyYelloDetailView: BaseView {
     
     // MARK: Property
     weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
-    var isRead: Bool = false 
+    var isRead: Bool = false {
+        didSet {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                MyYelloListView.myYelloModelDummy[self.indexNumber].isRead = self.isRead
+            }
+        }
+    }
     var isKeywordUsed: Bool = false {
         didSet {
             if self.isKeywordUsed == true {
