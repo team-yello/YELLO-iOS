@@ -50,6 +50,9 @@ final class VotingStartViewController: BaseViewController {
         view.addSubview(animationView)
         
         getVotingAvailable()
+        
+        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -161,8 +164,8 @@ extension VotingStartViewController {
                         
                         let friendListCount = min(data.friendList.count, 4)
                         for i in 0..<friendListCount {
-                            friends.append(data.friendList[i].name + "\n@" + data.friendList[i].yelloId)
-                            friendsID.append(data.friendList[i].id)
+                            friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
+                            friendsID.append(data.friendList[i].friendId)
                         }
                         
                         var keywords = [String]()
