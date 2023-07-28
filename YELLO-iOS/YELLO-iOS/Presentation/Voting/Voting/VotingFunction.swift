@@ -102,19 +102,18 @@ extension VotingViewController {
     
     /// 다음 뷰컨을 지정하는 함수
     func setNextViewController() {
-        // pushCount가 10 이상이면 투표 끝난 것이므로 포인트뷰컨으로 push
-        if VotingViewController.pushCount >= 10 {
+        // 투표 끝나면 포인트뷰컨으로 push
+        if VotingViewController.pushCount > 8 {
+            VotingViewController.pushCount = 0
             let viewController = VotingPointViewController()
-            
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint
             viewController.votingPlusPoint = myPlusPoint
-            
             viewController.votingAnswer = votingAnswer
+            
             let previousData = loadUserData() ?? []
             let combinedData = previousData + votingAnswer
             saveUserData(combinedData)
-            
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             let viewController = VotingViewController()
@@ -127,6 +126,7 @@ extension VotingViewController {
             
             UIView.transition(with: self.navigationController!.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 // 전환 시 스르륵 바뀌는 애니메이션 적용
+                VotingViewController.pushCount += 1
                 self.navigationController?.pushViewController(viewController, animated: false)
             })
         }
@@ -175,14 +175,6 @@ extension VotingViewController: UINavigationControllerDelegate {
                 imageView.image = nil
             }
         }
-
-        // 현재 뷰 컨트롤러가 자기 자신인 경우에만 pushCount를 증가
-        if viewController == self {
-            VotingViewController.pushCount += 1
-        } else {
-            // 다른 뷰 컨트롤러로 이동하는 경우 pushCount를 초기화
-            VotingViewController.pushCount = 0
-        }
     }
 }
 
@@ -204,13 +196,13 @@ extension VotingViewController {
         let nameTexts = [nameTextOne, nameTextTwo, nameTextThree, nameTextFour]
         
         if sender == originView.nameOneButton {
-            friendID = votingList[VotingViewController.pushCount - 1].friendId[0]
+            friendID = votingList[VotingViewController.pushCount].friendId[0]
         } else if sender == originView.nameTwoButton {
-            friendID = votingList[VotingViewController.pushCount - 1].friendId[1]
+            friendID = votingList[VotingViewController.pushCount].friendId[1]
         } else if sender == originView.nameThreeButton {
-            friendID = votingList[VotingViewController.pushCount - 1].friendId[2]
+            friendID = votingList[VotingViewController.pushCount].friendId[2]
         } else {
-            friendID = votingList[VotingViewController.pushCount - 1].friendId[3]
+            friendID = votingList[VotingViewController.pushCount].friendId[3]
         }
         
         for (index, button) in nameButtons.enumerated() {
@@ -251,13 +243,13 @@ extension VotingViewController {
         let keywordButtons = [originView.keywordOneButton, originView.keywordTwoButton, originView.keywordThreeButton, originView.keywordFourButton]
 
         if sender == originView.keywordOneButton {
-            keyword = votingList[VotingViewController.pushCount - 1].keywordList[0]
+            keyword = votingList[VotingViewController.pushCount].keywordList[0]
         } else if sender == originView.keywordTwoButton {
-            keyword = votingList[VotingViewController.pushCount - 1].keywordList[1]
+            keyword = votingList[VotingViewController.pushCount].keywordList[1]
         } else if sender == originView.keywordThreeButton {
-            keyword = votingList[VotingViewController.pushCount - 1].keywordList[2]
+            keyword = votingList[VotingViewController.pushCount].keywordList[2]
         } else {
-            keyword = votingList[VotingViewController.pushCount - 1].keywordList[3]
+            keyword = votingList[VotingViewController.pushCount].keywordList[3]
         }
         
         for button in keywordButtons {

@@ -46,7 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 navigationController.navigationBar.isHidden = true
                 self.window?.rootViewController = navigationController
             }
-            
         }
         self.window?.makeKeyAndVisible()
     }
@@ -67,7 +66,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"
         UserDefaults.standard.set(className, forKey: "lastViewController")
-        VotingViewController.pushCount = VotingViewController.pushCount - 1
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -86,20 +84,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
         guard let windowScene = scene as? UIWindowScene else { return }
         guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
         
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"
-        print(className)
         UserDefaults.standard.set(className, forKey: "lastViewController")
-        
     }
-    
-    
 }
 
 func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {

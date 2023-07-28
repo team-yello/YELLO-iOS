@@ -89,11 +89,11 @@ final class VotingViewController: BaseViewController {
                 
                 DispatchQueue.global(qos: .background).async {
                     let existingPoints: Int = UserDefaults.standard.integer(forKey: "UserPlusPoint")
-                    let newPoints = existingPoints + self.votingList[VotingViewController.pushCount - 1].questionPoint
+                    let newPoints = existingPoints + self.votingList[VotingViewController.pushCount].questionPoint
                     UserDefaults.standard.set(newPoints, forKey: "UserPlusPoint")
                 }
                 
-                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount - 1].questionId, keywordName: keyword, colorIndex: VotingViewController.pushCount - 1))
+                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount].questionId, keywordName: keyword, colorIndex: VotingViewController.pushCount))
             }
         }
     }
@@ -110,10 +110,10 @@ final class VotingViewController: BaseViewController {
                     let third = data[2].friendName + "\n@" + data[2].friendYelloId
                     let fourth = data[3].friendName + "\n@" + data[3].friendYelloId
                     
-                    self.votingList[VotingViewController.pushCount - 1].friendId[0] = data[0].friendId
-                    self.votingList[VotingViewController.pushCount - 1].friendId[1] = data[1].friendId
-                    self.votingList[VotingViewController.pushCount - 1].friendId[2] = data[2].friendId
-                    self.votingList[VotingViewController.pushCount - 1].friendId[3] = data[3].friendId
+                    self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
+                    self.votingList[VotingViewController.pushCount].friendId[1] = data[1].friendId
+                    self.votingList[VotingViewController.pushCount].friendId[2] = data[2].friendId
+                    self.votingList[VotingViewController.pushCount].friendId[3] = data[3].friendId
                     
                     self.setNameText(first: first, second: second, third: third, fourth: fourth)
                 
