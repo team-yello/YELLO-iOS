@@ -75,7 +75,7 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: "", lineHeight: 20)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
@@ -164,6 +164,13 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         } else {
             nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
         }
+        
+        if model.vote.keywordHead == nil {
+            keywordLabel.snp.makeConstraints {
+                $0.leading.equalToSuperview()
+            }
+        }
+        
         keywordHeadLabel.text = (model.vote.keywordHead ?? "")
         keywordLabel.text = model.vote.keyword
         keywordFootLabel.text = (model.vote.keywordFoot ?? "")
