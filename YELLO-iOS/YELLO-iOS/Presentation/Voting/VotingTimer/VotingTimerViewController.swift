@@ -53,6 +53,10 @@ final class VotingTimerViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        getCreatedAt()
     }
     
     deinit {
@@ -63,9 +67,6 @@ final class VotingTimerViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
-        originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
-        getCreatedAt()
         tabBarController?.tabBar.isHidden = false
     }
     

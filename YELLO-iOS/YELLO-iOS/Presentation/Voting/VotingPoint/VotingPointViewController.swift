@@ -118,6 +118,7 @@ final class VotingPointViewController: BaseViewController {
 
     @objc
     func yellowButtonClicked() {
+        originView.yellowButton.isEnabled = false
         guard let loadedUserArray = loadUserData() else { return }
         let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: loadedUserArray, totalPoint: votingPlusPoint)
         NetworkService.shared.votingService.postVotingAnswerList(requestDTO: requestDTO) { result in
@@ -131,10 +132,11 @@ final class VotingPointViewController: BaseViewController {
                 return
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            let viewController = VotingTimerViewController()
-            viewController.myPoint = self.myPoint
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+            let viewController = YELLOTabBarController()
             self.navigationController?.pushViewController(viewController, animated: true)
+            self.originView.yellowButton.isEnabled = true
         }
     }
 }
