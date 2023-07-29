@@ -30,6 +30,8 @@ final class ProfileView: UIView {
     var myYelloCount = 0
     var profileFriendPage: Int = 0
     
+    var dataSource: UITableViewDiffableDataSource<Int, ProfileFriendResponseDetail>!
+    
     var myProfileFriendModelDummy: [ProfileFriendResponseDetail] = [] 
     
     // MARK: Component
@@ -57,6 +59,29 @@ final class ProfileView: UIView {
 
 // MARK: - extension
 extension ProfileView {
+    
+    private func configureMyProfileDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, ProfileFriendResponseDetail>(tableView: myFriendTableView) { [weak self] (tableView, indexPath, profileFriend) -> UITableViewCell? in
+                guard let self = self else {
+                    return UITableViewCell()
+                }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFriendTableViewCell.identifier, for: indexPath) as? MyFriendTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            if tableView.isLast(for: indexPath) {
+                DispatchQueue.main.async {
+                    cell.addAboveTheBottomBorderWithColor(color: .black)
+                }
+            }
+            cell.selectionStyle = .none
+            if self.myProfileFriendModelDummy.isEmpty {
+                return cell
+            }
+            cell.configureMyProfileFriendCell(self.myProfileFriendModelDummy[indexPath.row])
+            return cell
+        }
+    }
     
     // MARK: Layout Helpers
     private func setUI() {
@@ -92,6 +117,7 @@ extension ProfileView {
             $0.isHidden = true
             $0.layer.applyShadow(color: .black, alpha: 0.6, x: 0, y: 0, blur: 8)
         }
+        configureMyProfileDataSource()
     }
     
     private func setLayout() {
@@ -125,13 +151,20 @@ extension ProfileView {
     }
     
     private func setDelegate() {
-        myFriendTableView.dataSource = self
+        myFriendTableView.dataSource = dataSource
         myFriendTableView.delegate = self
     }
     
     // MARK: Custom Function
     private func updateButtonVisibility() {
         topButton.isHidden = isButtonHidden
+    }
+    
+    func applySnapshot(animated: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, ProfileFriendResponseDetail>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(myProfileFriendModelDummy, toSection: 0)
+        dataSource.apply(snapshot, animatingDifferences: animated)
     }
     
     // MARK: Objc Function
@@ -141,9 +174,11 @@ extension ProfileView {
         self.fetchingMore = false
         self.myProfileFriendModelDummy = []
         self.profileFriend()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            refresh.endRefreshing()
+        if self.fetchingMore == true {
+            print("기다리삼")
+            self.applySnapshot(animated: true)
         }
+        refresh.endRefreshing()
         print(self.myProfileFriendModelDummy)
     }
     
@@ -153,6 +188,14 @@ extension ProfileView {
     
     private func presentModal(index: Int) {
         handleFriendCellDelegate?.presentModal(index: index)
+    }
+    
+    func deleteFriend(at index: Int) {
+        // 특정 위치의 행 삭제
+        myProfileFriendModelDummy.remove(at: index)
+        
+        // 스냅샷에 삭제된 행 적용
+        applySnapshot()
     }
     
     // MARK: - Network
@@ -193,6 +236,7 @@ extension ProfileView {
                     }
                     
                     self.myProfileFriendModelDummy.append(contentsOf: friendModels)
+                    self.applySnapshot(animated: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         self.myFriendTableView.reloadData()
                         self.fetchingMore = false
