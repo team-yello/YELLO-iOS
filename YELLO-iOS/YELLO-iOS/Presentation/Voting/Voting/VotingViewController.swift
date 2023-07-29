@@ -11,8 +11,15 @@ import SnapKit
 import Then
 
 final class VotingViewController: BaseViewController {
-    static var pushCount = 0
-    var votingList: [VotingData?] = []
+    static var pushCount: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "VotingViewController.pushCount")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "VotingViewController.pushCount")
+        }
+    }
+    var votingList: [VotingData] = []
     var votingAnswer: [VoteAnswerList] = []
     var friendID: Int = 0
     var keyword: String = ""
@@ -79,10 +86,14 @@ final class VotingViewController: BaseViewController {
                 self.setNextViewController()
             }
             if VotingViewController.pushCount <= 10 {
-                myPoint += votingList[VotingViewController.pushCount - 1]?.questionPoint ?? 0
-                votingPlusPoint += votingList[VotingViewController.pushCount - 1]?.questionPoint ?? 0
                 
-                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount - 1]?.questionId ?? 0, keywordName: keyword, colorIndex: VotingViewController.pushCount - 1))
+                DispatchQueue.global(qos: .background).async {
+                    let existingPoints: Int = UserDefaults.standard.integer(forKey: "UserPlusPoint")
+                    let newPoints = existingPoints + self.votingList[VotingViewController.pushCount].questionPoint
+                    UserDefaults.standard.set(newPoints, forKey: "UserPlusPoint")
+                }
+                
+                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount].questionId, keywordName: keyword, colorIndex: VotingViewController.pushCount))
             }
         }
     }
@@ -99,10 +110,10 @@ final class VotingViewController: BaseViewController {
                     let third = data[2].friendName + "\n@" + data[2].friendYelloId
                     let fourth = data[3].friendName + "\n@" + data[3].friendYelloId
                     
-                    self.votingList[VotingViewController.pushCount - 1]?.friendId[0] = data[0].friendId
-                    self.votingList[VotingViewController.pushCount - 1]?.friendId[1] = data[1].friendId
-                    self.votingList[VotingViewController.pushCount - 1]?.friendId[2] = data[2].friendId
-                    self.votingList[VotingViewController.pushCount - 1]?.friendId[3] = data[3].friendId
+                    self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
+                    self.votingList[VotingViewController.pushCount].friendId[1] = data[1].friendId
+                    self.votingList[VotingViewController.pushCount].friendId[2] = data[2].friendId
+                    self.votingList[VotingViewController.pushCount].friendId[3] = data[3].friendId
                     
                     self.setNameText(first: first, second: second, third: third, fourth: fourth)
                 
@@ -131,6 +142,9 @@ final class VotingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Color.shared.restoreFromUserDefaults()
+        votingList = loadVotingData() ?? []
+        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         setBackground()
         setBackgroundColor()
         navigationController?.delegate = self
@@ -145,10 +159,10 @@ final class VotingViewController: BaseViewController {
     // MARK: - Private Function
     
     private func setBackground() {
-        let maxNameLength = votingList[VotingViewController.pushCount]?.friendList.compactMap { $0.components(separatedBy: "\n").first?.count }.max() ?? 0
+        let maxNameLength = votingList[VotingViewController.pushCount].friendList.compactMap { $0.components(separatedBy: "\n").first?.count }.max() ?? 0
         let nameLength = (maxNameLength * 14).adjusted + 28.adjusted
         
-        let maxKeywordLength = votingList[VotingViewController.pushCount]?.keywordList.compactMap { $0.count }.max() ?? 0
+        let maxKeywordLength = votingList[VotingViewController.pushCount].keywordList.compactMap { $0.count }.max() ?? 0
         let keywordLength = (maxKeywordLength * 14).adjusted + 28.adjusted
         
         nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: nameLength, height: 34.adjusted))
@@ -192,8 +206,9 @@ final class VotingViewController: BaseViewController {
     private func setBackgroundColor() {
         if VotingViewController.pushCount == 0 {
             Color.shared.startIndex = Int.random(in: 0...11)
-            Color.shared.selectedTopColors = selectTopColors(startIndex: Color.shared.startIndex)
-            Color.shared.selectedBottomColors = selectBottomColors(startIndex: Color.shared.startIndex)
+            Color.shared.selectedTopColors = selectTopColors(startIndex: Color.shared.startIndex ?? 0)
+            Color.shared.selectedBottomColors = selectBottomColors(startIndex: Color.shared.startIndex ?? 0)
+            Color.shared.saveToUserDefaults()
         }
     }
     

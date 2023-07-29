@@ -22,6 +22,6 @@ struct Question: Decodable {
 }
 
 struct FriendList: Decodable {
-    let id: Int
-    let yelloId, name: String
+    let friendId: Int
+    let friendYelloId, friendName: String
 }

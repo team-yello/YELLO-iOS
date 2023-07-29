@@ -98,11 +98,23 @@ func selectBottomColors(startIndex: Int) -> [String] {
 }
 
 class Color {
-    var startIndex = 0
-    var selectedTopColors: [String] = []
-    var selectedBottomColors: [String] = []
-
-    static let shared = Color()
+    static var shared = Color()
     
-    private init() {}
+    var startIndex: Int?
+    var selectedTopColors: [String]? // UIColor를 hex string으로 변환하여 저장
+    var selectedBottomColors: [String]? // UIColor를 hex string으로 변환하여 저장
+    
+    func saveToUserDefaults() {
+        let defaults = UserDefaults.standard
+        defaults.set(startIndex, forKey: "Color.startIndex")
+        defaults.set(selectedTopColors, forKey: "Color.selectedTopColors")
+        defaults.set(selectedBottomColors, forKey: "Color.selectedBottomColors")
+    }
+    
+    func restoreFromUserDefaults() {
+        let defaults = UserDefaults.standard
+        startIndex = defaults.integer(forKey: "Color.startIndex")
+        selectedTopColors = defaults.array(forKey: "Color.selectedTopColors") as? [String]
+        selectedBottomColors = defaults.array(forKey: "Color.selectedBottomColors") as? [String]
+    }
 }

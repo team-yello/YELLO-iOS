@@ -32,7 +32,10 @@ final class MyYelloViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
+        self.myYelloView.myYelloListView.applySnapshot(animated: true)
+        if MyYelloListView.myYelloModelDummy.isEmpty == false {
+            self.myYelloView.myYelloListView.myYelloTableView.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +44,6 @@ final class MyYelloViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        MyYelloListView.myYelloModelDummy = []
     }
     
     // MARK: Layout Helpers
@@ -86,12 +88,15 @@ extension MyYelloViewController {
 // MARK: HandleMyYelloCellDelegate
 extension MyYelloViewController: HandleMyYelloCellDelegate {
     func pushMyYelloDetailViewController(index: Int) {
-        let myYelloDetailViewController = MyYelloDetailViewController()
-        navigationController?.pushViewController(myYelloDetailViewController, animated: true)
-        myYelloView.myYelloListView.indexNumber = index
-        myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
-        myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
-        myYelloDetailViewController.myYelloDetailView.indexNumber = index
+            let myYelloDetailViewController = MyYelloDetailViewController()
+            self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.myYelloView.myYelloListView.indexNumber = index
+            myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
+            myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
+            myYelloDetailViewController.myYelloDetailView.indexNumber = index
+        }
     }
 }
 

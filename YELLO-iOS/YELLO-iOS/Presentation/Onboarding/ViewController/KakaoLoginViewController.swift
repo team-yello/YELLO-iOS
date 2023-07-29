@@ -69,6 +69,7 @@ class KakaoLoginViewController: BaseViewController {
                             } else if data.status == 201 {
                                 guard let data = data.data else { return }
                                 KeychainHandler.shared.accessToken = data.accessToken
+                                KeychainHandler.shared.refreshToken = data.refreshToken
                                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
                             }
@@ -118,6 +119,7 @@ class KakaoLoginViewController: BaseViewController {
                             } else if data.status == 201 {
                                 guard let data = data.data else { return }
                                 KeychainHandler.shared.accessToken = data.accessToken
+                                KeychainHandler.shared.refreshToken = data.refreshToken
                                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
                                 self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
                             }

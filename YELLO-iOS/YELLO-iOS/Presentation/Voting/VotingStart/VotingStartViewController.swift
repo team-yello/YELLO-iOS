@@ -15,7 +15,6 @@ final class VotingStartViewController: BaseViewController {
     
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
-    private var votingList: [VotingData?] = []
     var myPoint = 0
     
     override func loadView() {
@@ -25,7 +24,8 @@ final class VotingStartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getPoint()
+        originView.yellowButton.isEnabled = false
+        getVotingAvailable()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
@@ -49,10 +49,11 @@ final class VotingStartViewController: BaseViewController {
         animationView.play()
         view.addSubview(animationView)
         
-        tabBarController?.tabBar.isHidden = false
-        
         getVotingAvailable()
-        getVotingList()
+        
+        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -116,23 +117,35 @@ final class VotingStartViewController: BaseViewController {
     @objc
     func yellowButtonClicked() {
         let viewController = VotingViewController()
-        viewController.votingList = votingList
-        viewController.myPoint = myPoint
+        viewController.votingList = loadVotingData() ?? []
+        viewController.myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
 
 extension VotingStartViewController {
-    func getPoint() {
+    func getVotingAvailable() {
         NetworkService.shared.votingService.getVotingAvailable {
             result in
             switch result {
             case .success(let data):
-                guard let data = data.data else { return }
-                let point = data.point
-                self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
-                self.myPoint = point
+                let status = data.status
+                if status == 200 {
+                    guard let data = data.data else { return }
+                    if data.isPossible {
+                        let point = data.point
+                        self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
+                        self.myPoint = point
+                        UserDefaults.standard.set(point, forKey: "UserPoint")
+                        self.originView.yellowButton.isEnabled = false
+                        self.getVotingList()
+                    }
+                }
+                if status == 400 {
+                    let viewController = VotingLockedViewController()
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
             default:
                 print("network failure")
                 return
@@ -144,22 +157,27 @@ extension VotingStartViewController {
         NetworkService.shared.votingService.getVotingList { result in
             switch result {
             case .success(let data):
-                guard let data = data.data else { return }
-                let votingList = data.map { data -> VotingData? in
-                    var friends = [String]()
-                    var friendsID = [Int]()
-                    for i in 0...3 {
-                        friends.append(data.friendList[i].name + "\n@" + data.friendList[i].yelloId)
-                        friendsID.append(data.friendList[i].id)
+                    guard let data = data.data else { return }
+                    let votingList = data.map { data -> VotingData in
+                        var friends = [String]()
+                        var friendsID = [Int]()
+                        
+                        let friendListCount = min(data.friendList.count, 4)
+                        for i in 0..<friendListCount {
+                            friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
+                            friendsID.append(data.friendList[i].friendId)
+                        }
+                        
+                        var keywords = [String]()
+                        let keywordListCount = min(data.keywordList.count, 4)
+                        for i in 0..<keywordListCount {
+                            keywords.append(data.keywordList[i])
+                        }
+                        
+                        return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
                     }
-                    var keywords = [String]()
-                    for i in 0...3 {
-                        keywords.append(data.keywordList[i])
-                    }
-                    return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
-                }
-                self.votingList = votingList
-                
+                    saveVotingData(votingList)
+                    self.originView.yellowButton.isEnabled = true
             default:
                 print("network failure")
                 return
@@ -167,21 +185,4 @@ extension VotingStartViewController {
         }
     }
     
-    func getVotingAvailable() {
-        NetworkService.shared.votingService.getVotingAvailable {
-            result in
-            print(result)
-            switch result {
-            case .success(let data):
-                let status = data.status
-                if status == 400 {
-                    let viewController = VotingLockedViewController()
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                }
-            default:
-                print("network failure")
-                return
-            }
-        }
-    }
 }

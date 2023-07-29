@@ -25,8 +25,12 @@ final class VotingPointViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
-        originView.topOfMyPoint.text = String(myPoint)
-        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        
+        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        votingPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
+        
+        originView.topOfMyPoint.text = String(myPoint + votingPlusPoint)
+        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint + votingPlusPoint), lineHeight: 22)
         originView.plusPoint.setTextWithLineHeight(text: "+ " + String(votingPlusPoint) + " Point", lineHeight: 22)
         originView.plusPoint.asColor(targetString: String(votingPlusPoint), color: .yelloMain500)
     }
@@ -69,7 +73,7 @@ final class VotingPointViewController: BaseViewController {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
-        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
@@ -114,6 +118,7 @@ final class VotingPointViewController: BaseViewController {
 
     @objc
     func yellowButtonClicked() {
+        originView.yellowButton.isEnabled = false
         guard let loadedUserArray = loadUserData() else { return }
         let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: loadedUserArray, totalPoint: votingPlusPoint)
         NetworkService.shared.votingService.postVotingAnswerList(requestDTO: requestDTO) { result in
@@ -127,11 +132,11 @@ final class VotingPointViewController: BaseViewController {
                 return
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            let viewController = VotingTimerViewController()
-            viewController.myPoint = self.myPoint
-            viewController.votingPlusPoint = self.votingPlusPoint
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let viewController = YELLOTabBarController()
             self.navigationController?.pushViewController(viewController, animated: true)
+            self.originView.yellowButton.isEnabled = true
         }
     }
 }

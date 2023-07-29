@@ -35,6 +35,11 @@ final class MyYelloDetailViewController: BaseViewController {
         setAddTarget()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     // MARK: Layout Helpers
     override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -81,16 +86,11 @@ extension MyYelloDetailViewController {
             myYelloDetailView.instagramButton.setTitleColor(.black, for: .normal)
         }
         
-        let gradientView = CAGradientLayer()
-        gradientView.frame = view.bounds
-        if dummy.isEmpty {
-            gradientView.colors = [UIColor.black.cgColor, UIColor.black.cgColor]
-        }
-        gradientView.colors = [dummy[colorIndex].backgroundColorTop.cgColor, dummy[colorIndex].backgroundColorBottom.cgColor]
-        
-        gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
-        myYelloDetailView.layer.insertSublayer(gradientView, at: 0)
+        let gradientView = UIView(frame: view.bounds)
+        gradientView.applyGradientBackground(
+            topColor: UIColor(hex: Color.shared.selectedTopColors?[colorIndex] ?? "6437FF"),
+            bottomColor: UIColor(hex: Color.shared.selectedBottomColors?[colorIndex] ?? "A892FF"))
+        myYelloDetailView.insertSubview(gradientView, at: 0)
     }
     
     // MARK: - Network
@@ -102,6 +102,12 @@ extension MyYelloDetailViewController {
                 
                 self.colorIndex = data.colorIndex
                 self.myYelloDetailView.currentPoint = data.currentPoint
+                self.myYelloDetailView.detailSenderView.isHidden = false
+                self.myYelloDetailView.detailKeywordView.isHidden = false
+                self.myYelloDetailView.genderLabel.isHidden = false
+                self.myYelloDetailView.instagramButton.isHidden = false
+                self.myYelloDetailView.keywordButton.isHidden = false
+                self.myYelloDetailView.senderButton.isHidden = false
                 self.setBackgroundView()
                 
                 if data.senderGender == "MALE" {

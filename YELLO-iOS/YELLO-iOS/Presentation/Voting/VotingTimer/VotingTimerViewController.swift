@@ -15,7 +15,6 @@ final class VotingTimerViewController: BaseViewController {
     var timer: Timer?
     
     var myPoint = 0
-    var votingPlusPoint = 0
     
     var remainingSeconds: TimeInterval? {
         didSet {
@@ -54,6 +53,10 @@ final class VotingTimerViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        getCreatedAt()
     }
     
     deinit {
@@ -64,7 +67,6 @@ final class VotingTimerViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getCreatedAt()
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -176,7 +178,6 @@ final class VotingTimerViewController: BaseViewController {
         invitingView = InvitingView()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         invitingView.updateText(title: StringLiterals.Inviting.unLockedTitle, text: StringLiterals.Inviting.unLockedText, targetString: "바로 투표")
         viewController.view.addSubview(invitingView)
     }

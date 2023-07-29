@@ -16,7 +16,7 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
-    private var startStatus: Int = 0
+    private var startStatus: Int = 1
     
     // MARK: - Life Cycle
     

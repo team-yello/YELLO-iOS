@@ -21,6 +21,11 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
     let titleLabel = UILabel()
     let newView = UIView()
     let timeLabel = UILabel()
+    var isRead: Bool = false {
+        didSet {
+            newView.isHidden = isRead
+        }
+    }
     
     // MARK: - Function
     // MARK: LifeCycle

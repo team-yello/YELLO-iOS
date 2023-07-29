@@ -64,12 +64,13 @@ class OnboardingEndViewController: BaseViewController {
     @objc func yelloButtondidTap() {
         /// 온보딩 이후 rootViewController 변경
         postUserInfo()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        self.baseView.goToYelloButton.isEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let yelloTabBarController = YELLOTabBarController()
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-           sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
+            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
+            self.baseView.goToYelloButton.isEnabled = true
         }
-        
     }
     
 }
