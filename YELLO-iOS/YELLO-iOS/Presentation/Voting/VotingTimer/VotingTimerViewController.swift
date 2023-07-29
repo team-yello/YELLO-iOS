@@ -23,6 +23,7 @@ final class VotingTimerViewController: BaseViewController {
             }
             if remainingSeconds == 0 {
                 let viewController = VotingStartViewController()
+                viewController.myPoint = myPoint
                 self.navigationController?.pushViewController(viewController, animated: false)
             }
         }
@@ -256,6 +257,7 @@ extension VotingTimerViewController {
                 
                 if data.isPossible {
                     let viewController = VotingStartViewController()
+                    viewController.myPoint = self.myPoint
                     self.navigationController?.pushViewController(viewController, animated: false)
                 }
                 
