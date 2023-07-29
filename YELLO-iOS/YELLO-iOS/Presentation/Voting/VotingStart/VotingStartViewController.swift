@@ -15,7 +15,6 @@ final class VotingStartViewController: BaseViewController {
     
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
-    private var votingList: [VotingData?] = []
     var myPoint = 0
     
     override func loadView() {
@@ -51,6 +50,9 @@ final class VotingStartViewController: BaseViewController {
         view.addSubview(animationView)
         
         getVotingAvailable()
+        
+        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -115,8 +117,8 @@ final class VotingStartViewController: BaseViewController {
     @objc
     func yellowButtonClicked() {
         let viewController = VotingViewController()
-        viewController.votingList = votingList
-        viewController.myPoint = myPoint
+        viewController.votingList = loadVotingData() ?? []
+        viewController.myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -135,6 +137,7 @@ extension VotingStartViewController {
                         let point = data.point
                         self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
                         self.myPoint = point
+                        UserDefaults.standard.set(point, forKey: "UserPoint")
                         self.originView.yellowButton.isEnabled = false
                         self.getVotingList()
                     }
@@ -155,14 +158,14 @@ extension VotingStartViewController {
             switch result {
             case .success(let data):
                     guard let data = data.data else { return }
-                    let votingList = data.map { data -> VotingData? in
+                    let votingList = data.map { data -> VotingData in
                         var friends = [String]()
                         var friendsID = [Int]()
                         
                         let friendListCount = min(data.friendList.count, 4)
                         for i in 0..<friendListCount {
-                            friends.append(data.friendList[i].name + "\n@" + data.friendList[i].yelloId)
-                            friendsID.append(data.friendList[i].id)
+                            friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
+                            friendsID.append(data.friendList[i].friendId)
                         }
                         
                         var keywords = [String]()
@@ -173,7 +176,7 @@ extension VotingStartViewController {
                         
                         return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
                     }
-                    self.votingList = votingList
+                    saveVotingData(votingList)
                     self.originView.yellowButton.isEnabled = true
             default:
                 print("network failure")
