@@ -109,20 +109,19 @@ extension VotingViewController {
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint
             viewController.votingPlusPoint = myPlusPoint
-            viewController.votingAnswer = votingAnswer
-            
             let previousData = loadUserData() ?? []
             let combinedData = previousData + votingAnswer
             saveUserData(combinedData)
+            print(combinedData)
+
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
-            viewController.votingAnswer = votingAnswer
-            
             let previousData = loadUserData() ?? []
             let combinedData = previousData + votingAnswer
             saveUserData(combinedData)
+            print(combinedData)
             
             UIView.transition(with: self.navigationController!.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 // 전환 시 스르륵 바뀌는 애니메이션 적용
