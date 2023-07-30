@@ -86,17 +86,11 @@ extension MyYelloDetailViewController {
             myYelloDetailView.instagramButton.setTitleColor(.black, for: .normal)
         }
         
-        let gradientView = CAGradientLayer()
-        gradientView.frame = view.bounds
-        if dummy.isEmpty {
-            gradientView.colors = [UIColor(hex: "6437FF"), UIColor(hex: "A892FF")]
-        } else {
-                gradientView.colors = [self.dummy[self.colorIndex].backgroundColorTop.cgColor, self.dummy[self.colorIndex].backgroundColorBottom.cgColor]
-        }
-        
-        gradientView.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientView.endPoint = CGPoint(x: 1.0, y: 1.0)
-        myYelloDetailView.layer.insertSublayer(gradientView, at: 0)
+        let gradientView = UIView(frame: view.bounds)
+        gradientView.applyGradientBackground(
+            topColor: UIColor(hex: Color.shared.selectedTopColors?[colorIndex] ?? "6437FF"),
+            bottomColor: UIColor(hex: Color.shared.selectedBottomColors?[colorIndex] ?? "A892FF"))
+        myYelloDetailView.insertSubview(gradientView, at: 0)
     }
     
     // MARK: - Network
