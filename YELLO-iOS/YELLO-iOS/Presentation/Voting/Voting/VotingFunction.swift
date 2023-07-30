@@ -112,8 +112,6 @@ extension VotingViewController {
             let previousData = loadUserData() ?? []
             let combinedData = previousData + votingAnswer
             saveUserData(combinedData)
-            print(combinedData)
-
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             let viewController = VotingViewController()
