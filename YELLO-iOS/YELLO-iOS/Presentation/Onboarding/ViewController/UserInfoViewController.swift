@@ -16,6 +16,8 @@ class UserInfoViewController: OnboardingBaseViewController {
     lazy var isIdDuplicate = false
     var isCheckingDuplicate = false
     
+    let maxLength = 20
+    
     // MARK: Component
     private let baseView = UserInfoView()
     
@@ -58,8 +60,13 @@ class UserInfoViewController: OnboardingBaseViewController {
     
     // MARK: Custom Function
     func setDelegate() {
+        NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(textDidChange(_:)),
+                                                       name: UITextField.textDidChangeNotification,
+                                               object: baseView.idTextField.textField)
         baseView.idTextField.textField.delegate = self
         baseView.nameTextField.textField.delegate = self
+        
     }
     
     // MARK: Custom Function
@@ -137,6 +144,24 @@ class UserInfoViewController: OnboardingBaseViewController {
         User.shared.name = name
         User.shared.yelloId = id
     }
+    
+    @objc private func textDidChange(_ notification: Notification) {
+            if let textField = notification.object as? UITextField {
+                if let text = textField.text {
+                    
+                    if text.count > maxLength {
+                        textField.resignFirstResponder()
+                    }
+                    
+                    // 초과되는 텍스트 제거
+                    if text.count >= maxLength {
+                        let index = text.index(text.startIndex, offsetBy: maxLength)
+                        let newString = text[text.startIndex..<index]
+                        textField.text = String(newString)
+                    }
+                }
+            }
+        }
 
 }
 
@@ -154,6 +179,17 @@ extension UserInfoViewController: UITextFieldDelegate {
             idTextField.setButtonState(state: .cancel)
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            guard let text = textField.text else {return false}
+            
+            // 최대 글자수 이상을 입력한 이후에는 중간에 다른 글자를 추가할 수 없게끔 작동
+            if text.count >= maxLength && range.length == 0 && range.location < maxLength {
+                return false
+            }
+            
+            return true
+        }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
