@@ -152,7 +152,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         keywordFootLabel.snp.makeConstraints {
-            $0.bottom.equalTo(keywordHeadLabel)
+            $0.bottom.equalTo(keywordLabel)
             $0.leading.equalTo(keywordLabel.snp.trailing).inset(-2.adjusted)
         }
         
@@ -199,6 +199,9 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             keywordLabel.snp.makeConstraints {
                 $0.leading.equalToSuperview()
             }
+            keywordHeadLabel.isHidden = true
+        } else {
+            keywordHeadLabel.isHidden = false
         }
         
         keywordHeadLabel.text = model.vote.keywordHead ?? ""
