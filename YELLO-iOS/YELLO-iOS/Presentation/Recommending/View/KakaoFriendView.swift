@@ -60,6 +60,10 @@ extension KakaoFriendView {
     private func setStyle() {
         self.backgroundColor = .black
         
+        inviteBannerView.do {
+            $0.isHidden = true
+        }
+        
         refreshControl.do {
             kakaoFriendTableView.refreshControl = $0
             $0.tintColor = .grayscales400

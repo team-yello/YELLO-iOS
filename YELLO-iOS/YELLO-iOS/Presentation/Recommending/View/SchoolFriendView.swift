@@ -59,6 +59,10 @@ extension SchoolFriendView {
     private func setStyle() {
         self.backgroundColor = .black
         
+        inviteBannerView.do {
+            $0.isHidden = true
+        }
+        
         refreshControl.do {
             schoolFriendTableView.refreshControl = $0
             $0.tintColor = .grayscales400
