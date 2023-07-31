@@ -262,9 +262,9 @@ extension KakaoFriendView {
             }
         }
     }
-    
+
     func kakaoFriends() {
-        TalkApi.shared.friends {(friends, error) in
+        TalkApi.shared.friends(limit: 100) {(friends, error) in
             if let error = error {
                 print(error)
             } else {

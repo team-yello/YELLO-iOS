@@ -126,14 +126,15 @@ final class VotingPointViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 dump(data)
-
+                UserDefaults.standard.removeObject(forKey: "UserDataKey")
+                UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
             default:
                 print("network failure")
                 return
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             let viewController = YELLOTabBarController()
             self.navigationController?.pushViewController(viewController, animated: true)
             self.originView.yellowButton.isEnabled = true

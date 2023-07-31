@@ -87,6 +87,8 @@ extension MyYelloDetailViewController {
         }
         
         let gradientView = UIView(frame: view.bounds)
+        Color.shared.selectedTopColors = selectTopColors(startIndex: 0)
+        Color.shared.selectedBottomColors = selectBottomColors(startIndex: 0)
         gradientView.applyGradientBackground(
             topColor: UIColor(hex: Color.shared.selectedTopColors?[colorIndex] ?? "6437FF"),
             bottomColor: UIColor(hex: Color.shared.selectedBottomColors?[colorIndex] ?? "A892FF"))
