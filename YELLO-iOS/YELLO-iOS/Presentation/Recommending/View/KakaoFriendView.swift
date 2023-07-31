@@ -17,7 +17,6 @@ final class KakaoFriendView: UIView {
     // MARK: Property
     var fetchingMore = false
     var isFinishPaging = false
-    private var initialKakaoDataCount = 10
     var kakaoPage: Int = -1
     var kakaoFriendCount: Int = 0 {
         didSet {
@@ -25,6 +24,7 @@ final class KakaoFriendView: UIView {
         }
     }
     
+    var dataSource: UITableViewDiffableDataSource<Int, FriendModel>!
     var recommendingKakaoFriendTableViewDummy: [FriendModel] = []
 
     // MARK: Component
@@ -73,6 +73,7 @@ extension KakaoFriendView {
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
         }
+        configureKakaoFriendDataSource()
     }
     
     private func setLayout() {
@@ -95,8 +96,59 @@ extension KakaoFriendView {
     }
     
     private func setDelegate() {
-        kakaoFriendTableView.dataSource = self
+        kakaoFriendTableView.dataSource = dataSource
         kakaoFriendTableView.delegate = self
+    }
+    
+    private func configureKakaoFriendDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, FriendModel>(tableView: kakaoFriendTableView) { [weak self] (tableView, indexPath, kakaoFriend) -> UITableViewCell? in
+            guard let self = self else {
+                return UITableViewCell()
+            }
+            if self.kakaoFriendCount == 0 {
+                guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: FriendEmptyTableViewCell.identifier, for: indexPath) as? FriendEmptyTableViewCell else { return UITableViewCell() }
+                emptyCell.selectionStyle = .none
+                if tableView.isLast(for: indexPath) {
+                    DispatchQueue.main.async {
+                        emptyCell.addAboveTheBottomBorderWithColor(color: .black)
+                    }
+                }
+                return emptyCell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                if tableView.isLast(for: indexPath) {
+                    DispatchQueue.main.async {
+                        cell.addAboveTheBottomBorderWithColor(color: .black)
+                    }
+                }
+                
+                cell.selectionStyle = .none
+                
+                if cell.isTapped == true {
+                    recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
+                }
+                cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
+                
+                cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+                cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+                if recommendingKakaoFriendTableViewDummy.isEmpty {
+                    return cell
+                }
+                cell.configureFriendCell(recommendingKakaoFriendTableViewDummy[indexPath.row])
+                return cell
+            }
+        }
+        updateView()
+    }
+    
+    func applySnapshot(animated: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, FriendModel>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(recommendingKakaoFriendTableViewDummy, toSection: 0)
+        dataSource.apply(snapshot, animatingDifferences: animated)
     }
     
     // MARK: Objc Function
@@ -104,19 +156,23 @@ extension KakaoFriendView {
         let point = sender.convert(CGPoint.zero, to: kakaoFriendTableView)
         guard let indexPath = kakaoFriendTableView.indexPathForRow(at: point) else { return }
         
-        recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
-        print(recommendingKakaoFriendTableViewDummy[indexPath.row])
+        // 삭제 서버통신
+        recommendingAddFriend(friendId: recommendingKakaoFriendTableViewDummy[indexPath.row].friends.id)
+        
+        // 추가할 아이템의 식별자 가져오기
+        let itemToAdd = self.recommendingKakaoFriendTableViewDummy[indexPath.row]
+        
+        // 스냅샷에서 해당 아이템 삭제
+        self.dataSource.defaultRowAnimation = .right
+        var snapshot = self.dataSource.snapshot()
+        snapshot.deleteItems([itemToAdd])
+        self.dataSource.apply(snapshot, animatingDifferences: true)
+        self.recommendingKakaoFriendTableViewDummy.remove(at: indexPath.row)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.recommendingKakaoFriendTableViewDummy.remove(at: indexPath.row)
-            self.kakaoFriendTableView.deleteRows(at: [indexPath], with: .right)
             self.kakaoFriendCount = self.recommendingKakaoFriendTableViewDummy.count
-            self.updateView()
         }
-        
-        recommendingAddFriend(friendId: recommendingKakaoFriendTableViewDummy[indexPath.row].friends.id)
-        kakaoFriendTableView.reloadRows(at: [indexPath], with: .none)
-        initialKakaoDataCount -= 1
+        self.dataSource.defaultRowAnimation = .middle
     }
       
     @objc func refreshTable(refresh: UIRefreshControl) {
@@ -125,8 +181,11 @@ extension KakaoFriendView {
         self.fetchingMore = false
         self.recommendingKakaoFriendTableViewDummy = []
         self.recommendingKakaoFriend()
+        if self.fetchingMore == true {
+            print("기다리삼")
+            self.applySnapshot(animated: true)
+        }
         refresh.endRefreshing()
-        print(self.recommendingKakaoFriendTableViewDummy)
     }
     
     // MARK: Custom Function
@@ -177,8 +236,8 @@ extension KakaoFriendView {
                     }
                     
                     self.recommendingKakaoFriendTableViewDummy.append(contentsOf: friendModels)
+                    self.applySnapshot(animated: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        self.kakaoFriendTableView.reloadData()
                         self.fetchingMore = false
                     }
                     self.updateView()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FriendModel {
+struct FriendModel: Hashable {
     let friends: Friends
     var isButtonSelected: Bool
 }
