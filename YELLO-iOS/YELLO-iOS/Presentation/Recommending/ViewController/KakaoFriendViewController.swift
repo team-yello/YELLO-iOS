@@ -26,7 +26,7 @@ final class KakaoFriendViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        kakaoFriendView.updateView()
+//        kakaoFriendView.updateView()
     }
 }
 

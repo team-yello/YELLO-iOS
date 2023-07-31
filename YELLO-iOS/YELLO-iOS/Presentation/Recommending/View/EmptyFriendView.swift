@@ -73,8 +73,8 @@ extension EmptyFriendView {
                                 inviteButton)
         
         self.snp.makeConstraints {
-            $0.height.equalTo(406.adjustedHeight)
-            $0.width.equalTo(375.adjustedWidth)
+            $0.height.equalTo(272.adjustedHeight)
+            $0.width.equalTo(236.adjustedWidth)
         }
         
         containView.snp.makeConstraints {
