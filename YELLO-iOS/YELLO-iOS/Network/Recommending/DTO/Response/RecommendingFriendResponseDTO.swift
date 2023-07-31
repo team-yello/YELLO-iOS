@@ -12,9 +12,17 @@ struct RecommendingFriendResponseDTO: Codable {
     let friends: [Friends]
 }
 
-struct Friends: Codable {
+struct Friends: Codable, Hashable {
     let id: Int
     let name: String
     let group: String
     let profileImage: String?
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: Friends, rhs: Friends) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
