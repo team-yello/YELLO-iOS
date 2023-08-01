@@ -69,11 +69,6 @@ extension ProfileView {
                 return UITableViewCell()
             }
             
-            if tableView.isLast(for: indexPath) {
-                DispatchQueue.main.async {
-                    cell.addAboveTheBottomBorderWithColor(color: .black)
-                }
-            }
             cell.selectionStyle = .none
             if self.myProfileFriendModelDummy.isEmpty {
                 return cell
@@ -296,21 +291,7 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFriendTableViewCell.identifier, for: indexPath) as? MyFriendTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        if tableView.isLast(for: indexPath) {
-            DispatchQueue.main.async {
-                cell.addAboveTheBottomBorderWithColor(color: .black)
-            }
-        }
-        cell.selectionStyle = .none
-        if myProfileFriendModelDummy.isEmpty {
-            return cell
-        }
-        cell.configureMyProfileFriendCell(myProfileFriendModelDummy[indexPath.row])
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
