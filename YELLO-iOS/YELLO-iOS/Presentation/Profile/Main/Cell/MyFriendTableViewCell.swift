@@ -32,6 +32,13 @@ final class MyFriendTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+        nameLabel.text = nil
+        schoolLabel.text = nil
+    }
 }
 // MARK: - extension
 extension MyFriendTableViewCell {

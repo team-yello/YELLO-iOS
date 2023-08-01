@@ -230,7 +230,12 @@ extension ProfileView {
                         self.friendCount = data.totalCount
                     }
                     
-                    self.myProfileFriendModelDummy.append(contentsOf: friendModels)
+                    // 중복되는 모델 필터 처리
+                    let uniqueFriendModels = friendModels.filter { model in
+                        !self.myProfileFriendModelDummy.contains { $0.userId == model.userId }
+                    }
+                    
+                    self.myProfileFriendModelDummy.append(contentsOf: uniqueFriendModels)
                     self.applySnapshot(animated: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         self.myFriendTableView.reloadData()

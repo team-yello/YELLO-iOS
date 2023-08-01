@@ -847,6 +847,7 @@
 			isa = PBXGroup;
 			children = (
 				C3D2664A2A5D1F2D0041C7C7 /* Main */,
+				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
 				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
 			);
 			path = Profile;
@@ -996,6 +997,14 @@
 				36B234952A61466A007933E4 /* YelloHelperLabel.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		C31315A22A78E4B800FB8B43 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C32322F32A619E4E006DA50B /* Payment */ = {
@@ -1219,7 +1228,6 @@
 				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 				C307ECB52A607357000F5BA9 /* FriendCountView.swift */,
 				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
-				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
 				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
 				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
 				C3FF24782A5D798700A97D40 /* FriendProfileView.swift */,
@@ -1242,7 +1250,7 @@
 			children = (
 				C3D2663F2A5C75FA0041C7C7 /* ViewController */,
 				C3D2663E2A5C75EE0041C7C7 /* View */,
-				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
+				C31315A22A78E4B800FB8B43 /* Cell */,
 			);
 			path = Main;
 			sourceTree = "<group>";
