@@ -137,6 +137,7 @@ extension FriendTableViewCell {
         isTapped = model.isButtonSelected
         
         updateAddButtonImage()
+        addButton.isSelected = isTapped
     }
     
     private func updateAddButtonImage() {

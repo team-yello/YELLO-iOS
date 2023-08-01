@@ -120,12 +120,6 @@ extension KakaoFriendView {
                 return UITableViewCell()
             }
             
-            if tableView.isLast(for: indexPath) {
-                DispatchQueue.main.async {
-                    cell.addAboveTheBottomBorderWithColor(color: .black)
-                }
-            }
-            
             cell.selectionStyle = .none
             
             if cell.isTapped == true {
@@ -161,14 +155,19 @@ extension KakaoFriendView {
         // 추가할 아이템의 식별자 가져오기
         let itemToAdd = self.recommendingKakaoFriendTableViewDummy[indexPath.row]
         
+        sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
+        sender.isEnabled = false
+        
         // 스냅샷에서 해당 아이템 삭제
-        self.dataSource.defaultRowAnimation = .right
-        var snapshot = self.dataSource.snapshot()
-        snapshot.deleteItems([itemToAdd])
-        self.dataSource.apply(snapshot, animatingDifferences: true)
-        self.recommendingKakaoFriendTableViewDummy.remove(at: indexPath.row)
-        self.kakaoFriendCount = self.recommendingKakaoFriendTableViewDummy.count
-        self.dataSource.defaultRowAnimation = .middle
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.dataSource.defaultRowAnimation = .right
+            var snapshot = self.dataSource.snapshot()
+            snapshot.deleteItems([itemToAdd])
+            self.dataSource.apply(snapshot, animatingDifferences: true)
+            self.recommendingKakaoFriendTableViewDummy.remove(at: indexPath.row)
+            self.kakaoFriendCount = self.recommendingKakaoFriendTableViewDummy.count
+            self.dataSource.defaultRowAnimation = .middle
+        }
     }
     
     @objc func refreshTable(refresh: UIRefreshControl) {
@@ -232,7 +231,12 @@ extension KakaoFriendView {
                         )
                     }
                     
-                    self.recommendingKakaoFriendTableViewDummy.append(contentsOf: friendModels)
+                    // 중복되는 모델 필터 처리
+                    let uniqueFriendModels = friendModels.filter { model in
+                        !self.recommendingKakaoFriendTableViewDummy.contains { $0.friends.id == model.friends.id }
+                    }
+                    
+                    self.recommendingKakaoFriendTableViewDummy.append(contentsOf: uniqueFriendModels)
                     self.applySnapshot(animated: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self.fetchingMore = false
@@ -299,41 +303,7 @@ extension KakaoFriendView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if self.kakaoFriendCount == 0 {
-            guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: FriendEmptyTableViewCell.identifier, for: indexPath) as? FriendEmptyTableViewCell else { return UITableViewCell() }
-            emptyCell.selectionStyle = .none
-            if tableView.isLast(for: indexPath) {
-                DispatchQueue.main.async {
-                    emptyCell.addAboveTheBottomBorderWithColor(color: .black)
-                }
-            }
-            return emptyCell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            if tableView.isLast(for: indexPath) {
-                DispatchQueue.main.async {
-                    cell.addAboveTheBottomBorderWithColor(color: .black)
-                }
-            }
-            
-            cell.selectionStyle = .none
-            
-            if cell.isTapped == true {
-                recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
-            }
-            cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
-            
-            cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
-            cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-            if recommendingKakaoFriendTableViewDummy.isEmpty {
-                return cell
-            }
-            cell.configureFriendCell(recommendingKakaoFriendTableViewDummy[indexPath.row])
-            return cell
-        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
