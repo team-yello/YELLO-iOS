@@ -26,7 +26,7 @@ final class VotingTimerViewController: BaseViewController {
                 let viewController = VotingStartViewController()
                 viewController.myPoint = myPoint
                 self.navigationController?.pushViewController(viewController, animated: false)
-                requestSendNoti(seconds: 3.3)
+                requestSendNoti(seconds: 0.3)
             }
         }
     }
