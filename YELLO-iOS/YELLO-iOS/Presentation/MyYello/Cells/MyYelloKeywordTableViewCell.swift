@@ -169,14 +169,11 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
             keywordLabel.snp.makeConstraints {
                 $0.leading.equalToSuperview()
             }
-            keywordHeadLabel.isHidden = true
-        } else {
-            keywordHeadLabel.isHidden = false
         }
         
-        keywordHeadLabel.text = (model.vote.keywordHead ?? "")
+        keywordHeadLabel.text = model.vote.keywordHead
         keywordLabel.text = model.vote.keyword
-        keywordFootLabel.text = (model.vote.keywordFoot ?? "")
+        keywordFootLabel.text = model.vote.keywordFoot ?? ""
         timeLabel.text = model.createdAt
     }
 }
