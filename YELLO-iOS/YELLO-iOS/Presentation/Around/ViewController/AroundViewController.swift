@@ -46,8 +46,11 @@ extension AroundViewController {
     private func setLayout() {
         view.addSubviews(aroundView)
         
+        let tabbarHeight = 60 + safeAreaBottomInset()
+        
         aroundView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
         
     }

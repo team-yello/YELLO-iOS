@@ -11,38 +11,38 @@ import SnapKit
 import Then
 
 // MARK: - Around
-final class AroundView: UIView {
+final class AroundView: BaseView {
     
     // MARK: - Variables
+    // MARK: Property
+    var fetchingMore = false
+    var aroundPage: Int = 0
+    var indexNumber: Int = -1
+    var isFinishPaging = false
+    var pageCount = -1
+    
+    var dataSource: UITableViewDiffableDataSource<Int, Yello>!
+    
+    var aroundModelDummy: [Yello] = []
+    
     // MARK: Component
+    private let aroundNavigationBarView = UIView()
     private let aroundLabel = UILabel()
-    private let aroundDescriptionLabel = UILabel()
-    private let aroundImageView = UIImageView()
-    
-    // MARK: - Function
-    // MARK: LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension AroundView {
+    lazy var aroundTableView = UITableView()
+    let refreshControl = UIRefreshControl()
     
     // MARK: Layout Helpers
-    private func setUI() {
+    override func setUI() {
         setStyle()
         setLayout()
     }
     
-    private func setStyle() {
-        self.backgroundColor = .black
+    override func setStyle() {
+        self.backgroundColor = .clear
+        
+        aroundNavigationBarView.do {
+            $0.backgroundColor = .black
+        }
         
         aroundLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Around.around, lineHeight: 28)
@@ -50,42 +50,116 @@ extension AroundView {
             $0.textColor = .white
         }
         
-        aroundDescriptionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Around.aroundDescription, lineHeight: 20)
-            $0.font = .uiBodySmall
-            $0.textColor = .grayscales500
-            $0.numberOfLines = 2
-            $0.textAlignment = .center
+        aroundTableView.do {
+            $0.register(AroundTableViewCell.self, forCellReuseIdentifier: AroundTableViewCell.identifier)
+            $0.dataSource = self
+            $0.delegate = self
+            $0.separatorStyle = .none
+            $0.showsVerticalScrollIndicator = false
+            $0.showsHorizontalScrollIndicator = false
+            $0.backgroundColor = .black
         }
-        
-        aroundImageView.do {
-            $0.image = ImageLiterals.Around.imgAround
+//        configureAroundDataSource()
+    }
+    
+    private func configureAroundDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, Yello>(tableView: aroundTableView) { [weak self] (tableView, indexPath, around) -> UITableViewCell? in
+            guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: AroundTableViewCell.identifier, for: indexPath) as? AroundTableViewCell else { return UITableViewCell() }
+            aroundCell.selectionStyle = .none
+            return aroundCell
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
+        
+        let statusBarHeight = UIApplication.shared.connectedScenes
+                    .compactMap { $0 as? UIWindowScene }
+                    .first?
+                    .statusBarManager?
+                    .statusBarFrame.height ?? 20
+        
         self.addSubviews(
-            aroundLabel,
-            aroundDescriptionLabel,
-            aroundImageView
-        )
+            aroundNavigationBarView,
+            aroundTableView)
+        
+        aroundNavigationBarView.addSubview(aroundLabel)
+    
+        aroundNavigationBarView.snp.makeConstraints {
+            $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(48)
+        }
         
         aroundLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(120.adjusted)
-            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
         }
         
-        aroundDescriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(aroundLabel.snp.bottom).offset(24.adjusted)
-            $0.centerX.equalToSuperview()
+        aroundTableView.snp.makeConstraints {
+            $0.top.equalTo(aroundNavigationBarView.snp.bottom).offset(12)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview()
         }
-        
-        aroundImageView.snp.makeConstraints {
-            $0.width.equalTo(230.adjusted)
-            $0.height.equalTo(218.adjusted)
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(21.5.adjusted)
+    }
+    
+    // MARK: Objc Function
+    @objc func refreshTable(refresh: UIRefreshControl) {
+        self.pageCount = -1
+        self.isFinishPaging = false
+        self.fetchingMore = false
+        aroundModelDummy = []
+        self.around()
+        if self.fetchingMore == true {
+            print("기다리삼")
+            self.applySnapshot(animated: true)
         }
-        
+        refresh.endRefreshing()
+    }
+    
+    /// Diffable Data Source를 업데이트하는 함수
+    func applySnapshot(animated: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Yello>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(aroundModelDummy, toSection: 0)
+        dataSource.apply(snapshot, animatingDifferences: animated)
+    }
+    
+    // MARK: - Network
+    func around() {
+        // 네트워크 함수 구현
+        print("네트워크 함수 구현")
+    }
+}
+
+// MARK: - extension
+// MARK: UITableViewDelegate
+extension AroundView: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let tableView = self.aroundTableView
+        let offsetY = tableView.contentOffset.y
+        let contentHeight = tableView.contentSize.height
+        let visibleHeight = tableView.bounds.height
+        if offsetY > contentHeight - visibleHeight {
+            self.around()
+        }
+    }
+}
+
+// MARK: UITableViewDataSource
+extension AroundView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: AroundTableViewCell.identifier, for: indexPath) as? AroundTableViewCell else { return UITableViewCell() }
+        aroundCell.selectionStyle = .none
+        return aroundCell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return aroundModelDummy.count
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 116
     }
 }
