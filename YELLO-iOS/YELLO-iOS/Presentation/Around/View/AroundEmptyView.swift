@@ -1,8 +1,8 @@
 //
-//  AroundView.swift
+//  AroundEmptyView.swift
 //  YELLO-iOS
 //
-//  Created by 정채은 on 2023/07/06.
+//  Created by 정채은 on 2023/08/01.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 // MARK: - Around
-final class AroundView: UIView {
+final class AroundEmptyView: UIView {
     
     // MARK: - Variables
     // MARK: Component
@@ -33,7 +33,7 @@ final class AroundView: UIView {
 }
 
 // MARK: - extension
-extension AroundView {
+extension AroundEmptyView {
     
     // MARK: Layout Helpers
     private func setUI() {

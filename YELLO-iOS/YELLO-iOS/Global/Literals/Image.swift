@@ -101,6 +101,7 @@ enum ImageLiterals {
     
     enum Around {
         static var imgAround: UIImage { .load(named: "imgAround") }
+        static var icPolygon: UIImage { .load(named: "icPolygon") }
     }
     
     enum MyYello {

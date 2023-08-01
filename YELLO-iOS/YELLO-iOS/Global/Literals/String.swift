@@ -58,6 +58,8 @@ enum StringLiterals {
     enum Around {
         static let around = "둘러보기"
         static let aroundDescription = "아직 구현되지 않은 기능이에요.\n조금만 기다려주세요!"
+        static let female = "여학생"
+        static let male = "남학생"
     }
     
     enum Voting {
