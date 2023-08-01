@@ -133,7 +133,9 @@ extension FriendTableViewCell {
     func configureFriendCell(_ model: FriendModel) {
         nameLabel.text = model.friends.name
         schoolLabel.text = model.friends.group
-        profileImageView.kfSetImage(url: model.friends.profileImage)
+        if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            profileImageView.kfSetImage(url: model.friends.profileImage)
+        }
         isTapped = model.isButtonSelected
         
         updateAddButtonImage()

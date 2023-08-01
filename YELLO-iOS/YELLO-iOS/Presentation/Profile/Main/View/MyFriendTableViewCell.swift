@@ -94,7 +94,9 @@ extension MyFriendTableViewCell {
     // MARK: Custom Function
     func configureMyProfileFriendCell(_ model: ProfileFriendResponseDetail) {
         nameLabel.text = model.name
-        profileImageView.kfSetImage(url: model.profileImageUrl)
+        if model.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            profileImageView.kfSetImage(url: model.profileImageUrl)
+        }
         schoolLabel.text = model.group
     }
 }
