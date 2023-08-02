@@ -128,6 +128,7 @@
 		C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */; };
 		C31315A42A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */; };
 		C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */; };
+		C31315A82A7A5F7E00FB8B43 /* FriendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */; };
 		C32322F52A619E92006DA50B /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F42A619E92006DA50B /* PaymentView.swift */; };
 		C32322F92A61ABF2006DA50B /* PaymentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
@@ -351,6 +352,7 @@
 		C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileFriendModel.swift; sourceTree = "<group>"; };
 		C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingNavigationBarView.swift; sourceTree = "<group>"; };
 		C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
+		C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchView.swift; sourceTree = "<group>"; };
 		C32322F42A619E92006DA50B /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
@@ -814,7 +816,7 @@
 				C3C57BED2A5C066200B84CAA /* View */,
 				C3C57BF12A5C087600B84CAA /* Cells */,
 				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
-				C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */,
+				C31315A92A7A5F8100FB8B43 /* Search */,
 			);
 			path = Recommending;
 			sourceTree = "<group>";
@@ -1010,6 +1012,31 @@
 				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		C31315A92A7A5F8100FB8B43 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C31315AA2A7A5F8800FB8B43 /* ViewController */,
+				C31315AB2A7A5F8F00FB8B43 /* View */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		C31315AA2A7A5F8800FB8B43 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C31315AB2A7A5F8F00FB8B43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C32322F32A619E4E006DA50B /* Payment */ = {
@@ -1648,6 +1675,7 @@
 				36B2349A2A61A20C007933E4 /* KakaoLoginViewController.swift in Sources */,
 				36E427722A5BCE860050B34E /* YelloGenderButton.swift in Sources */,
 				2A3705D42A62E33E001AAC93 /* RecommendingTarget.swift in Sources */,
+				C31315A82A7A5F7E00FB8B43 /* FriendSearchView.swift in Sources */,
 				C3FF24B12A5F361C00A97D40 /* GetHintView.swift in Sources */,
 				3662A0F02A651FD100F482EF /* SchoolSearchResponseDTO.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
