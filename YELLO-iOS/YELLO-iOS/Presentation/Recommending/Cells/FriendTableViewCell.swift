@@ -42,10 +42,12 @@ final class FriendTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        self.addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+        nameLabel.text = nil
+        schoolLabel.text = nil
         isTapped = false
         separatorLine.isHidden = false
+        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
     }
 }
 
@@ -86,7 +88,6 @@ extension FriendTableViewCell {
         addButton.do {
             $0.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
             $0.tintColor = .yellow
-            $0.addTarget(self, action: #selector(changeAddButton), for: .touchUpInside)
         }
         
         separatorLine.do {
@@ -136,22 +137,12 @@ extension FriendTableViewCell {
         if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
             profileImageView.kfSetImage(url: model.friends.profileImage)
         }
-        isTapped = model.isButtonSelected
         
         updateAddButtonImage()
-        addButton.isSelected = isTapped
     }
     
     private func updateAddButtonImage() {
         let imageName = isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton
         addButton.setImage(imageName, for: .normal)
-    }
-    
-    // MARK: Objc Function
-    @objc private func changeAddButton() {
-        isTapped.toggle()
-        /// 두 번 이상 누를 수 없도록 disabled 처리
-        addButton.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
-        addButton.isEnabled = false
     }
 }

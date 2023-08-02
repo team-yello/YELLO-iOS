@@ -9,5 +9,5 @@ import Foundation
 
 struct FriendModel: Hashable {
     let friends: Friends
-    var isButtonSelected: Bool
+    var isButtonSelected: Bool = false
 }

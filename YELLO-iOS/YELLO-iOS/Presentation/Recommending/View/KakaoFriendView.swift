@@ -122,12 +122,8 @@ extension KakaoFriendView {
             
             cell.selectionStyle = .none
             
-            if cell.isTapped == true {
-                recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
-            }
-            cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
+            cell.isTapped = recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected
             
-            cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
             cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
             if recommendingKakaoFriendTableViewDummy.isEmpty {
                 return cell
@@ -155,6 +151,7 @@ extension KakaoFriendView {
         // 추가할 아이템의 식별자 가져오기
         let itemToAdd = self.recommendingKakaoFriendTableViewDummy[indexPath.row]
         
+//        recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
         sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
         sender.isEnabled = false
         
