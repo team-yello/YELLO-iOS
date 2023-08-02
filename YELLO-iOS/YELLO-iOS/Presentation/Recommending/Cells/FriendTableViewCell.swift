@@ -10,6 +10,11 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
+protocol HandleAddFriendButton: AnyObject {
+    func addButtonTapped(sender: UIButton)
+}
+
 final class FriendTableViewCell: UITableViewCell {
     
     // MARK: - Variables
@@ -22,11 +27,9 @@ final class FriendTableViewCell: UITableViewCell {
     let schoolLabel = UILabel()
     lazy var addButton = UIButton()
     let separatorLine = UIView()
-    var isTapped: Bool = false {
-        didSet {
-            updateAddButtonImage()
-        }
-    }
+    var isTapped: Bool = false
+    
+    weak var handleAddFriendButton: HandleAddFriendButton?
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -88,6 +91,7 @@ extension FriendTableViewCell {
         addButton.do {
             $0.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
             $0.tintColor = .yellow
+            $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         }
         
         separatorLine.do {
@@ -137,12 +141,21 @@ extension FriendTableViewCell {
         if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
             profileImageView.kfSetImage(url: model.friends.profileImage)
         }
-        
+        isTapped = model.isButtonSelected
         updateAddButtonImage()
     }
     
-    private func updateAddButtonImage() {
-        let imageName = isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton
-        addButton.setImage(imageName, for: .normal)
+    func updateAddButtonImage() {
+        addButton.setImage(isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: isTapped ? .disabled : .normal)
+    }
+    
+    // MARK: Objc Function
+    @objc private func addButtonTapped(_ sender: UIButton) {
+        self.isTapped = true
+        updateAddButtonImage()
+        handleAddFriendButton?.addButtonTapped(sender: sender)
+//        self.isTapped = false
+//        self.addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+//        updateAddButtonImage()
     }
 }
