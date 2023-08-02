@@ -123,8 +123,9 @@ extension KakaoFriendView {
             cell.selectionStyle = .none
             
             cell.isTapped = recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected
+            cell.updateAddButtonImage()
             
-            cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+            cell.handleAddFriendButton = self
             if recommendingKakaoFriendTableViewDummy.isEmpty {
                 return cell
             }
@@ -141,32 +142,6 @@ extension KakaoFriendView {
     }
     
     // MARK: Objc Function
-    @objc func addButtonTapped(_ sender: UIButton) {
-        let point = sender.convert(CGPoint.zero, to: kakaoFriendTableView)
-        guard let indexPath = kakaoFriendTableView.indexPathForRow(at: point) else { return }
-        
-        // 삭제 서버통신
-        recommendingAddFriend(friendId: recommendingKakaoFriendTableViewDummy[indexPath.row].friends.id)
-        
-        // 추가할 아이템의 식별자 가져오기
-        let itemToAdd = self.recommendingKakaoFriendTableViewDummy[indexPath.row]
-        
-//        recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
-        sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
-        sender.isEnabled = false
-        
-        // 스냅샷에서 해당 아이템 삭제
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.dataSource.defaultRowAnimation = .right
-            var snapshot = self.dataSource.snapshot()
-            snapshot.deleteItems([itemToAdd])
-            self.dataSource.apply(snapshot, animatingDifferences: true)
-            self.recommendingKakaoFriendTableViewDummy.remove(at: indexPath.row)
-            self.kakaoFriendCount = self.recommendingKakaoFriendTableViewDummy.count
-            self.dataSource.defaultRowAnimation = .middle
-        }
-    }
-    
     @objc func refreshTable(refresh: UIRefreshControl) {
         self.kakaoPage = -1
         self.isFinishPaging = false
@@ -280,6 +255,40 @@ extension KakaoFriendView {
     }
 }
 
+extension KakaoFriendView: HandleAddFriendButton {
+    
+    func addButtonTapped(sender: UIButton) {
+        let point = sender.convert(CGPoint.zero, to: kakaoFriendTableView)
+        guard let indexPath = kakaoFriendTableView.indexPathForRow(at: point) else { return }
+        
+        // 삭제 서버통신
+        recommendingAddFriend(friendId: recommendingKakaoFriendTableViewDummy[indexPath.row].friends.id)
+        
+        // 추가할 아이템의 식별자 가져오기
+        let itemToAdd = self.recommendingKakaoFriendTableViewDummy[indexPath.row]
+        
+        recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
+        sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
+        sender.isEnabled = false
+        
+        // 스냅샷에서 해당 아이템 삭제
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.dataSource.defaultRowAnimation = .right
+            var snapshot = self.dataSource.snapshot()
+            snapshot.deleteItems([itemToAdd])
+            self.dataSource.apply(snapshot, animatingDifferences: true)
+            self.recommendingKakaoFriendTableViewDummy.remove(at: indexPath.row)
+            self.kakaoFriendCount = self.recommendingKakaoFriendTableViewDummy.count
+            self.dataSource.defaultRowAnimation = .middle
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            sender.isEnabled = true
+            sender.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        }
+    }
+}
+    
 // MARK: UITableViewDelegate
 extension KakaoFriendView: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

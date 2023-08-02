@@ -119,14 +119,11 @@ extension SchoolFriendView {
             }
             
             cell.selectionStyle = .none
+
+            cell.isTapped = recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected
+            cell.updateAddButtonImage()
             
-            if cell.isTapped == true {
-                recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
-            }
-            cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
-            
-            cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
-            cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+            cell.handleAddFriendButton = self
             if recommendingSchoolFriendTableViewDummy.isEmpty {
                 return cell
             }
@@ -143,32 +140,6 @@ extension SchoolFriendView {
     }
     
     // MARK: Objc Function
-    @objc func addButtonTapped(_ sender: UIButton) {
-        let point = sender.convert(CGPoint.zero, to: schoolFriendTableView)
-        guard let indexPath = schoolFriendTableView.indexPathForRow(at: point) else { return }
-        
-        // 삭제 서버통신
-        recommendingAddFriend(friendId: recommendingSchoolFriendTableViewDummy[indexPath.row].friends.id)
-        
-        // 추가할 아이템의 식별자 가져오기
-        let itemToAdd = self.recommendingSchoolFriendTableViewDummy[indexPath.row]
-        
-        sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
-        sender.isEnabled = false
-        
-        // 스냅샷에서 해당 아이템 삭제
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            
-            self.dataSource.defaultRowAnimation = .right
-            var snapshot = self.dataSource.snapshot()
-            snapshot.deleteItems([itemToAdd])
-            self.dataSource.apply(snapshot, animatingDifferences: true)
-            self.recommendingSchoolFriendTableViewDummy.remove(at: indexPath.row)
-            self.schoolFriendCount = self.recommendingSchoolFriendTableViewDummy.count
-            self.dataSource.defaultRowAnimation = .middle
-        }
-    }
-    
     @objc func refreshTable(refresh: UIRefreshControl) {
         self.schoolPage = -1
         self.isFinishPaging = false
@@ -268,9 +239,43 @@ extension SchoolFriendView {
     }
 }
 
+extension SchoolFriendView: HandleAddFriendButton {
+
+// MARK: Objc Function
+    @objc func addButtonTapped(sender: UIButton) {
+        let point = sender.convert(CGPoint.zero, to: schoolFriendTableView)
+        guard let indexPath = schoolFriendTableView.indexPathForRow(at: point) else { return }
+        
+        // 삭제 서버통신
+        recommendingAddFriend(friendId: recommendingSchoolFriendTableViewDummy[indexPath.row].friends.id)
+        
+        // 추가할 아이템의 식별자 가져오기
+        let itemToAdd = self.recommendingSchoolFriendTableViewDummy[indexPath.row]
+        
+        recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
+        sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
+        sender.isEnabled = false
+        
+        // 스냅샷에서 해당 아이템 삭제
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.dataSource.defaultRowAnimation = .right
+            var snapshot = self.dataSource.snapshot()
+            snapshot.deleteItems([itemToAdd])
+            self.dataSource.apply(snapshot, animatingDifferences: true)
+            self.recommendingSchoolFriendTableViewDummy.remove(at: indexPath.row)
+            self.schoolFriendCount = self.recommendingSchoolFriendTableViewDummy.count
+            self.dataSource.defaultRowAnimation = .middle
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            sender.isEnabled = true
+            sender.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        }
+    }
+}
+
 // MARK: UITableViewDelegate
 extension SchoolFriendView: UITableViewDelegate {
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let tableView = self.schoolFriendTableView
         let offsetY = tableView.contentOffset.y

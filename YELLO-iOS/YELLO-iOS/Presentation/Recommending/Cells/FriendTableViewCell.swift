@@ -78,13 +78,13 @@ extension FriendTableViewCell {
         
         nameLabel.do {
             $0.font = .uiSubtitle01
-            $0.setTextWithLineHeight(text: "정채은", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
             $0.textColor = .white
         }
         
         schoolLabel.do {
             $0.font = .uiLabelMedium
-            $0.setTextWithLineHeight(text: "이화여자대학교 융합콘텐츠학과 20학번", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
             $0.textColor = .grayscales600
         }
         
@@ -154,8 +154,5 @@ extension FriendTableViewCell {
         self.isTapped = true
         updateAddButtonImage()
         handleAddFriendButton?.addButtonTapped(sender: sender)
-//        self.isTapped = false
-//        self.addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
-//        updateAddButtonImage()
     }
 }
