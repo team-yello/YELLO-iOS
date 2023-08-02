@@ -13,7 +13,6 @@ import Then
 final class VotingTimerViewController: BaseViewController {
     
     var timer: Timer?
-    
     var myPoint = 0
     let userNotiCenter = UNUserNotificationCenter.current()
     
@@ -26,7 +25,6 @@ final class VotingTimerViewController: BaseViewController {
                 let viewController = VotingStartViewController()
                 viewController.myPoint = myPoint
                 self.navigationController?.pushViewController(viewController, animated: false)
-                requestSendNoti(seconds: 0.3)
             }
         }
     }
@@ -261,6 +259,7 @@ extension VotingTimerViewController {
                     let viewController = VotingStartViewController()
                     viewController.myPoint = self.myPoint
                     self.navigationController?.pushViewController(viewController, animated: false)
+                    self.cancelScheduledNotification()
                 }
                 
                 self.remainingSeconds = duration
@@ -272,25 +271,11 @@ extension VotingTimerViewController {
             }
         }
     }
-    // 알림 전송
-    func requestSendNoti(seconds: Double) {
-        let notiContent = UNMutableNotificationContent()
-        notiContent.title = "친구에게 쪽지 보내고 포인트 받기"
-        notiContent.body = "대기시간이 다 지났어요. 친구들에게 투표해봐요!"
-        notiContent.userInfo = ["targetScene": "splash"] // 푸시 받을때 오는 데이터
+    
+    // 예약된 푸시 알림 취소
+    func cancelScheduledNotification() {
+        let notificationIdentifier = "myPushAlarm" // 예약된 알림의 식별자
         
-        // 알림이 trigger되는 시간 설정
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
-        
-        let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
-            content: notiContent,
-            trigger: trigger
-        )
-        
-        userNotiCenter.add(request) { (error) in
-            print(#function, error)
-        }
-        
+        userNotiCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
     }
 }
