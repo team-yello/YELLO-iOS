@@ -129,16 +129,16 @@ extension KakaoFriendView {
             cell.selectionStyle = .none
             
             if cell.isTapped == true {
-                recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
+                self.recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
             }
             cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
             
             cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
-            cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-            if recommendingKakaoFriendTableViewDummy.isEmpty {
+            cell.addButton.addTarget(self, action: #selector(self.addButtonTapped), for: .touchUpInside)
+            if self.recommendingKakaoFriendTableViewDummy.isEmpty {
                 return cell
             }
-            cell.configureFriendCell(recommendingKakaoFriendTableViewDummy[indexPath.row])
+            cell.configureFriendCell(self.recommendingKakaoFriendTableViewDummy[indexPath.row])
             return cell
         }
     }

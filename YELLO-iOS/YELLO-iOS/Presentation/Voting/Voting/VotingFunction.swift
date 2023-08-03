@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 extension VotingViewController {
-    /// 10개 투표지의 style을 dummy에 따라 설정
+    /// 8개 투표지의 style을 dummy에 따라 설정
     func setVotingView() {
         let dummy = VotingDummy.dummy()
         let gradientView = UIView(frame: view.bounds)
@@ -20,10 +20,11 @@ extension VotingViewController {
             bottomColor: UIColor(hex: Color.shared.selectedBottomColors?[VotingViewController.pushCount] ?? ""))
         view.insertSubview(gradientView, at: 0)
         
+        let progressPercent = Float(VotingViewController.pushCount + 1) / 8.0
+        self.originView.progressView.setProgress(progressPercent, animated: true)
         self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
         self.originView.yelloProgress.image =
         dummy[VotingViewController.pushCount].yelloProgress
-        self.originView.numOfPageLabel.text = String(VotingViewController.pushCount + 1)
         
         setNameText(
             first: votingList[VotingViewController.pushCount].friendList[0],

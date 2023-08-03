@@ -127,16 +127,16 @@ extension SchoolFriendView {
             cell.selectionStyle = .none
             
             if cell.isTapped == true {
-                recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
+                self.recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
             }
             cell.addButton.removeTarget(nil, action: nil, for: .allEvents)
             
             cell.addButton.setImage(cell.isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: .normal)
-            cell.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-            if recommendingSchoolFriendTableViewDummy.isEmpty {
+            cell.addButton.addTarget(self, action: #selector(self.addButtonTapped), for: .touchUpInside)
+            if self.recommendingSchoolFriendTableViewDummy.isEmpty {
                 return cell
             }
-            cell.configureFriendCell(recommendingSchoolFriendTableViewDummy[indexPath.row])
+            cell.configureFriendCell(self.recommendingSchoolFriendTableViewDummy[indexPath.row])
             return cell
         }
     }

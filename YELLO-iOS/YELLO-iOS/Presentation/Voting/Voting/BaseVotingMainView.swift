@@ -11,6 +11,7 @@ import SnapKit
 import Then
 
 final class BaseVotingMainView: BaseView {
+    let progressView = UIProgressView()
     let yelloBalloon = UIImageView()
     let yelloProgress = UIImageView()
     
@@ -18,9 +19,6 @@ final class BaseVotingMainView: BaseView {
     let yelloProgressBackGroundTwo = UIImageView()
     let yelloProgressBackGroundThree = UIImageView()
     let yelloProgressBackGroundFour = UIImageView()
-
-    let numOfPageLabel = UILabel()
-    let tenPageLabel = UILabel()
     
     let questionBackground = UIView()
     
@@ -43,6 +41,14 @@ final class BaseVotingMainView: BaseView {
     // MARK: - Style
     
     override func setStyle() {
+        progressView.do {
+            $0.progressViewStyle = .bar
+            $0.progressTintColor = .white
+            $0.trackTintColor = UIColor(hex: "FFFFFF", alpha: 0.35)
+            $0.progress = 0.125
+            $0.makeCornerRound(radius: 5)
+        }
+        
         yelloBalloon.do {
             $0.image = ImageLiterals.Voting.imgYelloBalloon1
         }
@@ -69,18 +75,6 @@ final class BaseVotingMainView: BaseView {
         yelloProgressBackGroundFour.do {
             $0.image = ImageLiterals.Voting.imgProgress1
             $0.alpha = 0.5
-        }
-        
-        numOfPageLabel.do {
-            $0.text = "1"
-            $0.textColor = .black
-            $0.font = .uiBody05
-        }
-        
-        tenPageLabel.do {
-            $0.text = "of 10"
-            $0.textColor = .black
-            $0.font = .uiLabelLarge
         }
         
         questionBackground.do {
@@ -180,14 +174,13 @@ final class BaseVotingMainView: BaseView {
     override func setLayout() {
         let width = UIScreen.main.bounds.size.width
         
-        self.addSubviews(yelloBalloon,
+        self.addSubviews(progressView,
+                         yelloBalloon,
                          yelloProgress,
                          yelloProgressBackGroundOne,
                          yelloProgressBackGroundTwo,
                          yelloProgressBackGroundThree,
                          yelloProgressBackGroundFour,
-                         numOfPageLabel,
-                         tenPageLabel,
                          questionBackground,
                          nameOneButton,
                          nameTwoButton,
@@ -203,50 +196,46 @@ final class BaseVotingMainView: BaseView {
     
         suffleButton.addSubviews(suffleIcon, suffleText, suffleNum)
         
+        progressView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
+            $0.top.equalToSuperview().inset(32.adjusted)
+            $0.height.equalTo(6.adjusted)
+        }
+        
         yelloBalloon.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(17.adjusted)
+            $0.top.equalTo(progressView.snp.bottom).offset(6.adjusted)
         }
         
         yelloProgress.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
         }
         
         yelloProgressBackGroundOne.snp.makeConstraints {
             $0.leading.equalToSuperview()
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
         }
         
         yelloProgressBackGroundTwo.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(width / 5)
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
         }
         
         yelloProgressBackGroundThree.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(width / 5)
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
         }
         
         yelloProgressBackGroundFour.snp.makeConstraints {
             $0.trailing.equalToSuperview()
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(10.adjusted)
-        }
-        
-        numOfPageLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(307.adjusted)
-            $0.top.equalToSuperview().inset(49.adjusted)
-        }
-        
-        tenPageLabel.snp.makeConstraints {
-            $0.leading.equalTo(numOfPageLabel.snp.trailing).offset(4.adjusted)
-            $0.centerY.equalTo(numOfPageLabel)
+            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
         }
         
         questionBackground.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
             $0.height.equalTo(154.adjusted)
-            $0.top.equalTo(yelloProgress.snp.bottom).offset(12.adjusted)
+            $0.top.equalTo(yelloProgress.snp.bottom).offset(7.adjusted)
         }
         
         nameOneButton.snp.makeConstraints {
