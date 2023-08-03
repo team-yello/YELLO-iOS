@@ -146,9 +146,8 @@ extension KakaoFriendView {
         self.isFinishPaging = false
         self.fetchingMore = false
         self.recommendingKakaoFriendTableViewDummy = []
-//        self.recommendingKakaoFriend()
         self.kakaoFriends { [weak self] in
-             // 새로운 친구 목록이 받아와진 후에 recommendingKakaoFriend 함수 호출
+             /// 새로운 친구 목록이 받아와진 후에 recommendingKakaoFriend 함수 호출
              self?.recommendingKakaoFriend()
              if self?.fetchingMore == true {
                  print("기다리삼")
