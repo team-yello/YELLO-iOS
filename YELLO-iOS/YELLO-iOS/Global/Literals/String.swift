@@ -42,6 +42,7 @@ enum StringLiterals {
             static let recommend = "추천친구"
             static let kakaoFriend = "카톡 친구들"
             static let schoolFriend = "학교 친구들"
+            static let defaultProfileImageLink = "https://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg"
         }
         
         enum Empty {
@@ -52,6 +53,12 @@ enum StringLiterals {
         enum Invite {
             static let invite = "친구 초대하기"
             static let inviteDescription = "찾는 친구가 없다면 친구를 초대해 보세요!"
+        }
+        
+        enum Search {
+            static let title = "친구 검색"
+            static let placeholder = " 이름 또는 아이디를 입력해보세요!"
+            static let myFriend = "내 친구"
         }
     }
     

@@ -1,8 +1,8 @@
 //
-//  FriendTableViewCell.swift
+//  FriendSearchTableViewCell.swift
 //  YELLO-iOS
 //
-//  Created by 정채은 on 2023/07/10.
+//  Created by 정채은 on 2023/08/03.
 //
 
 import UIKit
@@ -11,25 +11,26 @@ import SnapKit
 import Then
 
 // MARK: - Protocol
-protocol HandleAddFriendButton: AnyObject {
-    func addButtonTapped(sender: UIButton)
+protocol HandleSearchAddFriendButton: AnyObject {
+    func addButtonTapped()
 }
 
-final class FriendTableViewCell: UITableViewCell {
+final class FriendSearchTableViewCell: UITableViewCell {
     
     // MARK: - Variables
     // MARK: Constants
-    static let identifier = "FriendTableViewCell"
+    static let identifier = "FriendSearchTableViewCell"
     
     // MARK: Component
     let profileImageView = UIImageView()
     let nameLabel = UILabel()
+    let yelloIdLabel = UILabel()
     let schoolLabel = UILabel()
-    lazy var addButton = UIButton()
-    let separatorLine = UIView()
-    var isTapped: Bool = false
-    
-    weak var handleAddFriendButton: HandleAddFriendButton?
+    let addButton = UIButton()
+    let myFriendLabel = UILabel()
+
+    var isFriend: Bool = false
+    weak var handleSearchAddFriendButton: HandleSearchAddFriendButton?
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -45,17 +46,12 @@ final class FriendTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
-        nameLabel.text = nil
-        schoolLabel.text = nil
-        isTapped = false
-        separatorLine.isHidden = false
-        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        // 서버 통신 후 추가 예정
     }
 }
 
 // MARK: - extension
-extension FriendTableViewCell {
+extension FriendSearchTableViewCell {
     
     // MARK: Layout Helpers
     private func setUI() {
@@ -82,6 +78,12 @@ extension FriendTableViewCell {
             $0.textColor = .white
         }
         
+        yelloIdLabel.do {
+            $0.setTextWithLineHeight(text: "@qwerty", lineHeight: 15)
+            $0.font = .uiLabelMedium
+            $0.textColor = .yelloMain700
+        }
+        
         schoolLabel.do {
             $0.font = .uiLabelMedium
             $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
@@ -94,43 +96,60 @@ extension FriendTableViewCell {
             $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         }
         
-        separatorLine.do {
-            $0.backgroundColor = .grayscales800
+        myFriendLabel.do {
+            $0.font = .uiButton02
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.myFriend, lineHeight: 16)
+            $0.textColor = .grayscales600
+        }
+        
+        if isFriend {
+            addButton.isHidden = true
+            myFriendLabel.isHidden = false
+        } else {
+            addButton.isHidden = false
+            myFriendLabel.isHidden = true
         }
     }
     
     private func setLayout() {
-        
-        contentView.addSubviews(profileImageView,
-                                nameLabel,
-                                schoolLabel,
-                                addButton,
-                                separatorLine)
+        contentView.addSubviews(
+            profileImageView,
+            nameLabel,
+            yelloIdLabel,
+            schoolLabel,
+            addButton,
+            myFriendLabel
+        )
         
         profileImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(8.adjusted)
-            $0.width.height.equalTo(42.adjusted)
+            $0.top.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(8)
+            $0.width.height.equalTo(42)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(17.adjusted)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjusted)
+            $0.top.equalTo(profileImageView)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(12)
+        }
+        
+        yelloIdLabel.snp.makeConstraints {
+            $0.top.equalTo(nameLabel.snp.bottom)
+            $0.leading.equalTo(nameLabel)
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(yelloIdLabel.snp.bottom).offset(4)
             $0.leading.equalTo(nameLabel)
         }
         
         addButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(8.adjusted)
             $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(8)
         }
         
-        separatorLine.snp.makeConstraints {
-            $0.height.equalTo(1)
-            $0.bottom.equalToSuperview()
+        myFriendLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(25)
         }
     }
     
@@ -141,18 +160,17 @@ extension FriendTableViewCell {
         if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
             profileImageView.kfSetImage(url: model.friends.profileImage)
         }
-        isTapped = model.isButtonSelected
-        updateAddButtonImage()
     }
     
     func updateAddButtonImage() {
-        addButton.setImage(isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: isTapped ? .disabled : .normal)
+        
     }
     
     // MARK: Objc Function
     @objc private func addButtonTapped(_ sender: UIButton) {
-        self.isTapped = true
-        updateAddButtonImage()
-        handleAddFriendButton?.addButtonTapped(sender: sender)
+        addButton.isHidden = true
+        myFriendLabel.isHidden = false
+        isFriend.toggle()
+        handleSearchAddFriendButton?.addButtonTapped()
     }
 }

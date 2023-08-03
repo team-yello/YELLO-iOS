@@ -32,6 +32,13 @@ final class MyFriendTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+        nameLabel.text = nil
+        schoolLabel.text = nil
+    }
 }
 // MARK: - extension
 extension MyFriendTableViewCell {
@@ -94,7 +101,9 @@ extension MyFriendTableViewCell {
     // MARK: Custom Function
     func configureMyProfileFriendCell(_ model: ProfileFriendResponseDetail) {
         nameLabel.text = model.name
-        profileImageView.kfSetImage(url: model.profileImageUrl)
+        if model.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            profileImageView.kfSetImage(url: model.profileImageUrl)
+        }
         schoolLabel.text = model.group
     }
 }
