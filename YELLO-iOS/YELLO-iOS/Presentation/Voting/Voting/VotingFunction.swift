@@ -277,7 +277,7 @@ extension VotingViewController {
     
     @objc
     func skipButtonClicked() {
-        if eitherButtonClicked {
+        if keywordButtonClick {
             originView.skipButton.isEnabled = false
             originView.skipButton.isEnabled = true
             view.showToast(message: StringLiterals.Voting.VoteToast.skip)

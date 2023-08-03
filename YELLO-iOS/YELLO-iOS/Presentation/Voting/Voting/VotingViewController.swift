@@ -52,8 +52,6 @@ final class VotingViewController: BaseViewController {
         didSet {
             if nameButtonClick && keywordButtonClick {
                 bothButtonClicked = true
-            } else if nameButtonClick || keywordButtonClick {
-                eitherButtonClicked = true
             }
             originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
             originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
@@ -65,15 +63,7 @@ final class VotingViewController: BaseViewController {
         didSet {
             if nameButtonClick && keywordButtonClick {
                 bothButtonClicked = true
-            } else if nameButtonClick || keywordButtonClick {
-                eitherButtonClicked = true
             }
-        }
-    }
-    
-    // name, keyword 중 하나의 버튼이 클릭되었을 때 동작
-    var eitherButtonClicked: Bool = false {
-        didSet {
             originView.skipButton.setTitleColor(UIColor(hex: "191919", alpha: 0.4), for: .normal)
             originView.skipButton.setImage(ImageLiterals.Voting.icSkipLocked, for: .normal)
         }
