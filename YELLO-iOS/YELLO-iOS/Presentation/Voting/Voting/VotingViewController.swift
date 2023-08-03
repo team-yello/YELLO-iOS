@@ -315,9 +315,7 @@ final class VotingViewController: BaseViewController {
         view.addSubview(originView)
         
         originView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(667.adjusted)
-            $0.centerY.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         originView.questionBackground.addSubviews(nameStackView, keywordStackView)

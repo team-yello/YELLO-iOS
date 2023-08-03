@@ -178,6 +178,11 @@ final class BaseVotingMainView: BaseView {
     
     override func setLayout() {
         let width = UIScreen.main.bounds.size.width
+        let statusBarHeight = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
         
         self.addSubviews(progressView,
                          yelloBalloon,
@@ -203,13 +208,13 @@ final class BaseVotingMainView: BaseView {
         
         progressView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-            $0.top.equalToSuperview().inset(32.adjusted)
+            $0.top.equalToSuperview().inset(statusBarHeight + 11.adjustedHeight)
             $0.height.equalTo(6.adjusted)
         }
         
         yelloBalloon.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(progressView.snp.bottom).offset(6.adjusted)
+            $0.bottom.equalTo(questionBackground.snp.top).offset(-75.adjusted)
         }
         
         yelloProgress.snp.makeConstraints {
@@ -240,7 +245,7 @@ final class BaseVotingMainView: BaseView {
         questionBackground.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.adjusted)
             $0.height.equalTo(154.adjusted)
-            $0.top.equalTo(yelloProgress.snp.bottom).offset(7.adjusted)
+            $0.centerY.equalToSuperview().offset(-104.5.adjusted)
         }
         
         nameOneButton.snp.makeConstraints {
@@ -300,7 +305,7 @@ final class BaseVotingMainView: BaseView {
         }
         
         suffleButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(19.adjusted)
+            $0.top.equalTo(keywordFourButton.snp.bottom).offset(10.adjustedHeight)
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(148.adjusted)
             $0.height.equalTo(48.adjusted)
@@ -322,7 +327,7 @@ final class BaseVotingMainView: BaseView {
         }
         
         skipButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(19.adjusted)
+            $0.top.equalTo(keywordFourButton.snp.bottom).offset(10.adjustedHeight)
             $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.width.equalTo(192.adjusted)
             $0.height.equalTo(48.adjusted)
