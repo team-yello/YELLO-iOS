@@ -36,9 +36,12 @@ final class FriendSearchView: BaseView {
         friendSearchResultTableView.do {
             $0.rowHeight = 90
             $0.separatorStyle = .singleLine
-//            $0.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
+            $0.separatorColor = .grayscales800
+            $0.register(FriendSearchTableViewCell.self, forCellReuseIdentifier: FriendSearchTableViewCell.identifier)
             $0.backgroundColor = .black
-            
+            $0.delegate = self
+            $0.dataSource = self
+            $0.showsVerticalScrollIndicator = false
         }
     }
     
@@ -71,5 +74,30 @@ final class FriendSearchView: BaseView {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
         }
+    }
+}
+
+extension FriendSearchView: UITableViewDelegate { }
+extension FriendSearchView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendSearchTableViewCell.identifier, for: indexPath) as? FriendSearchTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.handleSearchAddFriendButton = self
+        cell.selectionStyle = .none
+//        cell.configureFriendCell([indexPath.row])
+        return cell
+    }
+}
+
+
+extension FriendSearchView: HandleSearchAddFriendButton {
+    func addButtonTapped() {
+        print("친구 추가 서버 통신 함수 추가")
     }
 }

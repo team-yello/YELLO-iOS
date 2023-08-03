@@ -58,6 +58,7 @@ enum StringLiterals {
         enum Search {
             static let title = "친구 검색"
             static let placeholder = " 이름 또는 아이디를 입력해보세요!"
+            static let myFriend = "내 친구"
         }
     }
     

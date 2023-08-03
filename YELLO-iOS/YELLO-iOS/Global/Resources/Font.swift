@@ -73,6 +73,10 @@ extension UIFont {
         return UIFont(name: "Pretendard-SemiBold", size: 13.0)!
     }
     
+    class var uiButton02: UIFont {
+        return UIFont(name: "Pretendard-SemiBold", size: 12.0)!
+    }
+    
     class var uiBody02: UIFont {
         return UIFont(name: "Pretendard-Regular", size: 13.0)!
     }
