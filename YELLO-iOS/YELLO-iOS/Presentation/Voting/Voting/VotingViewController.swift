@@ -85,7 +85,7 @@ final class VotingViewController: BaseViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
                 self.setNextViewController()
             }
-            if VotingViewController.pushCount <= 10 {
+            if VotingViewController.pushCount <= 8 {
                 
                 DispatchQueue.global(qos: .background).async {
                     let existingPoints: Int = UserDefaults.standard.integer(forKey: "UserPlusPoint")

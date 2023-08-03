@@ -103,7 +103,7 @@ extension VotingViewController {
     /// 다음 뷰컨을 지정하는 함수
     func setNextViewController() {
         // 투표 끝나면 포인트뷰컨으로 push
-        if VotingViewController.pushCount > 8 {
+        if VotingViewController.pushCount > 6 {
             VotingViewController.pushCount = 0
             let viewController = VotingPointViewController()
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
@@ -136,11 +136,11 @@ extension VotingViewController: UINavigationControllerDelegate {
     /// 뷰 컨트롤러가 푸시될 때마다 호출
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
-        if VotingViewController.pushCount < 10 {
+        if VotingViewController.pushCount < 8 {
             setVotingView()
         }
         
-        let images = [nil, ImageLiterals.Voting.imgProgress1, ImageLiterals.Voting.imgProgress2, ImageLiterals.Voting.imgProgress3, ImageLiterals.Voting.imgProgress4, ImageLiterals.Voting.imgProgress5, ImageLiterals.Voting.imgProgress6, ImageLiterals.Voting.imgProgress7, ImageLiterals.Voting.imgProgress8, ImageLiterals.Voting.imgProgress9, ImageLiterals.Voting.imgProgress10]
+        let images = [nil, ImageLiterals.Voting.imgProgress1, ImageLiterals.Voting.imgProgress2, ImageLiterals.Voting.imgProgress3, ImageLiterals.Voting.imgProgress4, ImageLiterals.Voting.imgProgress5, ImageLiterals.Voting.imgProgress6, ImageLiterals.Voting.imgProgress7, ImageLiterals.Voting.imgProgress8]
 
         let imageViews = [self.originView.yelloProgressBackGroundOne, self.originView.yelloProgressBackGroundTwo, self.originView.yelloProgressBackGroundThree, self.originView.yelloProgressBackGroundFour]
 
@@ -151,10 +151,8 @@ extension VotingViewController: UINavigationControllerDelegate {
             [2, 3, 5, 6],
             [3, 4, 6, 7],
             [4, 5, 7, 8],
-            [5, 6, 8, 9],
-            [6, 7, 9, 10],
-            [7, 8, 10, nil],
-            [8, 9, nil, nil]
+            [5, 6, 8, nil],
+            [6, 7, nil, nil]
         ]
 
         if VotingViewController.pushCount < progressBackGroundsImages.count {
