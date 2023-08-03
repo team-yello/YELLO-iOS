@@ -118,17 +118,17 @@ extension KakaoFriendView {
             
             cell.selectionStyle = .none
             
-            print(recommendingKakaoFriendTableViewDummy)
+            print(self.recommendingKakaoFriendTableViewDummy)
 
-            if recommendingKakaoFriendTableViewDummy.isEmpty {
+            if self.recommendingKakaoFriendTableViewDummy.isEmpty {
                 return cell
             }
             
-            cell.isTapped = recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected
+            cell.isTapped = self.recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected
             cell.updateAddButtonImage()
             
             cell.handleAddFriendButton = self
-            cell.configureFriendCell(recommendingKakaoFriendTableViewDummy[indexPath.row])
+            cell.configureFriendCell(self.recommendingKakaoFriendTableViewDummy[indexPath.row])
             return cell
         }
     }
