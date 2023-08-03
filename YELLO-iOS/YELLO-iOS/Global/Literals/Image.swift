@@ -68,8 +68,6 @@ enum ImageLiterals {
         static var imgYelloBalloon6: UIImage { .load(named: "imgYelloBalloon6")}
         static var imgYelloBalloon7: UIImage { .load(named: "imgYelloBalloon7")}
         static var imgYelloBalloon8: UIImage { .load(named: "imgYelloBalloon8")}
-        static var imgYelloBalloon9: UIImage { .load(named: "imgYelloBalloon9")}
-        static var imgYelloBalloon10: UIImage { .load(named: "imgYelloBalloon10")}
         static var imgFace1: UIImage { .load(named: "imgFace1")}
         static var imgFace2: UIImage { .load(named: "imgFace2")}
         static var imgFace3: UIImage { .load(named: "imgFace3")}
@@ -92,8 +90,6 @@ enum ImageLiterals {
         static var imgProgress6: UIImage { .load(named: "imgProgress6")}
         static var imgProgress7: UIImage { .load(named: "imgProgress7")}
         static var imgProgress8: UIImage { .load(named: "imgProgress8")}
-        static var imgProgress9: UIImage { .load(named: "imgProgress9")}
-        static var imgProgress10: UIImage { .load(named: "imgProgress10")}
         static var imgPointAccumulate: UIImage { .load(named: "imgPointAccumulate")}
         static var imgVotingLocked: UIImage { .load(named: "imgVotingLocked")}
 
