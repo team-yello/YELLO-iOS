@@ -69,11 +69,6 @@ extension ProfileView {
                 return UITableViewCell()
             }
             
-            if tableView.isLast(for: indexPath) {
-                DispatchQueue.main.async {
-                    cell.addAboveTheBottomBorderWithColor(color: .black)
-                }
-            }
             cell.selectionStyle = .none
             if self.myProfileFriendModelDummy.isEmpty {
                 return cell
@@ -235,7 +230,12 @@ extension ProfileView {
                         self.friendCount = data.totalCount
                     }
                     
-                    self.myProfileFriendModelDummy.append(contentsOf: friendModels)
+                    // 중복되는 모델 필터 처리
+                    let uniqueFriendModels = friendModels.filter { model in
+                        !self.myProfileFriendModelDummy.contains { $0.userId == model.userId }
+                    }
+                    
+                    self.myProfileFriendModelDummy.append(contentsOf: uniqueFriendModels)
                     self.applySnapshot(animated: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         self.myFriendTableView.reloadData()
@@ -296,21 +296,7 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFriendTableViewCell.identifier, for: indexPath) as? MyFriendTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        if tableView.isLast(for: indexPath) {
-            DispatchQueue.main.async {
-                cell.addAboveTheBottomBorderWithColor(color: .black)
-            }
-        }
-        cell.selectionStyle = .none
-        if myProfileFriendModelDummy.isEmpty {
-            return cell
-        }
-        cell.configureMyProfileFriendCell(myProfileFriendModelDummy[indexPath.row])
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -125,6 +125,7 @@ enum ImageLiterals {
         static var icAddFriendButton: UIImage { .load(named: "icAddFriendButton")}
         static var icAddFriendButtonTapped: UIImage { .load(named: "icAddFriendButtonTapped")}
         static var icRight: UIImage { .load(named: "icRight")}
+        static var icSearchWhite: UIImage { .load(named: "icSearchWhite")}
     }
     
     enum Payment {

@@ -17,7 +17,7 @@ final class EmptyFriendView: UIView {
     private let containView = UIView()
     private let emptyImageView = UIImageView()
     private let emptyDescriptionLabel = UILabel()
-    lazy var inviteButton = UIButton()
+    lazy var inviteButton = UIButton(frame: CGRect(x: 0, y: 0, width: 236, height: 48))
     private var invitingView = InvitingView()
     
     // MARK: - Function
@@ -61,7 +61,8 @@ extension EmptyFriendView {
             $0.setTitleColor(.yelloMain500, for: .normal)
             $0.titleLabel?.font = .uiSubtitle04
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 8)
+            $0.makeCornerRound(radius: 24)
+            $0.layer.cornerCurve = .continuous
             $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         }
     }

@@ -126,6 +126,11 @@
 		C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB52A607357000F5BA9 /* FriendCountView.swift */; };
 		C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB72A60FE2D000F5BA9 /* NextButton.swift */; };
 		C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */; };
+		C31315A42A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */; };
+		C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */; };
+		C31315A82A7A5F7E00FB8B43 /* FriendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */; };
+		C31315AD2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315AC2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift */; };
+		C31315B02A7B806D00FB8B43 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315AF2A7B806D00FB8B43 /* UIViewController+.swift */; };
 		C32322F52A619E92006DA50B /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F42A619E92006DA50B /* PaymentView.swift */; };
 		C32322F92A61ABF2006DA50B /* PaymentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */; };
 		C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C363D46C2A78050600FD583D /* AroundTableViewCell.swift */; };
@@ -349,6 +354,11 @@
 		C307ECB52A607357000F5BA9 /* FriendCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCountView.swift; sourceTree = "<group>"; };
 		C307ECB72A60FE2D000F5BA9 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileFriendModel.swift; sourceTree = "<group>"; };
+		C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingNavigationBarView.swift; sourceTree = "<group>"; };
+		C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
+		C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchView.swift; sourceTree = "<group>"; };
+		C31315AC2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchTableViewCell.swift; sourceTree = "<group>"; };
+		C31315AF2A7B806D00FB8B43 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		C32322F42A619E92006DA50B /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C363D46C2A78050600FD583D /* AroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -815,6 +825,7 @@
 				C3C57BED2A5C066200B84CAA /* View */,
 				C3C57BF12A5C087600B84CAA /* Cells */,
 				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
+				C31315A92A7A5F8100FB8B43 /* Search */,
 			);
 			path = Recommending;
 			sourceTree = "<group>";
@@ -852,6 +863,7 @@
 			isa = PBXGroup;
 			children = (
 				C3D2664A2A5D1F2D0041C7C7 /* Main */,
+				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
 				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
 			);
 			path = Profile;
@@ -1003,6 +1015,48 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		C31315A22A78E4B800FB8B43 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C31315A92A7A5F8100FB8B43 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C31315AA2A7A5F8800FB8B43 /* ViewController */,
+				C31315AB2A7A5F8F00FB8B43 /* View */,
+				C31315AE2A7B78F300FB8B43 /* Cells */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		C31315AA2A7A5F8800FB8B43 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C31315AB2A7A5F8F00FB8B43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C31315AE2A7B78F300FB8B43 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C31315AC2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		C32322F32A619E4E006DA50B /* Payment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,6 +1162,7 @@
 				2AD1A1A52A55D6C700CB988B /* UITabBarController+.swift */,
 				C3D266482A5C7ADF0041C7C7 /* UITableViewHeaderFooterView+.swift */,
 				36B234A12A61B447007933E4 /* UINavigationController+.swift */,
+				C31315AF2A7B806D00FB8B43 /* UIViewController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1219,6 +1274,7 @@
 				C3C57BEF2A5C06C600B84CAA /* KakaoFriendView.swift */,
 				C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */,
 				C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */,
+				C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1249,7 +1305,6 @@
 				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 				C307ECB52A607357000F5BA9 /* FriendCountView.swift */,
 				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
-				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
 				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
 				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
 				C3FF24782A5D798700A97D40 /* FriendProfileView.swift */,
@@ -1272,7 +1327,7 @@
 			children = (
 				C3D2663F2A5C75FA0041C7C7 /* ViewController */,
 				C3D2663E2A5C75EE0041C7C7 /* View */,
-				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
+				C31315A22A78E4B800FB8B43 /* Cell */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1530,6 +1585,7 @@
 				C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */,
 				36E427702A5BCE860050B34E /* YelloButton.swift in Sources */,
 				C3B472102A65E0A200770530 /* MyYelloDetailKeywordResponseDTO.swift in Sources */,
+				C31315AD2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift in Sources */,
 				2A3705AA2A62DC9F001AAC93 /* APIRequestLoader.swift in Sources */,
 				36E427912A5C9BD20050B34E /* RecommendIdViewController.swift in Sources */,
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
@@ -1638,6 +1694,7 @@
 				2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */,
 				36E4276B2A5BCE860050B34E /* GenderViewController.swift in Sources */,
 				C3FF24772A5D796B00A97D40 /* FriendProfileViewController.swift in Sources */,
+				C31315B02A7B806D00FB8B43 /* UIViewController+.swift in Sources */,
 				36AD441A2A6812420087D7E0 /* MyRequestInterceptor.swift in Sources */,
 				C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
@@ -1665,6 +1722,7 @@
 				36B2349A2A61A20C007933E4 /* KakaoLoginViewController.swift in Sources */,
 				36E427722A5BCE860050B34E /* YelloGenderButton.swift in Sources */,
 				2A3705D42A62E33E001AAC93 /* RecommendingTarget.swift in Sources */,
+				C31315A82A7A5F7E00FB8B43 /* FriendSearchView.swift in Sources */,
 				C3FF24B12A5F361C00A97D40 /* GetHintView.swift in Sources */,
 				3662A0F02A651FD100F482EF /* SchoolSearchResponseDTO.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
@@ -1701,6 +1759,7 @@
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				C3FF24AF2A5F35FF00A97D40 /* UsePointView.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
+				C31315A42A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
 				2AD1A1D22A5BD13700CB988B /* BaseVotingMainView.swift in Sources */,
 				2AD1A1BE2A595A2400CB988B /* VotingTimerViewController.swift in Sources */,
@@ -1710,6 +1769,7 @@
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				36E4276E2A5BCE860050B34E /* GenderView.swift in Sources */,
 				2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */,
+				C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */,
 				C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */,
 				36E427952A5CA59F0050B34E /* OnboardingEndViewController.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
