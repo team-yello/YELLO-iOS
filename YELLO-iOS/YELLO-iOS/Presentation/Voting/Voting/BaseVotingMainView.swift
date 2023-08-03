@@ -47,6 +47,9 @@ final class BaseVotingMainView: BaseView {
             $0.trackTintColor = UIColor(hex: "FFFFFF", alpha: 0.35)
             $0.progress = 0.125
             $0.makeCornerRound(radius: 5)
+            $0.clipsToBounds = true
+            $0.layer.sublayers![1].cornerRadius = 5
+            $0.subviews[1].clipsToBounds = true
         }
         
         yelloBalloon.do {
