@@ -16,8 +16,13 @@ final class FriendSearchViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setDelegate()
         self.tabBarController?.tabBar.isHidden = true
-        friendSearchView.friendSearchNavigationBarView.handleBackButtonDelegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        friendSearchView.friendSearchTextfield.becomeFirstResponder()
     }
     
     override func setLayout() {
@@ -27,6 +32,15 @@ final class FriendSearchViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
     }
+    
+    private func setDelegate() {
+        friendSearchView.friendSearchNavigationBarView.handleBackButtonDelegate = self
+        friendSearchView.friendSearchTextfield.delegate = self
+    }
+}
+
+extension FriendSearchViewController: UITextFieldDelegate {
+    
 }
 
 // MARK: HandleBackButtonDelegate

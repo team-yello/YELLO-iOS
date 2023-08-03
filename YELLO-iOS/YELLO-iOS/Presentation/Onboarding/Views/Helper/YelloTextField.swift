@@ -35,7 +35,7 @@ final class YelloTextField: UITextField {
     private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
     lazy var cancelButton = UIButton()
     private lazy var toggleImageView = UIImageView()
-    private lazy var searchImageView = UIImageView()
+    lazy var searchImageView = UIImageView()
     private let errorImageView = UIImageView()
     
     private let labelPaddingView = UIView()
