@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "yello_balloon-1.png",
+      "filename" : "order=2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "yello_balloon@2x-1.png",
+      "filename" : "order=2@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "yello_balloon@3x-1.png",
+      "filename" : "order=2@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
