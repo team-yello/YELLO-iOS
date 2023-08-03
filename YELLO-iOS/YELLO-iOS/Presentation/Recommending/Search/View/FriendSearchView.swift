@@ -95,7 +95,6 @@ extension FriendSearchView: UITableViewDataSource {
     }
 }
 
-
 extension FriendSearchView: HandleSearchAddFriendButton {
     func addButtonTapped() {
         print("친구 추가 서버 통신 함수 추가")

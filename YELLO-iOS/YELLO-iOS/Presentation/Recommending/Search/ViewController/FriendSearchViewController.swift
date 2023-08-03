@@ -18,6 +18,7 @@ final class FriendSearchViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         self.tabBarController?.tabBar.isHidden = true
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {

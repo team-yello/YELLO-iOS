@@ -28,7 +28,8 @@ final class FriendSearchTableViewCell: UITableViewCell {
     let schoolLabel = UILabel()
     let addButton = UIButton()
     let myFriendLabel = UILabel()
-    
+
+    var isFriend: Bool = false
     weak var handleSearchAddFriendButton: HandleSearchAddFriendButton?
     
     // MARK: - Function
@@ -41,6 +42,11 @@ final class FriendSearchTableViewCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // 서버 통신 후 추가 예정
     }
 }
 
@@ -94,7 +100,14 @@ extension FriendSearchTableViewCell {
             $0.font = .uiButton02
             $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.myFriend, lineHeight: 16)
             $0.textColor = .grayscales600
-            $0.isHidden = true
+        }
+        
+        if isFriend {
+            addButton.isHidden = true
+            myFriendLabel.isHidden = false
+        } else {
+            addButton.isHidden = false
+            myFriendLabel.isHidden = true
         }
     }
     
@@ -157,6 +170,7 @@ extension FriendSearchTableViewCell {
     @objc private func addButtonTapped(_ sender: UIButton) {
         addButton.isHidden = true
         myFriendLabel.isHidden = false
+        isFriend.toggle()
         handleSearchAddFriendButton?.addButtonTapped()
     }
 }
