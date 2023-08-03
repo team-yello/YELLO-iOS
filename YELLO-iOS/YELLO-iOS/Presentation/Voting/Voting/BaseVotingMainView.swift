@@ -12,6 +12,8 @@ import Then
 
 final class BaseVotingMainView: BaseView {
     let progressView = UIProgressView()
+    var progressPercent = Float(VotingViewController.pushCount + 1) / 8.0
+
     let yelloBalloon = UIImageView()
     let yelloProgress = UIImageView()
     
@@ -45,7 +47,7 @@ final class BaseVotingMainView: BaseView {
             $0.progressViewStyle = .bar
             $0.progressTintColor = .white
             $0.trackTintColor = UIColor(hex: "FFFFFF", alpha: 0.35)
-            $0.progress = 0.125
+            $0.progress = progressPercent
             $0.makeCornerRound(radius: 5)
             $0.clipsToBounds = true
             $0.layer.sublayers![1].cornerRadius = 5
