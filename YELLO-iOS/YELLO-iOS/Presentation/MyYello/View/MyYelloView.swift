@@ -19,7 +19,7 @@ final class MyYelloView: BaseView {
     // MARK: Component
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
     let myYelloListView = MyYelloListView()
-    let unlockButton = UIButton()
+    let unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 343, height: 62))
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -28,7 +28,9 @@ final class MyYelloView: BaseView {
         
         unlockButton.do {
             $0.backgroundColor = .yelloMain500
-            $0.layer.cornerRadius = 8
+//            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.makeCornerRound(radius: 31)
+            $0.layer.cornerCurve = .continuous
             $0.titleLabel?.font = .uiSubtitle03
             $0.setTitleColor(.black, for: .normal)
             $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
@@ -61,7 +63,7 @@ final class MyYelloView: BaseView {
         
         unlockButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(54)
+            $0.height.equalTo(62)
             $0.bottom.equalTo(myYelloListView).inset(28.adjustedHeight)
         }
     }
