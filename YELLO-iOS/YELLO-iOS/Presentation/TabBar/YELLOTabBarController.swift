@@ -87,8 +87,6 @@ final class YELLOTabBarController: UITabBarController {
         }
         
         tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
-        tabBar.items?[3].badgeValue = "209"
-        
         view.backgroundColor = .clear
         
         tabBar.tintColor = .yelloMain500
@@ -166,8 +164,24 @@ extension YELLOTabBarController {
                 }
                 self.setTabBarItems()
                 self.setTabBarAppearance()
+                self.myYelloCount()
             default:
                 print("network failure")
+                return
+            }
+        }
+    }
+    
+    func myYelloCount() {
+        let queryDTO = MyYelloRequestQueryDTO(page: 0)
+        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self.tabBar.items?[3].badgeValue = String(data.totalCount)
+            default:
+                print("network fail")
                 return
             }
         }
