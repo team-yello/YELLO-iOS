@@ -20,9 +20,7 @@ enum ButtonState {
 final class YelloButton: UIButton {
     // MARK: - Variables
     // MARK: Constants
-    let roundAmount: CGFloat = 8
     let buttonHeight: CGFloat = 48
-    let textSize: CGFloat = 15
     
     // MARK: Property
     var buttonState: Bool = false
@@ -57,7 +55,7 @@ extension YelloButton {
     
     private func setStyle() {
         self.setTitle(buttonText, for: .normal)
-        self.makeCornerRound(radius: CGFloat(Constraints.round))
+        self.makeCornerRound(radius: CGFloat(Constraints.buttonRound))
         self.titleLabel?.font = .uiButton
         setButtonEnable(state: self.buttonState)
     }
