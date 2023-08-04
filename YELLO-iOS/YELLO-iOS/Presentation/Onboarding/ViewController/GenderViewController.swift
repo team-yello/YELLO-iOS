@@ -50,7 +50,7 @@ class GenderViewController: OnboardingBaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func genderButtonDidTap(_ sender: YelloGenderButton) {
+    @objc func genderButtonDidTap(_ sender: YelloSelectButton) {
         self.gender = sender.gender
         guard let gender = self.gender else { return }
         switch gender {

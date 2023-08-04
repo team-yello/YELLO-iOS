@@ -14,8 +14,8 @@ class GenderView: BaseView {
     // MARK: - Variables
     // MARK: Component 
     let guideLabel = YelloGuideLabel(labelText: "성별은")
-    let maleButton = YelloGenderButton(buttonText: "남자")
-    let femaleButton = YelloGenderButton(buttonText: "여자")
+    let maleButton = YelloSelectButton(buttonFormat: .gender, buttonText: "남자")
+    let femaleButton = YelloSelectButton(buttonFormat: .gender, buttonText: "여자")
     
     private lazy var buttonStackView = UIStackView()
     
