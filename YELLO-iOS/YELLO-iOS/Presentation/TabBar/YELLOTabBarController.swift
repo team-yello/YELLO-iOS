@@ -47,29 +47,6 @@ final class YELLOTabBarController: UITabBarController {
         tabBar.frame.origin.y = view.frame.height - tabBarHeight - safeAreaHeight
     }
     
-    // MARK: - TabBar Style
-    
-    private func setTabBarAppearance() {
-        
-        /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
-        let offset = UIOffset(horizontal: 0, vertical: -2) /// 수직 방향으로 -2만큼
-        tabBar.items?.forEach { item in
-            item.titlePositionAdjustment = offset
-        }
-        
-        view.backgroundColor = .black
-        
-        tabBar.tintColor = .yelloMain500
-        tabBar.barTintColor = .grayscales600
-        tabBar.roundCorners(cornerRadius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-        
-        let fontAttributes = [NSAttributedString.Key.font: UIFont.uiLabelBoldSmall]
-        UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
-                        
-        UITabBar.clearShadow()
-        tabBar.layer.applyShadow(color: UIColor(hex: "668099"), alpha: 0.15, x: 0, y: -2, blur: 5)
-    }
-    
     // MARK: - TabBar Item
     
     private func setTabBarItems() {
@@ -99,6 +76,31 @@ final class YELLOTabBarController: UITabBarController {
         setViewControllers(tabs, animated: true)
     }
     
+    // MARK: - TabBar Style
+    
+    private func setTabBarAppearance() {
+        
+        /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
+        let offset = UIOffset(horizontal: 0, vertical: -7) /// 수직 방향으로 -7만큼
+        tabBar.items?.forEach { item in
+            item.titlePositionAdjustment = offset
+        }
+        
+        tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+        tabBar.items?[3].badgeValue = "209"
+        
+        view.backgroundColor = .clear
+        
+        tabBar.tintColor = .yelloMain500
+        tabBar.barTintColor = .grayscales600
+        tabBar.roundCorners(cornerRadius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.uiLabelBoldSmall]
+        UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
+                        
+        UITabBar.clearShadow()
+        tabBar.layer.applyShadow(color: UIColor(hex: "668099"), alpha: 0.15, x: 0, y: -2, blur: 5)
+    }
 }
 
 // MARK: - TabBar Custom Font
@@ -120,7 +122,14 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
                 }
             }
         }
-
+        
+        let selectedIndex = tabBarController.selectedIndex
+        switch selectedIndex {
+        case 0, 1, 3, 4:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        default:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+        }
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -155,9 +164,8 @@ extension YELLOTabBarController {
                 } else {
                     self.startStatus = 3
                 }
-                
-                self.setTabBarAppearance()
                 self.setTabBarItems()
+                self.setTabBarAppearance()
             default:
                 print("network failure")
                 return

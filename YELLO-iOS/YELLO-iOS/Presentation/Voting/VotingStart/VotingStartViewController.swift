@@ -113,6 +113,10 @@ final class VotingStartViewController: BaseViewController {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
         }
         
+        originView.yelloFace.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight - 32)
+        }
+        
     }
     
     // MARK: - Objc Function

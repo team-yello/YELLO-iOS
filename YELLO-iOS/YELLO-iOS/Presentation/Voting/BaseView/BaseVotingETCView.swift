@@ -27,6 +27,7 @@ final class BaseVotingETCView: BaseView {
     let realMyPoint = UILabel()
     let engPoint = UILabel()
     
+    let yelloFace = UIImageView()
     let yellowButton = UIButton()
 
     // MARK: - Style
@@ -82,6 +83,10 @@ final class BaseVotingETCView: BaseView {
             $0.font = .uiBodyMedium
         }
         
+        yelloFace.do {
+            $0.image = ImageLiterals.TabBar.icHomeSelected
+        }
+        
         yellowButton.do {
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
@@ -93,6 +98,8 @@ final class BaseVotingETCView: BaseView {
     // MARK: - Layout
     
     override func setLayout() {
+        let width = UIScreen.main.bounds.size.width
+
         self.addSubviews(topOfPointIcon,
                          topOfMyPoint,
                          titleLabel,
@@ -100,8 +107,9 @@ final class BaseVotingETCView: BaseView {
                          plusPoint,
                          yelloImage,
                          grayView,
-                         yellowButton)
-        
+                         yellowButton,
+                         yelloFace)
+                
         grayView.addSubviews(myPointIcon,
                              myPointText,
                              realMyPoint,
@@ -151,6 +159,11 @@ final class BaseVotingETCView: BaseView {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(343.adjusted)
             $0.height.equalTo(48.adjusted)
+        }
+        
+        yelloFace.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(width/2 - 19.5)
+            $0.trailing.equalToSuperview().inset(width/2 - 19)
         }
     }
 }

@@ -51,10 +51,14 @@ extension TabBarItem {
 
 extension TabBarItem {
     public func asTabBarItem() -> UITabBarItem {
-        return UITabBarItem(
+        let tabBarItem = UITabBarItem(
             title: title,
             image: Icon,
             selectedImage: selectedIcon
         )
+        
+        tabBarItem.imageInsets = UIEdgeInsets(top: -5, left: 0, bottom: 0, right: 0)
+        
+        return tabBarItem
     }
 }
