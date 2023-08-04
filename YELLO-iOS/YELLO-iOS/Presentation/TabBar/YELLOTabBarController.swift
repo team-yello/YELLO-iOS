@@ -179,7 +179,11 @@ extension YELLOTabBarController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                self.tabBar.items?[3].badgeValue = String(data.totalCount)
+                if data.totalCount > 99 {
+                    self.tabBar.items?[3].badgeValue = "99+"
+                } else {
+                    self.tabBar.items?[3].badgeValue = String(data.totalCount)
+                }
             default:
                 print("network fail")
                 return
