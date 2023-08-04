@@ -34,6 +34,7 @@ class YelloSelectButton: UIButton {
     var buttonText = ""
     var buttonFormat: ButtonFormat?
     var gender: Gender?
+    var schoolLevel: SchoolLevel?
     var IconImage: UIImage?
     
     // MARK: Component
@@ -134,9 +135,19 @@ extension YelloSelectButton {
                 return
             }
         case .school:
+            schoolLevel = (buttonText == "대학생") ? .univ : .high
             buttonLabel.textColor = .yelloMain500
-            IconImage?.withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
             self.layer.borderColor = UIColor.yelloMain500.cgColor
+            checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleSelected, for: .normal)
+            
+            switch schoolLevel {
+            case .high:
+                iconImageView.image = iconImageView.image?.withTintColor(.yelloMain500)
+            case .univ:
+                iconImageView.image = iconImageView.image?.withTintColor(.yelloMain500)
+            case .none:
+                return
+            }
         case .none:
             return
         }
