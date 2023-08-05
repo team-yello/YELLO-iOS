@@ -10,6 +10,10 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleShopButton: AnyObject {
+    func shopButtonTapped()
+}
+
 final class MyYelloNavigationBarView: BaseView {
     
     private enum Color {
@@ -34,6 +38,8 @@ final class MyYelloNavigationBarView: BaseView {
     lazy var shopButton = UIButton(frame: CGRect(x: 0, y: 0, width: 67, height: 28))
     let shopBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 71, height: 32))
     
+    weak var handleShopButton: HandleShopButton?
+    
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
@@ -54,13 +60,14 @@ final class MyYelloNavigationBarView: BaseView {
             $0.layer.cornerCurve = .continuous
             $0.setTitleColor(.white, for: .normal)
             $0.backgroundColor = .black
+            $0.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
         }
         
         shopBackgroundView.do {
-            $0.applyGradientBackground(topColor: UIColor(hex:"D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
             $0.makeCornerRound(radius: 16)
             $0.layer.cornerCurve = .continuous
-            $0.isUserInteractionEnabled = false
+//            $0.isUserInteractionEnabled = false
         }
         
         yelloNumberLabel.do {
@@ -115,5 +122,11 @@ final class MyYelloNavigationBarView: BaseView {
             $0.center.equalToSuperview()
             $0.leading.trailing.bottom.top.equalToSuperview().inset(2)
         }
+    }
+}
+
+extension MyYelloNavigationBarView {
+    @objc func shopButtonTapped() {
+        handleShopButton?.shopButtonTapped()
     }
 }
