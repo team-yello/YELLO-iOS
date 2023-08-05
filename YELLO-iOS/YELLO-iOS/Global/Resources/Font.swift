@@ -42,7 +42,7 @@ extension UIFont {
     }
     
     class var uiSubtitle03: UIFont {
-        return UIFont(name: "Pretendard-Bold", size: 15.0)!
+        return UIFont(name: "Pretendard-Bold", size: 15.0.adjusted)!
     }
     
     class var uiSubtitle04: UIFont {

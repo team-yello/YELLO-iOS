@@ -24,7 +24,7 @@ final class MyYelloView: BaseView {
     // MARK: Component
     let myYellowNavigationBarView = MyYelloNavigationBarView()
     let myYelloListView = MyYelloListView()
-    lazy var unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62))
+    lazy var unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62.adjusted))
 //    lazy var unlockButton = MyYelloTicketButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62))
     
     // MARK: - Function
@@ -61,7 +61,7 @@ final class MyYelloView: BaseView {
         
         unlockButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(62)
+            $0.height.equalTo(62.adjusted)
             $0.bottom.equalTo(myYelloListView).inset(28.adjustedHeight)
         }
     }
