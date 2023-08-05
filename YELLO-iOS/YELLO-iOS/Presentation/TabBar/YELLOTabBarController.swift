@@ -93,7 +93,9 @@ final class YELLOTabBarController: UITabBarController {
         tabBar.barTintColor = .grayscales600
         tabBar.roundCorners(cornerRadius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         
-        let fontAttributes = [NSAttributedString.Key.font: UIFont.uiLabelBoldSmall]
+        // 탭바만 폰트 기기대응X
+        let myFont = UIFont(name: "Pretendard-Bold", size: 10.0)!
+        let fontAttributes = [NSAttributedString.Key.font: myFont]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
                         
         UITabBar.clearShadow()
@@ -108,14 +110,16 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
         if let selectedViewController = tabBarController.selectedViewController {
-            let selectedFontAttributes = [NSAttributedString.Key.font: UIFont.uiLabelBoldSmall]
+            let myFont = UIFont(name: "Pretendard-Bold", size: 10.0)!
+            let selectedFontAttributes = [NSAttributedString.Key.font: myFont]
             selectedViewController.tabBarItem.setTitleTextAttributes(selectedFontAttributes, for: .normal)
         }
         
         for (index, controller) in tabBarController.viewControllers!.enumerated() {
             if let tabBarItem = controller.tabBarItem {
                 if index != tabBarController.selectedIndex {
-                    let defaultFontAttributes = [NSAttributedString.Key.font: UIFont.uiLabelSmall]
+                    let myFont = UIFont(name: "Pretendard-Medium", size: 10.0)!
+                    let defaultFontAttributes = [NSAttributedString.Key.font: myFont]
                     tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
                 }
             }

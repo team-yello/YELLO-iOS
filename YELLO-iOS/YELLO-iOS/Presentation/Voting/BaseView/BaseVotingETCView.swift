@@ -91,7 +91,7 @@ final class BaseVotingETCView: BaseView {
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
             $0.backgroundColor = .yelloMain500
-            $0.makeCornerRound(radius: 23)
+            $0.makeCornerRound(radius: 23.adjusted)
         }
     }
     

@@ -159,6 +159,8 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         speechBubbleBackground.snp.makeConstraints {
+            $0.width.equalTo(208.adjusted)
+            $0.height.equalTo(42.adjusted)
             $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-11.adjustedHeight)
             $0.centerX.equalToSuperview()
         }

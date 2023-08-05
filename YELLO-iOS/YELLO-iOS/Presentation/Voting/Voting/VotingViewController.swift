@@ -226,7 +226,7 @@ final class VotingViewController: BaseViewController {
             $0.axis = .horizontal
             $0.distribution = .fill
             $0.alignment = .center
-            $0.spacing = 10
+            $0.spacing = 10.adjusted
         }
         
         nameHead.do {
@@ -260,7 +260,7 @@ final class VotingViewController: BaseViewController {
             $0.axis = .horizontal
             $0.distribution = .fill
             $0.alignment = .center
-            $0.spacing = 10
+            $0.spacing = 10.adjusted
         }
         
         keywordHead.do {
