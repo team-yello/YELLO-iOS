@@ -59,6 +59,7 @@ final class VotingLockedViewController: BaseViewController {
             .statusBarFrame.height ?? 20
         
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
+        let width = UIScreen.main.bounds.size.width
                 
         originView.titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
@@ -80,6 +81,8 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.yelloFace.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(width/2 - 19.5)
+            $0.trailing.equalToSuperview().inset(width/2 - 19)
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight - 32)
         }
         

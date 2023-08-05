@@ -98,8 +98,6 @@ final class BaseVotingETCView: BaseView {
     // MARK: - Layout
     
     override func setLayout() {
-        let width = UIScreen.main.bounds.size.width
-
         self.addSubviews(topOfPointIcon,
                          topOfMyPoint,
                          titleLabel,
@@ -159,11 +157,6 @@ final class BaseVotingETCView: BaseView {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(343.adjusted)
             $0.height.equalTo(48.adjusted)
-        }
-        
-        yelloFace.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(width/2 - 19.5)
-            $0.trailing.equalToSuperview().inset(width/2 - 19)
         }
     }
 }

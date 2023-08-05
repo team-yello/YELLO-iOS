@@ -116,6 +116,7 @@ final class VotingTimerViewController: BaseViewController {
     
     override func setLayout() {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        let width = UIScreen.main.bounds.size.width
         
         originView.addSubview(myView)
         myView.addSubviews(originView.topOfPointIcon,
@@ -172,6 +173,8 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         originView.yelloFace.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(width/2 - 19.5)
+            $0.trailing.equalToSuperview().inset(width/2 - 19)
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight - 32)
         }
         
