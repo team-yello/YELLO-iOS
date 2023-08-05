@@ -24,7 +24,7 @@ final class MyYelloView: BaseView {
     // MARK: Component
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
     let myYelloListView = MyYelloListView()
-    lazy var unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 343, height: 62))
+    lazy var unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62))
     
     // MARK: - Function
     // MARK: Layout Helpers

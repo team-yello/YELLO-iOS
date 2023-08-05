@@ -33,7 +33,6 @@ final class MyYelloButton: UIButton {
             .map(NSNumber.init)
         static let cornerRadius = 31.0
         static let cornerWidth = 2.0
-        static let viewSize = CGSize(width: 343, height: 62)
     }
     
     private lazy var backgroundView = UIView()
@@ -88,6 +87,7 @@ final class MyYelloButton: UIButton {
             $0.addArrangedSubviews(lockImageView, buttonTitleLabel)
             $0.axis = .horizontal
             $0.spacing = 4
+            $0.isUserInteractionEnabled = false
         }
         
         lockImageView.do {
@@ -108,7 +108,7 @@ final class MyYelloButton: UIButton {
         
         backgroundView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(343)
+            $0.width.equalToSuperview()
             $0.height.equalTo(62)
         }
         
