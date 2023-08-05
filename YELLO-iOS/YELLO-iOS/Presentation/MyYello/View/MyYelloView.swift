@@ -26,17 +26,17 @@ final class MyYelloView: BaseView {
     override func setStyle() {
         self.backgroundColor = .black
         
-        unlockButton.do {
-            $0.backgroundColor = .yelloMain500
+//        unlockButton.do {
+//            $0.backgroundColor = .yelloMain500
 //            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
-            $0.makeCornerRound(radius: 31)
-            $0.layer.cornerCurve = .continuous
-            $0.titleLabel?.font = .uiSubtitle03
-            $0.setTitleColor(.black, for: .normal)
-            $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(StringLiterals.MyYello.List.unlockButton, for: .normal)
-        }
+//            $0.makeCornerRound(radius: 31)
+//            $0.layer.cornerCurve = .continuous
+//            $0.titleLabel?.font = .uiSubtitle03
+//            $0.setTitleColor(.black, for: .normal)
+//            $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
+//            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
+//            $0.setTitle(StringLiterals.MyYello.List.unlockButton, for: .normal)
+//        }
     }
     
     override func setLayout() {
@@ -69,11 +69,6 @@ final class MyYelloView: BaseView {
     }
     
     func resetLayout() {
-        if MyYelloView.myYelloCount != 0 {
-            unlockButton.isHidden = false
-        } else {
-            unlockButton.isHidden = true
-        }
         myYellowNavigationBarView.yelloCountLabel.text = String(MyYelloView.myYelloCount) + "개"
         myYellowNavigationBarView.yelloCountLabel.asColor(targetString: "개", color: .grayscales500)
     }
