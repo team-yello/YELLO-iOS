@@ -29,12 +29,11 @@ final class MyYelloDetailView: BaseView {
     var indexNumber: Int = 0
     var nameIndex: Int = -1
     
-    lazy var instagramButton = UIButton()
-    lazy var keywordButton = UIButton()
-    lazy var senderButton = UIButton()
+    lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    lazy var keywordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 400, height: 54))
+    lazy var senderButton =  MyYelloButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62.adjusted))
     
     let logoImageView = UIImageView()
-    let logoLabel = UILabel()
     let groupImageView = UIImageView()
     let instagramIDLabel = UILabel()
     
@@ -63,10 +62,10 @@ final class MyYelloDetailView: BaseView {
             if self.isSenderUsed == true {
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
-                    $0.bottom.equalToSuperview().inset(94.adjustedHeight)
+                    $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
                 }
                 instagramButton.snp.makeConstraints {
-                    $0.bottom.equalTo(senderButton.snp.top).offset(-24.adjustedHeight)
+                    $0.top.equalTo(detailKeywordView.snp.bottom).offset(44.adjustedHeight)
                 }
             }
         }
@@ -104,20 +103,19 @@ final class MyYelloDetailView: BaseView {
         }
         
         instagramButton.do {
-            $0.backgroundColor = .clear
-            $0.layer.cornerRadius = 8
-            $0.titleLabel?.font = .uiBody03
-            $0.setTitleColor(.white, for: .normal)
+            $0.backgroundColor = .white
+            $0.backgroundColor?.withAlphaComponent(0.35)
+            $0.makeCornerRound(radius: 31)
+            $0.layer.cornerCurve = .continuous
             $0.setImage(ImageLiterals.MyYello.imgInstagram, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(StringLiterals.MyYello.Detail.instagram, for: .normal)
             $0.addTarget(self, action: #selector(instagramButtonTapped), for: .touchUpInside)
             $0.isHidden = true
         }
         
         keywordButton.do {
             $0.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.35)
-            $0.layer.cornerRadius = 8
+            $0.makeCornerRound(radius: 27)
+            $0.layer.cornerCurve = .continuous
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.black, for: .normal)
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
@@ -127,24 +125,12 @@ final class MyYelloDetailView: BaseView {
         }
         
         senderButton.do {
-            $0.backgroundColor = .yelloMain500
-            $0.layer.cornerRadius = 8
-            $0.titleLabel?.font = .uiSubtitle03
-            $0.setTitleColor(.black, for: .normal)
-            $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(StringLiterals.MyYello.Detail.senderButton, for: .normal)
             $0.isHidden = true
         }
         
         logoImageView.do {
             $0.image = ImageLiterals.MyYello.imgLogo
-        }
-        
-        logoLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.logoTitle, lineHeight: 16)
-            $0.font = .uiLabelLarge
-            $0.textColor = .white
+            $0.contentMode = .scaleAspectFit
         }
         
         groupImageView.do {
@@ -198,20 +184,19 @@ final class MyYelloDetailView: BaseView {
         }
         
         instagramButton.snp.makeConstraints {
-            $0.bottom.equalTo(keywordButton.snp.top).offset(-24.adjustedHeight)
-            $0.height.equalTo(20)
-            $0.width.equalTo(129)
+            $0.top.equalTo(detailKeywordView.snp.bottom).offset(44.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(60)
         }
         
         keywordButton.snp.makeConstraints {
-            $0.bottom.equalTo(senderButton.snp.top).inset(-10.adjustedHeight)
+            $0.top.equalTo(instagramButton.snp.bottom).offset(46.adjustedHeight)
             $0.height.equalTo(54)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         
         senderButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(38.adjustedHeight)
+            $0.top.equalTo(keywordButton.snp.bottom).offset(8.adjustedHeight)
             $0.height.equalTo(54)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
@@ -236,32 +221,29 @@ extension MyYelloDetailView {
         senderButton.isHidden = true
         
         logoImageView.isHidden = false
-        logoLabel.isHidden = false
         groupImageView.isHidden = false
         instagramIDLabel.isHidden = false
         
         self.addSubviews(logoImageView,
-                         logoLabel,
                          groupImageView,
                          instagramIDLabel)
         
-        logoImageView.snp.makeConstraints {
-            $0.top.equalTo(detailKeywordView.snp.bottom).offset(87.adjustedHeight)
-            $0.centerX.equalToSuperview()
-        }
         
-        logoLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(10.adjustedHeight)
-            $0.centerX.equalToSuperview()
-        }
         
         groupImageView.snp.makeConstraints {
-            $0.top.equalTo(logoLabel.snp.bottom).offset(52.adjustedHeight)
+            $0.top.equalTo(detailKeywordView.snp.bottom).offset(10.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        logoImageView.snp.makeConstraints {
+            $0.top.equalTo(groupImageView.snp.bottom).offset(128.adjustedHeight)
+            $0.width.equalTo(84)
+            $0.height.equalTo(25)
             $0.centerX.equalToSuperview()
         }
         
         instagramIDLabel.snp.makeConstraints {
-            $0.top.equalTo(groupImageView.snp.bottom).offset(6.adjustedHeight)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(6.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
     }
@@ -272,7 +254,6 @@ extension MyYelloDetailView {
         senderButton.isHidden = false
         
         logoImageView.isHidden = true
-        logoLabel.isHidden = true
         groupImageView.isHidden = true
         instagramIDLabel.isHidden = true
         
