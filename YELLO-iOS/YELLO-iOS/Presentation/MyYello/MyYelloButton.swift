@@ -31,7 +31,7 @@ final class MyYelloButton: UIButton {
             .map(Double.init)
             .map { $0 / Double(Color.gradientColors.count) }
             .map(NSNumber.init)
-        static let cornerRadius = 31.0
+        static let cornerRadius = 62.adjusted / 2
         static let cornerWidth = 2.0
     }
     
@@ -62,6 +62,7 @@ final class MyYelloButton: UIButton {
     deinit {
         self.timer?.invalidate()
         self.timer = nil
+        print("DEINIT: MyYelloButton")
     }
     
     // MARK: Layout Helpers
@@ -73,7 +74,7 @@ final class MyYelloButton: UIButton {
     private func setStyle() {
         
         self.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
-        self.makeCornerRound(radius: 31)
+        self.makeCornerRound(radius: Constants.cornerRadius)
         self.layer.cornerCurve = .continuous
 
         backgroundView.do {
@@ -109,7 +110,7 @@ final class MyYelloButton: UIButton {
         backgroundView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.height.equalTo(62)
+            $0.height.equalTo(62.adjusted)
         }
         
         titleStackView.snp.makeConstraints {
@@ -118,6 +119,9 @@ final class MyYelloButton: UIButton {
     }
     
     func animateBorderGradation() {
+        // 기존 그라데이션 레이어 제거
+        self.backgroundView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        
         // 1. 경계선에만 색상을 넣기 위해서 CAShapeLayer 인스턴스 생성
         let shape = CAShapeLayer()
         shape.path = UIBezierPath(
@@ -135,15 +139,15 @@ final class MyYelloButton: UIButton {
         gradient.type = .conic
         gradient.colors = Color.gradientColors.map(\.cgColor) as [Any]
         gradient.locations = Constants.gradientLocation
-        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradient.startPoint = CGPoint(x: 0.2, y: 0.2)
         gradient.endPoint = CGPoint(x: 1, y: 1)
         gradient.mask = shape
         gradient.cornerRadius = Constants.cornerRadius
         self.backgroundView.layer.addSublayer(gradient)
         
-        // 3. 매 0.2초마다 마치 circular queue처럼 색상을 번갈아서 바뀌도록 구현
+        // 3. 매 0.15초마다 마치 circular queue처럼 색상을 번갈아서 바뀌도록 구현
         self.timer?.invalidate()
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { _ in
             gradient.removeAnimation(forKey: "myAnimation")
             let previous = Color.gradientColors.map(\.cgColor)
             let last = Color.gradientColors.removeLast()
