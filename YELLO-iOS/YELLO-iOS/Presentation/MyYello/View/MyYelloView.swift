@@ -22,7 +22,7 @@ final class MyYelloView: BaseView {
     weak var handleUnlockButton: HandleUnlockButton?
     
     // MARK: Component
-    private let myYellowNavigationBarView = MyYelloNavigationBarView()
+    let myYellowNavigationBarView = MyYelloNavigationBarView()
     let myYelloListView = MyYelloListView()
     lazy var unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62))
 //    lazy var unlockButton = MyYelloTicketButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62))

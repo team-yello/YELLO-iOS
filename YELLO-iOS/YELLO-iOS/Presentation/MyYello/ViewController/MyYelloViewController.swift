@@ -69,7 +69,7 @@ final class MyYelloViewController: BaseViewController {
     }
     
     private func setAddTarget() {
-//        myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
+        myYelloView.myYellowNavigationBarView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshCount), for: .valueChanged)
     }
     
@@ -122,5 +122,10 @@ extension MyYelloViewController {
                     return
                 }
         }
+    }
+    
+   @objc func shopButtonTapped() {
+        let paymentViewController = PaymentViewController()
+        navigationController?.pushViewController(paymentViewController, animated: true)
     }
 }

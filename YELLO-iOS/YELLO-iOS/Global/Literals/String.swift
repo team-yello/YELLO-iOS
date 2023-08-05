@@ -100,6 +100,7 @@ enum StringLiterals {
         enum NavigationBar {
             static let myYello = "내 쪽지"
             static let yelloNumber = "받은 쪽지"
+            static let shop = "상점"
         }
         
         enum Empty {
