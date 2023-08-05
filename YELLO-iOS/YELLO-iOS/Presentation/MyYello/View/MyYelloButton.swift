@@ -76,12 +76,12 @@ final class MyYelloButton: UIButton {
         self.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
         self.makeCornerRound(radius: 31)
         self.layer.cornerCurve = .continuous
-        self.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
 
         backgroundView.do {
             $0.backgroundColor = .clear
             $0.makeCornerRound(radius: Constants.cornerRadius)
             $0.layer.cornerCurve = .continuous
+            $0.isUserInteractionEnabled = false
         }
         
         titleStackView.do {

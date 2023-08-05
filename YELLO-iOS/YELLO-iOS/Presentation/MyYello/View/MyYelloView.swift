@@ -10,33 +10,30 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleUnlockButton: AnyObject {
+    func unlockButtonTapped()
+}
+
 final class MyYelloView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
     static var myYelloCount: Int = 0
+    weak var handleUnlockButton: HandleUnlockButton?
     
     // MARK: Component
     private let myYellowNavigationBarView = MyYelloNavigationBarView()
     let myYelloListView = MyYelloListView()
-    let unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 343, height: 62))
+    lazy var unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 343, height: 62))
     
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black
         
-//        unlockButton.do {
-//            $0.backgroundColor = .yelloMain500
-//            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
-//            $0.makeCornerRound(radius: 31)
-//            $0.layer.cornerCurve = .continuous
-//            $0.titleLabel?.font = .uiSubtitle03
-//            $0.setTitleColor(.black, for: .normal)
-//            $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
-//            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-//            $0.setTitle(StringLiterals.MyYello.List.unlockButton, for: .normal)
-//        }
+        unlockButton.do {
+            $0.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
+        }
     }
     
     override func setLayout() {
@@ -71,5 +68,9 @@ final class MyYelloView: BaseView {
     func resetLayout() {
         myYellowNavigationBarView.yelloCountLabel.text = String(MyYelloView.myYelloCount) + "개"
         myYellowNavigationBarView.yelloCountLabel.asColor(targetString: "개", color: .grayscales500)
+    }
+    
+    @objc func unlockButtonTapped() {
+        handleUnlockButton?.unlockButtonTapped()
     }
 }

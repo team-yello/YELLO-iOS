@@ -65,10 +65,11 @@ final class MyYelloViewController: BaseViewController {
     // MARK: Custom Function
     private func setDelegate() {
         myYelloView.myYelloListView.handleMyYelloCellDelegate = self
+        myYelloView.handleUnlockButton = self
     }
     
     private func setAddTarget() {
-        myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
+//        myYelloView.unlockButton.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshCount), for: .valueChanged)
     }
     
@@ -78,8 +79,9 @@ final class MyYelloViewController: BaseViewController {
 }
 
 // MARK: - extension
-extension MyYelloViewController {
-    @objc private func unlockButtonTapped() {
+// MARK: HandleUnlockButton
+extension MyYelloViewController: HandleUnlockButton {
+    func unlockButtonTapped() {
         let paymentViewController = PaymentViewController()
         navigationController?.pushViewController(paymentViewController, animated: true)
     }
