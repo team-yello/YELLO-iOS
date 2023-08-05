@@ -83,7 +83,12 @@ final class VotingViewController: BaseViewController {
                     UserDefaults.standard.set(newPoints, forKey: "UserPlusPoint")
                 }
                 
-                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount].questionId, keywordName: keyword, colorIndex: VotingViewController.pushCount))
+                var myColorIndex = (Color.shared.startIndex ?? 0) + VotingViewController.pushCount
+                if myColorIndex > 12 {
+                    myColorIndex = myColorIndex - 12
+                }
+                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount].questionId, keywordName: keyword, colorIndex: myColorIndex))
+                print(myColorIndex)
             }
         }
     }
