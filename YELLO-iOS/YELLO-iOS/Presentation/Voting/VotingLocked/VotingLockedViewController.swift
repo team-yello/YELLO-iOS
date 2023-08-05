@@ -114,11 +114,17 @@ extension VotingLockedViewController {
                         let viewController = VotingStartViewController()
                         viewController.originView.yellowButton.isEnabled = false
                         viewController.myPoint = data.point
-                        self.navigationController?.pushViewController(viewController, animated: true)
+                        UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
+                            // 전환 시 스르륵 바뀌는 애니메이션 적용
+                            self.navigationController?.pushViewController(viewController, animated: false)
+                        })
                     } else {
                         let viewController = VotingTimerViewController()
                         viewController.myPoint = data.point
-                        self.navigationController?.pushViewController(viewController, animated: true)
+                        UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
+                            // 전환 시 스르륵 바뀌는 애니메이션 적용
+                            self.navigationController?.pushViewController(viewController, animated: false)
+                        })
                     }
                 }
             default:

@@ -24,7 +24,10 @@ final class VotingTimerViewController: BaseViewController {
             if remainingSeconds == 0 {
                 let viewController = VotingStartViewController()
                 viewController.myPoint = myPoint
-                self.navigationController?.pushViewController(viewController, animated: false)
+                UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
+                    // 전환 시 스르륵 바뀌는 애니메이션 적용
+                    self.navigationController?.pushViewController(viewController, animated: false)
+                })
             }
         }
     }
@@ -121,7 +124,8 @@ final class VotingTimerViewController: BaseViewController {
                            originView.textLabel,
                            timerBackGround,
                            speechBubbleBackground,
-                           originView.yellowButton)
+                           originView.yellowButton,
+                           originView.yelloFace)
         
         timerBackGround.addSubview(timerView)
         speechBubbleBackground.addSubview(speechBubbleText)
@@ -262,7 +266,10 @@ extension VotingTimerViewController {
                 if data.isPossible {
                     let viewController = VotingStartViewController()
                     viewController.myPoint = self.myPoint
-                    self.navigationController?.pushViewController(viewController, animated: false)
+                    UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
+                        // 전환 시 스르륵 바뀌는 애니메이션 적용
+                        self.navigationController?.pushViewController(viewController, animated: false)
+                    })
                     self.cancelScheduledNotification()
                 }
                 
