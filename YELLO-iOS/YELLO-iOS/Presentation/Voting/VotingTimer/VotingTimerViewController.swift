@@ -74,6 +74,12 @@ final class VotingTimerViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        getVotingAvailable()
+    }
+    
     // MARK: - Style
     
     override func setStyle() {
@@ -276,11 +282,34 @@ extension VotingTimerViewController {
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
                     self.cancelScheduledNotification()
+                    print("💛💛💛💛💛💛💛💛💛💛💛💛💛💛")
                 }
-                
                 self.remainingSeconds = duration
                 self.start(duration: duration)
                 
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
+    func getVotingAvailable() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                if data.isPossible {
+                    let viewController = VotingStartViewController()
+                    viewController.myPoint = self.myPoint
+                    UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
+                        // 전환 시 스르륵 바뀌는 애니메이션 적용
+                        self.navigationController?.pushViewController(viewController, animated: false)
+                    })
+                    self.cancelScheduledNotification()
+                    print("💕💕💕💕💕💕💕💕💕💕💕💕")
+                }
             default:
                 print("network failure")
                 return
