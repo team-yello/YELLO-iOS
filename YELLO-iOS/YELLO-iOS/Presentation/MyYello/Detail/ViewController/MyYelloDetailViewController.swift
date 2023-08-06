@@ -10,13 +10,16 @@ import UIKit
 import SnapKit
 import Then
 
+struct MyYelloBackgroundColorStringDummy {
+    let backgroundColorTop: String
+    let backgroundColorBottom: String
+}
+
 final class MyYelloDetailViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Constants
     let myYelloDetailView = MyYelloDetailView()
-    let dummy = myYelloBackgroundColorDummy
-    let hexDummy = myYelloBackgroundColorStringDummy
     var colorIndex: Int = 0
     var isYelloButtonTapped: Bool = false {
         didSet {
@@ -26,7 +29,33 @@ final class MyYelloDetailViewController: BaseViewController {
             sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: votingStartViewController)
         }
     }
-    
+
+    var myYelloBackgroundColorStringDummy: [MyYelloBackgroundColorStringDummy] =
+    [MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.one,
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.one),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.two,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.two),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.three,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.three),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.four,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.four),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.five,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.five),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.six,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.six),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.seven,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.seven),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.eight,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.eight),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.nine,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.nine),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.ten,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.ten),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.eleven,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.eleven),
+     MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.tweleve,
+                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.tweleve)]
+
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -92,11 +121,9 @@ extension MyYelloDetailViewController {
         }
         
         let gradientView = UIView(frame: view.bounds)
-        Color.shared.selectedTopColors = selectTopColors(startIndex: 0)
-        Color.shared.selectedBottomColors = selectBottomColors(startIndex: 0)
         gradientView.applyGradientBackground(
-            topColor: UIColor(hex: Color.shared.selectedTopColors?[colorIndex] ?? "6437FF"),
-            bottomColor: UIColor(hex: Color.shared.selectedBottomColors?[colorIndex] ?? "A892FF"))
+            topColor: UIColor(hex: myYelloBackgroundColorStringDummy[colorIndex].backgroundColorTop),
+            bottomColor:UIColor(hex: myYelloBackgroundColorStringDummy[colorIndex].backgroundColorBottom))
         myYelloDetailView.insertSubview(gradientView, at: 0)
     }
     
@@ -211,8 +238,8 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
                     view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
                 }
                 
-                let topColor = "#" + hexDummy[colorIndex].backgroundColorTop
-                let bottomColor = "#" + hexDummy[colorIndex].backgroundColorBottom
+                let topColor = "#" + myYelloBackgroundColorStringDummy[colorIndex].backgroundColorTop
+                let bottomColor = "#" + myYelloBackgroundColorStringDummy[colorIndex].backgroundColorBottom
                 
                 guard let imageData = renderImage.pngData() else {return}
                 let pasteboardItems: [String: Any] = [
