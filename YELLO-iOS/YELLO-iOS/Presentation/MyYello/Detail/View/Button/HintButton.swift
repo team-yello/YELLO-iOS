@@ -25,7 +25,6 @@ final class HintButton: UIButton {
     private let plusLabel = UILabel()
     private let strikeView = UIView()
     
-
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {

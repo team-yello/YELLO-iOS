@@ -12,6 +12,11 @@ import Then
 
 final class MyYelloButton: UIButton {
     
+    enum TicketStatus {
+        case yesTicket
+        case noTicket
+    }
+    
     private enum Color {
         static var gradientColors = [
             UIColor.white,
@@ -39,6 +44,12 @@ final class MyYelloButton: UIButton {
     private let lockImageView = UIImageView()
     private let titleStackView = UIStackView()
     private let buttonTitleLabel = UILabel()
+    private let buttonTicketTitleLabel = UILabel()
+    
+    private let keyImageView = UIImageView()
+    let keyCountLabel = UILabel()
+    private let keyStackView = UIStackView()
+    private let titleTicketStackView = UIStackView()
     
     private var timer: Timer?
 
@@ -52,6 +63,12 @@ final class MyYelloButton: UIButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUI()
+    }
+    
+    init(state: TicketStatus) {
+        super.init(frame: CGRect())
+        setUI()
+        setButtonState(state: state)
     }
     
     override func layoutSubviews() {
@@ -72,8 +89,7 @@ final class MyYelloButton: UIButton {
     }
     
     private func setStyle() {
-        
-        self.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+        self.frame = CGRect(x: 0, y: 0, width: 400, height: 62.adjusted)
         self.makeCornerRound(radius: Constants.cornerRadius)
         self.layer.cornerCurve = .continuous
 
@@ -100,12 +116,43 @@ final class MyYelloButton: UIButton {
             $0.textColor = .white
             $0.font = .uiSubtitle03
         }
+        
+        buttonTicketTitleLabel.do {
+            $0.text = StringLiterals.MyYello.List.keyButton
+            $0.textColor = .black
+            $0.font = .uiSubtitle03
+        }
+        
+        keyImageView.do {
+            $0.image = ImageLiterals.MyYello.icKey
+        }
+        
+        keyCountLabel.do {
+            $0.text = "2"
+            $0.font = .uiSubtitle02
+            $0.textColor = .purpleSub500
+        }
+        
+        keyStackView.do {
+            $0.addArrangedSubviews(keyImageView, keyCountLabel)
+            $0.axis = .horizontal
+            $0.spacing = 4
+            $0.isUserInteractionEnabled = false
+        }
+        
+        titleTicketStackView.do {
+            $0.addArrangedSubviews(keyStackView, buttonTicketTitleLabel)
+            $0.axis = .horizontal
+            $0.spacing = 12
+            $0.isUserInteractionEnabled = false
+        }
     }
     
     private func setLayout() {
         
         self.addSubviews(backgroundView,
-                         titleStackView)
+                         titleStackView,
+                         titleTicketStackView)
         
         backgroundView.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -115,6 +162,31 @@ final class MyYelloButton: UIButton {
         
         titleStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
+        }
+        
+        titleTicketStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+    }
+    
+    // MARK: Custom Function
+    func setButtonState(state: TicketStatus) {
+        switch state {
+        case .yesTicket:
+            self.removeGradientBackground()
+            self.backgroundColor = .yelloMain500
+            self.backgroundView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+            titleStackView.isHidden = true
+            backgroundView.isHidden = true
+            titleTicketStackView.isHidden = false
+            buttonTitleLabel.textColor = .black
+            
+        case .noTicket:
+            self.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            titleStackView.isHidden = false
+            backgroundView.isHidden = false
+            titleTicketStackView.isHidden = true
+            buttonTitleLabel.textColor = .white
         }
     }
     

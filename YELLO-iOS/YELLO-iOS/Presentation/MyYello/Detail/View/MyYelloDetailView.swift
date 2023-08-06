@@ -31,8 +31,7 @@ final class MyYelloDetailView: BaseView {
     
     lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
     lazy var keywordButton = HintButton(state: .keyword)
-    lazy var senderButton =  MyYelloButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62.adjusted))
-    lazy var senderTicketButton =  MyYelloTicketButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62.adjusted))
+    lazy var senderButton = MyYelloButton(state: .yesTicket)
     
     let logoImageView = UIImageView()
     let groupImageView = UIImageView()
@@ -43,15 +42,13 @@ final class MyYelloDetailView: BaseView {
     var haveTicket: Bool = true {
         didSet {
             if haveTicket {
-                senderButton.isHidden = true
-                senderTicketButton.isHidden = false
+                senderButton.setButtonState(state: .yesTicket)
             } else {
-                senderButton.isHidden = false
-                senderTicketButton.isHidden = true
-                
+                senderButton.setButtonState(state: .noTicket)
             }
         }
     }
+    
     var isPlus: Bool = true
     var isRead: Bool = false {
         didSet {

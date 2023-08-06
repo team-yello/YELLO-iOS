@@ -119,11 +119,18 @@ extension UIView {
     
     // 그라데이션 배경 적용
     func applyGradientBackground(topColor: UIColor, bottomColor: UIColor) {
-           let gradientLayer = CAGradientLayer()
-           gradientLayer.frame = bounds
-           gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-           gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-           gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-           layer.insertSublayer(gradientLayer, at: 0)
+        removeGradientBackground()
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        layer.insertSublayer(gradientLayer, at: 0)
        }
+
+    func removeGradientBackground() {
+        if let gradientLayer = layer.sublayers?.first(where: { $0 is CAGradientLayer }) {
+            gradientLayer.removeFromSuperlayer()
+        }
+    }
 }

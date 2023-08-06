@@ -136,7 +136,6 @@
 		C31315AD2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315AC2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift */; };
 		C31315B02A7B806D00FB8B43 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315AF2A7B806D00FB8B43 /* UIViewController+.swift */; };
 		C31315B22A7CBA6F00FB8B43 /* MyYelloButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315B12A7CBA6F00FB8B43 /* MyYelloButton.swift */; };
-		C321504B2A7E4DD200543DB3 /* MyYelloTicketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C321504A2A7E4DD200543DB3 /* MyYelloTicketButton.swift */; };
 		C32322F52A619E92006DA50B /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F42A619E92006DA50B /* PaymentView.swift */; };
 		C32322F92A61ABF2006DA50B /* PaymentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */; };
 		C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C363D46C2A78050600FD583D /* AroundTableViewCell.swift */; };
@@ -370,7 +369,6 @@
 		C31315AC2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchTableViewCell.swift; sourceTree = "<group>"; };
 		C31315AF2A7B806D00FB8B43 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		C31315B12A7CBA6F00FB8B43 /* MyYelloButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloButton.swift; sourceTree = "<group>"; };
-		C321504A2A7E4DD200543DB3 /* MyYelloTicketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloTicketButton.swift; sourceTree = "<group>"; };
 		C32322F42A619E92006DA50B /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C363D46C2A78050600FD583D /* AroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -1117,7 +1115,6 @@
 		C394443A2A7EA86D004EAF53 /* Button */ = {
 			isa = PBXGroup;
 			children = (
-				C321504A2A7E4DD200543DB3 /* MyYelloTicketButton.swift */,
 				C31315B12A7CBA6F00FB8B43 /* MyYelloButton.swift */,
 			);
 			path = Button;
@@ -1674,7 +1671,6 @@
 				C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */,
 				2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */,
 				3662A0F42A654A6000F482EF /* MajorSearchResponseDTO.swift in Sources */,
-				C321504B2A7E4DD200543DB3 /* MyYelloTicketButton.swift in Sources */,
 				C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
 				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,

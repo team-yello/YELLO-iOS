@@ -20,12 +20,20 @@ final class MyYelloView: BaseView {
     // MARK: Property
     static var myYelloCount: Int = 0
     weak var handleUnlockButton: HandleUnlockButton?
+    var haveTicket: Bool = true {
+        didSet {
+            if haveTicket {
+                unlockButton.setButtonState(state: .yesTicket)
+            } else {
+                unlockButton.setButtonState(state: .noTicket)
+            }
+        }
+    }
     
     // MARK: Component
     let myYellowNavigationBarView = MyYelloNavigationBarView()
     let myYelloListView = MyYelloListView()
-    lazy var unlockButton = MyYelloButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62.adjusted))
-//    lazy var unlockButton = MyYelloTicketButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62))
+    lazy var unlockButton = MyYelloButton(state: .yesTicket)
     
     // MARK: - Function
     // MARK: Layout Helpers
