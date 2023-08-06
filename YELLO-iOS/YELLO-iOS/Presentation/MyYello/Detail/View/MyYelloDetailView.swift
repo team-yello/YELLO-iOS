@@ -392,11 +392,11 @@ extension MyYelloDetailView {
                     showUseSenderPointAlert()
                 }
             } else {
-//                if currentPoint < 100 {
-//                    showLackAlert()
-//                } else {
+                if currentPoint < 100 {
+                    showLackAlert()
+                } else {
                     showUsePointAlert()
-//                }
+                }
             }
         }
     }
