@@ -103,8 +103,7 @@ final class MyYelloDetailView: BaseView {
         }
         
         instagramButton.do {
-            $0.backgroundColor = .white
-            $0.backgroundColor?.withAlphaComponent(0.35)
+            $0.backgroundColor = UIColor(white: 1.0, alpha: 0.35)
             $0.makeCornerRound(radius: 31)
             $0.layer.cornerCurve = .continuous
             $0.setImage(ImageLiterals.MyYello.imgInstagram, for: .normal)
@@ -130,7 +129,7 @@ final class MyYelloDetailView: BaseView {
         
         logoImageView.do {
             $0.image = ImageLiterals.MyYello.imgLogo
-            $0.contentMode = .scaleAspectFit
+            $0.contentMode = .scaleAspectFill
         }
         
         groupImageView.do {
@@ -197,7 +196,7 @@ final class MyYelloDetailView: BaseView {
         
         senderButton.snp.makeConstraints {
             $0.top.equalTo(keywordButton.snp.bottom).offset(8.adjustedHeight)
-            $0.height.equalTo(54)
+            $0.height.equalTo(62.adjusted)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
@@ -227,8 +226,6 @@ extension MyYelloDetailView {
         self.addSubviews(logoImageView,
                          groupImageView,
                          instagramIDLabel)
-        
-        
         
         groupImageView.snp.makeConstraints {
             $0.top.equalTo(detailKeywordView.snp.bottom).offset(10.adjustedHeight)

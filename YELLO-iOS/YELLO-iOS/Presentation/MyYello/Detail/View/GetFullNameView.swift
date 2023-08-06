@@ -1,8 +1,8 @@
 //
-//  GetHintView.swift
+//  GetFullNameView.swift
 //  YELLO-iOS
 //
-//  Created by 정채은 on 2023/07/13.
+//  Created by 정채은 on 2023/08/06.
 //
 
 import UIKit
@@ -10,19 +10,22 @@ import UIKit
 import SnapKit
 import Then
 
-final class GetHintView: BaseView {
+final class GetFullNameView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
     let contentsView = UIView()
     let titleLabel = UILabel()
-    let descriptionLabel = UILabel()
     var hintLabel = BasePaddingLabel()
-    let pointView = UIView()
-    let pointImageView = UIImageView()
-    let pointTitleLabel = UILabel()
-    var pointLabel = UILabel()
-    let pointTextLabel = UILabel()
+    let ticketView = UIView()
+    
+    let ticketFrontStackView = UIStackView()
+    let ticketImageView = UIImageView()
+    let ticketTitleLabel = UILabel()
+    
+    let ticketBackStackView = UIStackView()
+    var ticketLabel = UILabel()
+    let ticketTextLabel = UILabel()
     lazy var confirmButton = UIButton()
     
     // MARK: - Function
@@ -34,15 +37,9 @@ final class GetHintView: BaseView {
         contentsView.backgroundColor = .grayscales900
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Alert.keywordTitle, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Alert.getNameTitle, lineHeight: 22)
             $0.textColor = .white
             $0.font = .uiSubtitle02
-        }
-        
-        descriptionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Alert.senderDescription, lineHeight: 15)
-            $0.textColor = .grayscales400
-            $0.font = .uiLabelMedium
         }
         
         hintLabel.do {
@@ -51,32 +48,44 @@ final class GetHintView: BaseView {
             $0.setTextWithLineHeight(text: " ", lineHeight: 24)
             $0.numberOfLines = 1
             $0.font = .uiBodyLarge
-            $0.textColor = UIColor(hex: "000000")
+            $0.textColor = .black
         }
         
-        pointView.do {
+        ticketView.do {
             $0.backgroundColor = UIColor(hex: "293036")
             $0.makeCornerRound(radius: 8)
         }
         
-        pointImageView.do {
-            $0.image = ImageLiterals.MyYello.icPoint
+        ticketFrontStackView.do {
+            $0.addArrangedSubviews(ticketImageView, ticketTitleLabel)
+            $0.axis = .horizontal
+            $0.spacing = 4
         }
         
-        pointTitleLabel.do {
-            $0.text = StringLiterals.MyYello.Alert.afterPoint
+        ticketImageView.do {
+            $0.image = ImageLiterals.MyYello.icKeyWhite
+        }
+        
+        ticketTitleLabel.do {
+            $0.text = StringLiterals.MyYello.Alert.leftTicketCount
             $0.textColor = .white
             $0.font = .uiBodySmall
         }
         
-        pointLabel.do {
+        ticketBackStackView.do {
+            $0.addArrangedSubviews(ticketLabel, ticketTextLabel)
+            $0.axis = .horizontal
+            $0.spacing = 2
+        }
+        
+        ticketLabel.do {
             $0.textColor = .white
             $0.font = .uiKeywordBold
             $0.textAlignment = .right
         }
         
-        pointTextLabel.do {
-            $0.text = StringLiterals.MyYello.Alert.point
+        ticketTextLabel.do {
+            $0.text = StringLiterals.MyYello.Alert.count
             $0.textColor = .grayscales400
             $0.font = .uiBodySmall
         }
@@ -94,69 +103,56 @@ final class GetHintView: BaseView {
         self.addSubview(contentsView)
         
         contentsView.addSubviews(titleLabel,
-                                 descriptionLabel,
                                  hintLabel,
-                                 pointView,
+                                 ticketView,
                                  confirmButton)
         
-        pointView.addSubviews(pointImageView,
-                              pointTitleLabel,
-                              pointLabel,
-                              pointTextLabel)
+        ticketView.addSubviews(ticketFrontStackView,
+                               ticketBackStackView)
         
         contentsView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(280)
-            $0.height.equalTo(270)
+            $0.width.equalTo(280.adjustedWidth)
+            $0.height.equalTo(252.adjustedHeight)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(32)
+            $0.top.equalToSuperview().inset(40.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         hintLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(23.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
-        pointView.snp.makeConstraints {
+        ticketView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(18.adjusted)
-            $0.top.equalTo(hintLabel.snp.bottom).offset(36.adjusted)
-            $0.height.equalTo(52)
+            $0.top.equalTo(hintLabel.snp.bottom).offset(23.adjustedHeight)
+            $0.height.equalTo(40.adjustedHeight)
+            $0.width.equalTo(170.adjustedWidth)
         }
         
-        pointImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
+        ticketFrontStackView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(14.adjustedWidth)
         }
         
-        pointTitleLabel.snp.makeConstraints {
-            $0.centerY.equalTo(pointImageView)
-            $0.leading.equalTo(pointImageView.snp.trailing).inset(-4)
-        }
-        
-        pointLabel.snp.makeConstraints {
-            $0.trailing.equalTo(pointTextLabel.snp.leading).inset(-4)
-            $0.centerY.equalTo(pointTitleLabel)
-            $0.width.equalTo(65)
-        }
-        
-        pointTextLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16)
-            $0.centerY.equalTo(pointTitleLabel)
+        ticketBackStackView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(14.adjustedWidth)
         }
         
         confirmButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(40.adjustedHeight)
             $0.width.equalTo(244.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(30)
+            $0.bottom.equalToSuperview().inset(20.adjustedHeight)
         }
     }
 }
 // MARK: - extension
-extension GetHintView {
+extension GetFullNameView {
     
     // MARK: Objc Function
     @objc func confirmButtonTapped() {

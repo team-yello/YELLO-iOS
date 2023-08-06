@@ -144,6 +144,12 @@ enum StringLiterals {
             static let senderDescription = "이름 중 랜덤으로 뽑은 초성이에요."
             static let afterPoint = "사용 후 포인트"
             static let confirmButton = "확인"
+            static let useTicket = "열람권을 사용해서\n보낸 사람을 알아낼까요?"
+            static let ticket = "열람권"
+            static let count = "개"
+            static let ticketButton = "이름 알아내기"
+            static let getNameTitle = "보낸 사람의 이름을 얻었어요!"
+            static let leftTicketCount = "남은 열람권"
         }
         
         enum Payment {
