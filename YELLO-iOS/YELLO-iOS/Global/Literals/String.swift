@@ -127,6 +127,7 @@ enum StringLiterals {
             static let senderButton = "누가 보냈는지 확인하기"
             static let logoTitle = "지금 누군가가 당신을 생각하고 있어요!"
             static let instagramID = "@yelloworld_official"
+            static let nameTitle = "보낸 사람을 알아냈어요!"
         }
         
         enum Alert {
