@@ -130,6 +130,7 @@
 		C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */; };
 		C30F81072A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */; };
 		C30F81092A7F732B009DBB8D /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81082A7F732B009DBB8D /* HintButton.swift */; };
+		C30F810D2A7FFC7A009DBB8D /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = C30F810C2A7FFC7A009DBB8D /* SkeletonView */; };
 		C31315A42A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */; };
 		C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */; };
 		C31315A82A7A5F7E00FB8B43 /* FriendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */; };
@@ -479,6 +480,7 @@
 				C3A799B82A4949C600D3EFD8 /* KakaoSDK in Frameworks */,
 				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
 				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
+				C30F810D2A7FFC7A009DBB8D /* SkeletonView in Frameworks */,
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
 				2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */,
 				C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */,
@@ -1506,6 +1508,7 @@
 				C3A799B72A4949C600D3EFD8 /* KakaoSDK */,
 				2ADE23A92A5EB7660088FCB3 /* Lottie */,
 				C306E7292A630BD10031514C /* SwiftKeychainWrapper */,
+				C30F810C2A7FFC7A009DBB8D /* SkeletonView */,
 			);
 			productName = "YELLO-iOS";
 			productReference = C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */;
@@ -1543,6 +1546,7 @@
 				C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				C306E7282A630BD10031514C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
@@ -2063,6 +2067,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -2115,6 +2127,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C306E7282A630BD10031514C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		C30F810C2A7FFC7A009DBB8D /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		C3A799AB2A49499500D3EFD8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
