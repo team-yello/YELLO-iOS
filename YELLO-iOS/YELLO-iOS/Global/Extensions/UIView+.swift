@@ -111,7 +111,7 @@ extension UIView {
         border.frame = CGRect(x: 0, y: self.frame.size.height, width: self.frame.size.width, height: 1)
         self.layer.addSublayer(border)
     }
-
+    
     func addAboveTheBottomBorderWithColor(color: UIColor) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
@@ -121,7 +121,9 @@ extension UIView {
     
     // 그라데이션 배경 적용
     func applyGradientBackground(topColor: UIColor, bottomColor: UIColor) {
+
         removeGradientBackground()
+
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]

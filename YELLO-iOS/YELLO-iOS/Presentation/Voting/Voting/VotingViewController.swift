@@ -52,8 +52,6 @@ final class VotingViewController: BaseViewController {
         didSet {
             if nameButtonClick && keywordButtonClick {
                 bothButtonClicked = true
-            } else if nameButtonClick || keywordButtonClick {
-                eitherButtonClicked = true
             }
             originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
             originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
@@ -65,15 +63,7 @@ final class VotingViewController: BaseViewController {
         didSet {
             if nameButtonClick && keywordButtonClick {
                 bothButtonClicked = true
-            } else if nameButtonClick || keywordButtonClick {
-                eitherButtonClicked = true
             }
-        }
-    }
-    
-    // name, keyword 중 하나의 버튼이 클릭되었을 때 동작
-    var eitherButtonClicked: Bool = false {
-        didSet {
             originView.skipButton.setTitleColor(UIColor(hex: "191919", alpha: 0.4), for: .normal)
             originView.skipButton.setImage(ImageLiterals.Voting.icSkipLocked, for: .normal)
         }
@@ -85,7 +75,7 @@ final class VotingViewController: BaseViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
                 self.setNextViewController()
             }
-            if VotingViewController.pushCount <= 10 {
+            if VotingViewController.pushCount <= 8 {
                 
                 DispatchQueue.global(qos: .background).async {
                     let existingPoints: Int = UserDefaults.standard.integer(forKey: "UserPlusPoint")
@@ -93,7 +83,12 @@ final class VotingViewController: BaseViewController {
                     UserDefaults.standard.set(newPoints, forKey: "UserPlusPoint")
                 }
                 
-                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount].questionId, keywordName: keyword, colorIndex: VotingViewController.pushCount))
+                var myColorIndex = (Color.shared.startIndex ?? 0) + VotingViewController.pushCount
+                if myColorIndex > 12 {
+                    myColorIndex = myColorIndex - 12
+                }
+                votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount].questionId, keywordName: keyword, colorIndex: myColorIndex))
+                print(myColorIndex)
             }
         }
     }
@@ -236,7 +231,7 @@ final class VotingViewController: BaseViewController {
             $0.axis = .horizontal
             $0.distribution = .fill
             $0.alignment = .center
-            $0.spacing = 10
+            $0.spacing = 10.adjusted
         }
         
         nameHead.do {
@@ -270,7 +265,7 @@ final class VotingViewController: BaseViewController {
             $0.axis = .horizontal
             $0.distribution = .fill
             $0.alignment = .center
-            $0.spacing = 10
+            $0.spacing = 10.adjusted
         }
         
         keywordHead.do {
@@ -325,9 +320,7 @@ final class VotingViewController: BaseViewController {
         view.addSubview(originView)
         
         originView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(667.adjusted)
-            $0.centerY.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         originView.questionBackground.addSubviews(nameStackView, keywordStackView)

@@ -120,14 +120,14 @@ extension SchoolFriendView {
             
             cell.selectionStyle = .none
 
-            cell.isTapped = recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected
+            cell.isTapped = self.recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected
             cell.updateAddButtonImage()
             
             cell.handleAddFriendButton = self
-            if recommendingSchoolFriendTableViewDummy.isEmpty {
+            if self.recommendingSchoolFriendTableViewDummy.isEmpty {
                 return cell
             }
-            cell.configureFriendCell(recommendingSchoolFriendTableViewDummy[indexPath.row])
+            cell.configureFriendCell(self.recommendingSchoolFriendTableViewDummy[indexPath.row])
             return cell
         }
     }
