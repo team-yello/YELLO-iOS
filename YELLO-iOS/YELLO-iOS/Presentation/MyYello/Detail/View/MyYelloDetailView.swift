@@ -30,8 +30,9 @@ final class MyYelloDetailView: BaseView {
     var nameIndex: Int = -1
     
     lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-    lazy var keywordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 400, height: 54))
+    lazy var keywordButton = HintButton(state: .keyword)
     lazy var senderButton =  MyYelloButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62.adjusted))
+    lazy var senderTicketButton =  MyYelloTicketButton(frame: CGRect(x: 0, y: 0, width: 400, height: 62.adjusted))
     
     let logoImageView = UIImageView()
     let groupImageView = UIImageView()
@@ -39,6 +40,19 @@ final class MyYelloDetailView: BaseView {
     
     // MARK: Property
     weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
+    var haveTicket: Bool = true {
+        didSet {
+            if haveTicket {
+                senderButton.isHidden = true
+                senderTicketButton.isHidden = false
+            } else {
+                senderButton.isHidden = false
+                senderTicketButton.isHidden = true
+                
+            }
+        }
+    }
+    var isPlus: Bool = true
     var isRead: Bool = false {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
@@ -49,7 +63,12 @@ final class MyYelloDetailView: BaseView {
     var isKeywordUsed: Bool = false {
         didSet {
             if self.isKeywordUsed == true {
-                keywordButton.setTitle(StringLiterals.MyYello.Detail.sendButton, for: .normal)
+                if isPlus {
+                    keywordButton.setButtonState(state: .plus)
+                } else {
+                    keywordButton.setButtonState(state: .initial)
+                }
+                
                 detailKeywordView.keywordLabel.isHidden = false
                 detailKeywordView.questionLabel.isHidden = true
                 MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
@@ -112,13 +131,6 @@ final class MyYelloDetailView: BaseView {
         }
         
         keywordButton.do {
-            $0.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.35)
-            $0.makeCornerRound(radius: 27)
-            $0.layer.cornerCurve = .continuous
-            $0.titleLabel?.font = .uiBodyMedium
-            $0.setTitleColor(.black, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(StringLiterals.MyYello.Detail.keywordButton, for: .normal)
             $0.addTarget(self, action: #selector(keywordButtonTapped), for: .touchUpInside)
             $0.isHidden = true
         }

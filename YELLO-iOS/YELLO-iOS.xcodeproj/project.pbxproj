@@ -129,6 +129,7 @@
 		C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81022A7F51E6009DBB8D /* UseTicketView.swift */; };
 		C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */; };
 		C30F81072A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */; };
+		C30F81092A7F732B009DBB8D /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81082A7F732B009DBB8D /* HintButton.swift */; };
 		C31315A42A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */; };
 		C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */; };
 		C31315A82A7A5F7E00FB8B43 /* FriendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */; };
@@ -362,6 +363,7 @@
 		C30F81022A7F51E6009DBB8D /* UseTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseTicketView.swift; sourceTree = "<group>"; };
 		C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFullNameView.swift; sourceTree = "<group>"; };
 		C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloOnlyNameTableViewCell.swift; sourceTree = "<group>"; };
+		C30F81082A7F732B009DBB8D /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingNavigationBarView.swift; sourceTree = "<group>"; };
 		C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchView.swift; sourceTree = "<group>"; };
@@ -1026,6 +1028,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		C30F810A2A7F7334009DBB8D /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				C30F81082A7F732B009DBB8D /* HintButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		C31315A22A78E4B800FB8B43 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1469,6 +1479,7 @@
 				C3FF24B02A5F361C00A97D40 /* GetHintView.swift */,
 				C30F81022A7F51E6009DBB8D /* UseTicketView.swift */,
 				C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */,
+				C30F810A2A7F7334009DBB8D /* Button */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1760,6 +1771,7 @@
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
+				C30F81092A7F732B009DBB8D /* HintButton.swift in Sources */,
 				C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */,
 				C3B472142A65E24900770530 /* PayRequestBodyDTO.swift in Sources */,
 				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
