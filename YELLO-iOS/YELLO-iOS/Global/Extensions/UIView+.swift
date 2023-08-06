@@ -65,7 +65,7 @@ extension UIView {
         let toastWidth = 253.adjusted
         let toastHeight = 42.adjusted
         toastLabel.frame = CGRect(x: self.frame.size.width / 2 - toastWidth / 2,
-                                  y: self.frame.size.height - toastHeight - 25,
+                                  y: self.frame.size.height - toastHeight - 25.adjusted,
                                   width: toastWidth,
                                   height: toastHeight)
         self.addSubview(toastLabel)
@@ -109,7 +109,7 @@ extension UIView {
         border.frame = CGRect(x: 0, y: self.frame.size.height, width: self.frame.size.width, height: 1)
         self.layer.addSublayer(border)
     }
-
+    
     func addAboveTheBottomBorderWithColor(color: UIColor) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
@@ -119,11 +119,11 @@ extension UIView {
     
     // 그라데이션 배경 적용
     func applyGradientBackground(topColor: UIColor, bottomColor: UIColor) {
-           let gradientLayer = CAGradientLayer()
-           gradientLayer.frame = bounds
-           gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-           gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-           gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-           layer.insertSublayer(gradientLayer, at: 0)
-       }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
 }
