@@ -68,7 +68,9 @@ extension UIView {
                                   y: self.frame.size.height - toastHeight - 25.adjusted,
                                   width: toastWidth,
                                   height: toastHeight)
-        self.addSubview(toastLabel)
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(toastLabel)
+        }
         
         UIView.animate(withDuration: 3.0, delay: 0.1, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
@@ -119,11 +121,20 @@ extension UIView {
     
     // 그라데이션 배경 적용
     func applyGradientBackground(topColor: UIColor, bottomColor: UIColor) {
+
+        removeGradientBackground()
+
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         layer.insertSublayer(gradientLayer, at: 0)
+       }
+
+    func removeGradientBackground() {
+        if let gradientLayer = layer.sublayers?.first(where: { $0 is CAGradientLayer }) {
+            gradientLayer.removeFromSuperlayer()
+        }
     }
 }

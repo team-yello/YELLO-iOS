@@ -30,7 +30,7 @@ final class DetailKeywordView: BaseView {
         self.makeCornerRound(radius: 32)
         
         nameKeywordLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
             $0.font = .uiLarge
             $0.textColor = .white
         }

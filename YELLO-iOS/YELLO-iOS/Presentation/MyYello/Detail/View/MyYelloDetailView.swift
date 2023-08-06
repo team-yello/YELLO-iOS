@@ -26,20 +26,43 @@ final class MyYelloDetailView: BaseView {
     var pointLackView = PointLackView()
     var usePointView = UsePointView()
     var getHintView = GetHintView()
+    var useTicketView = UseTicketView()
+    var getFullNameView = GetFullNameView()
     var indexNumber: Int = 0
     var nameIndex: Int = -1
     
-    lazy var instagramButton = UIButton()
-    lazy var keywordButton = UIButton()
-    lazy var senderButton = UIButton()
+    lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    lazy var keywordButton = HintButton(state: .keyword)
+    lazy var senderButton = MyYelloButton(state: .yesTicket)
     
     let logoImageView = UIImageView()
-    let logoLabel = UILabel()
     let groupImageView = UIImageView()
     let instagramIDLabel = UILabel()
     
     // MARK: Property
     weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
+    var haveTicket: Bool = true {
+        didSet {
+            if haveTicket {
+                senderButton.setButtonState(state: .yesTicket)
+            } else {
+                senderButton.setButtonState(state: .noTicket)
+            }
+        }
+    }
+    var isTicketUsed: Bool = false {
+        didSet {
+            senderButton.setButtonState(state: .useTicket)
+            if isKeywordUsed == true {
+                keywordButton.isHidden = true
+                senderButton.snp.makeConstraints {
+                    $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                }
+            }
+        }
+    }
+    
+    var isPlus: Bool = true
     var isRead: Bool = false {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
@@ -50,7 +73,19 @@ final class MyYelloDetailView: BaseView {
     var isKeywordUsed: Bool = false {
         didSet {
             if self.isKeywordUsed == true {
-                keywordButton.setTitle(StringLiterals.MyYello.Detail.sendButton, for: .normal)
+                if isPlus {
+                    keywordButton.setButtonState(state: .plus)
+                } else {
+                    keywordButton.setButtonState(state: .initial)
+                }
+                
+                if isTicketUsed {
+                    keywordButton.isHidden = true
+                    senderButton.snp.makeConstraints {
+                        $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                    }
+                }
+                
                 detailKeywordView.keywordLabel.isHidden = false
                 detailKeywordView.questionLabel.isHidden = true
                 MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
@@ -63,10 +98,11 @@ final class MyYelloDetailView: BaseView {
             if self.isSenderUsed == true {
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
-                    $0.bottom.equalToSuperview().inset(94.adjustedHeight)
+                    $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
                 }
+                
                 instagramButton.snp.makeConstraints {
-                    $0.bottom.equalTo(senderButton.snp.top).offset(-24.adjustedHeight)
+                    $0.top.equalTo(detailKeywordView.snp.bottom).offset(44.adjustedHeight)
                 }
             }
         }
@@ -80,6 +116,7 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
+    var currentTicket: Int = 2
     var voteIdNumber: Int = 0
     var initialName: String = ""
     
@@ -104,47 +141,26 @@ final class MyYelloDetailView: BaseView {
         }
         
         instagramButton.do {
-            $0.backgroundColor = .clear
-            $0.layer.cornerRadius = 8
-            $0.titleLabel?.font = .uiBody03
-            $0.setTitleColor(.white, for: .normal)
+            $0.backgroundColor = UIColor(white: 1.0, alpha: 0.35)
+            $0.makeCornerRound(radius: 31)
+            $0.layer.cornerCurve = .continuous
             $0.setImage(ImageLiterals.MyYello.imgInstagram, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(StringLiterals.MyYello.Detail.instagram, for: .normal)
             $0.addTarget(self, action: #selector(instagramButtonTapped), for: .touchUpInside)
             $0.isHidden = true
         }
         
         keywordButton.do {
-            $0.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.35)
-            $0.layer.cornerRadius = 8
-            $0.titleLabel?.font = .uiBodyMedium
-            $0.setTitleColor(.black, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(StringLiterals.MyYello.Detail.keywordButton, for: .normal)
             $0.addTarget(self, action: #selector(keywordButtonTapped), for: .touchUpInside)
             $0.isHidden = true
         }
         
         senderButton.do {
-            $0.backgroundColor = .yelloMain500
-            $0.layer.cornerRadius = 8
-            $0.titleLabel?.font = .uiSubtitle03
-            $0.setTitleColor(.black, for: .normal)
-            $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(StringLiterals.MyYello.Detail.senderButton, for: .normal)
             $0.isHidden = true
         }
         
         logoImageView.do {
             $0.image = ImageLiterals.MyYello.imgLogo
-        }
-        
-        logoLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.logoTitle, lineHeight: 16)
-            $0.font = .uiLabelLarge
-            $0.textColor = .white
+            $0.contentMode = .scaleAspectFill
         }
         
         groupImageView.do {
@@ -198,21 +214,20 @@ final class MyYelloDetailView: BaseView {
         }
         
         instagramButton.snp.makeConstraints {
-            $0.bottom.equalTo(keywordButton.snp.top).offset(-24.adjustedHeight)
-            $0.height.equalTo(20)
-            $0.width.equalTo(129)
+            $0.top.equalTo(detailKeywordView.snp.bottom).offset(44.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(60)
         }
         
         keywordButton.snp.makeConstraints {
-            $0.bottom.equalTo(senderButton.snp.top).inset(-10.adjustedHeight)
+            $0.top.equalTo(instagramButton.snp.bottom).offset(46.adjustedHeight)
             $0.height.equalTo(54)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         
         senderButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(38.adjustedHeight)
-            $0.height.equalTo(54)
+            $0.top.equalTo(keywordButton.snp.bottom).offset(8.adjustedHeight)
+            $0.height.equalTo(62.adjusted)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
@@ -236,32 +251,27 @@ extension MyYelloDetailView {
         senderButton.isHidden = true
         
         logoImageView.isHidden = false
-        logoLabel.isHidden = false
         groupImageView.isHidden = false
         instagramIDLabel.isHidden = false
         
         self.addSubviews(logoImageView,
-                         logoLabel,
                          groupImageView,
                          instagramIDLabel)
         
-        logoImageView.snp.makeConstraints {
-            $0.top.equalTo(detailKeywordView.snp.bottom).offset(87.adjustedHeight)
-            $0.centerX.equalToSuperview()
-        }
-        
-        logoLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(10.adjustedHeight)
-            $0.centerX.equalToSuperview()
-        }
-        
         groupImageView.snp.makeConstraints {
-            $0.top.equalTo(logoLabel.snp.bottom).offset(52.adjustedHeight)
+            $0.top.equalTo(detailKeywordView.snp.bottom).offset(10.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        logoImageView.snp.makeConstraints {
+            $0.top.equalTo(groupImageView.snp.bottom).offset(128.adjustedHeight)
+            $0.width.equalTo(84)
+            $0.height.equalTo(25)
             $0.centerX.equalToSuperview()
         }
         
         instagramIDLabel.snp.makeConstraints {
-            $0.top.equalTo(groupImageView.snp.bottom).offset(6.adjustedHeight)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(6.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
     }
@@ -272,7 +282,6 @@ extension MyYelloDetailView {
         senderButton.isHidden = false
         
         logoImageView.isHidden = true
-        logoLabel.isHidden = true
         groupImageView.isHidden = true
         instagramIDLabel.isHidden = true
         
@@ -313,8 +322,23 @@ extension MyYelloDetailView {
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
         viewController.view.addSubview(usePointView)
-        usePointView.titleLabel.text = "300" + StringLiterals.MyYello.Alert.senderPoint
+        if self.isPlus {
+            usePointView.titleLabel.text = "0" + StringLiterals.MyYello.Alert.senderPoint
+        } else {
+            usePointView.titleLabel.text = "300" + StringLiterals.MyYello.Alert.senderPoint
+        }
         usePointView.confirmButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
+    }
+    
+    func showUseTicketAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        useTicketView.removeFromSuperview()
+        useTicketView = UseTicketView()
+        useTicketView.ticketLabel.text = String(self.currentTicket)
+        useTicketView.frame = viewController.view.bounds
+        useTicketView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        useTicketView.handleConfirmTicketButtonDelegate = self
+        viewController.view.addSubview(useTicketView)
     }
     
     func showGetSenderHintAlert() {
@@ -338,6 +362,15 @@ extension MyYelloDetailView {
         }
     }
     
+    func showGetFullNameAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        getFullNameView.removeFromSuperview()
+        getFullNameView = GetFullNameView()
+        getFullNameView.frame = viewController.view.bounds
+        getFullNameView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewController.view.addSubview(getFullNameView)
+    }
+    
     func showGetHintAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         getHintView.removeFromSuperview()
@@ -349,17 +382,21 @@ extension MyYelloDetailView {
     
     // MARK: Objc Function
     @objc private func keywordButtonTapped() {
-        if currentPoint < 100 {
+        if currentPoint < 100 && isPlus == false {
             showLackAlert()
         } else {
             if isKeywordUsed == true {
-                if currentPoint < 300 {
+                if currentPoint < 300 && isPlus == false {
                     showLackAlert()
                 } else {
                     showUseSenderPointAlert()
                 }
             } else {
-                showUsePointAlert()
+                if currentPoint < 100 {
+                    showLackAlert()
+                } else {
+                    showUsePointAlert()
+                }
             }
         }
     }
@@ -432,17 +469,27 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
         if self.isKeywordUsed == false {
             showGetHintAlert()
             myYelloDetailKeyword(voteId: voteIdNumber)
-            
+ 
             self.currentPoint -= 100
             self.isKeywordUsed.toggle()
         } else {
             showGetSenderHintAlert()
             myYelloDetailName(voteId: voteIdNumber)
             self.isSenderUsed = true
-            self.currentPoint -= 300
+            
+            if !isPlus {
+                self.currentPoint -= 300
+            }
         }
         
         self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
         self.usePointView.pointLabel.text = String(self.currentPoint)
+    }
+}
+
+extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
+    func confirmTicketButtonTapped() {
+        showGetFullNameAlert()
+        self.isTicketUsed = true
     }
 }

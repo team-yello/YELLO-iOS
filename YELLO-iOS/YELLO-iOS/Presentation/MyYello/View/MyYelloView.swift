@@ -10,16 +10,30 @@ import UIKit
 import SnapKit
 import Then
 
+protocol HandleUnlockButton: AnyObject {
+    func unlockButtonTapped()
+}
+
 final class MyYelloView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
     static var myYelloCount: Int = 0
+    weak var handleUnlockButton: HandleUnlockButton?
+    var haveTicket: Bool = true {
+        didSet {
+            if haveTicket {
+                unlockButton.setButtonState(state: .yesTicket)
+            } else {
+                unlockButton.setButtonState(state: .noTicket)
+            }
+        }
+    }
     
     // MARK: Component
-    private let myYellowNavigationBarView = MyYelloNavigationBarView()
+    let myYellowNavigationBarView = MyYelloNavigationBarView()
     let myYelloListView = MyYelloListView()
-    let unlockButton = UIButton()
+    lazy var unlockButton = MyYelloButton(state: .yesTicket)
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -27,13 +41,7 @@ final class MyYelloView: BaseView {
         self.backgroundColor = .black
         
         unlockButton.do {
-            $0.backgroundColor = .yelloMain500
-            $0.layer.cornerRadius = 8
-            $0.titleLabel?.font = .uiSubtitle03
-            $0.setTitleColor(.black, for: .normal)
-            $0.setImage(ImageLiterals.MyYello.icLock, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
-            $0.setTitle(StringLiterals.MyYello.List.unlockButton, for: .normal)
+            $0.addTarget(self, action: #selector(unlockButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -61,18 +69,17 @@ final class MyYelloView: BaseView {
         
         unlockButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(54)
+            $0.height.equalTo(62.adjusted)
             $0.bottom.equalTo(myYelloListView).inset(28.adjustedHeight)
         }
     }
     
     func resetLayout() {
-        if MyYelloView.myYelloCount != 0 {
-            unlockButton.isHidden = false
-        } else {
-            unlockButton.isHidden = true
-        }
         myYellowNavigationBarView.yelloCountLabel.text = String(MyYelloView.myYelloCount) + "개"
         myYellowNavigationBarView.yelloCountLabel.asColor(targetString: "개", color: .grayscales500)
+    }
+    
+    @objc func unlockButtonTapped() {
+        handleUnlockButton?.unlockButtonTapped()
     }
 }

@@ -18,7 +18,11 @@ final class KakaoFriendView: UIView {
     var fetchingMore = false
     var isFinishPaging = false
     var kakaoPage: Int = -1
-    var kakaoFriendCount: Int = -1
+    var kakaoFriendCount: Int = -1 {
+        didSet {
+            updateView()
+        }
+    }
     
     var dataSource: UITableViewDiffableDataSource<Int, FriendModel>!
     var recommendingKakaoFriendTableViewDummy: [FriendModel] = []

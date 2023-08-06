@@ -110,6 +110,10 @@ enum ImageLiterals {
         static var imgLogo: UIImage { .load(named: "imgLogo") }
         static var imgYelloGroup: UIImage { .load(named: "imgYelloGroup") }
         static var icArrowLeft: UIImage { .load(named: "icArrowLeft") }
+        static var icLockWhite: UIImage { .load(named: "icLockWhite") }
+        static var icKey: UIImage { .load(named: "icKey") }
+        static var icKeyWhite: UIImage { .load(named: "icKeyWhite") }
+        static var icShop: UIImage { .load(named: "icShop") }
     }
     
     enum Profile {
