@@ -68,12 +68,16 @@ extension MyYelloDetailViewController {
     // MARK: objc Function
     private func setAddTarget() {
         myYelloDetailView.senderButton.addTarget(self, action: #selector(senderButtonTapped), for: .touchUpInside)
-                myYelloDetailView.pointLackView = PointLackView()
+        myYelloDetailView.pointLackView = PointLackView()
     }
     
     @objc private func senderButtonTapped() {
-        let paymentViewController = PaymentViewController()
-        navigationController?.pushViewController(paymentViewController, animated: true)
+        if myYelloDetailView.haveTicket {
+            myYelloDetailView.showUseTicketAlert()
+        } else {
+            let paymentViewController = PaymentViewController()
+            navigationController?.pushViewController(paymentViewController, animated: true)
+        }
     }
     
     private func setBackgroundView() {
@@ -83,6 +87,7 @@ extension MyYelloDetailViewController {
             myYelloDetailView.myYelloDetailNavigationBarView.pointLabel.textColor = .black
             myYelloDetailView.detailSenderView.sendLabel.textColor = .black
             myYelloDetailView.genderLabel.textColor = .black
+            myYelloDetailView.senderButton.findLabel.textColor = .black
             myYelloDetailView.instagramButton.setTitleColor(.black, for: .normal)
         }
         

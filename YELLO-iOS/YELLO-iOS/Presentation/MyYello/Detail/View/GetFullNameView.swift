@@ -95,7 +95,7 @@ final class GetFullNameView: BaseView {
             $0.titleLabel?.font = .uiButton
             $0.setTitleColor(.grayscales300, for: .normal)
             $0.setTitle(StringLiterals.MyYello.Alert.confirmButton, for: .normal)
-            $0.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(confirmTicketButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -155,7 +155,7 @@ final class GetFullNameView: BaseView {
 extension GetFullNameView {
     
     // MARK: Objc Function
-    @objc func confirmButtonTapped() {
+    @objc func confirmTicketButtonTapped() {
         self.isHidden = true
         self.removeFromSuperview()
     }

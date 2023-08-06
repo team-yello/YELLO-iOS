@@ -37,7 +37,7 @@ final class UseTicketView: BaseView {
     lazy var confirmButton = UIButton()
     
     // MARK: Property
-    weak var handleConfirmButtonDelegate: HandleConfirmButtonDelegate?
+    weak var handleConfirmTicketButtonDelegate: HandleConfirmTicketButtonDelegate?
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -82,6 +82,7 @@ final class UseTicketView: BaseView {
         }
         
         ticketLabel.do {
+            $0.text = "2"
             $0.textColor = .white
             $0.font = .uiKeywordBold
             $0.textAlignment = .right
@@ -99,7 +100,7 @@ final class UseTicketView: BaseView {
             $0.titleLabel?.font = .uiButton
             $0.setTitleColor(.black, for: .normal)
             $0.setTitle(StringLiterals.MyYello.Alert.ticketButton, for: .normal)
-            $0.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(confirmTicketButtonTapped), for: .touchUpInside)
         }
         
         noButton.do {
@@ -176,8 +177,8 @@ extension UseTicketView {
         self.removeFromSuperview()
     }
     
-    @objc func confirmButtonTapped() {
+    @objc func confirmTicketButtonTapped() {
         noButtonTapped()
-        handleConfirmButtonDelegate?.confirmButtonTapped()
+        handleConfirmTicketButtonDelegate?.confirmTicketButtonTapped()
     }
 }

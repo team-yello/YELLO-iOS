@@ -15,6 +15,7 @@ final class MyYelloButton: UIButton {
     enum TicketStatus {
         case yesTicket
         case noTicket
+        case useTicket
     }
     
     private enum Color {
@@ -50,6 +51,8 @@ final class MyYelloButton: UIButton {
     let keyCountLabel = UILabel()
     private let keyStackView = UIStackView()
     private let titleTicketStackView = UIStackView()
+    
+    let findLabel = UILabel()
     
     private var timer: Timer?
 
@@ -146,13 +149,21 @@ final class MyYelloButton: UIButton {
             $0.spacing = 12
             $0.isUserInteractionEnabled = false
         }
+        
+        findLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.findLabel, lineHeight: 22)
+            $0.font = .uiSubtitle02
+            $0.textColor = .white
+            $0.isHidden = true
+        }
     }
     
     private func setLayout() {
         
         self.addSubviews(backgroundView,
                          titleStackView,
-                         titleTicketStackView)
+                         titleTicketStackView,
+                         findLabel)
         
         backgroundView.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -165,6 +176,10 @@ final class MyYelloButton: UIButton {
         }
         
         titleTicketStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        findLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
@@ -187,6 +202,15 @@ final class MyYelloButton: UIButton {
             backgroundView.isHidden = false
             titleTicketStackView.isHidden = true
             buttonTitleLabel.textColor = .white
+            
+        case .useTicket:
+            self.removeGradientBackground()
+            self.backgroundColor = .clear
+            self.isUserInteractionEnabled = false
+            titleStackView.isHidden = true
+            backgroundView.isHidden = true
+            titleTicketStackView.isHidden = true
+            findLabel.isHidden = false
         }
     }
     

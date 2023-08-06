@@ -26,6 +26,8 @@ final class MyYelloDetailView: BaseView {
     var pointLackView = PointLackView()
     var usePointView = UsePointView()
     var getHintView = GetHintView()
+    var useTicketView = UseTicketView()
+    var getFullNameView = GetFullNameView()
     var indexNumber: Int = 0
     var nameIndex: Int = -1
     
@@ -48,6 +50,17 @@ final class MyYelloDetailView: BaseView {
             }
         }
     }
+    var isTicketUsed: Bool = false {
+        didSet {
+            senderButton.setButtonState(state: .useTicket)
+            if isKeywordUsed == true {
+                keywordButton.isHidden = true
+                senderButton.snp.makeConstraints {
+                    $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                }
+            }
+        }
+    }
     
     var isPlus: Bool = true
     var isRead: Bool = false {
@@ -66,6 +79,13 @@ final class MyYelloDetailView: BaseView {
                     keywordButton.setButtonState(state: .initial)
                 }
                 
+                if isTicketUsed {
+                    keywordButton.isHidden = true
+                    senderButton.snp.makeConstraints {
+                        $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                    }
+                }
+                
                 detailKeywordView.keywordLabel.isHidden = false
                 detailKeywordView.questionLabel.isHidden = true
                 MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
@@ -80,6 +100,7 @@ final class MyYelloDetailView: BaseView {
                 senderButton.snp.makeConstraints {
                     $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
                 }
+                
                 instagramButton.snp.makeConstraints {
                     $0.top.equalTo(detailKeywordView.snp.bottom).offset(44.adjustedHeight)
                 }
@@ -95,6 +116,7 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
+    var currentTicket: Int = 2
     var voteIdNumber: Int = 0
     var initialName: String = ""
     
@@ -300,8 +322,23 @@ extension MyYelloDetailView {
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
         viewController.view.addSubview(usePointView)
-        usePointView.titleLabel.text = "300" + StringLiterals.MyYello.Alert.senderPoint
+        if self.isPlus {
+            usePointView.titleLabel.text = "0" + StringLiterals.MyYello.Alert.senderPoint
+        } else {
+            usePointView.titleLabel.text = "300" + StringLiterals.MyYello.Alert.senderPoint
+        }
         usePointView.confirmButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
+    }
+    
+    func showUseTicketAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        useTicketView.removeFromSuperview()
+        useTicketView = UseTicketView()
+        useTicketView.ticketLabel.text = String(self.currentTicket)
+        useTicketView.frame = viewController.view.bounds
+        useTicketView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        useTicketView.handleConfirmTicketButtonDelegate = self
+        viewController.view.addSubview(useTicketView)
     }
     
     func showGetSenderHintAlert() {
@@ -325,6 +362,15 @@ extension MyYelloDetailView {
         }
     }
     
+    func showGetFullNameAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        getFullNameView.removeFromSuperview()
+        getFullNameView = GetFullNameView()
+        getFullNameView.frame = viewController.view.bounds
+        getFullNameView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewController.view.addSubview(getFullNameView)
+    }
+    
     func showGetHintAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         getHintView.removeFromSuperview()
@@ -336,17 +382,21 @@ extension MyYelloDetailView {
     
     // MARK: Objc Function
     @objc private func keywordButtonTapped() {
-        if currentPoint < 100 {
+        if currentPoint < 100 && isPlus == false {
             showLackAlert()
         } else {
             if isKeywordUsed == true {
-                if currentPoint < 300 {
+                if currentPoint < 300 && isPlus == false {
                     showLackAlert()
                 } else {
                     showUseSenderPointAlert()
                 }
             } else {
-                showUsePointAlert()
+//                if currentPoint < 100 {
+//                    showLackAlert()
+//                } else {
+                    showUsePointAlert()
+//                }
             }
         }
     }
@@ -419,17 +469,27 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
         if self.isKeywordUsed == false {
             showGetHintAlert()
             myYelloDetailKeyword(voteId: voteIdNumber)
-            
+ 
             self.currentPoint -= 100
             self.isKeywordUsed.toggle()
         } else {
             showGetSenderHintAlert()
             myYelloDetailName(voteId: voteIdNumber)
             self.isSenderUsed = true
-            self.currentPoint -= 300
+            
+            if !isPlus {
+                self.currentPoint -= 300
+            }
         }
         
         self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
         self.usePointView.pointLabel.text = String(self.currentPoint)
+    }
+}
+
+extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
+    func confirmTicketButtonTapped() {
+        showGetFullNameAlert()
+        self.isTicketUsed = true
     }
 }
