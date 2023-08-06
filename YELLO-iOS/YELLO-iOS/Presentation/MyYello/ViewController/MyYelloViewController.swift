@@ -82,8 +82,12 @@ final class MyYelloViewController: BaseViewController {
 // MARK: HandleUnlockButton
 extension MyYelloViewController: HandleUnlockButton {
     func unlockButtonTapped() {
-        let paymentViewController = PaymentViewController()
-        navigationController?.pushViewController(paymentViewController, animated: true)
+        if myYelloView.haveTicket {
+            view.showToast(message: StringLiterals.MyYello.List.toastMessage)
+        } else {
+            let paymentViewController = PaymentViewController()
+            navigationController?.pushViewController(paymentViewController, animated: true)
+        }
     }
 }
 

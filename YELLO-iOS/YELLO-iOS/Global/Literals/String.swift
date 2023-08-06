@@ -114,6 +114,7 @@ enum StringLiterals {
             static let nameTitle = "님이 보냄"
             static let unlockButton = "누가 보냈는지 확인하기"
             static let keyButton = "누가 보냈는지 열어보기"
+            static let toastMessage = "무슨 쪽지가 궁금한가요?"
         }
         
         enum Detail {

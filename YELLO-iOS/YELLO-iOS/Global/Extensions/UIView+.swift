@@ -68,7 +68,9 @@ extension UIView {
                                   y: self.frame.size.height - toastHeight - 25,
                                   width: toastWidth,
                                   height: toastHeight)
-        self.addSubview(toastLabel)
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(toastLabel)
+        }
         
         UIView.animate(withDuration: 3.0, delay: 0.1, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
