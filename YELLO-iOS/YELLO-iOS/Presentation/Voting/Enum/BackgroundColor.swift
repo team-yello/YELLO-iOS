@@ -57,11 +57,11 @@ func selectTopColors(startIndex: Int) -> [String] {
     
     var selectedColors: [String]
     
-    if startIndex <= 2 {
-        let endIndex = startIndex + 9
+    if startIndex <= 4 {
+        let endIndex = startIndex + 7
         selectedColors = Array(allColors[startIndex...endIndex])
     } else {
-        let endIndex = startIndex - 3
+        let endIndex = startIndex - 5
         selectedColors = Array(allColors[startIndex...] + allColors[0...endIndex])
     }
     

@@ -98,6 +98,7 @@ final class VotingStartViewController: BaseViewController {
             .statusBarFrame.height ?? 20
                 
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        let width = UIScreen.main.bounds.size.width
 
         originView.titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
@@ -111,6 +112,12 @@ final class VotingStartViewController: BaseViewController {
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+        }
+        
+        originView.yelloFace.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(width/2 - 19.5)
+            $0.trailing.equalToSuperview().inset(width/2 - 19)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight - 32)
         }
         
     }
@@ -147,7 +154,10 @@ extension VotingStartViewController {
                 }
                 if status == 400 {
                     let viewController = VotingLockedViewController()
-                    self.navigationController?.pushViewController(viewController, animated: true)
+                    UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
+                        // 전환 시 스르륵 바뀌는 애니메이션 적용
+                        self.navigationController?.pushViewController(viewController, animated: false)
+                    })
                 }
             default:
                 print("network failure")

@@ -27,6 +27,7 @@ final class BaseVotingETCView: BaseView {
     let realMyPoint = UILabel()
     let engPoint = UILabel()
     
+    let yelloFace = UIImageView()
     let yellowButton = UIButton()
 
     // MARK: - Style
@@ -82,11 +83,15 @@ final class BaseVotingETCView: BaseView {
             $0.font = .uiBodyMedium
         }
         
+        yelloFace.do {
+            $0.image = ImageLiterals.TabBar.icHomeSelected
+        }
+        
         yellowButton.do {
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
             $0.backgroundColor = .yelloMain500
-            $0.makeCornerRound(radius: 23)
+            $0.makeCornerRound(radius: 23.adjusted)
         }
     }
     
@@ -100,8 +105,9 @@ final class BaseVotingETCView: BaseView {
                          plusPoint,
                          yelloImage,
                          grayView,
-                         yellowButton)
-        
+                         yellowButton,
+                         yelloFace)
+                
         grayView.addSubviews(myPointIcon,
                              myPointText,
                              realMyPoint,

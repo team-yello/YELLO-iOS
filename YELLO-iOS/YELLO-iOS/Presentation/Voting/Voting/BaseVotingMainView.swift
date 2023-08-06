@@ -214,7 +214,7 @@ final class BaseVotingMainView: BaseView {
         
         yelloBalloon.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(questionBackground.snp.top).offset(-75.adjusted)
+            $0.bottom.equalTo(questionBackground.snp.top).offset(-71.adjusted)
         }
         
         yelloProgress.snp.makeConstraints {
