@@ -127,12 +127,12 @@ final class VotingPointViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 dump(data)
-                UserDefaults.standard.removeObject(forKey: "UserDataKey")
-                UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
             default:
                 print("network failure")
                 return
             }
+            UserDefaults.standard.removeObject(forKey: "UserDataKey")
+            UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
