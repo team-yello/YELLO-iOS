@@ -53,6 +53,7 @@ enum StringLiterals {
             static let recommend = "추천친구"
             static let kakaoFriend = "카톡 친구들"
             static let schoolFriend = "학교 친구들"
+            static let defaultProfileImageLink = "https://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg"
         }
         
         enum Empty {
@@ -64,11 +65,19 @@ enum StringLiterals {
             static let invite = "친구 초대하기"
             static let inviteDescription = "찾는 친구가 없다면 친구를 초대해 보세요!"
         }
+        
+        enum Search {
+            static let title = "친구 검색"
+            static let placeholder = " 이름 또는 아이디를 입력해보세요!"
+            static let myFriend = "내 친구"
+        }
     }
     
     enum Around {
         static let around = "둘러보기"
         static let aroundDescription = "아직 구현되지 않은 기능이에요.\n조금만 기다려주세요!"
+        static let female = "여학생"
+        static let male = "남학생"
     }
     
     enum Voting {
@@ -102,6 +111,7 @@ enum StringLiterals {
         enum NavigationBar {
             static let myYello = "내 쪽지"
             static let yelloNumber = "받은 쪽지"
+            static let shop = "상점"
         }
         
         enum Empty {
@@ -114,6 +124,8 @@ enum StringLiterals {
             static let femaleTitle = "여학생이 보냄"
             static let nameTitle = "님이 보냄"
             static let unlockButton = "누가 보냈는지 확인하기"
+            static let keyButton = "누가 보냈는지 열어보기"
+            static let toastMessage = "무슨 쪽지가 궁금한가요?"
         }
         
         enum Detail {
@@ -124,9 +136,11 @@ enum StringLiterals {
             static let instagram = "인스타그램 공유하기"
             static let keywordButton = "100포인트로 키워드 확인하기"
             static let sendButton = "300포인트로 초성 1개 확인하기"
+            static let plusSendButton = "0포인트로 초성 1개 확인하기"
             static let senderButton = "누가 보냈는지 확인하기"
             static let logoTitle = "지금 누군가가 당신을 생각하고 있어요!"
             static let instagramID = "@yelloworld_official"
+            static let findLabel = "보낸 사람을 알아냈어요!"
         }
         
         enum Alert {
@@ -144,6 +158,12 @@ enum StringLiterals {
             static let senderDescription = "이름 중 랜덤으로 뽑은 초성이에요."
             static let afterPoint = "사용 후 포인트"
             static let confirmButton = "확인"
+            static let useTicket = "열람권을 사용해서\n보낸 사람을 알아낼까요?"
+            static let ticket = "열람권"
+            static let count = "개"
+            static let ticketButton = "이름 알아내기"
+            static let getNameTitle = "보낸 사람의 이름을 얻었어요!"
+            static let leftTicketCount = "남은 열람권"
         }
         
         enum Payment {

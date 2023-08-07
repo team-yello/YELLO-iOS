@@ -9,14 +9,14 @@ import Foundation
 
 // MARK: - SignUpRequestDTO
 struct SignUpRequestDTO: Codable {
-    let social, uuid, email, profileImage: String
+    let social, uuid, deviceToken, email, profileImage: String
     let groupID, groupAdmissionYear: Int
     let name, yelloID, gender: String
     let friends: [Int]
     let recommendID: String?
 
     enum CodingKeys: String, CodingKey {
-        case social, uuid, email, profileImage
+        case social, uuid, deviceToken, email, profileImage
         case groupID = "groupId"
         case groupAdmissionYear, name
         case yelloID = "yelloId"

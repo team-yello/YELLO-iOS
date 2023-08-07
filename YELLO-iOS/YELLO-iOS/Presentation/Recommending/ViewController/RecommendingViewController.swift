@@ -2,7 +2,7 @@
 //  RecommendingViewController.swift
 //  YELLO-iOS
 //
-//  Created by 변희주 on 2023/07/05.
+//  Created by 정채은 on 2023/07/05.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ final class RecommendingViewController: UIViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let recommendingLabel = UILabel()
+    private let recommendingNavigationBarView = RecommendingNavigationBarView()
     private let segmentedControl = RecommendingSegmentedControl(items: [StringLiterals.Recommending.Title.kakaoFriend, StringLiterals.Recommending.Title.schoolFriend])
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     private let kakaoFriendViewController = KakaoFriendViewController()
@@ -44,12 +44,14 @@ final class RecommendingViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setDelegate()
+        setAddTarget()
         setSegmentedControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
 
@@ -64,11 +66,6 @@ extension RecommendingViewController {
     
     private func setStyle() {
         view.backgroundColor = .black
-        recommendingLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Title.recommend, lineHeight: 28)
-            $0.textColor = .white
-            $0.font = .uiHeadline03
-        }
         pageViewController.do {
             $0.setViewControllers([self.dataViewControllers[0]], direction: .forward, animated: true)
         }
@@ -78,26 +75,26 @@ extension RecommendingViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         view.addSubviews(
-            recommendingLabel,
+            recommendingNavigationBarView,
             segmentedControl,
             pageViewController.view
         )
         
-        recommendingLabel.snp.makeConstraints {
-            let statusBarHeight = UIApplication.shared.connectedScenes
-                        .compactMap { $0 as? UIWindowScene }
-                        .first?
-                        .statusBarManager?
-                        .statusBarFrame.height ?? 20
-            
-            $0.top.equalTo(view.safeAreaInsets).offset(statusBarHeight + 22.adjusted)
-            $0.leading.equalToSuperview().inset(16.adjusted)
+        let statusBarHeight = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
+        
+        recommendingNavigationBarView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).offset(statusBarHeight)
+            $0.width.equalToSuperview()
         }
         
         segmentedControl.snp.makeConstraints {
             $0.height.equalTo(44.adjusted)
             $0.width.equalToSuperview()
-            $0.top.equalTo(recommendingLabel.snp.bottom).inset(-10.adjusted)
+            $0.top.equalTo(recommendingNavigationBarView.snp.bottom)
         }
         
         pageViewController.view.snp.makeConstraints {
@@ -113,6 +110,10 @@ extension RecommendingViewController {
         pageViewController.dataSource = self
     }
     
+    private func setAddTarget() {
+        recommendingNavigationBarView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+    }
+    
     private func setSegmentedControl() {
         self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.grayscales700, .font: UIFont.uiBodyLarge], for: .normal)
         self.segmentedControl.setTitleTextAttributes(
@@ -126,6 +127,11 @@ extension RecommendingViewController {
     // MARK: Objc Function
     @objc private func changeValue(control: UISegmentedControl) {
         self.currentPage = control.selectedSegmentIndex
+    }
+    
+    @objc private func searchButtonTapped() {
+        let searchViewController = FriendSearchViewController()
+        self.navigationController?.pushViewController(searchViewController, animated: true)
     }
 }
 

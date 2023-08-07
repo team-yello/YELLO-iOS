@@ -149,8 +149,8 @@ final class GetHintView: BaseView {
         
         confirmButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(24)
-            $0.width.equalTo(45)
+            $0.height.equalTo(40.adjustedHeight)
+            $0.width.equalTo(244.adjustedWidth)
             $0.bottom.equalToSuperview().inset(30)
         }
     }

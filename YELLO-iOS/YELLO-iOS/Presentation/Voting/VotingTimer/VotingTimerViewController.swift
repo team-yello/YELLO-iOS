@@ -13,8 +13,8 @@ import Then
 final class VotingTimerViewController: BaseViewController {
     
     var timer: Timer?
-    
     var myPoint = 0
+    let userNotiCenter = UNUserNotificationCenter.current()
     
     var remainingSeconds: TimeInterval? {
         didSet {
@@ -24,7 +24,10 @@ final class VotingTimerViewController: BaseViewController {
             if remainingSeconds == 0 {
                 let viewController = VotingStartViewController()
                 viewController.myPoint = myPoint
-                self.navigationController?.pushViewController(viewController, animated: false)
+                UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
+                    // 전환 시 스르륵 바뀌는 애니메이션 적용
+                    self.navigationController?.pushViewController(viewController, animated: false)
+                })
             }
         }
     }
@@ -71,6 +74,12 @@ final class VotingTimerViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        getVotingAvailable()
+    }
+    
     // MARK: - Style
     
     override func setStyle() {
@@ -113,6 +122,7 @@ final class VotingTimerViewController: BaseViewController {
     
     override func setLayout() {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        let width = UIScreen.main.bounds.size.width
         
         originView.addSubview(myView)
         myView.addSubviews(originView.topOfPointIcon,
@@ -121,7 +131,8 @@ final class VotingTimerViewController: BaseViewController {
                            originView.textLabel,
                            timerBackGround,
                            speechBubbleBackground,
-                           originView.yellowButton)
+                           originView.yellowButton,
+                           originView.yelloFace)
         
         timerBackGround.addSubview(timerView)
         speechBubbleBackground.addSubview(speechBubbleText)
@@ -154,6 +165,8 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         speechBubbleBackground.snp.makeConstraints {
+            $0.width.equalTo(208.adjusted)
+            $0.height.equalTo(42.adjusted)
             $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-11.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
@@ -165,6 +178,12 @@ final class VotingTimerViewController: BaseViewController {
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+        }
+        
+        originView.yelloFace.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(width/2 - 19.5)
+            $0.trailing.equalToSuperview().inset(width/2 - 19)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight - 32)
         }
         
     }
@@ -258,9 +277,13 @@ extension VotingTimerViewController {
                 if data.isPossible {
                     let viewController = VotingStartViewController()
                     viewController.myPoint = self.myPoint
-                    self.navigationController?.pushViewController(viewController, animated: false)
+                    UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
+                        // 전환 시 스르륵 바뀌는 애니메이션 적용
+                        self.navigationController?.pushViewController(viewController, animated: false)
+                    })
+                    self.cancelScheduledNotification()
+                    print("💛💛💛💛💛💛💛💛💛💛💛💛💛💛")
                 }
-                
                 self.remainingSeconds = duration
                 self.start(duration: duration)
                 
@@ -269,5 +292,35 @@ extension VotingTimerViewController {
                 return
             }
         }
+    }
+    
+    func getVotingAvailable() {
+        NetworkService.shared.votingService.getVotingAvailable {
+            result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                if data.isPossible {
+                    let viewController = VotingStartViewController()
+                    viewController.myPoint = self.myPoint
+                    UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
+                        // 전환 시 스르륵 바뀌는 애니메이션 적용
+                        self.navigationController?.pushViewController(viewController, animated: false)
+                    })
+                    self.cancelScheduledNotification()
+                    print("💕💕💕💕💕💕💕💕💕💕💕💕")
+                }
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
+    // 예약된 푸시 알림 취소
+    func cancelScheduledNotification() {
+        let notificationIdentifier = "myPushAlarm" // 예약된 알림의 식별자
+        
+        userNotiCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
     }
 }

@@ -16,6 +16,7 @@ final class VotingPointViewController: BaseViewController {
     var myPoint = 0
     var votingPlusPoint = 0
     var votingAnswer: [VoteAnswerList] = []
+    let userNotiCenter = UNUserNotificationCenter.current()
     
     override func loadView() {
         self.view = originView
@@ -126,18 +127,41 @@ final class VotingPointViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 dump(data)
-                UserDefaults.standard.removeObject(forKey: "UserDataKey")
-                UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
             default:
                 print("network failure")
                 return
             }
+            UserDefaults.standard.removeObject(forKey: "UserDataKey")
+            UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             let viewController = YELLOTabBarController()
             self.navigationController?.pushViewController(viewController, animated: true)
             self.originView.yellowButton.isEnabled = true
+        }
+        
+        requestSendNoti(seconds: 2402)
+    }
+    
+    // 푸시 알림 전송
+    func requestSendNoti(seconds: Double) {
+        let notiContent = UNMutableNotificationContent()
+        notiContent.title = "친구에게 쪽지 보내고 포인트 받기"
+        notiContent.body = "대기시간이 다 지났어요. 친구들에게 투표해봐요!"
+        notiContent.userInfo = ["targetScene": "splash"] // 푸시 받을때 오는 데이터
+        
+        // 알림이 trigger되는 시간 설정
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
+        
+        let request = UNNotificationRequest(
+            identifier: "myPushAlarm",
+            content: notiContent,
+            trigger: trigger
+        )
+        
+        userNotiCenter.add(request) { (error) in
+            print(#function, error)
         }
     }
 }

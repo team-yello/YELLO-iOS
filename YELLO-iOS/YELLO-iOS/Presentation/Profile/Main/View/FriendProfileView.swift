@@ -215,7 +215,11 @@ final class FriendProfileView: BaseView {
     }
     
     func configureMyProfileFriendDetailCell(_ model: ProfileFriendResponseDetail) {
-        profileImageView.kfSetImage(url: model.profileImageUrl)
+        if model.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            profileImageView.kfSetImage(url: model.profileImageUrl)
+        } else {
+            profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+        }
         nameLabel.text = model.name
         instagramLabel.text = "@" + model.yelloId
         schoolLabel.text = model.group

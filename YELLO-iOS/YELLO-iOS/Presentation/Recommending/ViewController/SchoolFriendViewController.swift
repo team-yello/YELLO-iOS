@@ -26,7 +26,7 @@ final class SchoolFriendViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        schoolFriendView.updateView()
+        schoolFriendView.updateView()
     }
 }
 

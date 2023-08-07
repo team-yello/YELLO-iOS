@@ -37,7 +37,7 @@ class KakaoLoginViewController: BaseViewController {
                     print("----🚩카카오 톡으로 로그인 성공🚩----")
                     
                     guard let kakaoToken = oauthToken?.accessToken else { return }
-                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO")
+                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: "")
 
                     NetworkService.shared.onboardingService.postTokenChange(queryDTO: queryDTO) { result in
                         switch result {
@@ -90,7 +90,7 @@ class KakaoLoginViewController: BaseViewController {
                     print("카카오 계정으로 로그인 성공")
                     
                     guard let kakaoToken = oauthToken?.accessToken else { return }
-                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO")
+                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
                     
                     NetworkService.shared.onboardingService.postTokenChange(queryDTO: queryDTO) { result in
                         switch result {

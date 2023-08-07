@@ -29,11 +29,7 @@ extension VotingDummy {
                 VotingDummy(yelloBalloon: ImageLiterals.Voting.imgYelloBalloon7,
                             yelloProgress: ImageLiterals.Voting.imgFace7),
                 VotingDummy(yelloBalloon: ImageLiterals.Voting.imgYelloBalloon8,
-                            yelloProgress: ImageLiterals.Voting.imgFace8),
-                VotingDummy(yelloBalloon: ImageLiterals.Voting.imgYelloBalloon9,
-                            yelloProgress: ImageLiterals.Voting.imgFace9),
-                VotingDummy(yelloBalloon: ImageLiterals.Voting.imgYelloBalloon10,
-                            yelloProgress: ImageLiterals.Voting.imgFace10)]
+                            yelloProgress: ImageLiterals.Voting.imgFace8)]
     }
     
 }

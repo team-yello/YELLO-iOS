@@ -10,6 +10,11 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Protocol
+protocol HandleAddFriendButton: AnyObject {
+    func addButtonTapped(sender: UIButton)
+}
+
 final class FriendTableViewCell: UITableViewCell {
     
     // MARK: - Variables
@@ -22,11 +27,9 @@ final class FriendTableViewCell: UITableViewCell {
     let schoolLabel = UILabel()
     lazy var addButton = UIButton()
     let separatorLine = UIView()
-    var isTapped: Bool = false {
-        didSet {
-            updateAddButtonImage()
-        }
-    }
+    var isTapped: Bool = false
+    
+    weak var handleAddFriendButton: HandleAddFriendButton?
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -42,10 +45,12 @@ final class FriendTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        self.addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+        nameLabel.text = nil
+        schoolLabel.text = nil
         isTapped = false
         separatorLine.isHidden = false
+        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
     }
 }
 
@@ -73,20 +78,20 @@ extension FriendTableViewCell {
         
         nameLabel.do {
             $0.font = .uiSubtitle01
-            $0.setTextWithLineHeight(text: "정채은", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
             $0.textColor = .white
         }
         
         schoolLabel.do {
             $0.font = .uiLabelMedium
-            $0.setTextWithLineHeight(text: "이화여자대학교 융합콘텐츠학과 20학번", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
             $0.textColor = .grayscales600
         }
         
         addButton.do {
             $0.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
             $0.tintColor = .yellow
-            $0.addTarget(self, action: #selector(changeAddButton), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         }
         
         separatorLine.do {
@@ -133,22 +138,21 @@ extension FriendTableViewCell {
     func configureFriendCell(_ model: FriendModel) {
         nameLabel.text = model.friends.name
         schoolLabel.text = model.friends.group
-        profileImageView.kfSetImage(url: model.friends.profileImage)
+        if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            profileImageView.kfSetImage(url: model.friends.profileImage)
+        }
         isTapped = model.isButtonSelected
-        
         updateAddButtonImage()
     }
     
-    private func updateAddButtonImage() {
-        let imageName = isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton
-        addButton.setImage(imageName, for: .normal)
+    func updateAddButtonImage() {
+        addButton.setImage(isTapped ? ImageLiterals.Recommending.icAddFriendButtonTapped : ImageLiterals.Recommending.icAddFriendButton, for: isTapped ? .disabled : .normal)
     }
     
     // MARK: Objc Function
-    @objc private func changeAddButton() {
-        isTapped.toggle()
-        /// 두 번 이상 누를 수 없도록 disabled 처리
-        addButton.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
-        addButton.isEnabled = false
+    @objc private func addButtonTapped(_ sender: UIButton) {
+        self.isTapped = true
+        updateAddButtonImage()
+        handleAddFriendButton?.addButtonTapped(sender: sender)
     }
 }

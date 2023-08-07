@@ -169,7 +169,8 @@ extension InvitingView {
     
     @objc
     func kakaoButtonClicked() {
-        let templateId = 95890
+//        let templateId = 95890
+        let templateId = 96906
         guard let filteredString = self.recommenderID.text else { return }
         let recommenderID = String(filteredString.dropFirst())
         UIPasteboard.general.string = recommenderID

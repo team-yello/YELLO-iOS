@@ -47,29 +47,6 @@ final class YELLOTabBarController: UITabBarController {
         tabBar.frame.origin.y = view.frame.height - tabBarHeight - safeAreaHeight
     }
     
-    // MARK: - TabBar Style
-    
-    private func setTabBarAppearance() {
-        
-        /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
-        let offset = UIOffset(horizontal: 0, vertical: -2) /// 수직 방향으로 -2만큼
-        tabBar.items?.forEach { item in
-            item.titlePositionAdjustment = offset
-        }
-        
-        view.backgroundColor = .black
-        
-        tabBar.tintColor = .yelloMain500
-        tabBar.barTintColor = .grayscales600
-        tabBar.roundCorners(cornerRadius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-        
-        let fontAttributes = [NSAttributedString.Key.font: UIFont.uiLabelBoldSmall]
-        UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
-                        
-        UITabBar.clearShadow()
-        tabBar.layer.applyShadow(color: UIColor(hex: "668099"), alpha: 0.15, x: 0, y: -2, blur: 5)
-    }
-    
     // MARK: - TabBar Item
     
     private func setTabBarItems() {
@@ -99,6 +76,31 @@ final class YELLOTabBarController: UITabBarController {
         setViewControllers(tabs, animated: true)
     }
     
+    // MARK: - TabBar Style
+    
+    private func setTabBarAppearance() {
+        
+        /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
+        let offset = UIOffset(horizontal: 0, vertical: -7) /// 수직 방향으로 -7만큼
+        tabBar.items?.forEach { item in
+            item.titlePositionAdjustment = offset
+        }
+        
+        tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+        view.backgroundColor = .clear
+        
+        tabBar.tintColor = .yelloMain500
+        tabBar.barTintColor = .grayscales600
+        tabBar.roundCorners(cornerRadius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        
+        // 탭바만 폰트 기기대응X
+        let myFont = UIFont(name: "Pretendard-Bold", size: 10.0)!
+        let fontAttributes = [NSAttributedString.Key.font: myFont]
+        UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
+                        
+        UITabBar.clearShadow()
+        tabBar.layer.applyShadow(color: UIColor(hex: "668099"), alpha: 0.15, x: 0, y: -2, blur: 5)
+    }
 }
 
 // MARK: - TabBar Custom Font
@@ -108,19 +110,28 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
         if let selectedViewController = tabBarController.selectedViewController {
-            let selectedFontAttributes = [NSAttributedString.Key.font: UIFont.uiLabelBoldSmall]
+            let myFont = UIFont(name: "Pretendard-Bold", size: 10.0)!
+            let selectedFontAttributes = [NSAttributedString.Key.font: myFont]
             selectedViewController.tabBarItem.setTitleTextAttributes(selectedFontAttributes, for: .normal)
         }
         
         for (index, controller) in tabBarController.viewControllers!.enumerated() {
             if let tabBarItem = controller.tabBarItem {
                 if index != tabBarController.selectedIndex {
-                    let defaultFontAttributes = [NSAttributedString.Key.font: UIFont.uiLabelSmall]
+                    let myFont = UIFont(name: "Pretendard-Medium", size: 10.0)!
+                    let defaultFontAttributes = [NSAttributedString.Key.font: myFont]
                     tabBarItem.setTitleTextAttributes(defaultFontAttributes, for: .normal)
                 }
             }
         }
-
+        
+        let selectedIndex = tabBarController.selectedIndex
+        switch selectedIndex {
+        case 0, 1, 3, 4:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        default:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+        }
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -155,11 +166,30 @@ extension YELLOTabBarController {
                 } else {
                     self.startStatus = 3
                 }
-                
-                self.setTabBarAppearance()
                 self.setTabBarItems()
+                self.setTabBarAppearance()
+                self.myYelloCount()
             default:
                 print("network failure")
+                return
+            }
+        }
+    }
+    
+    func myYelloCount() {
+        let queryDTO = MyYelloRequestQueryDTO(page: 0)
+        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                if data.totalCount > 99 {
+                    self.tabBar.items?[3].badgeValue = "99+"
+                } else {
+                    self.tabBar.items?[3].badgeValue = String(data.totalCount)
+                }
+            default:
+                print("network fail")
                 return
             }
         }

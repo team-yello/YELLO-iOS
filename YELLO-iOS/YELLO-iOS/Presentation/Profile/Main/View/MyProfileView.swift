@@ -184,7 +184,9 @@ extension MyProfileView {
             case .success(let data):
                 guard let data = data.data else { return }
                 
-                self.profileImageView.kfSetImage(url: data.profileImageUrl)
+                if data.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
+                    self.profileImageView.kfSetImage(url: data.profileImageUrl)
+                }
                 self.nameLabel.text = data.name
                 self.instagramLabel.text = "@" + data.yelloId
                 self.schoolLabel.text = data.group
