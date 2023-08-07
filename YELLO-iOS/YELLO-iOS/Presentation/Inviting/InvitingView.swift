@@ -31,7 +31,6 @@ final class InvitingView: BaseView {
     // MARK: - Style
     
     override func setStyle() {
-        profileUserYelloId()
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
         contentsView.makeCornerRound(radius: 10)

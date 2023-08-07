@@ -99,6 +99,7 @@ final class VotingLockedViewController: BaseViewController {
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        invitingView.profileUserYelloId()
         invitingView.updateText(title: StringLiterals.Inviting.lockedTitle, text: StringLiterals.Inviting.lockedText, targetString: "투표를 시작")
         viewController.view.addSubview(invitingView)
     }
