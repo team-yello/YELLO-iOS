@@ -36,7 +36,7 @@ class OnboardingEndViewController: BaseViewController {
     
     private func postUserInfo() {
         let user = User.shared
-        let requestDTO = SignUpRequestDTO(social: user.social, uuid: user.uuid, email: user.email, profileImage: user.profileImage, groupID: user.groupId, groupAdmissionYear: user.groupAdmissionYear, name: user.name, yelloID: user.yelloId, gender: user.gender, friends: user.friends, recommendID: user.recommendId)
+        let requestDTO = SignUpRequestDTO(social: user.social, uuid: user.uuid, deviceToken: user.deviceToken, email: user.email, profileImage: user.profileImage, groupID: user.groupId, groupAdmissionYear: user.groupAdmissionYear, name: user.name, yelloID: user.yelloId, gender: user.gender, friends: user.friends, recommendID: user.recommendId)
  
             NetworkService.shared.onboardingService.postUserInfo(requestDTO: requestDTO) { result in
                 switch result {
