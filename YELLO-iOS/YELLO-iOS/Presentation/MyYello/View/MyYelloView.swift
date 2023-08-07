@@ -46,18 +46,12 @@ final class MyYelloView: BaseView {
     }
     
     override func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?
-            .statusBarManager?
-            .statusBarFrame.height ?? 20
-        
         self.addSubviews(myYellowNavigationBarView,
                          myYelloListView,
                          unlockButton)
         
         myYellowNavigationBarView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
+            $0.top.equalToSuperview()
             $0.width.equalToSuperview()
         }
         

@@ -115,19 +115,13 @@ extension ProfileView {
         configureMyProfileDataSource()
     }
     
-    private func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-                    .compactMap { $0 as? UIWindowScene }
-                    .first?
-                    .statusBarManager?
-                    .statusBarFrame.height ?? 20
-        
+    private func setLayout() {        
         self.addSubviews(navigationBarView,
                         myFriendTableView,
                          topButton)
         
         navigationBarView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
+            $0.top.equalToSuperview()
             $0.width.equalToSuperview()
             $0.height.equalTo(48)
         }
