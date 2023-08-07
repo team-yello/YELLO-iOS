@@ -17,7 +17,8 @@ class OnboardingBaseViewController: BaseViewController {
     let navigationBarView = YelloNavigationBarView()
     let nextButton = YelloButton(buttonText: "다음")
     private let skipButton = UIButton()
-    let progressBarView = ProgressBarManager.shared.progressBarView
+    private let buttonStackView = UIStackView()
+    private let progressBarView = ProgressBarManager.shared.progressBarView
     
     var nextViewController: UIViewController?
     var isSkipable = false
@@ -28,11 +29,12 @@ class OnboardingBaseViewController: BaseViewController {
         configUI()
         ProgressBarManager.shared.updateProgress(step: step)
         super.viewDidLoad()
+        view.bringSubviewToFront(buttonStackView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        view.bringSubviewToFront(nextButton)
+        
     }
     
     // MARK: - Function
@@ -57,23 +59,32 @@ class OnboardingBaseViewController: BaseViewController {
             $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         }
         
+        buttonStackView.do {
+            $0.addArrangedSubviews(skipButton, nextButton)
+            $0.axis = .vertical
+            $0.alignment = .center
+            $0.spacing = 14
+        }
+        
         skipButton.isHidden = !(isSkipable)
-        view.addSubviews(navigationBarView, progressBarView, skipButton, nextButton)
+        view.addSubviews(navigationBarView, progressBarView, buttonStackView)
+        
+        nextButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+        }
         
         navigationBarView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
         }
         
-        nextButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
-            $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
+        skipButton.snp.makeConstraints {
+            $0.height.equalTo(32)
         }
         
-        skipButton.snp.makeConstraints {
-            $0.height.equalTo(36)
-            $0.bottom.equalTo(nextButton.snp.top).inset(-14)
-            $0.centerX.equalToSuperview()
+        buttonStackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
+            $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
         }
         
         progressBarView.snp.makeConstraints {
@@ -102,7 +113,7 @@ class OnboardingBaseViewController: BaseViewController {
     
     @objc private func backButtonTapped() {
         ProgressBarManager.shared.updateProgress(step: 2)
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
