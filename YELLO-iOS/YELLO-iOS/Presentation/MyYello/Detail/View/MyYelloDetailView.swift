@@ -351,14 +351,8 @@ extension MyYelloDetailView {
         getHintView.titleLabel.text = StringLiterals.MyYello.Alert.senderTitle
         
         getHintView.descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(getHintView.titleLabel.snp.bottom).offset(4)
+            $0.top.equalTo(getHintView.titleLabel.snp.bottom).offset(4.adjustedHeight)
             $0.centerX.equalToSuperview()
-        }
-        
-        getHintView.pointView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18.adjusted)
-            $0.top.equalTo(getHintView.hintLabel.snp.bottom).offset(30.adjusted)
-            $0.height.equalTo(52)
         }
     }
     
@@ -479,6 +473,10 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
             
             if !isPlus {
                 self.currentPoint -= 300
+            } else {
+                self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
+                self.getHintView.pointLabel.text = String(self.currentPoint)
+                self.pointLackView.pointLabel.text = String(self.currentPoint)
             }
         }
         

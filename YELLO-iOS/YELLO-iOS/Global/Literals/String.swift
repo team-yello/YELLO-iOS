@@ -146,7 +146,7 @@ enum StringLiterals {
             static let senderTitle = "보낸 사람의 초성을 얻었어요!"
             static let senderDescription = "이름 중 랜덤으로 뽑은 초성이에요."
             static let afterPoint = "사용 후 포인트"
-            static let confirmButton = "확인"
+            static let confirmButton = "완료"
             static let useTicket = "열람권을 사용해서\n보낸 사람을 알아낼까요?"
             static let ticket = "열람권"
             static let count = "개"
