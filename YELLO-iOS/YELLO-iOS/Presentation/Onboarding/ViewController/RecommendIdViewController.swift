@@ -72,19 +72,15 @@ class RecommendIdViewController: OnboardingBaseViewController {
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
-                    guard let data = data.data else {
-                        if data.status == 404 {
-                            self?.isExisted = false
-                            self?.checkButtonEnable()
-                        }
-                        return
-                    }
-                    if data {
+                    if data.data {
+                        /// id 중복 조회 시, 중복되는 경우
                         self?.isExisted = true
+                    } else {
+                        /// id 중복 조회 시, 중복되지 않은 경우
+                        self?.isExisted = false
+                        self?.checkButtonEnable()
                     }
-                    
                     self?.checkButtonEnable()
-                    
                 }
             default:
                 DispatchQueue.main.async {

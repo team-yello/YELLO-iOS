@@ -11,5 +11,5 @@ import Foundation
 struct IDValidResponseDTO: Codable {
     let status: Int
     let message: String
-    let data: Bool?
+    let data: Bool
 }
