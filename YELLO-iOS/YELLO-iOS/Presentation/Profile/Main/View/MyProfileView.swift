@@ -194,7 +194,7 @@ extension MyProfileView {
                 self.friendView.countLabel.text = String(data.friendCount)
                 self.pointView.countLabel.text = String(data.point)
                 
-                print("통신 성공")
+                print("내 프로필 통신 성공")
             default:
                 print("network fail")
                 return

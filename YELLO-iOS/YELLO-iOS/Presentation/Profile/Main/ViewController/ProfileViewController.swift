@@ -29,7 +29,6 @@ final class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
-        self.profileView.myProfileHeaderView.myProfileView.profileUser()
     }
     
     override func setStyle() {

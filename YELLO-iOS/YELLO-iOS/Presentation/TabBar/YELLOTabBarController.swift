@@ -190,11 +190,14 @@ extension YELLOTabBarController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
+                myYelloViewController.myYelloView.myYelloCount = data.totalCount
                 if data.totalCount > 99 {
                     self.tabBar.items?[3].badgeValue = "99+"
                 } else {
                     self.tabBar.items?[3].badgeValue = String(data.totalCount)
                 }
+                
+                print("내 옐로 count 한번에 통신 성공")
             default:
                 print("network fail")
                 return
@@ -213,10 +216,6 @@ extension YELLOTabBarController {
         /// 둘러보기 서버통신
         
         /// 내 쪽지 서버통신
-        myYelloViewController.myYelloCount()
-        myYelloViewController.myYelloView.myYelloListView.isFinishPaging = false
-        myYelloViewController.myYelloView.myYelloListView.fetchingMore = false
-        myYelloViewController.myYelloView.myYelloListView.pageCount = -1
         myYelloViewController.myYelloView.myYelloListView.myYello()
         
         /// 내 프로필 서버통신

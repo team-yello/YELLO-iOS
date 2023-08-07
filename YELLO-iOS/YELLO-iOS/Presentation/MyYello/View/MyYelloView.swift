@@ -18,7 +18,11 @@ final class MyYelloView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    static var myYelloCount: Int = 0
+    var myYelloCount: Int = 0 {
+        didSet {
+            resetLayout()
+        }
+    }
     weak var handleUnlockButton: HandleUnlockButton?
     var haveTicket: Bool = true {
         didSet {
@@ -69,7 +73,7 @@ final class MyYelloView: BaseView {
     }
     
     func resetLayout() {
-        myYellowNavigationBarView.yelloCountLabel.text = String(MyYelloView.myYelloCount) + "개"
+        myYellowNavigationBarView.yelloCountLabel.text = String(self.myYelloCount) + "개"
         myYellowNavigationBarView.yelloCountLabel.asColor(targetString: "개", color: .grayscales500)
     }
     

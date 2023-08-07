@@ -120,8 +120,8 @@ extension MyYelloViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
 
-                    MyYelloView.myYelloCount = data.totalCount
-                    print(MyYelloView.myYelloCount)
+                    myYelloView.myYelloCount = data.totalCount
+                    print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
                     self.myYelloView.resetLayout()
                 default:

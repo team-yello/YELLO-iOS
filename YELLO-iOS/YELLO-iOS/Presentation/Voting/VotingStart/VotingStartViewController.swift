@@ -28,7 +28,6 @@ final class VotingStartViewController: BaseViewController {
         requestAuthNoti()
 
         originView.yellowButton.isEnabled = false
-        getVotingAvailable()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     

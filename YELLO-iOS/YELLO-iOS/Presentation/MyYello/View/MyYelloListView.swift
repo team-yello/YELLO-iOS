@@ -135,8 +135,7 @@ final class MyYelloListView: BaseView {
         
         NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
             guard let self = self else { return }
-            
-            DispatchQueue.main.async {
+        
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
@@ -145,8 +144,6 @@ final class MyYelloListView: BaseView {
                     if self.pageCount >= totalPage {
                         self.isFinishPaging = true
                     }
-                    
-                    MyYelloView.myYelloCount = data.totalCount
                     
                     /// 기존에 가져온 데이터와 새로 가져온 데이터를 비교하여 중복된 아이템은 제외하고 추가합니다.
                     let newMyYelloModels = data.votes.filter { myYello in
@@ -161,12 +158,11 @@ final class MyYelloListView: BaseView {
                     self.applySnapshot(animated: true)
                     self.fetchingMore = false
                     dump(data)
-                    print("통신 성공")
+                    print("내 옐로 리스트 통신 성공")
                 default:
                     print("network fail")
                     return
                 }
-            }
         }
     }
     
