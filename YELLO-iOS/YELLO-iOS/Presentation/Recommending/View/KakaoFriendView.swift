@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import SkeletonView
 import Then
 import KakaoSDKTalk
 
@@ -59,6 +60,7 @@ extension KakaoFriendView {
     
     private func setStyle() {
         self.backgroundColor = .black
+        self.isSkeletonable = true
         
         inviteBannerView.do {
             $0.isHidden = true
@@ -76,8 +78,13 @@ extension KakaoFriendView {
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
+            $0.isSkeletonable = true
         }
-        configureKakaoFriendDataSource()
+//        configureKakaoFriendDataSource()
+        
+        let skeletonAnimation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topLeftBottomRight)
+        self.showAnimatedGradientSkeleton(usingGradient: .init(colors: [.grayscales800, .gray]), animation: skeletonAnimation, transition: .none)
+        self.configureKakaoFriendDataSource()
     }
     
     private func setLayout() {
@@ -329,5 +336,21 @@ extension KakaoFriendView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 77
+    }
+    
+    func taebleSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+      return FriendTableViewCell.identifier
+    }
+    
+    func taebleSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
+      skeletonView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath)
+    }
+    
+    func taebleSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      UITableView.automaticNumberOfSkeletonRows // <- 편리하게 사용 가능
+    }
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+      return 6
     }
 }

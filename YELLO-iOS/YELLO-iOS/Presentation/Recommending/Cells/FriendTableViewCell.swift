@@ -7,6 +7,7 @@
 
 import UIKit
 
+import SkeletonView
 import SnapKit
 import Then
 
@@ -50,7 +51,8 @@ final class FriendTableViewCell: UITableViewCell {
         schoolLabel.text = nil
         isTapped = false
         separatorLine.isHidden = false
-        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        addButton.isHidden = true
+//        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
     }
 }
 
@@ -65,6 +67,8 @@ extension FriendTableViewCell {
     
     private func setStyle() {
         self.backgroundColor = .black
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
         
         separatorInset.left = 14
         separatorInset.right = 14
@@ -74,24 +78,30 @@ extension FriendTableViewCell {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
             $0.makeCornerRound(radius: 21)
+            $0.isSkeletonable = true
         }
         
         nameLabel.do {
             $0.font = .uiSubtitle01
             $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
+            $0.numberOfLines = 0
             $0.textColor = .white
+            $0.isSkeletonable = true
         }
         
         schoolLabel.do {
             $0.font = .uiLabelMedium
             $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
+            $0.numberOfLines = 0
             $0.textColor = .grayscales600
+            $0.isSkeletonable = true
         }
         
         addButton.do {
             $0.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
             $0.tintColor = .yellow
             $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+            $0.isHidden = false
         }
         
         separatorLine.do {
@@ -136,6 +146,7 @@ extension FriendTableViewCell {
     
     // MARK: Custom Function
     func configureFriendCell(_ model: FriendModel) {
+        addButton.isHidden = false
         nameLabel.text = model.friends.name
         schoolLabel.text = model.friends.group
         if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {

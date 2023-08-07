@@ -115,7 +115,7 @@ extension ProfileView {
         configureMyProfileDataSource()
     }
     
-    private func setLayout() {        
+    private func setLayout() {
         self.addSubviews(navigationBarView,
                         myFriendTableView,
                          topButton)

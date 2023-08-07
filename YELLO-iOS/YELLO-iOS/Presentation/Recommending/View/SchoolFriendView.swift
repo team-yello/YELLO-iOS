@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import SkeletonView
 import Then
 
 final class SchoolFriendView: UIView {
@@ -58,6 +59,7 @@ extension SchoolFriendView {
     
     private func setStyle() {
         self.backgroundColor = .black
+        self.isSkeletonable = true
         
         inviteBannerView.do {
             $0.isHidden = true
@@ -117,7 +119,9 @@ extension SchoolFriendView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
                 return UITableViewCell()
             }
-            
+            self.dataSource.defaultRowAnimation = .none
+            let skeletonAnimation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topLeftBottomRight)
+            cell.showAnimatedGradientSkeleton(usingGradient: .init(colors: [.grayscales700, .grayscales800]), animation: skeletonAnimation, transition: .none)
             cell.selectionStyle = .none
 
             cell.isTapped = self.recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected
@@ -127,7 +131,13 @@ extension SchoolFriendView {
             if self.recommendingSchoolFriendTableViewDummy.isEmpty {
                 return cell
             }
-            cell.configureFriendCell(self.recommendingSchoolFriendTableViewDummy[indexPath.row])
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                cell.hideSkeleton() // 스켈레톤 효과 숨기기
+                self.dataSource.defaultRowAnimation = .none
+                cell.configureFriendCell(self.recommendingSchoolFriendTableViewDummy[indexPath.row])
+            }
+            
             return cell
         }
     }
@@ -301,4 +311,19 @@ extension SchoolFriendView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 77
     }
+}
+
+extension SchoolFriendView: SkeletonTableViewDataSource {
+  // skeletonView
+  func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+    return FriendTableViewCell.identifier
+  }
+  
+  func collectionSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
+    skeletonView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath)
+  }
+  
+  func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 5
+  }
 }
