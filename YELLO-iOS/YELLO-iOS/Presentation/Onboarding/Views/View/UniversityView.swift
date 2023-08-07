@@ -12,11 +12,6 @@ import Then
 
 class UniversityView: UIView {
     // MARK: - Variables
-    
-    // MARK: Constants
-    
-    // MARK: Property
-    
     // MARK: Component
     let schoolSearchTextFieldView = YelloTextFieldView(title: StringLiterals.Onboarding.schoolSearchText,
                                                        state: .search,
@@ -27,7 +22,8 @@ class UniversityView: UIView {
     let studentIdTextFieldView = YelloTextFieldView(title: StringLiterals.Onboarding.studentIdText,
                                                       state: .toggle,
                                                       placeholder: StringLiterals.Onboarding.studentIdPlaceholder)
-    
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -37,6 +33,7 @@ class UniversityView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -63,6 +60,7 @@ class UniversityView: UIView {
             $0.top.equalTo(majorSearchTextFieldView.snp.bottom).offset(30.adjusted)
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
         }
-        
     }
+        
+    // MARK: Custom Function
 }
