@@ -73,7 +73,7 @@ final class InvitingView: BaseView {
         }
         
         recommenderID.do {
-            $0.setTextWithLineHeight(text: "@", lineHeight: 32)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 32)
             $0.textColor = .black
             $0.font = .uiExtraLarge
         }
@@ -214,8 +214,12 @@ extension InvitingView {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                
+                self.copyButton.isEnabled = false
+                self.kakaoButton.isEnabled = false
                 self.recommenderID.text = "@" + data.yelloId
+                self.copyButton.isEnabled = true
+                self.kakaoButton.isEnabled = true
+                
                 print("통신 성공")
             default:
                 print("network fail")
