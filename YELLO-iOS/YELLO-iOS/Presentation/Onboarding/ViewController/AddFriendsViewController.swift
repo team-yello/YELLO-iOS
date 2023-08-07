@@ -34,9 +34,11 @@ class AddFriendsViewController: OnboardingBaseViewController {
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
+        step = 5
         getJoinedFriends()
         super.viewDidLoad()
         super.nextViewController = RecommendIdViewController()
+        
         baseView.friendsTableView.delegate = self
         baseView.friendsTableView.prefetchDataSource = self
         
@@ -51,11 +53,11 @@ class AddFriendsViewController: OnboardingBaseViewController {
         view.addSubview(baseView)
         
         baseView.snp.makeConstraints {
-            $0.top.equalTo(topLayoutGuide.snp.bottom)
+            $0.top.equalTo(navigationBarView.snp.bottom).offset(4)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        view.bringSubviewToFront(super.nextButton)
+        view.bringSubviewToFront(nextButton)
     }
     
     func getJoinedFriends() {

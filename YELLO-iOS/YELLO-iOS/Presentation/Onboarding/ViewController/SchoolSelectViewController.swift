@@ -10,16 +10,17 @@ import UIKit
 class SchoolSelectViewController: OnboardingBaseViewController {
     let baseView = SchoolSelectView()
     var schoolInfoViewController = SchoolInfoViewController()
+    var schoolLevel: SchoolLevel = .high
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nextViewController = schoolInfoViewController
-        setProgressBar()
         addTarget()
+        setProgressBar()
     }
     
     override func setLayout() {
-        view.addSubview(baseView)
+        view.addSubviews(baseView)
         baseView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(4)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -38,15 +39,17 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     
     @objc func setSchoolLevel(sender: YelloSelectButton) {
         if sender == baseView.highSchoolButton {
-            schoolInfoViewController.schoolLevel = .high
-            print("고등학생")
-            print(schoolInfoViewController.schoolLevel)
+            schoolLevel = .high
         } else {
-            schoolInfoViewController.schoolLevel = .univ
-            print(schoolInfoViewController.schoolLevel)
-            print("대학생")
+            schoolLevel = .univ
         }
+        setProgressBar()
         nextButton.setButtonEnable(state: true)
+    }
+    
+    @objc override func didTapButton() {
+        super.didTapButton()
+        schoolInfoViewController.schoolLevel = self.schoolLevel
     }
     
 }

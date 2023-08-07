@@ -22,8 +22,9 @@ class GenderViewController: OnboardingBaseViewController {
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
+        step = 3
         super.viewDidLoad()
-        super.nextViewController = AddFriendsViewController()
+        nextViewController = UserInfoViewController()
     }
     
     // MARK: Layout Helpers
@@ -37,7 +38,7 @@ class GenderViewController: OnboardingBaseViewController {
         view.addSubview(baseView)
         
         baseView.snp.makeConstraints {
-            $0.top.equalTo(topLayoutGuide.snp.bottom)
+            $0.top.equalTo(navigationBarView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
