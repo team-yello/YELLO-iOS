@@ -31,6 +31,7 @@
 		2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */; };
 		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
 		2A8AA7072A65150B005A664D /* VotingAnswerListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */; };
+		2A9808E92A81658500FBA5B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */; };
 		2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */; };
 		2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */; };
 		2AA0DBB42A546E62002B1370 /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0DBB32A546E62002B1370 /* VotingViewController.swift */; };
@@ -265,6 +266,7 @@
 		2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingListResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
 		2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListResponseDTO.swift; sourceTree = "<group>"; };
+		2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB32A546E62002B1370 /* VotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
@@ -1134,6 +1136,7 @@
 			children = (
 				3662A0E22A63474000F482EF /* Config.xcconfig */,
 				C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */,
+				2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */,
 				C3A799952A49490A00D3EFD8 /* YELLO-iOS */,
 				C3A799942A49490A00D3EFD8 /* Products */,
 			);
@@ -1585,6 +1588,7 @@
 				C3A79A042A49500000D3EFD8 /* Pretendard-Black.otf in Resources */,
 				C3A79A072A49500000D3EFD8 /* Pretendard-SemiBold.otf in Resources */,
 				C3A799A02A49490D00D3EFD8 /* Assets.xcassets in Resources */,
+				2A9808E92A81658500FBA5B3 /* GoogleService-Info.plist in Resources */,
 				C3A79A062A49500000D3EFD8 /* Pretendard-Medium.otf in Resources */,
 				36B234982A619853007933E4 /* onboarding_end.json in Resources */,
 			);
