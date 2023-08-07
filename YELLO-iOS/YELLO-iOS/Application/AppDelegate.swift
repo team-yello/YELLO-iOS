@@ -9,6 +9,8 @@ import UIKit
 
 import KakaoSDKCommon
 import KakaoSDKAuth
+import FirebaseCore
+import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,13 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KakaoSDK.initSDK(appKey: Config.kakaoAppKey)
         UNUserNotificationCenter.current().delegate = self
-        
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         /// 디바이스 토큰 요청
         application.registerForRemoteNotifications()
         
         return true
     }
-    
+
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -65,12 +68,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-extension AppDelegate {
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        User.shared.deviceToken = tokenString
-        print("@@@@@@@deviceToken: \(tokenString)")
-        
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("FirebaseMessaging")
+        let deviceToken:[String: String] = ["token": fcmToken ?? ""]
+        User.shared.deviceToken = fcmToken ?? ""
+        print("Device token:", deviceToken) // 이 토큰은 FCM에서 알림을 테스트하는 데 사용할 수 있습니다.
     }
 }
-
