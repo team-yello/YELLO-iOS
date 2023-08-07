@@ -85,16 +85,19 @@ extension YelloTextField {
         
         searchImageView.do {
             $0.image = ImageLiterals.OnBoarding.icSearch
-                .withTintColor(.grayscales600, renderingMode: .alwaysOriginal)
+                .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
         }
         
         cancelButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.icXCircle, for: .normal)
+            let image = ImageLiterals.OnBoarding.icXCircle
+                .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
+            $0.setImage(image, for: .normal)
             $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         }
         
         toggleImageView.do {
             $0.image = ImageLiterals.OnBoarding.icChevronDown
+                .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
         }
         
         errorImageView.do {
@@ -137,6 +140,7 @@ extension YelloTextField {
         /// 텍스트 필드 타입에 따라 subView 다르게
         textFieldState = state
         let xCircleImage = ImageLiterals.OnBoarding.icXCircle
+        let cancelImage = xCircleImage.withTintColor(.yelloMain500)
         switch state {
         case .normal:
             buttonStackView.addArrangedSubview(paddingView)
@@ -148,10 +152,9 @@ extension YelloTextField {
             self.layer.borderColor = UIColor.grayscales600.cgColor
             buttonStackView.addArrangedSubviews(searchImageView, paddingView)
         case .cancel:
-            let cancelImage = xCircleImage.withTintColor(.grayscales600)
             cancelButton.setImage(cancelImage, for: .normal)
             buttonStackView.addArrangedSubviews(cancelButton, paddingView)
-            self.rightViewMode = .whileEditing
+            self.rightViewMode = .always
             self.backgroundColor = .grayscales900
             self.layer.borderColor = UIColor.grayscales600.cgColor
         case .toggle:
@@ -167,6 +170,10 @@ extension YelloTextField {
             self.backgroundColor = .semanticStatusRed500.withAlphaComponent(0.2)
             self.layer.borderColor = UIColor.semanticStatusRed500.cgColor
         case .id:
+            cancelButton.setImage(cancelImage, for: .normal)
+            guard let text = self.text else { break }
+            self.rightViewMode = (text.isEmpty) ? .never : .always
+            
             self.leftView = idLabelStackView
             self.backgroundColor = .black.withAlphaComponent(0)
             self.layer.borderColor = UIColor.grayscales600.cgColor
