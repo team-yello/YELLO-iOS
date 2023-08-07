@@ -36,6 +36,10 @@ enum StringLiterals {
         static let nameError = "한글만 입력 가능해요."
         static let idError = "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요."
         static let idDuplicate = "이미 사용하고 있는 아이디에요."
+        
+        static let pushNotiText = "회원가입 끝! 알림을 드릴게요"
+        static let pushNotiHelper = "친구들에게 비밀쪽지가 도착하면\n알림을 드릴게요."
+        static let pushNotiButtonText = "알림 받기"
     }
     
     enum Inviting {
