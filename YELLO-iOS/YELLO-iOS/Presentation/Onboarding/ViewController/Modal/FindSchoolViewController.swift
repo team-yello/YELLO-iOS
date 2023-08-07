@@ -18,13 +18,15 @@ class FindSchoolViewController: SearchBaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.customView(titleText: "우리 학교 검색하기", helperText: "우리 학교가 없나요? 학교를 추가해보세요!")
+        customView(titleText: "우리 학교 검색하기", helperText: "우리 학교가 없나요? 학교를 추가해보세요!")
         addTarget()
     }
     
     func addTarget() {
-        super.searchView.searchTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        super.searchView.helperButton.addTarget(self, action: #selector(helperButtonDidTap), for: .touchUpInside)
+        searchView.searchResultTableView.delegate = self
+        
+        searchView.searchTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        searchView.helperButton.addTarget(self, action: #selector(helperButtonDidTap), for: .touchUpInside)
     }
     
     func searchSchool(_ word: String) {
@@ -69,5 +71,16 @@ class FindSchoolViewController: SearchBaseViewController {
         let url = URL(string: "https://bit.ly/46Yv0Hc")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-    
+}
+
+// MARK: - extension
+// MARK: UITableViewDelegate
+extension FindSchoolViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
+            return
+        }
+        delegate?.didSelectSchoolResult(currentCell.titleLabel.text ?? "")
+        self.dismiss(animated: true)
+    }
 }
