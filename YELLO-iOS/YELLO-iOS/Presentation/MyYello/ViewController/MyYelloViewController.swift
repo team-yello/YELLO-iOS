@@ -14,7 +14,7 @@ final class MyYelloViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let myYelloView = MyYelloView()
+    let myYelloView = MyYelloView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -22,28 +22,16 @@ final class MyYelloViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
-        self.myYelloCount()
-        self.myYelloView.myYelloListView.isFinishPaging = false
-        self.myYelloView.myYelloListView.fetchingMore = false
-        self.myYelloView.myYelloListView.pageCount = -1
-        self.myYelloView.myYelloListView.myYello()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
         self.myYelloView.myYelloListView.applySnapshot(animated: true)
         if MyYelloListView.myYelloModelDummy.isEmpty == false {
             self.myYelloView.myYelloListView.myYelloTableView.reloadData()
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     // MARK: Layout Helpers

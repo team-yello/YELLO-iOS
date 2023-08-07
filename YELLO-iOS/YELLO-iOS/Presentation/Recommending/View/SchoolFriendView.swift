@@ -212,6 +212,7 @@ extension SchoolFriendView {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self.fetchingMore = false
                     }
+                    self.updateView()
                     print("통신 성공")
                 default:
                     print("network fail")

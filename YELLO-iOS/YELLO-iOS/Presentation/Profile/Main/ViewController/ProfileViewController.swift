@@ -14,7 +14,7 @@ final class ProfileViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let profileView = ProfileView()
+    let profileView = ProfileView()
     let friendProfileViewController = FriendProfileViewController()
     let bottomSheetViewController = BottomFriendProfileViewController()
     
@@ -25,11 +25,6 @@ final class ProfileViewController: BaseViewController {
     
     // MARK: - Function
     // MARK: LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.profileView.profileFriend()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true

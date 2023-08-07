@@ -220,6 +220,7 @@ extension KakaoFriendView {
                     
                     self.kakaoFriendCount = data.totalCount
                     self.applySnapshot(animated: true)
+                    self.updateView()
                     print(self.recommendingKakaoFriendTableViewDummy)
                     print(data.totalCount)
                     print("통신 성공")
