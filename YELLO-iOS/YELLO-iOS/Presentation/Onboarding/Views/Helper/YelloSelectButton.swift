@@ -27,14 +27,13 @@ import Then
     case univ
 }
 
-
 class YelloSelectButton: UIButton {
     // MARK: - Variables
     // MARK: Property
     var buttonText = ""
-    var buttonFormat: ButtonFormat?
-    var gender: Gender?
-    var schoolLevel: SchoolLevel?
+    var buttonFormat: ButtonFormat = .gender
+    var gender: Gender = .female
+    var schoolLevel: SchoolLevel = .high
     var IconImage: UIImage?
     
     // MARK: Component
@@ -95,7 +94,7 @@ extension YelloSelectButton {
         }
         checkButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icCheckCircleGender, for: .normal)
- 
+            $0.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         }
     }
     
@@ -131,13 +130,11 @@ extension YelloSelectButton {
             case .male:
                 self.backgroundColor = .semanticGenderM700
                 self.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleMale, for: .normal)
-            case .none:
-                return
             }
         case .school:
             schoolLevel = (buttonText == "대학생") ? .univ : .high
             buttonLabel.textColor = .yelloMain500
-            self.layer.borderColor = UIColor.yelloMain500.cgColor
+            self.makeBorder(width: 1, color: .yelloMain500)
             checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleSelected, for: .normal)
             
             switch schoolLevel {
@@ -145,11 +142,7 @@ extension YelloSelectButton {
                 iconImageView.image = iconImageView.image?.withTintColor(.yelloMain500)
             case .univ:
                 iconImageView.image = iconImageView.image?.withTintColor(.yelloMain500)
-            case .none:
-                return
             }
-        case .none:
-            return
         }
         
     }
@@ -167,8 +160,6 @@ extension YelloSelectButton {
             case .male:
                 IconImage = ImageLiterals.OnBoarding.icYelloFaceMale
                 buttonLabel.textColor = .semanticGenderM500
-            case .none:
-                return
             }
         case .school:
             let schoolLevel = (self.buttonText == "고등학생") ? SchoolLevel.high : SchoolLevel.univ
@@ -179,8 +170,6 @@ extension YelloSelectButton {
             case .univ:
                 IconImage = ImageLiterals.OnBoarding.icUniv
             }
-        case .none:
-            return
         }
     }
     
@@ -193,8 +182,8 @@ extension YelloSelectButton {
             if let button = subview as? YelloSelectButton, button != self {
                 button.isSelected = false
                 button.backgroundColor = .grayscales900
-                button.makeBorder(width: 0, color: .grayscales700)
-                button.iconImageView.image = ImageLiterals.OnBoarding.icYelloFaceMale.withTintColor(.grayscales700, renderingMode: .alwaysOriginal)
+                button.makeBorder(width: 1, color: .grayscales700)
+                button.iconImageView.image = iconImageView.image?.withTintColor(.grayscales700, renderingMode: .alwaysOriginal)
                 button.buttonLabel.textColor = .grayscales700
                 button.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleGender, for: .normal)
             }
