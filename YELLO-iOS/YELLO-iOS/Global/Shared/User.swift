@@ -13,6 +13,7 @@ struct User {
     var social: String = ""
     var uuid: String = ""
     var email: String = ""
+    var deviceToken: String = ""
     var profileImage: String = ""
     var groupId: Int = 0
     var groupAdmissionYear: Int = 0
