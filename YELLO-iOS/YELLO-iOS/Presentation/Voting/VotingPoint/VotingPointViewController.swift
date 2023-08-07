@@ -131,8 +131,6 @@ final class VotingPointViewController: BaseViewController {
                 print("network failure")
                 return
             }
-            UserDefaults.standard.removeObject(forKey: "UserDataKey")
-            UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -140,8 +138,11 @@ final class VotingPointViewController: BaseViewController {
             self.navigationController?.pushViewController(viewController, animated: true)
             self.originView.yellowButton.isEnabled = true
         }
-        
+
         requestSendNoti(seconds: 2402)
+        
+        UserDefaults.standard.removeObject(forKey: "UserDataKey")
+        UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
     }
     
     // 푸시 알림 전송
