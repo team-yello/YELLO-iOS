@@ -15,7 +15,7 @@ final class MyProfileView: UIView {
     // MARK: - Variables
     // MARK: Component
     let profileImageView = UIImageView()
-    let nameLabel = UILabel()
+    let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 16.adjustedWidth, height: 243.adjustedHeight))
     let instagramLabel = UILabel()
     let schoolLabel = UILabel()
     private let separateView = UIView()
@@ -51,7 +51,7 @@ extension MyProfileView {
         self.makeCornerRound(radius: 12)
         
         profileImageView.do {
-            $0.image = ImageLiterals.Profile.imgDefaultProfile
+            $0.backgroundColor = .grayscales800
             $0.contentMode = .scaleAspectFill
             $0.makeCornerRound(radius: 24.adjusted)
         }
@@ -60,6 +60,8 @@ extension MyProfileView {
             $0.setTextWithLineHeight(text: "", lineHeight: 30)
             $0.font = .uiHeadline02
             $0.textColor = .white
+            $0.numberOfLines = 2
+            $0.lineBreakMode = .byCharWrapping
         }
         
         instagramLabel.do {
@@ -79,17 +81,17 @@ extension MyProfileView {
         }
         
         messageView.do {
-            $0.countLabel.text = ""
+            $0.countLabel.text = "0"
             $0.titleLabel.text = StringLiterals.Profile.Count.message
         }
         
         friendView.do {
-            $0.countLabel.text = ""
+            $0.countLabel.text = "0"
             $0.titleLabel.text = StringLiterals.Profile.Count.friend
         }
         
         pointView.do {
-            $0.countLabel.text = ""
+            $0.countLabel.text = "0"
             $0.titleLabel.text = StringLiterals.Profile.Count.point
         }
         
@@ -186,6 +188,8 @@ extension MyProfileView {
                 
                 if data.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
                     self.profileImageView.kfSetImage(url: data.profileImageUrl)
+                } else {
+                    self.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
                 }
                 self.nameLabel.text = data.name
                 self.instagramLabel.text = "@" + data.yelloId
