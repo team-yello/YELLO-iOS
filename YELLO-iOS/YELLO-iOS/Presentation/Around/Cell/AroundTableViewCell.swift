@@ -85,12 +85,14 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         nameLabel.do {
-            $0.text = "술자리에서 너가"
+            $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 24.adjustedHeight)
+//            $0.text = "술자리에서 너가"
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
         
         keywordHeadLabel.do {
+            $0.setTextWithLineHeight(text: "사라진다면", lineHeight: 24.adjustedHeight)
             $0.text = "사라진다면"
             $0.font = .uiBodyLarge
             $0.textColor = .white
@@ -100,9 +102,12 @@ final class AroundTableViewCell: UITableViewCell {
             $0.backgroundColor = .grayscales800
             $0.makeCornerRound(radius: 4)
             $0.addDottedBorder()
+//            $0.isHidden = true
+
         }
         
         keywordLabel.do {
+            $0.setTextWithLineHeight(text: "달빛산책 간 거", lineHeight: 24.adjustedHeight)
             $0.text = "달빛산책 간 거"
             $0.font = .uiBodyLarge
             $0.textColor = .semanticGenderF300
@@ -110,6 +115,7 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         keywordFootLabel.do {
+            $0.setTextWithLineHeight(text: "(이)야", lineHeight: 24.adjustedHeight)
             $0.text = "(이)야"
             $0.font = .uiBodyLarge
             $0.textColor = .white
@@ -166,26 +172,26 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         keywordHeadLabel.snp.makeConstraints {
+            $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
             $0.leading.equalTo(nameLabel)
-            $0.centerY.equalTo(keywordLabel)
         }
         
         keywordView.snp.makeConstraints {
-            $0.bottom.equalTo(keywordLabel)
             $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
             $0.height.equalTo(20.adjustedHeight)
-            $0.centerX.equalTo(keywordLabel)
             $0.width.equalTo(keywordLabel)
+            $0.top.equalTo(keywordLabel).offset(4.adjustedHeight)
+
         }
         
         keywordLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(23.adjustedHeight)
+            $0.top.equalTo(keywordHeadLabel)
             $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
         }
         
         keywordFootLabel.snp.makeConstraints {
+            $0.top.equalTo(keywordHeadLabel)
             $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6.adjustedWidth)
-            $0.centerY.equalTo(keywordLabel)
         }
     }
     
