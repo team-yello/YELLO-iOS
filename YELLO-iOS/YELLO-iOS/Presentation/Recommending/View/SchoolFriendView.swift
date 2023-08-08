@@ -61,7 +61,6 @@ extension SchoolFriendView {
     
     private func setStyle() {
         self.backgroundColor = .clear
-        self.isSkeletonable = true
         
         inviteBannerView.do {
             $0.isHidden = true

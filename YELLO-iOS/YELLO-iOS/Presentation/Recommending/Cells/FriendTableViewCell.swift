@@ -7,7 +7,6 @@
 
 import UIKit
 
-import SkeletonView
 import SnapKit
 import Then
 
@@ -67,8 +66,6 @@ extension FriendTableViewCell {
     
     private func setStyle() {
         self.backgroundColor = .black
-        self.isSkeletonable = true
-        self.contentView.isSkeletonable = true
         
         separatorInset.left = 14
         separatorInset.right = 14
