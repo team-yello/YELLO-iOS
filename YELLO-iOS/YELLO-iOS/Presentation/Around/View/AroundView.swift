@@ -25,8 +25,6 @@ final class AroundView: BaseView {
     var isFinishPaging = false
     var pageCount = -1
     
-//    var dataSource: UITableViewDiffableDataSource<Int, Yello>!
-    
     var aroundModelDummy: [Yello] = []
     
     // MARK: Component
