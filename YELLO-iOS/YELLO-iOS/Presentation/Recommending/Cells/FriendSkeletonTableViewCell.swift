@@ -51,7 +51,8 @@ extension FriendSkeletonTableViewCell {
     }
     
     private func setStyle() {
-        self.backgroundColor = .black
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .clear
         
         separatorInset.left = 14
         separatorInset.right = 14
@@ -109,5 +110,13 @@ extension FriendSkeletonTableViewCell {
             $0.height.equalTo(1)
             $0.bottom.equalToSuperview()
         }
+    }
+}
+
+extension FriendSkeletonTableViewCell {
+    func showShimmer() {
+        self.profileImageView.animateShimmer()
+        self.nameLabel.animateShimmer()
+        self.schoolLabel.animateShimmer()
     }
 }

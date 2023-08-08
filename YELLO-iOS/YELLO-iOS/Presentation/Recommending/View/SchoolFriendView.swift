@@ -60,7 +60,7 @@ extension SchoolFriendView {
     }
     
     private func setStyle() {
-        self.backgroundColor = .black
+        self.backgroundColor = .clear
         self.isSkeletonable = true
         
         inviteBannerView.do {
@@ -76,7 +76,7 @@ extension SchoolFriendView {
         schoolFriendTableView.do {
             $0.register(FriendTableViewCell.self, forCellReuseIdentifier: FriendTableViewCell.identifier)
             $0.register(FriendSkeletonTableViewCell.self, forCellReuseIdentifier: FriendSkeletonTableViewCell.identifier)
-            $0.backgroundColor = .black
+            $0.backgroundColor = .clear
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
@@ -220,7 +220,6 @@ extension SchoolFriendView: HandleAddFriendButton {
         // 삭제 서버통신
         recommendingAddFriend(friendId: recommendingSchoolFriendTableViewDummy[indexPath.row].friends.id)
         
-        
         recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
         sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
         sender.isEnabled = false
@@ -268,6 +267,7 @@ extension SchoolFriendView: UITableViewDataSource {
         if fetchingMore {
             let cell = tableView.dequeueReusableCell(withIdentifier: FriendSkeletonTableViewCell.identifier, for: indexPath) as! FriendSkeletonTableViewCell
             cell.selectionStyle = .none
+            cell.showShimmer()
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as! FriendTableViewCell

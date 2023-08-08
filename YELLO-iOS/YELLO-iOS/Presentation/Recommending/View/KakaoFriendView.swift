@@ -292,6 +292,7 @@ extension KakaoFriendView: UITableViewDataSource {
         if fetchingMore {
             let cell = tableView.dequeueReusableCell(withIdentifier: FriendSkeletonTableViewCell.identifier, for: indexPath) as! FriendSkeletonTableViewCell
             cell.selectionStyle = .none
+            cell.showShimmer()
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as! FriendTableViewCell
