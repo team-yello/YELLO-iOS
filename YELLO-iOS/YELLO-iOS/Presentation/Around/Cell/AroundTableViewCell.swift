@@ -25,7 +25,7 @@ final class AroundTableViewCell: UITableViewCell {
     let nameLabel = UILabel()
     let keywordHeadLabel = UILabel()
     let keywordLabel = UILabel()
-    let keywordView = UIView(frame: CGRect(x: 0, y: 0, width: 91, height: 20))
+    let keywordView = UIView(frame: CGRect(x: 0, y: 0, width: 91.adjustedWidth, height: 20.adjustedHeight))
     let keywordFootLabel = UILabel()
     let timeLabel = UILabel()
     
@@ -46,20 +46,7 @@ final class AroundTableViewCell: UITableViewCell {
 
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-//        genderImageView.image = nil
-//        genderLabel.text = nil
-//        polygonImageView.image = nil
-//        receiverLabel.text = nil
-//        nameLabel.text = nil
-//        keywordHeadLabel.text = nil
-//        keywordLabel.text = nil
-//        keywordFootLabel.text = nil
-//        timeLabel.text = nil
-    }
-    
+        
     // MARK: Layout Helpers
     private func setUI() {
         setStyle()
@@ -154,51 +141,50 @@ final class AroundTableViewCell: UITableViewCell {
         
         contentView.snp.makeConstraints {
             $0.width.equalTo(343.adjustedWidth)
-            $0.height.equalTo(108)
+            $0.height.equalTo(108.adjustedHeight)
         }
         
         genderImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().inset(16.adjustedHeight)
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
             $0.width.height.equalTo(20)
         }
         
         receiverStackView.snp.makeConstraints {
-            $0.leading.equalTo(genderImageView.snp.trailing).inset(-8)
+            $0.leading.equalTo(genderImageView.snp.trailing).inset(-8.adjustedWidth)
             $0.centerY.equalTo(genderImageView)
         }
         
         timeLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16)
-            $0.top.equalToSuperview().inset(19)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.top.equalToSuperview().inset(19.adjustedHeight)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(receiverStackView.snp.bottom).offset(10)
+            $0.top.equalTo(receiverStackView.snp.bottom).offset(10.adjustedHeight)
             $0.leading.equalTo(receiverStackView)
         }
         
         keywordHeadLabel.snp.makeConstraints {
-//            $0.top.equalTo(keywordView)
             $0.leading.equalTo(nameLabel)
             $0.centerY.equalTo(keywordLabel)
         }
         
         keywordView.snp.makeConstraints {
             $0.bottom.equalTo(keywordLabel)
-            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6)
-            $0.height.equalTo(20)
+            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
+            $0.height.equalTo(20.adjustedHeight)
             $0.centerX.equalTo(keywordLabel)
             $0.width.equalTo(keywordLabel)
         }
         
         keywordLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(23)
-            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6)
+            $0.bottom.equalToSuperview().inset(23.adjustedHeight)
+            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
         }
         
         keywordFootLabel.snp.makeConstraints {
-            $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6)
+            $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6.adjustedWidth)
             $0.centerY.equalTo(keywordLabel)
         }
     }

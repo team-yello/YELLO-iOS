@@ -15,13 +15,17 @@ final class AroundView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var fetchingMore = false
+    var fetchingMore = true {
+        didSet {
+            aroundTableView.reloadData()
+        }
+    }
     var aroundPage: Int = 0
     var indexNumber: Int = -1
     var isFinishPaging = false
     var pageCount = -1
     
-    var dataSource: UITableViewDiffableDataSource<Int, Yello>!
+//    var dataSource: UITableViewDiffableDataSource<Int, Yello>!
     
     var aroundModelDummy: [Yello] = []
     
@@ -52,6 +56,7 @@ final class AroundView: BaseView {
         
         aroundTableView.do {
             $0.register(AroundTableViewCell.self, forCellReuseIdentifier: AroundTableViewCell.identifier)
+            $0.register(AroundSkeletonTableViewCell.self, forCellReuseIdentifier: AroundSkeletonTableViewCell.identifier)
             $0.dataSource = self
             $0.delegate = self
             $0.separatorStyle = .none
@@ -62,13 +67,13 @@ final class AroundView: BaseView {
 //        configureAroundDataSource()
     }
     
-    private func configureAroundDataSource() {
-        dataSource = UITableViewDiffableDataSource<Int, Yello>(tableView: aroundTableView) { [weak self] (tableView, indexPath, around) -> UITableViewCell? in
-            guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: AroundTableViewCell.identifier, for: indexPath) as? AroundTableViewCell else { return UITableViewCell() }
-            aroundCell.selectionStyle = .none
-            return aroundCell
-        }
-    }
+//    private func configureAroundDataSource() {
+//        dataSource = UITableViewDiffableDataSource<Int, Yello>(tableView: aroundTableView) { [weak self] (tableView, indexPath, around) -> UITableViewCell? in
+//            guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: AroundTableViewCell.identifier, for: indexPath) as? AroundTableViewCell else { return UITableViewCell() }
+//            aroundCell.selectionStyle = .none
+//            return aroundCell
+//        }
+//    }
     
     override func setLayout() {
         self.addSubviews(
@@ -93,6 +98,12 @@ final class AroundView: BaseView {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
         }
+        
+        refreshControl.do {
+            aroundTableView.refreshControl = $0
+            $0.tintColor = .grayscales400
+            $0.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
+        }
     }
     
     // MARK: Objc Function
@@ -102,25 +113,16 @@ final class AroundView: BaseView {
         self.fetchingMore = false
         aroundModelDummy = []
         self.around()
-        if self.fetchingMore == true {
-            print("기다리삼")
-            self.applySnapshot(animated: true)
-        }
         refresh.endRefreshing()
-    }
-    
-    /// Diffable Data Source를 업데이트하는 함수
-    func applySnapshot(animated: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Yello>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(aroundModelDummy, toSection: 0)
-        dataSource.apply(snapshot, animatingDifferences: animated)
     }
     
     // MARK: - Network
     func around() {
+        self.fetchingMore = true
         // 네트워크 함수 구현
         print("네트워크 함수 구현")
+        self.fetchingMore = false
+        self.aroundTableView.reloadData()
     }
 }
 
@@ -142,9 +144,16 @@ extension AroundView: UITableViewDelegate {
 // MARK: UITableViewDataSource
 extension AroundView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: AroundTableViewCell.identifier, for: indexPath) as? AroundTableViewCell else { return UITableViewCell() }
-        aroundCell.selectionStyle = .none
-        return aroundCell
+        if fetchingMore {
+            let cell = tableView.dequeueReusableCell(withIdentifier: AroundSkeletonTableViewCell.identifier, for: indexPath) as! AroundSkeletonTableViewCell
+            cell.selectionStyle = .none
+            cell.showShimmer()
+            return cell
+        } else {
+            guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: AroundTableViewCell.identifier, for: indexPath) as? AroundTableViewCell else { return UITableViewCell() }
+            aroundCell.selectionStyle = .none
+            return aroundCell
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -153,6 +162,6 @@ extension AroundView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 116
+        return 116.adjustedHeight
     }
 }
