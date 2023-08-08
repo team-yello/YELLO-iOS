@@ -220,8 +220,6 @@ extension SchoolFriendView: HandleAddFriendButton {
         // 삭제 서버통신
         recommendingAddFriend(friendId: recommendingSchoolFriendTableViewDummy[indexPath.row].friends.id)
         
-        // 추가할 아이템의 식별자 가져오기
-        let itemToAdd = self.recommendingSchoolFriendTableViewDummy[indexPath.row]
         
         recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
         sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
@@ -273,7 +271,6 @@ extension SchoolFriendView: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as! FriendTableViewCell
-            let friend = self.recommendingSchoolFriendTableViewDummy[indexPath.row]
             
             cell.selectionStyle = .none
             
