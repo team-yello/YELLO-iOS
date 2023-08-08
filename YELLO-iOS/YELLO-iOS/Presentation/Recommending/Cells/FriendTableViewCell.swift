@@ -46,7 +46,7 @@ final class FriendTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+//        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
         nameLabel.text = nil
         schoolLabel.text = nil
         isTapped = false
@@ -78,7 +78,6 @@ extension FriendTableViewCell {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
             $0.makeCornerRound(radius: 21)
-            $0.isSkeletonable = true
         }
         
         nameLabel.do {
@@ -86,7 +85,6 @@ extension FriendTableViewCell {
             $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
             $0.numberOfLines = 0
             $0.textColor = .white
-            $0.isSkeletonable = true
         }
         
         schoolLabel.do {
@@ -94,7 +92,6 @@ extension FriendTableViewCell {
             $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
             $0.numberOfLines = 0
             $0.textColor = .grayscales600
-            $0.isSkeletonable = true
         }
         
         addButton.do {
@@ -119,22 +116,22 @@ extension FriendTableViewCell {
         
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(8.adjusted)
-            $0.width.height.equalTo(42.adjusted)
+            $0.leading.equalToSuperview().offset(8.adjustedWidth)
+            $0.width.height.equalTo(42)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(17.adjusted)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjusted)
+            $0.top.equalToSuperview().offset(17.adjustedHeight)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
         }
         
         addButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(8.adjusted)
+            $0.trailing.equalToSuperview().inset(8.adjustedWidth)
             $0.centerY.equalToSuperview()
         }
         
