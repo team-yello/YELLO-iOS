@@ -1,8 +1,8 @@
 //
-//  MyFriendTableViewCell.swift
+//  MyFriendSkeletonTableViewCell.swift
 //  YELLO-iOS
 //
-//  Created by 정채은 on 2023/07/11.
+//  Created by 정채은 on 2023/08/09.
 //
 
 import UIKit
@@ -11,15 +11,15 @@ import Kingfisher
 import SnapKit
 import Then
 
-final class MyFriendTableViewCell: UITableViewCell {
+final class MyFriendSkeletonTableViewCell: UITableViewCell {
     
     // MARK: - Variables
     // MARK: Component
-    static let identifier = "MyFriendTableViewCell"
+    static let identifier = "MyFriendSkeletonTableViewCell"
     
-    let profileImageView = UIImageView()
-    let nameLabel = UILabel()
-    let schoolLabel = UILabel()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 42.adjusted, height: 42.adjusted))
+    let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
+    let schoolLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 221.adjustedWidth, height: 16.adjustedHeight))
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -32,16 +32,10 @@ final class MyFriendTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
-        nameLabel.text = nil
-        schoolLabel.text = nil
-    }
 }
+
 // MARK: - extension
-extension MyFriendTableViewCell {
+extension MyFriendSkeletonTableViewCell {
     
     // MARK: Layout Helpers
     private func setUI() {
@@ -57,21 +51,18 @@ extension MyFriendTableViewCell {
         selectionStyle = .default
         
         profileImageView.do {
-            $0.image = ImageLiterals.Profile.imgDefaultProfile
-            $0.contentMode = .scaleAspectFill
+            $0.backgroundColor = .grayscales800
             $0.makeCornerRound(radius: 20)
         }
         
         nameLabel.do {
-            $0.font = .boldSystemFont(ofSize: 18)
-            $0.setTextWithLineHeight(text: "", lineHeight: 24)
-            $0.textColor = .white
+            $0.backgroundColor = .grayscales800
+            $0.makeCornerRound(radius: 2)
         }
         
         schoolLabel.do {
-            $0.font = .systemFont(ofSize: 11)
-            $0.setTextWithLineHeight(text: "", lineHeight: 15)
-            $0.textColor = .gray
+            $0.backgroundColor = .grayscales800
+            $0.makeCornerRound(radius: 2)
         }
     }
     
@@ -96,14 +87,5 @@ extension MyFriendTableViewCell {
             $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
         }
-    }
-    
-    // MARK: Custom Function
-    func configureMyProfileFriendCell(_ model: ProfileFriendResponseDetail) {
-        nameLabel.text = model.name
-        if model.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
-            profileImageView.kfSetImage(url: model.profileImageUrl)
-        }
-        schoolLabel.text = model.group
     }
 }
