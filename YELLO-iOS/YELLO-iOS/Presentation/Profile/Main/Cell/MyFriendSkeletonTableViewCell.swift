@@ -88,4 +88,10 @@ extension MyFriendSkeletonTableViewCell {
             $0.leading.equalTo(nameLabel)
         }
     }
+    
+    func showShimmer() {
+        self.profileImageView.animateShimmer()
+        self.nameLabel.animateShimmer()
+        self.schoolLabel.animateShimmer()
+    }
 }
