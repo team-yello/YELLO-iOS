@@ -130,7 +130,6 @@
 		C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */; };
 		C30F81072A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */; };
 		C30F81092A7F732B009DBB8D /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81082A7F732B009DBB8D /* HintButton.swift */; };
-		C30F810D2A7FFC7A009DBB8D /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = C30F810C2A7FFC7A009DBB8D /* SkeletonView */; };
 		C31315A42A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */; };
 		C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A52A7A5E9400FB8B43 /* FriendSearchViewController.swift */; };
 		C31315A82A7A5F7E00FB8B43 /* FriendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */; };
@@ -179,6 +178,7 @@
 		C3A79A072A49500000D3EFD8 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FE2A494FFF00D3EFD8 /* Pretendard-SemiBold.otf */; };
 		C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */; };
 		C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */; };
+		C3B1D8BB2A81208E0050D737 /* FriendSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B1D8BA2A81208E0050D737 /* FriendSkeletonTableViewCell.swift */; };
 		C3B4720A2A65B1CB00770530 /* MyYelloRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B472092A65B1CB00770530 /* MyYelloRequestQueryDTO.swift */; };
 		C3B4720C2A65B54400770530 /* MyYelloResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4720B2A65B54400770530 /* MyYelloResponseDTO.swift */; };
 		C3B4720E2A65DEC700770530 /* MyYelloDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4720D2A65DEC700770530 /* MyYelloDetailResponseDTO.swift */; };
@@ -409,6 +409,7 @@
 		C3A799FE2A494FFF00D3EFD8 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C3B1D8BA2A81208E0050D737 /* FriendSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSkeletonTableViewCell.swift; sourceTree = "<group>"; };
 		C3B472092A65B1CB00770530 /* MyYelloRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C3B4720B2A65B54400770530 /* MyYelloResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloResponseDTO.swift; sourceTree = "<group>"; };
 		C3B4720D2A65DEC700770530 /* MyYelloDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailResponseDTO.swift; sourceTree = "<group>"; };
@@ -480,7 +481,6 @@
 				C3A799B82A4949C600D3EFD8 /* KakaoSDK in Frameworks */,
 				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
 				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
-				C30F810D2A7FFC7A009DBB8D /* SkeletonView in Frameworks */,
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
 				2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */,
 				C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */,
@@ -1323,6 +1323,7 @@
 			children = (
 				C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */,
 				C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */,
+				C3B1D8BA2A81208E0050D737 /* FriendSkeletonTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1508,7 +1509,6 @@
 				C3A799B72A4949C600D3EFD8 /* KakaoSDK */,
 				2ADE23A92A5EB7660088FCB3 /* Lottie */,
 				C306E7292A630BD10031514C /* SwiftKeychainWrapper */,
-				C30F810C2A7FFC7A009DBB8D /* SkeletonView */,
 			);
 			productName = "YELLO-iOS";
 			productReference = C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */;
@@ -1547,6 +1547,7 @@
 				2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				C306E7282A630BD10031514C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				C3081E452A8225580088CA44 /* XCRemoteSwiftPackageReference "ShimmerSwift" */,
 			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
@@ -1642,6 +1643,7 @@
 				C306E7472A656D170031514C /* ProfileFriendRequestQueryDTO.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
+				C3B1D8BB2A81208E0050D737 /* FriendSkeletonTableViewCell.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3C57BF32A5C089600B84CAA /* FriendTableViewCell.swift in Sources */,
 				36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */,
@@ -2067,6 +2069,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		C3081E452A8225580088CA44 /* XCRemoteSwiftPackageReference "ShimmerSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BeauNouvelle/ShimmerSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Juanpe/SkeletonView";
@@ -2127,11 +2137,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C306E7282A630BD10031514C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
-		};
-		C30F810C2A7FFC7A009DBB8D /* SkeletonView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */;
-			productName = SkeletonView;
 		};
 		C3A799AB2A49499500D3EFD8 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
