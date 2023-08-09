@@ -61,17 +61,17 @@ extension FriendSkeletonTableViewCell {
         profileImageView.do {
             $0.backgroundColor = .grayscales800
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 21)
+            $0.makeCornerRound(radius: 21.adjustedHeight)
         }
         
         nameLabel.do {
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
         }
         
         schoolLabel.do {
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
         }
         
         separatorLine.do {

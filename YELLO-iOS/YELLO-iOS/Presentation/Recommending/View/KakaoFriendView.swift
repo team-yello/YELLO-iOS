@@ -15,7 +15,7 @@ final class KakaoFriendView: UIView {
     
     // MARK: - Variables
     // MARK: Property
-    var fetchingMore = false{
+    var fetchingMore = false {
         didSet {
             kakaoFriendTableView.reloadData()
         }
@@ -93,13 +93,13 @@ extension KakaoFriendView {
         
         inviteBannerView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(76)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(76.adjustedHeight)
         }
         
         kakaoFriendTableView.snp.makeConstraints {
             $0.top.equalTo(inviteBannerView.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview()
         }
         

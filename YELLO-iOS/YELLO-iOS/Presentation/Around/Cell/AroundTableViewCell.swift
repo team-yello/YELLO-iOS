@@ -56,7 +56,7 @@ final class AroundTableViewCell: UITableViewCell {
     private func setStyle() {
         self.backgroundColor = .clear
         contentView.backgroundColor = .grayscales900
-        contentView.makeCornerRound(radius: 8)
+        contentView.makeCornerRound(radius: 8.adjustedHeight)
         
         genderImageView.do {
             $0.image = ImageLiterals.MyYello.imgGenderFemale
@@ -100,7 +100,7 @@ final class AroundTableViewCell: UITableViewCell {
         
         keywordView.do {
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 4)
+            $0.makeCornerRound(radius: 4.adjustedHeight)
             $0.addDottedBorder()
 //            $0.isHidden = true
 

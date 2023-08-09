@@ -52,7 +52,7 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
     private func setStyle() {
         self.backgroundColor = .clear
         contentView.backgroundColor = .grayscales900
-        contentView.makeCornerRound(radius: 8)
+        contentView.makeCornerRound(radius: 8.adjustedHeight)
         
         genderImageView.do {
             $0.backgroundColor = .grayscales600
@@ -67,7 +67,7 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
         
         genderLabel.do {
             $0.backgroundColor = .grayscales700
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
         }
         
         polygonImageView.do {
@@ -76,17 +76,17 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
         
         receiverLabel.do {
             $0.backgroundColor = .grayscales700
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
         }
         
         nameLabel.do {
             $0.backgroundColor = .grayscales700
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
         }
         
         keywordLabel.do {
             $0.backgroundColor = .grayscales700
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
         }
     }
     

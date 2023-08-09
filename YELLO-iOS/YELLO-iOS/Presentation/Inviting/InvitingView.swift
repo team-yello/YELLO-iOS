@@ -33,7 +33,7 @@ final class InvitingView: BaseView {
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
-        contentsView.makeCornerRound(radius: 10)
+        contentsView.makeCornerRound(radius: 10.adjustedHeight)
         contentsView.backgroundColor = .white
         
         closeButton.do {
@@ -63,7 +63,7 @@ final class InvitingView: BaseView {
         
         backGroundView.do {
             $0.backgroundColor = .grayscales50
-            $0.makeCornerRound(radius: 8)
+            $0.makeCornerRound(radius: 8.adjustedHeight)
         }
         
         recommender.do {
@@ -106,48 +106,49 @@ final class InvitingView: BaseView {
         
         contentsView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(300)
-            $0.height.equalTo(374)
+            $0.width.equalTo(300.adjustedWidth)
+            $0.height.equalTo(374.adjustedHeight)
         }
         
         closeButton.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview().inset(14)
+            $0.top.equalToSuperview().inset(14.adjustedHeight)
+            $0.trailing.equalToSuperview().inset(14.adjustedWidth)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(50)
+            $0.top.equalToSuperview().inset(50.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         backGroundView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(14)
-            $0.top.equalToSuperview().inset(146)
-            $0.bottom.equalToSuperview().inset(120)
+            $0.leading.trailing.equalToSuperview().inset(14.adjustedWidth)
+            $0.top.equalToSuperview().inset(146.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(120.adjustedHeight)
         }
         
         textLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         recommender.snp.makeConstraints {
-            $0.top.equalTo(textLabel.snp.bottom).offset(47)
+            $0.top.equalTo(textLabel.snp.bottom).offset(47.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         recommenderID.snp.makeConstraints {
-            $0.top.equalTo(recommender.snp.bottom).offset(8)
+            $0.top.equalTo(recommender.snp.bottom).offset(8.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         kakaoButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(100)
-            $0.bottom.equalToSuperview().inset(50)
+            $0.leading.equalToSuperview().inset(100.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(50.adjustedHeight)
         }
         
         copyButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(100)
-            $0.bottom.equalToSuperview().inset(50)
+            $0.trailing.equalToSuperview().inset(100.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(50.adjustedHeight)
         }
     }
 }
