@@ -251,7 +251,9 @@ extension KakaoFriendView: HandleAddFriendButton {
             self.recommendingKakaoFriendTableViewDummy.remove(at: indexPath.row)
             self.kakaoFriendCount = self.recommendingKakaoFriendTableViewDummy.count
             self.kakaoFriendTableView.deleteRows(at: [indexPath], with: .right)
-            self.kakaoFriendTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.kakaoFriendTableView.reloadData()
+            }
             self.updateView()
         }
         

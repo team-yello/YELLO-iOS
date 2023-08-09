@@ -227,7 +227,9 @@ extension SchoolFriendView: HandleAddFriendButton {
             self.recommendingSchoolFriendTableViewDummy.remove(at: indexPath.row)
             self.schoolFriendCount = self.recommendingSchoolFriendTableViewDummy.count
             self.schoolFriendTableView.deleteRows(at: [indexPath], with: .right)
-            self.schoolFriendTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.schoolFriendTableView.reloadData()
+            }
             self.updateView()
         }
         
