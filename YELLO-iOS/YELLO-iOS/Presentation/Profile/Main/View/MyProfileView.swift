@@ -24,6 +24,9 @@ final class MyProfileView: UIView {
     let pointView = CountCustomView()
     private let addGroupButton = UIButton(frame: CGRect(x: 0, y: 0, width: 303.adjustedWidth, height: 48.adjustedHeight))
     
+    let nameSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
+    let schoolSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
+    
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {
@@ -105,6 +108,17 @@ extension MyProfileView {
             $0.setTitle(StringLiterals.Profile.MyProfile.addGroup, for: .normal)
             $0.addTarget(self, action: #selector(addGroupButtonTapped), for: .touchUpInside)
         }
+        
+        nameSkeletonLabel.do {
+            $0.backgroundColor = .grayscales800
+            $0.makeCornerRound(radius: 2.adjustedHeight)
+        }
+        
+        schoolSkeletonLabel.do {
+            $0.backgroundColor = .grayscales800
+            $0.makeCornerRound(radius: 2.adjustedHeight)
+        }
+        
     }
     
     private func setLayout() {
@@ -116,10 +130,11 @@ extension MyProfileView {
                          messageView,
                          friendView,
                          pointView,
-                         addGroupButton)
+                         addGroupButton,
+                         nameSkeletonLabel,
+                         schoolSkeletonLabel)
         
         self.snp.makeConstraints {
-//            $0.height.equalTo(230.adjustedHeight)
             $0.width.equalTo(343.adjustedWidth)
         }
         
@@ -172,11 +187,19 @@ extension MyProfileView {
         }
         
         addGroupButton.snp.makeConstraints {
-//            $0.top.equalTo(messageView.snp.bottom).offset(10.adjustedHeight)
             $0.height.equalTo(48.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(20.adjustedWidth)
             $0.bottom.equalToSuperview().inset(20.adjustedHeight)
         }
+        
+        // TODO: 디자인 나오면 내 프로필 스켈레톤 UI 구현
+//        nameSkeletonLabel.snp.makeConstraints {
+//
+//        }
+//        
+//        schoolSkeletonLabel.snp.makeConstraints {
+//
+//        }
     }
     
     // MARK: Objc Function
