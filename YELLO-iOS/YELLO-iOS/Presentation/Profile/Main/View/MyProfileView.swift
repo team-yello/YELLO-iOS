@@ -130,9 +130,11 @@ extension MyProfileView {
                          messageView,
                          friendView,
                          pointView,
-                         addGroupButton,
-                         nameSkeletonLabel,
-                         schoolSkeletonLabel)
+                         addGroupButton
+//                         ,
+//                         nameSkeletonLabel,
+//                         schoolSkeletonLabel
+        )
         
         self.snp.makeConstraints {
             $0.width.equalTo(343.adjustedWidth)

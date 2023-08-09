@@ -15,7 +15,7 @@ final class AroundViewController: UIViewController {
 
     // MARK: - Variables
     // MARK: Component
-    private let aroundView = AroundView()
+    let aroundView = AroundView()
 
     // MARK: - Function
     // MARK: LifeCycle

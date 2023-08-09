@@ -28,10 +28,7 @@ final class MyYelloViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
-        self.myYelloView.myYelloListView.applySnapshot(animated: true)
-        if MyYelloListView.myYelloModelDummy.isEmpty == false {
-            self.myYelloView.myYelloListView.myYelloTableView.reloadData()
-        }
+        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
     }
     
     // MARK: Layout Helpers
