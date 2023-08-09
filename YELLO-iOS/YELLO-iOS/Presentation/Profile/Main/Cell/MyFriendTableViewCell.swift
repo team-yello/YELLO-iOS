@@ -88,7 +88,7 @@ extension MyFriendTableViewCell {
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(17.adjustedHeight)
+            $0.top.equalTo(profileImageView)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
         }
         

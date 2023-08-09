@@ -15,14 +15,14 @@ final class MyProfileView: UIView {
     // MARK: - Variables
     // MARK: Component
     let profileImageView = UIImageView()
-    let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 16.adjustedWidth, height: 243.adjustedHeight))
+    let nameLabel = UILabel()
     let instagramLabel = UILabel()
     let schoolLabel = UILabel()
     private let separateView = UIView()
     let messageView = CountCustomView()
     let friendView = CountCustomView()
     let pointView = CountCustomView()
-    private let addGroupButton = UIButton()
+    private let addGroupButton = UIButton(frame: CGRect(x: 0, y: 0, width: 303.adjustedWidth, height: 48.adjustedHeight))
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -57,7 +57,7 @@ extension MyProfileView {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 30)
+            $0.setTextWithLineHeight(text: "", lineHeight: 30.adjustedHeight)
             $0.font = .uiHeadline02
             $0.textColor = .white
             $0.numberOfLines = 2
@@ -65,13 +65,13 @@ extension MyProfileView {
         }
         
         instagramLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 20)
+            $0.setTextWithLineHeight(text: "", lineHeight: 20.adjustedHeight)
             $0.font = .uiBody02
             $0.textColor = .yelloMain500
         }
         
         schoolLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 16)
+            $0.setTextWithLineHeight(text: "", lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales400
         }
@@ -97,7 +97,7 @@ extension MyProfileView {
         
         addGroupButton.do {
             $0.backgroundColor = .grayscales800
-            $0.layer.cornerRadius = 8
+            $0.makeCornerRound(radius: 24.adjustedHeight)
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.yelloMain500, for: .normal)
             $0.setImage(ImageLiterals.Profile.icPlus, for: .normal)
@@ -119,57 +119,63 @@ extension MyProfileView {
                          addGroupButton)
         
         self.snp.makeConstraints {
-            $0.height.equalTo(230.adjustedHeight)
+//            $0.height.equalTo(230.adjustedHeight)
             $0.width.equalTo(343.adjustedWidth)
         }
         
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20.adjusted)
-            $0.leading.equalToSuperview().inset(28.adjusted)
+            $0.top.equalToSuperview().inset(20.adjustedHeight)
+            $0.leading.equalToSuperview().inset(20.adjustedWidth)
             $0.width.height.equalTo(48.adjusted)
         }
         
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(profileImageView)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjusted)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
         }
         
         instagramLabel.snp.makeConstraints {
-            $0.bottom.equalTo(nameLabel).offset(-3.adjusted)
-            $0.leading.equalTo(nameLabel.snp.trailing).offset(8.adjusted)
+            $0.bottom.equalTo(nameLabel).offset(-3.adjustedHeight)
+            $0.leading.equalTo(nameLabel.snp.trailing).offset(8.adjustedWidth)
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.bottom.equalTo(profileImageView)
+            $0.centerY.equalTo(profileImageView).offset(14.adjustedHeight)
             $0.leading.equalTo(nameLabel)
         }
         
         separateView.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(16.adjusted)
+            $0.top.equalTo(profileImageView.snp.bottom).offset(16.adjustedHeight)
             $0.height.equalTo(1.adjusted)
             $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
         
         messageView.snp.makeConstraints {
-            $0.top.equalTo(separateView.snp.bottom).offset(4.adjusted)
-            $0.trailing.equalTo(friendView.snp.leading).offset(-12.adjusted)
+            $0.top.equalTo(separateView.snp.bottom).offset(4.adjustedHeight)
+            $0.trailing.equalTo(friendView.snp.leading).offset(-12.adjustedWidth)
+            $0.height.equalTo(64.adjustedHeight)
+            $0.width.equalTo(84.adjustedWidth)
         }
         
         friendView.snp.makeConstraints {
             $0.top.equalTo(messageView)
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(64.adjustedHeight)
+            $0.width.equalTo(84.adjustedWidth)
         }
         
         pointView.snp.makeConstraints {
             $0.top.equalTo(messageView)
-            $0.leading.equalTo(friendView.snp.trailing).offset(12.adjusted)
+            $0.leading.equalTo(friendView.snp.trailing).offset(12.adjustedWidth)
+            $0.height.equalTo(64.adjustedHeight)
+            $0.width.equalTo(84.adjustedWidth)
         }
         
         addGroupButton.snp.makeConstraints {
-            $0.top.equalTo(messageView.snp.bottom).offset(10.adjusted)
-            $0.height.equalTo(48.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(20.adjusted)
-            $0.bottom.equalToSuperview().inset(20)
+//            $0.top.equalTo(messageView.snp.bottom).offset(10.adjustedHeight)
+            $0.height.equalTo(48.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(20.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(20.adjustedHeight)
         }
     }
     

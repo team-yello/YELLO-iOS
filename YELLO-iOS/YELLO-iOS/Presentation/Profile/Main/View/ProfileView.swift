@@ -236,6 +236,16 @@ extension ProfileView: UITableViewDataSource {
         switch section {
         case 0:
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyProfileHeaderView.cellIdentifier) as? MyProfileHeaderView
+            if fetchingMore {
+                view?.friendCountView.skeletonLabel.isHidden = false
+                view?.friendCountView.skeletonLabel.animateShimmer()
+                view?.friendCountView.countStackView.isHidden = true
+            } else {
+                view?.friendCountView.skeletonLabel.stopShimmering()
+                view?.friendCountView.skeletonLabel.isHidden = true
+                view?.friendCountView.countStackView.isHidden = false
+            }
+            
             DispatchQueue.main.async {
                 view?.addBottomBorderWithColor(color: .black)
                 view?.myProfileView.profileUser()
@@ -278,11 +288,16 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Click Cell Number:" + String(indexPath.row))
-        self.presentModal(index: indexPath.row)
+        if fetchingMore {
+            return
+        } else {
+            print("Click Cell Number:" + String(indexPath.row))
+            self.presentModal(index: indexPath.row)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 77.adjustedHeight
     }
 }
+
