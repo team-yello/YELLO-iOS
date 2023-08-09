@@ -15,11 +15,7 @@ final class AroundView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var fetchingMore = true {
-        didSet {
-            aroundTableView.reloadData()
-        }
-    }
+    var fetchingMore = false
     var aroundPage: Int = 0
     var indexNumber: Int = -1
     var isFinishPaging = false
@@ -109,7 +105,8 @@ final class AroundView: BaseView {
         self.pageCount = -1
         self.isFinishPaging = false
         self.fetchingMore = false
-        aroundModelDummy = []
+        self.aroundTableView.reloadData()
+        self.aroundModelDummy = []
         self.around()
         refresh.endRefreshing()
     }

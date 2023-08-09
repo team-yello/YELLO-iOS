@@ -24,11 +24,7 @@ final class ProfileView: UIView {
     var friendCount: Int = 0
     
     var initialProfileFriendDataCount = 10
-    var fetchingMore = false {
-        didSet {
-            myFriendTableView.reloadData()
-        }
-    }
+    var fetchingMore = false
     var isFinishPaging = false
     var pageCount = -1
     var myYelloCount = 0
@@ -138,6 +134,7 @@ extension ProfileView {
         self.pageCount = -1
         self.isFinishPaging = false
         self.fetchingMore = false
+        self.myFriendTableView.reloadData()
         self.myProfileFriendModelDummy = []
         self.profileFriend()
         refresh.endRefreshing()
@@ -150,14 +147,6 @@ extension ProfileView {
     private func presentModal(index: Int) {
         handleFriendCellDelegate?.presentModal(index: index)
     }
-//
-//    func deleteFriend(at index: Int) {
-//        // 특정 위치의 행 삭제
-//        myProfileFriendModelDummy.remove(at: index)
-//
-//        // 스냅샷에 삭제된 행 적용
-//        myFriendTableView.reloadData()
-//    }
     
     // MARK: - Network
     func profileFriend() {

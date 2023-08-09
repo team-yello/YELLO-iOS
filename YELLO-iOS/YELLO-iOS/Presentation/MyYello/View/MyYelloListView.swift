@@ -20,11 +20,7 @@ final class MyYelloListView: BaseView {
     // MARK: - Variables
     // MARK: Property
     weak var handleMyYelloCellDelegate: HandleMyYelloCellDelegate?
-    var fetchingMore = false {
-        didSet {
-            myYelloTableView.reloadData()
-        }
-    }
+    var fetchingMore = false
     var myYelloPage: Int = 0
     var indexNumber: Int = -1
     var isFinishPaging = false
@@ -77,6 +73,7 @@ final class MyYelloListView: BaseView {
         self.pageCount = -1
         self.isFinishPaging = false
         self.fetchingMore = false
+        self.myYelloTableView.reloadData()
         MyYelloListView.myYelloModelDummy = []
         self.myYello()
         refresh.endRefreshing()

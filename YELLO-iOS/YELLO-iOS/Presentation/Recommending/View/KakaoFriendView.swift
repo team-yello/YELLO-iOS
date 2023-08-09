@@ -15,11 +15,8 @@ final class KakaoFriendView: UIView {
     
     // MARK: - Variables
     // MARK: Property
-    var fetchingMore = false {
-        didSet {
-            kakaoFriendTableView.reloadData()
-        }
-    }
+    var fetchingMore = false
+    var isRefreshing = false
     var isFinishPaging = false
     var kakaoPage: Int = -1
     var kakaoFriendCount: Int = -1 {
@@ -115,6 +112,7 @@ extension KakaoFriendView {
     
     // MARK: Objc Function
     @objc func refreshTable(refresh: UIRefreshControl) {
+        self.isRefreshing = true
         if kakaoFriendCount == 0 {
             self.inviteBannerView.isHidden = false
             self.emptyView.isHidden = true
@@ -127,6 +125,7 @@ extension KakaoFriendView {
             /// 새로운 친구 목록이 받아와진 후에 recommendingKakaoFriend 함수 호출
             self?.recommendingKakaoFriend()
             refresh.endRefreshing()
+            self?.isRefreshing = false
         }
     }
     
@@ -157,6 +156,10 @@ extension KakaoFriendView {
         let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: User.shared.kakaoFriends)
         
         self.fetchingMore = true
+        
+        if isRefreshing {
+            self.kakaoFriendTableView.reloadData()
+        }
         
         NetworkService.shared.recommendingService.recommendingKakaoFriend(queryDTO: queryDTO, requestDTO: requestDTO) { [weak self] response in
             guard let self = self else { return }

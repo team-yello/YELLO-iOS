@@ -48,13 +48,13 @@ final class InvitingView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedTitle, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedTitle, lineHeight: 24.adjustedHeight)
             $0.textColor = .black
             $0.font = .uiHeadline04
         }
         
         textLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedText, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedText, lineHeight: 20.adjustedHeight)
             $0.numberOfLines = 2
             $0.textColor = .grayscales600
             $0.font = .uiBody03

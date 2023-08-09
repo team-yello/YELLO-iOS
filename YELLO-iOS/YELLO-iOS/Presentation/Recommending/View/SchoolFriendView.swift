@@ -14,11 +14,7 @@ final class SchoolFriendView: UIView {
     
     // MARK: - Variables
     // MARK: Property
-    var fetchingMore = false {
-        didSet {
-            schoolFriendTableView.reloadData()
-        }
-    }
+    var fetchingMore = false
     var isFinishPaging = false
     var schoolPage: Int = -1
     var schoolFriendCount: Int = -1 {
@@ -120,6 +116,7 @@ extension SchoolFriendView {
         self.schoolPage = -1
         self.isFinishPaging = false
         self.fetchingMore = false
+        self.schoolFriendTableView.reloadData()
         self.recommendingSchoolFriendTableViewDummy = []
         self.recommendingSchoolFriend()
         refresh.endRefreshing()
