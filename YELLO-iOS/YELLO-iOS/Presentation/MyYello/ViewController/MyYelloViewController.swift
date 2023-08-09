@@ -15,6 +15,15 @@ final class MyYelloViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     let myYelloView = MyYelloView()
+    var countFetchingMore: Bool = false {
+        didSet {
+            if countFetchingMore {
+                self.myYelloView.myYellowNavigationBarView.myYelloRefresh()
+            } else {
+                self.myYelloView.myYellowNavigationBarView.myYelloStopRefresh()
+            }
+        }
+    }
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -63,6 +72,8 @@ final class MyYelloViewController: BaseViewController {
     
     private func setAddTarget() {
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshCount), for: .valueChanged)
+        myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
+
     }
     
     @objc func refreshCount() {
@@ -108,7 +119,13 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
 
 extension MyYelloViewController {
     func myYelloCount() {
-
+        
+        if countFetchingMore {
+            return
+        }
+        
+        countFetchingMore = true
+        
         let queryDTO = MyYelloRequestQueryDTO(page: 0)
 
         NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
@@ -121,10 +138,22 @@ extension MyYelloViewController {
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
                     self.myYelloView.resetLayout()
+                    countFetchingMore = false
                 default:
                     print("network fail")
                     return
                 }
         }
+    }
+    
+    // MARK: Objc Function
+    @objc func refreshTable(refresh: UIRefreshControl) {
+        myYelloView.myYelloListView.pageCount = -1
+        myYelloView.myYelloListView.isFinishPaging = false
+        myYelloView.myYelloListView.fetchingMore = false
+        myYelloView.myYelloListView.myYelloTableView.reloadData()
+        MyYelloListView.myYelloModelDummy = []
+        myYelloView.myYelloListView.myYello()
+        refresh.endRefreshing()
     }
 }

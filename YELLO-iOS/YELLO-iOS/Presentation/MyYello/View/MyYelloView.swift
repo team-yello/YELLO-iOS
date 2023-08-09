@@ -60,7 +60,7 @@ final class MyYelloView: BaseView {
         }
         
         myYelloListView.snp.makeConstraints {
-            $0.top.equalTo(myYellowNavigationBarView.snp.bottom)
+            $0.top.equalTo(myYellowNavigationBarView.snp.bottom).offset(10.adjustedHeight)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview()
         }

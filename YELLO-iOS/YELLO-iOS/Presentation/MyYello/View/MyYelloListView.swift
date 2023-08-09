@@ -40,7 +40,6 @@ final class MyYelloListView: BaseView {
         refreshControl.do {
             myYelloTableView.refreshControl = $0
             $0.tintColor = .grayscales400
-            $0.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
         }
         
         myYelloTableView.do {
@@ -66,17 +65,6 @@ final class MyYelloListView: BaseView {
             $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
-    }
-    
-    // MARK: Objc Function
-    @objc func refreshTable(refresh: UIRefreshControl) {
-        self.pageCount = -1
-        self.isFinishPaging = false
-        self.fetchingMore = false
-        self.myYelloTableView.reloadData()
-        MyYelloListView.myYelloModelDummy = []
-        self.myYello()
-        refresh.endRefreshing()
     }
     
     // MARK: Custom Function
