@@ -42,7 +42,7 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
     override func prepareForReuse() {
@@ -61,26 +61,26 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
     private func setStyle() {
         self.backgroundColor = .black
         contentView.backgroundColor = .grayscales900
-        contentView.makeCornerRound(radius: 8)
+        contentView.makeCornerRound(radius: 8.adjustedHeight)
         
         genderImageView.do {
             $0.image = ImageLiterals.MyYello.imgGenderFemale
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.femaleTitle, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.femaleTitle, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         newView.do {
             $0.backgroundColor = .semanticStatusYellow500
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
 
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16)
+            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales600
         }
@@ -94,23 +94,23 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
         
         genderImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(12.adjusted)
+            $0.leading.equalToSuperview().inset(12.adjustedWidth)
         }
         
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjusted)
+            $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjustedWidth)
         }
         
         newView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel).offset(1)
-            $0.leading.equalTo(titleLabel.snp.trailing).inset(-1)
-            $0.width.height.equalTo(4)
+            $0.top.equalTo(titleLabel).offset(1.adjustedHeight)
+            $0.leading.equalTo(titleLabel.snp.trailing).inset(-1.adjustedWidth)
+            $0.width.height.equalTo(4.adjusted)
         }
         
         timeLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12.adjusted)
+            $0.trailing.equalToSuperview().inset(12.adjustedWidth)
         }
     }
     

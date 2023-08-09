@@ -42,7 +42,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
     // MARK: Layout Helpers
@@ -54,44 +54,44 @@ final class MyYelloNameTableViewCell: UITableViewCell {
     private func setStyle() {
         self.backgroundColor = .black
         contentView.backgroundColor = .semanticGenderF700
-        contentView.makeCornerRound(radius: 8)
+        contentView.makeCornerRound(radius: 8.adjustedHeight)
         
         genderImageView.do {
             $0.image = ImageLiterals.MyYello.imgGenderFemale
         }
         
         initialLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiKeywordBold
             $0.textColor = .semanticGenderF300
         }
         
         sendLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.nameTitle, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.nameTitle, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .semanticGenderF300
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiKeywordBold
             $0.textColor = .white
         }
         
         keywordFootLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
@@ -117,22 +117,22 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         
         genderImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(12.adjusted)
+            $0.leading.equalToSuperview().inset(12.adjustedWidth)
         }
         
         initialLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(13)
-            $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjusted)
+            $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjustedWidth)
         }
         
         sendLabel.snp.makeConstraints {
             $0.top.equalTo(initialLabel)
-            $0.leading.equalTo(initialLabel.snp.trailing).inset(-2.adjusted)
+            $0.leading.equalTo(initialLabel.snp.trailing).inset(-2.adjustedWidth)
         }
         
         labelView.snp.makeConstraints {
-            $0.top.equalTo(initialLabel.snp.bottom).offset(2)
-            $0.height.equalTo(40)
+            $0.top.equalTo(initialLabel.snp.bottom).offset(2.adjustedHeight)
+            $0.height.equalTo(40.adjustedHeight)
             $0.leading.equalTo(initialLabel)
         }
         
@@ -148,17 +148,17 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         
         keywordLabel.snp.makeConstraints {
             $0.bottom.equalTo(keywordHeadLabel)
-            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-2.adjusted)
+            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-2.adjustedWidth)
         }
         
         keywordFootLabel.snp.makeConstraints {
             $0.bottom.equalTo(keywordLabel)
-            $0.leading.equalTo(keywordLabel.snp.trailing).inset(-2.adjusted)
+            $0.leading.equalTo(keywordLabel.snp.trailing).inset(-2.adjustedWidth)
         }
         
         timeLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12.adjusted)
+            $0.trailing.equalToSuperview().inset(12.adjustedWidth)
         }
     }
     

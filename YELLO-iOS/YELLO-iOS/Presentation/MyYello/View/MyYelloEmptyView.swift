@@ -24,13 +24,13 @@ final class MyYelloEmptyView: BaseView {
         self.backgroundColor = .black
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Empty.title, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Empty.title, lineHeight: 24.adjustedHeight)
             $0.font = .uiSubtitle01
             $0.textColor = .white
         }
         
         descriptionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Empty.description, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Empty.description, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales500
         }
@@ -46,12 +46,12 @@ final class MyYelloEmptyView: BaseView {
                          emptyImageView)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(50.adjusted)
+            $0.top.equalToSuperview().inset(50.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjusted)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
