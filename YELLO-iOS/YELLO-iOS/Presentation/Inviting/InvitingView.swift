@@ -120,24 +120,24 @@ final class InvitingView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
-        backGroundView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(14.adjustedWidth)
-            $0.top.equalToSuperview().inset(146.adjustedHeight)
-            $0.bottom.equalToSuperview().inset(120.adjustedHeight)
-        }
-        
         textLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
+        backGroundView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(14.adjustedWidth)
+            $0.top.equalTo(textLabel.snp.bottom).offset(20.adjustedHeight)
+            $0.height.equalTo(108.adjustedHeight)
+        }
+        
         recommender.snp.makeConstraints {
-            $0.top.equalTo(textLabel.snp.bottom).offset(47.adjustedHeight)
+            $0.top.equalToSuperview().inset(37.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         recommenderID.snp.makeConstraints {
-            $0.top.equalTo(recommender.snp.bottom).offset(8.adjustedHeight)
+            $0.top.equalTo(recommender.snp.bottom).offset(2.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         

@@ -83,17 +83,17 @@ final class AroundView: BaseView {
         aroundNavigationBarView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.height.equalTo(48)
+            $0.height.equalTo(48.adjustedHeight)
         }
         
         aroundLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
             $0.centerY.equalToSuperview()
         }
         
         aroundTableView.snp.makeConstraints {
-            $0.top.equalTo(aroundNavigationBarView.snp.bottom).offset(12)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.equalTo(aroundNavigationBarView.snp.bottom).offset(12.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview()
         }
         
