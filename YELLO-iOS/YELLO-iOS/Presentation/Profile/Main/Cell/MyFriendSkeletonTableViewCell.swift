@@ -79,13 +79,17 @@ extension MyFriendSkeletonTableViewCell {
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(17.adjustedHeight)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
+            $0.top.equalToSuperview().offset(19.adjustedHeight)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(8.adjustedWidth)
+            $0.height.equalTo(16.adjustedHeight)
+            $0.width.equalTo(66.adjustedWidth)
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(6.adjustedHeight)
             $0.leading.equalTo(nameLabel)
+            $0.height.equalTo(16.adjustedHeight)
+            $0.width.equalTo(221.adjustedWidth)
         }
     }
     
