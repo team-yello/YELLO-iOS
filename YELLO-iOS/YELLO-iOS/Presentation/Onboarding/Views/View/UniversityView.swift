@@ -12,16 +12,18 @@ import Then
 
 class UniversityView: UIView {
     // MARK: - Variables
+    let stringLiteral = StringLiterals.Onboarding.self
     // MARK: Component
-    let schoolSearchTextFieldView = YelloTextFieldView(title: StringLiterals.Onboarding.schoolSearchText,
-                                                       state: .search,
-                                                       placeholder: StringLiterals.Onboarding.univSearchPlaceholder)
-    let majorSearchTextFieldView = YelloTextFieldView(title: StringLiterals.Onboarding.majorSearchText,
-                                                      state: .search,
-                                                      placeholder: StringLiterals.Onboarding.majorSearchPlaceholder)
-    let studentIdTextFieldView = YelloTextFieldView(title: StringLiterals.Onboarding.studentIdText,
-                                                      state: .toggle,
-                                                      placeholder: StringLiterals.Onboarding.studentIdPlaceholder)
+    let guideImageView = UIImageView()
+    lazy var guideTitleLabel = YelloGuideLabel(labelText: stringLiteral.schoolSearchText)
+    
+    lazy var schoolSearchTextField = YelloTextField(state: .search,
+                                                    placeholder: stringLiteral.univSearchPlaceholder)
+    lazy var majorSearchTextField = YelloTextField(state: .search,
+                                                   placeholder: stringLiteral.majorSearchPlaceholder)
+    lazy var studentIdTextField = YelloTextField(state: .toggle,
+                                                 placeholder: stringLiteral.studentIdPlaceholder)
+    
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {
@@ -40,24 +42,36 @@ class UniversityView: UIView {
     }
     
     private func setStyle() {
-        
+        guideImageView.do {
+            $0.image = ImageLiterals.OnBoarding.schoolGuide
+        }
     }
     
     private func setLayout() {
-        self.addSubviews(schoolSearchTextFieldView, majorSearchTextFieldView ,studentIdTextFieldView)
+        self.addSubviews(guideImageView, guideTitleLabel, schoolSearchTextField, majorSearchTextField, studentIdTextField)
         
-        schoolSearchTextFieldView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Constraints.topMargin)
+        guideImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20.adjusted)
+            $0.leading.equalToSuperview().offset(0)
+        }
+        
+        guideTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(guideImageView.snp.bottom)
+            $0.centerX.equalToSuperview()
+        }
+        
+        schoolSearchTextField.snp.makeConstraints {
+            $0.top.equalTo(guideTitleLabel.snp.bottom).offset(18.adjusted)
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
         }
         
-        majorSearchTextFieldView.snp.makeConstraints {
-            $0.top.equalTo(schoolSearchTextFieldView.snp.bottom).offset(30.adjusted)
+        majorSearchTextField.snp.makeConstraints {
+            $0.top.equalTo(schoolSearchTextField.snp.bottom).offset(16.adjusted)
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
         }
         
-        studentIdTextFieldView.snp.makeConstraints {
-            $0.top.equalTo(majorSearchTextFieldView.snp.bottom).offset(30.adjusted)
+        studentIdTextField.snp.makeConstraints {
+            $0.top.equalTo(majorSearchTextField.snp.bottom).offset(16.adjusted)
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
         }
     }

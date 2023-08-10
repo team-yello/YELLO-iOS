@@ -11,8 +11,8 @@ import SnapKit
 import Then
 
 class SchoolSelectView: UIView {
-    let highSchoolButton = YelloSelectButton(buttonFormat: .school, buttonText: "고등학교")
-    let univButton = YelloSelectButton(buttonFormat: .school, buttonText: "대학교")
+    let highSchoolButton = YelloSelectButton(buttonFormat: .school, buttonText: StringLiterals.Onboarding.selectHighText)
+    let univButton = YelloSelectButton(buttonFormat: .school, buttonText: StringLiterals.Onboarding.selectUnivText)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
