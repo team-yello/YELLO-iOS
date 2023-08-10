@@ -50,20 +50,20 @@ final class PaymentView: BaseView {
                          pageControl)
         
         self.snp.makeConstraints {
-            $0.height.equalTo(212)
-            $0.width.equalTo(375)
+            $0.height.equalTo(228.adjustedHeight)
+            $0.width.equalTo(375.adjustedWidth)
         }
         
         collectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(192)
+            $0.height.equalTo(219.adjustedHeight)
             $0.width.equalToSuperview()
         }
         
         pageControl.snp.makeConstraints {
             $0.centerX.equalTo(collectionView)
-            $0.top.equalTo(collectionView.snp.bottom).offset(4.adjustedHeight)
+            $0.top.equalTo(collectionView.snp.bottom).offset(3.adjustedHeight)
         }
     }
 }
@@ -97,6 +97,6 @@ extension PaymentView: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension PaymentView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 192)
+        return CGSize(width: UIScreen.main.bounds.width, height: 219.adjustedHeight)
     }
 }

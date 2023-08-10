@@ -33,6 +33,9 @@ final class PaymentCollectionViewCell: UICollectionViewCell {
     
     private func setStyle() {
         self.backgroundColor = .clear
+        paymentImageView.do {
+            $0.contentMode = .scaleAspectFit
+        }
     }
     
     private func setLayout() {
@@ -40,7 +43,7 @@ final class PaymentCollectionViewCell: UICollectionViewCell {
         backgroundImageView.addSubview(paymentImageView)
         
         contentView.snp.makeConstraints {
-            $0.height.equalTo(192)
+            $0.height.equalTo(219.adjustedHeight)
             $0.width.equalTo(UIScreen.main.bounds.width)
         }
         
