@@ -122,8 +122,8 @@ extension MyYelloDetailViewController {
         
         let gradientView = UIView(frame: view.bounds)
         gradientView.applyGradientBackground(
-            topColor: UIColor(hex: myYelloBackgroundColorStringDummy[colorIndex].backgroundColorTop),
-            bottomColor: UIColor(hex: myYelloBackgroundColorStringDummy[colorIndex].backgroundColorBottom))
+            topColor: UIColor(hex: myYelloBackgroundColorStringDummy[colorIndex - 1].backgroundColorTop),
+            bottomColor: UIColor(hex: myYelloBackgroundColorStringDummy[colorIndex - 1].backgroundColorBottom))
         myYelloDetailView.insertSubview(gradientView, at: 0)
     }
     

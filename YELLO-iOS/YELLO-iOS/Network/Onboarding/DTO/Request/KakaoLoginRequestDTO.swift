@@ -9,5 +9,5 @@ import Foundation
 
 // MARK: - KakaoLoginRequestDTO
 struct KakaoLoginRequestDTO: Codable {
-    let accessToken, social: String
+    let accessToken, social, deviceToken: String
 }

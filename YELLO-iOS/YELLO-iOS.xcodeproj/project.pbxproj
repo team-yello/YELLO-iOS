@@ -290,6 +290,7 @@
 		2AD1A1D52A5C952000CB988B /* VotingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingFunction.swift; sourceTree = "<group>"; };
 		2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		2AEE46EE2A603F9A000B4A9B /* VotingStart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VotingStart.json; sourceTree = "<group>"; };
+		3608F9052A80E25600B09D82 /* YELLO-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YELLO-iOS.entitlements"; sourceTree = "<group>"; };
 		3628EAE72A608F0200D5FA40 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3628EAE92A60903A00D5FA40 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashTitleView.swift; sourceTree = "<group>"; };
@@ -932,6 +933,15 @@
 			path = VotingPoint;
 			sourceTree = "<group>";
 		};
+		3608F9062A80EC2400B09D82 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				36EA2AB62A66FC0B003603C7 /* User.swift */,
+				C306E7262A630BB70031514C /* KeychainHandler.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		3628EAE62A608EDB00D5FA40 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -955,7 +965,6 @@
 			isa = PBXGroup;
 			children = (
 				36B234972A619853007933E4 /* onboarding_end.json */,
-				36EA2AB62A66FC0B003603C7 /* User.swift */,
 				36E427592A5BCE860050B34E /* Constraints.swift */,
 				36E427572A5BCE860050B34E /* Cells */,
 				36E4275A2A5BCE860050B34E /* ViewController */,
@@ -1151,6 +1160,7 @@
 		C3A799952A49490A00D3EFD8 /* YELLO-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				3608F9052A80E25600B09D82 /* YELLO-iOS.entitlements */,
 				C3A799C72A494B7800D3EFD8 /* Storyboard */,
 				C3A799B92A494A6800D3EFD8 /* Application */,
 				C3A799BA2A494A7700D3EFD8 /* Global */,
@@ -1174,9 +1184,9 @@
 			children = (
 				C3A799BB2A494A8100D3EFD8 /* Extensions */,
 				C3A799BC2A494A8700D3EFD8 /* Literals */,
+				3608F9062A80EC2400B09D82 /* Shared */,
 				C3A799C62A494B3900D3EFD8 /* Resources */,
 				C3A799C52A494B2A00D3EFD8 /* Protocols */,
-				C306E7262A630BB70031514C /* KeychainHandler.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -1976,6 +1986,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "$(BASE_URL)";
+				CODE_SIGN_ENTITLEMENTS = "YELLO-iOS/YELLO-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2012,6 +2023,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "$(BASE_URL)";
+				CODE_SIGN_ENTITLEMENTS = "YELLO-iOS/YELLO-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

@@ -127,8 +127,6 @@ final class VotingPointViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 dump(data)
-                UserDefaults.standard.removeObject(forKey: "UserDataKey")
-                UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
             default:
                 print("network failure")
                 return
@@ -140,8 +138,11 @@ final class VotingPointViewController: BaseViewController {
             self.navigationController?.pushViewController(viewController, animated: true)
             self.originView.yellowButton.isEnabled = true
         }
-        
+
         requestSendNoti(seconds: 2402)
+        
+        UserDefaults.standard.removeObject(forKey: "UserDataKey")
+        UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
     }
     
     // 푸시 알림 전송
