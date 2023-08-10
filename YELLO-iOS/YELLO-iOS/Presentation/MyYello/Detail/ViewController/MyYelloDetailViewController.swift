@@ -104,8 +104,8 @@ extension MyYelloDetailViewController {
         if myYelloDetailView.haveTicket {
             myYelloDetailView.showUseTicketAlert()
         } else {
-            let paymentViewController = PaymentViewController()
-            navigationController?.pushViewController(paymentViewController, animated: true)
+            let paymentPlusViewController = PaymentPlusViewController()
+            navigationController?.pushViewController(paymentPlusViewController, animated: true)
         }
     }
     

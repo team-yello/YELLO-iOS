@@ -176,6 +176,23 @@ enum StringLiterals {
             static let back = "나가기"
             static let paymentTitle = "옐로플러스로\n친구들의 속마음을 열어보세요!"
             static let paymentSender = "쪽지 보낸 사람을 알고 싶다면?"
+            
+            static let yelloPlusTitle = "옐로플러스의 특별한 혜택은?"
+            static let subscribing = "옐로플러스 구독 중"
+            static let yelloPlusSubscribe = "옐로플러스 구독하기"
+            static let discount50Percent = "(50%할인)"
+            static let yelloPlusPriceBefore = "7900원"
+            static let yelloPlusPrice = "3900원"
+            static let forWeek = "/주"
+            
+            static let nameKeyOne = "이름 열람권 1개"
+            static let nameKeyOnePrice = "1400원"
+            static let nameKeyTwo = "이름 열람권 2개"
+            static let nameKeyTwoPrice = "2800원"
+            static let nameKeyFive = "이름 열람권 5개"
+            static let discount = "할인!"
+            static let nameKeyFivePriceBefore = "7000원"
+            static let nameKeyFivePrice = "5900원"
         }
     }
     
