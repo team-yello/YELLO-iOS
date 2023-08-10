@@ -94,7 +94,7 @@ extension MyYelloViewController: HandleUnlockButton {
 // MARK: HandleUnlockButton
 extension MyYelloViewController: HandleShopButton {
     func shopButtonTapped() {
-        let paymentPlusViewController = PaymentViewController()
+        let paymentPlusViewController = PaymentPlusViewController()
         navigationController?.pushViewController(paymentPlusViewController, animated: true)
     }
 }
