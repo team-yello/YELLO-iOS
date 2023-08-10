@@ -10,6 +10,7 @@ import UIKit
 final class YelloHelperLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.numberOfLines = 2
         self.font = .uiLabelLarge
         setLabelStyle(text: "", State: .normal)
     }
