@@ -33,7 +33,6 @@ final class YelloTextFieldView: UIView {
         super.init(frame: CGRect())
         titleLabel.text = title
         textField.placeholder = placeholder
-        textField.setPlaceholderColor(.grayscales500)
         textField.setButtonState(state: state)
         self.state = state
         helperLabel.setLabelStyle(text: helper, State: state)
@@ -69,17 +68,18 @@ extension YelloTextFieldView {
     private func setLayout() {
         self.addSubviews(titleLabel, textField, helperLabel)
         titleLabel.snp.makeConstraints {
-            $0.leading.top.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
         }
         
         textField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(18.adjusted)
         }
         
         helperLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(12)
-            $0.top.equalTo(textField.snp.bottom).offset(4)
+            $0.leading.equalToSuperview().offset(12.adjusted)
+            $0.top.equalTo(textField.snp.bottom).offset(4.adjusted)
             $0.bottom.equalToSuperview()
         }
     }
