@@ -86,7 +86,6 @@ class FindMajorViewController: SearchBaseViewController {
     }
 }
 
-
 extension FindMajorViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {

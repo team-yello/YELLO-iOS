@@ -132,7 +132,6 @@ func setRefreshToken(refreshToken: String) {
     UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
 }
 
-
 func getUsername() -> String {
     if let username = UserDefaults.standard.string(forKey: "username") {
         print("username: \(username)")
