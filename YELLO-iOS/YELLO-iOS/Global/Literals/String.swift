@@ -20,6 +20,11 @@ enum StringLiterals {
     }
     
     enum Onboarding {
+        static let selectHighText = "고등학생"
+        static let selectUnivText = "대학생"
+        static let selectFemaleText = "여자"
+        static let selectMaleText = "남자"
+        
         static let schoolSearchText = "학교가 어디인가요?"
         static let highSchoolSearchPlaceholder = "ex. 옐로고등학교"
         static let univSearchPlaceholder = "ex. 옐로대학교"
@@ -32,14 +37,26 @@ enum StringLiterals {
         static let studentIdPlaceholder = "ex. 23학번"
         
         static let nameHelper = "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!"
-        static let idHelper = "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)"
         static let nameError = "한글만 입력 가능해요."
+        
+        static let idTitle = "내가 사용할 아이디는?"
+        static let idHelper = "인스타그램 아이디로 하면 친구들이 찾기 쉬워요!\n(최대 20자)"
+        static let idPlaceholder = "yelloworld"
         static let idError = "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요."
+        
         static let idDuplicate = "이미 사용하고 있는 아이디에요."
+        
+        static let addFriendText = "친구를 추가하세요!"
+        static let addFriendSubText = "친구가 많을수록 쪽지도 많이 받아요."
+        
+        static let recommandTitle = "추천인 코드"
+        static let recommandSubTitle = "추천인의 아이디를 입력하면 +100 point!"
+        static let recommandHelper = "추천인이 없다면 건너뛰어도 돼요."
         
         static let pushNotiText = "회원가입 끝! 알림을 드릴게요"
         static let pushNotiHelper = "친구들에게 비밀쪽지가 도착하면\n알림을 드릴게요."
         static let pushNotiButtonText = "알림 받기"
+        
     }
     
     enum Inviting {
