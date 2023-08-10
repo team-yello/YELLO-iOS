@@ -34,6 +34,12 @@ enum ImageLiterals {
         static var icUniv: UIImage { .load(named: "icUniv")}
         static var icHighschool: UIImage { .load(named: "icHighschool")}
         static var icCheckCircleSelected: UIImage { .load(named: "icCheckCircleSelected")}
+        static var icHighSelected: UIImage { .load(named: "icHighSelected")}
+        static var icUnivSelected: UIImage { .load(named: "icUnivSelected")}
+        static var idGuide: UIImage { .load(named: "idGuide")}
+        static var nameGuide: UIImage { .load(named: "nameGuide")}
+        static var schoolGuide: UIImage { .load(named: "schoolGuide")}
+    
     }
     
     enum TabBar {
