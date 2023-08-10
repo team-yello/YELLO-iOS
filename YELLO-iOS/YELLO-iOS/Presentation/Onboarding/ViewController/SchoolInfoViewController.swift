@@ -9,13 +9,14 @@ import UIKit
 
 class SchoolInfoViewController: OnboardingBaseViewController {
 
-    var schoolLevel: SchoolLevel = .high {
+    var schoolLevel: SchoolLevel = .univ {
         didSet {
             baseView.removeFromSuperview()
             baseView = (schoolLevel == .high) ? highSchoolView : universityView
             setLayout()
         }
     }
+    
     var schoolName = ""
     var groupId = 0
     var groupAdmissionYear = 0
@@ -28,7 +29,7 @@ class SchoolInfoViewController: OnboardingBaseViewController {
     let majorSearchViewController = FindMajorViewController()
     let studentIdViewController = StudentIdViewController()
     let bottomSheet = BaseBottomViewController()
-    let genderViewController = GenderViewController()
+    let userViewController = UserInfoViewController()
     
     override func viewDidLoad() {
         step = 2
@@ -41,7 +42,7 @@ class SchoolInfoViewController: OnboardingBaseViewController {
     override func setLayout() {
         
         view.addSubview(baseView)
-        nextViewController = genderViewController
+        nextViewController = userViewController
         
         baseView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(4)
@@ -53,9 +54,9 @@ class SchoolInfoViewController: OnboardingBaseViewController {
     
     private func setDelegate() {
         if baseView == universityView {
-            universityView.schoolSearchTextFieldView.textField.delegate = self
-            universityView.majorSearchTextFieldView.textField.delegate = self
-            universityView.studentIdTextFieldView.textField.delegate = self
+            universityView.schoolSearchTextField.delegate = self
+            universityView.majorSearchTextField.delegate = self
+            universityView.studentIdTextField.delegate = self
             majorSearchViewController.majorDelegate = self
             studentIdView.idDelegate = self
             studentIdViewController.delegate = self
@@ -69,7 +70,8 @@ class SchoolInfoViewController: OnboardingBaseViewController {
     }
     
     private func addTarget() {
-        universityView.schoolSearchTextFieldView.textField.addTarget(self, action: #selector(didTapTextField), for: .touchUpInside)
+        universityView.schoolSearchTextField.addTarget(self, action: #selector(didTapTextField), for: .touchUpInside)
+        navigationBarView.backButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
     }
     
     private func schoolPresentModal() {
@@ -89,7 +91,6 @@ class SchoolInfoViewController: OnboardingBaseViewController {
             }
             
         } else {
-            
             bottomSheet.setCustomView(view: studentIdView)
             bottomSheet.modalPresentationStyle = .overFullScreen
             present(bottomSheet, animated: false)
@@ -97,9 +98,9 @@ class SchoolInfoViewController: OnboardingBaseViewController {
     }
     
     func checkButtonEnable() {
-        let schoolText = universityView.schoolSearchTextFieldView.textField.text ?? ""
-        let majorText = universityView.majorSearchTextFieldView.textField.text ?? ""
-        let studentIDText = universityView.studentIdTextFieldView.textField.text ?? ""
+        let schoolText = universityView.schoolSearchTextField.text ?? ""
+        let majorText = universityView.majorSearchTextField.text ?? ""
+        let studentIDText = universityView.studentIdTextField.text ?? ""
         
         let isSchoolTextFilled = !schoolText.isEmpty
         let isMajorTextFilled = !majorText.isEmpty
@@ -110,28 +111,32 @@ class SchoolInfoViewController: OnboardingBaseViewController {
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
     
-    
     // MARK: objc Function
     @objc func didTapTextField() {
         schoolPresentModal()
+    }
+    
+    @objc func didTapBackButton() {
+        self.navigationController?.popViewController(animated: false)
     }
     
 }
 // MARK: - extension
 // MARK: UITextFieldDelegate
 extension SchoolInfoViewController: UITextFieldDelegate {
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-        case universityView.schoolSearchTextFieldView.textField:
+        case universityView.schoolSearchTextField:
             let nextViewController = FindSchoolViewController()
             nextViewController.delegate = self
             self.present(nextViewController, animated: true)
-        case universityView.majorSearchTextFieldView.textField:
+        case universityView.majorSearchTextField:
             let nextViewController = majorSearchViewController
             nextViewController.schoolName = self.schoolName
             nextViewController.majorSearchDelegate = self
             self.present(nextViewController, animated: true)
-        case universityView.studentIdTextFieldView.textField:
+        case universityView.studentIdTextField:
             textField.resignFirstResponder()
             majorPresentModal()
         default:
@@ -149,8 +154,8 @@ extension SchoolInfoViewController: UITextFieldDelegate {
 extension SchoolInfoViewController: SearchResultTableViewSelectDelegate {
     
     func didSelectSchoolResult(_ result: String) {
-        universityView.schoolSearchTextFieldView.textField.setButtonState(state: .done)
-        universityView.schoolSearchTextFieldView.textField.text = result
+        universityView.schoolSearchTextField.setButtonState(state: .done)
+        universityView.schoolSearchTextField.text = result
         self.schoolName = result
         checkButtonEnable()
     }
@@ -158,8 +163,8 @@ extension SchoolInfoViewController: SearchResultTableViewSelectDelegate {
 
 extension SchoolInfoViewController: MajorSearchResultSelectDelegate {
     func didSelectMajorResult(_ result: String) {
-        universityView.majorSearchTextFieldView.textField.setButtonState(state: .done)
-        universityView.majorSearchTextFieldView.textField.text = result
+        universityView.majorSearchTextField.setButtonState(state: .done)
+        universityView.majorSearchTextField.text = result
         checkButtonEnable()
     }
 }
@@ -167,8 +172,8 @@ extension SchoolInfoViewController: MajorSearchResultSelectDelegate {
 // MARK: SelectStudentIdDelegate
 extension SchoolInfoViewController: SelectStudentIdDelegate {
     func didSelectStudentId(_ result: Int) {
-        universityView.studentIdTextFieldView.textField.setButtonState(state: .done)
-        universityView.studentIdTextFieldView.textField.text = "\(result)학번"
+        universityView.studentIdTextField.setButtonState(state: .done)
+        universityView.studentIdTextField.text = "\(result)학번"
         groupAdmissionYear = result
         checkButtonEnable()
         bottomSheet.dismiss(animated: false)

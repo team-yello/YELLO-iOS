@@ -20,7 +20,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: LifeCycle
     
     override func viewDidLoad() {
-        step = 6
+        step = 5
         isSkipable = true
         nextViewController = pushViewController
         super.viewDidLoad()
@@ -59,13 +59,15 @@ class RecommendIdViewController: OnboardingBaseViewController {
             idTextFieldView.helperLabel.setLabelStyle(text: "존재하지 않는 아이디에요", State: .error)
             nextButton.setButtonEnable(state: false)
             return
+        } else {
+            idTextFieldView.textField.setButtonState(state: .cancel)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.recommandHelper, State: .normal)
         }
         
         let isButtonEnabled = !(idText.isEmpty) && isValidId && isExisted
         if isButtonEnabled {
             baseView.recommendIdTextField.textField.setButtonState(state: .done)
-            baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "", State: .done)
-            baseView.recommendIdTextField.textField.rightViewMode = .never
+            baseView.recommendIdTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.recommandHelper, State: .normal)
         }
         nextButton.setButtonEnable(state: isButtonEnabled)
     }

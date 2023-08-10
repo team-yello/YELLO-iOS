@@ -34,7 +34,7 @@ class AddFriendsViewController: OnboardingBaseViewController {
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
-        step = 5
+        step = 4
         getJoinedFriends()
         super.viewDidLoad()
         super.nextViewController = RecommendIdViewController()
