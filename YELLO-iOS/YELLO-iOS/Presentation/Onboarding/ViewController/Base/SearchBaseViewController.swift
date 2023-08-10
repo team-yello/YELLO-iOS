@@ -16,7 +16,6 @@ protocol MajorSearchResultSelectDelegate: AnyObject {
     func didSelectMajorResult(_ result: String)
 }
 
-
 class SearchBaseViewController: BaseViewController {
     
     // MARK: - Variables
@@ -77,6 +76,11 @@ class SearchBaseViewController: BaseViewController {
 // MARK: - extension
 // MARK: UITextFieldDelegate
 extension SearchBaseViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchView.searchTextField.setButtonState(state: .done)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
     }
@@ -98,5 +102,4 @@ extension SearchBaseViewController: UITableViewDataSource {
         return cell
     }
 }
-
 
