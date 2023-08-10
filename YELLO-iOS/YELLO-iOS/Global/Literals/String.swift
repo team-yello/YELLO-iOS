@@ -20,11 +20,26 @@ enum StringLiterals {
     }
     
     enum Onboarding {
+        static let schoolSearchText = "학교가 어디인가요?"
+        static let highSchoolSearchPlaceholder = "ex. 옐로고등학교"
+        static let univSearchPlaceholder = "ex. 옐로대학교"
+        static let selectLevelText = "몇 학년인가요?"
+        static let selectClassText = "몇 반인가요?"
+        static let selectClassPlaceholder = "ex. 1반"
+        static let majorSearchText = "무슨 학과인가요?"
+        static let majorSearchPlaceholder = "ex. 노랑학과"
+        static let studentIdText = "몇 학번인가요?"
+        static let studentIdPlaceholder = "ex. 23학번"
+        
         static let nameHelper = "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!"
         static let idHelper = "인스타 아이디로 하면 친구들이 찾기 쉬워요! (최대 20자)"
         static let nameError = "한글만 입력 가능해요."
         static let idError = "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요."
         static let idDuplicate = "이미 사용하고 있는 아이디에요."
+        
+        static let pushNotiText = "회원가입 끝! 알림을 드릴게요"
+        static let pushNotiHelper = "친구들에게 비밀쪽지가 도착하면\n알림을 드릴게요."
+        static let pushNotiButtonText = "알림 받기"
     }
     
     enum Inviting {

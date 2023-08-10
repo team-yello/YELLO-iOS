@@ -9,7 +9,7 @@ import UIKit
 
 import KakaoSDKUser
 
-class KakaoLoginViewController: BaseViewController {
+class KakaoLoginViewController: UIViewController {
     
     let baseView = KakaoLoginView()
     override func loadView() {
@@ -71,7 +71,11 @@ class KakaoLoginViewController: BaseViewController {
                                 KeychainHandler.shared.accessToken = data.accessToken
                                 KeychainHandler.shared.refreshToken = data.refreshToken
                                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
-                                self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    let yelloTabBarController = YELLOTabBarController()
+                                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
+                                }
                             }
                         default:
                             print("network failure")
@@ -121,7 +125,11 @@ class KakaoLoginViewController: BaseViewController {
                                 KeychainHandler.shared.accessToken = data.accessToken
                                 KeychainHandler.shared.refreshToken = data.refreshToken
                                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
-                                self.navigationController?.pushViewController(YELLOTabBarController(), animated: true)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    let yelloTabBarController = YELLOTabBarController()
+                                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: yelloTabBarController)
+                                }
                             }
                         default:
                             print("network failure")

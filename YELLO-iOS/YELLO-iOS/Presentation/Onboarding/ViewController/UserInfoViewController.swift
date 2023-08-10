@@ -17,15 +17,18 @@ class UserInfoViewController: OnboardingBaseViewController {
     var isCheckingDuplicate = false
     
     let maxLength = 20
+    let addFriendViewController = AddFriendsViewController()
     
     // MARK: Component
     private let baseView = UserInfoView()
     
     // MARK: LifeCycle
     override func viewDidLoad() {
+        step = 4
         super.viewDidLoad()
         setDelegate()
-        super.nextViewController = GenderViewController()
+        super.nextViewController = addFriendViewController
+        
     }
     
     // MARK: Layout Helper
@@ -53,7 +56,7 @@ class UserInfoViewController: OnboardingBaseViewController {
     override func setLayout() {
         view.addSubview(baseView)
         baseView.snp.makeConstraints {
-            $0.top.equalTo(topLayoutGuide.snp.bottom) // 상단 레이아웃 가이드 아래로 배치
+            $0.top.equalTo(navigationBarView.snp.bottom).offset(4)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

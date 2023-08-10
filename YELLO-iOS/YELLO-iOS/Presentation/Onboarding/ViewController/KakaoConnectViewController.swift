@@ -10,7 +10,7 @@ import UIKit
 import KakaoSDKUser
 import KakaoSDKTalk
 
-class KakaoConnectViewController: BaseViewController {
+class KakaoConnectViewController: UIViewController {
     
     let baseView = KakaoConnectView()
 
@@ -39,7 +39,7 @@ class KakaoConnectViewController: BaseViewController {
                     allFriends.append(String(id))
                 })
                 User.shared.kakaoFriends = allFriends
-                self.navigationController?.pushViewController(SchoolSearchViewController(), animated: true)
+                self.navigationController?.pushViewController(SchoolSelectViewController(), animated: true)
             }
         }
         
