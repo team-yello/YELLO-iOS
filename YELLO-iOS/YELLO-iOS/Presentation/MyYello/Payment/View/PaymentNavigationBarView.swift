@@ -31,7 +31,18 @@ final class PaymentNavigationBarView: BaseView {
         }
         
         subscribeView.do {
-            
+            $0.backgroundColor = .grayscales900
+            $0.makeCornerRound(radius: 8.adjustedHeight)
+        }
+        
+        yelloPlusImageView.do {
+            $0.image = ImageLiterals.Payment.imgYelloPlusStar
+        }
+        
+        yelloPlusLabel.do {
+            $0.text = StringLiterals.MyYello.Payment.subscribing
+            $0.font = .uiBodySmall
+            $0.textColor = .grayscales100
         }
     }
     
@@ -39,16 +50,30 @@ final class PaymentNavigationBarView: BaseView {
         self.addSubviews(backButton,
                          subscribeView)
         
+        subscribeView.addSubviews(yelloPlusImageView,
+                                  yelloPlusLabel)
+        
         backButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
         
         subscribeView.snp.makeConstraints {
-            
+            $0.height.equalTo(32.adjustedHeight)
+            $0.width.equalTo(144.adjustedWidth)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
         
+        yelloPlusImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(10.adjustedWidth)
+            $0.centerY.equalToSuperview()
+        }
         
+        yelloPlusLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(10.adjustedWidth)
+        }
     }
 }
 
