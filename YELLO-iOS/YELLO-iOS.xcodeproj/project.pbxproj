@@ -149,6 +149,7 @@
 		C37DFC462A8501E300D3B685 /* PaymentPlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC452A8501E300D3B685 /* PaymentPlusViewController.swift */; };
 		C37DFC482A8501F300D3B685 /* PaymentPlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC472A8501F300D3B685 /* PaymentPlusView.swift */; };
 		C37DFC4A2A85022B00D3B685 /* PaymentNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */; };
+		C37DFC4F2A8515D500D3B685 /* PaymentYelloPlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -392,6 +393,7 @@
 		C37DFC452A8501E300D3B685 /* PaymentPlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPlusViewController.swift; sourceTree = "<group>"; };
 		C37DFC472A8501F300D3B685 /* PaymentPlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPlusView.swift; sourceTree = "<group>"; };
 		C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentNavigationBarView.swift; sourceTree = "<group>"; };
+		C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentYelloPlusButton.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1125,6 +1127,7 @@
 				C37DFC4B2A85023000D3B685 /* ViewController */,
 				C37DFC4C2A85023800D3B685 /* View */,
 				C37DFC4D2A85023D00D3B685 /* Cells */,
+				C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -1806,6 +1809,7 @@
 				C31315B02A7B806D00FB8B43 /* UIViewController+.swift in Sources */,
 				36AD441A2A6812420087D7E0 /* MyRequestInterceptor.swift in Sources */,
 				C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */,
+				C37DFC4F2A8515D500D3B685 /* PaymentYelloPlusButton.swift in Sources */,
 				C3A799D42A494D0C00D3EFD8 /* a.swift in Sources */,
 				C3FF24872A5E844400A97D40 /* MyYelloView.swift in Sources */,
 				C3B4720E2A65DEC700770530 /* MyYelloDetailResponseDTO.swift in Sources */,
