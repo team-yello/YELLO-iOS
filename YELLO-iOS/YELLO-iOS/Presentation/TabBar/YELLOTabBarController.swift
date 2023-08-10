@@ -17,6 +17,7 @@ final class YELLOTabBarController: UITabBarController {
     private var tabs: [UIViewController] = []
     
     private var startStatus: Int = 1
+    private var messageIndex: Int = 0
     
     // MARK: - Life Cycle
     
@@ -26,12 +27,15 @@ final class YELLOTabBarController: UITabBarController {
         getVotingAvailable()
         setTabBarItems()
         setTabBarAppearance()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
+        self.selectedIndex = 2
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        self.selectedIndex = 2
+        
         self.delegate = self
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -40,7 +44,7 @@ final class YELLOTabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-            
+        
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight: CGFloat = 60.0
         tabBar.frame.size.height = tabBarHeight + safeAreaHeight
@@ -67,7 +71,7 @@ final class YELLOTabBarController: UITabBarController {
             UINavigationController(rootViewController: MyYelloViewController()),
             UINavigationController(rootViewController: ProfileViewController())
         ]
-
+        
         TabBarItem.allCases.forEach {
             tabs[$0.rawValue].tabBarItem = $0.asTabBarItem()
             tabs[$0.rawValue].tabBarItem.tag = $0.rawValue
@@ -97,7 +101,7 @@ final class YELLOTabBarController: UITabBarController {
         let myFont = UIFont(name: "Pretendard-Bold", size: 10.0)!
         let fontAttributes = [NSAttributedString.Key.font: myFont]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
-                        
+        
         UITabBar.clearShadow()
         tabBar.layer.applyShadow(color: UIColor(hex: "668099"), alpha: 0.15, x: 0, y: -2, blur: 5)
     }
@@ -194,4 +198,28 @@ extension YELLOTabBarController {
             }
         }
     }
+}
+
+extension YELLOTabBarController {
+    @objc
+    func showMessage(_ notification: Notification) {
+        if let userInfo = notification.userInfo {
+            if let message = userInfo["message"] as? Int {
+                messageIndex = message
+            }
+        }
+    }
+    
+    @objc
+    func showPage(_ notification: Notification) {
+        if let userInfo = notification.userInfo {
+            if let index = userInfo["index"] as? Int {
+                if index == 3 {
+                    print(messageIndex)
+                }
+                self.selectedIndex = index
+            }
+        }
+    }
+    
 }
