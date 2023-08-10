@@ -15,7 +15,7 @@ class SchoolInfoViewController: OnboardingBaseViewController {
             baseView = (schoolLevel == .high) ? highSchoolView : universityView
             setLayout()
         }
-    }
+}
     
     var schoolName = ""
     var groupId = 0
@@ -33,7 +33,6 @@ class SchoolInfoViewController: OnboardingBaseViewController {
     
     override func viewDidLoad() {
         step = 2
-        ProgressBarManager.shared.updateProgress(step: step)
         super.viewDidLoad()
         setDelegate()
         addTarget()

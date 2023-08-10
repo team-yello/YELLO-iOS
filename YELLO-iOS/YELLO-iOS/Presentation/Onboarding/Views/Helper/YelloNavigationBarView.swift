@@ -9,6 +9,7 @@ import UIKit
 
 final class YelloNavigationBarView: UIView {
     let backButton = UIButton()
+    let progressBar = ProgressBarManager.shared.progressBarView
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,7 +19,7 @@ final class YelloNavigationBarView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -30,7 +31,7 @@ final class YelloNavigationBarView: UIView {
     }
     
     private func setLayout() {
-        self.addSubviews(backButton)
+        self.addSubviews(progressBar, backButton)
         
         self.snp.makeConstraints {
             $0.height.equalTo(Constraints.navigationBarHeight)
@@ -39,6 +40,12 @@ final class YelloNavigationBarView: UIView {
         backButton.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
             $0.centerY.equalToSuperview()
+        }
+        
+        progressBar.snp.makeConstraints {
+            $0.top.equalTo(self.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(4.adjustedHeight)
         }
         
     }

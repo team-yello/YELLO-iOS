@@ -13,10 +13,10 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     var schoolLevel: SchoolLevel = .high
     
     override func viewDidLoad() {
+        step = 1
         super.viewDidLoad()
         nextViewController = schoolInfoViewController
         addTarget()
-        setProgressBar()
     }
     
     override func setLayout() {
@@ -32,18 +32,12 @@ class SchoolSelectViewController: OnboardingBaseViewController {
         baseView.univButton.addTarget(self, action: #selector(setSchoolLevel(sender:)), for: .touchUpInside)
     }
     
-    private func setProgressBar() {
-        step = 1
-        ProgressBarManager.shared.updateProgress(step: step)
-    }
-    
     @objc func setSchoolLevel(sender: YelloSelectButton) {
         if sender == baseView.highSchoolButton {
             schoolLevel = .high
         } else {
             schoolLevel = .univ
         }
-        setProgressBar()
         nextButton.setButtonEnable(state: true)
     }
     
