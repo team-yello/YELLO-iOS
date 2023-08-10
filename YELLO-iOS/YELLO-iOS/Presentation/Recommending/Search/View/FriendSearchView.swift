@@ -19,7 +19,7 @@ final class FriendSearchView: BaseView {
     
     override func setStyle() {
         friendSearchNavigationBarView.do {
-            $0.titleLabel.setTextWithLineHeight(text: StringLiterals.Recommending.Search.title, lineHeight: 24)
+            $0.titleLabel.setTextWithLineHeight(text: StringLiterals.Recommending.Search.title, lineHeight: 24.adjustedHeight)
         }
         
         friendSearchTextfield.do {
@@ -34,7 +34,7 @@ final class FriendSearchView: BaseView {
         }
         
         friendSearchResultTableView.do {
-            $0.rowHeight = 90
+            $0.rowHeight = 90.adjustedHeight
             $0.separatorStyle = .singleLine
             $0.separatorColor = .grayscales800
             $0.register(FriendSearchTableViewCell.self, forCellReuseIdentifier: FriendSearchTableViewCell.identifier)
@@ -60,18 +60,18 @@ final class FriendSearchView: BaseView {
         friendSearchNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
             $0.width.equalToSuperview()
-            $0.height.equalTo(48)
+            $0.height.equalTo(48.adjustedHeight)
         }
         
         friendSearchTextfield.snp.makeConstraints {
             $0.top.equalTo(friendSearchNavigationBarView.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(52)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(52.adjustedHeight)
         }
         
         friendSearchResultTableView.snp.makeConstraints {
-            $0.top.equalTo(friendSearchTextfield.snp.bottom).offset(4)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.equalTo(friendSearchTextfield.snp.bottom).offset(4.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview()
         }
     }
