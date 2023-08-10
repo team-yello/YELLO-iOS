@@ -12,24 +12,22 @@ import Then
 
 class HighSchoolView: UIView {
     // MARK: - Variables
-    
     // MARK: Constants
-    
+    let stringLiteral = StringLiterals.Onboarding.self
     // MARK: Property
+    var level = 1
     
     // MARK: Component
-    let schoolSearchTextFieldView = YelloTextFieldView(title: StringLiterals.Onboarding.schoolSearchText,
-                                                       state: .search,
-                                                       placeholder: StringLiterals.Onboarding.highSchoolSearchPlaceholder)
-    let selectLevelLabel = UILabel()
+    let guideImageView = UIImageView()
+    lazy var guideTitleLabel = YelloGuideLabel(labelText: stringLiteral.schoolSearchText)
+    
     let buttonStackView = UIStackView()
     let firstLevelButton = UIButton()
     let secondLevelButton = UIButton()
     let thridLevelButton = UIButton()
     
-    let selectClassTextFieldView = YelloTextFieldView(title: StringLiterals.Onboarding.selectClassText,
-                                                      state: .toggle,
-                                                      placeholder: StringLiterals.Onboarding.selectClassPlaceholder)
+    lazy var schoolSearchTextField = YelloTextField(state: .search, placeholder: stringLiteral.highSchoolSearchPlaceholder)
+    lazy var classSearchTextField = YelloTextField(state: .toggle, placeholder: stringLiteral.selectClassPlaceholder)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,72 +44,66 @@ class HighSchoolView: UIView {
     }
     
     private func setStyle() {
-        selectLevelLabel.do {
-            $0.text = StringLiterals.Onboarding.selectLevelText
-            $0.font = .uiHeadline03
-            $0.textColor = .white
+        
+        guideImageView.do {
+            $0.image = ImageLiterals.OnBoarding.schoolGuide
         }
         
         firstLevelButton.do {
-            $0.makeCornerRound(radius: Constraints.round)
-            $0.makeBorder(width: 1, color: .grayscales500)
-            $0.setTitle("1학년", for: .normal)
-            $0.titleLabel?.font = .uiBodyLarge
-            $0.tintColor = .grayscales500
-        }
-        
-        secondLevelButton.do {
-            $0.makeCornerRound(radius: Constraints.round)
-            $0.makeBorder(width: 1, color: .grayscales500)
-            $0.setTitle("2학년", for: .normal)
-            $0.titleLabel?.font = .uiBodyLarge
-            $0.tintColor = .grayscales500
+            $0.roundCorners(cornerRadius: 8, maskedCorners: [.layerMinXMinYCorner, .layerMinXMaxYCorner] )
         }
         
         thridLevelButton.do {
-            $0.makeCornerRound(radius: Constraints.round)
-            $0.makeBorder(width: 1, color: .grayscales500)
-            $0.setTitle("3학년", for: .normal)
-            $0.titleLabel?.font = .uiBodyLarge
-            $0.tintColor = .grayscales500
+            $0.roundCorners(cornerRadius: 8, maskedCorners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner] )
         }
+        
+        [firstLevelButton, secondLevelButton, thridLevelButton].forEach ({ button in
+            button.do {
+                $0.titleLabel?.font = .uiBodyLarge
+                $0.setTitleColor(.grayscales500, for: .normal)
+                $0.setTitle("\(level)학년", for: .normal)
+                $0.makeBorder(width: 1, color: .grayscales700)
+            }
+            level += 1
+        })
         
         buttonStackView.do {
             buttonStackView.addArrangedSubviews(firstLevelButton, secondLevelButton, thridLevelButton)
-            $0.spacing = 8
+            $0.makeCornerRound(radius: 8)
+            $0.backgroundColor = .grayscales900
             $0.distribution = .fillEqually
         }
+        
     }
     
     private func setLayout() {
-        self.addSubviews(schoolSearchTextFieldView, selectLevelLabel, buttonStackView, selectClassTextFieldView)
+        self.addSubviews(guideImageView, guideTitleLabel,
+                         schoolSearchTextField, buttonStackView, classSearchTextField)
         
-        schoolSearchTextFieldView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
+        guideImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20.adjusted)
+            $0.leading.equalToSuperview()
         }
         
-        selectLevelLabel.snp.makeConstraints {
-            $0.top.equalTo(schoolSearchTextFieldView.snp.bottom).offset(30.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
+        guideTitleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(guideImageView.snp.bottom)
         }
         
-        [firstLevelButton, secondLevelButton, thridLevelButton].forEach {
-            $0.snp.makeConstraints {
-                $0.height.equalTo(52.adjusted)
-            }
+        schoolSearchTextField.snp.makeConstraints {
+            $0.top.equalTo(guideTitleLabel.snp.bottom).offset(18.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
         
         buttonStackView.snp.makeConstraints {
             $0.height.equalTo(52.adjusted)
-            $0.top.equalTo(selectLevelLabel.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
-            
+            $0.top.equalTo(schoolSearchTextField.snp.bottom).offset(16.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
         
-        selectClassTextFieldView.snp.makeConstraints {
-            $0.top.equalTo(buttonStackView.snp.bottom).offset(30.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
+        classSearchTextField.snp.makeConstraints {
+            $0.top.equalTo(buttonStackView.snp.bottom).offset(16.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
         
     }
