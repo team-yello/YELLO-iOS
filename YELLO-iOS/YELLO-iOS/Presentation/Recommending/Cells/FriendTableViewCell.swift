@@ -22,7 +22,7 @@ final class FriendTableViewCell: UITableViewCell {
     static let identifier = "FriendTableViewCell"
     
     // MARK: Component
-    let profileImageView = UIImageView()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 42.adjusted, height: 42.adjusted))
     let nameLabel = UILabel()
     let schoolLabel = UILabel()
     lazy var addButton = UIButton()
@@ -74,7 +74,7 @@ extension FriendTableViewCell {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 21.adjustedHeight)
+            $0.makeCornerRound(radius: 21.adjusted)
         }
         
         nameLabel.do {
@@ -114,7 +114,7 @@ extension FriendTableViewCell {
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(8.adjustedWidth)
-            $0.width.height.equalTo(42)
+            $0.width.height.equalTo(42.adjusted)
         }
         
         nameLabel.snp.makeConstraints {

@@ -22,7 +22,7 @@ final class FriendSearchTableViewCell: UITableViewCell {
     static let identifier = "FriendSearchTableViewCell"
     
     // MARK: Component
-    let profileImageView = UIImageView()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 42.adjusted, height: 42.adjusted))
     let nameLabel = UILabel()
     let yelloIdLabel = UILabel()
     let schoolLabel = UILabel()
@@ -69,7 +69,7 @@ extension FriendSearchTableViewCell {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 21.adjustedHeight)
+            $0.makeCornerRound(radius: 21.adjusted)
         }
         
         nameLabel.do {

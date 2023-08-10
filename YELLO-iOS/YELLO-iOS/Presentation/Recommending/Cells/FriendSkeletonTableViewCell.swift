@@ -17,7 +17,7 @@ final class FriendSkeletonTableViewCell: UITableViewCell {
     static let identifier = "FriendSkeletonTableViewCell"
     
     // MARK: Component
-    let profileImageView = UIImageView()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 42.adjusted, height: 42.adjusted))
     let nameLabel = UILabel()
     let schoolLabel = UILabel()
     let separatorLine = UIView()
@@ -61,7 +61,7 @@ extension FriendSkeletonTableViewCell {
         profileImageView.do {
             $0.backgroundColor = .grayscales800
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 21.adjustedHeight)
+            $0.makeCornerRound(radius: 21.adjusted)
         }
         
         nameLabel.do {

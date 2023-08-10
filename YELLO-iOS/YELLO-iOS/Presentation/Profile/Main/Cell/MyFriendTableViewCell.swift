@@ -59,19 +59,19 @@ extension MyFriendTableViewCell {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 20)
+            $0.makeCornerRound(radius: 20.adjusted)
         }
         
         nameLabel.do {
-            $0.font = .boldSystemFont(ofSize: 18)
-            $0.setTextWithLineHeight(text: "", lineHeight: 24)
+            $0.font = .uiSubtitle01
+            $0.setTextWithLineHeight(text: "", lineHeight: 24.adjustedHeight)
             $0.textColor = .white
         }
         
         schoolLabel.do {
-            $0.font = .systemFont(ofSize: 11)
-            $0.setTextWithLineHeight(text: "", lineHeight: 15)
-            $0.textColor = .gray
+            $0.font = .uiLabelMedium
+            $0.setTextWithLineHeight(text: "", lineHeight: 15.adjustedHeight)
+            $0.textColor = .grayscales600
         }
     }
     
