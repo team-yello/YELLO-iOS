@@ -113,6 +113,7 @@ final class PaymentPlusView: BaseView {
         nameKeyFiveButton.snp.makeConstraints {
             $0.top.equalTo(nameKeyTwoButton.snp.bottom).offset(10.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(31.adjustedHeight)
         }
     }
 }
