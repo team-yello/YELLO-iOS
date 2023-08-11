@@ -190,7 +190,7 @@ enum StringLiterals {
             static let nameKeyTwo = "이름 열람권 2개"
             static let nameKeyTwoPrice = "2800원"
             static let nameKeyFive = "이름 열람권 5개"
-            static let discount = "할인!"
+            static let discount = "   할인!"
             static let nameKeyFivePriceBefore = "7000원"
             static let nameKeyFivePrice = "5900원"
         }

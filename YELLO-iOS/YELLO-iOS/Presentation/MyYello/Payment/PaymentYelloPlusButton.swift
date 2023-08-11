@@ -40,6 +40,9 @@ final class PaymentYelloPlusButton: UIButton {
     }
     
     private func setStyle() {
+        
+        self.isUserInteractionEnabled = true
+        
         backgroundView.do {
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
             $0.makeCornerRound(radius: 8.adjustedHeight)
@@ -54,20 +57,17 @@ final class PaymentYelloPlusButton: UIButton {
         
         buttonTitleLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.yelloPlusSubscribe, lineHeight: 24.adjustedHeight)
-//            $0.text = StringLiterals.MyYello.Payment.yelloPlusSubscribe
             $0.textColor = .white
             $0.font = .uiSubtitle01
         }
         
         discountTitleLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.discount50Percent, lineHeight: 14.adjustedHeight)
-//            $0.text = StringLiterals.MyYello.Payment.discount50Percent
             $0.textColor = .yelloMain500
             $0.font = .uiLabelBoldSmall
         }
         
         priceBeforeLabel.do {
-//            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.yelloPlusPriceBefore, lineHeight: 16.adjustedHeight)
             $0.text = StringLiterals.MyYello.Payment.yelloPlusPriceBefore
             $0.textColor = .white
             $0.font = .uiLabelLarge
@@ -78,14 +78,12 @@ final class PaymentYelloPlusButton: UIButton {
         }
         
         priceLabel.do {
-//            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.yelloPlusPrice, lineHeight: 24.adjustedHeight)
             $0.text = StringLiterals.MyYello.Payment.yelloPlusPrice
             $0.textColor = .yelloMain500
             $0.font = .uiSubtitle01
         }
         
         weekLabel.do {
-//            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.forWeek, lineHeight: 15.adjustedHeight)
             $0.text = StringLiterals.MyYello.Payment.forWeek
             $0.textColor = .purpleSub200
             $0.font = .uiBody06
@@ -130,19 +128,16 @@ final class PaymentYelloPlusButton: UIButton {
         
         weekLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
-//            $0.top.equalToSuperview().inset(38.adjustedHeight)
             $0.bottom.equalTo(discountTitleLabel).offset(1.adjustedHeight)
         }
         
         priceLabel.snp.makeConstraints {
-//            $0.top.equalToSuperview().inset(30.adjustedHeight)
             $0.trailing.equalTo(weekLabel.snp.leading).offset(-2.adjustedWidth)
             $0.bottom.equalTo(discountTitleLabel).offset(2.adjustedHeight)
 
         }
         
         priceBeforeLabel.snp.makeConstraints {
-//            $0.top.equalToSuperview().inset(36.adjustedHeight)
             $0.trailing.equalTo(priceLabel.snp.leading).offset(-4.adjustedWidth)
             $0.bottom.equalTo(discountTitleLabel)
         }

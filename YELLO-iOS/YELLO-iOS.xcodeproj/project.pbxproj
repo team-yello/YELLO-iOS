@@ -150,6 +150,7 @@
 		C37DFC482A8501F300D3B685 /* PaymentPlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC472A8501F300D3B685 /* PaymentPlusView.swift */; };
 		C37DFC4A2A85022B00D3B685 /* PaymentNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */; };
 		C37DFC4F2A8515D500D3B685 /* PaymentYelloPlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */; };
+		C37DFC512A854FE700D3B685 /* PaymentNameKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC502A854FE700D3B685 /* PaymentNameKeyButton.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -394,6 +395,7 @@
 		C37DFC472A8501F300D3B685 /* PaymentPlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPlusView.swift; sourceTree = "<group>"; };
 		C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentNavigationBarView.swift; sourceTree = "<group>"; };
 		C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentYelloPlusButton.swift; sourceTree = "<group>"; };
+		C37DFC502A854FE700D3B685 /* PaymentNameKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentNameKeyButton.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1128,6 +1130,7 @@
 				C37DFC4C2A85023800D3B685 /* View */,
 				C37DFC4D2A85023D00D3B685 /* Cells */,
 				C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */,
+				C37DFC502A854FE700D3B685 /* PaymentNameKeyButton.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -1679,6 +1682,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37DFC512A854FE700D3B685 /* PaymentNameKeyButton.swift in Sources */,
 				C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */,
 				C3FF248A2A5E845A00A97D40 /* MyYelloEmptyView.swift in Sources */,
 				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
