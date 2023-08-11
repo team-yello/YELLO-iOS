@@ -890,7 +890,6 @@
 				C3FF24912A5E900A00A97D40 /* Cells */,
 				C3FF24982A5EAEA300A97D40 /* MyYelloModel.swift */,
 				C3FF249C2A5EE46B00A97D40 /* Detail */,
-				C32322F32A619E4E006DA50B /* Payment */,
 			);
 			path = MyYello;
 			sourceTree = "<group>";
@@ -1342,6 +1341,7 @@
 				2AA0DBAB2A546D87002B1370 /* Recommending */,
 				2AA0DBAA2A546D12002B1370 /* Around */,
 				2AA0DBAD2A546DB3002B1370 /* MyYello */,
+				C32322F32A619E4E006DA50B /* Payment */,
 				2AA0DBAE2A546DBC002B1370 /* Profile */,
 			);
 			path = Presentation;
