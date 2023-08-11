@@ -72,32 +72,32 @@ final class PaymentConfirmView: BaseView {
         
         contentsView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(300.adjustedWidth)
-            $0.height.equalTo(374.adjustedHeight)
+            $0.width.equalTo(300)
+            $0.height.equalTo(374)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(38.adjustedHeight)
+            $0.top.equalToSuperview().inset(38)
             $0.centerX.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4.adjustedHeight)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.centerX.equalToSuperview()
         }
         
         paymentImageView.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(17.adjustedHeight)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(17)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(200.adjusted)
+            $0.width.height.equalTo(200)
         }
         
         confirmButton.snp.makeConstraints {
-            $0.top.equalTo(paymentImageView.snp.bottom).offset(18.adjustedHeight)
+            $0.top.equalTo(paymentImageView.snp.bottom).offset(18)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(48.adjustedHeight)
-            $0.width.equalTo(260.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(12.adjustedHeight)
+            $0.height.equalTo(48)
+            $0.width.equalTo(260)
+            $0.bottom.equalToSuperview().inset(12)
         }
     }
 }
