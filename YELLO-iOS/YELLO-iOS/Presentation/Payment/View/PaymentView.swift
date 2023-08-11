@@ -34,10 +34,6 @@ final class PaymentView: BaseView {
         $0.backgroundColor = .clear
     }
     lazy var pageControl = UIPageControl()
-    let pageControlStackView = UIStackView()
-    let pageControlFirst = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: 6))
-    let pageControlSecond = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: 6))
-    let pageControlThird = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: 6))
     
     override func setStyle() {
         self.backgroundColor = .clear
