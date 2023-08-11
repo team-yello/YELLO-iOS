@@ -40,19 +40,16 @@ final class PaymentYelloPlusButton: UIButton {
     }
     
     private func setStyle() {
-        
-        self.isUserInteractionEnabled = true
-        
         backgroundView.do {
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
             $0.makeCornerRound(radius: 8.adjustedHeight)
             $0.layer.cornerCurve = .continuous
-            $0.isUserInteractionEnabled = true
+            $0.isUserInteractionEnabled = false
         }
         
         badgeImageView.do {
             $0.image = ImageLiterals.Payment.imgYelloPlusBadge
-            $0.isUserInteractionEnabled = true
+            $0.isUserInteractionEnabled = false
         }
         
         buttonTitleLabel.do {

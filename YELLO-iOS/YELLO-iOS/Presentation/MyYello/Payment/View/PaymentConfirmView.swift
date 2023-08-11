@@ -89,7 +89,7 @@ final class PaymentConfirmView: BaseView {
         paymentImageView.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(17.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(230.adjusted)
+            $0.width.height.equalTo(200.adjusted)
         }
         
         confirmButton.snp.makeConstraints {
