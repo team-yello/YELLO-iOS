@@ -38,12 +38,6 @@ final class PaymentView: BaseView {
     override func setStyle() {
         self.backgroundColor = .clear
         
-        pageControlStackView.do {
-            $0.spacing = 8.adjustedWidth
-            $0.axis = .horizontal
-            $0.addArrangedSubviews(pageControlFirst, pageControlSecond, pageControlThird)
-        }
-        
         pageControl.do {
             $0.numberOfPages = 3
             $0.currentPage = 0
@@ -93,15 +87,6 @@ extension PaymentView: UICollectionViewDelegate, UICollectionViewDataSource {
         let newPage = Int(x/width)
         if pageControl.currentPage != newPage {
             pageControl.currentPage = newPage
-        }
-    }
-    
-    private func updatePageControlForPage(_ page: Int) {
-        // Update your page control UI here based on the current page
-        UIView.animate(withDuration: 0.3) {
-            self.pageControlFirst.backgroundColor = (page == 0) ? .white : .grayscales700
-            self.pageControlSecond.backgroundColor = (page == 1) ? .white : .grayscales700
-            self.pageControlThird.backgroundColor = (page == 2) ? .white : .grayscales700
         }
     }
     
