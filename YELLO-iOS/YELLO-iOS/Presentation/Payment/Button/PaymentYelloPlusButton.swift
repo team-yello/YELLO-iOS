@@ -103,7 +103,7 @@ final class PaymentYelloPlusButton: UIButton {
         backgroundView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(8.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(343.adjustedHeight)
+            $0.width.equalTo(343.adjustedWidth)
             $0.height.equalTo(70.adjustedHeight)
             $0.leading.trailing.equalToSuperview()
         }
