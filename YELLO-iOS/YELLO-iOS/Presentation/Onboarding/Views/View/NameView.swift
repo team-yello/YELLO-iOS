@@ -54,7 +54,7 @@ final class NameView: UIView {
         
         nameTextFieldView.snp.makeConstraints {
             $0.top.equalTo(nameGuideImageView.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
+            $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
         
     }

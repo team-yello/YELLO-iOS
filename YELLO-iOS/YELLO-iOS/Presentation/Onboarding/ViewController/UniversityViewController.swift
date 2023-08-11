@@ -20,6 +20,7 @@ class UniversityViewController: OnboardingBaseViewController {
     let studentIdViewController = StudentIdViewController()
     let bottomSheet = BaseBottomViewController()
     let userViewController = UserInfoViewController()
+    lazy var genderViewController = GenderViewController()
     
     override func viewDidLoad() {
         step = 2
@@ -31,7 +32,7 @@ class UniversityViewController: OnboardingBaseViewController {
     override func setLayout() {
         
         view.addSubview(baseView)
-        nextViewController = userViewController
+        nextViewController = genderViewController
         
         baseView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(4)

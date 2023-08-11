@@ -142,6 +142,7 @@ extension YelloTextField {
         switch state {
         case .normal:
             self.backgroundColor = .grayscales800
+            self.rightViewMode = .never
         case .search:
             buttonStackView.addArrangedSubviews(searchImageView, paddingView)
         case .editing:

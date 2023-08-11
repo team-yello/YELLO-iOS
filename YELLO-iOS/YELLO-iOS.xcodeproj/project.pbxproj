@@ -82,6 +82,7 @@
 		367113712A7D6C740037E0D2 /* UniversityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367113702A7D6C740037E0D2 /* UniversityView.swift */; };
 		367113732A7D6CED0037E0D2 /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367113722A7D6CED0037E0D2 /* UniversityViewController.swift */; };
 		367DA01B2A863CE60043D23C /* HighSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367DA01A2A863CE60043D23C /* HighSchoolViewController.swift */; };
+		367DA01D2A86496D0043D23C /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367DA01C2A86496D0043D23C /* NameViewController.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
 		367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367F1CD32A54193700CDF47B /* UIColor+.swift */; };
 		36871C7B2A664C69001CA514 /* JoinedFriendsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */; };
@@ -326,6 +327,7 @@
 		367113702A7D6C740037E0D2 /* UniversityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityView.swift; sourceTree = "<group>"; };
 		367113722A7D6CED0037E0D2 /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		367DA01A2A863CE60043D23C /* HighSchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolViewController.swift; sourceTree = "<group>"; };
+		367DA01C2A86496D0043D23C /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		367F1CD32A54193700CDF47B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsResponseDTO.swift; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 				367113722A7D6CED0037E0D2 /* UniversityViewController.swift */,
 				367DA01A2A863CE60043D23C /* HighSchoolViewController.swift */,
 				36E4275B2A5BCE860050B34E /* GenderViewController.swift */,
+				367DA01C2A86496D0043D23C /* NameViewController.swift */,
 				36E4277C2A5BD5D60050B34E /* UserInfoViewController.swift */,
 				36E4275D2A5BCE860050B34E /* AddFriendsViewController.swift */,
 				36E427902A5C9BD20050B34E /* RecommendIdViewController.swift */,
@@ -1719,6 +1722,7 @@
 				C31315B22A7CBA6F00FB8B43 /* MyYelloButton.swift in Sources */,
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
 				3662A0E42A63F6C300F482EF /* CheckDuplicateResponeDTO.swift in Sources */,
+				367DA01D2A86496D0043D23C /* NameViewController.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
 				367113712A7D6C740037E0D2 /* UniversityView.swift in Sources */,

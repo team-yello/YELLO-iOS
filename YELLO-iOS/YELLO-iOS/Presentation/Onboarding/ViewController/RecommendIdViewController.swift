@@ -20,7 +20,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: LifeCycle
     
     override func viewDidLoad() {
-        step = 5
+        step = 7
         isSkipable = true
         nextViewController = pushViewController
         super.viewDidLoad()

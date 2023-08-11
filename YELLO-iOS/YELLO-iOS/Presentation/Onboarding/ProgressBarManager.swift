@@ -24,7 +24,7 @@ class ProgressBarManager {
         private func updateProgressBar() {
             if let currentViewController = getCurrentViewController() {
                 if let step = stepDictionary[currentViewController] {
-                    progressBarView.ratio = step / 5.0
+                    progressBarView.ratio = step / 7.0
                 }
             }
         }

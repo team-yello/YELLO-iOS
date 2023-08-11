@@ -13,7 +13,7 @@ import Then
 class GenderView: BaseView {
     // MARK: - Variables
     // MARK: Component 
-    let guideLabel = YelloGuideLabel(labelText: "성별은")
+    let guideLabel = YelloGuideLabel(labelText: "내 성별은")
     let maleButton = YelloSelectButton(buttonFormat: .gender, buttonText: "남자")
     let femaleButton = YelloSelectButton(buttonFormat: .gender, buttonText: "여자")
     
@@ -34,8 +34,8 @@ class GenderView: BaseView {
         self.addSubviews(guideLabel, buttonStackView)
         
         guideLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Constraints.topMargin)
-            $0.leading.equalToSuperview().offset(Constraints.bigMargin)
+            $0.top.equalToSuperview().offset(40.adjusted)
+            $0.centerX.equalToSuperview()
         }
         
         buttonStackView.snp.makeConstraints {
