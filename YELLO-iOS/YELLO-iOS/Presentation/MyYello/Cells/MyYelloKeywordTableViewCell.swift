@@ -40,7 +40,7 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
     override func prepareForReuse() {
@@ -62,38 +62,38 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
     private func setStyle() {
         self.backgroundColor = .black
         contentView.backgroundColor = .semanticGenderF700
-        contentView.makeCornerRound(radius: 8)
+        contentView.makeCornerRound(radius: 8.adjustedHeight)
         
         genderImageView.do {
             $0.image = ImageLiterals.MyYello.imgGenderFemale
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 20)
+            $0.setTextWithLineHeight(text: "", lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         keywordLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiKeywordBold
             $0.textColor = .white
         }
         
         keywordFootLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 16)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .semanticGenderF500
         }
@@ -111,13 +111,13 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         
         genderImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(12.adjusted)
+            $0.leading.equalToSuperview().inset(12.adjustedWidth)
         }
         
         labelView.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(-2)
-            $0.height.equalTo(40)
-            $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjusted)
+            $0.centerY.equalToSuperview().offset(-2.adjustedHeight)
+            $0.height.equalTo(40.adjustedHeight)
+            $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjustedWidth)
         }
         
         nameLabel.snp.makeConstraints {
@@ -132,17 +132,17 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         
         keywordLabel.snp.makeConstraints {
             $0.bottom.equalTo(keywordHeadLabel)
-            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-2.adjusted)
+            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-2.adjustedWidth)
         }
         
         keywordFootLabel.snp.makeConstraints {
             $0.bottom.equalTo(keywordLabel)
-            $0.leading.equalTo(keywordLabel.snp.trailing).inset(-2.adjusted)
+            $0.leading.equalTo(keywordLabel.snp.trailing).inset(-2.adjustedWidth)
         }
         
         timeLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12.adjusted)
+            $0.trailing.equalToSuperview().inset(12.adjustedWidth)
         }
     }
     

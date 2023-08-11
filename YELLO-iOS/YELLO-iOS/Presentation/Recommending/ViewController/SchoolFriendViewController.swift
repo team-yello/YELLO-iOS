@@ -14,14 +14,13 @@ final class SchoolFriendViewController: UIViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let schoolFriendView = SchoolFriendView()
+    let schoolFriendView = SchoolFriendView()
     
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        self.schoolFriendView.recommendingSchoolFriend()
     }
     
     override func viewWillAppear(_ animated: Bool) {

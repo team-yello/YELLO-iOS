@@ -38,7 +38,7 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
     override func prepareForReuse() {
@@ -57,7 +57,7 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
     private func setStyle() {
         self.backgroundColor = .black
         contentView.backgroundColor = .semanticGenderF700
-        contentView.makeCornerRound(radius: 8)
+        contentView.makeCornerRound(radius: 8.adjustedHeight)
         
         genderImageView.do {
             $0.image = ImageLiterals.MyYello.imgGenderFemale
@@ -70,19 +70,19 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 20)
+            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 20.adjustedHeight)
             $0.font = .uiKeywordBold
             $0.textColor = .semanticGenderF300
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.nameTitle, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.nameTitle, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .semanticGenderF300
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16)
+            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales600
         }
@@ -95,17 +95,17 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
         
         genderImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(12.adjusted)
+            $0.leading.equalToSuperview().inset(12.adjustedWidth)
         }
         
         nameStackView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjusted)
+            $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjustedWidth)
         }
         
         timeLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12.adjusted)
+            $0.trailing.equalToSuperview().inset(12.adjustedWidth)
         }
     }
     

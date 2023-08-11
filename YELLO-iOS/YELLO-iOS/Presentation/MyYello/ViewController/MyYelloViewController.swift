@@ -14,7 +14,16 @@ final class MyYelloViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let myYelloView = MyYelloView()
+    let myYelloView = MyYelloView()
+    var countFetchingMore: Bool = false {
+        didSet {
+            if countFetchingMore {
+                self.myYelloView.myYellowNavigationBarView.myYelloRefresh()
+            } else {
+                self.myYelloView.myYellowNavigationBarView.myYelloStopRefresh()
+            }
+        }
+    }
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -22,28 +31,13 @@ final class MyYelloViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
-        self.myYelloCount()
-        self.myYelloView.myYelloListView.isFinishPaging = false
-        self.myYelloView.myYelloListView.fetchingMore = false
-        self.myYelloView.myYelloListView.pageCount = -1
-        self.myYelloView.myYelloListView.myYello()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        self.myYelloView.myYelloListView.applySnapshot(animated: true)
-        if MyYelloListView.myYelloModelDummy.isEmpty == false {
-            self.myYelloView.myYelloListView.myYelloTableView.reloadData()
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
     }
     
     // MARK: Layout Helpers
@@ -56,8 +50,15 @@ final class MyYelloViewController: BaseViewController {
         
         let tabbarHeight = 60 + safeAreaBottomInset()
         
+        let statusBarHeight = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
+        
         myYelloView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalTo(view.safeAreaInsets).offset(statusBarHeight)
+            $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
     }
@@ -71,6 +72,8 @@ final class MyYelloViewController: BaseViewController {
     
     private func setAddTarget() {
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshCount), for: .valueChanged)
+        myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
+
     }
     
     @objc func refreshCount() {
@@ -116,7 +119,13 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
 
 extension MyYelloViewController {
     func myYelloCount() {
-
+        
+        if countFetchingMore {
+            return
+        }
+        
+        countFetchingMore = true
+        
         let queryDTO = MyYelloRequestQueryDTO(page: 0)
 
         NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
@@ -125,14 +134,26 @@ extension MyYelloViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
 
-                    MyYelloView.myYelloCount = data.totalCount
-                    print(MyYelloView.myYelloCount)
+                    myYelloView.myYelloCount = data.totalCount
+                    print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
                     self.myYelloView.resetLayout()
+                    countFetchingMore = false
                 default:
                     print("network fail")
                     return
                 }
         }
+    }
+    
+    // MARK: Objc Function
+    @objc func refreshTable(refresh: UIRefreshControl) {
+        myYelloView.myYelloListView.pageCount = -1
+        myYelloView.myYelloListView.isFinishPaging = false
+        myYelloView.myYelloListView.fetchingMore = false
+        myYelloView.myYelloListView.myYelloTableView.reloadData()
+        MyYelloListView.myYelloModelDummy = []
+        myYelloView.myYelloListView.myYello()
+        refresh.endRefreshing()
     }
 }

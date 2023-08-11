@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     let isLoggined = UserDefaults.standard.bool(forKey: "isLoggined")
+    let yelloTabBarController = YELLOTabBarController()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -23,6 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = splashViewController
         
         self.window?.makeKeyAndVisible()
+        
+        if self.isLoggined {
+            yelloTabBarController.network()
+        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) {
             
@@ -41,7 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.window?.rootViewController = navigationController
             } else {
                 // Fallback to a default view controller if the last one was not found or could not be restored
-                let rootViewController = self.isLoggined ? YELLOTabBarController() : KakaoLoginViewController()
+                let rootViewController = self.isLoggined ? self.yelloTabBarController : KakaoLoginViewController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 navigationController.navigationBar.isHidden = true
                 self.window?.rootViewController = navigationController

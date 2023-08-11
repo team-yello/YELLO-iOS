@@ -17,12 +17,19 @@ final class YELLOTabBarController: UITabBarController {
     private var tabs: [UIViewController] = []
     
     private var startStatus: Int = 1
+    let recommendingViewController = RecommendingViewController()
+    let aroundViewController = AroundViewController()
+    let myYelloViewController = MyYelloViewController()
+    let profileViewController = ProfileViewController()
     
     // MARK: - Life Cycle
+    override func loadView() {
+        super.loadView()
+        network()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getVotingAvailable()
         setTabBarItems()
         setTabBarAppearance()
@@ -61,11 +68,11 @@ final class YELLOTabBarController: UITabBarController {
         }
         
         tabs = [
-            UINavigationController(rootViewController: RecommendingViewController()),
-            UINavigationController(rootViewController: AroundViewController()),
+            UINavigationController(rootViewController: recommendingViewController),
+            UINavigationController(rootViewController: aroundViewController),
             UINavigationController(rootViewController: rootViewController),
-            UINavigationController(rootViewController: MyYelloViewController()),
-            UINavigationController(rootViewController: ProfileViewController())
+            UINavigationController(rootViewController: myYelloViewController),
+            UINavigationController(rootViewController: profileViewController)
         ]
 
         TabBarItem.allCases.forEach {
@@ -183,15 +190,37 @@ extension YELLOTabBarController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
+                myYelloViewController.myYelloView.myYelloCount = data.totalCount
                 if data.totalCount > 99 {
                     self.tabBar.items?[3].badgeValue = "99+"
                 } else {
                     self.tabBar.items?[3].badgeValue = String(data.totalCount)
                 }
+                
+                print("내 옐로 count 한번에 통신 성공")
             default:
                 print("network fail")
                 return
             }
         }
+    }
+    
+    func network() {
+        
+        /// 추천친구 서버통신
+        recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
+            self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()
+        }
+        recommendingViewController.schoolFriendViewController.schoolFriendView.recommendingSchoolFriend()
+        
+        /// 둘러보기 서버통신
+        aroundViewController.aroundView.around()
+        
+        /// 내 쪽지 서버통신
+        myYelloViewController.myYelloView.myYelloListView.myYello()
+        
+        /// 내 프로필 서버통신
+        profileViewController.profileView.profileFriend()
+        profileViewController.profileView.myProfileHeaderView.myProfileView.profileUser()
     }
 }

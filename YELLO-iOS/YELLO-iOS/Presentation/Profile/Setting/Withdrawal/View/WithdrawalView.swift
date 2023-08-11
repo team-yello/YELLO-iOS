@@ -42,23 +42,23 @@ final class WithdrawalView: BaseView {
         }
         
         withdrawalNavigationBarView.do {
-            $0.titleLabel.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.withdrawal, lineHeight: 24)
+            $0.titleLabel.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.withdrawal, lineHeight: 24.adjustedHeight)
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.title, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.title, lineHeight: 24.adjustedHeight)
             $0.font = .uiSubtitle01
             $0.textColor = .white
         }
         
         descriptionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.description, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.description, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales500
         }
         
         firstLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.first, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.first, lineHeight: 24.adjustedHeight)
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
@@ -68,7 +68,7 @@ final class WithdrawalView: BaseView {
         }
         
         secondLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.second, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.second, lineHeight: 24.adjustedHeight)
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
@@ -78,7 +78,7 @@ final class WithdrawalView: BaseView {
         }
         
         thirdLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.third, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.third, lineHeight: 24.adjustedHeight)
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
@@ -88,7 +88,7 @@ final class WithdrawalView: BaseView {
         }
         
         captionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.caption, lineHeight: 15)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.caption, lineHeight: 15.adjustedHeight)
             $0.font = .uiLabelMedium
             $0.textColor = .grayscales600
             $0.numberOfLines = 3
@@ -139,22 +139,22 @@ final class WithdrawalView: BaseView {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(40.adjusted)
+            $0.top.equalToSuperview().inset(40.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8.adjusted)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         firstLabel.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(72.adjusted)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(72.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         firstImageView.snp.makeConstraints {
-            $0.top.equalTo(firstLabel.snp.bottom).offset(6.adjusted)
+            $0.top.equalTo(firstLabel.snp.bottom).offset(6.adjustedHeight)
             $0.width.equalTo(252)
             $0.height.equalTo(51)
             $0.centerX.equalToSuperview()
@@ -166,7 +166,7 @@ final class WithdrawalView: BaseView {
         }
         
         secondImageView.snp.makeConstraints {
-            $0.top.equalTo(secondLabel.snp.bottom).offset(6.adjusted)
+            $0.top.equalTo(secondLabel.snp.bottom).offset(6.adjustedHeight)
             $0.width.equalTo(252)
             $0.height.equalTo(95)
             $0.centerX.equalToSuperview()
@@ -190,11 +190,11 @@ final class WithdrawalView: BaseView {
         }
         
         withdrawalButton.snp.makeConstraints {
-            $0.top.equalTo(captionLabel.snp.bottom).offset(24.adjusted)
-            $0.bottom.equalToSuperview().inset(34.adjusted)
+            $0.top.equalTo(captionLabel.snp.bottom).offset(24.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(34.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-            $0.height.equalTo(48)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(48.adjustedHeight)
         }
     }
     

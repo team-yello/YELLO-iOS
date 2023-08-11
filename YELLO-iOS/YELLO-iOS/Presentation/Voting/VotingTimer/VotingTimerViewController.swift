@@ -193,11 +193,13 @@ final class VotingTimerViewController: BaseViewController {
     @objc
     func yellowButtonClicked() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
+
         invitingView.removeFromSuperview()
         invitingView = InvitingView()
+        invitingView.profileUserYelloId()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         invitingView.updateText(title: StringLiterals.Inviting.unLockedTitle, text: StringLiterals.Inviting.unLockedText, targetString: "바로 투표")
         viewController.view.addSubview(invitingView)
     }

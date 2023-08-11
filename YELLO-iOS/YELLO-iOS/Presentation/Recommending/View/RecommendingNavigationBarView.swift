@@ -38,17 +38,17 @@ final class RecommendingNavigationBarView: BaseView {
                          searchButton)
         
         self.snp.makeConstraints {
-            $0.height.equalTo(48)
+            $0.height.equalTo(48.adjustedHeight)
         }
         
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
         
         searchButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
         
     }

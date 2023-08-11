@@ -125,44 +125,44 @@ final class UseTicketView: BaseView {
         
         contentsView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(280.adjustedWidth)
-            $0.height.equalTo(252.adjustedHeight)
+            $0.width.equalTo(280)
+            $0.height.equalTo(252)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(40.adjustedHeight)
+            $0.top.equalToSuperview().inset(40)
             $0.centerX.equalToSuperview()
         }
         
         ticketView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(16.adjustedHeight)
-            $0.width.equalTo(145.adjustedWidth)
-            $0.height.equalTo(38.adjustedHeight)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.width.equalTo(145)
+            $0.height.equalTo(38)
         }
         
         ticketFrontStackView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(14.adjustedWidth)
+            $0.leading.equalToSuperview().inset(14)
         }
         
         ticketBackStackView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(14.adjustedWidth)
+            $0.trailing.equalToSuperview().inset(14)
         }
         
         confirmButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(18.adjustedWidth)
-            $0.height.equalTo(40.adjustedHeight)
-            $0.width.equalTo(146.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(40.adjustedHeight)
-            $0.leading.equalTo(noButton.snp.trailing).inset(-8.adjustedWidth)
+            $0.trailing.equalToSuperview().inset(18)
+            $0.height.equalTo(40)
+            $0.width.equalTo(146)
+            $0.bottom.equalToSuperview().inset(40)
+            $0.leading.equalTo(noButton.snp.trailing).inset(-8)
         }
         
         noButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(18.adjustedWidth)
-            $0.height.equalTo(40.adjustedHeight)
-            $0.width.equalTo(90.adjustedWidth)
+            $0.leading.equalToSuperview().inset(18)
+            $0.height.equalTo(40)
+            $0.width.equalTo(90)
             $0.bottom.equalTo(confirmButton)
         }
     }

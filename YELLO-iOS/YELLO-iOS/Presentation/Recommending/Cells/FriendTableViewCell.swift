@@ -22,7 +22,7 @@ final class FriendTableViewCell: UITableViewCell {
     static let identifier = "FriendTableViewCell"
     
     // MARK: Component
-    let profileImageView = UIImageView()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 42.adjusted, height: 42.adjusted))
     let nameLabel = UILabel()
     let schoolLabel = UILabel()
     lazy var addButton = UIButton()
@@ -45,12 +45,13 @@ final class FriendTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+//        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
         nameLabel.text = nil
         schoolLabel.text = nil
         isTapped = false
         separatorLine.isHidden = false
-        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
+        addButton.isHidden = true
+//        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
     }
 }
 
@@ -73,18 +74,20 @@ extension FriendTableViewCell {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 21)
+            $0.makeCornerRound(radius: 21.adjusted)
         }
         
         nameLabel.do {
             $0.font = .uiSubtitle01
             $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
+            $0.numberOfLines = 0
             $0.textColor = .white
         }
         
         schoolLabel.do {
             $0.font = .uiLabelMedium
             $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
+            $0.numberOfLines = 0
             $0.textColor = .grayscales600
         }
         
@@ -92,6 +95,7 @@ extension FriendTableViewCell {
             $0.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
             $0.tintColor = .yellow
             $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+            $0.isHidden = false
         }
         
         separatorLine.do {
@@ -109,22 +113,22 @@ extension FriendTableViewCell {
         
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(8.adjusted)
+            $0.leading.equalToSuperview().offset(8.adjustedWidth)
             $0.width.height.equalTo(42.adjusted)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(17.adjusted)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjusted)
+            $0.top.equalToSuperview().offset(17.adjustedHeight)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
         }
         
         addButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(8.adjusted)
+            $0.trailing.equalToSuperview().inset(8.adjustedWidth)
             $0.centerY.equalToSuperview()
         }
         
@@ -136,6 +140,7 @@ extension FriendTableViewCell {
     
     // MARK: Custom Function
     func configureFriendCell(_ model: FriendModel) {
+        addButton.isHidden = false
         nameLabel.text = model.friends.name
         schoolLabel.text = model.friends.group
         if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {

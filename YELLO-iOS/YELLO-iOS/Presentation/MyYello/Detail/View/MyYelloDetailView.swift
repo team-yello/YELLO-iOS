@@ -31,7 +31,7 @@ final class MyYelloDetailView: BaseView {
     var indexNumber: Int = 0
     var nameIndex: Int = -1
     
-    lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+    lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60.adjusted, height: 60.adjusted))
     lazy var keywordButton = HintButton(state: .keyword)
     lazy var senderButton = MyYelloButton(state: .yesTicket)
     
@@ -134,7 +134,7 @@ final class MyYelloDetailView: BaseView {
         }
         
         genderLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.female, lineHeight: 16)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.female, lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .white
             $0.isHidden = true
@@ -142,7 +142,7 @@ final class MyYelloDetailView: BaseView {
         
         instagramButton.do {
             $0.backgroundColor = UIColor(white: 1.0, alpha: 0.35)
-            $0.makeCornerRound(radius: 31)
+            $0.makeCornerRound(radius: 31.adjustedHeight)
             $0.layer.cornerCurve = .continuous
             $0.setImage(ImageLiterals.MyYello.imgInstagram, for: .normal)
             $0.addTarget(self, action: #selector(instagramButtonTapped), for: .touchUpInside)
@@ -168,7 +168,7 @@ final class MyYelloDetailView: BaseView {
         }
         
         instagramIDLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.instagramID, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.instagramID, lineHeight: 20.adjustedHeight)
             $0.font = .uiInstagram
             $0.textColor = .white
             $0.alpha = 0.6
@@ -208,27 +208,27 @@ final class MyYelloDetailView: BaseView {
         
         detailKeywordView.snp.makeConstraints {
             $0.top.equalTo(genderLabel.snp.bottom).offset(42.adjustedHeight)
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(154)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(154.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         instagramButton.snp.makeConstraints {
             $0.top.equalTo(detailKeywordView.snp.bottom).offset(44.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(60)
+            $0.width.height.equalTo(60.adjusted)
         }
         
         keywordButton.snp.makeConstraints {
             $0.top.equalTo(instagramButton.snp.bottom).offset(46.adjustedHeight)
-            $0.height.equalTo(54)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(54.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
         
         senderButton.snp.makeConstraints {
             $0.top.equalTo(keywordButton.snp.bottom).offset(8.adjustedHeight)
             $0.height.equalTo(62.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
     }
 }
@@ -265,8 +265,8 @@ extension MyYelloDetailView {
         
         logoImageView.snp.makeConstraints {
             $0.top.equalTo(groupImageView.snp.bottom).offset(128.adjustedHeight)
-            $0.width.equalTo(84)
-            $0.height.equalTo(25)
+            $0.width.equalTo(84.adjustedWidth)
+            $0.height.equalTo(25.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
@@ -351,14 +351,8 @@ extension MyYelloDetailView {
         getHintView.titleLabel.text = StringLiterals.MyYello.Alert.senderTitle
         
         getHintView.descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(getHintView.titleLabel.snp.bottom).offset(4)
+            $0.top.equalTo(getHintView.titleLabel.snp.bottom).offset(4.adjustedHeight)
             $0.centerX.equalToSuperview()
-        }
-        
-        getHintView.pointView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18.adjusted)
-            $0.top.equalTo(getHintView.hintLabel.snp.bottom).offset(30.adjusted)
-            $0.height.equalTo(52)
         }
     }
     
@@ -479,6 +473,10 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
             
             if !isPlus {
                 self.currentPoint -= 300
+            } else {
+                self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
+                self.getHintView.pointLabel.text = String(self.currentPoint)
+                self.pointLackView.pointLabel.text = String(self.currentPoint)
             }
         }
         

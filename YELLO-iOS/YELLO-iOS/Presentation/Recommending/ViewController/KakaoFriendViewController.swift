@@ -14,20 +14,13 @@ final class KakaoFriendViewController: UIViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let kakaoFriendView = KakaoFriendView()
+    let kakaoFriendView = KakaoFriendView()
     
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        self.kakaoFriendView.kakaoFriends { [weak self] in
-            self?.kakaoFriendView.recommendingKakaoFriend()
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
     }
 }
 

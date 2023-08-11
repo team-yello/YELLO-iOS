@@ -31,10 +31,9 @@ final class InvitingView: BaseView {
     // MARK: - Style
     
     override func setStyle() {
-        profileUserYelloId()
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
-        contentsView.makeCornerRound(radius: 10)
+        contentsView.makeCornerRound(radius: 10.adjustedHeight)
         contentsView.backgroundColor = .white
         
         closeButton.do {
@@ -49,13 +48,13 @@ final class InvitingView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedTitle, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedTitle, lineHeight: 24.adjustedHeight)
             $0.textColor = .black
             $0.font = .uiHeadline04
         }
         
         textLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedText, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedText, lineHeight: 20.adjustedHeight)
             $0.numberOfLines = 2
             $0.textColor = .grayscales600
             $0.font = .uiBody03
@@ -64,7 +63,7 @@ final class InvitingView: BaseView {
         
         backGroundView.do {
             $0.backgroundColor = .grayscales50
-            $0.makeCornerRound(radius: 8)
+            $0.makeCornerRound(radius: 8.adjustedHeight)
         }
         
         recommender.do {
@@ -74,7 +73,7 @@ final class InvitingView: BaseView {
         }
         
         recommenderID.do {
-            $0.setTextWithLineHeight(text: "@", lineHeight: 32)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 32)
             $0.textColor = .black
             $0.font = .uiExtraLarge
         }
@@ -107,48 +106,49 @@ final class InvitingView: BaseView {
         
         contentsView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(300)
-            $0.height.equalTo(374)
+            $0.width.equalTo(300.adjustedWidth)
+            $0.height.equalTo(374.adjustedHeight)
         }
         
         closeButton.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview().inset(14)
+            $0.top.equalToSuperview().inset(14.adjustedHeight)
+            $0.trailing.equalToSuperview().inset(14.adjustedWidth)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(50)
+            $0.top.equalToSuperview().inset(50.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        textLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         backGroundView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(14)
-            $0.top.equalToSuperview().inset(146)
-            $0.bottom.equalToSuperview().inset(120)
-        }
-        
-        textLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
-            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(14.adjustedWidth)
+            $0.top.equalTo(textLabel.snp.bottom).offset(20.adjustedHeight)
+            $0.height.equalTo(108.adjustedHeight)
         }
         
         recommender.snp.makeConstraints {
-            $0.top.equalTo(textLabel.snp.bottom).offset(47)
+            $0.top.equalToSuperview().inset(37.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         recommenderID.snp.makeConstraints {
-            $0.top.equalTo(recommender.snp.bottom).offset(8)
+            $0.top.equalTo(recommender.snp.bottom).offset(2.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         kakaoButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(100)
-            $0.bottom.equalToSuperview().inset(50)
+            $0.leading.equalToSuperview().inset(100.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(50.adjustedHeight)
         }
         
         copyButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(100)
-            $0.bottom.equalToSuperview().inset(50)
+            $0.trailing.equalToSuperview().inset(100.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(50.adjustedHeight)
         }
     }
 }
@@ -202,7 +202,7 @@ extension InvitingView {
     func copyButtonClicked() {
         guard let recommender = self.recommenderID.text else { return }
         let filteredID = String(recommender.dropFirst())
-        let recommenderID = "추천인코드: " + filteredID + "\n\n우리 같이 YELL:O 해요!\nhttps://testflight.apple.com/join/9xqm0VQa"
+        let recommenderID = "추천인코드: " + filteredID + "\n\n우리 같이 YELL:O 해요!\nAndroid: https://play.google.com/store/apps/details?id=com.el.yello&hl=ko&gl=KR\niOS: https://apps.apple.com/app/id6451451050"
         UIPasteboard.general.string = recommenderID
         print(UIPasteboard.general.string ?? "")
         
@@ -215,8 +215,12 @@ extension InvitingView {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                
+                self.copyButton.isEnabled = false
+                self.kakaoButton.isEnabled = false
                 self.recommenderID.text = "@" + data.yelloId
+                self.copyButton.isEnabled = true
+                self.kakaoButton.isEnabled = true
+                
                 print("통신 성공")
             default:
                 print("network fail")

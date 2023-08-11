@@ -16,6 +16,7 @@ final class KakaoFriendView: UIView {
     // MARK: - Variables
     // MARK: Property
     var fetchingMore = false
+    var isRefreshing = false
     var isFinishPaging = false
     var kakaoPage: Int = -1
     var kakaoFriendCount: Int = -1 {
@@ -24,7 +25,6 @@ final class KakaoFriendView: UIView {
         }
     }
     
-    var dataSource: UITableViewDiffableDataSource<Int, FriendModel>!
     var recommendingKakaoFriendTableViewDummy: [FriendModel] = []
     
     // MARK: Component
@@ -72,12 +72,12 @@ extension KakaoFriendView {
         
         kakaoFriendTableView.do {
             $0.register(FriendTableViewCell.self, forCellReuseIdentifier: FriendTableViewCell.identifier)
-            $0.backgroundColor = .clear
+            $0.register(FriendSkeletonTableViewCell.self, forCellReuseIdentifier: FriendSkeletonTableViewCell.identifier)
+            $0.backgroundColor = .black
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
         }
-        configureKakaoFriendDataSource()
     }
     
     private func setLayout() {
@@ -90,13 +90,13 @@ extension KakaoFriendView {
         
         inviteBannerView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(76)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(76.adjustedHeight)
         }
         
         kakaoFriendTableView.snp.makeConstraints {
             $0.top.equalTo(inviteBannerView.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview()
         }
         
@@ -106,59 +106,27 @@ extension KakaoFriendView {
     }
     
     private func setDelegate() {
-        kakaoFriendTableView.dataSource = dataSource
+        kakaoFriendTableView.dataSource = self
         kakaoFriendTableView.delegate = self
-    }
-    
-    private func configureKakaoFriendDataSource() {
-        dataSource = UITableViewDiffableDataSource<Int, FriendModel>(tableView: kakaoFriendTableView) { [weak self] (tableView, indexPath, kakaoFriend) -> UITableViewCell? in
-            guard let self = self else {
-                return UITableViewCell()
-            }
-            
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as? FriendTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            cell.selectionStyle = .none
-            
-            print(self.recommendingKakaoFriendTableViewDummy)
-
-            if self.recommendingKakaoFriendTableViewDummy.isEmpty {
-                return cell
-            }
-            
-            cell.isTapped = self.recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected
-            cell.updateAddButtonImage()
-            
-            cell.handleAddFriendButton = self
-            cell.configureFriendCell(self.recommendingKakaoFriendTableViewDummy[indexPath.row])
-            return cell
-        }
-    }
-    
-    func applySnapshot(animated: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, FriendModel>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(recommendingKakaoFriendTableViewDummy, toSection: 0)
-        dataSource.apply(snapshot, animatingDifferences: animated)
     }
     
     // MARK: Objc Function
     @objc func refreshTable(refresh: UIRefreshControl) {
+        self.isRefreshing = true
+        if kakaoFriendCount == 0 {
+            self.inviteBannerView.isHidden = false
+            self.emptyView.isHidden = true
+        }
         self.kakaoPage = -1
         self.isFinishPaging = false
         self.fetchingMore = false
         self.recommendingKakaoFriendTableViewDummy = []
         self.kakaoFriends { [weak self] in
-             /// 새로운 친구 목록이 받아와진 후에 recommendingKakaoFriend 함수 호출
-             self?.recommendingKakaoFriend()
-             if self?.fetchingMore == true {
-                 print("기다리삼")
-                 self?.applySnapshot(animated: true)
-             }
-             refresh.endRefreshing()
-         }
+            /// 새로운 친구 목록이 받아와진 후에 recommendingKakaoFriend 함수 호출
+            self?.recommendingKakaoFriend()
+            refresh.endRefreshing()
+            self?.isRefreshing = false
+        }
     }
     
     // MARK: Custom Function
@@ -189,6 +157,10 @@ extension KakaoFriendView {
         
         self.fetchingMore = true
         
+        if isRefreshing {
+            self.kakaoFriendTableView.reloadData()
+        }
+        
         NetworkService.shared.recommendingService.recommendingKakaoFriend(queryDTO: queryDTO, requestDTO: requestDTO) { [weak self] response in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -196,11 +168,8 @@ extension KakaoFriendView {
                 case .success(let data):
                     guard let data = data.data else { return }
                     
-                    let totalPage = (data.totalCount) / 10
-                    if self.kakaoPage >= totalPage {
-                        self.isFinishPaging = true
-                    }
-                    
+                    self.kakaoFriendCount = data.totalCount
+
                     let friendModels = data.friends.map { recommendingFriend in
                         return FriendModel(
                             friends: Friends(id: recommendingFriend.id, name: recommendingFriend.name, group: recommendingFriend.group, profileImage: recommendingFriend.profileImage),
@@ -214,14 +183,15 @@ extension KakaoFriendView {
                     }
                     
                     self.recommendingKakaoFriendTableViewDummy.append(contentsOf: uniqueFriendModels)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        self.fetchingMore = false
-                    }
+                    self.fetchingMore = false
                     
-                    self.kakaoFriendCount = data.totalCount
-                    self.applySnapshot(animated: true)
-                    print(self.recommendingKakaoFriendTableViewDummy)
-                    print(data.totalCount)
+                    self.kakaoFriendTableView.reloadData()
+                    
+                    let totalPage = (data.totalCount) / 10
+                    if self.kakaoPage >= totalPage {
+                        self.isFinishPaging = true
+                    }
+                    self.updateView()
                     print("통신 성공")
                 default:
                     print("network fail")
@@ -275,22 +245,19 @@ extension KakaoFriendView: HandleAddFriendButton {
         // 삭제 서버통신
         recommendingAddFriend(friendId: recommendingKakaoFriendTableViewDummy[indexPath.row].friends.id)
         
-        // 추가할 아이템의 식별자 가져오기
-        let itemToAdd = self.recommendingKakaoFriendTableViewDummy[indexPath.row]
-        
         recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
         sender.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .disabled)
         sender.isEnabled = false
         
         // 스냅샷에서 해당 아이템 삭제
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.dataSource.defaultRowAnimation = .right
-            var snapshot = self.dataSource.snapshot()
-            snapshot.deleteItems([itemToAdd])
-            self.dataSource.apply(snapshot, animatingDifferences: true)
             self.recommendingKakaoFriendTableViewDummy.remove(at: indexPath.row)
             self.kakaoFriendCount = self.recommendingKakaoFriendTableViewDummy.count
-            self.dataSource.defaultRowAnimation = .middle
+            self.kakaoFriendTableView.deleteRows(at: [indexPath], with: .right)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.kakaoFriendTableView.reloadData()
+            }
+            self.updateView()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -319,14 +286,34 @@ extension KakaoFriendView: UITableViewDelegate {
 // MARK: UITableViewDataSource
 extension KakaoFriendView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recommendingKakaoFriendTableViewDummy.count
+        if fetchingMore {
+            return 10 // Skeleton 셀 개수
+        } else {
+            return recommendingKakaoFriendTableViewDummy.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if fetchingMore {
+            let cell = tableView.dequeueReusableCell(withIdentifier: FriendSkeletonTableViewCell.identifier, for: indexPath) as! FriendSkeletonTableViewCell
+            cell.selectionStyle = .none
+            cell.showShimmer()
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as! FriendTableViewCell
+            
+            cell.selectionStyle = .none
+            
+            cell.isTapped = self.recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected
+            cell.updateAddButtonImage()
+            
+            cell.handleAddFriendButton = self
+            cell.configureFriendCell(self.recommendingKakaoFriendTableViewDummy[indexPath.row])
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 77
+        return 77.adjustedHeight
     }
 }

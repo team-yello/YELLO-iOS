@@ -93,7 +93,7 @@ final class GetFullNameView: BaseView {
         confirmButton.do {
             $0.backgroundColor = .clear
             $0.titleLabel?.font = .uiButton
-            $0.setTitleColor(.grayscales300, for: .normal)
+            $0.setTitleColor(.grayscales500, for: .normal)
             $0.setTitle(StringLiterals.MyYello.Alert.confirmButton, for: .normal)
             $0.addTarget(self, action: #selector(confirmTicketButtonTapped), for: .touchUpInside)
         }
@@ -112,42 +112,42 @@ final class GetFullNameView: BaseView {
         
         contentsView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(280.adjustedWidth)
-            $0.height.equalTo(252.adjustedHeight)
+            $0.width.equalTo(300)
+            $0.height.equalTo(270)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(40.adjustedHeight)
+            $0.top.equalToSuperview().inset(32)
             $0.centerX.equalToSuperview()
         }
         
         hintLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(23.adjustedHeight)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
             $0.centerX.equalToSuperview()
         }
         
         ticketView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18.adjusted)
-            $0.top.equalTo(hintLabel.snp.bottom).offset(23.adjustedHeight)
-            $0.height.equalTo(40.adjustedHeight)
-            $0.width.equalTo(170.adjustedWidth)
+            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.top.equalTo(hintLabel.snp.bottom).offset(44)
+            $0.height.equalTo(40)
+            $0.width.equalTo(170)
         }
         
         ticketFrontStackView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(14.adjustedWidth)
+            $0.leading.equalToSuperview().inset(14)
         }
         
         ticketBackStackView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(14.adjustedWidth)
+            $0.trailing.equalToSuperview().inset(14)
         }
         
         confirmButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(40.adjustedHeight)
-            $0.width.equalTo(244.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(20.adjustedHeight)
+            $0.height.equalTo(40)
+            $0.width.equalTo(244)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
 }
