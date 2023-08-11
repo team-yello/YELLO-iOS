@@ -14,9 +14,24 @@ final class PaymentPlusViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    let paymentPlusView = UIView()
+    let paymentPlusView = PaymentPlusView()
+    
+    // MARK: - Function
+    // MARK: LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setDelegate()
+        setAddTarget()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
+    }
     
     override func setLayout() {
+        
         view.addSubviews(paymentPlusView)
         
         paymentPlusView.snp.makeConstraints {
@@ -24,4 +39,24 @@ final class PaymentPlusViewController: BaseViewController {
         }
     }
     
+    private func setDelegate() {
+        paymentPlusView.paymentNavigationBarView.handleBackButtonDelegate = self
+    }
+    
+    private func setAddTarget() {
+        paymentPlusView.paymentYelloPlusButton.addTarget(self, action: #selector(paymentYelloPlusButtonTapped), for: .touchUpInside)
+    }
+}
+
+// MARK: HandleMyYelloCellDelegate
+extension PaymentPlusViewController: HandleBackButtonDelegate {
+    func popView() {
+        self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension PaymentPlusViewController {
+    @objc private func paymentYelloPlusButtonTapped() {
+        print("옐로플러스 구독 결제 구현")
+    }
 }
