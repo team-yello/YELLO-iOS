@@ -14,7 +14,6 @@ final class PaymentCollectionViewCell: UICollectionViewCell {
     static let paymentIdentifier = "PaymentCollectionViewCell"
     
     let paymentImageView = UIImageView()
-    let backgroundImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,21 +38,12 @@ final class PaymentCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        contentView.addSubview(backgroundImageView)
-        backgroundImageView.addSubview(paymentImageView)
-        
-        contentView.snp.makeConstraints {
-            $0.height.equalTo(219.adjustedHeight)
-            $0.width.equalTo(UIScreen.main.bounds.width)
-        }
-        
-        backgroundImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        contentView.addSubview(paymentImageView)
         
         paymentImageView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.centerX.equalToSuperview()
+            $0.height.equalTo(219)
+            $0.width.equalTo(375.adjustedWidth)
+            $0.center.equalToSuperview()
         }
     }
     
