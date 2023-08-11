@@ -9,13 +9,14 @@ import UIKit
 
 class SchoolSelectViewController: OnboardingBaseViewController {
     let baseView = SchoolSelectView()
-    var schoolInfoViewController = SchoolInfoViewController()
     var schoolLevel: SchoolLevel = .high
+    let highSchoolViewController = HighSchoolViewController()
+    let universityViewController = UniversityViewController()
+    
     
     override func viewDidLoad() {
         step = 1
         super.viewDidLoad()
-        nextViewController = schoolInfoViewController
         addTarget()
     }
     
@@ -38,12 +39,9 @@ class SchoolSelectViewController: OnboardingBaseViewController {
         } else {
             schoolLevel = .univ
         }
+        
+        self.nextViewController = ( schoolLevel == .high ) ? highSchoolViewController : universityViewController
         nextButton.setButtonEnable(state: true)
-    }
-    
-    @objc override func didTapButton() {
-        super.didTapButton()
-        schoolInfoViewController.schoolLevel = self.schoolLevel
     }
     
 }
