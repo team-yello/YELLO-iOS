@@ -23,19 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// 디바이스 토큰 요청
         application.registerForRemoteNotifications()
         
-        // 원격 푸시알림으로 앱이 시작된경우 launchOption을 통해 notification을 가져올수있다.
-        if let notification = launchOptions?[.remoteNotification] as? [String:AnyObject] {
-            // notification에서 필요한 데이터 pidx 가져오기
-            guard let type = notification["type"] as? String else { return false }
-            
-            if type == "VOTE_AVAILABLE" {
-                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2])
-            } else if type == "NEW_VOTE" {
-                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":3])
-            } else if type == "NEW_FRIEND" {
-                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":4])
-            }
-        }
         return true
     }
 
@@ -73,16 +60,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-
+        
         let userInfo = response.notification.request.content.userInfo
-        print("💛💛💛💛💛💛💛💛💛💛")
-        print(userInfo)
         
         guard let type = userInfo["type"] as? String else { return }
         guard let path = userInfo["path"] as? String,
               let messageNumber = path.split(separator: "/").last else { return }
         NotificationCenter.default.post(name: Notification.Name("showMessage"), object: nil, userInfo: ["message":Int(messageNumber) ?? 0])
-
+        
         if type == "VOTE_AVAILABLE" {
             NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2])
         } else if type == "NEW_VOTE" {
@@ -103,3 +88,4 @@ extension AppDelegate: MessagingDelegate {
         print("Device token:", deviceToken) // 이 토큰은 FCM에서 알림을 테스트하는 데 사용할 수 있습니다.
     }
 }
+

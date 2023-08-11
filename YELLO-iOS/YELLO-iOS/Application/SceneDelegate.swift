@@ -25,26 +25,103 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) {
-            
-            let className = UserDefaults.standard.string(forKey: "lastViewController")
-            let viewControllerCreators = [
-                "VotingViewController": { VotingViewController(nibName: nil, bundle: nil) },
-                "VotingPointViewController": { VotingPointViewController(nibName: nil, bundle: nil) },
-                // Add more view controller creators here...
-            ]
-            
-            if let className = className,
-               let creator = viewControllerCreators[className] {
-                let rootViewController = creator()
+            if let notificationResponse = connectionOptions.notificationResponse {
+                let userInfo = notificationResponse.notification.request.content.userInfo
+                guard let type = userInfo["type"] as? String else { return }
+                guard let path = userInfo["path"] as? String,
+                      let messageNumber = path.split(separator: "/").last else { return }
+                
+                let rootViewController = YELLOTabBarController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
-                navigationController.navigationBar.isHidden = true
-                self.window?.rootViewController = navigationController
+
+                var selectedIndex = 0
+                
+                if type == "VOTE_AVAILABLE" {
+                    selectedIndex = 2
+                } else if type == "NEW_VOTE" {
+                    selectedIndex = 3
+//                    let myYelloDetailViewController = MyYelloDetailViewController()
+//                    NetworkService.shared.myYelloService.myYelloDetail(voteId: Int(messageNumber) ?? 0) { response in
+//                        switch response {
+//                        case .success(let data):
+//                            guard let data = data.data else { return }
+//
+//                            myYelloDetailViewController.colorIndex = data.colorIndex
+//                            myYelloDetailViewController.myYelloDetailView.currentPoint = data.currentPoint
+//                            myYelloDetailViewController.myYelloDetailView.detailSenderView.isHidden = false
+//                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.isHidden = false
+//                            myYelloDetailViewController.myYelloDetailView.genderLabel.isHidden = false
+//                            myYelloDetailViewController.myYelloDetailView.instagramButton.isHidden = false
+//                            myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = false
+//                            myYelloDetailViewController.myYelloDetailView.senderButton.isHidden = false
+//                            myYelloDetailViewController.setBackgroundView()
+//
+//                            if data.senderGender == "MALE" {
+//                                myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.male
+//                            } else {
+//                                myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.female
+//                            }
+//
+//                            if data.vote.nameHead == nil {
+//                                myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = "너" + (data.vote.nameFoot ?? "")
+//                            } else {
+//                                myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
+//                            }
+//
+//                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
+//                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordLabel.text = data.vote.keyword
+//                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
+//
+//                            myYelloDetailViewController.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
+//
+//                            if data.nameHint == 0 {
+//                                myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
+//                                if let initial = myYelloDetailViewController.getFirstInitial(data.senderName as NSString, index: 0) {
+//                                    myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
+//                                }
+//                            } else if data.nameHint == 1 {
+//                                myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
+//                                if let initial = myYelloDetailViewController.getSecondInitial(data.senderName as NSString, index: 1) {
+//                                    myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
+//                                }
+//                            }
+//                            navigationController.pushViewController(myYelloDetailViewController, animated: true)
+//                        default:
+//                            print("network fail")
+//                            return
+//                        }
+//                    }
+                } else if type == "NEW_FRIEND" {
+                    selectedIndex = 4
+                }
+                
+                rootViewController.selectedIndex = selectedIndex
+                if rootViewController.selectedIndex == 3 || rootViewController.selectedIndex == 4 {
+                    rootViewController.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                }
+                self.window?.rootViewController = rootViewController
+                
             } else {
-                // Fallback to a default view controller if the last one was not found or could not be restored
-                let rootViewController = self.isLoggined ? YELLOTabBarController() : KakaoLoginViewController()
-                let navigationController = UINavigationController(rootViewController: rootViewController)
-                navigationController.navigationBar.isHidden = true
-                self.window?.rootViewController = navigationController
+                let className = UserDefaults.standard.string(forKey: "lastViewController")
+                let viewControllerCreators = [
+                    "VotingViewController": { VotingViewController(nibName: nil, bundle: nil) },
+                    "VotingPointViewController": { VotingPointViewController(nibName: nil, bundle: nil) },
+                    // Add more view controller creators here...
+                ]
+                
+                if let className = className,
+                   let creator = viewControllerCreators[className] {
+                    let rootViewController = creator()
+                    let navigationController = UINavigationController(rootViewController: rootViewController)
+                    navigationController.navigationBar.isHidden = true
+                    self.window?.rootViewController = navigationController
+                } else {
+                    // Fallback to a default view controller if the last one was not found or could not be restored
+                    let rootViewController = self.isLoggined ? YELLOTabBarController() : KakaoLoginViewController()
+                    let navigationController = UINavigationController(rootViewController: rootViewController)
+                    navigationController.navigationBar.isHidden = true
+                    self.window?.rootViewController = navigationController
+                }
             }
         }
         self.window?.makeKeyAndVisible()
@@ -107,3 +184,4 @@ func topViewController(controller: UIViewController? = UIApplication.shared.keyW
     }
     return controller
 }
+

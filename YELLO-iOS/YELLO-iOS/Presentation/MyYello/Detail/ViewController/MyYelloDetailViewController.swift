@@ -20,7 +20,7 @@ final class MyYelloDetailViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Constants
     let myYelloDetailView = MyYelloDetailView()
-    var colorIndex: Int = 0
+    var colorIndex: Int = 1
     var isYelloButtonTapped: Bool = false {
         didSet {
             let votingStartViewController = YELLOTabBarController()
@@ -109,7 +109,7 @@ extension MyYelloDetailViewController {
         }
     }
     
-    private func setBackgroundView() {
+    func setBackgroundView() {
         if colorIndex == 1 || colorIndex == 3 || colorIndex == 7 {
             myYelloDetailView.myYelloDetailNavigationBarView.backButton.setImage(ImageLiterals.MyYello.icArrowLeft, for: .normal)
             myYelloDetailView.myYelloDetailNavigationBarView.pointImageView.image = ImageLiterals.MyYello.icPointBlack
@@ -121,6 +121,10 @@ extension MyYelloDetailViewController {
         }
         
         let gradientView = UIView(frame: view.bounds)
+        if colorIndex <= 0 || colorIndex >= 13 {
+            colorIndex = 5
+        }
+        
         gradientView.applyGradientBackground(
             topColor: UIColor(hex: myYelloBackgroundColorStringDummy[colorIndex - 1].backgroundColorTop),
             bottomColor: UIColor(hex: myYelloBackgroundColorStringDummy[colorIndex - 1].backgroundColorBottom))

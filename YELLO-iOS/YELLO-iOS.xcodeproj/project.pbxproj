@@ -25,6 +25,7 @@
 		2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */; };
 		2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */; };
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
+		2A4C549D2A8622B200FFDF80 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4C549C2A8622B200FFDF80 /* Kingfisher */; };
 		2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1AD2A657AA6008F636C /* VotingData.swift */; };
 		2A5FE1B62A66FA07008F636C /* VoteAnswerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
@@ -151,7 +152,6 @@
 		C3A799AC2A49499500D3EFD8 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799AB2A49499500D3EFD8 /* Then */; };
 		C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799AE2A49499F00D3EFD8 /* SnapKit */; };
 		C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799B12A4949A700D3EFD8 /* Alamofire */; };
-		C3A799B52A4949B100D3EFD8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799B42A4949B100D3EFD8 /* Kingfisher */; };
 		C3A799B82A4949C600D3EFD8 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C3A799B72A4949C600D3EFD8 /* KakaoSDK */; };
 		C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799BD2A494AFD00D3EFD8 /* Image.swift */; };
 		C3A799C02A494B0200D3EFD8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799BF2A494B0200D3EFD8 /* String.swift */; };
@@ -481,9 +481,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A9808F12A81806500FBA5B3 /* FirebaseMessaging in Frameworks */,
-				C3A799B52A4949B100D3EFD8 /* Kingfisher in Frameworks */,
 				C3A799B82A4949C600D3EFD8 /* KakaoSDK in Frameworks */,
 				2A9808EF2A81806500FBA5B3 /* FirebaseAnalytics in Frameworks */,
+				2A4C549D2A8622B200FFDF80 /* Kingfisher in Frameworks */,
 				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
 				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
@@ -1519,12 +1519,12 @@
 				C3A799AB2A49499500D3EFD8 /* Then */,
 				C3A799AE2A49499F00D3EFD8 /* SnapKit */,
 				C3A799B12A4949A700D3EFD8 /* Alamofire */,
-				C3A799B42A4949B100D3EFD8 /* Kingfisher */,
 				C3A799B72A4949C600D3EFD8 /* KakaoSDK */,
 				2ADE23A92A5EB7660088FCB3 /* Lottie */,
 				C306E7292A630BD10031514C /* SwiftKeychainWrapper */,
 				2A9808EE2A81806500FBA5B3 /* FirebaseAnalytics */,
 				2A9808F02A81806500FBA5B3 /* FirebaseMessaging */,
+				2A4C549C2A8622B200FFDF80 /* Kingfisher */,
 			);
 			productName = "YELLO-iOS";
 			productReference = C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */;
@@ -1558,11 +1558,11 @@
 				C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */,
 				C3A799AD2A49499F00D3EFD8 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C3A799B02A4949A700D3EFD8 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				C3A799B32A4949B100D3EFD8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				C306E7282A630BD10031514C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				2A9808ED2A81806500FBA5B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2A4C549B2A8622B200FFDF80 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
@@ -2070,6 +2070,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2A4C549B2A8622B200FFDF80 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		2A9808ED2A81806500FBA5B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -2118,14 +2126,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		C3A799B32A4949B100D3EFD8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -2137,6 +2137,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A4C549C2A8622B200FFDF80 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A4C549B2A8622B200FFDF80 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		2A9808EE2A81806500FBA5B3 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2A9808ED2A81806500FBA5B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -2171,11 +2176,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C3A799B02A4949A700D3EFD8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		C3A799B42A4949B100D3EFD8 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C3A799B32A4949B100D3EFD8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 		C3A799B72A4949C600D3EFD8 /* KakaoSDK */ = {
 			isa = XCSwiftPackageProductDependency;
