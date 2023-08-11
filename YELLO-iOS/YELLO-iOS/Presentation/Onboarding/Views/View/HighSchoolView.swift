@@ -22,6 +22,7 @@ class HighSchoolView: UIView {
     lazy var guideTitleLabel = YelloGuideLabel(labelText: stringLiteral.schoolSearchText)
     
     let buttonStackView = UIStackView()
+    lazy var buttonArray = [firstLevelButton, secondLevelButton, thridLevelButton]
     let firstLevelButton = UIButton()
     let secondLevelButton = UIButton()
     let thridLevelButton = UIButton()
@@ -57,7 +58,7 @@ class HighSchoolView: UIView {
             $0.roundCorners(cornerRadius: 8, maskedCorners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner] )
         }
         
-        [firstLevelButton, secondLevelButton, thridLevelButton].forEach ({ button in
+        buttonArray.forEach({ button in
             button.do {
                 $0.titleLabel?.font = .uiBodyLarge
                 $0.setTitleColor(.grayscales500, for: .normal)
