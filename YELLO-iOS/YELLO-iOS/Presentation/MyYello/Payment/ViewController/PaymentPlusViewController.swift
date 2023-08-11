@@ -28,6 +28,7 @@ final class PaymentPlusViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
+        paymentPlusView.paymentView.bannerTimer()
     }
     
     override func setLayout() {

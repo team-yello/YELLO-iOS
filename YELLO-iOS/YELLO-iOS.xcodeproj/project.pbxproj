@@ -1071,6 +1071,15 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		C305A5B02A85F2CE007C4A69 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				C37DFC502A854FE700D3B685 /* PaymentNameKeyButton.swift */,
+				C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		C30F810A2A7F7334009DBB8D /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -1129,8 +1138,7 @@
 				C37DFC4B2A85023000D3B685 /* ViewController */,
 				C37DFC4C2A85023800D3B685 /* View */,
 				C37DFC4D2A85023D00D3B685 /* Cells */,
-				C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */,
-				C37DFC502A854FE700D3B685 /* PaymentNameKeyButton.swift */,
+				C305A5B02A85F2CE007C4A69 /* Button */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
