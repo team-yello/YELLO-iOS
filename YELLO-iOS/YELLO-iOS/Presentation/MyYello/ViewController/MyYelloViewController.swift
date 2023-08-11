@@ -32,6 +32,7 @@ final class MyYelloViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.myYelloView.myYelloListView.applySnapshot(animated: true)
         if MyYelloListView.myYelloModelDummy.isEmpty == false {
             self.myYelloView.myYelloListView.myYelloTableView.reloadData()
