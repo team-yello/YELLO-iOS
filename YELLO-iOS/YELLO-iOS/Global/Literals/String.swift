@@ -193,6 +193,13 @@ enum StringLiterals {
             static let discount = "   할인!"
             static let nameKeyFivePriceBefore = "7000원"
             static let nameKeyFivePrice = "5900원"
+            
+            static let paymentAlertPlusTitle = "구독권을 얻었어요!"
+            static let paymentAlertPlusDescription = "옐로플러스의 특별한 혜택을 마음껏 즐겨보세요."
+            static let paymentAlertKeyOneTitle = "열람권 1개를 얻었어요!"
+            static let paymentAlertKeyTwoTitle = "열람권 2개를 얻었어요!"
+            static let paymentAlertKeyFiveTitle = "열람권 5개를 얻었어요!"
+            static let paymentAlertKeyDescription = "열람권으로 누가 쪽지를 보냈는지 알아보세요."
         }
     }
     

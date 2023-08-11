@@ -59,16 +59,19 @@ final class PaymentNameKeyButton: UIButton {
         nameKeyTitleLabel.do {
             $0.font = .uiBodyMedium
             $0.textColor = .purpleSub100
+            $0.isUserInteractionEnabled = true
         }
         
         priceView.do {
             $0.makeCornerRound(radius: 15.adjustedHeight)
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.isUserInteractionEnabled = true
         }
         
         priceLabel.do {
             $0.textColor = .white
             $0.font = .uiBodyLarge
+            $0.isUserInteractionEnabled = true
         }
         
         discountLabel.do {
@@ -78,6 +81,7 @@ final class PaymentNameKeyButton: UIButton {
             $0.roundCorners(cornerRadius: 10.adjustedHeight, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMaxYCorner])
             $0.backgroundColor = .purpleSub800
             $0.isHidden = true
+            $0.isUserInteractionEnabled = true
         }
         
         priceBeforeLabel.do {
@@ -85,11 +89,13 @@ final class PaymentNameKeyButton: UIButton {
             $0.font = .uiBody02
             $0.textColor = .grayscales600
             $0.isHidden = true
+            $0.isUserInteractionEnabled = true
         }
         
         priceBeforeView.do {
             $0.backgroundColor = .grayscales600
             $0.isHidden = true
+            $0.isUserInteractionEnabled = true
         }
         
     }
