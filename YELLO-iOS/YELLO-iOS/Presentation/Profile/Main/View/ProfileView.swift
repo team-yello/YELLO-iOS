@@ -30,8 +30,6 @@ final class ProfileView: UIView {
     var myYelloCount = 0
     var profileFriendPage: Int = 0
     
-    var dataSource: UITableViewDiffableDataSource<Int, ProfileFriendResponseDetail>!
-    
     var myProfileFriendModelDummy: [ProfileFriendResponseDetail] = [] 
     
     // MARK: Component
@@ -60,24 +58,6 @@ final class ProfileView: UIView {
 // MARK: - extension
 extension ProfileView {
     
-    private func configureMyProfileDataSource() {
-        dataSource = UITableViewDiffableDataSource<Int, ProfileFriendResponseDetail>(tableView: myFriendTableView) { [weak self] (tableView, indexPath, profileFriend) -> UITableViewCell? in
-                guard let self = self else {
-                    return UITableViewCell()
-                }
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFriendTableViewCell.identifier, for: indexPath) as? MyFriendTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            cell.selectionStyle = .none
-            if self.myProfileFriendModelDummy.isEmpty {
-                return cell
-            }
-            cell.configureMyProfileFriendCell(self.myProfileFriendModelDummy[indexPath.row])
-            return cell
-        }
-    }
-    
     // MARK: Layout Helpers
     private func setUI() {
         setStyle()
@@ -96,6 +76,7 @@ extension ProfileView {
         myFriendTableView.do {
             $0.rowHeight = 77
             $0.register(MyFriendTableViewCell.self, forCellReuseIdentifier: MyFriendTableViewCell.identifier)
+            $0.register(MyFriendSkeletonTableViewCell.self, forCellReuseIdentifier: MyFriendSkeletonTableViewCell.identifier)
             $0.register(MyProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "MyProfileHeaderView")
             $0.backgroundColor = .black
             $0.separatorColor = .grayscales800
@@ -112,41 +93,34 @@ extension ProfileView {
             $0.isHidden = true
             $0.layer.applyShadow(color: .black, alpha: 0.6, x: 0, y: 0, blur: 8)
         }
-        configureMyProfileDataSource()
     }
     
     private func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-                    .compactMap { $0 as? UIWindowScene }
-                    .first?
-                    .statusBarManager?
-                    .statusBarFrame.height ?? 20
-        
         self.addSubviews(navigationBarView,
                         myFriendTableView,
                          topButton)
         
         navigationBarView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
+            $0.top.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.height.equalTo(48)
+            $0.height.equalTo(48.adjustedHeight)
         }
         
         myFriendTableView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview()
         }
         
         topButton.snp.makeConstraints {
             $0.width.height.equalTo(48.adjusted)
-            $0.trailing.equalToSuperview().inset(16.adjusted)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalTo(myFriendTableView.snp.bottom).inset(16.adjustedHeight)
         }
     }
     
     private func setDelegate() {
-        myFriendTableView.dataSource = dataSource
+        myFriendTableView.dataSource = self
         myFriendTableView.delegate = self
     }
     
@@ -155,26 +129,15 @@ extension ProfileView {
         topButton.isHidden = isButtonHidden
     }
     
-    func applySnapshot(animated: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, ProfileFriendResponseDetail>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(myProfileFriendModelDummy, toSection: 0)
-        dataSource.apply(snapshot, animatingDifferences: animated)
-    }
-    
     // MARK: Objc Function
     @objc func refreshTable(refresh: UIRefreshControl) {
         self.pageCount = -1
         self.isFinishPaging = false
         self.fetchingMore = false
+        self.myFriendTableView.reloadData()
         self.myProfileFriendModelDummy = []
         self.profileFriend()
-        if self.fetchingMore == true {
-            print("기다리삼")
-            self.applySnapshot(animated: true)
-        }
         refresh.endRefreshing()
-        print(self.myProfileFriendModelDummy)
     }
     
     @objc func topButtonTapped() {
@@ -183,14 +146,6 @@ extension ProfileView {
     
     private func presentModal(index: Int) {
         handleFriendCellDelegate?.presentModal(index: index)
-    }
-    
-    func deleteFriend(at index: Int) {
-        // 특정 위치의 행 삭제
-        myProfileFriendModelDummy.remove(at: index)
-        
-        // 스냅샷에 삭제된 행 적용
-        applySnapshot()
     }
     
     // MARK: - Network
@@ -211,15 +166,10 @@ extension ProfileView {
         NetworkService.shared.profileService.profileFriend(queryDTO: queryDTO) { [weak self] response in
             guard let self = self else { return }
             
-            DispatchQueue.main.async {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
                     
-                    let totalPage = (data.totalCount) / 10
-                    if self.pageCount >= totalPage {
-                        self.isFinishPaging = true
-                    }
                     
                     let friendModels = data.friends.map { profileFriend in
                         
@@ -236,18 +186,18 @@ extension ProfileView {
                     }
                     
                     self.myProfileFriendModelDummy.append(contentsOf: uniqueFriendModels)
-                    self.applySnapshot(animated: true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        self.myFriendTableView.reloadData()
-                        self.fetchingMore = false
+                    self.fetchingMore = false
+                    self.myFriendTableView.reloadData()
+                    let totalPage = (data.totalCount) / 10
+                    if self.pageCount >= totalPage {
+                        self.isFinishPaging = true
                     }
-                    dump(data)
+                    
                     print("통신 성공")
                 default:
                     print("network fail")
                     return
                 }
-            }
         }
     }
 }
@@ -275,6 +225,16 @@ extension ProfileView: UITableViewDataSource {
         switch section {
         case 0:
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyProfileHeaderView.cellIdentifier) as? MyProfileHeaderView
+            if fetchingMore {
+                view?.friendCountView.skeletonLabel.isHidden = false
+                view?.friendCountView.skeletonLabel.animateShimmer()
+                view?.friendCountView.countStackView.isHidden = true
+            } else {
+                view?.friendCountView.skeletonLabel.stopShimmering()
+                view?.friendCountView.skeletonLabel.isHidden = true
+                view?.friendCountView.countStackView.isHidden = false
+            }
+            
             DispatchQueue.main.async {
                 view?.addBottomBorderWithColor(color: .black)
                 view?.myProfileView.profileUser()
@@ -288,19 +248,45 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 304.adjusted : 0
+        return section == 0 ? 304.adjustedHeight : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myProfileFriendModelDummy.count
+        if fetchingMore {
+            return 10 // Skeleton 셀 개수
+        } else {
+            return myProfileFriendModelDummy.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if fetchingMore {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MyFriendSkeletonTableViewCell.identifier, for: indexPath) as! MyFriendSkeletonTableViewCell
+            cell.selectionStyle = .none
+            cell.showShimmer()
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFriendTableViewCell.identifier, for: indexPath) as? MyFriendTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.selectionStyle = .none
+            cell.configureMyProfileFriendCell(self.myProfileFriendModelDummy[indexPath.row])
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Click Cell Number:" + String(indexPath.row))
-        self.presentModal(index: indexPath.row)
+        if fetchingMore {
+            return
+        } else {
+            print("Click Cell Number:" + String(indexPath.row))
+            self.presentModal(index: indexPath.row)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 77.adjustedHeight
     }
 }
+

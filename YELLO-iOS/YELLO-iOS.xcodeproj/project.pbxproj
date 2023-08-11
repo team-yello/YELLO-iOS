@@ -133,6 +133,8 @@
 		C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB52A607357000F5BA9 /* FriendCountView.swift */; };
 		C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB72A60FE2D000F5BA9 /* NextButton.swift */; };
 		C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */; };
+		C3081E492A82451D0088CA44 /* AroundSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */; };
+		C3081E4B2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */; };
 		C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81022A7F51E6009DBB8D /* UseTicketView.swift */; };
 		C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */; };
 		C30F81072A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */; };
@@ -152,6 +154,7 @@
 		C37DFC4A2A85022B00D3B685 /* PaymentNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */; };
 		C37DFC4F2A8515D500D3B685 /* PaymentYelloPlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */; };
 		C37DFC512A854FE700D3B685 /* PaymentNameKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC502A854FE700D3B685 /* PaymentNameKeyButton.swift */; };
+		C38A93EE2A83910400B9110B /* MyYelloSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38A93ED2A83910400B9110B /* MyYelloSkeletonTableViewCell.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -190,6 +193,7 @@
 		C3A79A072A49500000D3EFD8 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FE2A494FFF00D3EFD8 /* Pretendard-SemiBold.otf */; };
 		C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */; };
 		C3A79A0B2A49526A00D3EFD8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */; };
+		C3B1D8BB2A81208E0050D737 /* FriendSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B1D8BA2A81208E0050D737 /* FriendSkeletonTableViewCell.swift */; };
 		C3B4720A2A65B1CB00770530 /* MyYelloRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B472092A65B1CB00770530 /* MyYelloRequestQueryDTO.swift */; };
 		C3B4720C2A65B54400770530 /* MyYelloResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4720B2A65B54400770530 /* MyYelloResponseDTO.swift */; };
 		C3B4720E2A65DEC700770530 /* MyYelloDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4720D2A65DEC700770530 /* MyYelloDetailResponseDTO.swift */; };
@@ -379,6 +383,8 @@
 		C307ECB52A607357000F5BA9 /* FriendCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCountView.swift; sourceTree = "<group>"; };
 		C307ECB72A60FE2D000F5BA9 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileFriendModel.swift; sourceTree = "<group>"; };
+		C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundSkeletonTableViewCell.swift; sourceTree = "<group>"; };
+		C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendSkeletonTableViewCell.swift; sourceTree = "<group>"; };
 		C30F81022A7F51E6009DBB8D /* UseTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseTicketView.swift; sourceTree = "<group>"; };
 		C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFullNameView.swift; sourceTree = "<group>"; };
 		C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloOnlyNameTableViewCell.swift; sourceTree = "<group>"; };
@@ -398,6 +404,7 @@
 		C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentNavigationBarView.swift; sourceTree = "<group>"; };
 		C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentYelloPlusButton.swift; sourceTree = "<group>"; };
 		C37DFC502A854FE700D3B685 /* PaymentNameKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentNameKeyButton.swift; sourceTree = "<group>"; };
+		C38A93ED2A83910400B9110B /* MyYelloSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloSkeletonTableViewCell.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -433,6 +440,7 @@
 		C3A799FE2A494FFF00D3EFD8 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		C3A799FF2A49500000D3EFD8 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C3B1D8BA2A81208E0050D737 /* FriendSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSkeletonTableViewCell.swift; sourceTree = "<group>"; };
 		C3B472092A65B1CB00770530 /* MyYelloRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C3B4720B2A65B54400770530 /* MyYelloResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloResponseDTO.swift; sourceTree = "<group>"; };
 		C3B4720D2A65DEC700770530 /* MyYelloDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailResponseDTO.swift; sourceTree = "<group>"; };
@@ -1093,6 +1101,7 @@
 			isa = PBXGroup;
 			children = (
 				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
+				C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1165,6 +1174,7 @@
 			isa = PBXGroup;
 			children = (
 				C363D46C2A78050600FD583D /* AroundTableViewCell.swift */,
+				C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1407,6 +1417,7 @@
 			children = (
 				C3C57BF22A5C089600B84CAA /* FriendTableViewCell.swift */,
 				C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */,
+				C3B1D8BA2A81208E0050D737 /* FriendSkeletonTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1509,6 +1520,7 @@
 				C3FF24962A5E907D00A97D40 /* MyYelloNameTableViewCell.swift */,
 				C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */,
 				C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */,
+				C38A93ED2A83910400B9110B /* MyYelloSkeletonTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1629,6 +1641,8 @@
 				C3A799B62A4949C600D3EFD8 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				C306E7282A630BD10031514C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				C3081E452A8225580088CA44 /* XCRemoteSwiftPackageReference "ShimmerSwift" */,
 			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
@@ -1728,6 +1742,7 @@
 				C306E7472A656D170031514C /* ProfileFriendRequestQueryDTO.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
+				C3B1D8BB2A81208E0050D737 /* FriendSkeletonTableViewCell.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3C57BF32A5C089600B84CAA /* FriendTableViewCell.swift in Sources */,
 				36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */,
@@ -1787,6 +1802,7 @@
 				2AD1A1A82A57175100CB988B /* VotingLockedViewController.swift in Sources */,
 				2A3705CC2A62E2BF001AAC93 /* OnboardingTarget.swift in Sources */,
 				36E4276F2A5BCE860050B34E /* AddFriendsView.swift in Sources */,
+				C3081E492A82451D0088CA44 /* AroundSkeletonTableViewCell.swift in Sources */,
 				2AD1A1C42A5972E000CB988B /* VotingTimerView.swift in Sources */,
 				2A3705A22A62DC27001AAC93 /* HTTPHeaderFieldKey.swift in Sources */,
 				2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */,
@@ -1850,6 +1866,7 @@
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
 				2ADE23A52A5EA9390088FCB3 /* BackgroundColor.swift in Sources */,
 				C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */,
+				C3081E4B2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift in Sources */,
 				36B2349A2A61A20C007933E4 /* KakaoLoginViewController.swift in Sources */,
 				C37DFC462A8501E300D3B685 /* PaymentPlusViewController.swift in Sources */,
 				36E427722A5BCE860050B34E /* YelloSelectButton.swift in Sources */,
@@ -1890,6 +1907,7 @@
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
 				36E427772A5BD5AA0050B34E /* FindSchoolViewController.swift in Sources */,
 				C3D266532A5D20170041C7C7 /* ProfileSettingView.swift in Sources */,
+				C38A93EE2A83910400B9110B /* MyYelloSkeletonTableViewCell.swift in Sources */,
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				C3FF24AF2A5F35FF00A97D40 /* UsePointView.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
@@ -2161,6 +2179,22 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
+			};
+		};
+		C3081E452A8225580088CA44 /* XCRemoteSwiftPackageReference "ShimmerSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BeauNouvelle/ShimmerSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */ = {

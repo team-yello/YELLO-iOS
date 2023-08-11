@@ -11,7 +11,7 @@ class NextButton: UIButton {
 
     // MARK: - Functions
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        let expandedBounds = bounds.insetBy(dx: -295.adjusted, dy: -98.adjusted)
+        let expandedBounds = bounds.insetBy(dx: -295.adjustedWidth, dy: -98.adjustedHeight)
         return expandedBounds.contains(point)
     }
 

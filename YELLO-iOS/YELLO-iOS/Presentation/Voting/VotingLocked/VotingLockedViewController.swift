@@ -96,6 +96,7 @@ final class VotingLockedViewController: BaseViewController {
         
         invitingView.removeFromSuperview()
         invitingView = InvitingView()
+        invitingView.profileUserYelloId()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         

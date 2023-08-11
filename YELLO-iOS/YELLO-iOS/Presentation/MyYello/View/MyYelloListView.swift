@@ -25,9 +25,7 @@ final class MyYelloListView: BaseView {
     var indexNumber: Int = -1
     var isFinishPaging = false
     var pageCount = -1
-    
-    var dataSource: UITableViewDiffableDataSource<Int, Yello>!
-    
+        
     static var myYelloModelDummy: [Yello] = []
     
     // MARK: Component
@@ -42,7 +40,6 @@ final class MyYelloListView: BaseView {
         refreshControl.do {
             myYelloTableView.refreshControl = $0
             $0.tintColor = .grayscales400
-            $0.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
         }
         
         myYelloTableView.do {
@@ -50,6 +47,7 @@ final class MyYelloListView: BaseView {
             $0.register(MyYelloDefaultTableViewCell.self, forCellReuseIdentifier: MyYelloDefaultTableViewCell.identifier)
             $0.register(MyYelloKeywordTableViewCell.self, forCellReuseIdentifier: MyYelloKeywordTableViewCell.identifier)
             $0.register(MyYelloNameTableViewCell.self, forCellReuseIdentifier: MyYelloNameTableViewCell.identifier)
+            $0.register(MyYelloSkeletonTableViewCell.self, forCellReuseIdentifier: MyYelloSkeletonTableViewCell.identifier)
             $0.dataSource = self
             $0.delegate = self
             $0.separatorStyle = .none
@@ -57,11 +55,104 @@ final class MyYelloListView: BaseView {
             $0.showsHorizontalScrollIndicator = false
             $0.backgroundColor = .black
         }
-        configureDataSource()
     }
     
-    private func configureDataSource() {
-        dataSource = UITableViewDiffableDataSource<Int, Yello>(tableView: myYelloTableView) { [weak self] (tableView, indexPath, yello) -> UITableViewCell? in
+    override func setLayout() {
+        
+        self.addSubviews(myYelloTableView)
+        
+        myYelloTableView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+        }
+    }
+    
+    // MARK: Custom Function
+    private func pushMyYelloDetailViewController(index: Int) {
+        handleMyYelloCellDelegate?.pushMyYelloDetailViewController(index: index)
+    }
+    
+    // MARK: - Network
+    func myYello() {
+        if fetchingMore { /// 이미 데이터를 가져오는 중이면 리턴
+            return
+        }
+        
+        if isFinishPaging {
+            return
+        }
+        
+        self.pageCount += 1
+        let queryDTO = MyYelloRequestQueryDTO(page: pageCount)
+        
+        fetchingMore = true
+        
+        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
+            guard let self = self else { return }
+        
+                switch response {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    
+                    /// 기존에 가져온 데이터와 새로 가져온 데이터를 비교하여 중복된 아이템은 제외하고 추가합니다.
+                    let newMyYelloModels = data.votes.filter { myYello in
+                        /// 기존 데이터에 이미 존재하는지 확인하여 중복된 경우 필터링
+                        !MyYelloListView.myYelloModelDummy.contains { $0.id == myYello.id }
+                    }.map { myYello in
+                        return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
+                    }
+                    
+                    /// 새로운 데이터만 추가하도록 필터링하여 더미 데이터에 추가합니다.
+                    MyYelloListView.myYelloModelDummy.append(contentsOf: newMyYelloModels.compactMap { $0 })
+                    self.fetchingMore = false
+                    self.myYelloTableView.reloadData()
+                    
+                    let totalPage = (data.totalCount) / 10
+                    if self.pageCount >= totalPage {
+                        self.isFinishPaging = true
+                    }
+                    
+                    print("내 옐로 리스트 통신 성공")
+                default:
+                    print("network fail")
+                    return
+                }
+        }
+    }
+}
+
+// MARK: - extension
+// MARK: UITableViewDelegate
+extension MyYelloListView: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let tableView = self.myYelloTableView
+        let offsetY = tableView.contentOffset.y
+        let contentHeight = tableView.contentSize.height
+        let visibleHeight = tableView.bounds.height
+        if offsetY > contentHeight - visibleHeight {
+            self.myYello()
+        }
+    }
+}
+
+// MARK: UITableViewDataSource
+extension MyYelloListView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if fetchingMore {
+            return 10 // Skeleton 셀 개수
+        } else {
+            return MyYelloListView.myYelloModelDummy.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if fetchingMore {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MyYelloSkeletonTableViewCell.identifier, for: indexPath) as! MyYelloSkeletonTableViewCell
+            cell.selectionStyle = .none
+            cell.showShimmer()
+            return cell
+        } else {
             if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false {
                 guard let defaultCell = tableView.dequeueReusableCell(withIdentifier: MyYelloDefaultTableViewCell.identifier, for: indexPath) as? MyYelloDefaultTableViewCell else { return UITableViewCell() }
                 
@@ -88,127 +179,15 @@ final class MyYelloListView: BaseView {
         }
     }
     
-    override func setLayout() {
-        
-        self.addSubviews(myYelloTableView)
-        
-        myYelloTableView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-        }
-    }
-    
-    // MARK: Objc Function
-    @objc func refreshTable(refresh: UIRefreshControl) {
-        self.pageCount = -1
-        self.isFinishPaging = false
-        self.fetchingMore = false
-        MyYelloListView.myYelloModelDummy = []
-        self.myYello()
-        if self.fetchingMore == true {
-            print("기다리삼")
-            self.applySnapshot(animated: true)
-        }
-        refresh.endRefreshing()
-        print(MyYelloListView.myYelloModelDummy)
-    }
-    
-    // MARK: Custom Function
-    private func pushMyYelloDetailViewController(index: Int) {
-        handleMyYelloCellDelegate?.pushMyYelloDetailViewController(index: index)
-    }
-    
-    // MARK: - Network
-    func myYello() {
-        if fetchingMore { /// 이미 데이터를 가져오는 중이면 리턴
-            return
-        }
-        
-        if isFinishPaging {
-            return
-        }
-        
-        self.pageCount += 1
-        let queryDTO = MyYelloRequestQueryDTO(page: pageCount)
-        
-        fetchingMore = true
-        
-        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                switch response {
-                case .success(let data):
-                    guard let data = data.data else { return }
-                    
-                    let totalPage = (data.totalCount) / 10
-                    if self.pageCount >= totalPage {
-                        self.isFinishPaging = true
-                    }
-                    
-                    MyYelloView.myYelloCount = data.totalCount
-                    
-                    /// 기존에 가져온 데이터와 새로 가져온 데이터를 비교하여 중복된 아이템은 제외하고 추가합니다.
-                    let newMyYelloModels = data.votes.filter { myYello in
-                        /// 기존 데이터에 이미 존재하는지 확인하여 중복된 경우 필터링
-                        !MyYelloListView.myYelloModelDummy.contains { $0.id == myYello.id }
-                    }.map { myYello in
-                        return Yello(id: myYello.id, senderGender: myYello.senderGender, senderName: myYello.senderName, nameHint: myYello.nameHint, vote: Vote(nameHead: myYello.vote.nameHead, nameFoot: myYello.vote.nameFoot, keywordHead: myYello.vote.keywordHead, keyword: myYello.vote.keyword, keywordFoot: myYello.vote.keywordFoot), isHintUsed: myYello.isHintUsed, isRead: myYello.isRead, createdAt: myYello.createdAt)
-                    }
-                    
-                    /// 새로운 데이터만 추가하도록 필터링하여 더미 데이터에 추가합니다.
-                    MyYelloListView.myYelloModelDummy.append(contentsOf: newMyYelloModels.compactMap { $0 })
-                    self.applySnapshot(animated: true)
-                    self.fetchingMore = false
-                    dump(data)
-                    print("통신 성공")
-                default:
-                    print("network fail")
-                    return
-                }
-            }
-        }
-    }
-    
-    /// Diffable Data Source를 업데이트하는 함수
-    func applySnapshot(animated: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Yello>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(MyYelloListView.myYelloModelDummy, toSection: 0)
-        dataSource.apply(snapshot, animatingDifferences: animated)
-    }
-}
-
-// MARK: - extension
-// MARK: UITableViewDelegate
-extension MyYelloListView: UITableViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let tableView = self.myYelloTableView
-        let offsetY = tableView.contentOffset.y
-        let contentHeight = tableView.contentSize.height
-        let visibleHeight = tableView.bounds.height
-        if offsetY > contentHeight - visibleHeight {
-            self.myYello()
-        }
-    }
-}
-
-// MARK: UITableViewDataSource
-extension MyYelloListView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MyYelloListView.myYelloModelDummy.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if fetchingMore {
+            return 77.adjustedHeight
+        }
+        
         if MyYelloListView.myYelloModelDummy[indexPath.row].nameHint != -1 {
-            return 98
+            return 98.adjustedHeight
         } else {
-            return 74
+            return 74.adjustedHeight
         }
     }
     
@@ -225,9 +204,11 @@ extension MyYelloListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if MyYelloListView.myYelloModelDummy.isEmpty {
+       
+        if fetchingMore {
             return
         }
+        
         self.pushMyYelloDetailViewController(index: indexPath.row)
         tableView.isUserInteractionEnabled = false
         

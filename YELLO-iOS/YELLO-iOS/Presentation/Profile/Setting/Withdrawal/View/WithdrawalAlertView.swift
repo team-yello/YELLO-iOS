@@ -64,20 +64,20 @@ final class WithdrawalAlertView: BaseView {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(40.adjusted)
+            $0.top.equalToSuperview().offset(40.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         noButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(26.adjusted)
-            $0.leading.equalToSuperview().inset(34.adjusted)
+            $0.bottom.equalToSuperview().inset(26.adjustedHeight)
+            $0.leading.equalToSuperview().inset(34.adjustedWidth)
             $0.width.equalTo(34.adjustedWidth)
             $0.height.equalTo(28.adjustedHeight)
         }
         
         yesButton.snp.makeConstraints {
             $0.bottom.equalTo(noButton)
-            $0.trailing.equalToSuperview().inset(34.adjusted)
+            $0.trailing.equalToSuperview().inset(34.adjustedWidth)
             $0.width.equalTo(74.adjustedWidth)
             $0.height.equalTo(28.adjustedHeight)
         }

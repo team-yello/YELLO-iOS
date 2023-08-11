@@ -25,7 +25,7 @@ final class AroundTableViewCell: UITableViewCell {
     let nameLabel = UILabel()
     let keywordHeadLabel = UILabel()
     let keywordLabel = UILabel()
-    let keywordView = UIView(frame: CGRect(x: 0, y: 0, width: 91, height: 20))
+    let keywordView = UIView(frame: CGRect(x: 0, y: 0, width: 91.adjustedWidth, height: 20.adjustedHeight))
     let keywordFootLabel = UILabel()
     let timeLabel = UILabel()
     
@@ -46,20 +46,7 @@ final class AroundTableViewCell: UITableViewCell {
 
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-//        genderImageView.image = nil
-//        genderLabel.text = nil
-//        polygonImageView.image = nil
-//        receiverLabel.text = nil
-//        nameLabel.text = nil
-//        keywordHeadLabel.text = nil
-//        keywordLabel.text = nil
-//        keywordFootLabel.text = nil
-//        timeLabel.text = nil
-    }
-    
+        
     // MARK: Layout Helpers
     private func setUI() {
         setStyle()
@@ -69,7 +56,7 @@ final class AroundTableViewCell: UITableViewCell {
     private func setStyle() {
         self.backgroundColor = .clear
         contentView.backgroundColor = .grayscales900
-        contentView.makeCornerRound(radius: 8)
+        contentView.makeCornerRound(radius: 8.adjustedHeight)
         
         genderImageView.do {
             $0.image = ImageLiterals.MyYello.imgGenderFemale
@@ -98,12 +85,14 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         nameLabel.do {
-            $0.text = "술자리에서 너가"
+            $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 24.adjustedHeight)
+//            $0.text = "술자리에서 너가"
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
         
         keywordHeadLabel.do {
+            $0.setTextWithLineHeight(text: "사라진다면", lineHeight: 24.adjustedHeight)
             $0.text = "사라진다면"
             $0.font = .uiBodyLarge
             $0.textColor = .white
@@ -111,11 +100,14 @@ final class AroundTableViewCell: UITableViewCell {
         
         keywordView.do {
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 4)
+            $0.makeCornerRound(radius: 4.adjustedHeight)
             $0.addDottedBorder()
+//            $0.isHidden = true
+
         }
         
         keywordLabel.do {
+            $0.setTextWithLineHeight(text: "달빛산책 간 거", lineHeight: 24.adjustedHeight)
             $0.text = "달빛산책 간 거"
             $0.font = .uiBodyLarge
             $0.textColor = .semanticGenderF300
@@ -123,6 +115,7 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         keywordFootLabel.do {
+            $0.setTextWithLineHeight(text: "(이)야", lineHeight: 24.adjustedHeight)
             $0.text = "(이)야"
             $0.font = .uiBodyLarge
             $0.textColor = .white
@@ -154,52 +147,51 @@ final class AroundTableViewCell: UITableViewCell {
         
         contentView.snp.makeConstraints {
             $0.width.equalTo(343.adjustedWidth)
-            $0.height.equalTo(108)
+            $0.height.equalTo(108.adjustedHeight)
         }
         
         genderImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().inset(16.adjustedHeight)
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
             $0.width.height.equalTo(20)
         }
         
         receiverStackView.snp.makeConstraints {
-            $0.leading.equalTo(genderImageView.snp.trailing).inset(-8)
+            $0.leading.equalTo(genderImageView.snp.trailing).inset(-8.adjustedWidth)
             $0.centerY.equalTo(genderImageView)
         }
         
         timeLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16)
-            $0.top.equalToSuperview().inset(19)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.top.equalToSuperview().inset(19.adjustedHeight)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(receiverStackView.snp.bottom).offset(10)
+            $0.top.equalTo(receiverStackView.snp.bottom).offset(10.adjustedHeight)
             $0.leading.equalTo(receiverStackView)
         }
         
         keywordHeadLabel.snp.makeConstraints {
-//            $0.top.equalTo(keywordView)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
             $0.leading.equalTo(nameLabel)
-            $0.centerY.equalTo(keywordLabel)
         }
         
         keywordView.snp.makeConstraints {
-            $0.bottom.equalTo(keywordLabel)
-            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6)
-            $0.height.equalTo(20)
-            $0.centerX.equalTo(keywordLabel)
+            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
+            $0.height.equalTo(20.adjustedHeight)
             $0.width.equalTo(keywordLabel)
+            $0.top.equalTo(keywordLabel).offset(4.adjustedHeight)
+
         }
         
         keywordLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(23)
-            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6)
+            $0.top.equalTo(keywordHeadLabel)
+            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
         }
         
         keywordFootLabel.snp.makeConstraints {
-            $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6)
-            $0.centerY.equalTo(keywordLabel)
+            $0.top.equalTo(keywordHeadLabel)
+            $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6.adjustedWidth)
         }
     }
     

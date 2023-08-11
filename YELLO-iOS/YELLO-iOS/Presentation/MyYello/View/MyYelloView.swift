@@ -18,7 +18,11 @@ final class MyYelloView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    static var myYelloCount: Int = 0
+    var myYelloCount: Int = 0 {
+        didSet {
+            resetLayout()
+        }
+    }
     weak var handleUnlockButton: HandleUnlockButton?
     var haveTicket: Bool = true {
         didSet {
@@ -46,36 +50,30 @@ final class MyYelloView: BaseView {
     }
     
     override func setLayout() {
-        let statusBarHeight = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?
-            .statusBarManager?
-            .statusBarFrame.height ?? 20
-        
         self.addSubviews(myYellowNavigationBarView,
                          myYelloListView,
                          unlockButton)
         
         myYellowNavigationBarView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
+            $0.top.equalToSuperview()
             $0.width.equalToSuperview()
         }
         
         myYelloListView.snp.makeConstraints {
-            $0.top.equalTo(myYellowNavigationBarView.snp.bottom)
+            $0.top.equalTo(myYellowNavigationBarView.snp.bottom).offset(10.adjustedHeight)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
         
         unlockButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(62.adjusted)
             $0.bottom.equalTo(myYelloListView).inset(28.adjustedHeight)
         }
     }
     
     func resetLayout() {
-        myYellowNavigationBarView.yelloCountLabel.text = String(MyYelloView.myYelloCount) + "개"
+        myYellowNavigationBarView.yelloCountLabel.text = String(self.myYelloCount) + "개"
         myYellowNavigationBarView.yelloCountLabel.asColor(targetString: "개", color: .grayscales500)
     }
     

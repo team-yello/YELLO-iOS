@@ -34,7 +34,7 @@ final class MyYelloDetailNavigationBarView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "", lineHeight: 24.adjustedHeight)
             $0.font = .uiSubtitle05
             $0.textColor = .white
         }
@@ -58,12 +58,12 @@ final class MyYelloDetailNavigationBarView: BaseView {
         
         backButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
         
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(backButton.snp.trailing).inset(-8)
+            $0.leading.equalTo(backButton.snp.trailing).inset(-8.adjustedWidth)
         }
         
         pointImageView.snp.makeConstraints {
@@ -72,8 +72,8 @@ final class MyYelloDetailNavigationBarView: BaseView {
         
         pointLabel.snp.makeConstraints {
             $0.centerY.equalTo(backButton)
-            $0.trailing.equalToSuperview().inset(16)
-            $0.leading.equalTo(pointImageView.snp.trailing).inset(-8)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.leading.equalTo(pointImageView.snp.trailing).inset(-8.adjustedWidth)
         }
     }
 }

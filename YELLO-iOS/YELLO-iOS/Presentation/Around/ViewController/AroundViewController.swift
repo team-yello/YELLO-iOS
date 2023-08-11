@@ -15,7 +15,7 @@ final class AroundViewController: UIViewController {
 
     // MARK: - Variables
     // MARK: Component
-    private let aroundView = AroundView()
+    let aroundView = AroundView()
 
     // MARK: - Function
     // MARK: LifeCycle
@@ -27,6 +27,7 @@ final class AroundViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
 
@@ -48,8 +49,15 @@ extension AroundViewController {
         
         let tabbarHeight = 60 + safeAreaBottomInset()
         
+        let statusBarHeight = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
+        
         aroundView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalTo(view.safeAreaInsets).offset(statusBarHeight)
+            $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
         

@@ -52,26 +52,26 @@ extension MyFriendTableViewCell {
     private func setStyle() {
         self.backgroundColor = .black
         
-        separatorInset.left = 14
-        separatorInset.right = 14
+        separatorInset.left = 14.adjustedWidth
+        separatorInset.right = 14.adjustedWidth
         selectionStyle = .default
         
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 20)
+            $0.makeCornerRound(radius: 20.adjusted)
         }
         
         nameLabel.do {
-            $0.font = .boldSystemFont(ofSize: 18)
-            $0.setTextWithLineHeight(text: "", lineHeight: 24)
+            $0.font = .uiSubtitle01
+            $0.setTextWithLineHeight(text: "", lineHeight: 24.adjustedHeight)
             $0.textColor = .white
         }
         
         schoolLabel.do {
-            $0.font = .systemFont(ofSize: 11)
-            $0.setTextWithLineHeight(text: "", lineHeight: 15)
-            $0.textColor = .gray
+            $0.font = .uiLabelMedium
+            $0.setTextWithLineHeight(text: "", lineHeight: 15.adjustedHeight)
+            $0.textColor = .grayscales600
         }
     }
     
@@ -83,17 +83,17 @@ extension MyFriendTableViewCell {
         
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(8)
-            $0.width.height.equalTo(42)
+            $0.leading.equalToSuperview().offset(8.adjustedWidth)
+            $0.width.height.equalTo(42.adjusted)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(17)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(12)
+            $0.top.equalTo(profileImageView)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(4)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
         }
     }

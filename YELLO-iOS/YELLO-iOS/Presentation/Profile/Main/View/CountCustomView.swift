@@ -64,7 +64,7 @@ extension CountCustomView {
         }
         
         countLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(9.adjusted)
+            $0.top.equalToSuperview().inset(9.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
@@ -72,6 +72,5 @@ extension CountCustomView {
             $0.top.equalTo(countLabel.snp.bottom)
             $0.centerX.equalToSuperview()
         }
-        
     }
 }

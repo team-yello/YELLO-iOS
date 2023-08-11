@@ -17,8 +17,8 @@ final class RecommendingViewController: UIViewController {
     private let recommendingNavigationBarView = RecommendingNavigationBarView()
     private let segmentedControl = RecommendingSegmentedControl(items: [StringLiterals.Recommending.Title.kakaoFriend, StringLiterals.Recommending.Title.schoolFriend])
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-    private let kakaoFriendViewController = KakaoFriendViewController()
-    private let schoolFriendViewController = SchoolFriendViewController()
+    let kakaoFriendViewController = KakaoFriendViewController()
+    let schoolFriendViewController = SchoolFriendViewController()
     
     // MARK: Property
     var dataViewControllers: [UIViewController] {
@@ -92,7 +92,7 @@ extension RecommendingViewController {
         }
         
         segmentedControl.snp.makeConstraints {
-            $0.height.equalTo(44.adjusted)
+            $0.height.equalTo(44.adjustedHeight)
             $0.width.equalToSuperview()
             $0.top.equalTo(recommendingNavigationBarView.snp.bottom)
         }
