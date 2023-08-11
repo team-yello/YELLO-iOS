@@ -14,7 +14,7 @@ final class KakaoFriendViewController: UIViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let kakaoFriendView = KakaoFriendView()
+    let kakaoFriendView = KakaoFriendView()
     
     // MARK: - Function
     // MARK: LifeCycle

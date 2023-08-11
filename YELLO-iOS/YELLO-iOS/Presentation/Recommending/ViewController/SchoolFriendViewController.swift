@@ -14,7 +14,7 @@ final class SchoolFriendViewController: UIViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let schoolFriendView = SchoolFriendView()
+    let schoolFriendView = SchoolFriendView()
     
     // MARK: - Function
     // MARK: LifeCycle

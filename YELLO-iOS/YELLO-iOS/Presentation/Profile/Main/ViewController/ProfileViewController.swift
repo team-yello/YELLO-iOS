@@ -14,7 +14,7 @@ final class ProfileViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let profileView = ProfileView()
+    let profileView = ProfileView()
     let friendProfileViewController = FriendProfileViewController()
     let bottomSheetViewController = BottomFriendProfileViewController()
     

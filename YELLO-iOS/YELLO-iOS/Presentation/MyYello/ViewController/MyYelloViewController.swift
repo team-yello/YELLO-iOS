@@ -14,7 +14,7 @@ final class MyYelloViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
-    private let myYelloView = MyYelloView()
+    let myYelloView = MyYelloView()
     
     // MARK: - Function
     // MARK: LifeCycle

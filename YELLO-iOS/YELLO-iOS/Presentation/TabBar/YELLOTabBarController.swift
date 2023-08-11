@@ -18,8 +18,16 @@ final class YELLOTabBarController: UITabBarController {
     
     private var startStatus: Int = 1
     private var messageIndex: Int = 0
+    let recommendingViewController = RecommendingViewController()
+    let aroundViewController = AroundViewController()
+    let myYelloViewController = MyYelloViewController()
+    let profileViewController = ProfileViewController()
     
     // MARK: - Life Cycle
+    override func loadView() {
+        super.loadView()
+        network()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -201,6 +209,25 @@ extension YELLOTabBarController {
 }
 
 extension YELLOTabBarController {
+    func network() {
+            
+            /// 추천친구 서버통신
+            recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
+                self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()
+            }
+            recommendingViewController.schoolFriendViewController.schoolFriendView.recommendingSchoolFriend()
+            
+            /// 둘러보기 서버통신
+            aroundViewController.aroundView.around()
+            
+            /// 내 쪽지 서버통신
+            myYelloViewController.myYelloView.myYelloListView.myYello()
+            
+            /// 내 프로필 서버통신
+            profileViewController.profileView.profileFriend()
+            profileViewController.profileView.myProfileHeaderView.myProfileView.profileUser()
+        }
+    
     @objc
     func showMessage(_ notification: Notification) {
         if let userInfo = notification.userInfo {

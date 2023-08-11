@@ -17,8 +17,8 @@ final class RecommendingViewController: UIViewController {
     private let recommendingNavigationBarView = RecommendingNavigationBarView()
     private let segmentedControl = RecommendingSegmentedControl(items: [StringLiterals.Recommending.Title.kakaoFriend, StringLiterals.Recommending.Title.schoolFriend])
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-    private let kakaoFriendViewController = KakaoFriendViewController()
-    private let schoolFriendViewController = SchoolFriendViewController()
+    let kakaoFriendViewController = KakaoFriendViewController()
+    let schoolFriendViewController = SchoolFriendViewController()
     
     // MARK: Property
     var dataViewControllers: [UIViewController] {
