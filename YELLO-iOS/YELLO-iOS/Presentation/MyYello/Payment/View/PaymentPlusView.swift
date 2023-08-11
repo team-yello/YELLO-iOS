@@ -43,6 +43,19 @@ final class PaymentPlusView: BaseView {
             $0.font = .uiSubtitle01
             $0.textColor = .white
         }
+        
+        nameKeyOneButton.do {
+            $0.makeShadow(radius: 8, color: UIColor(hex: "6437FF", alpha: 0.25), offset: CGSize(width: 0, height: 0), opacity: 0.25)
+        }
+        
+        nameKeyTwoButton.do {
+            $0.makeShadow(radius: 8, color: UIColor(hex: "6437FF", alpha: 0.25), offset: CGSize(width: 0, height: 0), opacity: 0.25)
+        }
+        
+        nameKeyFiveButton.do {
+            $0.makeShadow(radius: 8, color: UIColor(hex: "6437FF", alpha: 0.25), offset: CGSize(width: 0, height: 0), opacity: 0.25)
+        }
+
     }
     
     override func setLayout() {

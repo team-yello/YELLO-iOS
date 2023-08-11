@@ -1179,9 +1179,9 @@
 		C37DFC4C2A85023800D3B685 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C32322F42A619E92006DA50B /* PaymentView.swift */,
-				C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */,
 				C37DFC472A8501F300D3B685 /* PaymentPlusView.swift */,
+				C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */,
+				C32322F42A619E92006DA50B /* PaymentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
