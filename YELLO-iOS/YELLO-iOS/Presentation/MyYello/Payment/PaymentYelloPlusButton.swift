@@ -12,7 +12,7 @@ import Then
 
 final class PaymentYelloPlusButton: UIButton {
     
-    private lazy var backgroundView = UIView(frame:CGRect(x: 0, y: 0, width: 343.adjustedWidth, height: 70.adjustedHeight))
+    private let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 400.adjustedWidth, height: 70.adjustedHeight))
     private let badgeImageView = UIImageView()
     private let buttonTitleLabel = UILabel()
     private let discountTitleLabel = UILabel()
@@ -40,8 +40,6 @@ final class PaymentYelloPlusButton: UIButton {
     }
     
     private func setStyle() {
-        self.frame = CGRect(x: 0, y: 0, width: 343.adjustedWidth, height: 78.adjustedHeight)
-        
         backgroundView.do {
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
             $0.makeCornerRound(radius: 8.adjustedHeight)
@@ -107,6 +105,7 @@ final class PaymentYelloPlusButton: UIButton {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(343.adjustedHeight)
             $0.height.equalTo(70.adjustedHeight)
+            $0.leading.trailing.equalToSuperview()
         }
         
         badgeImageView.snp.makeConstraints {
