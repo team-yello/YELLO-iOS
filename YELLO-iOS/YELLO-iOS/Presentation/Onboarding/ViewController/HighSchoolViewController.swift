@@ -15,8 +15,9 @@ class HighSchoolViewController: OnboardingBaseViewController {
     // MARK: Constants
     let schoolSearchViewController = FindSchoolViewController()
     let studentIdViewController = StudentIdViewController()
-    let studentIdView = StudentIdView()
-    let userViewController = UserInfoViewController()
+    lazy var studentIdView = StudentIdView()
+    lazy var userViewController = UserInfoViewController()
+    lazy var genderViewController = GenderViewController()
     let bottomSheetViewController = BaseBottomViewController()
     
     // MARK: Property
@@ -35,9 +36,14 @@ class HighSchoolViewController: OnboardingBaseViewController {
     }
     
     // MARK: Layout Helpers
+    override func setStyle() {
+        studentIdView.studentIdList = (1...10).map { "\($0)반" }
+        studentIdViewController.studentIdList = (1...10).map { "\($0)반" }
+    }
+    
     override func setLayout() {
         view.addSubview(baseView)
-        nextViewController = userViewController
+        nextViewController = genderViewController
         baseView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(4.adjustedHeight)
             $0.leading.trailing.bottom.equalToSuperview()
