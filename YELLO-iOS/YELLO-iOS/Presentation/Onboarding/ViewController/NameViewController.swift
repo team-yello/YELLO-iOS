@@ -37,9 +37,6 @@ class NameViewController: OnboardingBaseViewController {
         }
     }
     
-    @objc func nameCancelTapped() {
-        baseView.nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
-    }
     
     override func setLayout() {
         view.addSubview(baseView)
@@ -55,7 +52,6 @@ class NameViewController: OnboardingBaseViewController {
         
     }
     
-    // MARK: Custom Function
     func checkButtonEnable() {
         let nameTextFieldView = baseView.nameTextFieldView
         
@@ -85,6 +81,11 @@ class NameViewController: OnboardingBaseViewController {
     override func setUser() {
         guard let name = baseView.nameTextFieldView.textField.text else { return }
         User.shared.name = name
+    }
+    
+    // MARK: objc Function
+    @objc func nameCancelTapped() {
+        baseView.nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
     }
     
 }

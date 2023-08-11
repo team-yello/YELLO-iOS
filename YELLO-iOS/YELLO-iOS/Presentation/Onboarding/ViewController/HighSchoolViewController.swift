@@ -94,6 +94,10 @@ class HighSchoolViewController: OnboardingBaseViewController {
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
     
+    override func setUser() {
+        //고등학교 정보 저장
+    }
+    
     // MARK: Objc Function
     @objc func didTapClassButton(sender: UIButton) {
         sender.makeBorder(width: 1, color: .yelloMain500)
@@ -104,6 +108,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
                 button.makeBorder(width: 1, color: .grayscales700)
             }
         }
+        
         isSelectLevel = true
     }
 

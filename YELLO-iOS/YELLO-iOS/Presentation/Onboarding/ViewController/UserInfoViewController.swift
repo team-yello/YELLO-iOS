@@ -40,11 +40,6 @@ class UserInfoViewController: OnboardingBaseViewController {
         }
     }
     
-    @objc func idCancelTapped() {
-        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
-        baseView.idTextField.textField.setButtonState(state: .id)
-    }
-    
     override func setLayout() {
         view.addSubview(baseView)
         baseView.snp.makeConstraints {
@@ -63,7 +58,6 @@ class UserInfoViewController: OnboardingBaseViewController {
         
     }
     
-    // MARK: Custom Function
     func checkButtonEnable() {
         let idTextFieldView = baseView.idTextField
         
@@ -113,6 +107,7 @@ class UserInfoViewController: OnboardingBaseViewController {
         User.shared.yelloId = id
     }
     
+    // MARK: objc Function
     @objc private func textDidChange(_ notification: Notification) {
             if let textField = notification.object as? UITextField {
                 if let text = textField.text {
@@ -130,6 +125,12 @@ class UserInfoViewController: OnboardingBaseViewController {
                 }
             }
         }
+    
+    @objc func idCancelTapped() {
+        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
+        baseView.idTextField.textField.setButtonState(state: .id)
+    }
+    
 
 }
 

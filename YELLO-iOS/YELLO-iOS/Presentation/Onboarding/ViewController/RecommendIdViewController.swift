@@ -18,7 +18,6 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     // MARK: - Function
     // MARK: LifeCycle
-    
     override func viewDidLoad() {
         step = 7
         isSkipable = true
@@ -28,6 +27,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
         addTarget()
     }
     
+    // MARK: Layout Helper
     override func setStyle() {
         navigationBarView.backButton.isHidden = true
     }
@@ -95,11 +95,6 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 }
             }
         }
-            }
-    
-    // MARK: Objc Function
-    @objc func idCancelTapped() {
-        baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "추천인의 아이디를 입력해주세요.", State: .normal)
     }
     
     override func setUser() {
@@ -107,6 +102,10 @@ class RecommendIdViewController: OnboardingBaseViewController {
         User.shared.recommendId = text
     }
     
+    // MARK: Objc Function
+    @objc func idCancelTapped() {
+        baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "추천인의 아이디를 입력해주세요.", State: .normal)
+    }
 }
 
 // MARK: - extension

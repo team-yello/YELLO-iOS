@@ -112,6 +112,8 @@ class AddFriendsViewController: OnboardingBaseViewController {
 
 }
 
+// MARK: - extension
+// MARK: UITableViewDataSourcePrefetching
 extension AddFriendsViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if let lastIndexPath = indexPaths.last,
@@ -121,6 +123,7 @@ extension AddFriendsViewController: UITableViewDataSourcePrefetching {
     }
 }
 
+// MARK: UITableViewDelegate
 extension AddFriendsViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let tableView = self.baseView.friendsTableView

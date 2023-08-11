@@ -14,6 +14,8 @@ class PushSettingViewController: UIViewController {
     let onboardingEndViewController = OnboardingEndViewController()
     let userNotiCenter = UNUserNotificationCenter.current()
     
+    
+    // MARK: - Function
     // MARK: Life Cycles
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
@@ -25,6 +27,7 @@ class PushSettingViewController: UIViewController {
         setUI()
     }
     
+    // MARK: Layout Helper
     private func setUI(){
         setStyle()
         setLayout()
@@ -44,6 +47,7 @@ class PushSettingViewController: UIViewController {
         }
     }
     
+    // MARK: Custom Function
     // 사용자에게 알림 권한 요청
     func requestAuthNoti() {
         let notiAuthOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
@@ -52,8 +56,11 @@ class PushSettingViewController: UIViewController {
                 print(#function, error)
             }
         }
+        
+        /// 알림 설정 시 추가 포인트 지급 -> 설정 여부 저장
     }
     
+    // MARK: objc Function
     @objc func tapButton() {
         requestAuthNoti()
         navigationController?.pushViewController(onboardingEndViewController, animated: true)
