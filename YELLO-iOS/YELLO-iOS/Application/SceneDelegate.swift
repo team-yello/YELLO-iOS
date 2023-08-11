@@ -74,6 +74,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let rootViewController = YELLOTabBarController()
             let navigationController = UINavigationController(rootViewController: rootViewController)
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
             
             if type == "NEW_VOTE" {
                 selectedIndex = 3
@@ -130,8 +132,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                 }
             }
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
         }
     }
     
