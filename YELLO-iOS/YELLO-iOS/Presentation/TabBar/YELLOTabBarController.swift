@@ -218,7 +218,7 @@ extension YELLOTabBarController {
             }
             recommendingViewController.schoolFriendViewController.schoolFriendView.recommendingSchoolFriend()
             
-            /// 둘러보기 서버통신
+            /// 타임라인 서버통신
             aroundViewController.aroundView.around()
             
             /// 내 쪽지 서버통신
