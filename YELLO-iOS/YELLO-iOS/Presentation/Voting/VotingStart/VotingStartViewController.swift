@@ -80,6 +80,7 @@ final class VotingStartViewController: BaseViewController {
         originView.yellowButton.do {
             $0.setTitle("투표 시작!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
+            $0.makeCornerRound(radius: 30.adjusted)
         }
     }
     
@@ -107,6 +108,7 @@ final class VotingStartViewController: BaseViewController {
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+            $0.height.equalTo(60.adjusted)
         }
         
         originView.yelloFace.snp.makeConstraints {

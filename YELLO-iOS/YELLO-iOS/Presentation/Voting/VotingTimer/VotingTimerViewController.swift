@@ -115,6 +115,7 @@ final class VotingTimerViewController: BaseViewController {
             $0.setTitle("기다리지 않고 바로 투표하기", for: .normal)
             $0.titleLabel?.font = .uiSubtitle04
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
+            $0.makeCornerRound(radius: 23.adjusted)
         }
     }
     
@@ -178,6 +179,7 @@ final class VotingTimerViewController: BaseViewController {
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+            $0.height.equalTo(48.adjusted)
         }
         
         originView.yelloFace.snp.makeConstraints {

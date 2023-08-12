@@ -45,6 +45,7 @@ final class VotingLockedViewController: BaseViewController {
         originView.yellowButton.do {
             $0.setTitle("친구 초대하기", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
+            $0.makeCornerRound(radius: 30.adjusted)
         }
     }
     
@@ -78,6 +79,7 @@ final class VotingLockedViewController: BaseViewController {
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+            $0.height.equalTo(60.adjusted)
         }
         
         originView.yelloFace.snp.makeConstraints {
