@@ -198,7 +198,7 @@ extension MyProfileView {
         }
         
         messageView.snp.makeConstraints {
-            $0.top.equalTo(separateView.snp.bottom).offset(4.adjustedHeight)
+            $0.top.equalTo(separateView.snp.bottom).offset(16.adjustedHeight)
             $0.trailing.equalTo(friendView.snp.leading).offset(-12.adjustedWidth)
             $0.height.equalTo(64.adjustedHeight)
             $0.width.equalTo(84.adjustedWidth)
@@ -239,6 +239,7 @@ extension MyProfileView {
             $0.center.equalToSuperview()
             $0.leading.trailing.bottom.top.equalToSuperview().inset(2.adjustedWidth)
         }
+        
         // TODO: 디자인 나오면 내 프로필 스켈레톤 UI 구현
 //        nameSkeletonLabel.snp.makeConstraints {
 //

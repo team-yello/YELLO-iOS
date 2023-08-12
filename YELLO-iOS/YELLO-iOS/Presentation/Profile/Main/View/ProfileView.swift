@@ -20,6 +20,7 @@ final class ProfileView: UIView {
     // MARK: - Variables
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
+    weak var handleShopButton: HandleShopButton?
     var indexNumber: Int = -1
     var friendCount: Int = 0
     
@@ -144,6 +145,10 @@ extension ProfileView {
         myFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
+    @objc func shopButtonTapped() {
+        handleShopButton?.shopButtonTapped()
+    }
+    
     private func presentModal(index: Int) {
         handleFriendCellDelegate?.presentModal(index: index)
     }
@@ -234,11 +239,12 @@ extension ProfileView: UITableViewDataSource {
                 view?.friendCountView.countStackView.isHidden = false
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 view?.addBottomBorderWithColor(color: .black)
                 view?.myProfileView.profileUser()
                 view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
                 view?.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
+                view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
             }
             return view
         default:
