@@ -1452,11 +1452,11 @@
 		C3D2663E2A5C75EE0041C7C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
+				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
 				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
+				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
 				C307ECB52A607357000F5BA9 /* FriendCountView.swift */,
 				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
-				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
 				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
 				C3FF24782A5D798700A97D40 /* FriendProfileView.swift */,
 			);
@@ -2228,22 +2228,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
-			};
-		};
-		C3081E452A8225580088CA44 /* XCRemoteSwiftPackageReference "ShimmerSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/BeauNouvelle/ShimmerSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Juanpe/SkeletonView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
 			};
 		};
 		C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */ = {

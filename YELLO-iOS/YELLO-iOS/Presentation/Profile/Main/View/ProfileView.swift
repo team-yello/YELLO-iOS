@@ -170,7 +170,6 @@ extension ProfileView {
                 case .success(let data):
                     guard let data = data.data else { return }
                     
-                    
                     let friendModels = data.friends.map { profileFriend in
                         
                         return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount)
@@ -289,4 +288,3 @@ extension ProfileView: UITableViewDataSource {
         return 77.adjustedHeight
     }
 }
-

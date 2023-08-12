@@ -14,6 +14,7 @@ final class MyProfileView: UIView {
     
     // MARK: - Variables
     // MARK: Component
+    let mainProfileView = UIView()
     let profileImageView = UIImageView()
     let nameLabel = UILabel()
     let instagramLabel = UILabel()
@@ -22,7 +23,10 @@ final class MyProfileView: UIView {
     let messageView = CountCustomView()
     let friendView = CountCustomView()
     let pointView = CountCustomView()
-    private let addGroupButton = UIButton(frame: CGRect(x: 0, y: 0, width: 303.adjustedWidth, height: 48.adjustedHeight))
+    
+    private let addGroupButton = UIButton(frame: CGRect(x: 0, y: 0, width: 129.adjustedWidth, height: 48.adjustedHeight))
+    lazy var shopButton = UIButton(frame: CGRect(x: 0, y: 0, width: 202.adjustedWidth, height: 44.adjustedHeight))
+    let shopBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 206.adjustedWidth, height: 48.adjustedHeight))
     
     let nameSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
     let schoolSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
@@ -50,8 +54,11 @@ extension MyProfileView {
     }
     
     private func setStyle() {
-        self.backgroundColor = .grayscales900
-        self.makeCornerRound(radius: 12)
+        
+        mainProfileView.do {
+            $0.backgroundColor = .grayscales900
+            $0.makeCornerRound(radius: 12)
+        }
         
         profileImageView.do {
             $0.backgroundColor = .grayscales800
@@ -104,9 +111,26 @@ extension MyProfileView {
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.yelloMain500, for: .normal)
             $0.setImage(ImageLiterals.Profile.icPlus, for: .normal)
-            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4)
+            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 4.adjustedWidth)
             $0.setTitle(StringLiterals.Profile.MyProfile.addGroup, for: .normal)
             $0.addTarget(self, action: #selector(addGroupButtonTapped), for: .touchUpInside)
+        }
+        
+        shopButton.do {
+            $0.setImage(ImageLiterals.MyYello.icShop, for: .normal)
+            $0.setTitle(StringLiterals.MyYello.NavigationBar.shop, for: .normal)
+            $0.titleLabel?.font = .uiBodyMedium
+            $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 5.adjustedWidth)
+            $0.makeCornerRound(radius: 24.adjustedHeight)
+            $0.layer.cornerCurve = .continuous
+            $0.setTitleColor(.white, for: .normal)
+            $0.backgroundColor = .black
+        }
+        
+        shopBackgroundView.do {
+            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.makeCornerRound(radius: 24.adjustedHeight)
+            $0.layer.cornerCurve = .continuous
         }
         
         nameSkeletonLabel.do {
@@ -122,21 +146,27 @@ extension MyProfileView {
     }
     
     private func setLayout() {
-        self.addSubviews(profileImageView,
+        self.addSubviews(mainProfileView,
+                         addGroupButton,
+                         shopBackgroundView)
+        
+        mainProfileView.addSubviews(profileImageView,
                          nameLabel,
                          instagramLabel,
                          schoolLabel,
                          separateView,
                          messageView,
                          friendView,
-                         pointView,
-                         addGroupButton
+                         pointView
 //                         ,
 //                         nameSkeletonLabel,
 //                         schoolSkeletonLabel
         )
         
-        self.snp.makeConstraints {
+        shopBackgroundView.addSubviews(shopButton)
+        
+        mainProfileView.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.width.equalTo(343.adjustedWidth)
         }
         
@@ -172,6 +202,7 @@ extension MyProfileView {
             $0.trailing.equalTo(friendView.snp.leading).offset(-12.adjustedWidth)
             $0.height.equalTo(64.adjustedHeight)
             $0.width.equalTo(84.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(20.adjustedHeight)
         }
         
         friendView.snp.makeConstraints {
@@ -179,6 +210,7 @@ extension MyProfileView {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(64.adjustedHeight)
             $0.width.equalTo(84.adjustedWidth)
+            $0.bottom.equalTo(messageView)
         }
         
         pointView.snp.makeConstraints {
@@ -186,14 +218,27 @@ extension MyProfileView {
             $0.leading.equalTo(friendView.snp.trailing).offset(12.adjustedWidth)
             $0.height.equalTo(64.adjustedHeight)
             $0.width.equalTo(84.adjustedWidth)
+            $0.bottom.equalTo(messageView)
         }
         
         addGroupButton.snp.makeConstraints {
+            $0.top.equalTo(mainProfileView.snp.bottom).offset(8.adjustedHeight)
             $0.height.equalTo(48.adjustedHeight)
-            $0.leading.trailing.equalToSuperview().inset(20.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(20.adjustedHeight)
+            $0.width.equalTo(129.adjustedWidth)
+            $0.leading.equalTo(mainProfileView)
         }
         
+        shopBackgroundView.snp.makeConstraints {
+            $0.trailing.equalTo(mainProfileView)
+            $0.height.equalTo(48.adjustedHeight)
+            $0.width.equalTo(206.adjustedWidth)
+            $0.top.equalTo(addGroupButton)
+        }
+        
+        shopButton.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.leading.trailing.bottom.top.equalToSuperview().inset(2.adjustedWidth)
+        }
         // TODO: 디자인 나오면 내 프로필 스켈레톤 UI 구현
 //        nameSkeletonLabel.snp.makeConstraints {
 //

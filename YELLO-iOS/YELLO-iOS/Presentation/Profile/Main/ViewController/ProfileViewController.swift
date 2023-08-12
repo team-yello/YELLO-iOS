@@ -39,6 +39,7 @@ final class ProfileViewController: BaseViewController {
         profileView.handleFriendCellDelegate = self
         friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
+        profileView.myProfileHeaderView.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
     }
     
     override func setLayout() {
@@ -57,6 +58,11 @@ final class ProfileViewController: BaseViewController {
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
+    }
+    
+    @objc func shopButtonTapped() {
+        let paymentPlusViewController = PaymentPlusViewController()
+        navigationController?.pushViewController(paymentPlusViewController, animated: true)
     }
 }
 
