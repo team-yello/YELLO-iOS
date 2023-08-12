@@ -39,6 +39,9 @@ enum ImageLiterals {
         static var idGuide: UIImage { .load(named: "idGuide")}
         static var nameGuide: UIImage { .load(named: "nameGuide")}
         static var schoolGuide: UIImage { .load(named: "schoolGuide")}
+        static var pushNotification: UIImage { .load(named: "pushNotification")}
+        static var subscriptionPoint: UIImage { .load(named: "subscriptionPoint")}
+        static var subscriptionPointPlus: UIImage { .load(named: "subscriptionPointPlus")}
     
     }
     
