@@ -84,7 +84,7 @@ final class GetHintView: BaseView {
         confirmButton.do {
             $0.backgroundColor = .clear
             $0.titleLabel?.font = .uiButton
-            $0.setTitleColor(.grayscales300, for: .normal)
+            $0.setTitleColor(.grayscales500, for: .normal)
             $0.setTitle(StringLiterals.MyYello.Alert.confirmButton, for: .normal)
             $0.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
         }
@@ -106,7 +106,7 @@ final class GetHintView: BaseView {
         
         contentsView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(280)
+            $0.width.equalTo(300)
             $0.height.equalTo(270)
         }
         
@@ -121,8 +121,8 @@ final class GetHintView: BaseView {
         }
         
         pointView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18.adjusted)
-            $0.top.equalTo(hintLabel.snp.bottom).offset(36.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.top.equalTo(hintLabel.snp.bottom).offset(36)
             $0.height.equalTo(52)
         }
         
@@ -139,7 +139,7 @@ final class GetHintView: BaseView {
         pointLabel.snp.makeConstraints {
             $0.trailing.equalTo(pointTextLabel.snp.leading).inset(-4)
             $0.centerY.equalTo(pointTitleLabel)
-            $0.width.equalTo(65)
+            $0.width.equalTo(65.adjustedWidth)
         }
         
         pointTextLabel.snp.makeConstraints {
@@ -150,8 +150,8 @@ final class GetHintView: BaseView {
         confirmButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(40.adjustedHeight)
-            $0.width.equalTo(244.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(30)
+            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
 }

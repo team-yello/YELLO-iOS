@@ -55,7 +55,7 @@ final class ProfileSettingView: BaseView {
         }
         
         versionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Setting.version, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Setting.version, lineHeight: 20.adjustedHeight)
             $0.textColor = .grayscales600
             $0.font = .uiBody02
         }
@@ -90,39 +90,39 @@ final class ProfileSettingView: BaseView {
         }
         
         centerButton.snp.makeConstraints {
-            $0.top.equalTo(settingNavigationBarView.snp.bottom).offset(12.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-            $0.height.equalTo(56)
+            $0.top.equalTo(settingNavigationBarView.snp.bottom).offset(12.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(56.adjustedHeight)
         }
         
         privacyButton.snp.makeConstraints {
-            $0.top.equalTo(centerButton.snp.bottom).offset(4.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-            $0.height.equalTo(56)
+            $0.top.equalTo(centerButton.snp.bottom).offset(4.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(56.adjustedHeight)
         }
         
         serviveButton.snp.makeConstraints {
-            $0.top.equalTo(privacyButton.snp.bottom).offset(4.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-            $0.height.equalTo(56)
+            $0.top.equalTo(privacyButton.snp.bottom).offset(4.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(56.adjustedHeight)
         }
         
         logoutButton.snp.makeConstraints {
-            $0.top.equalTo(serviveButton.snp.bottom).offset(4.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(16.adjusted)
-            $0.height.equalTo(56)
+            $0.top.equalTo(serviveButton.snp.bottom).offset(4.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(56.adjustedHeight)
         }
         
         versionLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(27.adjusted)
-            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.bottom.equalToSuperview().inset(27.adjustedHeight)
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
         
         withdrawalButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(20.adjusted)
-            $0.trailing.equalToSuperview().inset(16.adjusted)
-            $0.width.equalTo(49)
-            $0.height.equalTo(36)
+            $0.bottom.equalToSuperview().inset(20.adjustedHeight)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.width.equalTo(49.adjustedWidth)
+            $0.height.equalTo(36.adjustedHeight)
         }
     }
     

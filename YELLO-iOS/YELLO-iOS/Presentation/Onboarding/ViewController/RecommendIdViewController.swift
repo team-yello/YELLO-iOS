@@ -12,27 +12,32 @@ class RecommendIdViewController: OnboardingBaseViewController {
     var isExisted = false
     
     // MARK: Component
+    let pushViewController = PushSettingViewController()
     let baseView = RecommendIdView()
     let text = ""
     
     // MARK: - Function
     // MARK: LifeCycle
-    override func loadView() {
-        super.loadView()
-        super.isSkipable = true
-        super.nextViewController = OnboardingEndViewController()
-        view = baseView
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
-    }
     
     override func viewDidLoad() {
+        step = 6
+        isSkipable = true
+        nextViewController = pushViewController
         super.viewDidLoad()
         setDelegate()
         addTarget()
+    }
+    
+    override func setStyle() {
+        navigationBarView.backButton.isHidden = true
+    }
+    
+    override func setLayout() {
+        view.addSubview(baseView)
+        baseView.snp.makeConstraints {
+            $0.top.equalTo(navigationBarView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     // MARK: Custom Function

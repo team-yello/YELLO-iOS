@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     let isLoggined = UserDefaults.standard.bool(forKey: "isLoggined")
+    let yelloTabBarController = YELLOTabBarController()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -23,6 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = splashViewController
         
         self.window?.makeKeyAndVisible()
+        
+        if self.isLoggined {
+            yelloTabBarController.network()
+        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) {
             guard let notificationResponse = connectionOptions.notificationResponse else {

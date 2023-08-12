@@ -37,7 +37,7 @@ final class MyYelloButton: UIButton {
             .map(Double.init)
             .map { $0 / Double(Color.gradientColors.count) }
             .map(NSNumber.init)
-        static let cornerRadius = 62.adjusted / 2
+        static let cornerRadius = 31.adjusted
         static let cornerWidth = 2.0
     }
     
@@ -139,19 +139,19 @@ final class MyYelloButton: UIButton {
         keyStackView.do {
             $0.addArrangedSubviews(keyImageView, keyCountLabel)
             $0.axis = .horizontal
-            $0.spacing = 4
+            $0.spacing = 4.adjustedWidth
             $0.isUserInteractionEnabled = false
         }
         
         titleTicketStackView.do {
             $0.addArrangedSubviews(keyStackView, buttonTicketTitleLabel)
             $0.axis = .horizontal
-            $0.spacing = 12
+            $0.spacing = 12.adjustedWidth
             $0.isUserInteractionEnabled = false
         }
         
         findLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.findLabel, lineHeight: 22)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.findLabel, lineHeight: 22.adjustedHeight)
             $0.font = .uiSubtitle02
             $0.textColor = .white
             $0.isHidden = true

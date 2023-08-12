@@ -22,7 +22,7 @@ final class FriendSearchTableViewCell: UITableViewCell {
     static let identifier = "FriendSearchTableViewCell"
     
     // MARK: Component
-    let profileImageView = UIImageView()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 42.adjusted, height: 42.adjusted))
     let nameLabel = UILabel()
     let yelloIdLabel = UILabel()
     let schoolLabel = UILabel()
@@ -62,31 +62,31 @@ extension FriendSearchTableViewCell {
     private func setStyle() {
         self.backgroundColor = .black
         
-        separatorInset.left = 14
-        separatorInset.right = 14
+        separatorInset.left = 14.adjustedWidth
+        separatorInset.right = 14.adjustedWidth
         selectionStyle = .default
         
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 21)
+            $0.makeCornerRound(radius: 21.adjusted)
         }
         
         nameLabel.do {
             $0.font = .uiSubtitle01
-            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24.adjustedHeight)
             $0.textColor = .white
         }
         
         yelloIdLabel.do {
-            $0.setTextWithLineHeight(text: "@qwerty", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "@qwerty", lineHeight: 15.adjustedHeight)
             $0.font = .uiLabelMedium
             $0.textColor = .yelloMain700
         }
         
         schoolLabel.do {
             $0.font = .uiLabelMedium
-            $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15.adjustedHeight)
             $0.textColor = .grayscales600
         }
         
@@ -98,7 +98,7 @@ extension FriendSearchTableViewCell {
         
         myFriendLabel.do {
             $0.font = .uiButton02
-            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.myFriend, lineHeight: 16)
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.myFriend, lineHeight: 16.adjustedHeight)
             $0.textColor = .grayscales600
         }
         
@@ -122,14 +122,14 @@ extension FriendSearchTableViewCell {
         )
         
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
-            $0.leading.equalToSuperview().inset(8)
-            $0.width.height.equalTo(42)
+            $0.top.equalToSuperview().inset(16.adjustedHeight)
+            $0.leading.equalToSuperview().inset(8.adjustedWidth)
+            $0.width.height.equalTo(42.adjusted)
         }
         
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(profileImageView)
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(12)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
         }
         
         yelloIdLabel.snp.makeConstraints {
@@ -138,18 +138,18 @@ extension FriendSearchTableViewCell {
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.top.equalTo(yelloIdLabel.snp.bottom).offset(4)
+            $0.top.equalTo(yelloIdLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
         }
         
         addButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(8)
+            $0.trailing.equalToSuperview().inset(8.adjustedWidth)
         }
         
         myFriendLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(25)
+            $0.trailing.equalToSuperview().inset(25.adjustedWidth)
         }
     }
     

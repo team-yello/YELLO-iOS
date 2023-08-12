@@ -116,8 +116,8 @@ final class UsePointView: BaseView {
         }
         
         pointView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(18.adjusted)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(18)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.height.equalTo(52)
         }
         

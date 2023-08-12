@@ -17,6 +17,7 @@ class KakaoLoginView: BaseView {
     let stackView = UIStackView()
     
     override func setStyle() {
+        self.backgroundColor = .black
         
         titleLabel.do {
             $0.text = "Yell:o에 오신 걸 환영해요!"

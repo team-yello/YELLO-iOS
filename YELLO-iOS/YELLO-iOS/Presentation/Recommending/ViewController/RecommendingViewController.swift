@@ -92,7 +92,7 @@ extension RecommendingViewController {
         }
         
         segmentedControl.snp.makeConstraints {
-            $0.height.equalTo(44.adjusted)
+            $0.height.equalTo(44.adjustedHeight)
             $0.width.equalToSuperview()
             $0.top.equalTo(recommendingNavigationBarView.snp.bottom)
         }

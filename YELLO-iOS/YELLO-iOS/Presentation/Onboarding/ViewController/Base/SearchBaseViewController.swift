@@ -9,8 +9,13 @@ import UIKit
 
 // MARK: - Delegate
 protocol SearchResultTableViewSelectDelegate: AnyObject {
-    func didSelectSearchResult(_ result: String)
+    func didSelectSchoolResult(_ result: String)
 }
+
+protocol MajorSearchResultSelectDelegate: AnyObject {
+    func didSelectMajorResult(_ result: String)
+}
+
 
 class SearchBaseViewController: BaseViewController {
     
@@ -21,6 +26,7 @@ class SearchBaseViewController: BaseViewController {
     // MARK: Component
     let searchView = SearchView()
     weak var delegate: SearchResultTableViewSelectDelegate?
+    weak var majorSearchDelegate: MajorSearchResultSelectDelegate?
     
     // MARK: - Function
     // MARK: - LifeCycles
@@ -55,7 +61,6 @@ class SearchBaseViewController: BaseViewController {
     private func setDelegate() {
         searchView.searchTextField.delegate = self
         searchView.searchResultTableView.dataSource = self
-        searchView.searchResultTableView.delegate = self
     }
     
     /// 키보드 내리기
@@ -94,15 +99,4 @@ extension SearchBaseViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - extension
 
-// MARK: UITableViewDelegate
-extension SearchBaseViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
-            return
-        }
-        delegate?.didSelectSearchResult(currentCell.titleLabel.text ?? "")
-        self.dismiss(animated: true)
-    }
-}

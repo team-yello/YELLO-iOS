@@ -16,7 +16,6 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     var myPoint = 0
-    let userNotiCenter = UNUserNotificationCenter.current()
     
     override func loadView() {
         self.view = originView
@@ -24,11 +23,7 @@ final class VotingStartViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        requestAuthNoti()
-
         originView.yellowButton.isEnabled = false
-        getVotingAvailable()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
@@ -197,15 +192,4 @@ extension VotingStartViewController {
             }
         }
     }
-    
-    // 사용자에게 알림 권한 요청
-    func requestAuthNoti() {
-        let notiAuthOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
-        userNotiCenter.requestAuthorization(options: notiAuthOptions) { (success, error) in
-            if let error = error {
-                print(#function, error)
-            }
-        }
-    }
-
 }

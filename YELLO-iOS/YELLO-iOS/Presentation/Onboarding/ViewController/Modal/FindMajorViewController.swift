@@ -79,17 +79,23 @@ class FindMajorViewController: SearchBaseViewController {
         allArr.removeAll()
         searchMajor(text)
     }
+    
     @objc func helperButtonDidTap() {
         let url = URL(string: "https://bit.ly/3pO0ijD")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 
-extension FindMajorViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        super.tableView(tableView, didSelectRowAt: indexPath)
+
+extension FindMajorViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
+            return
+        }
+        majorSearchDelegate?.didSelectMajorResult(currentCell.titleLabel.text ?? "")
         let selectedItem = allMajor[indexPath.row]
         print(selectedItem.groupID)
         majorDelegate?.didDismissFindMajorViewController(with: selectedItem)
+        self.dismiss(animated: true)
     }
 }

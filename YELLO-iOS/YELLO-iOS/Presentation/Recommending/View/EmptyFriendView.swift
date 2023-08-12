@@ -17,7 +17,7 @@ final class EmptyFriendView: UIView {
     private let containView = UIView()
     private let emptyImageView = UIImageView()
     private let emptyDescriptionLabel = UILabel()
-    lazy var inviteButton = UIButton(frame: CGRect(x: 0, y: 0, width: 236, height: 48))
+    lazy var inviteButton = UIButton(frame: CGRect(x: 0, y: 0, width: 236.adjustedWidth, height: 48.adjustedHeight))
     private var invitingView = InvitingView()
     
     // MARK: - Function
@@ -61,7 +61,7 @@ extension EmptyFriendView {
             $0.setTitleColor(.yelloMain500, for: .normal)
             $0.titleLabel?.font = .uiSubtitle04
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 24)
+            $0.makeCornerRound(radius: 24.adjustedHeight)
             $0.layer.cornerCurve = .continuous
             $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         }
@@ -98,17 +98,18 @@ extension EmptyFriendView {
         inviteButton.snp.makeConstraints {
             $0.top.equalTo(emptyDescriptionLabel.snp.bottom).offset(30.adjusted)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(236)
-            $0.height.equalTo(48)
+            $0.width.equalTo(236.adjustedWidth)
+            $0.height.equalTo(48.adjustedHeight)
         }
     }
     
     // MARK: Objc Function
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
+
         invitingView.removeFromSuperview()
         invitingView = InvitingView()
+        invitingView.profileUserYelloId()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         

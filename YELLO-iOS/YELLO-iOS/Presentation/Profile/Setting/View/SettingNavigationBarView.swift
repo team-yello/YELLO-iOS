@@ -51,7 +51,7 @@ extension SettingNavigationBarView {
         self.backgroundColor = .black
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Setting.setting, lineHeight: 24)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Setting.setting, lineHeight: 24.adjustedHeight)
             $0.textColor = .white
             $0.font = .uiSubtitle05
         }
@@ -69,12 +69,12 @@ extension SettingNavigationBarView {
         
         backButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
 
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(backButton.snp.trailing).offset(8.adjusted)
+            $0.leading.equalTo(backButton.snp.trailing).offset(8.adjustedWidth)
         }
     }
     

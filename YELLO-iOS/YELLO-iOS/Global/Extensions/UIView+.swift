@@ -137,4 +137,32 @@ extension UIView {
             gradientLayer.removeFromSuperlayer()
         }
     }
+    
+    func animateShimmer() {
+        stopShimmering()
+        let gradientLayer = CAGradientLayer()
+        let gradationColor = [UIColor.clear, .white.withAlphaComponent(0.5), .clear]
+        gradientLayer.frame = self.bounds
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+        gradientLayer.colors = gradationColor.map { $0.cgColor }
+        gradientLayer.locations = [-0.5, 0.5, 1.5]
+        self.layer.addSublayer(gradientLayer)
+
+        let animation = CABasicAnimation(keyPath: "locations")
+        animation.fromValue = [-1.0, -0.5, 0.0]
+        animation.toValue = [1.0, 1.5, 2.0]
+        animation.repeatCount = .infinity
+        animation.duration = 1.5
+        animation.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        gradientLayer.add(animation, forKey: animation.keyPath)
+    }
+    
+    func stopShimmering() {
+        self.layer.sublayers?.forEach { layer in
+            if layer is CAGradientLayer {
+                layer.removeFromSuperlayer()
+            }
+        }
+    }
 }

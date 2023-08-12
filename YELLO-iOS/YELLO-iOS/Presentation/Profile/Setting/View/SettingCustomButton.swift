@@ -36,7 +36,7 @@ final class SettingCustomButton: UIButton {
     
     func setStyle() {
         self.backgroundColor = .grayscales900
-        self.makeCornerRound(radius: 8)
+        self.makeCornerRound(radius: 8.adjustedHeight)
         
         customTitleLabel.do {
             $0.font = .uiBodySmall
@@ -49,7 +49,7 @@ final class SettingCustomButton: UIButton {
         
         customTitleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(16.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
     }
     

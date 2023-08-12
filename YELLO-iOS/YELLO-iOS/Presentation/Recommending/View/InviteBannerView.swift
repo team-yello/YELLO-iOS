@@ -56,23 +56,23 @@ final class InviteBannerView: BaseView {
                          nextButton)
         
         inviteImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(8.adjusted)
+            $0.leading.equalToSuperview().inset(8.adjustedWidth)
             $0.width.height.equalTo(42.adjusted)
             $0.centerY.equalToSuperview()
         }
         
         inviteLabel.snp.makeConstraints {
-            $0.leading.equalTo(inviteImageView.snp.trailing).offset(12.adjusted)
-            $0.top.equalToSuperview().offset(18.adjusted)
+            $0.leading.equalTo(inviteImageView.snp.trailing).offset(12.adjustedWidth)
+            $0.top.equalToSuperview().offset(18.adjustedHeight)
         }
         
         descriptionLabel.snp.makeConstraints {
             $0.leading.equalTo(inviteLabel)
-            $0.top.equalTo(inviteLabel.snp.bottom).offset(2.adjusted)
+            $0.top.equalTo(inviteLabel.snp.bottom).offset(2.adjustedHeight)
         }
         
         nextButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(8.adjusted)
+            $0.trailing.equalToSuperview().inset(8.adjustedWidth)
             $0.width.height.equalTo(24.adjusted)
             $0.centerY.equalToSuperview()
         }
@@ -85,6 +85,7 @@ final class InviteBannerView: BaseView {
         invitingView.removeFromSuperview()
         
         invitingView = InvitingView()
+        invitingView.profileUserYelloId()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         

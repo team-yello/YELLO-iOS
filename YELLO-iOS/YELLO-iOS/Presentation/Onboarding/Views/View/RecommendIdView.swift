@@ -18,7 +18,7 @@ class RecommendIdView: BaseView {
     let subGuideLabel = UILabel()
     let recommendIdTextField = YelloTextFieldView(title: "", state: .id,
                                                   placeholder: "추천인 아이디",
-                                                  helper: "추천인의 아이디를 입력해주세요.")
+                                                  helper: "추천인의 아이디를 입력하면 +100 point!")
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -29,13 +29,17 @@ class RecommendIdView: BaseView {
             $0.font = .uiBodySmall
             $0.textColor = .grayscales600
         }
+        
+        recommendIdTextField.helperLabel.do {
+            $0.asColor(targetString: "+100", color: .yelloMain500)
+        }
     }
     
     override func setLayout() {
         self.addSubviews(guideLabel, subGuideLabel, recommendIdTextField)
         
         guideLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(66)
+            $0.top.equalToSuperview().offset(Constraints.topMargin)
             $0.leading.equalToSuperview().inset(Constraints.bigMargin)
         }
         

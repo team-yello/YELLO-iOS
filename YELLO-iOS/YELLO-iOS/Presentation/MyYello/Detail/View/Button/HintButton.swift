@@ -51,9 +51,9 @@ final class HintButton: UIButton {
     
     private func setStyle() {
         self.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.35)
-        self.makeCornerRound(radius: 27)
+        self.makeCornerRound(radius: 27.adjustedHeight)
         self.layer.cornerCurve = .continuous
-        self.frame = CGRect(x: 0, y: 0, width: 0, height: 54)
+        self.frame = CGRect(x: 0, y: 0, width: 0, height: 54.adjustedHeight)
         
         titleStackView.do {
             $0.addArrangedSubviews(plusLabel, buttonTitleLabel)
@@ -92,8 +92,8 @@ final class HintButton: UIButton {
         
         strikeView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.height.equalTo(1)
-            $0.leading.trailing.equalToSuperview().inset(-3)
+            $0.height.equalTo(1.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(-3.adjustedWidth)
         }
     }
     

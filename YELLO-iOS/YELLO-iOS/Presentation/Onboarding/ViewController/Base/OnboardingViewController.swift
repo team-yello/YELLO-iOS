@@ -12,32 +12,29 @@ import Then
 
 class OnboardingBaseViewController: BaseViewController {
     // MARK: - Variables
-    
     // MARK: Componenet
     
-    private let backButton = UIButton()
+    let navigationBarView = YelloNavigationBarView()
     let nextButton = YelloButton(buttonText: "다음")
     private let skipButton = UIButton()
-    let navigationBarView = UIView()
+    private let buttonStackView = UIStackView()
+    private let progressBarView = ProgressBarManager.shared.progressBarView
+    
     var nextViewController: UIViewController?
     var isSkipable = false
+    var step = 1.0
     
     // MARK: Life Cycle
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        
-    }
-    
     override func viewDidLoad() {
         configUI()
+        ProgressBarManager.shared.updateProgress(step: step)
         super.viewDidLoad()
+        view.bringSubviewToFront(buttonStackView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        view.bringSubviewToFront(nextButton)
+        
     }
     
     // MARK: - Function
@@ -46,9 +43,9 @@ class OnboardingBaseViewController: BaseViewController {
     /// ConfigUI 반복 사용되는 부분 설정
     func configUI() {
         view.backgroundColor = .black
-        setNavigationBarAppearance()
-        backButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.icArrowLeft.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        
+        navigationBarView.backButton.do {
+            $0.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         }
         
         nextButton.do {
@@ -62,18 +59,38 @@ class OnboardingBaseViewController: BaseViewController {
             $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         }
         
+        buttonStackView.do {
+            $0.addArrangedSubviews(skipButton, nextButton)
+            $0.axis = .vertical
+            $0.alignment = .center
+            $0.spacing = 14
+        }
+        
         skipButton.isHidden = !(isSkipable)
-        view.addSubviews(skipButton, nextButton)
+        view.addSubviews(navigationBarView, progressBarView, buttonStackView)
         
         nextButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        navigationBarView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        skipButton.snp.makeConstraints {
+            $0.height.equalTo(32)
+        }
+        
+        buttonStackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
             $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
         }
         
-        skipButton.snp.makeConstraints {
-            $0.height.equalTo(36)
-            $0.bottom.equalTo(nextButton.snp.top).inset(-14)
-            $0.centerX.equalToSuperview()
+        progressBarView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(navigationBarView.snp.bottom)
+            $0.height.equalTo(4)
         }
         
     }
@@ -82,48 +99,21 @@ class OnboardingBaseViewController: BaseViewController {
         return UIBarButtonItem(customView: view)
     }
     
-    func setNavigationBarAppearance() {
-        let backButtonImage = ImageLiterals.OnBoarding.icArrowLeft.withTintColor(.white, renderingMode: .alwaysOriginal)
-        let appearance = UINavigationBarAppearance()
-        if #available(iOS 15.0, *) {
-            appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-            appearance.backgroundColor = .black
-            appearance.shadowColor = .clear
-            navigationItem.standardAppearance = appearance
-            navigationItem.compactAppearance = appearance
-            navigationItem.scrollEdgeAppearance = appearance
-            navigationItem.title = ""
-        } else {
-            // 타이틀 숨기기
-               navigationItem.title = ""
-               
-               // 배경을 투명색으로 설정
-               navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-               navigationController?.navigationBar.shadowImage = UIImage()
-               
-               // BackButton 커스텀
-               navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
-        }
-    }
-    
     func setUser() {}
     
     // MARK: Objc Function
     @objc func didTapButton() {
         setUser()
+        ProgressBarManager.shared.updateProgress(step: step)
         if let nextViewController = nextViewController {
-            self.navigationController?.pushViewController(nextViewController, animated: true)
+            self.navigationController?.pushViewController(nextViewController, animated: false)
         } else {}
         
     }
     
     @objc private func backButtonTapped() {
-        // BackButton 동작 처리
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func didTapBackButton() {
-        navigationController?.popViewController(animated: true)
+        ProgressBarManager.shared.updateProgress(step: 2)
+        navigationController?.popViewController(animated: false)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

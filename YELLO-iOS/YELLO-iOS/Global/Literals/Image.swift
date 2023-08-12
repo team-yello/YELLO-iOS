@@ -31,6 +31,9 @@ enum ImageLiterals {
         static var icYelloFaceMale: UIImage { .load(named: "icYelloFaceMale")}
         static var icYelloFaceFemale: UIImage { .load(named: "icYelloFaceFemale")}
         static var icCheck: UIImage { .load(named: "icCheck")}
+        static var icUniv: UIImage { .load(named: "icUniv")}
+        static var icHighschool: UIImage { .load(named: "icHighschool")}
+        static var icCheckCircleSelected: UIImage { .load(named: "icCheckCircleSelected")}
     }
     
     enum TabBar {
@@ -130,6 +133,7 @@ enum ImageLiterals {
         static var icAddFriendButtonTapped: UIImage { .load(named: "icAddFriendButtonTapped")}
         static var icRight: UIImage { .load(named: "icRight")}
         static var icSearchWhite: UIImage { .load(named: "icSearchWhite")}
+        static var imgFriendSearch: UIImage { .load(named: "imgFriendSearch")}
     }
     
     enum Payment {

@@ -64,7 +64,7 @@ class AddFriendsView: BaseView {
         self.addSubviews(addFriendsLabel, countFriendLabel, friendsTableView)
         
         addFriendsLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().offset(Constraints.topMargin)
             $0.leading.equalToSuperview().offset(Constraints.bigMargin)
         }
         
