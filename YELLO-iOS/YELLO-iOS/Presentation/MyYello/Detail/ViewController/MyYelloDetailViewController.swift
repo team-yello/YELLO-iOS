@@ -103,7 +103,7 @@ extension MyYelloDetailViewController {
         }
     }
     
-    private func setBackgroundView() {
+    func setBackgroundView() {
         if colorIndex == 2 || colorIndex == 5 || colorIndex == 6 {
             myYelloDetailView.myYelloDetailNavigationBarView.backButton.setImage(ImageLiterals.MyYello.icArrowLeft, for: .normal)
             myYelloDetailView.myYelloDetailNavigationBarView.pointImageView.image = ImageLiterals.MyYello.icPointBlack
