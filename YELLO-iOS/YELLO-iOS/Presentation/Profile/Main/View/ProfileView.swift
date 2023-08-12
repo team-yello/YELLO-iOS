@@ -245,6 +245,8 @@ extension ProfileView: UITableViewDataSource {
                 view?.myProfileView.profileUser()
                 view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
                 view?.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
+                view?.myProfileView.nameSkeletonLabel.isHidden = true
+                view?.myProfileView.schoolSkeletonLabel.isHidden = true
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
                 if isYelloPlus {
                     view?.myProfileView.profileImageBackgroundView.isHidden = false
@@ -253,6 +255,7 @@ extension ProfileView: UITableViewDataSource {
                     view?.myProfileView.profileImageBackgroundView.isHidden = true
                     view?.myProfileView.profileStarImageView.isHidden = true
                 }
+                view?.myProfileView.updateYelloPlusView()
             }
             return view
         default:

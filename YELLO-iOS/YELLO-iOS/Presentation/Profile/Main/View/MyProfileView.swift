@@ -75,12 +75,12 @@ extension MyProfileView {
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
             $0.makeCornerRound(radius: 24.adjusted)
             $0.layer.cornerCurve = .continuous
-            $0.isHidden = false
+            $0.isHidden = true
         }
         
         profileStarImageView.do {
             $0.image = ImageLiterals.Profile.icProfileStar
-            $0.isHidden = false
+            $0.isHidden = true
         }
         
         nameLabel.do {
@@ -153,11 +153,13 @@ extension MyProfileView {
         nameSkeletonLabel.do {
             $0.backgroundColor = .grayscales800
             $0.makeCornerRound(radius: 2.adjustedHeight)
+            $0.isHidden = true
         }
         
         schoolSkeletonLabel.do {
             $0.backgroundColor = .grayscales800
             $0.makeCornerRound(radius: 2.adjustedHeight)
+            $0.isHidden = true
         }
         
     }
@@ -176,10 +178,9 @@ extension MyProfileView {
                                     separateView,
                                     messageView,
                                     friendView,
-                                    pointView
-//                         ,
-//                         nameSkeletonLabel,
-//                         schoolSkeletonLabel
+                                    pointView,
+                                    nameSkeletonLabel,
+                                    schoolSkeletonLabel
         )
         
         shopBackgroundView.addSubviews(shopButton)
@@ -193,20 +194,6 @@ extension MyProfileView {
             $0.top.equalToSuperview().inset(20.adjustedHeight)
             $0.leading.equalToSuperview().inset(20.adjustedWidth)
             $0.width.height.equalTo(48.adjusted)
-        }
-        
-        if profileImageBackgroundView.isHidden {
-            profileImageView.snp.makeConstraints {
-                $0.top.equalToSuperview().inset(20.adjustedHeight)
-                $0.leading.equalToSuperview().inset(20.adjustedWidth)
-                $0.width.height.equalTo(48.adjusted)
-            }
-        } else {
-            profileImageView.snp.makeConstraints {
-                $0.center.equalTo(profileImageBackgroundView)
-                $0.width.height.equalTo(44.adjusted)
-            }
-            profileImageView.makeCornerRound(radius: 22.adjusted)
         }
         
         profileStarImageView.snp.makeConstraints {
@@ -278,14 +265,19 @@ extension MyProfileView {
             $0.leading.trailing.bottom.top.equalToSuperview().inset(2.adjustedWidth)
         }
         
-        // TODO: 디자인 나오면 내 프로필 스켈레톤 UI 구현
-//        nameSkeletonLabel.snp.makeConstraints {
-//
-//        }
-//        
-//        schoolSkeletonLabel.snp.makeConstraints {
-//
-//        }
+        nameSkeletonLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(22.adjustedHeight)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
+            $0.height.equalTo(24.adjustedHeight)
+            $0.width.equalTo(60.adjustedWidth)
+        }
+        
+        schoolSkeletonLabel.snp.makeConstraints {
+            $0.top.equalTo(nameSkeletonLabel.snp.bottom).offset(4.adjustedHeight)
+            $0.leading.equalTo(nameSkeletonLabel)
+            $0.height.equalTo(16.adjustedHeight)
+            $0.width.equalTo(243.adjustedWidth)
+        }
     }
     
     // MARK: Objc Function
@@ -318,6 +310,22 @@ extension MyProfileView {
                 print("network fail")
                 return
             }
+        }
+    }
+    
+    func updateYelloPlusView() {
+        if profileImageBackgroundView.isHidden {
+            profileImageView.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(20.adjustedHeight)
+                $0.leading.equalToSuperview().inset(20.adjustedWidth)
+                $0.width.height.equalTo(48.adjusted)
+            }
+        } else {
+            profileImageView.snp.makeConstraints {
+                $0.center.equalTo(profileImageBackgroundView)
+                $0.width.height.equalTo(44.adjusted)
+            }
+            profileImageView.makeCornerRound(radius: 22.adjusted)
         }
     }
 }
