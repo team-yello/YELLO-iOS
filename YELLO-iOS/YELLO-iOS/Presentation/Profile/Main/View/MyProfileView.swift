@@ -101,6 +101,8 @@ extension MyProfileView {
             $0.setTextWithLineHeight(text: "", lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales400
+            $0.textAlignment = .left
+            $0.lineBreakMode = .byCharWrapping
         }
         
         separateView.do {
@@ -214,6 +216,7 @@ extension MyProfileView {
         schoolLabel.snp.makeConstraints {
             $0.centerY.equalTo(profileImageView).offset(14.adjustedHeight)
             $0.leading.equalTo(nameLabel)
+            $0.width.equalTo(243.adjustedWidth)
         }
         
         separateView.snp.makeConstraints {
