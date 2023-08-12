@@ -138,8 +138,19 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
         
         let selectedIndex = tabBarController.selectedIndex
         switch selectedIndex {
-        case 0, 1, 3, 4:
+        case 0:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriendTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+            recommendingViewController.schoolFriendViewController.schoolFriendView.schoolFriendTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+        case 1:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            aroundViewController.aroundView.aroundTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+        case 3:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            myYelloViewController.myYelloView.myYelloListView.myYelloTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+        case 4:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            profileViewController.profileView.myFriendTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
         default:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
         }
