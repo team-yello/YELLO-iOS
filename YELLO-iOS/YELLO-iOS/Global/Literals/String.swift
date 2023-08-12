@@ -78,8 +78,8 @@ enum StringLiterals {
         }
         
         enum Empty {
-            static let title = "지금 추천된 친구가 없어요!\n친구를 초대해볼까요?"
-            static let inviteButton = "친구 초대하기"
+            static let title = "찾는 친구가 없다면\n친구를 초대해볼까요?"
+            static let inviteButton = "친구 초대하고 100포인트받기"
         }
         
         enum Invite {
