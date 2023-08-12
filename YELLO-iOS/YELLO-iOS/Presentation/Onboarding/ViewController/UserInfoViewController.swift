@@ -24,7 +24,7 @@ class UserInfoViewController: OnboardingBaseViewController {
     
     // MARK: LifeCycle
     override func viewDidLoad() {
-        step = 4
+        step = 5
         super.viewDidLoad()
         setDelegate()
         super.nextViewController = addFriendViewController
@@ -38,19 +38,6 @@ class UserInfoViewController: OnboardingBaseViewController {
             $0.addTarget(self, action: #selector(idCancelTapped), for: .touchUpInside)
             checkButtonEnable()
         }
-        
-        baseView.nameTextField.textField.cancelButton.do {
-            $0.addTarget(self, action: #selector(nameCancelTapped), for: .touchUpInside)
-            checkButtonEnable()
-        }
-    }
-    
-    @objc func idCancelTapped() {
-        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
-    }
-    
-    @objc func nameCancelTapped() {
-        baseView.nameTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
     }
     
     override func setLayout() {
@@ -68,32 +55,14 @@ class UserInfoViewController: OnboardingBaseViewController {
                                                        name: UITextField.textDidChangeNotification,
                                                object: baseView.idTextField.textField)
         baseView.idTextField.textField.delegate = self
-        baseView.nameTextField.textField.delegate = self
         
     }
     
-    // MARK: Custom Function
     func checkButtonEnable() {
-        let nameTextFieldView = baseView.nameTextField
         let idTextFieldView = baseView.idTextField
         
-        guard let isNameEmpty = nameTextFieldView.textField.text?.isEmpty else { return }
         guard let isIDEmpty = idTextFieldView.textField.text?.isEmpty else { return }
-        guard let isKoreanOnly = nameTextFieldView.textField.text?.isContainKorean() else { return }
-        
         guard let isEnglishOnly = idTextFieldView.textField.text?.isId() else { return }
-        
-        nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
-        
-        if !isNameEmpty, !isKoreanOnly {
-            // 한글로만 이루어져 있지 않으면 에러 처리
-            nameTextFieldView.textField.setButtonState(state: .error)
-            nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameError, State: .error)
-            self.isButtonEnable = false
-        } else if isNameEmpty {
-            nameTextFieldView.textField.setButtonState(state: .normal)
-            nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
-        }
         
         if !isIDEmpty, !isEnglishOnly {
             // 영어, 온점, 밑줄 이외의 문자가 포함되어 있으면 에러 처리
@@ -111,11 +80,9 @@ class UserInfoViewController: OnboardingBaseViewController {
             }
         }
         
-        if !isIDEmpty, !isNameEmpty, isKoreanOnly, isEnglishOnly, !isIdDuplicate {
+        if !isIDEmpty, isEnglishOnly, !isIdDuplicate {
             nextButton.setButtonEnable(state: true)
             idTextFieldView.textField.setButtonState(state: .done)
-            idTextFieldView.helperLabel.setLabelStyle(text: "", State: .done)
-            nameTextFieldView.textField.setButtonState(state: .done)
         } else {
             nextButton.setButtonEnable(state: false)
         }
@@ -136,13 +103,11 @@ class UserInfoViewController: OnboardingBaseViewController {
     }
     
     override func setUser() {
-        guard let name = baseView.nameTextField.textField.text else { return }
         guard let id = baseView.idTextField.textField.text else { return }
-        
-        User.shared.name = name
         User.shared.yelloId = id
     }
     
+    // MARK: objc Function
     @objc private func textDidChange(_ notification: Notification) {
             if let textField = notification.object as? UITextField {
                 if let text = textField.text {
@@ -160,6 +125,12 @@ class UserInfoViewController: OnboardingBaseViewController {
                 }
             }
         }
+    
+    @objc func idCancelTapped() {
+        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
+        baseView.idTextField.textField.setButtonState(state: .id)
+    }
+    
 
 }
 
@@ -167,15 +138,9 @@ class UserInfoViewController: OnboardingBaseViewController {
 // MARK: UITextFieldDelegate
 extension UserInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        let nameTextField = baseView.nameTextField.textField
-        let idTextField = baseView.idTextField.textField
+        baseView.idTextField.textField.setButtonState(state: .cancel)
+        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .normal)
     
-        if textField == nameTextField {
-            nameTextField.setButtonState(state: .cancel)
-        } else {
-            idTextField.setButtonState(state: .cancel)
-        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

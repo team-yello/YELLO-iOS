@@ -27,7 +27,7 @@ class BaseBottomViewController: UIViewController {
         return view
     }()
     
-    //MARK: life Cycle
+    // MARK: life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -92,7 +92,7 @@ class BaseBottomViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             self.dimmedView.isHidden = true
-        }){ _ in
+        }) { _ in
             if self.presentingViewController != nil {
                self.dismiss(animated: false, completion: nil)
             }

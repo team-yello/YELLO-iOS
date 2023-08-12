@@ -33,7 +33,8 @@ class AddFriendsView: BaseView {
     }
     
     // MARK: Component
-    let addFriendsLabel = YelloGuideLabel(labelText: "친구를 추가하세요!")
+    let addFriendsLabel = YelloGuideLabel(labelText: StringLiterals.Onboarding.addFriendText)
+    let subGuideLabel =  UILabel()
     let countFriendLabel = UILabel()
     let friendsTableView = UITableView()
     
@@ -41,6 +42,13 @@ class AddFriendsView: BaseView {
     // MARK: Layout Helpers
     override func setStyle() {
         count = joinedFriendsList.count
+        
+        subGuideLabel.do {
+            $0.text = StringLiterals.Onboarding.addFriendSubText
+            $0.font = .uiBodySmall
+            $0.textColor = .grayscales500
+            $0.setTextWithLineHeight(text: subGuideLabel.text, lineHeight: 22.adjustedHeight)
+        }
         
         countFriendLabel.do {
             $0.text = "선택된 친구 \(count)명"
@@ -61,15 +69,20 @@ class AddFriendsView: BaseView {
     }
     
     override func setLayout() {
-        self.addSubviews(addFriendsLabel, countFriendLabel, friendsTableView)
+        self.addSubviews(addFriendsLabel, subGuideLabel, countFriendLabel, friendsTableView)
         
         addFriendsLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Constraints.topMargin)
-            $0.leading.equalToSuperview().offset(Constraints.bigMargin)
+            $0.centerX.equalToSuperview()
+        }
+        
+        subGuideLabel.snp.makeConstraints {
+            $0.top.equalTo(addFriendsLabel.snp.bottom).offset(6.adjusted)
+            $0.centerX.equalToSuperview()
         }
         
         countFriendLabel.snp.makeConstraints {
-            $0.top.equalTo(addFriendsLabel.snp.bottom).offset(Constraints.topMargin)
+            $0.top.equalTo(subGuideLabel.snp.bottom).offset(20.adjusted)
             $0.trailing.equalToSuperview().inset(Constraints.smallMargin)
         }
         

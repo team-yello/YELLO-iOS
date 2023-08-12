@@ -15,26 +15,38 @@ class UserInfoView: BaseView {
     // MARK: - Variables
     // MARK: Constants
     let padding = 12
+    let stringLiteral = StringLiterals.Onboarding.self
     
-    // MARK: Component (button, label 등 코드로 만들때)
-    let nameTextField = YelloTextFieldView(title: "이름은", state: .normal, placeholder: "김옐로",
-                                           helper: StringLiterals.Onboarding.nameHelper)
-    let idTextField = YelloTextFieldView(title: "아이디는", state: .id, placeholder: "insta_id",
-                                         helper: StringLiterals.Onboarding.idHelper)
+    // MARK: Component
+    let guideImageView = UIImageView()
+    lazy var idTextField = YelloTextFieldView(title: stringLiteral.idTitle, state: .id,
+                                              placeholder: stringLiteral.idPlaceholder)
     let idLabel = UILabel()
     
     // MARK: - Function
     // MARK: Layout Helpers
-    override func setLayout() {
-        self.addSubviews(nameTextField, idTextField)
-        
-        nameTextField.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
-            $0.leading.trailing.equalToSuperview().inset(padding)
+    override func setStyle() {
+        guideImageView.do {
+            $0.image = ImageLiterals.OnBoarding.idGuide
         }
+        
+        idTextField.helperLabel.do {
+            $0.text = stringLiteral.idHelper
+            $0.asColors(targetStrings: ["인스타그램", "아이디"], color: .yelloMain500)
+        }
+    }
+    
+    override func setLayout() {
+        self.addSubviews(guideImageView, idTextField)
+        
+        guideImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20.adjusted)
+            $0.leading.equalToSuperview()
+        }
+        
         idTextField.snp.makeConstraints {
-            $0.top.equalTo(nameTextField.snp.bottom).offset(24)
-            $0.leading.trailing.equalToSuperview().inset(padding)
+            $0.top.equalTo(guideImageView.snp.bottom)
+            $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
         
     }

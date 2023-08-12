@@ -9,14 +9,15 @@ import UIKit
 
 class SchoolSelectViewController: OnboardingBaseViewController {
     let baseView = SchoolSelectView()
-    var schoolInfoViewController = SchoolInfoViewController()
     var schoolLevel: SchoolLevel = .high
+    let highSchoolViewController = HighSchoolViewController()
+    let universityViewController = UniversityViewController()
+    
     
     override func viewDidLoad() {
+        step = 1
         super.viewDidLoad()
-        nextViewController = schoolInfoViewController
         addTarget()
-        setProgressBar()
     }
     
     override func setLayout() {
@@ -32,24 +33,15 @@ class SchoolSelectViewController: OnboardingBaseViewController {
         baseView.univButton.addTarget(self, action: #selector(setSchoolLevel(sender:)), for: .touchUpInside)
     }
     
-    private func setProgressBar() {
-        step = 1
-        ProgressBarManager.shared.updateProgress(step: step)
-    }
-    
     @objc func setSchoolLevel(sender: YelloSelectButton) {
         if sender == baseView.highSchoolButton {
             schoolLevel = .high
         } else {
             schoolLevel = .univ
         }
-        setProgressBar()
+        
+        self.nextViewController = ( schoolLevel == .high ) ? highSchoolViewController : universityViewController
         nextButton.setButtonEnable(state: true)
-    }
-    
-    @objc override func didTapButton() {
-        super.didTapButton()
-        schoolInfoViewController.schoolLevel = self.schoolLevel
     }
     
 }

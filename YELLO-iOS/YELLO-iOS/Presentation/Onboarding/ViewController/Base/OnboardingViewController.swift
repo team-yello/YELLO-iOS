@@ -25,16 +25,17 @@ class OnboardingBaseViewController: BaseViewController {
     var step = 1.0
     
     // MARK: Life Cycle
-    override func viewDidLoad() {
-        configUI()
-        ProgressBarManager.shared.updateProgress(step: step)
-        super.viewDidLoad()
-        view.bringSubviewToFront(buttonStackView)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        ProgressBarManager.shared.updateProgress(for: self, step: step)
+        configUI()
+    }
+    
+    override func viewDidLoad() {
+        configUI()
+        setProgressBar()
+        super.viewDidLoad()
+        view.bringSubviewToFront(buttonStackView)
     }
     
     // MARK: - Function
@@ -101,18 +102,21 @@ class OnboardingBaseViewController: BaseViewController {
     
     func setUser() {}
     
+    func setProgressBar() {
+        ProgressBarManager.shared.updateProgress(for: self, step: step)
+        
+    }
+    
     // MARK: Objc Function
     @objc func didTapButton() {
         setUser()
-        ProgressBarManager.shared.updateProgress(step: step)
         if let nextViewController = nextViewController {
             self.navigationController?.pushViewController(nextViewController, animated: false)
         } else {}
         
     }
     
-    @objc private func backButtonTapped() {
-        ProgressBarManager.shared.updateProgress(step: 2)
+    @objc func backButtonTapped() {
         navigationController?.popViewController(animated: false)
     }
     

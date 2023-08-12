@@ -35,6 +35,8 @@ class YelloSelectButton: UIButton {
     var gender: Gender = .female
     var schoolLevel: SchoolLevel = .high
     var IconImage: UIImage?
+    let imageLiteral = ImageLiterals.OnBoarding.self
+    let stringLiteral = StringLiterals.Onboarding.self
     
     // MARK: Component
     let checkButton = UIButton()
@@ -53,7 +55,7 @@ class YelloSelectButton: UIButton {
     }
     
     /// Custom Init
-    init(buttonFormat: ButtonFormat,buttonText: String) {
+    init(buttonFormat: ButtonFormat, buttonText: String) {
         super.init(frame: CGRect())
         self.buttonFormat = buttonFormat
         self.buttonText = buttonText
@@ -93,7 +95,8 @@ extension YelloSelectButton {
             $0.spacing = 4
         }
         checkButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.icCheckCircleGender, for: .normal)
+            $0.backgroundColor = .grayscales800
+            $0.makeCornerRound(radius: 10)
             $0.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         }
     }
@@ -108,6 +111,7 @@ extension YelloSelectButton {
         checkButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(11)
             $0.leading.equalToSuperview().offset(14)
+            $0.size.equalTo(20)
         }
         
         stackView.snp.makeConstraints {
@@ -139,9 +143,9 @@ extension YelloSelectButton {
             
             switch schoolLevel {
             case .high:
-                iconImageView.image = iconImageView.image?.withTintColor(.yelloMain500)
+                iconImageView.image = imageLiteral.icHighSelected
             case .univ:
-                iconImageView.image = iconImageView.image?.withTintColor(.yelloMain500)
+                iconImageView.image = imageLiteral.icUnivSelected
             }
         }
         
@@ -183,7 +187,15 @@ extension YelloSelectButton {
                 button.isSelected = false
                 button.backgroundColor = .grayscales900
                 button.makeBorder(width: 1, color: .grayscales700)
-                button.iconImageView.image = iconImageView.image?.withTintColor(.grayscales700, renderingMode: .alwaysOriginal)
+                var image = UIImage()
+                switch buttonFormat {
+                case .gender:
+                    image = (buttonText == stringLiteral.selectFemaleText) ? imageLiteral.icYelloFaceMale : imageLiteral.icYelloFaceFemale
+                    
+                case .school:
+                    image = (buttonText == stringLiteral.selectHighText) ? imageLiteral.icUniv : imageLiteral.icHighschool
+                }
+                button.iconImageView.image = image.withTintColor(.grayscales700, renderingMode: .alwaysOriginal)
                 button.buttonLabel.textColor = .grayscales700
                 button.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleGender, for: .normal)
             }

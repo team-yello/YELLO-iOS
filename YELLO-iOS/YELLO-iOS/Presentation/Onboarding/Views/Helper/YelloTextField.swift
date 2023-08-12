@@ -16,8 +16,9 @@ import Then
     case normal
     case id
     case search
-    case cancel
     case toggle
+    case editing
+    case cancel
     case error
     case done
 }
@@ -55,11 +56,11 @@ final class YelloTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(state: iconState) {
+    init(state: iconState, placeholder: String = "") {
         super.init(frame: CGRect())
-        setUI()
         setButtonState(state: state)
-        
+        self.placeholder = placeholder
+        setUI()
     }
 }
 
@@ -72,14 +73,14 @@ extension YelloTextField {
     }
     
     private func setStyle() {
-        self.backgroundColor = .black
-        self.textColor = .white
-        self.addLeftPadding(20)
-        self.rightViewMode = .always
-        self.leftViewMode = .always
         
         self.do {
-            $0.makeBorder(width: 1, color: .grayscales600)
+            $0.backgroundColor = .grayscales800
+            $0.textColor = .white
+            $0.setPlaceholderColor(.grayscales600)
+            $0.addLeftPadding(20)
+            $0.rightViewMode = .always
+            $0.leftViewMode = .always
             $0.makeCornerRound(radius: 8)
         }
         
@@ -119,6 +120,7 @@ extension YelloTextField {
     }
     
     private func setLayout() {
+        
         self.snp.makeConstraints {
             $0.height.equalTo(52)
         }
@@ -133,33 +135,26 @@ extension YelloTextField {
     
     // MARK: Custom Function
     func setButtonState(state: iconState) {
-        /// 기본 타입
-        self.backgroundColor = .clear
-        self.makeBorder(width: 1, color: .grayscales500)
-        
         /// 텍스트 필드 타입에 따라 subView 다르게
         textFieldState = state
         let xCircleImage = ImageLiterals.OnBoarding.icXCircle
         let cancelImage = xCircleImage.withTintColor(.yelloMain500)
         switch state {
         case .normal:
-            buttonStackView.addArrangedSubview(paddingView)
-            self.backgroundColor = .black.withAlphaComponent(0)
-            self.layer.borderColor = UIColor.grayscales600.cgColor
+            self.backgroundColor = .grayscales800
             self.rightViewMode = .never
         case .search:
-            self.backgroundColor = .black.withAlphaComponent(0)
-            self.layer.borderColor = UIColor.grayscales600.cgColor
             buttonStackView.addArrangedSubviews(searchImageView, paddingView)
+        case .editing:
+            self.backgroundColor = .grayscales800
+            self.makeBorder(width: 1, color: .grayscales700)
         case .cancel:
+            self.backgroundColor = .grayscales800
+            self.makeBorder(width: 1, color: .grayscales700)
             cancelButton.setImage(cancelImage, for: .normal)
             buttonStackView.addArrangedSubviews(cancelButton, paddingView)
             self.rightViewMode = .always
-            self.backgroundColor = .grayscales900
-            self.layer.borderColor = UIColor.grayscales600.cgColor
         case .toggle:
-            self.backgroundColor = .black.withAlphaComponent(0)
-            self.layer.borderColor = UIColor.grayscales600.cgColor
             buttonStackView.addArrangedSubviews(toggleImageView, paddingView)
         case .error:
             buttonStackView.clearSubViews()
@@ -173,14 +168,13 @@ extension YelloTextField {
             cancelButton.setImage(cancelImage, for: .normal)
             guard let text = self.text else { break }
             self.rightViewMode = (text.isEmpty) ? .never : .always
-            
+            let borderWidth: CGFloat = (text.isEmpty) ? 1 : 0
+            self.makeBorder(width: borderWidth, color: .grayscales700)
             self.leftView = idLabelStackView
-            self.backgroundColor = .black.withAlphaComponent(0)
-            self.layer.borderColor = UIColor.grayscales600.cgColor
             return
         case .done:
-            self.backgroundColor = .grayscales900
-            self.layer.borderColor = UIColor.grayscales500.cgColor
+            self.makeBorder(width: 1, color: .grayscales700)
+            self.backgroundColor = .grayscales800
         }
         self.rightView = buttonStackView
     }

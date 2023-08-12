@@ -10,7 +10,7 @@ import UIKit
 class StudentIdView: BaseView {
     // MARK: - Variables
     // MARK: Constants
-    let studentIdList = (15...23).reversed().map { "\($0)학번" }
+    var studentIdList = (15...23).reversed().map { "\($0)학번" }
     let studentIdTableView = UITableView()
     
     // MARK: Property

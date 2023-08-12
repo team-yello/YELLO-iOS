@@ -6,24 +6,36 @@
 //
 
 import Foundation
+import UIKit
 
 class ProgressBarManager {
     static let shared = ProgressBarManager()
     let progressBarView = YelloProgressBarView()
     
-    var progress: Double = 0.0 
+    var progress: Double = 0.0
     
-    func updateProgress(step: CGFloat) {
-        if progress < 1.0 {
-            progress = step / 6.0 // 각 뷰마다 1/6씩 채워짐
-            progressBarView.ratio = progress
+    private var stepDictionary: [UIViewController: Double] = [:]
+        
+        func updateProgress(for viewController: UIViewController, step: Double) {
+            stepDictionary[viewController] = step
+            updateProgressBar()
         }
         
-        NotificationCenter.default.post(name: Notification.Name("ProgressBarUpdated"), object: nil)
-    }
+        private func updateProgressBar() {
+            if let currentViewController = getCurrentViewController() {
+                if let step = stepDictionary[currentViewController] {
+                    progressBarView.ratio = step / 7.0
+                }
+            }
+        }
+        
+        private func getCurrentViewController() -> UIViewController? {
+            // 현재 화면에 보이는 최상위 뷰 컨트롤러 반환
+            return UIApplication.shared.keyWindow?.visibleViewController
+        }
     
     func resetProgress() {
         progress = 0.0
-        NotificationCenter.default.post(name: Notification.Name("ProgressBarUpdated"), object: nil)
+        progressBarView.ratio = progress
     }
 }

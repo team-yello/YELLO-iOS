@@ -34,36 +34,9 @@ class OnboardingEndViewController: BaseViewController {
         baseView.goToYelloButton.addTarget(self, action: #selector(yelloButtondidTap), for: .touchUpInside)
     }
     
-    private func postUserInfo() {
-        let user = User.shared
-        let requestDTO = SignUpRequestDTO(social: user.social, uuid: user.uuid, deviceToken: user.deviceToken, email: user.email, profileImage: user.profileImage, groupID: user.groupId, groupAdmissionYear: user.groupAdmissionYear, name: user.name, yelloID: user.yelloId, gender: user.gender, friends: user.friends, recommendID: user.recommendId)
- 
-            NetworkService.shared.onboardingService.postUserInfo(requestDTO: requestDTO) { result in
-                switch result {
-                case .success(let data):
-                    guard let data = data.data else {
-                        print("no data")
-                        return
-                    }
-                    print("성공!✅✅✅✅✅✅✅")
-                    
-                    dump(data)
-                    KeychainHandler.shared.accessToken = data.accessToken
-                    UserDefaults.standard.setValue(true, forKey: "isLoggined")
-                    setAcessToken(accessToken: data.accessToken)
-                    setRefreshToken(refreshToken: data.refreshToken)
-                    setUsername(username: data.yelloID)
-                default:
-                    return
-                }
-            }
-            
-    }
-    
     // MARK: Objc Function
     @objc func yelloButtondidTap() {
         /// 온보딩 이후 rootViewController 변경
-        postUserInfo()
         self.baseView.goToYelloButton.isEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let yelloTabBarController = YELLOTabBarController()

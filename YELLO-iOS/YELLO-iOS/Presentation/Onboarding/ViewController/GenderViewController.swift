@@ -24,7 +24,7 @@ class GenderViewController: OnboardingBaseViewController {
     override func viewDidLoad() {
         step = 3
         super.viewDidLoad()
-        nextViewController = UserInfoViewController()
+        nextViewController = NameViewController()
     }
     
     // MARK: Layout Helpers

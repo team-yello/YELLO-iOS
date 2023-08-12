@@ -18,9 +18,8 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     // MARK: - Function
     // MARK: LifeCycle
-    
     override func viewDidLoad() {
-        step = 6
+        step = 7
         isSkipable = true
         nextViewController = pushViewController
         super.viewDidLoad()
@@ -28,6 +27,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
         addTarget()
     }
     
+    // MARK: Layout Helper
     override func setStyle() {
         navigationBarView.backButton.isHidden = true
     }
@@ -59,13 +59,15 @@ class RecommendIdViewController: OnboardingBaseViewController {
             idTextFieldView.helperLabel.setLabelStyle(text: "존재하지 않는 아이디에요", State: .error)
             nextButton.setButtonEnable(state: false)
             return
+        } else {
+            idTextFieldView.textField.setButtonState(state: .cancel)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.recommandHelper, State: .normal)
         }
         
         let isButtonEnabled = !(idText.isEmpty) && isValidId && isExisted
         if isButtonEnabled {
             baseView.recommendIdTextField.textField.setButtonState(state: .done)
-            baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "", State: .done)
-            baseView.recommendIdTextField.textField.rightViewMode = .never
+            baseView.recommendIdTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.recommandHelper, State: .normal)
         }
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
@@ -93,11 +95,31 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 }
             }
         }
-            }
+    }
     
-    // MARK: Objc Function
-    @objc func idCancelTapped() {
-        baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "추천인의 아이디를 입력해주세요.", State: .normal)
+    private func postUserInfo() {
+        let user = User.shared
+        let requestDTO = SignUpRequestDTO(social: user.social, uuid: user.uuid, deviceToken: user.deviceToken, email: user.email, profileImage: user.profileImage, groupID: user.groupId, groupAdmissionYear: user.groupAdmissionYear, name: user.name, yelloID: user.yelloId, gender: user.gender, friends: user.friends, recommendID: user.recommendId)
+ 
+            NetworkService.shared.onboardingService.postUserInfo(requestDTO: requestDTO) { result in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data else {
+                        print("no data")
+                        return
+                    }
+                    print("성공!✅✅✅✅✅✅✅")
+                    
+                    dump(data)
+                    KeychainHandler.shared.accessToken = data.accessToken
+                    UserDefaults.standard.setValue(true, forKey: "isLoggined")
+                    setAcessToken(accessToken: data.accessToken)
+                    setRefreshToken(refreshToken: data.refreshToken)
+                    setUsername(username: data.yelloID)
+                default:
+                    return
+                }
+            }
     }
     
     override func setUser() {
@@ -105,6 +127,15 @@ class RecommendIdViewController: OnboardingBaseViewController {
         User.shared.recommendId = text
     }
     
+    // MARK: Objc Function
+    @objc func idCancelTapped() {
+        baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "추천인의 아이디를 입력해주세요.", State: .normal)
+    }
+    
+    override func didTapButton() {
+        super.didTapButton()
+        postUserInfo()
+    }
 }
 
 // MARK: - extension
