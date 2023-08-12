@@ -65,17 +65,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         guard let type = userInfo["type"] as? String else { return }
         guard let path = userInfo["path"] as? String,
-              let messageNumber = path.split(separator: "/").last else { return }
-        NotificationCenter.default.post(name: Notification.Name("showMessage"), object: nil, userInfo: ["message":Int(messageNumber) ?? 0])
-        
-        if type == StringLiterals.PushAlarm.TypeName.available {
-            NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2])
-        } else if type == StringLiterals.PushAlarm.TypeName.newVote {
-            NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":3])
-        } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
-            NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":4])
+              let messageNumber = path.split(separator: "/").last else {
+            if type == StringLiterals.PushAlarm.TypeName.available {
+                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2])
+            } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
+                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":4])
+            }
+            return
         }
         
+        NotificationCenter.default.post(name: Notification.Name("showMessage"), object: nil, userInfo: ["message":Int(messageNumber) ?? 0])
+        
+        if type == StringLiterals.PushAlarm.TypeName.newVote {
+            NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":3])
+        }
         completionHandler()
     }
 }
