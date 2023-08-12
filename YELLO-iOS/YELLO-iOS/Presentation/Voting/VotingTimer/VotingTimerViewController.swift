@@ -106,7 +106,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         speechBubbleText.do {
-            $0.setTextWithLineHeight(text: "🤩 친구를 초대하면 바로 투표할 수 있어요!", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "🤩 친구가 가입하면 바로 투표할 수 있어요!", lineHeight: 15)
             $0.textColor = .white
             $0.font = .uiLabelMedium
         }
@@ -200,7 +200,6 @@ final class VotingTimerViewController: BaseViewController {
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        invitingView.updateText(title: StringLiterals.Inviting.unLockedTitle, text: StringLiterals.Inviting.unLockedText, targetString: "바로 투표")
         viewController.view.addSubview(invitingView)
     }
     

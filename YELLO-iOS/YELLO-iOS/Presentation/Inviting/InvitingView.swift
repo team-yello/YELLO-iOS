@@ -19,7 +19,8 @@ final class InvitingView: BaseView {
     let closeButton = UIButton()
 
     let titleLabel = UILabel()
-    let textLabel = UILabel()
+    let textLabelOne = UILabel()
+    let textLabelTwo = UILabel()
     
     let backGroundView = UIView()
     let recommender = UILabel()
@@ -48,17 +49,21 @@ final class InvitingView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedTitle, lineHeight: 24.adjustedHeight)
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.title, lineHeight: 24.adjustedHeight)
             $0.textColor = .black
             $0.font = .uiHeadline04
         }
         
-        textLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.unLockedText, lineHeight: 20.adjustedHeight)
-            $0.numberOfLines = 2
+        textLabelOne.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.firstText, lineHeight: 20.adjustedHeight)
             $0.textColor = .grayscales600
             $0.font = .uiBody03
-            $0.asColor(targetString: "바로 투표", color: .black)
+        }
+        
+        textLabelTwo.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.secondText, lineHeight: 20.adjustedHeight)
+            $0.textColor = .black
+            $0.font = .uiBody04
         }
         
         backGroundView.do {
@@ -73,7 +78,7 @@ final class InvitingView: BaseView {
         }
         
         recommenderID.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 32)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 42)
             $0.textColor = .black
             $0.font = .uiExtraLarge
         }
@@ -96,7 +101,8 @@ final class InvitingView: BaseView {
         
         contentsView.addSubviews(closeButton,
                          titleLabel,
-                         textLabel,
+                         textLabelOne,
+                         textLabelTwo,
                          backGroundView,
                          kakaoButton,
                          copyButton)
@@ -120,19 +126,24 @@ final class InvitingView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
-        textLabel.snp.makeConstraints {
+        textLabelOne.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        textLabelTwo.snp.makeConstraints {
+            $0.top.equalTo(textLabelOne.snp.bottom)
             $0.centerX.equalToSuperview()
         }
         
         backGroundView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(14.adjustedWidth)
-            $0.top.equalTo(textLabel.snp.bottom).offset(20.adjustedHeight)
+            $0.top.equalTo(textLabelTwo.snp.bottom).offset(20.adjustedHeight)
             $0.height.equalTo(108.adjustedHeight)
         }
         
         recommender.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(37.adjustedHeight)
+            $0.top.equalToSuperview().inset(27.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
@@ -154,12 +165,6 @@ final class InvitingView: BaseView {
 }
 
 extension InvitingView {
-    
-    func updateText(title: String, text: String, targetString: String) {
-        titleLabel.setTextWithLineHeight(text: title, lineHeight: 24)
-        textLabel.setTextWithLineHeight(text: text, lineHeight: 20)
-        textLabel.asColor(targetString: targetString, color: .black)
-    }
     
     @objc
     func closeButtonClicked() {

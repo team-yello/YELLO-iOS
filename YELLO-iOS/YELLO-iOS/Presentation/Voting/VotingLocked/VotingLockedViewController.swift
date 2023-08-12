@@ -43,7 +43,7 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.yellowButton.do {
-            $0.setTitle("친구 초대하기", for: .normal)
+            $0.setTitle("친구 초대하고 100포인트 받기", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
         }
     }
@@ -100,7 +100,6 @@ final class VotingLockedViewController: BaseViewController {
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        invitingView.updateText(title: StringLiterals.Inviting.lockedTitle, text: StringLiterals.Inviting.lockedText, targetString: "투표를 시작")
         viewController.view.addSubview(invitingView)
     }
 }

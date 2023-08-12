@@ -88,8 +88,7 @@ final class InviteBannerView: BaseView {
         invitingView.profileUserYelloId()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        invitingView.updateText(title: StringLiterals.Inviting.recommendTitle, text: StringLiterals.Inviting.recommendText, targetString: "함께 옐로")
+
         viewController.view.addSubview(invitingView)
         
     }
