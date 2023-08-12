@@ -21,14 +21,6 @@ final class MyYelloDetailViewController: BaseViewController {
     // MARK: Constants
     let myYelloDetailView = MyYelloDetailView()
     var colorIndex: Int = 1
-    var isYelloButtonTapped: Bool = false {
-        didSet {
-//            let votingStartViewController = YELLOTabBarController()
-//            self.navigationController?.navigationBar.isHidden = true
-//            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-//            sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: votingStartViewController)
-        }
-    }
 
     var myYelloBackgroundColorStringDummy: [MyYelloBackgroundColorStringDummy] =
     [MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.one,
@@ -67,6 +59,8 @@ final class MyYelloDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(popViewController(_:)), name: NSNotification.Name("popView"), object: nil)
+
     }
     
     // MARK: Layout Helpers
@@ -219,6 +213,13 @@ extension MyYelloDetailViewController {
             }
         }
         return initialName
+    }
+    
+    @objc
+    func popViewController(_ notification: Notification) {
+        tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+        tabBarController?.selectedIndex = 2
+        popView()
     }
 }
 
