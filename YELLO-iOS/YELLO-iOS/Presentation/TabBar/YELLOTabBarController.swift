@@ -194,7 +194,7 @@ extension YELLOTabBarController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                myYelloViewController.myYelloView.myYelloCount = data.totalCount
+                self.myYelloViewController.myYelloView.myYelloCount = data.totalCount
                 if data.totalCount > 99 {
                     self.tabBar.items?[3].badgeValue = "99+"
                 } else {
@@ -208,30 +208,10 @@ extension YELLOTabBarController {
             }
         }
     }
-    
-    func network() {
-        
-        /// 추천친구 서버통신
-        recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
-            self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()
-        }
-        recommendingViewController.schoolFriendViewController.schoolFriendView.recommendingSchoolFriend()
-        
-        /// 둘러보기 서버통신
-        aroundViewController.aroundView.around()
-        
-        /// 내 쪽지 서버통신
-        myYelloViewController.myYelloView.myYelloListView.myYello()
-        
-        /// 내 프로필 서버통신
-        profileViewController.profileView.profileFriend()
-        profileViewController.profileView.myProfileHeaderView.myProfileView.profileUser()
-    }
 }
 
 extension YELLOTabBarController {
     func network() {
-            
             /// 추천친구 서버통신
             recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
                 self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()

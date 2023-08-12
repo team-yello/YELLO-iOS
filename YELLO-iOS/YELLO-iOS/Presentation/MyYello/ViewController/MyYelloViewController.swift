@@ -37,10 +37,7 @@ final class MyYelloViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.myYelloView.myYelloListView.applySnapshot(animated: true)
-        if MyYelloListView.myYelloModelDummy.isEmpty == false {
-            self.myYelloView.myYelloListView.myYelloTableView.reloadData()
-        }
+        self.myYelloView.myYelloListView.myYelloTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -145,11 +142,11 @@ extension MyYelloViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
 
-                    myYelloView.myYelloCount = data.totalCount
+                    self.myYelloView.myYelloCount = data.totalCount
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
                     self.myYelloView.resetLayout()
-                    countFetchingMore = false
+                    self.countFetchingMore = false
                 default:
                     print("network fail")
                     return
