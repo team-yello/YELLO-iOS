@@ -187,7 +187,7 @@ extension KakaoFriendView {
                     
                     self.kakaoFriendTableView.reloadData()
                     
-                    let totalPage = (data.totalCount) / 10
+                    let totalPage = (data.totalCount) / 100
                     if self.kakaoPage >= totalPage {
                         self.isFinishPaging = true
                     }
