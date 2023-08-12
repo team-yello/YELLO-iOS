@@ -7,22 +7,25 @@
 
 import UIKit
 
+import FirebaseCore
+import FirebaseMessaging
 import KakaoSDKCommon
 import KakaoSDKAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+        
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KakaoSDK.initSDK(appKey: Config.kakaoAppKey)
         UNUserNotificationCenter.current().delegate = self
-        
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         /// 디바이스 토큰 요청
         application.registerForRemoteNotifications()
         
         return true
     }
-    
+
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -58,19 +61,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        // deep link처리 시 아래 url값 가지고 처리
-        let url = response.notification.request.content.userInfo
+        let userInfo = response.notification.request.content.userInfo
         
+        guard let type = userInfo["type"] as? String else { return }
+        guard let path = userInfo["path"] as? String,
+              let messageNumber = path.split(separator: "/").last else {
+            if type == StringLiterals.PushAlarm.TypeName.available {
+                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2])
+            } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
+                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":4])
+            }
+            return
+        }
+        
+        NotificationCenter.default.post(name: Notification.Name("showMessage"), object: nil, userInfo: ["message":Int(messageNumber) ?? 0])
+        
+        if type == StringLiterals.PushAlarm.TypeName.newVote {
+            NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":3])
+        }
         completionHandler()
     }
 }
 
-extension AppDelegate {
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        User.shared.deviceToken = tokenString
-        print("@@@@@@@deviceToken: \(tokenString)")
-        
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("FirebaseMessaging")
+        let deviceToken:[String: String] = ["token": fcmToken ?? ""]
+        User.shared.deviceToken = fcmToken ?? ""
+        print("Device token:", deviceToken) // 이 토큰은 FCM에서 알림을 테스트하는 데 사용할 수 있습니다.
     }
 }
 

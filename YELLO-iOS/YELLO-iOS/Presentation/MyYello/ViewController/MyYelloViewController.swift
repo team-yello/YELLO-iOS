@@ -36,8 +36,16 @@ final class MyYelloViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.myYelloView.myYelloListView.myYelloTableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     // MARK: Layout Helpers
@@ -134,11 +142,11 @@ extension MyYelloViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
 
-                    myYelloView.myYelloCount = data.totalCount
+                    self.myYelloView.myYelloCount = data.totalCount
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
                     self.myYelloView.resetLayout()
-                    countFetchingMore = false
+                    self.countFetchingMore = false
                 default:
                     print("network fail")
                     return

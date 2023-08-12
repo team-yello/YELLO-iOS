@@ -270,4 +270,12 @@ enum StringLiterals {
             static let yes = "네, 탈퇴합니다"
         }
     }
+    
+    enum PushAlarm {
+        enum TypeName {
+            static let available = "VOTE_AVAILABLE"
+            static let newVote = "NEW_VOTE"
+            static let newFriend = "NEW_FRIEND"
+        }
+    }
 }
