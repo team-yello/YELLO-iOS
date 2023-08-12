@@ -43,7 +43,7 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.yellowButton.do {
-            $0.setTitle("친구 초대하고 100포인트 받기", for: .normal)
+            $0.setTitle("친구 초대하기", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
         }
     }
@@ -66,13 +66,13 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(24.adjustedHeight)
+            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(6.adjustedHeight)
         }
         
         originView.yelloImage.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(41.5.adjusted)
-            $0.width.equalTo(278.adjusted)
-            $0.height.equalTo(264.adjusted)
+            $0.centerY.equalToSuperview().offset(21.adjusted)
+            $0.width.equalTo(270.adjusted)
+            $0.height.equalTo(257.adjusted)
             
         }
         

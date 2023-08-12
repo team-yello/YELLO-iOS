@@ -101,7 +101,7 @@ enum StringLiterals {
     
     enum Voting {
         enum Locked {
-            static let title = "투표를 시작할 수 없어요"
+            static let title = "옐로를 시작하고 싶다면?"
             static let text = "친구가 4명 이상 모이면 투표할 수 있어요.\n친구들을 초대해볼까요?"
         }
         enum Start {
