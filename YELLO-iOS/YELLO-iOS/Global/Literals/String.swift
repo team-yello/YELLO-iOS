@@ -264,21 +264,23 @@ enum StringLiterals {
         
         enum Withdrawal {
             static let withdrawal = "계정 탈퇴"
-            static let title = "이러한 기능을 사용하지 못하게 돼요"
-            static let description = "지금 계정을 탈퇴하시면\n이와 같은 데이터 및 엑세스 권한을 전부 잃게 됩니다."
-            static let first = "회원님의 좋아하는 친구 마음을 알 수 없어요."
-            static let second = "회원님의 마음을 친구에게 전달할 수 없어요."
+            static let title = "탈퇴하면 사라지는 것들이 있어요"
+            static let description = "지금 계정을 탈퇴하시면\n아래의 데이터 및 엑세스 권한을 전부 잃게 돼요."
+            static let warningTitle = "주의! 포인트 사라짐!"
+            static let warningDescription = "다시 로그인을 하더라도,\n그동안 어렵게 모은 포인트는 영원히 사라져요."
+            static let first = "회원님을 좋아하는 친구의\n마음을 알 수 없어요."
+            static let second = "회원님의 마음을 친구에게\n전달할 수 없어요."
             static let third = "친구들이 받은 쪽지를 볼 수 없어요."
-            static let caption = "계정 삭제 시 yell:o를 이용한 데이터는\n즉시 삭제되지 않고 30일간 보관됩니다.\n30일 이내에 로그인 시 데이터가 복구됩니다."
-            static let confirm = "탈퇴하기"
+            static let keep = "그래도 계속하기"
+            static let back = "다시 돌아가기"
         }
         
         enum WithdrawalCheck {
             static let withdrawal = "계정 탈퇴"
             static let title = "정말 계정을 삭제할 건가요?"
             static let description = "회원님을 떠올리는 친구들이 슬퍼할 거에요.\n잠시 쉬다 돌아오는 것은 어떤가요?"
-            static let keep = "그래도 계속하기"
-            static let back = "다시 돌아가기"
+            static let caption = "계정 삭제 시 yell:o를 이용한 데이터는\n즉시 삭제되지 않고 30일간 보관됩니다.\n30일 이내에 로그인 시 데이터가 복구됩니다."
+            static let confirm = "탈퇴하기"
         }
         
         enum WithdrawalAlert {

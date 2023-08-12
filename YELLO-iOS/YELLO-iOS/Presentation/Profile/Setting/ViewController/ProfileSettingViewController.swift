@@ -49,8 +49,8 @@ extension ProfileSettingViewController: HandleBackButtonDelegate {
 // MARK: HandleWithdrawalButtonDelegate
 extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
     func withdrawalButtonTapped() {
-        let withdrawalCheckViewController = WithdrawalCheckViewController()
-        navigationController?.pushViewController(withdrawalCheckViewController, animated: true)
+        let withdrawalViewController = WithdrawalViewController()
+        navigationController?.pushViewController(withdrawalViewController, animated: true)
     }
     
     @objc private func logoutButtonTapped() {

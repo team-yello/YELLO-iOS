@@ -10,28 +10,23 @@ import UIKit
 import SnapKit
 import Then
 
-// MARK: - Protocol
-protocol HandleKeepButtonDelegate: AnyObject {
-    func keepButtonTapped()
-}
-
 final class WithdrawalCheckView: BaseView {
     
     // MARK: - Variables
-    // MARK: Component
-    weak var handleKeepButtonDelegate: HandleKeepButtonDelegate?
-    weak var handleBackButtonDelegate: HandleBackButtonDelegate?
-    
     let withdrawalNavigationBarView = SettingNavigationBarView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let withdrawalImageView = UIImageView()
-    lazy var keepButton = UIButton()
-    lazy var backButton = UIButton()
     
+    private let captionLabel = UILabel()
+    lazy var withdrawalButton = UIButton(frame: CGRect(x: 0, y: 0, width: 343.adjustedWidth, height: 48.adjustedHeight))
+    
+    private var withdrawalAlertView: WithdrawalAlertView?
+
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
+        withdrawalAlertView = WithdrawalAlertView()
         self.backgroundColor = .black
         
         withdrawalNavigationBarView.do {
@@ -52,26 +47,25 @@ final class WithdrawalCheckView: BaseView {
         
         withdrawalImageView.do {
             $0.image = ImageLiterals.Withdrawal.imgWithdrawalCheck
+            $0.contentMode = .scaleAspectFit
         }
         
-        keepButton.do {
+        captionLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalCheck.caption, lineHeight: 15.adjustedHeight)
+            $0.font = .uiLabelMedium
+            $0.textColor = .grayscales600
+            $0.numberOfLines = 0
+        }
+        
+        withdrawalButton.do {
             $0.backgroundColor = .clear
             $0.layer.borderColor = UIColor.grayscales700.cgColor
             $0.layer.borderWidth = 1
-            $0.layer.cornerRadius = 8.adjustedHeight
+            $0.layer.cornerRadius = 24.adjustedHeight
             $0.titleLabel?.font = .uiBodyMedium
-            $0.setTitleColor(.grayscales500, for: .normal)
-            $0.setTitle(StringLiterals.Profile.WithdrawalCheck.keep, for: .normal)
-            $0.addTarget(self, action: #selector(keepButtonTapped), for: .touchUpInside)
-        }
-        
-        backButton.do {
-            $0.backgroundColor = .grayscales800
-            $0.layer.cornerRadius = 8.adjustedHeight
-            $0.titleLabel?.font = .uiBodyMedium
-            $0.setTitleColor(.yelloMain500, for: .normal)
-            $0.setTitle(StringLiterals.Profile.WithdrawalCheck.back, for: .normal)
-            $0.addTarget(self, action: #selector(popView), for: .touchUpInside)
+            $0.setTitleColor(.semanticStatusRed500, for: .normal)
+            $0.setTitle(StringLiterals.Profile.WithdrawalCheck.confirm, for: .normal)
+            $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         }
     }
     
@@ -86,8 +80,8 @@ final class WithdrawalCheckView: BaseView {
                          titleLabel,
                          descriptionLabel,
                          withdrawalImageView,
-                         keepButton,
-                         backButton)
+                         captionLabel,
+                         withdrawalButton)
         
         withdrawalNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
@@ -106,30 +100,39 @@ final class WithdrawalCheckView: BaseView {
         }
         
         withdrawalImageView.snp.makeConstraints {
-            $0.width.equalTo(260)
-            $0.height.equalTo(246)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(27.adjustedHeight)
+            $0.width.equalTo(260.adjustedWidth)
+            $0.height.equalTo(246.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(6.5.adjustedHeight)
         }
         
-        keepButton.snp.makeConstraints {
-            $0.bottom.equalTo(backButton.snp.top).inset(-8.adjustedHeight)
-            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
-            $0.height.equalTo(48.adjustedHeight)
+        captionLabel.snp.makeConstraints {
+            $0.top.equalTo(withdrawalImageView.snp.bottom).offset(50.adjustedHeight)
+            $0.centerX.equalToSuperview()
         }
         
-        backButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(34.adjustedHeight)
+        withdrawalButton.snp.makeConstraints {
+            $0.top.equalTo(captionLabel.snp.bottom).offset(36.adjustedHeight)
+            $0.centerX.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(48.adjustedHeight)
+            $0.width.equalTo(343.adjustedWidth)
         }
     }
     
-    @objc private func keepButtonTapped() {
-        handleKeepButtonDelegate?.keepButtonTapped()
-    }
-    
-    @objc private func popView() {
-        handleBackButtonDelegate?.popView()
+    // MARK: Objc Function
+    @objc func showAlert() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        if let withdrawalAlertView = withdrawalAlertView {
+            withdrawalAlertView.removeFromSuperview()
+        }
+        
+        withdrawalAlertView = WithdrawalAlertView()
+        withdrawalAlertView?.frame = viewController.view.bounds
+        withdrawalAlertView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.view.addSubview(withdrawalAlertView!)
+        
     }
 }
