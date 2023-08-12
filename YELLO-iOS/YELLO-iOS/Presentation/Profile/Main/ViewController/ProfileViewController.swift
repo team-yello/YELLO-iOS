@@ -113,7 +113,6 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
     }
 }
 
-
 extension ProfileViewController: HandleShopButton {
     func shopButtonTapped() {
         let paymentPlusViewController = PaymentPlusViewController()

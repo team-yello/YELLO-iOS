@@ -27,6 +27,7 @@ final class ProfileView: UIView {
     var initialProfileFriendDataCount = 10
     var fetchingMore = false
     var isFinishPaging = false
+    var isYelloPlus = true
     var pageCount = -1
     var myYelloCount = 0
     var profileFriendPage: Int = 0
@@ -245,6 +246,13 @@ extension ProfileView: UITableViewDataSource {
                 view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
                 view?.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
+                if isYelloPlus {
+                    view?.myProfileView.profileImageBackgroundView.isHidden = false
+                    view?.myProfileView.profileStarImageView.isHidden = false
+                } else {
+                    view?.myProfileView.profileImageBackgroundView.isHidden = true
+                    view?.myProfileView.profileStarImageView.isHidden = true
+                }
             }
             return view
         default:

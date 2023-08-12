@@ -15,7 +15,11 @@ final class MyProfileView: UIView {
     // MARK: - Variables
     // MARK: Component
     let mainProfileView = UIView()
+    
     let profileImageView = UIImageView()
+    let profileImageBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 48.adjusted, height: 48.adjusted))
+    let profileStarImageView = UIImageView()
+    
     let nameLabel = UILabel()
     let instagramLabel = UILabel()
     let schoolLabel = UILabel()
@@ -64,6 +68,19 @@ extension MyProfileView {
             $0.backgroundColor = .grayscales800
             $0.contentMode = .scaleAspectFill
             $0.makeCornerRound(radius: 24.adjusted)
+            $0.layer.cornerCurve = .continuous
+        }
+        
+        profileImageBackgroundView.do {
+            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.makeCornerRound(radius: 24.adjusted)
+            $0.layer.cornerCurve = .continuous
+            $0.isHidden = false
+        }
+        
+        profileStarImageView.do {
+            $0.image = ImageLiterals.Profile.icProfileStar
+            $0.isHidden = false
         }
         
         nameLabel.do {
@@ -150,14 +167,16 @@ extension MyProfileView {
                          addGroupButton,
                          shopBackgroundView)
         
-        mainProfileView.addSubviews(profileImageView,
-                         nameLabel,
-                         instagramLabel,
-                         schoolLabel,
-                         separateView,
-                         messageView,
-                         friendView,
-                         pointView
+        mainProfileView.addSubviews(profileImageBackgroundView,
+                                    profileImageView,
+                                    profileStarImageView,
+                                    nameLabel,
+                                    instagramLabel,
+                                    schoolLabel,
+                                    separateView,
+                                    messageView,
+                                    friendView,
+                                    pointView
 //                         ,
 //                         nameSkeletonLabel,
 //                         schoolSkeletonLabel
@@ -170,10 +189,29 @@ extension MyProfileView {
             $0.width.equalTo(343.adjustedWidth)
         }
         
-        profileImageView.snp.makeConstraints {
+        profileImageBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(20.adjustedHeight)
             $0.leading.equalToSuperview().inset(20.adjustedWidth)
             $0.width.height.equalTo(48.adjusted)
+        }
+        
+        if profileImageBackgroundView.isHidden {
+            profileImageView.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(20.adjustedHeight)
+                $0.leading.equalToSuperview().inset(20.adjustedWidth)
+                $0.width.height.equalTo(48.adjusted)
+            }
+        } else {
+            profileImageView.snp.makeConstraints {
+                $0.center.equalTo(profileImageBackgroundView)
+                $0.width.height.equalTo(44.adjusted)
+            }
+            profileImageView.makeCornerRound(radius: 22.adjusted)
+        }
+        
+        profileStarImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(12.adjustedHeight)
+            $0.leading.equalToSuperview().inset(12.adjustedWidth)
         }
         
         nameLabel.snp.makeConstraints {
