@@ -68,11 +68,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
               let messageNumber = path.split(separator: "/").last else { return }
         NotificationCenter.default.post(name: Notification.Name("showMessage"), object: nil, userInfo: ["message":Int(messageNumber) ?? 0])
         
-        if type == "VOTE_AVAILABLE" {
+        if type == StringLiterals.PushAlarm.TypeName.available {
             NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2])
-        } else if type == "NEW_VOTE" {
+        } else if type == StringLiterals.PushAlarm.TypeName.newVote {
             NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":3])
-        } else if type == "NEW_FRIEND" {
+        } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
             NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":4])
         }
         
