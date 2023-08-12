@@ -36,6 +36,9 @@ enum ImageLiterals {
         static var icCheckCircleSelected: UIImage { .load(named: "icCheckCircleSelected")}
         static var icHighSelected: UIImage { .load(named: "icHighSelected")}
         static var icUnivSelected: UIImage { .load(named: "icUnivSelected")}
+        static var icHeart: UIImage { .load(named: "icHeart")}
+        static var icSmallPoint: UIImage { .load(named: "icSmallPoint")}
+        
         static var idGuide: UIImage { .load(named: "idGuide")}
         static var nameGuide: UIImage { .load(named: "nameGuide")}
         static var schoolGuide: UIImage { .load(named: "schoolGuide")}
