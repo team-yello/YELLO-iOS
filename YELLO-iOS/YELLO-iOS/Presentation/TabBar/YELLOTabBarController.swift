@@ -140,17 +140,17 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
         switch selectedIndex {
         case 0:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriendTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
-            recommendingViewController.schoolFriendViewController.schoolFriendView.schoolFriendTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+            recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            recommendingViewController.schoolFriendViewController.schoolFriendView.schoolFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         case 1:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            aroundViewController.aroundView.aroundTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+            aroundViewController.aroundView.aroundTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         case 3:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            myYelloViewController.myYelloView.myYelloListView.myYelloTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+            myYelloViewController.myYelloView.myYelloListView.myYelloTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         case 4:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            profileViewController.profileView.myFriendTableView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+            profileViewController.profileView.myFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         default:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
         }
