@@ -142,7 +142,7 @@ final class MyYelloDetailView: BaseView {
         
         instagramButton.do {
             $0.backgroundColor = UIColor(white: 1.0, alpha: 0.35)
-            $0.makeCornerRound(radius: 31.adjustedHeight)
+            $0.makeCornerRound(radius: 30.adjusted)
             $0.layer.cornerCurve = .continuous
             $0.setImage(ImageLiterals.MyYello.imgInstagram, for: .normal)
             $0.addTarget(self, action: #selector(instagramButtonTapped), for: .touchUpInside)
