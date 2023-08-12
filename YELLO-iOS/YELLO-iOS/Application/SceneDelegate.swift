@@ -58,12 +58,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                   let messageNumber = path.split(separator: "/").last else {
                 let rootViewController = YELLOTabBarController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
-                if type == "VOTE_AVAILABLE" {
+                if type == StringLiterals.PushAlarm.TypeName.available {
                     selectedIndex = 2
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
-                } else if type == "NEW_FRIEND" {
+                } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
                     selectedIndex = 4
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
@@ -77,7 +77,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()
             
-            if type == "NEW_VOTE" {
+            if type == StringLiterals.PushAlarm.TypeName.newVote {
                 selectedIndex = 3
                 rootViewController.selectedIndex = selectedIndex
                 let myYelloDetailViewController = MyYelloDetailViewController()
