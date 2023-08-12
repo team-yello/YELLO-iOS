@@ -98,13 +98,13 @@ extension MyYelloDetailViewController {
         if myYelloDetailView.haveTicket {
             myYelloDetailView.showUseTicketAlert()
         } else {
-            let paymentViewController = PaymentViewController()
-            navigationController?.pushViewController(paymentViewController, animated: true)
+            let paymentPlusViewController = PaymentPlusViewController()
+            navigationController?.pushViewController(paymentPlusViewController, animated: true)
         }
     }
     
-    func setBackgroundView() {
-        if colorIndex == 1 || colorIndex == 3 || colorIndex == 7 {
+    private func setBackgroundView() {
+        if colorIndex == 2 || colorIndex == 5 || colorIndex == 6 {
             myYelloDetailView.myYelloDetailNavigationBarView.backButton.setImage(ImageLiterals.MyYello.icArrowLeft, for: .normal)
             myYelloDetailView.myYelloDetailNavigationBarView.pointImageView.image = ImageLiterals.MyYello.icPointBlack
             myYelloDetailView.myYelloDetailNavigationBarView.pointLabel.textColor = .black
@@ -243,8 +243,8 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
                     view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
                 }
                 
-                let topColor = "#" + myYelloBackgroundColorStringDummy[colorIndex].backgroundColorTop
-                let bottomColor = "#" + myYelloBackgroundColorStringDummy[colorIndex].backgroundColorBottom
+                let topColor = "#" + myYelloBackgroundColorStringDummy[colorIndex - 1].backgroundColorTop
+                let bottomColor = "#" + myYelloBackgroundColorStringDummy[colorIndex - 1].backgroundColorBottom
                 
                 guard let imageData = renderImage.pngData() else {return}
                 let pasteboardItems: [String: Any] = [

@@ -144,6 +144,11 @@ enum ImageLiterals {
         static var btnFirstSubscribe: UIImage { .load(named: "btnFirstSubscribe")}
         static var btnSecondSubscribe: UIImage { .load(named: "btnSecondSubscribe")}
         static var btnThirdSubscribe: UIImage { .load(named: "btnThirdSubscribe")}
+        static var imgYelloPlusStar: UIImage { .load(named: "imgYelloPlusStar")}
+        static var imgYelloPlusBadge: UIImage { .load(named: "imgYelloPlusBadge")}
+        static var imgNameKeyOne: UIImage { .load(named: "imgNameKeyOne")}
+        static var imgNameKeyTwo: UIImage { .load(named: "imgNameKeyTwo")}
+        static var imgNameKeyFive: UIImage { .load(named: "imgNameKeyFive")}
     }
   
     enum Withdrawal {
