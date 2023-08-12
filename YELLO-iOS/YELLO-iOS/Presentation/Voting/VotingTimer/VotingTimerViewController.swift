@@ -285,7 +285,6 @@ extension VotingTimerViewController {
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
                     self.cancelScheduledNotification()
-                    print("💛💛💛💛💛💛💛💛💛💛💛💛💛💛")
                 }
                 self.remainingSeconds = duration
                 self.start(duration: duration)
@@ -305,14 +304,14 @@ extension VotingTimerViewController {
                 guard let data = data.data else { return }
                 if data.isPossible {
                     let viewController = VotingStartViewController()
-                    viewController.myPoint = self.myPoint
+                    viewController.myPoint = data.point
                     UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
                     self.cancelScheduledNotification()
-                    print("💕💕💕💕💕💕💕💕💕💕💕💕")
                 }
+                self.myPoint = data.point
             default:
                 print("network failure")
                 return
