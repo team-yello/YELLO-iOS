@@ -165,7 +165,7 @@ extension PointLackView {
     
     @objc func yelloButtonTapped() {
         self.isHidden = true
-        MyYelloDetailViewController().isYelloButtonTapped.toggle()
+        NotificationCenter.default.post(name: Notification.Name("popView"), object: nil)
         self.removeFromSuperview()
     }
 }

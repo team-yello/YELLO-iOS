@@ -95,6 +95,7 @@ final class VotingViewController: BaseViewController {
     
     var suffleCount = 0 {
         didSet {
+            originView.suffleButton.isEnabled = false
             NetworkService.shared.votingService.getVotingSuffle { result in
                 switch result {
                 case .success(let data):
@@ -111,7 +112,7 @@ final class VotingViewController: BaseViewController {
                     self.votingList[VotingViewController.pushCount].friendId[3] = data[3].friendId
                     
                     self.setNameText(first: first, second: second, third: third, fourth: fourth)
-                
+                    self.originView.suffleButton.isEnabled = true
                 default:
                     print("network failure")
                     return

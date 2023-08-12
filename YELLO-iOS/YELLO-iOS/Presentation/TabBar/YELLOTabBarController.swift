@@ -17,6 +17,7 @@ final class YELLOTabBarController: UITabBarController {
     private var tabs: [UIViewController] = []
     
     private var startStatus: Int = 1
+    private var messageIndex: Int = 0
     let recommendingViewController = RecommendingViewController()
     let aroundViewController = AroundViewController()
     let myYelloViewController = MyYelloViewController()
@@ -33,12 +34,15 @@ final class YELLOTabBarController: UITabBarController {
         getVotingAvailable()
         setTabBarItems()
         setTabBarAppearance()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
+        self.selectedIndex = 2
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        self.selectedIndex = 2
+        
         self.delegate = self
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -47,7 +51,7 @@ final class YELLOTabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-            
+        
         let safeAreaHeight = view.safeAreaInsets.bottom
         let tabBarHeight: CGFloat = 60.0
         tabBar.frame.size.height = tabBarHeight + safeAreaHeight
@@ -74,7 +78,7 @@ final class YELLOTabBarController: UITabBarController {
             UINavigationController(rootViewController: myYelloViewController),
             UINavigationController(rootViewController: profileViewController)
         ]
-
+        
         TabBarItem.allCases.forEach {
             tabs[$0.rawValue].tabBarItem = $0.asTabBarItem()
             tabs[$0.rawValue].tabBarItem.tag = $0.rawValue
@@ -104,7 +108,7 @@ final class YELLOTabBarController: UITabBarController {
         let myFont = UIFont(name: "Pretendard-Bold", size: 10.0)!
         let fontAttributes = [NSAttributedString.Key.font: myFont]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
-                        
+        
         UITabBar.clearShadow()
         tabBar.layer.applyShadow(color: UIColor(hex: "668099"), alpha: 0.15, x: 0, y: -2, blur: 5)
     }
@@ -190,7 +194,7 @@ extension YELLOTabBarController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                myYelloViewController.myYelloView.myYelloCount = data.totalCount
+                self.myYelloViewController.myYelloView.myYelloCount = data.totalCount
                 if data.totalCount > 99 {
                     self.tabBar.items?[3].badgeValue = "99+"
                 } else {
@@ -204,23 +208,100 @@ extension YELLOTabBarController {
             }
         }
     }
-    
+}
+
+extension YELLOTabBarController {
     func network() {
-        
-        /// 추천친구 서버통신
-        recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
-            self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()
+            /// 추천친구 서버통신
+            recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
+                self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()
+            }
+            recommendingViewController.schoolFriendViewController.schoolFriendView.recommendingSchoolFriend()
+            
+            /// 둘러보기 서버통신
+            aroundViewController.aroundView.around()
+            
+            /// 내 쪽지 서버통신
+            myYelloViewController.myYelloView.myYelloListView.myYello()
+            
+            /// 내 프로필 서버통신
+            profileViewController.profileView.profileFriend()
+            profileViewController.profileView.myProfileHeaderView.myProfileView.profileUser()
         }
-        recommendingViewController.schoolFriendViewController.schoolFriendView.recommendingSchoolFriend()
-        
-        /// 둘러보기 서버통신
-        aroundViewController.aroundView.around()
-        
-        /// 내 쪽지 서버통신
-        myYelloViewController.myYelloView.myYelloListView.myYello()
-        
-        /// 내 프로필 서버통신
-        profileViewController.profileView.profileFriend()
-        profileViewController.profileView.myProfileHeaderView.myProfileView.profileUser()
+    
+    @objc
+    func showMessage(_ notification: Notification) {
+        if let userInfo = notification.userInfo {
+            if let message = userInfo["message"] as? Int {
+                messageIndex = message
+            }
+        }
+    }
+    
+    @objc
+    func showPage(_ notification: Notification) {
+        if let userInfo = notification.userInfo {
+            if let index = userInfo["index"] as? Int {
+                self.selectedIndex = index
+                if selectedIndex == 3 {
+                    tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                    
+                    let myYelloDetailViewController = MyYelloDetailViewController()
+                    NetworkService.shared.myYelloService.myYelloDetail(voteId: messageIndex) { response in
+                        switch response {
+                        case .success(let data):
+                            guard let data = data.data else { return }
+                            
+                            myYelloDetailViewController.colorIndex = data.colorIndex
+                            myYelloDetailViewController.myYelloDetailView.currentPoint = data.currentPoint
+                            myYelloDetailViewController.myYelloDetailView.detailSenderView.isHidden = false
+                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.isHidden = false
+                            myYelloDetailViewController.myYelloDetailView.genderLabel.isHidden = false
+                            myYelloDetailViewController.myYelloDetailView.instagramButton.isHidden = false
+                            myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = false
+                            myYelloDetailViewController.myYelloDetailView.senderButton.isHidden = false
+                            myYelloDetailViewController.setBackgroundView()
+                            
+                            if data.senderGender == "MALE" {
+                                myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.male
+                            } else {
+                                myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.female
+                            }
+                            
+                            if data.vote.nameHead == nil {
+                                myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = "너" + (data.vote.nameFoot ?? "")
+                            } else {
+                                myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
+                            }
+                            
+                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
+                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordLabel.text = data.vote.keyword
+                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
+                            
+                            myYelloDetailViewController.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
+
+                            if data.nameHint == 0 {
+                                myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
+                                if let initial = myYelloDetailViewController.getFirstInitial(data.senderName as NSString, index: 0) {
+                                    myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
+                                }
+                            } else if data.nameHint == 1 {
+                                myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
+                                if let initial = myYelloDetailViewController.getSecondInitial(data.senderName as NSString, index: 1) {
+                                    myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
+                                }
+                            }
+                            self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
+                        default:
+                            print("network fail")
+                            return
+                        }
+                    }
+                    
+                } else if selectedIndex == 4 {
+                    tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                }
+            }
+        }
     }
 }
