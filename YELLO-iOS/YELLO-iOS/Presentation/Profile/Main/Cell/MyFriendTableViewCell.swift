@@ -84,7 +84,7 @@ extension MyFriendTableViewCell {
                                schoolLabel)
         
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16.adjustedHeight)
+            $0.top.equalToSuperview().inset(17.adjustedHeight)
             $0.leading.equalToSuperview().offset(8.adjustedWidth)
             $0.width.height.equalTo(42.adjusted)
         }
@@ -98,7 +98,7 @@ extension MyFriendTableViewCell {
             $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
             $0.width.equalTo(230.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(16.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(19.adjustedHeight)
         }
     }
     

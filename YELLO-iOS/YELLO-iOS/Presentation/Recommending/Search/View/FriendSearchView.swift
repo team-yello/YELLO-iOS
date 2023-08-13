@@ -18,6 +18,9 @@ final class FriendSearchView: BaseView {
     let friendSearchResultTableView = UITableView()
     let friendSearchController = UISearchController(searchResultsController: nil)
     let animationView = LottieAnimationView(name: "spinner_loading")
+    let noResultStackView = UIStackView()
+    let noResultImageView = UIImageView()
+    let noResultLabel = UILabel()
     
     override func setStyle() {
         friendSearchNavigationBarView.do {
@@ -45,6 +48,23 @@ final class FriendSearchView: BaseView {
             $0.dataSource = self
             $0.showsVerticalScrollIndicator = false
         }
+        
+        noResultStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 12.adjustedHeight
+            $0.addArrangedSubviews(noResultImageView, noResultLabel)
+        }
+        
+        noResultImageView.do {
+            $0.image = ImageLiterals.Recommending.imgSearchNoResult
+        }
+        
+        noResultLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.searching, lineHeight: 20.adjustedHeight)
+            $0.font = .uiBodySmall
+            $0.textColor = .grayscales700
+        }
+        
     }
     
     override func setLayout() {
