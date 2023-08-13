@@ -72,13 +72,13 @@ final class InvitingView: BaseView {
         }
         
         recommender.do {
-            $0.setTextWithLineHeight(text: "내 추천인 코드", lineHeight: 20)
+            $0.text = "내 추천인 코드"
             $0.textColor = .purpleSub500
             $0.font = .uiBody04
         }
         
         recommenderID.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 42)
+            $0.text = " "
             $0.textColor = .black
             $0.font = .uiExtraLarge
         }

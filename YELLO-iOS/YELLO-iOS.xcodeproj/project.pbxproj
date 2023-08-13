@@ -999,13 +999,6 @@
 			path = Modal;
 			sourceTree = "<group>";
 		};
-		367DA0192A863C8D0043D23C /* Trash */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Trash;
-			sourceTree = "<group>";
-		};
 		36E2181C2A5D158E00FB3C9C /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1040,7 +1033,6 @@
 		36E4275A2A5BCE860050B34E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				367DA0192A863C8D0043D23C /* Trash */,
 				367113742A7D92B80037E0D2 /* Modal */,
 				36E2181C2A5D158E00FB3C9C /* Base */,
 				36B234992A61A20C007933E4 /* KakaoLoginViewController.swift */,
@@ -2228,22 +2220,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
-			};
-		};
-		C3081E452A8225580088CA44 /* XCRemoteSwiftPackageReference "ShimmerSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/BeauNouvelle/ShimmerSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		C30F810B2A7FFC7A009DBB8D /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Juanpe/SkeletonView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
 			};
 		};
 		C3A799AA2A49499500D3EFD8 /* XCRemoteSwiftPackageReference "Then" */ = {
