@@ -29,24 +29,7 @@ final class VotingStartViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        animationView = .init(name: "VotingStart")
-        let animationWidth: CGFloat = 800.adjusted
-        let animationHeight: CGFloat = 800.adjusted
-        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
-
-        animationView.contentMode = .scaleToFill
-        animationView.loopMode = .loop
-        animationView.animationSpeed = 1.1
-
-        let centerX = view.bounds.midX
-        let centerY = view.bounds.midY + 250.adjusted
-
-        animationView.center = CGPoint(x: centerX, y: centerY)
-
-        animationView.play()
-        view.addSubview(animationView)
-        view.bringSubviewToFront(originView)
-
+        setAnimationView()
         getVotingAvailable()
         
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
@@ -164,6 +147,9 @@ final class VotingStartViewController: BaseViewController {
 }
 
 extension VotingStartViewController {
+    
+    // MARK: - 서버통신
+    
     func getVotingAvailable() {
         NetworkService.shared.votingService.getVotingAvailable {
             result in
@@ -225,5 +211,27 @@ extension VotingStartViewController {
                 return
             }
         }
+    }
+    
+    // MARK: - LottieAnimationView function
+    
+    func setAnimationView() {
+        animationView = .init(name: "VotingStart")
+        let animationWidth: CGFloat = 800.adjusted
+        let animationHeight: CGFloat = 800.adjusted
+        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
+
+        animationView.contentMode = .scaleToFill
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1.1
+
+        let centerX = view.bounds.midX
+        let centerY = view.bounds.midY + 250.adjusted
+
+        animationView.center = CGPoint(x: centerX, y: centerY)
+
+        animationView.play()
+        view.addSubview(animationView)
+        view.bringSubviewToFront(originView)
     }
 }
