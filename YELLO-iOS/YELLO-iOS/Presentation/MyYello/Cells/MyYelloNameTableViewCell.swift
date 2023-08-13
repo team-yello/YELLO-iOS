@@ -214,6 +214,8 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             if let initial = getSecondInitial(model.senderName as NSString, index: 1) {
                 initialLabel.text = initial
             }
+        } else if model.nameHint == -3 {
+            initialLabel.text = model.senderName
         }
     }
 }
