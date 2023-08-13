@@ -39,7 +39,7 @@ final class FriendProfileView: BaseView {
     private let groupView = UIView()
     
     private let descriptionLabel = UILabel()
-    private let cancelButton = UIButton()
+    private let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 146.adjustedWidth, height: 42.adjustedHeight))
     private let confirmButton = UIButton()
     
     // MARK: - Function
@@ -50,26 +50,27 @@ final class FriendProfileView: BaseView {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 36)
+            $0.makeCornerRound(radius: 36.adjustedHeight)
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 28)
+            $0.setTextWithLineHeight(text: "", lineHeight: 28.adjustedHeight)
             $0.font = .uiHeadline03
             $0.textColor = .white
         }
         
         instagramLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 16)
+            $0.setTextWithLineHeight(text: "", lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .yelloMain600
         }
         
         schoolLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 20)
+            $0.setTextWithLineHeight(text: "", lineHeight: 20.adjustedHeight)
             $0.font = .uiBody02
             $0.textColor = .grayscales500
             $0.textAlignment = .center
+            $0.lineBreakMode = .byCharWrapping
         }
         
         messageCountView.do {
@@ -88,7 +89,7 @@ final class FriendProfileView: BaseView {
         }
         
         descriptionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Friend.description, lineHeight: 22)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Friend.description, lineHeight: 22.adjustedHeight)
             $0.textColor = .white
             $0.font = .uiSubtitle02
         }
@@ -98,7 +99,7 @@ final class FriendProfileView: BaseView {
             $0.setTitle(StringLiterals.Profile.Friend.cancel, for: .normal)
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiButton
-            $0.makeCornerRound(radius: 8)
+            $0.makeCornerRound(radius: 21.adjustedHeight)
             $0.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         }
         
@@ -107,7 +108,7 @@ final class FriendProfileView: BaseView {
             $0.setTitle(StringLiterals.Profile.Friend.confirm, for: .normal)
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiButton
-            $0.makeCornerRound(radius: 8)
+            $0.makeCornerRound(radius: 21.adjustedHeight)
             $0.addTarget(self, action: #selector(deleteFriendButtonTapped), for: .touchUpInside)
         }
     }
@@ -124,47 +125,46 @@ final class FriendProfileView: BaseView {
                               instagramLabel)
         
         profileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(40.adjusted)
+            $0.top.equalToSuperview().offset(40.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(72)
+            $0.width.height.equalTo(72.adjusted)
         }
         
         groupView.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(16.adjusted)
+            $0.top.equalTo(profileImageView.snp.bottom).offset(16.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(28)
+            $0.height.equalTo(28.adjustedHeight)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.top.bottom.leading.equalToSuperview()
         }
         
         instagramLabel.snp.makeConstraints {
-            let font = UIFont.uiLabelLarge
-            let fontDescender = font.descender
-            
-            $0.bottom.equalTo(nameLabel).offset(-3.adjusted + fontDescender)
-            $0.leading.equalTo(nameLabel.snp.trailing).offset(8.adjusted)
+            $0.top.equalToSuperview().offset(9.adjustedHeight)
+            $0.leading.equalTo(nameLabel.snp.trailing).offset(8.adjustedWidth)
             $0.trailing.equalToSuperview()
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjusted)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.width.equalTo(200.adjustedWidth)
+            $0.height.equalTo(40.adjustedHeight)
         }
         
         deleteButton.snp.makeConstraints {
-            $0.top.equalTo(messageCountView.snp.bottom).offset(16.adjusted)
+            $0.top.equalTo(messageCountView.snp.bottom).offset(16.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         messageCountView.snp.makeConstraints {
-            $0.trailing.equalTo(self.snp.centerX).inset(6.adjusted)
-            $0.top.equalTo(schoolLabel.snp.bottom).offset(12.adjusted)
+            $0.trailing.equalTo(self.snp.centerX).inset(6.adjustedWidth)
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(12.adjustedHeight)
         }
         
         friendCountView.snp.makeConstraints {
-            $0.leading.equalTo(messageCountView.snp.trailing).offset(12.adjusted)
+            $0.leading.equalTo(messageCountView.snp.trailing).offset(12.adjustedWidth)
             $0.bottom.equalTo(messageCountView)
         }
     }
@@ -181,21 +181,21 @@ final class FriendProfileView: BaseView {
         
         descriptionLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(schoolLabel.snp.bottom).offset(30.adjusted)
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(30.adjustedHeight)
         }
         
         cancelButton.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(28.adjusted)
-            $0.trailing.equalTo(self.snp.centerX).offset(-2)
-            $0.height.equalTo(42)
-            $0.width.equalTo(146)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(28.adjustedHeight)
+            $0.trailing.equalTo(self.snp.centerX).offset(-2.adjustedWidth)
+            $0.height.equalTo(42.adjustedHeight)
+            $0.width.equalTo(146.adjustedWidth)
         }
         
         confirmButton.snp.makeConstraints {
             $0.top.equalTo(cancelButton)
-            $0.leading.equalTo(self.snp.centerX).offset(2)
-            $0.height.equalTo(42)
-            $0.width.equalTo(146)
+            $0.leading.equalTo(self.snp.centerX).offset(2.adjustedWidth)
+            $0.height.equalTo(42.adjustedHeight)
+            $0.width.equalTo(146.adjustedWidth)
         }
     }
     
@@ -233,17 +233,17 @@ final class FriendProfileView: BaseView {
                          deleteButton)
         
         deleteButton.snp.makeConstraints {
-            $0.top.equalTo(messageCountView.snp.bottom).offset(16.adjusted)
+            $0.top.equalTo(messageCountView.snp.bottom).offset(16.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         messageCountView.snp.makeConstraints {
-            $0.trailing.equalTo(self.snp.centerX).inset(6.adjusted)
-            $0.top.equalTo(schoolLabel.snp.bottom).offset(12.adjusted)
+            $0.trailing.equalTo(self.snp.centerX).inset(6.adjustedWidth)
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(12.adjustedHeight)
         }
         
         friendCountView.snp.makeConstraints {
-            $0.leading.equalTo(messageCountView.snp.trailing).offset(12.adjusted)
+            $0.leading.equalTo(messageCountView.snp.trailing).offset(12.adjustedWidth)
             $0.bottom.equalTo(messageCountView)
         }
         

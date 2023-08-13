@@ -23,7 +23,7 @@ final class RecommendingNavigationBarView: BaseView {
         self.backgroundColor = .black
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Title.recommend, lineHeight: 28)
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Title.recommend, lineHeight: 28.adjustedHeight)
             $0.textColor = .white
             $0.font = .uiHeadline03
         }

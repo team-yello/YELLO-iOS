@@ -45,13 +45,13 @@ extension AroundEmptyView {
         self.backgroundColor = .black
         
         aroundLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Around.around, lineHeight: 28)
+            $0.setTextWithLineHeight(text: StringLiterals.Around.around, lineHeight: 28.adjustedHeight)
             $0.font = .uiHeadline03
             $0.textColor = .white
         }
         
         aroundDescriptionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Around.aroundDescription, lineHeight: 20)
+            $0.setTextWithLineHeight(text: StringLiterals.Around.aroundDescription, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales500
             $0.numberOfLines = 2

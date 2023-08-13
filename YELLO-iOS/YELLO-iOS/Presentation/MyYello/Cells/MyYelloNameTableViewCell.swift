@@ -97,7 +97,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 16)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .semanticGenderF500
         }
@@ -121,7 +121,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         initialLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(13)
+            $0.top.equalToSuperview().inset(13.adjustedHeight)
             $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjustedWidth)
         }
         

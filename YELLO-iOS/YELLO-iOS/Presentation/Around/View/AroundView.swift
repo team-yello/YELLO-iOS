@@ -43,7 +43,7 @@ final class AroundView: BaseView {
         }
         
         aroundLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Around.around, lineHeight: 28)
+            $0.setTextWithLineHeight(text: StringLiterals.Around.around, lineHeight: 28.adjustedHeight)
             $0.font = .uiHeadline03
             $0.textColor = .white
         }
@@ -58,16 +58,7 @@ final class AroundView: BaseView {
             $0.showsHorizontalScrollIndicator = false
             $0.backgroundColor = .black
         }
-//        configureAroundDataSource()
     }
-    
-//    private func configureAroundDataSource() {
-//        dataSource = UITableViewDiffableDataSource<Int, Yello>(tableView: aroundTableView) { [weak self] (tableView, indexPath, around) -> UITableViewCell? in
-//            guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: AroundTableViewCell.identifier, for: indexPath) as? AroundTableViewCell else { return UITableViewCell() }
-//            aroundCell.selectionStyle = .none
-//            return aroundCell
-//        }
-//    }
     
     override func setLayout() {
         self.addSubviews(

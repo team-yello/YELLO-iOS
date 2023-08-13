@@ -52,17 +52,17 @@ extension MyFriendSkeletonTableViewCell {
         
         profileImageView.do {
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 20)
+            $0.makeCornerRound(radius: 20.adjustedHeight)
         }
         
         nameLabel.do {
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
         }
         
         schoolLabel.do {
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 2)
+            $0.makeCornerRound(radius: 2.adjustedHeight)
         }
     }
     
@@ -73,7 +73,7 @@ extension MyFriendSkeletonTableViewCell {
                                schoolLabel)
         
         profileImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().inset(17.adjustedHeight)
             $0.leading.equalToSuperview().offset(8.adjustedWidth)
             $0.width.height.equalTo(42.adjusted)
         }
@@ -90,6 +90,7 @@ extension MyFriendSkeletonTableViewCell {
             $0.leading.equalTo(nameLabel)
             $0.height.equalTo(16.adjustedHeight)
             $0.width.equalTo(221.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(19.adjustedHeight)
         }
     }
     
