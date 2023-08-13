@@ -71,8 +71,8 @@ class PushSettingView: BaseView {
         }
         
         goToYelloButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
-            $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(34.adjustedHeight)
             $0.height.equalTo(48)
         }
     }

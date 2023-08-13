@@ -63,6 +63,12 @@ class PushSettingViewController: UIViewController {
     // MARK: objc Function
     @objc func tapButton() {
         requestAuthNoti()
+        var rootViewController = UIViewController()
+        if User.shared.isResigned {
+            rootViewController = onboardingEndViewController
+        } else {
+            rootViewController = YELLOTabBarController()
+        }
         navigationController?.pushViewController(onboardingEndViewController, animated: true)
     }
 
