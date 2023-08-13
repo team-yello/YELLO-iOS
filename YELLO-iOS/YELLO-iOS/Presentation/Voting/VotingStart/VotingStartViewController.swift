@@ -16,7 +16,10 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     var myPoint = 0
-    
+    private let balloonToday = UIImageView()
+    private let balloonWho = UIImageView()
+    private let balloonSend = UIImageView()
+
     override func loadView() {
         self.view = originView
     }
@@ -65,6 +68,18 @@ final class VotingStartViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .black
         
+        balloonToday.do {
+            $0.image = ImageLiterals.Voting.imgVotingStartBalloon1
+        }
+        
+        balloonWho.do {
+            $0.image = ImageLiterals.Voting.imgVotingStartBalloon2
+        }
+        
+        balloonSend.do {
+            $0.image = ImageLiterals.Voting.imgVotingStartBalloon3
+        }
+        
         originView.yellowButton.do {
             $0.setTitle("START!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
@@ -85,6 +100,10 @@ final class VotingStartViewController: BaseViewController {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
         
+        view.addSubviews(balloonToday,
+                         balloonWho,
+                         balloonSend)
+        
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
             $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedWidth)
@@ -93,6 +112,27 @@ final class VotingStartViewController: BaseViewController {
         originView.topOfMyPoint.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 24.adjustedHeight)
             $0.trailing.equalToSuperview().inset(16.adjusted)
+        }
+        
+        balloonToday.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 66.adjustedHeight)
+            $0.leading.equalToSuperview().inset(74.adjusted)
+            $0.width.equalTo(92.adjusted)
+            $0.height.equalTo(36.adjusted)
+        }
+        
+        balloonWho.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 108.adjustedHeight)
+            $0.leading.equalToSuperview().inset(74.adjusted)
+            $0.width.equalTo(228.adjusted)
+            $0.height.equalTo(36.adjusted)
+        }
+        
+        balloonSend.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 150.adjustedHeight)
+            $0.trailing.equalToSuperview().inset(73.adjusted)
+            $0.width.equalTo(124.adjusted)
+            $0.height.equalTo(36.adjusted)
         }
         
         originView.yellowButton.snp.makeConstraints {

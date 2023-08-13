@@ -95,40 +95,41 @@ final class VotingViewController: BaseViewController {
     
     var suffleCount = 0 {
         didSet {
-            originView.suffleButton.isEnabled = false
-            NetworkService.shared.votingService.getVotingSuffle { result in
-                switch result {
-                case .success(let data):
-                    guard let data = data.data else { return }
-                    
-                    let first = data[0].friendName + "\n@" + data[0].friendYelloId
-                    let second = data[1].friendName + "\n@" + data[1].friendYelloId
-                    let third = data[2].friendName + "\n@" + data[2].friendYelloId
-                    let fourth = data[3].friendName + "\n@" + data[3].friendYelloId
-                    
-                    self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
-                    self.votingList[VotingViewController.pushCount].friendId[1] = data[1].friendId
-                    self.votingList[VotingViewController.pushCount].friendId[2] = data[2].friendId
-                    self.votingList[VotingViewController.pushCount].friendId[3] = data[3].friendId
-                    
-                    self.setNameText(first: first, second: second, third: third, fourth: fourth)
-                    self.originView.suffleButton.isEnabled = true
-                default:
-                    print("network failure")
-                    return
-                }
-            }
-            
-            if suffleCount < 3 {
-                originView.suffleNum.text = String(3 - suffleCount) + "/3"
-            }
-                
-            if suffleCount == 3 {
+            if suffleCount > 3 {
                 originView.suffleButton.isEnabled = false
-                originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
-                originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
-                originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
-                originView.suffleNum.text = "0/3"
+            } else {
+                if suffleCount < 3 {
+                    originView.suffleNum.text = String(3 - suffleCount) + "/3"
+                }
+                if suffleCount == 3 {
+                    originView.suffleNum.text = "0/3"
+                    originView.suffleIcon.image = ImageLiterals.Voting.icSuffleLocked
+                    originView.suffleText.textColor = UIColor(hex: "191919", alpha: 0.4)
+                    originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
+                }
+                originView.suffleButton.isEnabled = false
+                NetworkService.shared.votingService.getVotingSuffle { result in
+                    switch result {
+                    case .success(let data):
+                        guard let data = data.data else { return }
+                        
+                        let first = data[0].friendName + "\n@" + data[0].friendYelloId
+                        let second = data[1].friendName + "\n@" + data[1].friendYelloId
+                        let third = data[2].friendName + "\n@" + data[2].friendYelloId
+                        let fourth = data[3].friendName + "\n@" + data[3].friendYelloId
+                        
+                        self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
+                        self.votingList[VotingViewController.pushCount].friendId[1] = data[1].friendId
+                        self.votingList[VotingViewController.pushCount].friendId[2] = data[2].friendId
+                        self.votingList[VotingViewController.pushCount].friendId[3] = data[3].friendId
+                        
+                        self.setNameText(first: first, second: second, third: third, fourth: fourth)
+                        self.originView.suffleButton.isEnabled = true
+                    default:
+                        print("network failure")
+                        return
+                    }
+                }
             }
         }
     }
