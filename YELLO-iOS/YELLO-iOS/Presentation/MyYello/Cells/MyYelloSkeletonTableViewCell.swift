@@ -48,7 +48,7 @@ final class MyYelloSkeletonTableViewCell: UITableViewCell {
     private func setStyle() {
         self.backgroundColor = .black
         contentView.backgroundColor = .grayscales900
-        contentView.makeCornerRound(radius: 8)
+        contentView.makeCornerRound(radius: 8.adjustedHeight)
         
         genderImageView.do {
             $0.backgroundColor = .grayscales600

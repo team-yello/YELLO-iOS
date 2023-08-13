@@ -59,7 +59,7 @@ extension MyFriendTableViewCell {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 20.adjusted)
+            $0.makeCornerRound(radius: 20.adjustedHeight)
         }
         
         nameLabel.do {

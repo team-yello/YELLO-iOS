@@ -50,7 +50,7 @@ final class FriendProfileView: BaseView {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 36.adjusted)
+            $0.makeCornerRound(radius: 36.adjustedHeight)
         }
         
         nameLabel.do {
@@ -233,17 +233,17 @@ final class FriendProfileView: BaseView {
                          deleteButton)
         
         deleteButton.snp.makeConstraints {
-            $0.top.equalTo(messageCountView.snp.bottom).offset(16.adjusted)
+            $0.top.equalTo(messageCountView.snp.bottom).offset(16.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         messageCountView.snp.makeConstraints {
-            $0.trailing.equalTo(self.snp.centerX).inset(6.adjusted)
-            $0.top.equalTo(schoolLabel.snp.bottom).offset(12.adjusted)
+            $0.trailing.equalTo(self.snp.centerX).inset(6.adjustedWidth)
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(12.adjustedHeight)
         }
         
         friendCountView.snp.makeConstraints {
-            $0.leading.equalTo(messageCountView.snp.trailing).offset(12.adjusted)
+            $0.leading.equalTo(messageCountView.snp.trailing).offset(12.adjustedWidth)
             $0.bottom.equalTo(messageCountView)
         }
         

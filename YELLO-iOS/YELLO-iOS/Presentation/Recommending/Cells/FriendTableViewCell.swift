@@ -45,13 +45,11 @@ final class FriendTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
         nameLabel.text = nil
         schoolLabel.text = nil
         isTapped = false
         separatorLine.isHidden = false
         addButton.isHidden = true
-//        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
     }
 }
 
@@ -79,14 +77,14 @@ extension FriendTableViewCell {
         
         nameLabel.do {
             $0.font = .uiSubtitle01
-            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24.adjustedHeight)
             $0.numberOfLines = 0
             $0.textColor = .white
         }
         
         schoolLabel.do {
             $0.font = .uiLabelMedium
-            $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15.adjustedHeight)
             $0.numberOfLines = 0
             $0.textColor = .grayscales600
             $0.lineBreakMode = .byCharWrapping

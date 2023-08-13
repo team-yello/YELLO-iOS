@@ -61,13 +61,13 @@ extension MyProfileView {
         
         mainProfileView.do {
             $0.backgroundColor = .grayscales900
-            $0.makeCornerRound(radius: 12)
+            $0.makeCornerRound(radius: 12.adjustedHeight)
         }
         
         profileImageView.do {
             $0.backgroundColor = .grayscales800
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 24.adjusted)
+            $0.makeCornerRound(radius: 24.adjustedHeight)
             $0.layer.cornerCurve = .continuous
         }
         
@@ -84,7 +84,7 @@ extension MyProfileView {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 30.adjustedHeight)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 30.adjustedHeight)
             $0.font = .uiHeadline02
             $0.textColor = .white
             $0.numberOfLines = 2
@@ -92,13 +92,13 @@ extension MyProfileView {
         }
         
         instagramLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 20.adjustedHeight)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiBody02
             $0.textColor = .yelloMain500
         }
         
         schoolLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 16.adjustedHeight)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 16.adjustedHeight)
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales400
             $0.textAlignment = .left
@@ -110,17 +110,17 @@ extension MyProfileView {
         }
         
         messageView.do {
-            $0.countLabel.text = "0"
+            $0.countLabel.text = " "
             $0.titleLabel.text = StringLiterals.Profile.Count.message
         }
         
         friendView.do {
-            $0.countLabel.text = "0"
+            $0.countLabel.text = " "
             $0.titleLabel.text = StringLiterals.Profile.Count.friend
         }
         
         pointView.do {
-            $0.countLabel.text = "0"
+            $0.countLabel.text = " "
             $0.titleLabel.text = StringLiterals.Profile.Count.point
         }
         
@@ -222,7 +222,7 @@ extension MyProfileView {
         separateView.snp.makeConstraints {
             $0.top.equalTo(schoolLabel.snp.bottom).offset(16.adjustedHeight)
             $0.height.equalTo(1.adjusted)
-            $0.leading.trailing.equalToSuperview().inset(32.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(32.adjustedWidth)
         }
         
         messageView.snp.makeConstraints {
@@ -328,7 +328,7 @@ extension MyProfileView {
                 $0.center.equalTo(profileImageBackgroundView)
                 $0.width.height.equalTo(44.adjusted)
             }
-            profileImageView.makeCornerRound(radius: 22.adjusted)
+            profileImageView.makeCornerRound(radius: 22.adjustedHeight)
         }
     }
 }

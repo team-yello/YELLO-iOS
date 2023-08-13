@@ -44,7 +44,7 @@ final class AroundTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
         
     // MARK: Layout Helpers
@@ -65,7 +65,7 @@ final class AroundTableViewCell: UITableViewCell {
         receiverStackView.do {
             $0.axis = .horizontal
             $0.alignment = .center
-            $0.spacing = 4
+            $0.spacing = 4.adjustedHeight
         }
         
         genderLabel.do {
@@ -86,14 +86,12 @@ final class AroundTableViewCell: UITableViewCell {
         
         nameLabel.do {
             $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 24.adjustedHeight)
-//            $0.text = "술자리에서 너가"
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
         
         keywordHeadLabel.do {
             $0.setTextWithLineHeight(text: "사라진다면", lineHeight: 24.adjustedHeight)
-            $0.text = "사라진다면"
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
@@ -102,13 +100,10 @@ final class AroundTableViewCell: UITableViewCell {
             $0.backgroundColor = .grayscales800
             $0.makeCornerRound(radius: 4.adjustedHeight)
             $0.addDottedBorder()
-//            $0.isHidden = true
-
         }
         
         keywordLabel.do {
             $0.setTextWithLineHeight(text: "달빛산책 간 거", lineHeight: 24.adjustedHeight)
-            $0.text = "달빛산책 간 거"
             $0.font = .uiBodyLarge
             $0.textColor = .semanticGenderF300
             $0.isHidden = true
@@ -116,7 +111,6 @@ final class AroundTableViewCell: UITableViewCell {
         
         keywordFootLabel.do {
             $0.setTextWithLineHeight(text: "(이)야", lineHeight: 24.adjustedHeight)
-            $0.text = "(이)야"
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
@@ -153,7 +147,7 @@ final class AroundTableViewCell: UITableViewCell {
         genderImageView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(16.adjustedHeight)
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
-            $0.width.height.equalTo(20)
+            $0.width.height.equalTo(20.adjusted)
         }
         
         receiverStackView.snp.makeConstraints {

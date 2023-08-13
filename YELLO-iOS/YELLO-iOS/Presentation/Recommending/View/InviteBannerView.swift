@@ -31,14 +31,14 @@ final class InviteBannerView: BaseView {
         }
         
         inviteLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Invite.invite, lineHeight: 22)
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Invite.invite, lineHeight: 22.adjustedHeight)
             $0.font = .uiBody01
             $0.textColor = .white
         }
         
         descriptionLabel.do {
             $0.font = .uiLabelMedium
-            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Invite.inviteDescription, lineHeight: 15)
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Invite.inviteDescription, lineHeight: 15.adjustedHeight)
             $0.textColor = .grayscales600
         }
         
