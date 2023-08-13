@@ -127,7 +127,6 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
 
 extension MyYelloViewController {
     func myYelloCount() {
-        
         if countFetchingMore {
             return
         }
@@ -141,7 +140,12 @@ extension MyYelloViewController {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
-
+                    // 탭바 뱃지에 쪽지 개수 반영
+                    if data.totalCount > 99 {
+                        self.tabBarController?.tabBar.items?[3].badgeValue = "99+"
+                    } else {
+                        self.tabBarController?.tabBar.items?[3].badgeValue = String(data.totalCount)
+                    }
                     self.myYelloView.myYelloCount = data.totalCount
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
@@ -156,6 +160,8 @@ extension MyYelloViewController {
     
     // MARK: Objc Function
     @objc func refreshTable(refresh: UIRefreshControl) {
+        // 실시간으로 쪽지 개수 받아오기 위해 추가
+        myYelloCount()
         myYelloView.myYelloListView.pageCount = -1
         myYelloView.myYelloListView.isFinishPaging = false
         myYelloView.myYelloListView.fetchingMore = false

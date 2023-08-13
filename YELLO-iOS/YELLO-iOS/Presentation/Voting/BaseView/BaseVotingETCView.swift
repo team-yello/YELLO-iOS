@@ -91,7 +91,6 @@ final class BaseVotingETCView: BaseView {
             $0.setTitleColor(.black, for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
             $0.backgroundColor = .yelloMain500
-            $0.makeCornerRound(radius: 23.adjusted)
         }
     }
     
@@ -156,7 +155,6 @@ final class BaseVotingETCView: BaseView {
         yellowButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(343.adjusted)
-            $0.height.equalTo(48.adjusted)
         }
     }
 }

@@ -138,8 +138,19 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
         
         let selectedIndex = tabBarController.selectedIndex
         switch selectedIndex {
-        case 0, 1, 3, 4:
+        case 0:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            recommendingViewController.schoolFriendViewController.schoolFriendView.schoolFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        case 1:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            aroundViewController.aroundView.aroundTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        case 3:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            myYelloViewController.myYelloView.myYelloListView.myYelloTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        case 4:
+            tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            profileViewController.profileView.myFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         default:
             tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
         }
@@ -160,6 +171,8 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
     }
 }
 
+// MARK: - 서버통신
+
 extension YELLOTabBarController {
     func getVotingAvailable() {
         NetworkService.shared.votingService.getVotingAvailable {
@@ -179,31 +192,8 @@ extension YELLOTabBarController {
                 }
                 self.setTabBarItems()
                 self.setTabBarAppearance()
-                self.myYelloCount()
             default:
                 print("network failure")
-                return
-            }
-        }
-    }
-    
-    func myYelloCount() {
-        let queryDTO = MyYelloRequestQueryDTO(page: 0)
-        NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(let data):
-                guard let data = data.data else { return }
-                self.myYelloViewController.myYelloView.myYelloCount = data.totalCount
-                if data.totalCount > 99 {
-                    self.tabBar.items?[3].badgeValue = "99+"
-                } else {
-                    self.tabBar.items?[3].badgeValue = String(data.totalCount)
-                }
-                
-                print("내 옐로 count 한번에 통신 성공")
-            default:
-                print("network fail")
                 return
             }
         }
@@ -212,22 +202,25 @@ extension YELLOTabBarController {
 
 extension YELLOTabBarController {
     func network() {
-            /// 추천친구 서버통신
-            recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
-                self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()
-            }
-            recommendingViewController.schoolFriendViewController.schoolFriendView.recommendingSchoolFriend()
-            
-            /// 타임라인 서버통신
-            aroundViewController.aroundView.around()
-            
-            /// 내 쪽지 서버통신
-            myYelloViewController.myYelloView.myYelloListView.myYello()
-            
-            /// 내 프로필 서버통신
-            profileViewController.profileView.profileFriend()
-            profileViewController.profileView.myProfileHeaderView.myProfileView.profileUser()
+        /// 추천친구 서버통신
+        recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
+            self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()
         }
+        recommendingViewController.schoolFriendViewController.schoolFriendView.recommendingSchoolFriend()
+        
+        /// 둘러보기 서버통신
+        aroundViewController.aroundView.around()
+        
+        /// 내 쪽지 서버통신
+        myYelloViewController.myYelloView.myYelloListView.myYello()
+        myYelloViewController.myYelloCount()
+        
+        /// 내 프로필 서버통신
+        profileViewController.profileView.profileFriend()
+        profileViewController.profileView.myProfileHeaderView.myProfileView.profileUser()
+    }
+    
+    // MARK: -  Notification
     
     @objc
     func showMessage(_ notification: Notification) {

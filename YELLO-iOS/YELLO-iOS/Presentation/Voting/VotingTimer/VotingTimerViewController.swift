@@ -106,7 +106,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         speechBubbleText.do {
-            $0.setTextWithLineHeight(text: "🤩 친구를 초대하면 바로 투표할 수 있어요!", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "🤩 친구가 가입하면 바로 투표할 수 있어요!", lineHeight: 15)
             $0.textColor = .white
             $0.font = .uiLabelMedium
         }
@@ -115,6 +115,7 @@ final class VotingTimerViewController: BaseViewController {
             $0.setTitle("기다리지 않고 바로 투표하기", for: .normal)
             $0.titleLabel?.font = .uiSubtitle04
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
+            $0.makeCornerRound(radius: 23.adjusted)
         }
     }
     
@@ -178,6 +179,7 @@ final class VotingTimerViewController: BaseViewController {
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+            $0.height.equalTo(48.adjusted)
         }
         
         originView.yelloFace.snp.makeConstraints {
@@ -200,7 +202,6 @@ final class VotingTimerViewController: BaseViewController {
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        invitingView.updateText(title: StringLiterals.Inviting.unLockedTitle, text: StringLiterals.Inviting.unLockedText, targetString: "바로 투표")
         viewController.view.addSubview(invitingView)
     }
     
@@ -284,7 +285,6 @@ extension VotingTimerViewController {
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
                     self.cancelScheduledNotification()
-                    print("💛💛💛💛💛💛💛💛💛💛💛💛💛💛")
                 }
                 self.remainingSeconds = duration
                 self.start(duration: duration)
@@ -304,14 +304,14 @@ extension VotingTimerViewController {
                 guard let data = data.data else { return }
                 if data.isPossible {
                     let viewController = VotingStartViewController()
-                    viewController.myPoint = self.myPoint
+                    viewController.myPoint = data.point
                     UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
                     self.cancelScheduledNotification()
-                    print("💕💕💕💕💕💕💕💕💕💕💕💕")
                 }
+                self.myPoint = data.point
             default:
                 print("network failure")
                 return
