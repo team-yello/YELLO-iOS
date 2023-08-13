@@ -30,34 +30,34 @@ final class VotingStartViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        animationView = .init(name: "VotingStart")
-        let animationWidth: CGFloat = 230
-        let animationHeight: CGFloat = 230
-        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
-        
-        animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .loop
-        animationView.animationSpeed = 1.1
-        
-        let centerX = view.bounds.midX
-        let centerY = view.bounds.midY - 40.adjusted
-            
-        animationView.center = CGPoint(x: centerX, y: centerY)
-
-        animationView.play()
-        view.addSubview(animationView)
+//        animationView = .init(name: "VotingStart")
+//        let animationWidth: CGFloat = 230
+//        let animationHeight: CGFloat = 230
+//        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
+//
+//        animationView.contentMode = .scaleAspectFit
+//        animationView.loopMode = .loop
+//        animationView.animationSpeed = 1.1
+//
+//        let centerX = view.bounds.midX
+//        let centerY = view.bounds.midY - 40.adjusted
+//
+//        animationView.center = CGPoint(x: centerX, y: centerY)
+//
+//        animationView.play()
+//        view.addSubview(animationView)
         
         getVotingAvailable()
         
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
-        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        animationView.removeFromSuperview()
+//        animationView.removeFromSuperview()
     }
     
     // MARK: - Style
@@ -65,21 +65,10 @@ final class VotingStartViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .black
         
-        originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Start.title, lineHeight: 28)
-        }
-        
-        originView.engPoint.do {
-            $0.setTextWithLineHeight(text: "Point", lineHeight: 22)
-        }
-        
-        originView.realMyPoint.do {
-            $0.setTextWithLineHeight(text: "0", lineHeight: 22)
-        }
-        
         originView.yellowButton.do {
-            $0.setTitle("투표 시작!", for: .normal)
+            $0.setTitle("START!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
+            $0.titleLabel?.font = .uiVotingLabel
             $0.makeCornerRound(radius: 30.adjusted)
         }
     }
@@ -95,19 +84,20 @@ final class VotingStartViewController: BaseViewController {
                 
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
-
-        originView.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
+        
+        originView.topOfPointIcon.snp.makeConstraints {
+            $0.centerY.equalTo(originView.topOfMyPoint)
+            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedWidth)
         }
         
-        originView.grayView.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 117.adjustedHeight)
-            $0.width.equalTo(284.adjusted)
-            $0.height.equalTo(52.adjusted)
+        originView.topOfMyPoint.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 24.adjustedHeight)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 80.adjustedHeight)
+            $0.width.equalTo(198.adjusted)
             $0.height.equalTo(58.adjusted)
         }
         
