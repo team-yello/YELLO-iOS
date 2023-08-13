@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Lottie
 import SnapKit
 import Then
 
@@ -16,9 +17,10 @@ final class FriendSearchView: BaseView {
     let friendSearchTextfield = YelloTextField(state: .search)
     let friendSearchResultTableView = UITableView()
     let friendSearchController = UISearchController(searchResultsController: nil)
-    let searchingImageView = UIImageView()
-    let searchingLabel = UILabel()
-    let searchingStackView = UIStackView()
+    let animationView = LottieAnimationView(name: "spinner_loading")
+    let noResultStackView = UIStackView()
+    let noResultImageView = UIImageView()
+    let noResultLabel = UILabel()
     
     override func setStyle() {
         friendSearchNavigationBarView.do {
@@ -47,22 +49,22 @@ final class FriendSearchView: BaseView {
             $0.showsVerticalScrollIndicator = false
         }
         
-        searchingImageView.do {
-            $0.image = ImageLiterals.Recommending.imgFriendSearch
+        noResultStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 12.adjustedHeight
+            $0.addArrangedSubviews(noResultImageView, noResultLabel)
         }
         
-        searchingLabel.do {
+        noResultImageView.do {
+            $0.image = ImageLiterals.Recommending.imgSearchNoResult
+        }
+        
+        noResultLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.searching, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
-            $0.textColor = .grayscales300
+            $0.textColor = .grayscales700
         }
         
-        searchingStackView.do {
-            $0.spacing = 14.adjustedHeight
-            $0.axis = .vertical
-            $0.alignment = .center
-            $0.addArrangedSubviews(searchingImageView, searchingLabel)
-        }
     }
     
     override func setLayout() {

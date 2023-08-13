@@ -41,13 +41,13 @@ extension CountCustomView {
     
     private func setStyle() {
         countLabel.do {
-            $0.setTextWithLineHeight(text: "0", lineHeight: 30)
+            $0.setTextWithLineHeight(text: "0", lineHeight: 30.adjustedHeight)
             $0.font = .uiHeadline02
             $0.textColor = .white
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Count.message, lineHeight: 15)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Count.message, lineHeight: 15.adjustedHeight)
             $0.font = .uiLabelMedium
             $0.textColor = .grayscales500
         }

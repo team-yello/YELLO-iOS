@@ -87,20 +87,20 @@ extension FriendSkeletonTableViewCell {
                                 separatorLine)
         
         profileImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().inset(16.adjustedHeight)
             $0.leading.equalToSuperview().offset(8.adjusted)
             $0.width.height.equalTo(42.adjusted)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(11.adjustedHeight)
+            $0.top.equalToSuperview().inset(19.adjustedHeight)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(8.adjusted)
             $0.height.equalTo(16.adjustedHeight)
             $0.width.equalTo(66.adjustedWidth)
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(-11.adjustedHeight)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(6.adjustedHeight)
             $0.leading.equalTo(nameLabel)
             $0.height.equalTo(16.adjustedHeight)
             $0.width.equalTo(221.adjustedWidth)
@@ -109,6 +109,7 @@ extension FriendSkeletonTableViewCell {
         separatorLine.snp.makeConstraints {
             $0.height.equalTo(1)
             $0.bottom.equalToSuperview()
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(19.adjustedHeight)
         }
     }
 }

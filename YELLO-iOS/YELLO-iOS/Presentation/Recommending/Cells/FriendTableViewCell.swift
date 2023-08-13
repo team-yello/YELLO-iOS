@@ -45,13 +45,11 @@ final class FriendTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
         nameLabel.text = nil
         schoolLabel.text = nil
         isTapped = false
         separatorLine.isHidden = false
         addButton.isHidden = true
-//        addButton.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
     }
 }
 
@@ -79,16 +77,18 @@ extension FriendTableViewCell {
         
         nameLabel.do {
             $0.font = .uiSubtitle01
-            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24)
+            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 24.adjustedHeight)
             $0.numberOfLines = 0
             $0.textColor = .white
         }
         
         schoolLabel.do {
             $0.font = .uiLabelMedium
-            $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15)
+            $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15.adjustedHeight)
             $0.numberOfLines = 0
             $0.textColor = .grayscales600
+            $0.lineBreakMode = .byCharWrapping
+            $0.textAlignment = .left
         }
         
         addButton.do {
@@ -125,6 +125,7 @@ extension FriendTableViewCell {
         schoolLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
+            $0.width.equalTo(184.adjustedWidth)
         }
         
         addButton.snp.makeConstraints {
@@ -133,6 +134,7 @@ extension FriendTableViewCell {
         }
         
         separatorLine.snp.makeConstraints {
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(16.adjustedHeight)
             $0.height.equalTo(1)
             $0.bottom.equalToSuperview()
         }

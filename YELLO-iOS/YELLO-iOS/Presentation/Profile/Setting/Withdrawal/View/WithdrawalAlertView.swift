@@ -26,11 +26,11 @@ final class WithdrawalAlertView: BaseView {
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
-        contentsView.makeCornerRound(radius: 12)
+        contentsView.makeCornerRound(radius: 12.adjustedHeight)
         contentsView.backgroundColor = .grayscales900
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalAlert.title, lineHeight: 22)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalAlert.title, lineHeight: 22.adjustedHeight)
             $0.font = .uiSubtitle02
             $0.textColor = .white
         }

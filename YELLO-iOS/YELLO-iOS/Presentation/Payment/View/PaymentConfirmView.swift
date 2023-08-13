@@ -47,12 +47,6 @@ final class PaymentConfirmView: BaseView {
             $0.font = .uiLabelMedium
         }
         
-        paymentImageView.do {
-            // 추후 이미지 나오면 수정 예정
-            // $0.image = ImageLiterals.MyYello.icPoin
-            $0.backgroundColor = .grayscales600
-        }
-        
         confirmButton.do {
             $0.backgroundColor = .clear
             $0.titleLabel?.font = .uiButton
@@ -89,7 +83,8 @@ final class PaymentConfirmView: BaseView {
         paymentImageView.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(17)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(200)
+            $0.width.equalTo(230)
+            $0.height.equalTo(200)
         }
         
         confirmButton.snp.makeConstraints {

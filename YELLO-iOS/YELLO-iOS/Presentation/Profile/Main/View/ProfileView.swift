@@ -20,12 +20,14 @@ final class ProfileView: UIView {
     // MARK: - Variables
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
+    weak var handleShopButton: HandleShopButton?
     var indexNumber: Int = -1
     var friendCount: Int = 0
     
     var initialProfileFriendDataCount = 10
     var fetchingMore = false
     var isFinishPaging = false
+    var isYelloPlus = true
     var pageCount = -1
     var myYelloCount = 0
     var profileFriendPage: Int = 0
@@ -74,7 +76,6 @@ extension ProfileView {
         }
         
         myFriendTableView.do {
-            $0.rowHeight = 77
             $0.register(MyFriendTableViewCell.self, forCellReuseIdentifier: MyFriendTableViewCell.identifier)
             $0.register(MyFriendSkeletonTableViewCell.self, forCellReuseIdentifier: MyFriendSkeletonTableViewCell.identifier)
             $0.register(MyProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "MyProfileHeaderView")
@@ -83,6 +84,8 @@ extension ProfileView {
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
+            $0.rowHeight = UITableView.automaticDimension
+            $0.estimatedRowHeight = 77.adjustedHeight
         }
         
         topButton.do {
@@ -144,6 +147,10 @@ extension ProfileView {
         myFriendTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
+    @objc func shopButtonTapped() {
+        handleShopButton?.shopButtonTapped()
+    }
+    
     private func presentModal(index: Int) {
         handleFriendCellDelegate?.presentModal(index: index)
     }
@@ -169,7 +176,6 @@ extension ProfileView {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
-                    
                     
                     let friendModels = data.friends.map { profileFriend in
                         
@@ -235,11 +241,22 @@ extension ProfileView: UITableViewDataSource {
                 view?.friendCountView.countStackView.isHidden = false
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 view?.addBottomBorderWithColor(color: .black)
                 view?.myProfileView.profileUser()
                 view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
                 view?.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
+                view?.myProfileView.nameSkeletonLabel.isHidden = true
+                view?.myProfileView.schoolSkeletonLabel.isHidden = true
+                view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
+                if isYelloPlus {
+                    view?.myProfileView.profileImageBackgroundView.isHidden = false
+                    view?.myProfileView.profileStarImageView.isHidden = false
+                } else {
+                    view?.myProfileView.profileImageBackgroundView.isHidden = true
+                    view?.myProfileView.profileStarImageView.isHidden = true
+                }
+                view?.myProfileView.updateYelloPlusView()
             }
             return view
         default:
@@ -285,8 +302,7 @@ extension ProfileView: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 77.adjustedHeight
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
-

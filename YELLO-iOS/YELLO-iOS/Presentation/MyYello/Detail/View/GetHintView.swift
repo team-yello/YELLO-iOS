@@ -139,7 +139,7 @@ final class GetHintView: BaseView {
         pointLabel.snp.makeConstraints {
             $0.trailing.equalTo(pointTextLabel.snp.leading).inset(-4)
             $0.centerY.equalTo(pointTitleLabel)
-            $0.width.equalTo(65.adjustedWidth)
+            $0.width.equalTo(65)
         }
         
         pointTextLabel.snp.makeConstraints {
@@ -149,7 +149,7 @@ final class GetHintView: BaseView {
         
         confirmButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(40.adjustedHeight)
+            $0.height.equalTo(40)
             $0.leading.trailing.equalToSuperview().inset(18)
             $0.bottom.equalToSuperview().inset(20)
         }

@@ -131,6 +131,7 @@ enum ImageLiterals {
         static var icArrowUp: UIImage { .load(named: "icArrowUp") }
         static var icArrowLeftWhite: UIImage { .load(named: "icArrowLeftWhite") }
         static var btnDelete: UIImage { .load(named: "btnDelete") }
+        static var icProfileStar: UIImage { .load(named: "icProfileStar") }
     }
     
     enum Recommending {
@@ -140,6 +141,7 @@ enum ImageLiterals {
         static var icRight: UIImage { .load(named: "icRight")}
         static var icSearchWhite: UIImage { .load(named: "icSearchWhite")}
         static var imgFriendSearch: UIImage { .load(named: "imgFriendSearch")}
+        static var imgSearchNoResult: UIImage { .load(named: "imgSearchNoResult")}
     }
     
     enum Payment {
@@ -155,6 +157,10 @@ enum ImageLiterals {
         static var imgNameKeyOne: UIImage { .load(named: "imgNameKeyOne")}
         static var imgNameKeyTwo: UIImage { .load(named: "imgNameKeyTwo")}
         static var imgNameKeyFive: UIImage { .load(named: "imgNameKeyFive")}
+        static var imgYelloPlus: UIImage { .load(named: "imgYelloPlus")}
+        static var imgNameKeyOneCheck: UIImage { .load(named: "imgNameKeyOneCheck")}
+        static var imgNameKeyTwoCheck: UIImage { .load(named: "imgNameKeyTwoCheck")}
+        static var imgNameKeyFiveCheck: UIImage { .load(named: "imgNameKeyFiveCheck")}
     }
   
     enum Withdrawal {
@@ -162,6 +168,8 @@ enum ImageLiterals {
         static var imgWithdrawalFirst: UIImage { .load(named: "imgWithdrawalFirst")}
         static var imgWithdrawalSecond: UIImage { .load(named: "imgWithdrawalSecond")}
         static var imgWithdrawalThird: UIImage { .load(named: "imgWithdrawalThird")}
+        static var imgWarning: UIImage { .load(named: "imgWarning")}
+        static var imgWithdrawalPoint: UIImage { .load(named: "imgWithdrawalPoint")}
     }
 }
 

@@ -81,7 +81,7 @@ extension NavigationBarView {
         
         profileLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.equalToSuperview().offset(16.adjustedWidth)
         }
         
         settingButton.snp.makeConstraints {
