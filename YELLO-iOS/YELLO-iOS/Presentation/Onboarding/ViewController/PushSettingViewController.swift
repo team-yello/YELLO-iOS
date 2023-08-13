@@ -9,11 +9,10 @@ import UIKit
 
 class PushSettingViewController: UIViewController {
     // MARK: - Variables
-    // MARK: Component (button, label 등 코드로 만들때)
+    // MARK: Component
     let baseView = PushSettingView()
     let onboardingEndViewController = OnboardingEndViewController()
     let userNotiCenter = UNUserNotificationCenter.current()
-    
     
     // MARK: - Function
     // MARK: Life Cycles
@@ -56,14 +55,18 @@ class PushSettingViewController: UIViewController {
                 print(#function, error)
             }
         }
-        
-        /// 알림 설정 시 추가 포인트 지급 -> 설정 여부 저장
     }
     
     // MARK: objc Function
     @objc func tapButton() {
         requestAuthNoti()
-        navigationController?.pushViewController(onboardingEndViewController, animated: true)
+        var rootViewController = UIViewController()
+        if User.shared.isResigned {
+            rootViewController = onboardingEndViewController
+        } else {
+            rootViewController = YELLOTabBarController()
+        }
+        navigationController?.pushViewController(rootViewController, animated: true)
     }
 
 }

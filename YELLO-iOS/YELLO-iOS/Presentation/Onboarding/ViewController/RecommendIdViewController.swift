@@ -134,7 +134,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     override func didTapButton() {
         super.didTapButton()
-        postUserInfo()
+       postUserInfo()
     }
 }
 
