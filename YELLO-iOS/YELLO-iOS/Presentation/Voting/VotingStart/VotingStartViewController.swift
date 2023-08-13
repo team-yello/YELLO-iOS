@@ -20,10 +20,6 @@ final class VotingStartViewController: BaseViewController {
     private let balloonWho = UIImageView()
     private let balloonSend = UIImageView()
 
-    override func loadView() {
-        self.view = originView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         originView.yellowButton.isEnabled = false
@@ -33,23 +29,24 @@ final class VotingStartViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        animationView = .init(name: "VotingStart")
-//        let animationWidth: CGFloat = 230
-//        let animationHeight: CGFloat = 230
-//        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
-//
-//        animationView.contentMode = .scaleAspectFit
-//        animationView.loopMode = .loop
-//        animationView.animationSpeed = 1.1
-//
-//        let centerX = view.bounds.midX
-//        let centerY = view.bounds.midY - 40.adjusted
-//
-//        animationView.center = CGPoint(x: centerX, y: centerY)
-//
-//        animationView.play()
-//        view.addSubview(animationView)
-        
+        animationView = .init(name: "VotingStart")
+        let animationWidth: CGFloat = 800.adjusted
+        let animationHeight: CGFloat = 800.adjusted
+        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
+
+        animationView.contentMode = .scaleToFill
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1.1
+
+        let centerX = view.bounds.midX
+        let centerY = view.bounds.midY + 250.adjusted
+
+        animationView.center = CGPoint(x: centerX, y: centerY)
+
+        animationView.play()
+        view.addSubview(animationView)
+        view.bringSubviewToFront(originView)
+
         getVotingAvailable()
         
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
@@ -60,7 +57,7 @@ final class VotingStartViewController: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-//        animationView.removeFromSuperview()
+        animationView.removeFromSuperview()
     }
     
     // MARK: - Style
@@ -100,10 +97,15 @@ final class VotingStartViewController: BaseViewController {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
         
-        view.addSubviews(balloonToday,
+        view.addSubviews(originView,
+                         balloonToday,
                          balloonWho,
                          balloonSend)
-        
+
+        originView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+                
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
             $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedWidth)
