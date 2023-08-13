@@ -58,12 +58,12 @@ class KakaoLoginView: BaseView {
                          kakaoButton)
         
         titleLabel.snp.makeConstraints {
-            $0.bottom.equalTo(subTitleLabel.snp.top).offset(-8)
+            $0.bottom.equalTo(subTitleLabel.snp.top).offset(-8.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         subTitleLabel.snp.makeConstraints {
-            $0.bottom.equalTo(imageView.snp.top).offset(-2)
+            $0.bottom.equalTo(imageView.snp.top).offset(-2.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
@@ -72,8 +72,8 @@ class KakaoLoginView: BaseView {
         }
         
         kakaoButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(91)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().inset(91.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
     }
 }
