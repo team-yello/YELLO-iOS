@@ -141,7 +141,7 @@ extension MyProfileView {
             $0.setTitle(StringLiterals.MyYello.NavigationBar.shop, for: .normal)
             $0.titleLabel?.font = .uiBodyMedium
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 5.adjustedWidth)
-            $0.makeCornerRound(radius: 24.adjustedHeight)
+            $0.makeCornerRound(radius: 22.adjustedHeight)
             $0.layer.cornerCurve = .continuous
             $0.setTitleColor(.white, for: .normal)
             $0.backgroundColor = .black
@@ -267,6 +267,8 @@ extension MyProfileView {
         shopButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.trailing.bottom.top.equalToSuperview().inset(2.adjustedWidth)
+            $0.height.equalTo(44.adjustedHeight)
+            $0.width.equalTo(202.adjustedWidth)
         }
         
         nameSkeletonLabel.snp.makeConstraints {
