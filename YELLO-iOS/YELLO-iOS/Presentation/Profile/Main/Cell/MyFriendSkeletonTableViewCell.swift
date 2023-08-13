@@ -52,7 +52,7 @@ extension MyFriendSkeletonTableViewCell {
         
         profileImageView.do {
             $0.backgroundColor = .grayscales800
-            $0.makeCornerRound(radius: 20.adjustedHeight)
+            $0.makeCornerRound(radius: 21.adjusted)
         }
         
         nameLabel.do {
