@@ -45,6 +45,7 @@ final class VotingLockedViewController: BaseViewController {
         originView.yellowButton.do {
             $0.setTitle("친구 초대하기", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
+            $0.makeCornerRound(radius: 30.adjusted)
         }
     }
     
@@ -66,18 +67,19 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(24.adjustedHeight)
+            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(6.adjustedHeight)
         }
         
         originView.yelloImage.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(41.5.adjusted)
-            $0.width.equalTo(278.adjusted)
-            $0.height.equalTo(264.adjusted)
+            $0.centerY.equalToSuperview().offset(21.adjusted)
+            $0.width.equalTo(270.adjusted)
+            $0.height.equalTo(257.adjusted)
             
         }
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+            $0.height.equalTo(58.adjusted)
         }
         
         originView.yelloFace.snp.makeConstraints {
@@ -100,7 +102,6 @@ final class VotingLockedViewController: BaseViewController {
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        invitingView.updateText(title: StringLiterals.Inviting.lockedTitle, text: StringLiterals.Inviting.lockedText, targetString: "투표를 시작")
         viewController.view.addSubview(invitingView)
     }
 }
