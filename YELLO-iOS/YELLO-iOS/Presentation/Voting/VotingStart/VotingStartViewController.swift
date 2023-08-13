@@ -108,7 +108,7 @@ final class VotingStartViewController: BaseViewController {
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
-            $0.height.equalTo(60.adjusted)
+            $0.height.equalTo(58.adjusted)
         }
         
         originView.yelloFace.snp.makeConstraints {
