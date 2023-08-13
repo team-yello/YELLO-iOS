@@ -55,13 +55,12 @@ enum StringLiterals {
         
         static let pushNotiText = "띵동! 쪽지 도착"
         static let pushNotiHelper = "친구들에게 비밀쪽지가 도착하면\n알림을 드릴게요."
-        static let pushNotiButtonText = "알림 받기"
+        static let pushNotiButtonText = "쪽지 알림 받기"
         
         static let endingTitle = "200포인트 지급"
         static let endingText = "튜토리얼 끝!\n옐로에서 환영 선물을 준비했어요!"
         static let endingSubText = "앞으로 투표가 끝날 때마다 포인트를 줄게요!"
         static let endingButton = "옐로하러 가기"
-        
         
     }
     
