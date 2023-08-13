@@ -76,7 +76,6 @@ extension ProfileView {
         }
         
         myFriendTableView.do {
-            $0.rowHeight = 77
             $0.register(MyFriendTableViewCell.self, forCellReuseIdentifier: MyFriendTableViewCell.identifier)
             $0.register(MyFriendSkeletonTableViewCell.self, forCellReuseIdentifier: MyFriendSkeletonTableViewCell.identifier)
             $0.register(MyProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "MyProfileHeaderView")
@@ -85,6 +84,8 @@ extension ProfileView {
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
+            $0.rowHeight = UITableView.automaticDimension
+            $0.estimatedRowHeight = 77.adjustedHeight
         }
         
         topButton.do {
@@ -301,7 +302,7 @@ extension ProfileView: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 77.adjustedHeight
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

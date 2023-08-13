@@ -204,7 +204,7 @@ extension MyProfileView {
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(profileImageView)
+            $0.top.equalToSuperview().inset(20.adjustedHeight)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjustedWidth)
         }
         
@@ -214,13 +214,13 @@ extension MyProfileView {
         }
         
         schoolLabel.snp.makeConstraints {
-            $0.centerY.equalTo(profileImageView).offset(14.adjustedHeight)
+            $0.top.equalTo(nameLabel.snp.bottom)
             $0.leading.equalTo(nameLabel)
             $0.width.equalTo(243.adjustedWidth)
         }
         
         separateView.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(16.adjustedHeight)
+            $0.top.equalTo(schoolLabel.snp.bottom).offset(16.adjustedHeight)
             $0.height.equalTo(1.adjusted)
             $0.leading.trailing.equalToSuperview().inset(32.adjusted)
         }
