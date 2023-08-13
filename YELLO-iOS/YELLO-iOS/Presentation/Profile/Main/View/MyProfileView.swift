@@ -16,7 +16,8 @@ final class MyProfileView: UIView {
     // MARK: Component
     let mainProfileView = UIView()
     
-    let profileImageView = UIImageView()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 46
+        .adjusted, height: 46.adjusted))
     let profileImageBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 48.adjusted, height: 48.adjusted))
     let profileStarImageView = UIImageView()
     
