@@ -66,7 +66,7 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
         nameStackView.do {
             $0.addArrangedSubviews(nameLabel, titleLabel)
             $0.axis = .vertical
-            $0.spacing = 2
+            $0.spacing = 2.adjustedHeight
         }
         
         nameLabel.do {

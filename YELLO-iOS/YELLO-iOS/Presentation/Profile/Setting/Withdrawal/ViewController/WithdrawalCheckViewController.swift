@@ -24,8 +24,6 @@ final class WithdrawalCheckViewController: BaseViewController {
         
         view.backgroundColor = .black
         withdrawalCheckView.withdrawalNavigationBarView.handleBackButtonDelegate = self
-        withdrawalCheckView.handleKeepButtonDelegate = self
-        withdrawalCheckView.handleBackButtonDelegate = self
     }
     
     override func setLayout() {
@@ -41,13 +39,5 @@ final class WithdrawalCheckViewController: BaseViewController {
 extension WithdrawalCheckViewController: HandleBackButtonDelegate {
     func popView() {
         self.navigationController?.popViewController(animated: true)
-    }
-}
-
-// MARK: HandleKeepButtonDelegate
-extension WithdrawalCheckViewController: HandleKeepButtonDelegate {
-    func keepButtonTapped() {
-        let withdrawalViewController = WithdrawalViewController()
-        navigationController?.pushViewController(withdrawalViewController, animated: true)
     }
 }

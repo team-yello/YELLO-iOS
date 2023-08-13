@@ -12,7 +12,7 @@ enum StringLiterals {
     enum TabBar {
         enum ItemTitle {
             static let recommend = "추천친구"
-            static let around = "둘러보기"
+            static let around = "타임라인"
             static let home = "옐로하기"
             static let myYello = "내 쪽지"
             static let profile = "프로필"
@@ -65,12 +65,9 @@ enum StringLiterals {
     }
     
     enum Inviting {
-        static let lockedTitle = "친구 초대하고 투표 시작하기"
-        static let lockedText = "친구가 4명 이상 모이면\n투표를 시작할 수 있어요!"
-        static let unLockedTitle = "친구 초대하고 기다리지 않기"
-        static let unLockedText = "친구가 내 추천인 코드로 가입하면\n기다리지 않고 바로 투표할 수 있어요!"
-        static let recommendTitle  = "친구 초대하기"
-        static let recommendText = "찾는 친구가 없다면 친구를 초대해 보세요!\n함께 옐로할 수 있어요."
+        static let title = "친구 초대하기"
+        static let firstText = "친구가 내 추천인 코드로 가입하면"
+        static let secondText = "40분 대기 초기화 + 100포인트 지급!"
         static let toastMessage = "링크가 복사되었습니다."
     }
     
@@ -83,8 +80,8 @@ enum StringLiterals {
         }
         
         enum Empty {
-            static let title = "지금 추천된 친구가 없어요!\n친구를 초대해볼까요?"
-            static let inviteButton = "친구 초대하기"
+            static let title = "찾는 친구가 없다면\n친구를 초대해볼까요?"
+            static let inviteButton = "친구 초대하고 100포인트받기"
         }
         
         enum Invite {
@@ -96,12 +93,12 @@ enum StringLiterals {
             static let title = "친구 검색"
             static let placeholder = " 이름 또는 아이디를 입력해보세요!"
             static let myFriend = "내 친구"
-            static let searching = "...친구를 찾는 중..."
+            static let searching = "찾는 친구의 결과가 없어요."
         }
     }
     
     enum Around {
-        static let around = "둘러보기"
+        static let around = "타임라인"
         static let aroundDescription = "아직 구현되지 않은 기능이에요.\n조금만 기다려주세요!"
         static let female = "여학생"
         static let male = "남학생"
@@ -109,7 +106,7 @@ enum StringLiterals {
     
     enum Voting {
         enum Locked {
-            static let title = "투표를 시작할 수 없어요"
+            static let title = "옐로를 시작하고 싶다면?"
             static let text = "친구가 4명 이상 모이면 투표할 수 있어요.\n친구들을 초대해볼까요?"
         }
         enum Start {
@@ -269,21 +266,23 @@ enum StringLiterals {
         
         enum Withdrawal {
             static let withdrawal = "계정 탈퇴"
-            static let title = "이러한 기능을 사용하지 못하게 돼요"
-            static let description = "지금 계정을 탈퇴하시면\n이와 같은 데이터 및 엑세스 권한을 전부 잃게 됩니다."
-            static let first = "회원님의 좋아하는 친구 마음을 알 수 없어요."
-            static let second = "회원님의 마음을 친구에게 전달할 수 없어요."
+            static let title = "탈퇴하면 사라지는 것들이 있어요"
+            static let description = "지금 계정을 탈퇴하시면\n아래의 데이터 및 엑세스 권한을 전부 잃게 돼요."
+            static let warningTitle = "주의! 포인트 사라짐!"
+            static let warningDescription = "다시 로그인을 하더라도,\n그동안 어렵게 모은 포인트는 영원히 사라져요."
+            static let first = "회원님을 좋아하는 친구의\n마음을 알 수 없어요."
+            static let second = "회원님의 마음을 친구에게\n전달할 수 없어요."
             static let third = "친구들이 받은 쪽지를 볼 수 없어요."
-            static let caption = "계정 삭제 시 yell:o를 이용한 데이터는\n즉시 삭제되지 않고 30일간 보관됩니다.\n30일 이내에 로그인 시 데이터가 복구됩니다."
-            static let confirm = "탈퇴하기"
+            static let keep = "그래도 계속하기"
+            static let back = "다시 돌아가기"
         }
         
         enum WithdrawalCheck {
             static let withdrawal = "계정 탈퇴"
             static let title = "정말 계정을 삭제할 건가요?"
             static let description = "회원님을 떠올리는 친구들이 슬퍼할 거에요.\n잠시 쉬다 돌아오는 것은 어떤가요?"
-            static let keep = "그래도 계속하기"
-            static let back = "다시 돌아가기"
+            static let caption = "계정 삭제 시 yell:o를 이용한 데이터는\n즉시 삭제되지 않고 30일간 보관됩니다.\n30일 이내에 로그인 시 데이터가 복구됩니다."
+            static let confirm = "탈퇴하기"
         }
         
         enum WithdrawalAlert {

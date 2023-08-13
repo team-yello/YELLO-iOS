@@ -59,7 +59,7 @@ extension MyFriendTableViewCell {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 20.adjusted)
+            $0.makeCornerRound(radius: 20.adjustedHeight)
         }
         
         nameLabel.do {
@@ -72,6 +72,8 @@ extension MyFriendTableViewCell {
             $0.font = .uiLabelMedium
             $0.setTextWithLineHeight(text: "", lineHeight: 15.adjustedHeight)
             $0.textColor = .grayscales600
+            $0.lineBreakMode = .byCharWrapping
+            $0.textAlignment = .left
         }
     }
     
@@ -82,7 +84,7 @@ extension MyFriendTableViewCell {
                                schoolLabel)
         
         profileImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().inset(17.adjustedHeight)
             $0.leading.equalToSuperview().offset(8.adjustedWidth)
             $0.width.height.equalTo(42.adjusted)
         }
@@ -95,6 +97,8 @@ extension MyFriendTableViewCell {
         schoolLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
+            $0.width.equalTo(230.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(19.adjustedHeight)
         }
     }
     

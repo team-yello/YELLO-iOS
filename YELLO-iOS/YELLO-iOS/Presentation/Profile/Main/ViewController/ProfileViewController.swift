@@ -39,6 +39,7 @@ final class ProfileViewController: BaseViewController {
         profileView.handleFriendCellDelegate = self
         friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
+        profileView.handleShopButton = self
     }
     
     override func setLayout() {
@@ -76,7 +77,7 @@ extension ProfileViewController: HandleFriendCellDelegate {
         bottomSheetViewController.friendProfileView.configureMyProfileFriendDetailCell(profileView.myProfileFriendModelDummy[index])
         
         let nav = UINavigationController(rootViewController: friendProfileViewController)
-    
+        
         if #available(iOS 15.0, *) {
             if let sheet = nav.sheetPresentationController {
                 sheet.detents = [.medium()]
@@ -109,5 +110,12 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
                 self.profileView.myFriendTableView.reloadData()
             }
         }
+    }
+}
+
+extension ProfileViewController: HandleShopButton {
+    func shopButtonTapped() {
+        let paymentPlusViewController = PaymentPlusViewController()
+        navigationController?.pushViewController(paymentPlusViewController, animated: true)
     }
 }

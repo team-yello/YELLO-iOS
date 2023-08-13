@@ -52,7 +52,7 @@ extension FriendCountView {
         countStackView.do {
             $0.addArrangedSubviews(friendNumberLabel, friendCountLabel)
             $0.axis = .horizontal
-            $0.spacing = 4
+            $0.spacing = 4.adjustedWidth
         }
         
         friendNumberLabel.do {

@@ -16,20 +16,6 @@ protocol HandleShopButton: AnyObject {
 
 final class MyYelloNavigationBarView: BaseView {
     
-    private enum Color {
-        static var gradientColors = [
-            UIColor(hex: "D96AFF"),
-            UIColor(hex: "7C57FF")
-        ]
-    }
-    
-    private enum Constants {
-        static let gradientLocation = [Int](0..<Color.gradientColors.count)
-            .map(Double.init)
-            .map { $0 / Double(Color.gradientColors.count - 1) }
-            .map(NSNumber.init)
-    }
-    
     // MARK: - Variables
     // MARK: Component
     private let titleLabel = UILabel()
@@ -68,7 +54,6 @@ final class MyYelloNavigationBarView: BaseView {
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
             $0.makeCornerRound(radius: 16.adjustedHeight)
             $0.layer.cornerCurve = .continuous
-//            $0.isUserInteractionEnabled = false
         }
         
         yelloNumberLabel.do {

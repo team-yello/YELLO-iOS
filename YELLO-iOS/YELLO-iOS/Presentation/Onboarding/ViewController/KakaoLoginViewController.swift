@@ -99,6 +99,7 @@ class KakaoLoginViewController: UIViewController {
                     print("----🚩카카오 톡으로 로그인 성공🚩----")
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
+
                     self.authNetwork(queryDTO: queryDTO)
                 }
             }

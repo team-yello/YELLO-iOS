@@ -61,6 +61,7 @@ final class VotingPointViewController: BaseViewController {
             $0.setTitle("확인", for: .normal)
             $0.titleLabel?.font = .uiSubtitle04
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
+            $0.makeCornerRound(radius: 23.adjusted)
         }
     }
     
@@ -112,6 +113,7 @@ final class VotingPointViewController: BaseViewController {
         
         originView.yellowButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+            $0.height.equalTo(48.adjusted)
         }
     }
     
