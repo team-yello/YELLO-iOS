@@ -24,5 +24,8 @@ struct User {
     var kakaoFriends: [String] = []
     var recommendId: String = ""
     
+    var isResigned: Bool = false
+    var isResetting: Bool = true
+    
     private init() {}
 }
