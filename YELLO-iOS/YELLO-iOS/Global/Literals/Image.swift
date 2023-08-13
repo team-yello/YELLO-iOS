@@ -69,6 +69,9 @@ enum ImageLiterals {
         static var lbSpeechBubble: UIImage { .load(named: "lbSpeechBubble") }
         static var imgTimerViewBackground: UIImage { .load(named: "imgTimerViewBackground")}
         static var imgTimerBackground: UIImage { .load(named: "imgTimerBackground")}
+        static var imgVotingStartBalloon1: UIImage { .load(named: "imgVotingStartBalloon1")}
+        static var imgVotingStartBalloon2: UIImage { .load(named: "imgVotingStartBalloon2")}
+        static var imgVotingStartBalloon3: UIImage { .load(named: "imgVotingStartBalloon3")}
         static var imgYelloBalloon1: UIImage { .load(named: "imgYelloBalloon1")}
         static var imgYelloBalloon2: UIImage { .load(named: "imgYelloBalloon2")}
         static var imgYelloBalloon3: UIImage { .load(named: "imgYelloBalloon3")}
