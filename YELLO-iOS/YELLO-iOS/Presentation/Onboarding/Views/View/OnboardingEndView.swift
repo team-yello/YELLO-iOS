@@ -28,11 +28,20 @@ class OnboardingEndView: BaseView {
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
-        GuideLabel.do {
-            $0.text = "회원가입이 끝났어요!"
+        
+        titleStackView.do {
+            $0.addArrangedSubviews(titleIconImageView, guideLabel)
+            $0.spacing = 4
+            $0.axis = .horizontal
+            $0.alignment = .center
+        }
+        
+        guideLabel.do {
+            $0.text = isRecommand ? StringLiterals.Onboarding.endingPlusTitle : StringLiterals.Onboarding.endingTitle
             $0.font = .uiHeadline03
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 28.adjusted)
             $0.textColor = .white
+            $0.asColor(targetString: "+100포인트", color: .yelloMain500)
         }
         
         subGuideLabel.do {
@@ -54,7 +63,7 @@ class OnboardingEndView: BaseView {
             $0.setTitle("옐로하러 가기", for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
             $0.setTitleColor(.black, for: .normal)
-            $0.makeCornerRound(radius: CGFloat(Constraints.round))
+            $0.makeCornerRound(radius: 24)
         }
     
         stackView.do {
@@ -75,8 +84,8 @@ class OnboardingEndView: BaseView {
         }
         
         goToYelloButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
-            $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(34.adjustedHeight)
             $0.height.equalTo(48)
         }
     }
