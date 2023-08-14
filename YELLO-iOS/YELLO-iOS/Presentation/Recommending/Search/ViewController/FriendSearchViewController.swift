@@ -12,10 +12,15 @@ import Then
 
 final class FriendSearchViewController: BaseViewController {
     
+    // MARK: - Variables
+    // MARK: Property
+    var fetchingMore = false
+    var isFinishPaging = false
+
     private let friendSearchView = FriendSearchView()
     var allFriend: [Friend] = []
-    var pageCount = 0
-    var totalItemCount = 0
+    var pageCount = -1
+    var totalItemCount = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,11 @@ final class FriendSearchViewController: BaseViewController {
         setAddTarget()
         self.tabBarController?.tabBar.isHidden = true
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,14 +60,32 @@ final class FriendSearchViewController: BaseViewController {
     }
     
     func searchFriend(_ word: String) {
+        if fetchingMore { // 이미 데이터를 가져오는 중이면 리턴
+            return
+        }
+        
+        if isFinishPaging {
+            return
+        }
+        
+        self.pageCount += 1
         let queryDTO: FriendSearchRequestQueryDTO = FriendSearchRequestQueryDTO(keyword: word, page: pageCount)
+        
+        self.fetchingMore = true
+
         NetworkService.shared.searchService.friendSearch(queryDTO: queryDTO) { result in
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
                 self.allFriend.append(contentsOf: data.friendList)
                 self.totalItemCount = data.totalCount
+                self.fetchingMore = false
                 self.friendSearchView.friendSearchResultTableView.reloadData()
+                
+                let totalPage = (data.totalCount) / 10
+                if self.pageCount >= totalPage {
+                    self.isFinishPaging = true
+                }
             default:
                 print(ErrorPointer.self)
                 return
@@ -71,8 +99,7 @@ final class FriendSearchViewController: BaseViewController {
         let contentHeight = tableView.contentSize.height
         let visibleHeight = tableView.bounds.height
         self.friendSearchView.friendSearchTextfield.endEditing(true)
-        if offsetY > contentHeight - visibleHeight, allFriend.count < totalItemCount {
-            pageCount += 1
+        if offsetY > contentHeight - visibleHeight {
             guard let text = friendSearchView.friendSearchTextfield.text else { return }
             searchFriend(text)
         }
@@ -81,7 +108,7 @@ final class FriendSearchViewController: BaseViewController {
     // MARK: Objc Function
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        pageCount = 0
+        pageCount = -1
         allFriend.removeAll()
         searchFriend(text)
     }
