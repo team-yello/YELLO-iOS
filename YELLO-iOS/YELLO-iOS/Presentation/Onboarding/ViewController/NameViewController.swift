@@ -21,7 +21,7 @@ class NameViewController: OnboardingBaseViewController {
     
     // MARK: LifeCycle
     override func viewDidLoad() {
-        step = 4
+        step = 3
         super.viewDidLoad()
         setDelegate()
         super.nextViewController = userinfoViewController

@@ -30,7 +30,7 @@ class UniversityViewController: OnboardingBaseViewController {
     lazy var genderViewController = GenderViewController()
     
     override func viewDidLoad() {
-        step = 2
+        step = 1
         super.viewDidLoad()
         setDelegate()
     }
