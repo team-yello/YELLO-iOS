@@ -34,8 +34,9 @@ class PushSettingViewController: UIViewController {
     
     private func setStyle() {
         view.backgroundColor = .black
-        baseView.do {
-            $0.goToYelloButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        
+        baseView.pushSettingButton.do {
+            $0.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         }
     }
     
@@ -62,11 +63,17 @@ class PushSettingViewController: UIViewController {
         requestAuthNoti()
         var rootViewController = UIViewController()
         if User.shared.isResigned {
-            rootViewController = onboardingEndViewController
-        } else {
             rootViewController = YELLOTabBarController()
+        } else {
+            rootViewController = onboardingEndViewController
         }
-        navigationController?.pushViewController(rootViewController, animated: true)
+        self.baseView.pushSettingButton.isEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let yelloTabBarController = YELLOTabBarController()
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+            self.baseView.pushSettingButton.isEnabled = true
+        }
     }
 
 }
