@@ -11,7 +11,6 @@ class PushSettingViewController: UIViewController {
     // MARK: - Variables
     // MARK: Component
     let baseView = PushSettingView()
-    let onboardingEndViewController = OnboardingEndViewController()
     let userNotiCenter = UNUserNotificationCenter.current()
     
     // MARK: - Function
@@ -65,7 +64,7 @@ class PushSettingViewController: UIViewController {
         if User.shared.isResigned {
             rootViewController = YELLOTabBarController()
         } else {
-            rootViewController = onboardingEndViewController
+            rootViewController = OnboardingEndViewController()
         }
         self.baseView.pushSettingButton.isEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
