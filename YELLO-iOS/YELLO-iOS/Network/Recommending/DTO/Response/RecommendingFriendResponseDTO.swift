@@ -16,7 +16,7 @@ struct Friends: Codable, Hashable {
     let id: Int
     let name: String
     let group: String
-    let profileImage: String?
+    let profileImage: String
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

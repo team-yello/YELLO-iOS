@@ -10,11 +10,11 @@ import Foundation
 // MARK: - FriendSearchResponseDTO
 struct FriendSearchResponseDTO: Codable {
     let totalCount: Int
-    let friends: [Friend]
+    let friendList: [Friend]
 }
 
-// MARK: - Friend
 struct Friend: Codable {
+    let group, yelloId, name, profileImage: String
     let id: Int
-    let name, group, profileImage: String
+    let isFriend: Bool
 }

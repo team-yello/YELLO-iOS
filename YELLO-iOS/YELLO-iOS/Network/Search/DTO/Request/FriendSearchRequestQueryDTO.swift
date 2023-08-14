@@ -9,6 +9,6 @@ import Foundation
 
 // MARK: - FriendSearchRequestQueryDTO
 struct FriendSearchRequestQueryDTO: Codable {
-    let search: String
+    let keyword: String
     let page: Int
 }
