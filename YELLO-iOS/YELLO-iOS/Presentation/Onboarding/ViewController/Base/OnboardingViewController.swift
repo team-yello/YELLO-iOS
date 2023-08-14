@@ -16,7 +16,7 @@ class OnboardingBaseViewController: BaseViewController {
     
     let navigationBarView = YelloNavigationBarView()
     let nextButton = YelloButton(buttonText: "다음")
-    private let skipButton = UIButton()
+    let skipButton = UIButton()
     private let buttonStackView = UIStackView()
     private let progressBarView = ProgressBarManager.shared.progressBarView
     
@@ -108,7 +108,7 @@ class OnboardingBaseViewController: BaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func didTapButton() {
+    @objc func didTapButton(sender: UIButton) {
         setUser()
         if let nextViewController = nextViewController {
             self.navigationController?.pushViewController(nextViewController, animated: false)
