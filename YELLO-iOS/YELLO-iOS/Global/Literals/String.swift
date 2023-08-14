@@ -37,7 +37,7 @@ enum StringLiterals {
         static let studentIdPlaceholder = "ex. 23학번"
         
         static let nameHelper = "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!"
-        static let nameError = "한글만 입력 가능해요."
+        static let nameError = "자음과 모음 조합의 한글만 입력 가능해요."
         
         static let idTitle = "내가 사용할 아이디는?"
         static let idHelper = "인스타그램 아이디로 하면 친구들이 찾기 쉬워요!\n(최대 20자)"
