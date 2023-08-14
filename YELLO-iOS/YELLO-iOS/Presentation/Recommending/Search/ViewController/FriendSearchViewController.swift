@@ -16,6 +16,7 @@ final class FriendSearchViewController: BaseViewController {
     // MARK: Property
     var fetchingMore = false
     var isFinishPaging = false
+    var isScroll = false
 
     private let friendSearchView = FriendSearchView()
     var allFriend: [Friend] = []
@@ -72,11 +73,13 @@ final class FriendSearchViewController: BaseViewController {
         let queryDTO: FriendSearchRequestQueryDTO = FriendSearchRequestQueryDTO(keyword: word, page: pageCount)
         
         self.fetchingMore = true
-        self.friendSearchView.noResultView.isHidden = true
-        self.friendSearchView.friendSearchResultTableView.isHidden = true
-        friendSearchView.loadingStackView.isHidden = false
-        friendSearchView.loadingAnimationView.play()
-        friendSearchView.loadingAnimationView.loopMode = .loop
+        if !self.isScroll {
+            self.friendSearchView.noResultView.isHidden = true
+            self.friendSearchView.friendSearchResultTableView.isHidden = true
+            friendSearchView.loadingStackView.isHidden = false
+            friendSearchView.loadingAnimationView.play()
+            friendSearchView.loadingAnimationView.loopMode = .loop
+        }
         
         NetworkService.shared.searchService.friendSearch(queryDTO: queryDTO) { result in
             switch result {
@@ -85,9 +88,11 @@ final class FriendSearchViewController: BaseViewController {
                 self.allFriend.append(contentsOf: data.friendList)
                 self.fetchingMore = false
                 
-                self.friendSearchView.loadingAnimationView.stop()
-                self.friendSearchView.friendSearchResultTableView.isHidden = false
-                self.friendSearchView.loadingStackView.isHidden = true
+                if !self.isScroll {
+                    self.friendSearchView.loadingAnimationView.stop()
+                    self.friendSearchView.friendSearchResultTableView.isHidden = false
+                    self.friendSearchView.loadingStackView.isHidden = true
+                }
                 
                 self.totalItemCount = data.totalCount
                 if data.totalCount == 0 {
@@ -109,6 +114,7 @@ final class FriendSearchViewController: BaseViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.isScroll = true
         let tableView = self.friendSearchView.friendSearchResultTableView
         let offsetY = tableView.contentOffset.y
         let contentHeight = tableView.contentSize.height
@@ -118,6 +124,7 @@ final class FriendSearchViewController: BaseViewController {
             guard let text = friendSearchView.friendSearchTextfield.text else { return }
             searchFriend(text)
         }
+        self.isScroll = false
     }
     
     func addFriend(friendId: Int) {
