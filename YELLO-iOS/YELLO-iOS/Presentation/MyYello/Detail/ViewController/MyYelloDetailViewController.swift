@@ -170,7 +170,18 @@ extension MyYelloDetailViewController {
                     if let initial = self.getSecondInitial(data.senderName as NSString, index: 1) {
                         self.myYelloDetailView.detailSenderView.senderLabel.text = initial
                     }
+                } else if data.nameHint == -3 {
+                    self.myYelloDetailView.isSenderUsed = true
+                    self.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
+                    self.myYelloDetailView.isKeywordUsed = true
+                    self.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
+                    self.myYelloDetailView.keywordButton.isHidden = true
+                    self.myYelloDetailView.haveTicket = false
+                    self.myYelloDetailView.senderButton.snp.makeConstraints {
+                        $0.top.equalTo(self.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
+                    }
                 }
+                
                 dump(data)
                 print("통신 성공")
             default:

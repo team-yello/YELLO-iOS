@@ -427,7 +427,7 @@ extension MyYelloDetailView {
                     self.detailSenderView.senderLabel.text = initial
                     self.getHintView.hintLabel.text = initial
                 }
-//                self.nameIndex = data.nameIndex
+                self.nameIndex = data.nameIndex
                 MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = data.nameIndex
                 
                 dump(data)
