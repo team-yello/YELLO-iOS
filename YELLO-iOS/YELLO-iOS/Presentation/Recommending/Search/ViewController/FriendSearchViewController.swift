@@ -178,6 +178,10 @@ extension FriendSearchViewController: UITableViewDataSource {
         cell.configureFriendCell(allFriend[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }
 
 extension FriendSearchViewController: HandleSearchAddFriendButton {

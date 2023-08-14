@@ -92,6 +92,8 @@ extension FriendSearchTableViewCell {
             $0.font = .uiLabelMedium
             $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15.adjustedHeight)
             $0.textColor = .grayscales600
+            $0.lineBreakMode = .byCharWrapping
+            $0.textAlignment = .left
         }
         
         addButton.do {
@@ -144,6 +146,8 @@ extension FriendSearchTableViewCell {
         schoolLabel.snp.makeConstraints {
             $0.top.equalTo(yelloIdLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
+            $0.width.equalTo(184.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(16.adjustedHeight)
         }
         
         addButton.snp.makeConstraints {
@@ -161,7 +165,7 @@ extension FriendSearchTableViewCell {
     func configureFriendCell(_ model: Friend) {
         nameLabel.text = model.name
         schoolLabel.text = model.group
-        yelloIdLabel.text = model.yelloId
+        yelloIdLabel.text = "@" + model.yelloId
         if model.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
             profileImageView.kfSetImage(url: model.profileImage)
         }

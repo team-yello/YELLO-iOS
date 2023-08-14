@@ -57,7 +57,8 @@ final class FriendSearchView: BaseView {
         }
         
         friendSearchResultTableView.do {
-            $0.rowHeight = 90.adjustedHeight
+            $0.rowHeight = UITableView.automaticDimension
+            $0.estimatedRowHeight = 90.adjustedHeight
             $0.separatorStyle = .singleLine
             $0.separatorColor = .grayscales800
             $0.register(FriendSearchTableViewCell.self, forCellReuseIdentifier: FriendSearchTableViewCell.identifier)
