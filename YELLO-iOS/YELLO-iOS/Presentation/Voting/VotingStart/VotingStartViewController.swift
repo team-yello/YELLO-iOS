@@ -16,9 +16,6 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     var myPoint = 0
-    private let balloonToday = UIImageView()
-    private let balloonWho = UIImageView()
-    private let balloonSend = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,18 +45,6 @@ final class VotingStartViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .black
         
-        balloonToday.do {
-            $0.image = ImageLiterals.Voting.imgVotingStartBalloon1
-        }
-        
-        balloonWho.do {
-            $0.image = ImageLiterals.Voting.imgVotingStartBalloon2
-        }
-        
-        balloonSend.do {
-            $0.image = ImageLiterals.Voting.imgVotingStartBalloon3
-        }
-        
         originView.yellowButton.do {
             $0.setTitle("START!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
@@ -80,10 +65,7 @@ final class VotingStartViewController: BaseViewController {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
         
-        view.addSubviews(originView,
-                         balloonToday,
-                         balloonWho,
-                         balloonSend)
+        view.addSubviews(originView)
 
         originView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -99,22 +81,22 @@ final class VotingStartViewController: BaseViewController {
             $0.trailing.equalToSuperview().inset(16.adjusted)
         }
         
-        balloonToday.snp.makeConstraints {
+        originView.balloonToday.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 66.adjustedHeight)
             $0.leading.equalToSuperview().inset(74.adjusted)
             $0.width.equalTo(92.adjusted)
             $0.height.equalTo(36.adjusted)
         }
         
-        balloonWho.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 108.adjustedHeight)
+        originView.balloonWho.snp.makeConstraints {
+            $0.top.equalTo(originView.balloonToday.snp.bottom).offset(6.adjusted)
             $0.leading.equalToSuperview().inset(74.adjusted)
             $0.width.equalTo(228.adjusted)
             $0.height.equalTo(36.adjusted)
         }
         
-        balloonSend.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 150.adjustedHeight)
+        originView.balloonSend.snp.makeConstraints {
+            $0.top.equalTo(originView.balloonWho.snp.bottom).offset(6.adjusted)
             $0.trailing.equalToSuperview().inset(73.adjusted)
             $0.width.equalTo(124.adjusted)
             $0.height.equalTo(36.adjusted)
@@ -217,16 +199,16 @@ extension VotingStartViewController {
     
     func setAnimationView() {
         animationView = .init(name: "VotingStart")
-        let animationWidth: CGFloat = 800.adjusted
-        let animationHeight: CGFloat = 800.adjusted
+        let animationWidth: CGFloat = 375.adjustedWidth
+        let animationHeight: CGFloat = 667.adjustedHeight
         animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
 
-        animationView.contentMode = .scaleToFill
+        animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
         animationView.animationSpeed = 1.1
 
         let centerX = view.bounds.midX
-        let centerY = view.bounds.midY + 250.adjusted
+        let centerY = view.bounds.midY - 50.adjustedHeight
 
         animationView.center = CGPoint(x: centerX, y: centerY)
 
