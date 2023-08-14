@@ -17,7 +17,7 @@ class FindMajorViewController: SearchBaseViewController {
     // MARK: - Variables
     // MARK: Property
     var allMajor: [GroupList] = []
-    var schoolName: String = ""
+    var schoolName: String = "" 
     
     var pageCount: Int = 0
     var totalItemCount: Int = 0
@@ -30,13 +30,17 @@ class FindMajorViewController: SearchBaseViewController {
         super.viewDidLoad()
         super.customView(titleText: "학과 검색하기", helperText: "찾는 과가 없다면 클릭하세요!")
         addTarget()
-        searchView.searchTextField.delegate = self
-        searchView.searchResultTableView.delegate = self
+        setDelegate()
     }
     
     func addTarget() {
         super.searchView.searchTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         super.searchView.helperButton.addTarget(self, action: #selector(helperButtonDidTap), for: .touchUpInside)
+    }
+    
+    func setDelegate() {
+        searchView.searchTextField.delegate = self
+        searchView.searchResultTableView.delegate = self
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -87,6 +91,7 @@ class FindMajorViewController: SearchBaseViewController {
 }
 
 extension FindMajorViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
             return
@@ -95,6 +100,8 @@ extension FindMajorViewController: UITableViewDelegate {
         let selectedItem = allMajor[indexPath.row]
         print(selectedItem.groupID)
         majorDelegate?.didDismissFindMajorViewController(with: selectedItem)
+        allArr.removeAll()
+        searchView.searchResultTableView.reloadData()
         self.dismiss(animated: true)
     }
 }
