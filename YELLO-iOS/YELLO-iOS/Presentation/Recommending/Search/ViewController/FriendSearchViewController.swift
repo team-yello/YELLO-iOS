@@ -72,14 +72,29 @@ final class FriendSearchViewController: BaseViewController {
         let queryDTO: FriendSearchRequestQueryDTO = FriendSearchRequestQueryDTO(keyword: word, page: pageCount)
         
         self.fetchingMore = true
-
+        self.friendSearchView.noResultView.isHidden = true
+        self.friendSearchView.friendSearchResultTableView.isHidden = true
+        friendSearchView.loadingStackView.isHidden = false
+        friendSearchView.loadingAnimationView.play()
+        friendSearchView.loadingAnimationView.loopMode = .loop
+        
         NetworkService.shared.searchService.friendSearch(queryDTO: queryDTO) { result in
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
                 self.allFriend.append(contentsOf: data.friendList)
-                self.totalItemCount = data.totalCount
                 self.fetchingMore = false
+                
+                self.friendSearchView.loadingAnimationView.stop()
+                self.friendSearchView.friendSearchResultTableView.isHidden = false
+                self.friendSearchView.loadingStackView.isHidden = true
+                
+                self.totalItemCount = data.totalCount
+                if data.totalCount == 0 {
+                    self.friendSearchView.noResultView.isHidden = false
+                } else {
+                    self.friendSearchView.noResultView.isHidden = true
+                }
                 self.friendSearchView.friendSearchResultTableView.reloadData()
                 
                 let totalPage = (data.totalCount) / 10
@@ -105,14 +120,6 @@ final class FriendSearchViewController: BaseViewController {
         }
     }
     
-    // MARK: Objc Function
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        pageCount = -1
-        allFriend.removeAll()
-        searchFriend(text)
-    }
-    
     func addFriend(friendId: Int) {
         NetworkService.shared.recommendingService.recommendingAddFriend(friendId: friendId) { response in
             print(friendId)
@@ -128,7 +135,17 @@ final class FriendSearchViewController: BaseViewController {
     }
 }
 
-extension FriendSearchViewController: UITextFieldDelegate { }
+extension FriendSearchViewController: UITextFieldDelegate {
+    
+    // MARK: Objc Function
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        isFinishPaging = false
+        pageCount = -1
+        allFriend.removeAll()
+        searchFriend(text)
+    }
+}
 
 // MARK: HandleBackButtonDelegate
 extension FriendSearchViewController: HandleBackButtonDelegate {
