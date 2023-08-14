@@ -104,6 +104,14 @@ class UniversityViewController: OnboardingBaseViewController {
 extension UniversityViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let schoolText = baseView.schoolSearchTextField.text else {return}
+        
+        if schoolText.isEmpty && textField == baseView.majorSearchTextField {
+            view.showToast(message: "학교를 먼저 선택해주세요", at: 88)
+            textField.endEditing(true)
+            return
+        }
+        
         switch textField {
         case baseView.schoolSearchTextField:
             let nextViewController = FindSchoolViewController()

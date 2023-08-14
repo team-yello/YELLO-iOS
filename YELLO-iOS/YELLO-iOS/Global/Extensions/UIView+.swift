@@ -51,7 +51,7 @@ extension UIView {
     }
     
     // 토스트 메세지
-    func showToast(message: String) {
+    func showToast(message: String, at: CGFloat = 25) {
         let toastLabel = UILabel()
         toastLabel.backgroundColor = UIColor(hex: "343A40", alpha: 0.9)
         toastLabel.textColor = .grayscales200
@@ -65,7 +65,7 @@ extension UIView {
         let toastWidth = 253.adjusted
         let toastHeight = 42.adjusted
         toastLabel.frame = CGRect(x: self.frame.size.width / 2 - toastWidth / 2,
-                                  y: self.frame.size.height - toastHeight - 25.adjusted,
+                                  y: self.frame.size.height - toastHeight - at.adjusted,
                                   width: toastWidth,
                                   height: toastHeight)
         if let window = UIApplication.shared.keyWindow {
