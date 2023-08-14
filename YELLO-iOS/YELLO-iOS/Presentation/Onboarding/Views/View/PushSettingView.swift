@@ -21,11 +21,9 @@ class PushSettingView: BaseView {
     
     let subGuideLabel = UILabel()
     
-    let endingImageView = UIImageView()
+    let pushSettingImageView = UIImageView()
     
-    let goToYelloButton = UIButton()
-    
-    let stackView = UIStackView()
+    let pushSettingButton = UIButton()
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -34,6 +32,12 @@ class PushSettingView: BaseView {
         titleStackView.do {
             $0.axis = .horizontal
             $0.addArrangedSubviews(guideLabel, iconImageView)
+            $0.alignment = .center
+            $0.spacing = 4.adjusted
+        }
+        
+        iconImageView.do {
+            $0.image = ImageLiterals.OnBoarding.icHeart
         }
         
         guideLabel.do {
@@ -45,16 +49,16 @@ class PushSettingView: BaseView {
         
         subGuideLabel.do {
             $0.text = StringLiterals.Onboarding.pushNotiHelper
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 22)
+            $0.setTextWithLineHeight(text: $0.text, lineHeight: 22.adjusted)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales600
         }
         
-        endingImageView.do {
+        pushSettingImageView.do {
             $0.image = ImageLiterals.OnBoarding.pushNotification
         }
         
-        goToYelloButton.do {
+        pushSettingButton.do {
             $0.backgroundColor = .yelloMain500
             $0.setTitle(StringLiterals.Onboarding.pushNotiButtonText, for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
@@ -62,24 +66,34 @@ class PushSettingView: BaseView {
             $0.makeCornerRound(radius: 24.adjusted)
         }
     
-        stackView.do {
-            $0.addArrangedSubviews(guideLabel,
-                                   subGuideLabel,
-                                   endingImageView)
-            $0.axis = .vertical
-            $0.spacing = 8
-            $0.alignment = .center
-        }
     }
     
     override func setLayout() {
-        self.addSubviews(stackView, goToYelloButton)
+        self.addSubviews(titleStackView,
+                         subGuideLabel,
+                         pushSettingImageView,
+                         pushSettingButton)
         
-        stackView.snp.makeConstraints {
+        iconImageView.snp.makeConstraints {
+            $0.size.equalTo(18.adjusted)
+        }
+        
+        titleStackView.snp.makeConstraints {
+            $0.bottom.equalTo(subGuideLabel.snp.top).offset(-8.adjustedHeight)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(28.adjustedHeight)
+        }
+        
+        subGuideLabel.snp.makeConstraints {
+            $0.bottom.equalTo(pushSettingImageView.snp.top).offset(-24.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        pushSettingImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
         
-        goToYelloButton.snp.makeConstraints {
+        pushSettingButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview().inset(34.adjustedHeight)
             $0.height.equalTo(48.adjustedHeight)
