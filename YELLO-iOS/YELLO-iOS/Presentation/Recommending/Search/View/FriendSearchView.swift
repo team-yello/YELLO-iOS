@@ -17,12 +17,30 @@ final class FriendSearchView: BaseView {
     let friendSearchTextfield = YelloTextField(state: .search)
     let friendSearchResultTableView = UITableView()
     let friendSearchController = UISearchController(searchResultsController: nil)
-    let animationView = LottieAnimationView(name: "spinner_loading")
-    let noResultStackView = UIStackView()
+    
+    let loadingStackView = UIStackView()
+    let loadingLabel = UILabel()
+    let loadingAnimationView = LottieAnimationView(name: "spinner_loading")
+    
+    let noResultView = UIView()
     let noResultImageView = UIImageView()
     let noResultLabel = UILabel()
     
     override func setStyle() {
+        
+        loadingStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 4.adjustedHeight
+            $0.addArrangedSubviews(loadingAnimationView, loadingLabel)
+            $0.isHidden = true
+        }
+        
+        loadingLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.loading, lineHeight: 20.adjustedHeight)
+            $0.font = .uiBodySmall
+            $0.textColor = .grayscales300
+        }
+        
         friendSearchNavigationBarView.do {
             $0.titleLabel.setTextWithLineHeight(text: StringLiterals.Recommending.Search.title, lineHeight: 24.adjustedHeight)
         }
@@ -48,22 +66,20 @@ final class FriendSearchView: BaseView {
             $0.showsHorizontalScrollIndicator = false
         }
         
-        noResultStackView.do {
-            $0.axis = .vertical
-            $0.spacing = 12.adjustedHeight
-            $0.addArrangedSubviews(noResultImageView, noResultLabel)
-        }
-        
         noResultImageView.do {
             $0.image = ImageLiterals.Recommending.imgSearchNoResult
+            $0.contentMode = .scaleAspectFit
         }
         
         noResultLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.searching, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
-            $0.textColor = .grayscales700
+            $0.textColor = .grayscales300
         }
         
+        noResultView.do {
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
@@ -76,7 +92,11 @@ final class FriendSearchView: BaseView {
         
         self.addSubviews(friendSearchNavigationBarView,
                          friendSearchTextfield,
-                         friendSearchResultTableView)
+                         friendSearchResultTableView,
+                         loadingStackView,
+                         noResultView)
+        
+        noResultView.addSubviews(noResultLabel, noResultImageView)
         
         friendSearchNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
@@ -94,6 +114,36 @@ final class FriendSearchView: BaseView {
             $0.top.equalTo(friendSearchTextfield.snp.bottom).offset(4.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview()
+        }
+        
+        noResultImageView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(43.adjusted)
+        }
+        
+        noResultLabel.snp.makeConstraints {
+            $0.top.equalTo(noResultImageView.snp.bottom).offset(12.adjustedHeight)
+            $0.bottom.equalToSuperview()
+            $0.centerX.equalToSuperview()
+        }
+        
+        noResultView.snp.makeConstraints {
+            $0.top.equalTo(friendSearchResultTableView).offset(90.adjustedHeight)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(148.adjustedWidth)
+            $0.height.equalTo(75.adjustedHeight)
+        }
+        
+        loadingStackView.snp.makeConstraints {
+            $0.top.equalTo(friendSearchResultTableView).offset(90.adjustedHeight)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(127.adjustedWidth)
+            $0.height.equalTo(64.adjustedHeight)
+        }
+        
+        loadingAnimationView.snp.makeConstraints {
+            $0.width.height.equalTo(40.adjusted)
         }
     }
 }

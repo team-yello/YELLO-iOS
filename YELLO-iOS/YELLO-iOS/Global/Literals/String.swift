@@ -93,6 +93,7 @@ enum StringLiterals {
             static let title = "친구 검색"
             static let placeholder = " 이름 또는 아이디를 입력해보세요!"
             static let myFriend = "내 친구"
+            static let loading = "친구를 찾는 중이에요..."
             static let searching = "찾는 친구의 결과가 없어요."
         }
     }
