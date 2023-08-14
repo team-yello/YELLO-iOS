@@ -70,6 +70,11 @@ extension AroundEmptyView {
             aroundImageView
         )
         
+        self.snp.makeConstraints {
+            $0.height.equalTo(272.adjustedHeight)
+            $0.width.equalTo(236.adjustedWidth)
+        }
+        
         aroundLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(120.adjusted)
             $0.centerX.equalToSuperview()

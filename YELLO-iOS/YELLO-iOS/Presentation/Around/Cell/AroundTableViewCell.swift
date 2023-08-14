@@ -25,7 +25,7 @@ final class AroundTableViewCell: UITableViewCell {
     let nameLabel = UILabel()
     let keywordHeadLabel = UILabel()
     let keywordLabel = UILabel()
-    let keywordView = UIView(frame: CGRect(x: 0, y: 0, width: 91.adjustedWidth, height: 20.adjustedHeight))
+    let keywordView = UIView(frame: CGRect(x: 0, y: 0, width: 76.adjustedWidth, height: 20.adjustedHeight))
     let keywordFootLabel = UILabel()
     let timeLabel = UILabel()
     
@@ -45,6 +45,18 @@ final class AroundTableViewCell: UITableViewCell {
         super.layoutSubviews()
 
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        genderImageView.image = nil
+        genderLabel.text = nil
+        receiverLabel.text = nil
+        nameLabel.text = nil
+        keywordHeadLabel.text = nil
+        keywordLabel.text = nil
+        keywordFootLabel.text = nil
+        timeLabel.text = nil
     }
         
     // MARK: Layout Helpers
@@ -79,19 +91,19 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         receiverLabel.do {
-            $0.text = "김이름"
+            $0.text = " "
             $0.font = .uiBody04
             $0.textColor = .grayscales500
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "술자리에서 너가", lineHeight: 24.adjustedHeight)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 24.adjustedHeight)
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: "사라진다면", lineHeight: 24.adjustedHeight)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 24.adjustedHeight)
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
@@ -103,30 +115,26 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         keywordLabel.do {
-            $0.setTextWithLineHeight(text: "달빛산책 간 거", lineHeight: 24.adjustedHeight)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 24.adjustedHeight)
             $0.font = .uiBodyLarge
             $0.textColor = .semanticGenderF300
             $0.isHidden = true
         }
         
         keywordFootLabel.do {
-            $0.setTextWithLineHeight(text: "(이)야", lineHeight: 24.adjustedHeight)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 24.adjustedHeight)
             $0.font = .uiBodyLarge
             $0.textColor = .white
         }
         
         timeLabel.do {
-            $0.text = "1분 전"
+            $0.text = " "
             $0.font = .uiLabelSmall
             $0.textColor = .grayscales600
         }
     }
     
     private func setLayout() {
-        
-        // 데이터 어떻게 들어오는지에 따라서 변경 예정
-//        let maxKeywordLength = votingList[VotingViewController.pushCount].keywordList.compactMap { $0.count }.max() ?? 0
-        let keywordLength = (keywordLabel.text?.count ?? 0 * 14).adjusted + 28.adjusted
         
         contentView.addSubviews(genderImageView,
                                 receiverStackView,
@@ -166,31 +174,109 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         keywordHeadLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
+            $0.top.equalTo(keywordLabel)
             $0.leading.equalTo(nameLabel)
         }
         
         keywordView.snp.makeConstraints {
             $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
             $0.height.equalTo(20.adjustedHeight)
-            $0.width.equalTo(keywordLabel)
+            $0.width.equalTo(76.adjustedWidth)
             $0.top.equalTo(keywordLabel).offset(4.adjustedHeight)
-
         }
         
         keywordLabel.snp.makeConstraints {
-            $0.top.equalTo(keywordHeadLabel)
-            $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
+            $0.leading.equalTo(keywordView)
         }
         
         keywordFootLabel.snp.makeConstraints {
-            $0.top.equalTo(keywordHeadLabel)
+            $0.top.equalTo(keywordLabel)
             $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6.adjustedWidth)
         }
     }
     
     // MARK: Custom Function
-    func configureAroundCell(_ model: Yello) {
-        // 서버 통신 시 함수 구현 예정
+    func configureAroundCell(_ model: FriendVote) {
+        if model.senderGender == "MALE" {
+            self.genderImageView.image = ImageLiterals.MyYello.imgGenderMale
+            self.genderLabel.text = StringLiterals.Around.male
+            self.keywordLabel.textColor = .semanticGenderM300
+        } else {
+            self.genderImageView.image = ImageLiterals.MyYello.imgGenderFemale
+            self.genderLabel.text = StringLiterals.Around.female
+            self.keywordLabel.textColor = .semanticGenderF300
+        }
+        
+        self.receiverLabel.text = model.receiverName
+        
+        if model.vote.nameHead == nil {
+            self.nameLabel.text = "너" + (model.vote.nameFoot ?? "")
+        } else {
+            self.nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
+        }
+        
+        if model.vote.keywordHead == nil {
+            if model.isHintUsed == true {
+                self.keywordLabel.snp.remakeConstraints {
+                    $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
+                    $0.leading.equalTo(nameLabel)
+                }
+                
+                keywordFootLabel.snp.remakeConstraints {
+                    $0.top.equalTo(keywordLabel)
+                    $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6.adjustedWidth)
+                }
+            } else {
+                self.keywordView.snp.remakeConstraints {
+                    $0.leading.equalTo(nameLabel)
+                    $0.height.equalTo(20.adjustedHeight)
+                    $0.width.equalTo(76.adjustedWidth)
+                    $0.top.equalTo(nameLabel.snp.bottom).offset(3.adjustedHeight)
+                }
+                
+                keywordFootLabel.snp.remakeConstraints {
+                    $0.top.equalTo(keywordLabel)
+                    $0.leading.equalTo(keywordView.snp.trailing).inset(-6.adjustedWidth)
+                }
+            }
+        } else {
+            if model.isHintUsed == true {
+                keywordLabel.snp.remakeConstraints {
+                    $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
+                    $0.leading.equalTo(keywordHeadLabel.snp.trailing).offset(6.adjustedWidth)
+                }
+                
+                keywordFootLabel.snp.remakeConstraints {
+                    $0.top.equalTo(keywordLabel)
+                    $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6.adjustedWidth)
+                }
+            } else {
+                keywordView.snp.remakeConstraints {
+                    $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
+                    $0.height.equalTo(20.adjustedHeight)
+                    $0.width.equalTo(76.adjustedWidth)
+                    $0.top.equalTo(nameLabel.snp.bottom).offset(3.adjustedHeight)
+                }
+                
+                keywordFootLabel.snp.remakeConstraints {
+                    $0.top.equalTo(keywordLabel)
+                    $0.leading.equalTo(keywordView.snp.trailing).inset(-6.adjustedWidth)
+                }
+            }
+        }
+        
+        self.keywordHeadLabel.text = model.vote.keywordHead
+        self.keywordLabel.text = model.vote.keyword
+        self.keywordFootLabel.text = model.vote.keywordFoot ?? ""
+        self.timeLabel.text = model.createdAt
+        
+        if model.isHintUsed {
+            self.keywordLabel.isHidden = false
+            self.keywordView.isHidden = true
+        } else {
+            self.keywordLabel.isHidden = true
+            self.keywordView.isHidden = false
+        }
     }
 }

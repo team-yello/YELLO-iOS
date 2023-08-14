@@ -50,6 +50,7 @@ final class FriendTableViewCell: UITableViewCell {
         isTapped = false
         separatorLine.isHidden = false
         addButton.isHidden = true
+        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
     }
 }
 
