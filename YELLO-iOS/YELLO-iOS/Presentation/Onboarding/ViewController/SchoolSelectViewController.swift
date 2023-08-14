@@ -13,7 +13,6 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     let highSchoolViewController = HighSchoolViewController()
     let universityViewController = UniversityViewController()
     
-    
     override func viewDidLoad() {
         step = 1
         super.viewDidLoad()
@@ -34,6 +33,7 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     }
     
     @objc func setSchoolLevel(sender: YelloSelectButton) {
+        
         if sender == baseView.highSchoolButton {
             schoolLevel = .high
         } else {

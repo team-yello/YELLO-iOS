@@ -27,7 +27,7 @@ class PushSettingViewController: UIViewController {
     }
     
     // MARK: Layout Helper
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
