@@ -29,7 +29,11 @@ final class FriendSearchTableViewCell: UITableViewCell {
     let addButton = UIButton()
     let myFriendLabel = UILabel()
 
-    var isFriend: Bool = false
+    var isFriend: Bool = false {
+        didSet {
+            updateAddButtonImage()
+        }
+    }
     weak var handleSearchAddFriendButton: HandleSearchAddFriendButton?
     
     // MARK: - Function
@@ -154,16 +158,24 @@ extension FriendSearchTableViewCell {
     }
     
     // MARK: Custom Function
-    func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.friends.name
-        schoolLabel.text = model.friends.group
-        if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
-            profileImageView.kfSetImage(url: model.friends.profileImage)
+    func configureFriendCell(_ model: Friend) {
+        nameLabel.text = model.name
+        schoolLabel.text = model.group
+        yelloIdLabel.text = model.yelloId
+        if model.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            profileImageView.kfSetImage(url: model.profileImage)
         }
+        isFriend = model.isFriend
     }
     
     func updateAddButtonImage() {
-        
+        if isFriend {
+            addButton.isHidden = false
+            myFriendLabel.isHidden = true
+        } else {
+            addButton.isHidden = false
+            myFriendLabel.isHidden = true
+        }
     }
     
     // MARK: Objc Function
