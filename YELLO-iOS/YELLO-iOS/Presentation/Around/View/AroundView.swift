@@ -32,7 +32,7 @@ final class AroundView: BaseView {
     private let aroundLabel = UILabel()
     lazy var aroundTableView = UITableView()
     let refreshControl = UIRefreshControl()
-    private let aroundEmptyView = AroundEmptyView()
+    private let aroundEmptyView = EmptyFriendView()
     
     // MARK: Layout Helpers
     override func setUI() {
@@ -120,10 +120,8 @@ final class AroundView: BaseView {
     // MARK: Objc Function
     @objc func refreshTable(refresh: UIRefreshControl) {
         self.isRefreshing = true
-        if aroundCount == 0 {
-            self.aroundEmptyView.isHidden = false
-        }
         self.aroundPage = -1
+        self.aroundCount = -1
         self.isFinishPaging = false
         self.fetchingMore = false
         self.aroundTableView.reloadData()
@@ -131,8 +129,7 @@ final class AroundView: BaseView {
         self.around()
         refresh.endRefreshing()
         self.isRefreshing = false
-        print(aroundModelDummy)
-        print("hihi")
+        self.updateView()
     }
     
     // MARK: - Network
