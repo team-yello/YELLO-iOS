@@ -1076,8 +1076,8 @@
 				36E427842A5BD6160050B34E /* UserInfoView.swift */,
 				36E427612A5BCE860050B34E /* AddFriendsView.swift */,
 				36E427922A5C9BE30050B34E /* RecommendIdView.swift */,
-				36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */,
 				366CE5EB2A819CA600BE5F66 /* PushSettingView.swift */,
+				36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

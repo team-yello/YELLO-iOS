@@ -16,7 +16,8 @@ final class MyProfileView: UIView {
     // MARK: Component
     let mainProfileView = UIView()
     
-    let profileImageView = UIImageView()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44
+        .adjusted, height: 44.adjusted))
     let profileImageBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 48.adjusted, height: 48.adjusted))
     let profileStarImageView = UIImageView()
     
@@ -67,7 +68,7 @@ extension MyProfileView {
         profileImageView.do {
             $0.backgroundColor = .grayscales800
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 24.adjustedHeight)
+            $0.makeCornerRound(radius: 22.adjusted)
             $0.layer.cornerCurve = .continuous
         }
         
@@ -140,7 +141,7 @@ extension MyProfileView {
             $0.setTitle(StringLiterals.MyYello.NavigationBar.shop, for: .normal)
             $0.titleLabel?.font = .uiBodyMedium
             $0.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 5.adjustedWidth)
-            $0.makeCornerRound(radius: 24.adjustedHeight)
+            $0.makeCornerRound(radius: 22.adjustedHeight)
             $0.layer.cornerCurve = .continuous
             $0.setTitleColor(.white, for: .normal)
             $0.backgroundColor = .black
@@ -266,6 +267,8 @@ extension MyProfileView {
         shopButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.trailing.bottom.top.equalToSuperview().inset(2.adjustedWidth)
+            $0.height.equalTo(44.adjustedHeight)
+            $0.width.equalTo(202.adjustedWidth)
         }
         
         nameSkeletonLabel.snp.makeConstraints {
@@ -328,7 +331,7 @@ extension MyProfileView {
                 $0.center.equalTo(profileImageBackgroundView)
                 $0.width.height.equalTo(44.adjusted)
             }
-            profileImageView.makeCornerRound(radius: 22.adjustedHeight)
+            profileImageView.makeCornerRound(radius: 22.adjusted)
         }
     }
 }

@@ -153,7 +153,7 @@ extension MyYelloListView: UITableViewDataSource {
             cell.showShimmer()
             return cell
         } else {
-            if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false {
+            if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false || (MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -3 && MyYelloListView.myYelloModelDummy[indexPath.row].isRead == false) {
                 guard let defaultCell = tableView.dequeueReusableCell(withIdentifier: MyYelloDefaultTableViewCell.identifier, for: indexPath) as? MyYelloDefaultTableViewCell else { return UITableViewCell() }
                 
                 defaultCell.configureDefaultCell(MyYelloListView.myYelloModelDummy[indexPath.row])
@@ -161,20 +161,18 @@ extension MyYelloListView: UITableViewDataSource {
                 defaultCell.newView.isHidden = defaultCell.isRead
                 defaultCell.selectionStyle = .none
                 return defaultCell
+            } else if MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -1 {
+                guard let keywordCell = tableView.dequeueReusableCell(withIdentifier: MyYelloKeywordTableViewCell.identifier, for: indexPath) as? MyYelloKeywordTableViewCell else { return UITableViewCell() }
+                
+                keywordCell.configureKeywordCell(MyYelloListView.myYelloModelDummy[indexPath.row])
+                keywordCell.selectionStyle = .none
+                return keywordCell
             } else {
-                if MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -1 {
-                    guard let keywordCell = tableView.dequeueReusableCell(withIdentifier: MyYelloKeywordTableViewCell.identifier, for: indexPath) as? MyYelloKeywordTableViewCell else { return UITableViewCell() }
-                    
-                    keywordCell.configureKeywordCell(MyYelloListView.myYelloModelDummy[indexPath.row])
-                    keywordCell.selectionStyle = .none
-                    return keywordCell
-                } else {
-                    guard let nameCell = tableView.dequeueReusableCell(withIdentifier: MyYelloNameTableViewCell.identifier, for: indexPath) as? MyYelloNameTableViewCell else { return UITableViewCell() }
-                    
-                    nameCell.configureNameCell(MyYelloListView.myYelloModelDummy[indexPath.row])
-                    nameCell.selectionStyle = .none
-                    return nameCell
-                }
+                guard let nameCell = tableView.dequeueReusableCell(withIdentifier: MyYelloNameTableViewCell.identifier, for: indexPath) as? MyYelloNameTableViewCell else { return UITableViewCell() }
+                
+                nameCell.configureNameCell(MyYelloListView.myYelloModelDummy[indexPath.row])
+                nameCell.selectionStyle = .none
+                return nameCell
             }
         }
     }
@@ -199,7 +197,7 @@ extension MyYelloListView: UITableViewDataSource {
         if MyYelloListView.myYelloModelDummy.isEmpty {
             return 0
         } else {
-            return 102
+            return 102.adjustedHeight
         }
     }
     

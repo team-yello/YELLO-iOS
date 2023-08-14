@@ -87,4 +87,11 @@ extension UILabel {
         self.attributedText = attributedString
     }
     
+    func labelWithImage(composition: NSAttributedString...) {
+        let attributedString = NSMutableAttributedString()
+        for i in composition {
+            attributedString.append(i)
+        }
+        self.attributedText = attributedString
+    }
 }

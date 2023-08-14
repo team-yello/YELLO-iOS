@@ -9,11 +9,10 @@ import UIKit
 
 class PushSettingViewController: UIViewController {
     // MARK: - Variables
-    // MARK: Component (button, label 등 코드로 만들때)
+    // MARK: Component
     let baseView = PushSettingView()
     let onboardingEndViewController = OnboardingEndViewController()
     let userNotiCenter = UNUserNotificationCenter.current()
-    
     
     // MARK: - Function
     // MARK: Life Cycles
@@ -56,8 +55,6 @@ class PushSettingViewController: UIViewController {
                 print(#function, error)
             }
         }
-        
-        /// 알림 설정 시 추가 포인트 지급 -> 설정 여부 저장
     }
     
     // MARK: objc Function
@@ -69,7 +66,7 @@ class PushSettingViewController: UIViewController {
         } else {
             rootViewController = YELLOTabBarController()
         }
-        navigationController?.pushViewController(onboardingEndViewController, animated: true)
+        navigationController?.pushViewController(rootViewController, animated: true)
     }
 
 }

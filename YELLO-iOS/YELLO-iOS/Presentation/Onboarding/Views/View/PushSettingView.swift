@@ -15,7 +15,10 @@ class PushSettingView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
-    let GuideLabel = UILabel()
+    let titleStackView = UIStackView()
+    let guideLabel = UILabel()
+    let iconImageView = UIImageView()
+    
     let subGuideLabel = UILabel()
     
     let endingImageView = UIImageView()
@@ -27,7 +30,13 @@ class PushSettingView: BaseView {
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
-        GuideLabel.do {
+        
+        titleStackView.do {
+            $0.axis = .horizontal
+            $0.addArrangedSubviews(guideLabel, iconImageView)
+        }
+        
+        guideLabel.do {
             $0.text = StringLiterals.Onboarding.pushNotiText
             $0.font = .uiHeadline03
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 28.adjusted)
@@ -42,7 +51,7 @@ class PushSettingView: BaseView {
         }
         
         endingImageView.do {
-            $0.backgroundColor = .grayscales700
+            $0.image = ImageLiterals.OnBoarding.pushNotification
         }
         
         goToYelloButton.do {
@@ -54,7 +63,7 @@ class PushSettingView: BaseView {
         }
     
         stackView.do {
-            $0.addArrangedSubviews(GuideLabel,
+            $0.addArrangedSubviews(guideLabel,
                                    subGuideLabel,
                                    endingImageView)
             $0.axis = .vertical

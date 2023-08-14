@@ -15,6 +15,7 @@ final class SchoolFriendView: UIView {
     // MARK: - Variables
     // MARK: Property
     var fetchingMore = false
+    var isRefreshing = false
     var isFinishPaging = false
     var schoolPage: Int = -1
     var schoolFriendCount: Int = -1 {
@@ -111,6 +112,7 @@ extension SchoolFriendView {
     
     // MARK: Objc Function
     @objc func refreshTable(refresh: UIRefreshControl) {
+        self.isRefreshing = true
         if schoolFriendCount == 0 {
             self.inviteBannerView.isHidden = false
             self.emptyView.isHidden = true
@@ -122,6 +124,7 @@ extension SchoolFriendView {
         self.recommendingSchoolFriendTableViewDummy = []
         self.recommendingSchoolFriend()
         refresh.endRefreshing()
+        self.isRefreshing = false
     }
     
     // MARK: Custom Function
@@ -149,7 +152,11 @@ extension SchoolFriendView {
         self.schoolPage += 1
         let queryDTO = RecommendingRequestQueryDTO(page: schoolPage)
         
-        fetchingMore = true
+        self.fetchingMore = true
+        
+        if isRefreshing {
+            self.schoolFriendTableView.reloadData()
+        }
         
         NetworkService.shared.recommendingService.recommendingSchoolFriend(queryDTO: queryDTO) { [weak self] response in
             guard let self = self else { return }
