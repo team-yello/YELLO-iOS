@@ -10,19 +10,14 @@ import Foundation
 // MARK: - AroundResponseDTO
 struct AroundResponseDTO: Codable {
     let totalCount: Int
-    let friendVotes: [AroundFriendVote]
+    let friendVotes: [FriendVote]
 }
 
 // MARK: - FriendVote
-struct AroundFriendVote: Codable {
+struct FriendVote: Codable {
     let id: Int
     let receiverName, senderGender: String
-    let vote: AroundVote
+    let vote: Vote
     let isHintUsed: Bool
     let createdAt: String
-}
-
-// MARK: - Vote
-struct AroundVote: Codable {
-    let nameHead, nameFoot, keywordHead, keyword, keywordFoot: String
 }
