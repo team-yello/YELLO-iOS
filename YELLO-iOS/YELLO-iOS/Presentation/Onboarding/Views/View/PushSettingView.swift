@@ -59,7 +59,7 @@ class PushSettingView: BaseView {
             $0.setTitle(StringLiterals.Onboarding.pushNotiButtonText, for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
             $0.setTitleColor(.black, for: .normal)
-            $0.makeCornerRound(radius: CGFloat(Constraints.buttonRound))
+            $0.makeCornerRound(radius: 24.adjusted)
         }
     
         stackView.do {
@@ -82,7 +82,7 @@ class PushSettingView: BaseView {
         goToYelloButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview().inset(34.adjustedHeight)
-            $0.height.equalTo(48)
+            $0.height.equalTo(48.adjustedHeight)
         }
     }
     
