@@ -159,6 +159,7 @@ extension MyYelloViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
+                UIApplication.shared.applicationIconBadgeNumber = data.totalCount
                 // 탭바 뱃지에 쪽지 개수 반영
                 if data.totalCount > 99 {
                     self.tabBarController?.tabBar.items?[3].badgeValue = "99+"
