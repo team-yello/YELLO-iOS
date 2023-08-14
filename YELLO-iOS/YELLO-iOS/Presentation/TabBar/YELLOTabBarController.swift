@@ -198,9 +198,7 @@ extension YELLOTabBarController {
             }
         }
     }
-}
-
-extension YELLOTabBarController {
+    
     func network() {
         /// 추천친구 서버통신
         recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in

@@ -15,6 +15,10 @@ final class BaseVotingETCView: BaseView {
     let topOfPointIcon = UIImageView()
     let topOfMyPoint = UILabel()
     
+    let balloonToday = UIImageView()
+    let balloonWho = UIImageView()
+    let balloonSend = UIImageView()
+    
     let titleLabel = UILabel()
     let textLabel = UILabel()
     
@@ -41,6 +45,18 @@ final class BaseVotingETCView: BaseView {
             $0.text = "2900"
             $0.textColor = .white
             $0.font = .uiBodyMedium
+        }
+        
+        balloonToday.do {
+            $0.image = ImageLiterals.Voting.imgVotingStartBalloon1
+        }
+        
+        balloonWho.do {
+            $0.image = ImageLiterals.Voting.imgVotingStartBalloon2
+        }
+        
+        balloonSend.do {
+            $0.image = ImageLiterals.Voting.imgVotingStartBalloon3
         }
         
         titleLabel.do {
@@ -99,6 +115,9 @@ final class BaseVotingETCView: BaseView {
     override func setLayout() {
         self.addSubviews(topOfPointIcon,
                          topOfMyPoint,
+                         balloonToday,
+                         balloonWho,
+                         balloonSend,
                          titleLabel,
                          textLabel,
                          plusPoint,

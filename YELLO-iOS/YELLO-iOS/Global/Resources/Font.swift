@@ -121,6 +121,10 @@ extension UIFont {
         return UIFont(name: "Unbounded-Bold", size: 25.0.adjusted)!
     }
     
+    class var uiVotingLabel: UIFont {
+        return UIFont(name: "Unbounded-Bold", size: 22.0.adjusted)!
+    }
+    
     class var uiSenderLabel: UIFont {
         return UIFont(name: "Unbounded-SemiBold", size: 16.0.adjusted)!
     }

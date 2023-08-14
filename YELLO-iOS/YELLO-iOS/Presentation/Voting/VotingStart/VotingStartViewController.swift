@@ -16,11 +16,7 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     var myPoint = 0
-    
-    override func loadView() {
-        self.view = originView
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         originView.yellowButton.isEnabled = false
@@ -30,27 +26,11 @@ final class VotingStartViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        animationView = .init(name: "VotingStart")
-        let animationWidth: CGFloat = 230
-        let animationHeight: CGFloat = 230
-        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
-        
-        animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .loop
-        animationView.animationSpeed = 1.1
-        
-        let centerX = view.bounds.midX
-        let centerY = view.bounds.midY - 40.adjusted
-            
-        animationView.center = CGPoint(x: centerX, y: centerY)
-
-        animationView.play()
-        view.addSubview(animationView)
-        
+        setAnimationView()
         getVotingAvailable()
         
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
-        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -65,21 +45,10 @@ final class VotingStartViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .black
         
-        originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Start.title, lineHeight: 28)
-        }
-        
-        originView.engPoint.do {
-            $0.setTextWithLineHeight(text: "Point", lineHeight: 22)
-        }
-        
-        originView.realMyPoint.do {
-            $0.setTextWithLineHeight(text: "0", lineHeight: 22)
-        }
-        
         originView.yellowButton.do {
-            $0.setTitle("투표 시작!", for: .normal)
+            $0.setTitle("START!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
+            $0.titleLabel?.font = .uiVotingLabel
             $0.makeCornerRound(radius: 30.adjusted)
         }
     }
@@ -95,19 +64,47 @@ final class VotingStartViewController: BaseViewController {
                 
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
+        
+        view.addSubviews(originView)
 
-        originView.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 100.adjustedHeight)
+        originView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+                
+        originView.topOfPointIcon.snp.makeConstraints {
+            $0.centerY.equalTo(originView.topOfMyPoint)
+            $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedWidth)
         }
         
-        originView.grayView.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 117.adjustedHeight)
-            $0.width.equalTo(284.adjusted)
-            $0.height.equalTo(52.adjusted)
+        originView.topOfMyPoint.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 24.adjustedHeight)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
+        }
+        
+        originView.balloonToday.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets).inset(statusBarHeight + 66.adjustedHeight)
+            $0.leading.equalToSuperview().inset(74.adjusted)
+            $0.width.equalTo(92.adjusted)
+            $0.height.equalTo(36.adjusted)
+        }
+        
+        originView.balloonWho.snp.makeConstraints {
+            $0.top.equalTo(originView.balloonToday.snp.bottom).offset(6.adjusted)
+            $0.leading.equalToSuperview().inset(74.adjusted)
+            $0.width.equalTo(228.adjusted)
+            $0.height.equalTo(36.adjusted)
+        }
+        
+        originView.balloonSend.snp.makeConstraints {
+            $0.top.equalTo(originView.balloonWho.snp.bottom).offset(6.adjusted)
+            $0.trailing.equalToSuperview().inset(73.adjusted)
+            $0.width.equalTo(124.adjusted)
+            $0.height.equalTo(36.adjusted)
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 80.adjustedHeight)
+            $0.width.equalTo(198.adjusted)
             $0.height.equalTo(58.adjusted)
         }
         
@@ -132,6 +129,9 @@ final class VotingStartViewController: BaseViewController {
 }
 
 extension VotingStartViewController {
+    
+    // MARK: - 서버통신
+    
     func getVotingAvailable() {
         NetworkService.shared.votingService.getVotingAvailable {
             result in
@@ -193,5 +193,27 @@ extension VotingStartViewController {
                 return
             }
         }
+    }
+    
+    // MARK: - LottieAnimationView function
+    
+    func setAnimationView() {
+        animationView = .init(name: "VotingStart")
+        let animationWidth: CGFloat = 375.adjustedWidth
+        let animationHeight: CGFloat = 667.adjustedHeight
+        animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
+
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1.1
+
+        let centerX = view.bounds.midX
+        let centerY = view.bounds.midY - 50.adjustedHeight
+
+        animationView.center = CGPoint(x: centerX, y: centerY)
+
+        animationView.play()
+        view.addSubview(animationView)
+        view.bringSubviewToFront(originView)
     }
 }
