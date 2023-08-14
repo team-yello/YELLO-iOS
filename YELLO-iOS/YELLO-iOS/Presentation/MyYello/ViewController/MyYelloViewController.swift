@@ -35,6 +35,7 @@ final class MyYelloViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        unreadCount()
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.myYelloView.myYelloListView.myYelloTableView.reloadData()
@@ -140,12 +141,6 @@ extension MyYelloViewController {
                 switch response {
                 case .success(let data):
                     guard let data = data.data else { return }
-                    // 탭바 뱃지에 쪽지 개수 반영
-                    if data.totalCount > 99 {
-                        self.tabBarController?.tabBar.items?[3].badgeValue = "99+"
-                    } else {
-                        self.tabBarController?.tabBar.items?[3].badgeValue = String(data.totalCount)
-                    }
                     self.myYelloView.myYelloCount = data.totalCount
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
@@ -158,10 +153,29 @@ extension MyYelloViewController {
         }
     }
     
+    func unreadCount() {
+        NetworkService.shared.votingService.getUnreadCount { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                // 탭바 뱃지에 쪽지 개수 반영
+                if data.totalCount > 99 {
+                    self.tabBarController?.tabBar.items?[3].badgeValue = "99+"
+                } else {
+                    self.tabBarController?.tabBar.items?[3].badgeValue = String(data.totalCount)
+                }
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
     // MARK: Objc Function
     @objc func refreshTable(refresh: UIRefreshControl) {
         // 실시간으로 쪽지 개수 받아오기 위해 추가
-        myYelloCount()
+        unreadCount()
         myYelloView.myYelloListView.pageCount = -1
         myYelloView.myYelloListView.isFinishPaging = false
         myYelloView.myYelloListView.fetchingMore = false

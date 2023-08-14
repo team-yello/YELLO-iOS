@@ -192,6 +192,7 @@ extension YELLOTabBarController {
                 }
                 self.setTabBarItems()
                 self.setTabBarAppearance()
+                self.myYelloViewController.unreadCount()
             default:
                 print("network failure")
                 return

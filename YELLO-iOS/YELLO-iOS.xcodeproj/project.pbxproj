@@ -57,6 +57,7 @@
 		2ADE23A52A5EA9390088FCB3 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */; };
 		2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2ADE23A92A5EB7660088FCB3 /* Lottie */; };
 		2AEE46EF2A603F9A000B4A9B /* VotingStart.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AEE46EE2A603F9A000B4A9B /* VotingStart.json */; };
+		2AFB01482A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB01472A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift */; };
 		3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAE72A608F0200D5FA40 /* SplashViewController.swift */; };
 		3628EAEA2A60903A00D5FA40 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE92A60903A00D5FA40 /* splash.json */; };
 		3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */; };
@@ -315,6 +316,7 @@
 		2AD1A1D52A5C952000CB988B /* VotingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingFunction.swift; sourceTree = "<group>"; };
 		2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		2AEE46EE2A603F9A000B4A9B /* VotingStart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VotingStart.json; sourceTree = "<group>"; };
+		2AFB01472A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingUnreadResponseDTO.swift; sourceTree = "<group>"; };
 		3608F9052A80E25600B09D82 /* YELLO-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YELLO-iOS.entitlements"; sourceTree = "<group>"; };
 		3628EAE72A608F0200D5FA40 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3628EAE92A60903A00D5FA40 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -790,6 +792,7 @@
 				2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */,
 				2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */,
 				2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */,
+				2AFB01472A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1858,6 +1861,7 @@
 				367DA01D2A86496D0043D23C /* NameViewController.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
+				2AFB01482A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift in Sources */,
 				367113712A7D6C740037E0D2 /* UniversityView.swift in Sources */,
 				C3FF24972A5E907D00A97D40 /* MyYelloNameTableViewCell.swift in Sources */,
 				C37DFC482A8501F300D3B685 /* PaymentPlusView.swift in Sources */,
