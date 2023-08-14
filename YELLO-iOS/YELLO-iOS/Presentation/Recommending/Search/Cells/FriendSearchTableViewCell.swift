@@ -12,7 +12,7 @@ import Then
 
 // MARK: - Protocol
 protocol HandleSearchAddFriendButton: AnyObject {
-    func addButtonTapped()
+    func addButtonTapped(sender: UIButton)
 }
 
 final class FriendSearchTableViewCell: UITableViewCell {
@@ -165,17 +165,13 @@ extension FriendSearchTableViewCell {
         if model.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
             profileImageView.kfSetImage(url: model.profileImage)
         }
-        isFriend = model.isFriend
+        self.isFriend = model.isFriend
+        updateAddButtonImage()
     }
     
     func updateAddButtonImage() {
-        if isFriend {
-            addButton.isHidden = false
-            myFriendLabel.isHidden = true
-        } else {
-            addButton.isHidden = false
-            myFriendLabel.isHidden = true
-        }
+        addButton.isHidden = isFriend ? true : false
+        myFriendLabel.isHidden = isFriend ? false : true
     }
     
     // MARK: Objc Function
@@ -183,6 +179,6 @@ extension FriendSearchTableViewCell {
         addButton.isHidden = true
         myFriendLabel.isHidden = false
         isFriend.toggle()
-        handleSearchAddFriendButton?.addButtonTapped()
+        handleSearchAddFriendButton?.addButtonTapped(sender: sender)
     }
 }

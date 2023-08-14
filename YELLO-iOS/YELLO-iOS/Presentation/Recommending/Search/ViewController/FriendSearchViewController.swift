@@ -112,6 +112,20 @@ final class FriendSearchViewController: BaseViewController {
         allFriend.removeAll()
         searchFriend(text)
     }
+    
+    func addFriend(friendId: Int) {
+        NetworkService.shared.recommendingService.recommendingAddFriend(friendId: friendId) { response in
+            print(friendId)
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
 }
 
 extension FriendSearchViewController: UITextFieldDelegate { }
@@ -143,7 +157,11 @@ extension FriendSearchViewController: UITableViewDataSource {
 }
 
 extension FriendSearchViewController: HandleSearchAddFriendButton {
-    func addButtonTapped() {
-        print("친구 추가 서버 통신 함수 추가")
+    func addButtonTapped(sender: UIButton) {
+        let point = sender.convert(CGPoint.zero, to: friendSearchView.friendSearchResultTableView)
+        guard let indexPath = friendSearchView.friendSearchResultTableView.indexPathForRow(at: point) else { return }
+        
+        // 삭제 서버통신
+        addFriend(friendId: allFriend[indexPath.row].id)
     }
 }
