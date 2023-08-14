@@ -49,7 +49,7 @@ class NameViewController: OnboardingBaseViewController {
     // MARK: Custom Function
     func setDelegate() {
         baseView.nameTextFieldView.textField.delegate = self
-        
+        baseView.nameTextFieldView.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     func checkButtonEnable() {
@@ -86,6 +86,11 @@ class NameViewController: OnboardingBaseViewController {
     // MARK: objc Function
     @objc func nameCancelTapped() {
         baseView.nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.nameHelper, State: .normal)
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        baseView.nameTextFieldView.textField.setButtonState(state: .cancel)
+        checkButtonEnable()
     }
     
 }

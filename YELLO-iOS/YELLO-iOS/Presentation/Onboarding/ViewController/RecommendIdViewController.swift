@@ -51,6 +51,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     func addTarget() {
         baseView.recommendIdTextField.textField.cancelButton.addTarget(self, action: #selector(idCancelTapped), for: .touchUpInside)
+        baseView.recommendIdTextField.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     func checkButtonEnable() {
@@ -132,6 +133,12 @@ class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: Objc Function
     @objc func idCancelTapped() {
         baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "추천인의 아이디를 입력해주세요.", State: .normal)
+    }
+    
+    @objc func textFieldDidChange() {
+        guard let text = baseView.recommendIdTextField.textField.text else { return }
+        checkIdValid(text: text)
+        checkButtonEnable()
     }
     
     override func didTapButton(sender: UIButton) {

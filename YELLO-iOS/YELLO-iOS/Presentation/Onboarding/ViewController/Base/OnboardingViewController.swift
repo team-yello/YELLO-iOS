@@ -39,6 +39,10 @@ class OnboardingBaseViewController: BaseViewController {
         view.bringSubviewToFront(buttonStackView)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     // MARK: - Function
     
     // MARK: Custom Function
@@ -87,7 +91,7 @@ class OnboardingBaseViewController: BaseViewController {
         
         buttonStackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
-            $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
+            $0.bottom.equalToSuperview().inset(34.adjustedHeight)
         }
         
         progressBarView.snp.makeConstraints {
@@ -100,7 +104,7 @@ class OnboardingBaseViewController: BaseViewController {
         
         self.bottomConstraint = NSLayoutConstraint(item: self.nextButton, attribute: .bottom,
                                                    relatedBy: .equal, toItem: safeArea,
-                                                   attribute: .bottom, multiplier: 1.0, constant: 12)
+                                                   attribute: .bottom, multiplier: 1.0, constant: -34.adjusted)
         self.bottomConstraint?.isActive = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -141,12 +145,10 @@ class OnboardingBaseViewController: BaseViewController {
             let keyboardHeight: CGFloat
             keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
             self.bottomConstraint?.constant = -1 * keyboardHeight - 12
-            self.view.layoutIfNeeded()
         }
     }
     
     @objc private func keyboardWillHide(notification: NSNotification) {
         self.bottomConstraint?.constant = 0
-        self.view.layoutIfNeeded()
     }
 }
