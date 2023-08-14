@@ -112,8 +112,6 @@ class RecommendIdViewController: OnboardingBaseViewController {
                     print("no data")
                     return
                 }
-                print("성공!✅✅✅✅✅✅✅")
-                
                 dump(data)
                 KeychainHandler.shared.accessToken = data.accessToken
                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
