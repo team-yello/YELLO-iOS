@@ -46,7 +46,12 @@ class KakaoLoginView: BaseView {
         }
         
         kakaoButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.btnKakaoLogin, for: .normal)
+            $0.backgroundColor = UIColor(hex: "FEE500")
+            $0.setTitle("카카오로 시작하기", for: .normal)
+            $0.titleLabel?.font = .uiBody01
+            $0.setTitleColor(UIColor(hex: "191600"), for: .normal)
+            $0.setImage(ImageLiterals.OnBoarding.icKakao, for: .normal)
+            $0.makeCornerRound(radius: 8.adjusted)
         }
     }
     
@@ -74,6 +79,13 @@ class KakaoLoginView: BaseView {
         kakaoButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(91.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(48.adjustedHeight)
         }
+        
+        kakaoButton.imageView?.snp.makeConstraints({
+            $0.leading.equalToSuperview().offset(28.adjustedHeight)
+            $0.centerY.equalToSuperview()
+        })
+     
     }
 }
