@@ -9,13 +9,20 @@ import UIKit
 
 class UniversityViewController: OnboardingBaseViewController {
     
-    var schoolName = ""
+    var schoolName = "" {
+        didSet {
+            baseView.majorSearchTextField.text = ""
+            baseView.studentIdTextField.text = ""
+            majorSearchViewController.searchView.searchTextField.text = ""
+        }
+    }
     var groupId = 0
     var groupAdmissionYear = 0
     weak var delegate: SelectStudentIdDelegate?
     
     let baseView = UniversityView()
     let studentIdView = StudentIdView()
+    let findSchooViewController = FindSchoolViewController()
     let majorSearchViewController = FindMajorViewController()
     let studentIdViewController = StudentIdViewController()
     let bottomSheet = BaseBottomViewController()
@@ -26,7 +33,6 @@ class UniversityViewController: OnboardingBaseViewController {
         step = 2
         super.viewDidLoad()
         setDelegate()
-        addTarget()
     }
     
     override func setLayout() {
@@ -56,12 +62,7 @@ class UniversityViewController: OnboardingBaseViewController {
         User.shared.groupAdmissionYear = self.groupAdmissionYear
     }
     
-    private func addTarget() {
-        baseView.schoolSearchTextField.addTarget(self, action: #selector(didTapTextField), for: .touchUpInside)
-    }
-    
     private func schoolPresentModal() {
-        let findSchooViewController = FindSchoolViewController()
         self.present(findSchooViewController, animated: true)
     }
     
@@ -96,12 +97,6 @@ class UniversityViewController: OnboardingBaseViewController {
         
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
-    
-    // MARK: objc Function
-    @objc func didTapTextField() {
-        schoolPresentModal()
-    }
-    
     
 }
 // MARK: - extension
