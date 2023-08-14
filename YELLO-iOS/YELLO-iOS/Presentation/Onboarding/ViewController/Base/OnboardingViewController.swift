@@ -21,6 +21,7 @@ class OnboardingBaseViewController: BaseViewController {
     private let progressBarView = ProgressBarManager.shared.progressBarView
     
     var nextViewController: UIViewController?
+    var bottomConstraint: NSLayoutConstraint?
     var isSkipable = false
     var step = 1.0
     
@@ -68,6 +69,7 @@ class OnboardingBaseViewController: BaseViewController {
         }
         
         skipButton.isHidden = !(isSkipable)
+    
         view.addSubviews(navigationBarView, progressBarView, buttonStackView)
         
         nextButton.snp.makeConstraints {
@@ -93,6 +95,16 @@ class OnboardingBaseViewController: BaseViewController {
             $0.top.equalTo(navigationBarView.snp.bottom)
             $0.height.equalTo(4)
         }
+        
+        let safeArea = self.view.safeAreaLayoutGuide
+        
+        self.bottomConstraint = NSLayoutConstraint(item: self.nextButton, attribute: .bottom,
+                                                   relatedBy: .equal, toItem: safeArea,
+                                                   attribute: .bottom, multiplier: 1.0, constant: 12)
+        self.bottomConstraint?.isActive = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
@@ -122,5 +134,19 @@ class OnboardingBaseViewController: BaseViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight: CGFloat
+            keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
+            self.bottomConstraint?.constant = -1 * keyboardHeight - 12
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        self.bottomConstraint?.constant = 0
+        self.view.layoutIfNeeded()
     }
 }
