@@ -25,7 +25,7 @@ final class AroundTableViewCell: UITableViewCell {
     let nameLabel = UILabel()
     let keywordHeadLabel = UILabel()
     let keywordLabel = UILabel()
-    let keywordView = UIView(frame: CGRect(x: 0, y: 0, width: 91.adjustedWidth, height: 20.adjustedHeight))
+    let keywordView = UIView(frame: CGRect(x: 0, y: 0, width: 76.adjustedWidth, height: 20.adjustedHeight))
     let keywordFootLabel = UILabel()
     let timeLabel = UILabel()
     
@@ -181,7 +181,7 @@ final class AroundTableViewCell: UITableViewCell {
         keywordView.snp.makeConstraints {
             $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
             $0.height.equalTo(20.adjustedHeight)
-            $0.width.equalTo(keywordLabel)
+            $0.width.equalTo(76.adjustedWidth)
             $0.top.equalTo(keywordLabel).offset(4.adjustedHeight)
         }
         
@@ -217,28 +217,52 @@ final class AroundTableViewCell: UITableViewCell {
         }
         
         if model.vote.keywordHead == nil {
-            self.keywordView.snp.remakeConstraints {
-                $0.leading.equalTo(nameLabel)
-                $0.height.equalTo(20.adjustedHeight)
-                $0.width.equalTo(keywordLabel)
-                $0.top.equalTo(keywordLabel).offset(4.adjustedHeight)
-            }
-            
-            self.keywordLabel.snp.remakeConstraints {
-                $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
-                $0.leading.equalTo(keywordView)
+            if model.isHintUsed == true {
+                self.keywordLabel.snp.remakeConstraints {
+                    $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
+                    $0.leading.equalTo(nameLabel)
+                }
+                
+                keywordFootLabel.snp.remakeConstraints {
+                    $0.top.equalTo(keywordLabel)
+                    $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6.adjustedWidth)
+                }
+            } else {
+                self.keywordView.snp.remakeConstraints {
+                    $0.leading.equalTo(nameLabel)
+                    $0.height.equalTo(20.adjustedHeight)
+                    $0.width.equalTo(76.adjustedWidth)
+                    $0.top.equalTo(nameLabel.snp.bottom).offset(3.adjustedHeight)
+                }
+                
+                keywordFootLabel.snp.remakeConstraints {
+                    $0.top.equalTo(keywordLabel)
+                    $0.leading.equalTo(keywordView.snp.trailing).inset(-6.adjustedWidth)
+                }
             }
         } else {
-            keywordView.snp.remakeConstraints {
-                $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
-                $0.height.equalTo(20.adjustedHeight)
-                $0.width.equalTo(keywordLabel)
-                $0.top.equalTo(keywordLabel).offset(4.adjustedHeight)
-            }
-            
-            keywordLabel.snp.remakeConstraints {
-                $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
-                $0.leading.equalTo(keywordView)
+            if model.isHintUsed == true {
+                keywordLabel.snp.remakeConstraints {
+                    $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
+                    $0.leading.equalTo(keywordHeadLabel.snp.trailing).offset(6.adjustedWidth)
+                }
+                
+                keywordFootLabel.snp.remakeConstraints {
+                    $0.top.equalTo(keywordLabel)
+                    $0.leading.equalTo(keywordLabel.snp.trailing).inset(-6.adjustedWidth)
+                }
+            } else {
+                keywordView.snp.remakeConstraints {
+                    $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-6.adjustedWidth)
+                    $0.height.equalTo(20.adjustedHeight)
+                    $0.width.equalTo(76.adjustedWidth)
+                    $0.top.equalTo(nameLabel.snp.bottom).offset(3.adjustedHeight)
+                }
+                
+                keywordFootLabel.snp.remakeConstraints {
+                    $0.top.equalTo(keywordLabel)
+                    $0.leading.equalTo(keywordView.snp.trailing).inset(-6.adjustedWidth)
+                }
             }
         }
         
