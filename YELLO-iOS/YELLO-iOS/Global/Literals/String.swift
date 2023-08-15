@@ -64,6 +64,21 @@ enum StringLiterals {
         
     }
     
+    enum Tutorial {
+        static let firstTutorialText = "친구가 4명 이상 모이면?\n옐로할 수 있어요!"
+        static let firstGuideText = "아무데나 클릭해서 넘기기"
+        
+        static let secondTutorialText = "빈칸이 있는 랜덤한 질문에"
+        
+        static let thirdTutorialText = "친구와 키워드를 선택해요!"
+        
+        static let fourthToastText = "’이 질문 건너뛰기’ 버튼을 누르면\n포인트는 지급되지 않아요"
+        static let fourthSubText = "다른 친구와 키워드를 선택하고 싶다면?"
+        static let fourthTutorialText = "친구 선택지를 바꾸거나 질문을 skip"
+        
+        
+    }
+    
     enum Inviting {
         static let title = "친구 초대하기"
         static let firstText = "친구가 내 추천인 코드로 가입하면"
