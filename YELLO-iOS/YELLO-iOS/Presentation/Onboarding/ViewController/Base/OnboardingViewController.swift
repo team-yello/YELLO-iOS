@@ -39,10 +39,6 @@ class OnboardingBaseViewController: BaseViewController {
         view.bringSubviewToFront(buttonStackView)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     // MARK: - Function
     
     // MARK: Custom Function

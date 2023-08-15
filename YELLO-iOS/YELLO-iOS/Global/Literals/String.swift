@@ -35,6 +35,7 @@ enum StringLiterals {
         static let majorSearchPlaceholder = "ex. 노랑학과"
         static let studentIdText = "몇 학번인가요?"
         static let studentIdPlaceholder = "ex. 23학번"
+        static let universityToastText = "학교를 먼저 선택해주세요"
         
         static let nameHelper = "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!"
         static let nameError = "자음과 모음 조합의 한글만 입력 가능해요."

@@ -80,7 +80,7 @@ final class KakaoConnectView: BaseView {
         kakaoConnectButton.snp.makeConstraints {
             $0.height.equalTo(48.adjustedHeight)
             $0.bottom.equalToSuperview().inset(91.adjustedHeight)
-            $0.leading.trailing.equalToSuperview().inset(16.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
     }
 }

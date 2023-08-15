@@ -107,7 +107,7 @@ extension UniversityViewController: UITextFieldDelegate {
         guard let schoolText = baseView.schoolSearchTextField.text else {return}
         
         if schoolText.isEmpty && textField == baseView.majorSearchTextField {
-            view.showToast(message: "학교를 먼저 선택해주세요", at: 88)
+            view.showToast(message: StringLiterals.Onboarding.universityToastText, at: 88)
             textField.endEditing(true)
             return
         }

@@ -40,8 +40,8 @@ class KakaoLoginView: BaseView {
         stackView.do {
             $0.addArrangedSubviews(titleLabel, subTitleLabel, imageView)
             $0.axis = .vertical
-            $0.setCustomSpacing(8, after: subTitleLabel)
-            $0.setCustomSpacing(6, after: subTitleLabel)
+            $0.setCustomSpacing(8.adjustedHeight, after: subTitleLabel)
+            $0.setCustomSpacing(6.adjustedHeight, after: subTitleLabel)
             $0.alignment = .center
         }
         

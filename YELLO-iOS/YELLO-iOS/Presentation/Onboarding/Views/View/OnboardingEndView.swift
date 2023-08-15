@@ -74,7 +74,7 @@ class OnboardingEndView: BaseView {
         goToYelloButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icYelloFace, for: .normal)
             $0.semanticContentAttribute = .forceRightToLeft
-            $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+            $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8.adjusted, bottom: 0, right: 0)
         }
         
     }
