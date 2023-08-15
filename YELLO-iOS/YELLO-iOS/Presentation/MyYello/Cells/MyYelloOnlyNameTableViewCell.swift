@@ -70,7 +70,7 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
         }
         
         nameLabel.do {
-            $0.setTextWithLineHeight(text: "김옐로", lineHeight: 20.adjustedHeight)
+            $0.text = " "
             $0.font = .uiKeywordBold
             $0.textColor = .semanticGenderF300
         }

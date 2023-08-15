@@ -68,7 +68,7 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.femaleTitle, lineHeight: 20.adjustedHeight)
+            $0.text = StringLiterals.MyYello.List.femaleTitle
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }
