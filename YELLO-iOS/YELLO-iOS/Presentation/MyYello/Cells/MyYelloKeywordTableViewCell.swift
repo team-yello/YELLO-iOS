@@ -75,7 +75,7 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         }
         
         keywordHeadLabel.do {
-            $0.setTextWithLineHeight(text: "", lineHeight: 20.adjustedHeight)
+            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales300
         }

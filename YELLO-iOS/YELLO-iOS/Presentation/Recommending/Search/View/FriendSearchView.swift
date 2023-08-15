@@ -17,12 +17,30 @@ final class FriendSearchView: BaseView {
     let friendSearchTextfield = YelloTextField(state: .search)
     let friendSearchResultTableView = UITableView()
     let friendSearchController = UISearchController(searchResultsController: nil)
-    let animationView = LottieAnimationView(name: "spinner_loading")
-    let noResultStackView = UIStackView()
+    
+    let loadingStackView = UIStackView()
+    let loadingLabel = UILabel()
+    let loadingAnimationView = LottieAnimationView(name: "spinner_loading")
+    
+    let noResultView = UIView()
     let noResultImageView = UIImageView()
     let noResultLabel = UILabel()
     
     override func setStyle() {
+        
+        loadingStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 4.adjustedHeight
+            $0.addArrangedSubviews(loadingAnimationView, loadingLabel)
+            $0.isHidden = true
+        }
+        
+        loadingLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.loading, lineHeight: 20.adjustedHeight)
+            $0.font = .uiBodySmall
+            $0.textColor = .grayscales300
+        }
+        
         friendSearchNavigationBarView.do {
             $0.titleLabel.setTextWithLineHeight(text: StringLiterals.Recommending.Search.title, lineHeight: 24.adjustedHeight)
         }
@@ -39,32 +57,30 @@ final class FriendSearchView: BaseView {
         }
         
         friendSearchResultTableView.do {
-            $0.rowHeight = 90.adjustedHeight
+            $0.rowHeight = UITableView.automaticDimension
+            $0.estimatedRowHeight = 90.adjustedHeight
             $0.separatorStyle = .singleLine
             $0.separatorColor = .grayscales800
             $0.register(FriendSearchTableViewCell.self, forCellReuseIdentifier: FriendSearchTableViewCell.identifier)
             $0.backgroundColor = .black
-            $0.delegate = self
-            $0.dataSource = self
             $0.showsVerticalScrollIndicator = false
-        }
-        
-        noResultStackView.do {
-            $0.axis = .vertical
-            $0.spacing = 12.adjustedHeight
-            $0.addArrangedSubviews(noResultImageView, noResultLabel)
+            $0.showsHorizontalScrollIndicator = false
         }
         
         noResultImageView.do {
             $0.image = ImageLiterals.Recommending.imgSearchNoResult
+            $0.contentMode = .scaleAspectFit
         }
         
         noResultLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Recommending.Search.searching, lineHeight: 20.adjustedHeight)
             $0.font = .uiBodySmall
-            $0.textColor = .grayscales700
+            $0.textColor = .grayscales300
         }
         
+        noResultView.do {
+            $0.isHidden = true
+        }
     }
     
     override func setLayout() {
@@ -77,7 +93,11 @@ final class FriendSearchView: BaseView {
         
         self.addSubviews(friendSearchNavigationBarView,
                          friendSearchTextfield,
-                         friendSearchResultTableView)
+                         friendSearchResultTableView,
+                         loadingStackView,
+                         noResultView)
+        
+        noResultView.addSubviews(noResultLabel, noResultImageView)
         
         friendSearchNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
@@ -96,29 +116,35 @@ final class FriendSearchView: BaseView {
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview()
         }
-    }
-}
-
-extension FriendSearchView: UITableViewDelegate { }
-extension FriendSearchView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendSearchTableViewCell.identifier, for: indexPath) as? FriendSearchTableViewCell else {
-            return UITableViewCell()
+        
+        noResultImageView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(43.adjusted)
         }
         
-        cell.handleSearchAddFriendButton = self
-        cell.selectionStyle = .none
-//        cell.configureFriendCell([indexPath.row])
-        return cell
-    }
-}
-
-extension FriendSearchView: HandleSearchAddFriendButton {
-    func addButtonTapped() {
-        print("친구 추가 서버 통신 함수 추가")
+        noResultLabel.snp.makeConstraints {
+            $0.top.equalTo(noResultImageView.snp.bottom).offset(12.adjustedHeight)
+            $0.bottom.equalToSuperview()
+            $0.centerX.equalToSuperview()
+        }
+        
+        noResultView.snp.makeConstraints {
+            $0.top.equalTo(friendSearchResultTableView).offset(90.adjustedHeight)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(148.adjustedWidth)
+            $0.height.equalTo(75.adjustedHeight)
+        }
+        
+        loadingStackView.snp.makeConstraints {
+            $0.top.equalTo(friendSearchResultTableView).offset(90.adjustedHeight)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(127.adjustedWidth)
+            $0.height.equalTo(64.adjustedHeight)
+        }
+        
+        loadingAnimationView.snp.makeConstraints {
+            $0.width.height.equalTo(40.adjusted)
+        }
     }
 }
