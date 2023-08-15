@@ -84,7 +84,7 @@ final class FourthTutorial: UIView {
         
         tutorialGuideLabel.snp.makeConstraints {
             $0.bottom.equalTo(tutorialTitleLabel.snp.top).offset(-6.adjustedHeight)
-            $0.leading.equalTo(tutorialTitleLabel.snp.leading)
+            $0.leading.equalTo(tutorialTitleLabel)
         }
 
         tutorialTitleLabel.snp.makeConstraints {
