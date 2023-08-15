@@ -58,11 +58,25 @@ enum StringLiterals {
         static let pushNotiHelper = "친구들에게 비밀쪽지가 도착하면\n알림을 드릴게요."
         static let pushNotiButtonText = "쪽지 알림 받기"
         
-        static let endingTitle = "200포인트 지급"
-        static let endingPlusTitle = "200+100포인트 지급"
+        static let endingTitle = "가입 포인트 지급"
         static let endingText = "튜토리얼 끝!\n옐로에서 환영 선물을 준비했어요!"
         static let endingSubText = "앞으로 투표가 끝날 때마다 포인트를 줄게요!"
         static let endingButton = "옐로하러 가기"
+        
+    }
+    
+    enum Tutorial {
+        static let firstTutorialText = "친구가 4명 이상 모이면?\n옐로할 수 있어요!"
+        static let firstGuideText = "아무데나 클릭해서 넘기기"
+        
+        static let secondTutorialText = "빈칸이 있는 랜덤한 질문에"
+        
+        static let thirdTutorialText = "친구와 키워드를 선택해요!"
+        
+        static let fourthToastText = "’이 질문 건너뛰기’ 버튼을 누르면\n포인트는 지급되지 않아요"
+        static let fourthSubText = "다른 친구와 키워드를 선택하고 싶다면?"
+        static let fourthTutorialText = "친구 선택지를 바꾸거나 질문을 skip"
+        
         
     }
     
