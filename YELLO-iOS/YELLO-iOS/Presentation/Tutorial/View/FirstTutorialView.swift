@@ -17,6 +17,9 @@ final class FirstTutorialView: UIView {
     let tutorialTitleLabel = UILabel()
     let tutorialGuideLabel = UILabel()
     
+    let tutorialImage = UIScreen.main.isWiderThan375pt ? ImageLiterals.Tutorial.tutorialLong1 : ImageLiterals.Tutorial.tutorial1
+    let bottomMargin = UIScreen.main.isWiderThan375pt ? 320.adjustedHeight : 228.adjustedHeight
+    let guideBottomMargin = UIScreen.main.isWiderThan375pt ? 154.adjustedHeight : 88.adjustedHeight
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -25,7 +28,7 @@ final class FirstTutorialView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -33,11 +36,12 @@ final class FirstTutorialView: UIView {
     private func setStyle() {
         tutorialImageView.do {
             $0.contentMode = .scaleAspectFill
-            $0.image = ImageLiterals.Tutorial.tutorial1
+            $0.image = tutorialImage
         }
         
         tutorialTitleLabel.do {
             $0.text = StringLiterals.Tutorial.firstTutorialText
+            $0.setTextWithLineHeight(text: $0.text, lineHeight: 28.adjustedHeight)
             $0.font = .uiHeadline02
             $0.numberOfLines = 2
             $0.textColor = .white
@@ -54,16 +58,16 @@ final class FirstTutorialView: UIView {
     private func setLayout() {
         self.addSubviews(tutorialImageView, tutorialTitleLabel, tutorialGuideLabel)
         tutorialImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
 
         tutorialTitleLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(228.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(bottomMargin)
             $0.centerX.equalToSuperview()
         }
 
         tutorialGuideLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(88.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(guideBottomMargin)
             $0.centerX.equalToSuperview()
         }
     }
