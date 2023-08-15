@@ -59,6 +59,7 @@ final class MyYelloDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(popViewController(_:)), name: NSNotification.Name("popView"), object: nil)
 
     }
