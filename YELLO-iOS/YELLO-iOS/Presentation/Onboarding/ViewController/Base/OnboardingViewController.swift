@@ -16,11 +16,12 @@ class OnboardingBaseViewController: BaseViewController {
     
     let navigationBarView = YelloNavigationBarView()
     let nextButton = YelloButton(buttonText: "다음")
-    private let skipButton = UIButton()
+    let skipButton = UIButton()
     private let buttonStackView = UIStackView()
     private let progressBarView = ProgressBarManager.shared.progressBarView
     
     var nextViewController: UIViewController?
+    var bottomConstraint: NSLayoutConstraint?
     var isSkipable = false
     var step = 1.0
     
@@ -68,6 +69,7 @@ class OnboardingBaseViewController: BaseViewController {
         }
         
         skipButton.isHidden = !(isSkipable)
+    
         view.addSubviews(navigationBarView, progressBarView, buttonStackView)
         
         nextButton.snp.makeConstraints {
@@ -85,7 +87,7 @@ class OnboardingBaseViewController: BaseViewController {
         
         buttonStackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
-            $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
+            $0.bottom.equalToSuperview().inset(34.adjustedHeight)
         }
         
         progressBarView.snp.makeConstraints {
@@ -93,6 +95,16 @@ class OnboardingBaseViewController: BaseViewController {
             $0.top.equalTo(navigationBarView.snp.bottom)
             $0.height.equalTo(4)
         }
+        
+        let safeArea = self.view.safeAreaLayoutGuide
+        
+        self.bottomConstraint = NSLayoutConstraint(item: self.nextButton, attribute: .bottom,
+                                                   relatedBy: .equal, toItem: safeArea,
+                                                   attribute: .bottom, multiplier: 1.0, constant: -34.adjusted)
+        self.bottomConstraint?.isActive = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
@@ -108,7 +120,7 @@ class OnboardingBaseViewController: BaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func didTapButton() {
+    @objc func didTapButton(sender: UIButton) {
         setUser()
         if let nextViewController = nextViewController {
             self.navigationController?.pushViewController(nextViewController, animated: false)
@@ -122,5 +134,17 @@ class OnboardingBaseViewController: BaseViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight: CGFloat
+            keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
+            self.bottomConstraint?.constant = -1 * keyboardHeight - 12
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        self.bottomConstraint?.constant = 0
     }
 }

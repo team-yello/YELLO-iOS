@@ -17,6 +17,9 @@ class OnboardingEndView: BaseView {
     // MARK: Property
     var isRecommand = !(User.shared.recommendId.isEmpty)
     
+    // MARK: Constants
+    let buttonHeight = 48.adjustedHeight
+    
     // MARK: Component
     let titleStackView = UIStackView()
     let titleIconImageView = UIImageView()
@@ -25,7 +28,8 @@ class OnboardingEndView: BaseView {
     let subGuideLabel = UILabel()
     let endingImageView = UIImageView()
     let subTitleLabel  = UILabel()
-    let goToYelloButton = UIButton()
+    let goToYelloButton = YelloButton(buttonText: StringLiterals.Onboarding.endingButton,
+                                      isEnabled: true)
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -39,9 +43,10 @@ class OnboardingEndView: BaseView {
         }
         
         guideLabel.do {
-            $0.text = StringLiterals.Onboarding.endingTitle
+            $0.text = isRecommand ? StringLiterals.Onboarding.endingPlusTitle : StringLiterals.Onboarding.endingTitle
             $0.font = .uiHeadline03
             $0.textColor = .white
+            $0.asColor(targetString: "+100포인트", color: .yelloMain500)
         }
         
         titleIconImageView.do {
@@ -67,13 +72,9 @@ class OnboardingEndView: BaseView {
         }
         
         goToYelloButton.do {
-            $0.backgroundColor = .yelloMain500
             $0.setImage(ImageLiterals.OnBoarding.icYelloFace, for: .normal)
             $0.semanticContentAttribute = .forceRightToLeft
-            $0.setTitle(StringLiterals.Onboarding.endingButton, for: .normal)
-            $0.titleLabel?.font = .uiSubtitle03
-            $0.setTitleColor(.black, for: .normal)
-            $0.makeCornerRound(radius: CGFloat(Constraints.round))
+            $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8.adjusted, bottom: 0, right: 0)
         }
         
     }
@@ -106,9 +107,9 @@ class OnboardingEndView: BaseView {
         }
         
         goToYelloButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
-            $0.bottom.equalToSuperview().inset(Constraints.bottomMargin)
-            $0.height.equalTo(48)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(34.adjustedHeight)
+            $0.height.equalTo(buttonHeight)
         }
     }
     

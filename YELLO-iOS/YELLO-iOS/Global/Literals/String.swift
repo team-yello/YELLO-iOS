@@ -35,9 +35,10 @@ enum StringLiterals {
         static let majorSearchPlaceholder = "ex. 노랑학과"
         static let studentIdText = "몇 학번인가요?"
         static let studentIdPlaceholder = "ex. 23학번"
+        static let universityToastText = "학교를 먼저 선택해주세요"
         
         static let nameHelper = "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!"
-        static let nameError = "한글만 입력 가능해요."
+        static let nameError = "자음과 모음 조합의 한글만 입력 가능해요."
         
         static let idTitle = "내가 사용할 아이디는?"
         static let idHelper = "인스타그램 아이디로 하면 친구들이 찾기 쉬워요!\n(최대 20자)"
@@ -58,6 +59,7 @@ enum StringLiterals {
         static let pushNotiButtonText = "쪽지 알림 받기"
         
         static let endingTitle = "200포인트 지급"
+        static let endingPlusTitle = "200+100포인트 지급"
         static let endingText = "튜토리얼 끝!\n옐로에서 환영 선물을 준비했어요!"
         static let endingSubText = "앞으로 투표가 끝날 때마다 포인트를 줄게요!"
         static let endingButton = "옐로하러 가기"

@@ -61,10 +61,13 @@ class AddFriendsView: BaseView {
         friendsTableView.do {
             $0.register(FriendsTableViewCell.self, forCellReuseIdentifier: FriendsTableViewCell.identifier)
             $0.backgroundColor = .black
-            $0.rowHeight = 58
+            $0.rowHeight = 58.adjusted
             $0.separatorStyle = .none
             $0.dataSource = self
         }
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 100))
+        friendsTableView.tableFooterView = footerView
         
     }
     
@@ -87,7 +90,7 @@ class AddFriendsView: BaseView {
         }
         
         friendsTableView.snp.makeConstraints {
-            $0.top.equalTo(countFriendLabel.snp.bottom).offset(18)
+            $0.top.equalTo(countFriendLabel.snp.bottom).offset(18.adjusted)
             $0.leading.trailing.equalToSuperview().inset(Constraints.bigMargin)
             $0.bottom.equalToSuperview()
         }

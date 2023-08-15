@@ -14,11 +14,6 @@ class OnboardingEndViewController: BaseViewController {
     
     // MARK: - Function
     // MARK: LifeCycle
-    override func loadView() {
-        super.loadView()
-        view = baseView
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -27,6 +22,14 @@ class OnboardingEndViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addTarget()
+    }
+    
+    // MARK: Layout Helper
+    override func setLayout() {
+        view.addSubview(baseView)
+        baseView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     // MARK: Custom Function

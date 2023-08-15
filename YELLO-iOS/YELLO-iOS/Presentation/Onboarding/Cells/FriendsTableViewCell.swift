@@ -116,7 +116,7 @@ extension FriendsTableViewCell {
         profileImageView.do {
             $0.backgroundColor = .yelloMain300
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 21)
+            $0.makeCornerRound(radius: 21.adjusted)
         }
         
         nameLabel.do {
@@ -131,12 +131,13 @@ extension FriendsTableViewCell {
         
         checkButton.do {
             $0.addTarget(self, action: #selector(checkButtonDidTap), for: .touchUpInside)
+            $0.imageView?.contentMode = .scaleAspectFill
         }
         
         stackView.do {
             $0.addArrangedSubviews(nameLabel, schoolLabel)
             $0.axis = .vertical
-            $0.spacing = 2
+            $0.spacing = 2.adjusted
         }
         
         selectedOverlayView.do {
@@ -149,19 +150,20 @@ extension FriendsTableViewCell {
         contentView.addSubviews(profileImageView, stackView, checkButton)
         
         profileImageView.snp.makeConstraints {
-            $0.size.equalTo(42)
-            $0.leading.equalToSuperview().offset(8)
+            $0.size.equalTo(42.adjusted)
+            $0.leading.equalToSuperview().offset(8.adjusted)
             $0.centerY.equalToSuperview()
         }
         
         stackView.snp.makeConstraints {
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(8)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(8.adjusted)
             $0.centerY.equalToSuperview()
         }
         
         checkButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(8)
+            $0.trailing.equalToSuperview().inset(8.adjusted)
             $0.centerY.equalToSuperview()
+            $0.size.equalTo(24.adjusted)
         }
         
     }

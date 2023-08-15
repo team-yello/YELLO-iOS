@@ -22,7 +22,7 @@ class GenderViewController: OnboardingBaseViewController {
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
-        step = 3
+        step = 2
         super.viewDidLoad()
         nextViewController = NameViewController()
     }
