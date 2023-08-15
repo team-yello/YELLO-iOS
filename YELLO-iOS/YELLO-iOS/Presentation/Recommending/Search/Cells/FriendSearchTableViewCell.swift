@@ -12,7 +12,7 @@ import Then
 
 // MARK: - Protocol
 protocol HandleSearchAddFriendButton: AnyObject {
-    func addButtonTapped()
+    func addButtonTapped(sender: UIButton)
 }
 
 final class FriendSearchTableViewCell: UITableViewCell {
@@ -29,7 +29,11 @@ final class FriendSearchTableViewCell: UITableViewCell {
     let addButton = UIButton()
     let myFriendLabel = UILabel()
 
-    var isFriend: Bool = false
+    var isFriend: Bool = false {
+        didSet {
+            updateAddButtonImage()
+        }
+    }
     weak var handleSearchAddFriendButton: HandleSearchAddFriendButton?
     
     // MARK: - Function
@@ -88,6 +92,8 @@ extension FriendSearchTableViewCell {
             $0.font = .uiLabelMedium
             $0.setTextWithLineHeight(text: "옐로대학교 옐로학과 23학번", lineHeight: 15.adjustedHeight)
             $0.textColor = .grayscales600
+            $0.lineBreakMode = .byCharWrapping
+            $0.textAlignment = .left
         }
         
         addButton.do {
@@ -140,6 +146,8 @@ extension FriendSearchTableViewCell {
         schoolLabel.snp.makeConstraints {
             $0.top.equalTo(yelloIdLabel.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(nameLabel)
+            $0.width.equalTo(184.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(16.adjustedHeight)
         }
         
         addButton.snp.makeConstraints {
@@ -154,16 +162,20 @@ extension FriendSearchTableViewCell {
     }
     
     // MARK: Custom Function
-    func configureFriendCell(_ model: FriendModel) {
-        nameLabel.text = model.friends.name
-        schoolLabel.text = model.friends.group
-        if model.friends.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
-            profileImageView.kfSetImage(url: model.friends.profileImage)
+    func configureFriendCell(_ model: Friend) {
+        nameLabel.text = model.name
+        schoolLabel.text = model.group
+        yelloIdLabel.text = "@" + model.yelloId
+        if model.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            profileImageView.kfSetImage(url: model.profileImage)
         }
+        self.isFriend = model.isFriend
+        updateAddButtonImage()
     }
     
     func updateAddButtonImage() {
-        
+        addButton.isHidden = isFriend ? true : false
+        myFriendLabel.isHidden = isFriend ? false : true
     }
     
     // MARK: Objc Function
@@ -171,6 +183,6 @@ extension FriendSearchTableViewCell {
         addButton.isHidden = true
         myFriendLabel.isHidden = false
         isFriend.toggle()
-        handleSearchAddFriendButton?.addButtonTapped()
+        handleSearchAddFriendButton?.addButtonTapped(sender: sender)
     }
 }

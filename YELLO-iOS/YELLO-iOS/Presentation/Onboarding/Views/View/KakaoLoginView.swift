@@ -40,13 +40,18 @@ class KakaoLoginView: BaseView {
         stackView.do {
             $0.addArrangedSubviews(titleLabel, subTitleLabel, imageView)
             $0.axis = .vertical
-            $0.setCustomSpacing(8, after: subTitleLabel)
-            $0.setCustomSpacing(6, after: subTitleLabel)
+            $0.setCustomSpacing(8.adjustedHeight, after: subTitleLabel)
+            $0.setCustomSpacing(6.adjustedHeight, after: subTitleLabel)
             $0.alignment = .center
         }
         
         kakaoButton.do {
-            $0.setImage(ImageLiterals.OnBoarding.btnKakaoLogin, for: .normal)
+            $0.backgroundColor = UIColor(hex: "FEE500")
+            $0.setTitle("카카오로 시작하기", for: .normal)
+            $0.titleLabel?.font = .uiBody01
+            $0.setTitleColor(UIColor(hex: "191600"), for: .normal)
+            $0.setImage(ImageLiterals.OnBoarding.icKakao, for: .normal)
+            $0.makeCornerRound(radius: 8.adjusted)
         }
     }
     
@@ -58,12 +63,12 @@ class KakaoLoginView: BaseView {
                          kakaoButton)
         
         titleLabel.snp.makeConstraints {
-            $0.bottom.equalTo(subTitleLabel.snp.top).offset(-8)
+            $0.bottom.equalTo(subTitleLabel.snp.top).offset(-8.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         subTitleLabel.snp.makeConstraints {
-            $0.bottom.equalTo(imageView.snp.top).offset(-2)
+            $0.bottom.equalTo(imageView.snp.top).offset(-2.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
@@ -72,8 +77,15 @@ class KakaoLoginView: BaseView {
         }
         
         kakaoButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(91)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().inset(91.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(48.adjustedHeight)
         }
+        
+        kakaoButton.imageView?.snp.makeConstraints({
+            $0.leading.equalToSuperview().offset(28.adjustedHeight)
+            $0.centerY.equalToSuperview()
+        })
+     
     }
 }

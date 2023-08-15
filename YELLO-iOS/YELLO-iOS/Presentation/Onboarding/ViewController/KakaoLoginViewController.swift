@@ -64,7 +64,6 @@ class KakaoLoginViewController: UIViewController {
                     KeychainHandler.shared.refreshToken = data.refreshToken
                     UserDefaults.standard.setValue(true, forKey: "isLoggined")
                     
-                    
                     var rootViewController: UIViewController = YELLOTabBarController()
                     User.shared.isResigned = data.isResigned
                     

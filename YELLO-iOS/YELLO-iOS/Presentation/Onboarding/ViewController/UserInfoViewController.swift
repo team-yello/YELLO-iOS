@@ -24,7 +24,7 @@ class UserInfoViewController: OnboardingBaseViewController {
     
     // MARK: LifeCycle
     override func viewDidLoad() {
-        step = 5
+        step = 4
         super.viewDidLoad()
         setDelegate()
         super.nextViewController = addFriendViewController
@@ -55,7 +55,6 @@ class UserInfoViewController: OnboardingBaseViewController {
                                                        name: UITextField.textDidChangeNotification,
                                                object: baseView.idTextField.textField)
         baseView.idTextField.textField.delegate = self
-        
     }
     
     func checkButtonEnable() {
@@ -109,6 +108,9 @@ class UserInfoViewController: OnboardingBaseViewController {
     
     // MARK: objc Function
     @objc private func textDidChange(_ notification: Notification) {
+        guard let idText = baseView.idTextField.textField.text else { return }
+            self.checkDuplicate(id: idText)
+        self.checkButtonEnable()
             if let textField = notification.object as? UITextField {
                 if let text = textField.text {
                     
@@ -131,7 +133,6 @@ class UserInfoViewController: OnboardingBaseViewController {
         baseView.idTextField.textField.setButtonState(state: .id)
     }
     
-
 }
 
 // MARK: - extension

@@ -16,6 +16,7 @@ final class NetworkService {
     let onboardingService: OnboardingServiceProtocol = OnboardingService(apiLogger: APIEventLogger())
     let aroundService: AroundServiceProtocol = AroundService(apiLogger: APIEventLogger())
     let recommendingService: RecommendingServiceProtocol = RecommendingService(apiLogger: APIEventLogger())
+    let searchService: SearchServiceProtocol = SearchService(apiLogger: APIEventLogger())
     let myYelloService: MyYelloServiceProtocol = MyYelloService(apiLogger: APIEventLogger())
     let profileService: ProfileServiceProtocol = ProfileService(apiLogger: APIEventLogger())
 }

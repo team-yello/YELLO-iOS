@@ -102,4 +102,3 @@ extension SearchBaseViewController: UITableViewDataSource {
         return cell
     }
 }
-
