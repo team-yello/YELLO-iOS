@@ -60,19 +60,7 @@ class PushSettingViewController: UIViewController {
     // MARK: objc Function
     @objc func tapButton() {
         requestAuthNoti()
-        var rootViewController = UIViewController()
-        if User.shared.isResigned {
-            rootViewController = YELLOTabBarController()
-        } else {
-            rootViewController = OnboardingEndViewController()
-        }
-        self.baseView.pushSettingButton.isEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            let yelloTabBarController = YELLOTabBarController()
-            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-            self.baseView.pushSettingButton.isEnabled = true
-        }
+        navigationController?.pushViewController(TutorialViewController(), animated: false)
     }
 
 }

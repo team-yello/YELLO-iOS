@@ -13,6 +13,11 @@ class TutorialViewController: UIViewController {
 
     var baseView: UIView = FirstTutorialView()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -55,6 +60,19 @@ class TutorialViewController: UIViewController {
             }
             setUI()
             addTarget()
+        }
+        
+        if pageCount == 5 {
+            var rootViewController = UIViewController()
+            if User.shared.isResigned {
+                rootViewController = YELLOTabBarController()
+            } else {
+                rootViewController = OnboardingEndViewController()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+            }
         }
     }
     
