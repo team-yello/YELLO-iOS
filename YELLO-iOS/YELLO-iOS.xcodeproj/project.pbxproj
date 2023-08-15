@@ -60,6 +60,9 @@
 		3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAE72A608F0200D5FA40 /* SplashViewController.swift */; };
 		3628EAEA2A60903A00D5FA40 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE92A60903A00D5FA40 /* splash.json */; };
 		3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */; };
+		362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC3182A8BAC8E00121BDD /* ThirdTutorialView.swift */; };
+		362EC31B2A8BAD1E00121BDD /* FourthTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC31A2A8BAD1E00121BDD /* FourthTutorialView.swift */; };
+		362EC31D2A8BB5A400121BDD /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC31C2A8BB5A400121BDD /* UIScreen+.swift */; };
 		364D7DF02A85207D00CF18B7 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364D7DEF2A85207D00CF18B7 /* NameView.swift */; };
 		365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */; };
 		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
@@ -322,6 +325,9 @@
 		3628EAE72A608F0200D5FA40 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3628EAE92A60903A00D5FA40 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashTitleView.swift; sourceTree = "<group>"; };
+		362EC3182A8BAC8E00121BDD /* ThirdTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTutorialView.swift; sourceTree = "<group>"; };
+		362EC31A2A8BAD1E00121BDD /* FourthTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthTutorialView.swift; sourceTree = "<group>"; };
+		362EC31C2A8BB5A400121BDD /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		364D7DEF2A85207D00CF18B7 /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
 		36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -1029,6 +1035,8 @@
 			children = (
 				36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */,
 				36C209F52A8B8190001BF12C /* SecondTutorialView.swift */,
+				362EC3182A8BAC8E00121BDD /* ThirdTutorialView.swift */,
+				362EC31A2A8BAD1E00121BDD /* FourthTutorialView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1398,6 +1406,7 @@
 				36B234A12A61B447007933E4 /* UINavigationController+.swift */,
 				C31315AF2A7B806D00FB8B43 /* UIViewController+.swift */,
 				365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */,
+				362EC31C2A8BB5A400121BDD /* UIScreen+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1852,6 +1861,7 @@
 				369BF9682A6AFC640091CB85 /* TokenRefreshResponseDTO.swift in Sources */,
 				3671136A2A7D2AC50037E0D2 /* YelloNavigationBarView.swift in Sources */,
 				2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */,
+				362EC31D2A8BB5A400121BDD /* UIScreen+.swift in Sources */,
 				C3FF248E2A5E8DB700A97D40 /* TabBarHeight.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
@@ -2003,6 +2013,7 @@
 				C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */,
 				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
+				362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
@@ -2026,6 +2037,7 @@
 				36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */,
 				2A3705DE2A62E392001AAC93 /* VotingService.swift in Sources */,
 				36B2349C2A61A22F007933E4 /* KakaoLoginView.swift in Sources */,
+				362EC31B2A8BAD1E00121BDD /* FourthTutorialView.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
