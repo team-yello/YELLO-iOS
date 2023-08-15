@@ -23,7 +23,8 @@ class PushSettingView: BaseView {
     
     let pushSettingImageView = UIImageView()
     
-    let pushSettingButton = UIButton()
+    let pushSettingButton = YelloButton(buttonText: StringLiterals.Onboarding.pushNotiButtonText,
+                                        true )
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -58,13 +59,6 @@ class PushSettingView: BaseView {
             $0.image = ImageLiterals.OnBoarding.pushNotification
         }
         
-        pushSettingButton.do {
-            $0.backgroundColor = .yelloMain500
-            $0.setTitle(StringLiterals.Onboarding.pushNotiButtonText, for: .normal)
-            $0.titleLabel?.font = .uiSubtitle03
-            $0.setTitleColor(.black, for: .normal)
-            $0.makeCornerRound(radius: 24.adjusted)
-        }
     
     }
     

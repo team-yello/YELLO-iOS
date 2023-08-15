@@ -17,6 +17,9 @@ class OnboardingEndView: BaseView {
     // MARK: Property
     var isRecommand = !(User.shared.recommendId.isEmpty)
     
+    // MARK: Constants
+    let buttonHeight = 48.adjustedHeight
+    
     // MARK: Component
     let titleStackView = UIStackView()
     let titleIconImageView = UIImageView()
@@ -74,7 +77,7 @@ class OnboardingEndView: BaseView {
             $0.setTitle(StringLiterals.Onboarding.endingButton, for: .normal)
             $0.titleLabel?.font = .uiSubtitle03
             $0.setTitleColor(.black, for: .normal)
-            $0.makeCornerRound(radius: 24.adjusted)
+            $0.makeCornerRound(radius: buttonHeight/2)
         }
         
     }
@@ -109,7 +112,7 @@ class OnboardingEndView: BaseView {
         goToYelloButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview().inset(34.adjustedHeight)
-            $0.height.equalTo(48.adjustedHeight)
+            $0.height.equalTo(buttonHeight)
         }
     }
     
