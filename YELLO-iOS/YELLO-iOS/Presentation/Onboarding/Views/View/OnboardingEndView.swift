@@ -28,7 +28,8 @@ class OnboardingEndView: BaseView {
     let subGuideLabel = UILabel()
     let endingImageView = UIImageView()
     let subTitleLabel  = UILabel()
-    let goToYelloButton = UIButton()
+    let goToYelloButton = YelloButton(buttonText: StringLiterals.Onboarding.endingButton,
+                                      isEnabled: true)
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -71,13 +72,9 @@ class OnboardingEndView: BaseView {
         }
         
         goToYelloButton.do {
-            $0.backgroundColor = .yelloMain500
             $0.setImage(ImageLiterals.OnBoarding.icYelloFace, for: .normal)
             $0.semanticContentAttribute = .forceRightToLeft
-            $0.setTitle(StringLiterals.Onboarding.endingButton, for: .normal)
-            $0.titleLabel?.font = .uiSubtitle03
-            $0.setTitleColor(.black, for: .normal)
-            $0.makeCornerRound(radius: buttonHeight/2)
+            $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         }
         
     }

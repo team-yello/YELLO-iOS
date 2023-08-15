@@ -24,7 +24,7 @@ class PushSettingView: BaseView {
     let pushSettingImageView = UIImageView()
     
     let pushSettingButton = YelloButton(buttonText: StringLiterals.Onboarding.pushNotiButtonText,
-                                        true )
+                                        isEnabled: true )
     
     // MARK: - Function
     // MARK: Layout Helpers
