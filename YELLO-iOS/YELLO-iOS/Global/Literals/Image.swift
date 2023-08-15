@@ -48,6 +48,13 @@ enum ImageLiterals {
     
     }
     
+    enum Tutorial {
+        static var tutorial1: UIImage { .load(named: "tutorial1")}
+        static var tutorial2: UIImage { .load(named: "tutorial2")}
+        static var tutorial3: UIImage { .load(named: "tutorial3")}
+        static var tutorial4: UIImage { .load(named: "tutorial4")}
+    }
+    
     enum TabBar {
         // not-Selected
         static var icPlusFriend: UIImage { .load(named: "icPlusFriend") }
