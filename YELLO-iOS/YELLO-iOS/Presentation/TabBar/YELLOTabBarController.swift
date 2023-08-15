@@ -235,7 +235,9 @@ extension YELLOTabBarController {
         if let userInfo = notification.userInfo {
             if let index = userInfo["index"] as? Int {
                 self.selectedIndex = index
-                if selectedIndex == 3 {
+                if selectedIndex == 2 {
+                    tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+                } else if selectedIndex == 3 {
                     tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                     
                     let myYelloDetailViewController = MyYelloDetailViewController()

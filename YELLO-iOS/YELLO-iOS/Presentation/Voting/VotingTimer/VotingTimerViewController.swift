@@ -284,7 +284,6 @@ extension VotingTimerViewController {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
-                    self.cancelScheduledNotification()
                 }
                 self.remainingSeconds = duration
                 self.start(duration: duration)
@@ -309,7 +308,6 @@ extension VotingTimerViewController {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
-                    self.cancelScheduledNotification()
                 }
                 self.myPoint = data.point
             default:
@@ -317,12 +315,5 @@ extension VotingTimerViewController {
                 return
             }
         }
-    }
-    
-    // 예약된 푸시 알림 취소
-    func cancelScheduledNotification() {
-        let notificationIdentifier = "myPushAlarm" // 예약된 알림의 식별자
-        
-        userNotiCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
     }
 }
