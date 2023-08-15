@@ -217,6 +217,11 @@
 		C3C560C22A8A6EED0074E988 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560C12A8A6EED0074E988 /* SearchService.swift */; };
 		C3C560C42A8A6F290074E988 /* FriendSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560C32A8A6F290074E988 /* FriendSearchRequestQueryDTO.swift */; };
 		C3C560C62A8A6F350074E988 /* FriendSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560C52A8A6F350074E988 /* FriendSearchResponseDTO.swift */; };
+		C3C560C92A8BB7E50074E988 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C560C82A8BB7E50074E988 /* StoreKit.framework */; };
+		C3C560CF2A8BB96B0074E988 /* IAPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560CE2A8BB96B0074E988 /* IAPService.swift */; };
+		C3C560D12A8BBE190074E988 /* PurchaseProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560D02A8BBE190074E988 /* PurchaseProduct.swift */; };
+		C3C560D32A8BC2A80074E988 /* z.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560D22A8BC2A80074E988 /* z.swift */; };
+		C3C560D52A8BC2AC0074E988 /* y.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560D42A8BC2AC0074E988 /* y.swift */; };
 		C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC02A56FCA600B84CAA /* AroundView.swift */; };
 		C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */; };
 		C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */; };
@@ -478,6 +483,11 @@
 		C3C560C12A8A6EED0074E988 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		C3C560C32A8A6F290074E988 /* FriendSearchRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchRequestQueryDTO.swift; sourceTree = "<group>"; };
 		C3C560C52A8A6F350074E988 /* FriendSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchResponseDTO.swift; sourceTree = "<group>"; };
+		C3C560C82A8BB7E50074E988 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C3C560CE2A8BB96B0074E988 /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
+		C3C560D02A8BBE190074E988 /* PurchaseProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProduct.swift; sourceTree = "<group>"; };
+		C3C560D22A8BC2A80074E988 /* z.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = z.swift; sourceTree = "<group>"; };
+		C3C560D42A8BC2AC0074E988 /* y.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = y.swift; sourceTree = "<group>"; };
 		C3C57BC02A56FCA600B84CAA /* AroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundView.swift; sourceTree = "<group>"; };
 		C3C57BC22A5715C600B84CAA /* RecommendingSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingSegmentedControl.swift; sourceTree = "<group>"; };
 		C3C57BC42A5715E600B84CAA /* KakaoFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoFriendViewController.swift; sourceTree = "<group>"; };
@@ -545,6 +555,7 @@
 				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
 				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
+				C3C560C92A8BB7E50074E988 /* StoreKit.framework in Frameworks */,
 				2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */,
 				C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */,
 			);
@@ -1309,6 +1320,7 @@
 				2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */,
 				C3A799952A49490A00D3EFD8 /* YELLO-iOS */,
 				C3A799942A49490A00D3EFD8 /* Products */,
+				C3C560C72A8BB7E50074E988 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1426,6 +1438,7 @@
 				2A37057E2A62AEAD001AAC93 /* Voting */,
 				2A37057F2A62AECC001AAC93 /* MyYello */,
 				2A3705802A62AEEC001AAC93 /* Profile */,
+				C3C560CA2A8BB9300074E988 /* Purchase */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1526,6 +1539,49 @@
 			isa = PBXGroup;
 			children = (
 				C3C560C12A8A6EED0074E988 /* SearchService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C3C560C72A8BB7E50074E988 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3C560C82A8BB7E50074E988 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C3C560CA2A8BB9300074E988 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				C3C560CB2A8BB93C0074E988 /* DTO */,
+				C3C560CC2A8BB93F0074E988 /* Router */,
+				C3C560CD2A8BB9430074E988 /* Service */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		C3C560CB2A8BB93C0074E988 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				C3C560D22A8BC2A80074E988 /* z.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		C3C560CC2A8BB93F0074E988 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C3C560D42A8BC2AC0074E988 /* y.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		C3C560CD2A8BB9430074E988 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C3C560CE2A8BB96B0074E988 /* IAPService.swift */,
+				C3C560D02A8BBE190074E988 /* PurchaseProduct.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1892,6 +1948,7 @@
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				C3B1D8BB2A81208E0050D737 /* FriendSkeletonTableViewCell.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
+				C3C560D12A8BBE190074E988 /* PurchaseProduct.swift in Sources */,
 				C3C57BF32A5C089600B84CAA /* FriendTableViewCell.swift in Sources */,
 				36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
@@ -1918,6 +1975,7 @@
 				C31315B22A7CBA6F00FB8B43 /* MyYelloButton.swift in Sources */,
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
 				3662A0E42A63F6C300F482EF /* CheckDuplicateResponeDTO.swift in Sources */,
+				C3C560CF2A8BB96B0074E988 /* IAPService.swift in Sources */,
 				367DA01D2A86496D0043D23C /* NameViewController.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
@@ -2009,6 +2067,7 @@
 				36E4277D2A5BD5D60050B34E /* UserInfoViewController.swift in Sources */,
 				36B2349E2A61A6A8007933E4 /* KakaoConnectViewController.swift in Sources */,
 				C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */,
+				C3C560D32A8BC2A80074E988 /* z.swift in Sources */,
 				2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */,
@@ -2086,6 +2145,7 @@
 				C3C560C22A8A6EED0074E988 /* SearchService.swift in Sources */,
 				36E427972A5CA5AF0050B34E /* OnboardingEndView.swift in Sources */,
 				C32322F92A61ABF2006DA50B /* PaymentCollectionViewCell.swift in Sources */,
+				C3C560D52A8BC2AC0074E988 /* y.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

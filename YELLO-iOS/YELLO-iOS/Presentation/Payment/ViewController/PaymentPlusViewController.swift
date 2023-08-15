@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import StoreKit
 
 final class PaymentPlusViewController: BaseViewController {
     
@@ -24,12 +25,35 @@ final class PaymentPlusViewController: BaseViewController {
     let paymentPlusView = PaymentPlusView()
     var paymentConfirmView = PaymentConfirmView()
     
+    private var products = [SKProduct]()
+    
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
+        
+        if #available(iOS 15.0, *) {
+            loadProductsFromIAP()
+        } 
+        
+        PurchaseProduct.iapService.getProducts { [weak self] success, products in
+          print("load products \(products ?? [])")
+          guard let ss = self else { return }
+          if success, let products = products {
+            DispatchQueue.main.async {
+              ss.products = products
+            }
+          }
+        }
+        
+        NotificationCenter.default.addObserver(
+          self,
+          selector: #selector(handlePurchaseNoti(_:)),
+          name: .iapServicePurchaseNotification,
+          object: nil
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,8 +99,9 @@ extension PaymentPlusViewController: HandleConfirmPaymentButtonDelegate {
 
 extension PaymentPlusViewController {
     @objc private func paymentYelloPlusButtonTapped() {
+        PurchaseProduct.iapService.buyProduct(products[0])
         print("옐로플러스 구독 결제 구현")
-        showPaymentConfirmView(state: .yelloPlus)
+//        showPaymentConfirmView(state: .yelloPlus)
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
@@ -127,5 +152,31 @@ extension PaymentPlusViewController {
         paymentConfirmView.frame = viewController.view.bounds
         paymentConfirmView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(paymentConfirmView)
+    }
+    
+    @objc private func restore() {
+        PurchaseProduct.iapService.restorePurchases()
+    }
+    
+    @objc private func handlePurchaseNoti(_ notification: Notification) {
+      guard
+        let productID = notification.object as? String,
+        let index = self.products.firstIndex(where: { $0.productIdentifier == productID })
+      else { return }
+      
+//      self.tableView.reloadRows(at: [IndexPath(index: index)], with: .fade)
+//      self.tableView.performBatchUpdates(nil, completion: nil)
+    }
+    @available(iOS 15.0, *)
+    func loadProductsFromIAP() {
+        PurchaseProduct.iapService.getProducts { [weak self] success, products in
+            print("load products \(products ?? [])")
+            guard let self = self else { return }
+            if success, let products = products {
+                DispatchQueue.main.async {
+                    self.products = products
+                }
+            }
+        }
     }
 }
