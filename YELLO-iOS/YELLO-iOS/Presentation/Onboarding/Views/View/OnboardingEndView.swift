@@ -43,10 +43,9 @@ class OnboardingEndView: BaseView {
         }
         
         guideLabel.do {
-            $0.text = isRecommand ? StringLiterals.Onboarding.endingPlusTitle : StringLiterals.Onboarding.endingTitle
+            $0.text = StringLiterals.Onboarding.endingTitle
             $0.font = .uiHeadline03
             $0.textColor = .white
-            $0.asColor(targetString: "+100포인트", color: .yelloMain500)
         }
         
         titleIconImageView.do {
