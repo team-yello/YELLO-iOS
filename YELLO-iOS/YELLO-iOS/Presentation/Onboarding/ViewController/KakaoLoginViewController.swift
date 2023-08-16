@@ -53,7 +53,6 @@ class KakaoLoginViewController: UIViewController {
                             User.shared.email = email
                             User.shared.name = kakaoUser.name ?? ""
                             User.shared.gender = kakaoUser.gender?.rawValue.uppercased() ?? ""
-                            print(User.shared.gender)
                             User.shared.profileImage = profile.absoluteString
                             
                         }
