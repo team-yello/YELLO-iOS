@@ -22,7 +22,7 @@ extension VotingViewController {
         
         let progressPercent = Float(VotingViewController.pushCount + 1) / 8.0
         self.originView.progressView.setProgress(progressPercent, animated: true)
-        self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
+        setAnimationView()
         self.originView.yelloProgress.image =
         dummy[VotingViewController.pushCount].yelloProgress
         
@@ -128,6 +128,28 @@ extension VotingViewController {
                 self.navigationController?.pushViewController(viewController, animated: false)
             })
         }
+    }
+    
+    // MARK: - LottieAnimationView function
+    
+    func setAnimationView() {
+        let dummy = VotingDummy.dummy()
+        originView.yelloBalloon = .init(name: dummy[VotingViewController.pushCount].yelloBalloon)
+        let animationWidth: CGFloat = 60.adjustedWidth
+        let animationHeight: CGFloat = 36.adjustedHeight
+        originView.yelloBalloon.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
+
+        originView.yelloBalloon.contentMode = .scaleAspectFit
+        originView.yelloBalloon.loopMode = .loop
+        originView.yelloBalloon.animationSpeed = 1.1
+        originView.yelloBalloon.play()
+        
+        view.addSubview(originView.yelloBalloon)
+        originView.yelloBalloon.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(originView.yelloProgress.snp.top).offset(-8.adjustedHeight)
+        }
+        view.bringSubviewToFront(originView.yelloBalloon)
     }
 }
 
