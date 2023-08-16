@@ -26,6 +26,12 @@ final class PaymentPlusViewController: BaseViewController {
     var paymentConfirmView = PaymentConfirmView()
     
     private var products = [SKProduct]()
+    private let productOrder: [String] = [
+        MyProducts.yelloPlusProductID,
+        MyProducts.nameKeyOneProductID,
+        MyProducts.nameKeyTwoProductID,
+        MyProducts.nameKeyFiveProductID
+    ]
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -34,20 +40,17 @@ final class PaymentPlusViewController: BaseViewController {
         setDelegate()
         setAddTarget()
         
-        if #available(iOS 15.0, *) {
-            loadProductsFromIAP()
-        } 
-        
-        PurchaseProduct.iapService.getProducts { [weak self] success, products in
-          print("load products \(products ?? [])")
-          guard let ss = self else { return }
-          if success, let products = products {
-            DispatchQueue.main.async {
-              ss.products = products
+        MyProducts.iapService.getProducts { [self] success, products in
+            print("load products \(products ?? [])")
+            if success, let products = products {
+                DispatchQueue.main.async {
+                    // 배열을 사용하여 제품을 원하는 순서대로 정렬합니다.
+                    self.products = self.sortProducts(products)
+                    print(self.products)
+                }
             }
-          }
         }
-        
+
         NotificationCenter.default.addObserver(
           self,
           selector: #selector(handlePurchaseNoti(_:)),
@@ -99,24 +102,23 @@ extension PaymentPlusViewController: HandleConfirmPaymentButtonDelegate {
 
 extension PaymentPlusViewController {
     @objc private func paymentYelloPlusButtonTapped() {
-        PurchaseProduct.iapService.buyProduct(products[0])
-        print("옐로플러스 구독 결제 구현")
-//        showPaymentConfirmView(state: .yelloPlus)
+        MyProducts.iapService.buyProduct(products[0])
+        print("옐로플러스 구독 결제")
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
+        MyProducts.iapService.buyProduct(products[1])
         print("이름 열람권 1개 구입")
-        showPaymentConfirmView(state: .nameKeyOne)
     }
     
     @objc private func paymentNameKeyTwoButtonTapped() {
-        print("이름 열람권 3개 구입")
-        showPaymentConfirmView(state: .nameKeyTwo)
+        MyProducts.iapService.buyProduct(products[2])
+        print("이름 열람권 2개 구입")
     }
     
     @objc private func paymentNameKeyFiveButtonTapped() {
+        MyProducts.iapService.buyProduct(products[3])
         print("이름 열람권 5개 구입")
-        showPaymentConfirmView(state: .nameKeyFive)
     }
     
     func showPaymentConfirmView(state: PaymentStatus) {
@@ -133,17 +135,17 @@ extension PaymentPlusViewController {
             paymentConfirmView.titleLabel.text = StringLiterals.MyYello.Payment.paymentAlertKeyOneTitle
             paymentConfirmView.descriptionLabel.text = StringLiterals.MyYello.Payment.paymentAlertKeyDescription
             paymentConfirmView.paymentImageView.image = ImageLiterals.Payment.imgNameKeyOneCheck
-
+            
         case .nameKeyTwo:
             paymentConfirmView.titleLabel.text = StringLiterals.MyYello.Payment.paymentAlertKeyTwoTitle
             paymentConfirmView.descriptionLabel.text = StringLiterals.MyYello.Payment.paymentAlertKeyDescription
             paymentConfirmView.paymentImageView.image = ImageLiterals.Payment.imgNameKeyTwoCheck
-
+            
         case .nameKeyFive:
             paymentConfirmView.titleLabel.text = StringLiterals.MyYello.Payment.paymentAlertKeyFiveTitle
             paymentConfirmView.descriptionLabel.text = StringLiterals.MyYello.Payment.paymentAlertKeyDescription
             paymentConfirmView.paymentImageView.image = ImageLiterals.Payment.imgNameKeyFiveCheck
-
+            
         default:
             return
         }
@@ -155,28 +157,36 @@ extension PaymentPlusViewController {
     }
     
     @objc private func restore() {
-        PurchaseProduct.iapService.restorePurchases()
+        MyProducts.iapService.restorePurchases()
     }
     
     @objc private func handlePurchaseNoti(_ notification: Notification) {
-      guard
-        let productID = notification.object as? String,
-        let index = self.products.firstIndex(where: { $0.productIdentifier == productID })
-      else { return }
-      
-//      self.tableView.reloadRows(at: [IndexPath(index: index)], with: .fade)
-//      self.tableView.performBatchUpdates(nil, completion: nil)
+        guard let productID = notification.object as? String else { return }
+        
+        switch productID {
+        case MyProducts.yelloPlusProductID:
+            showPaymentConfirmView(state: .nameKeyOne)
+        case MyProducts.nameKeyOneProductID:
+            showPaymentConfirmView(state: .yelloPlus)
+        case MyProducts.nameKeyTwoProductID:
+            showPaymentConfirmView(state: .nameKeyTwo)
+        case MyProducts.nameKeyFiveProductID:
+            showPaymentConfirmView(state: .nameKeyFive)
+        default:
+            return
+        }
     }
-    @available(iOS 15.0, *)
-    func loadProductsFromIAP() {
-        PurchaseProduct.iapService.getProducts { [weak self] success, products in
-            print("load products \(products ?? [])")
-            guard let self = self else { return }
-            if success, let products = products {
-                DispatchQueue.main.async {
-                    self.products = products
-                }
+    
+    // 원하는 순서대로 제품을 정렬하는 함수입니다.
+    private func sortProducts(_ products: [SKProduct]) -> [SKProduct] {
+        var sortedProducts: [SKProduct] = []
+
+        for productID in productOrder {
+            if let product = products.first(where: { $0.productIdentifier == productID }) {
+                sortedProducts.append(product)
             }
         }
+
+        return sortedProducts
     }
 }

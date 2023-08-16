@@ -23,19 +23,20 @@ protocol IAPServiceType {
 }
 
 final class IAPService: NSObject, IAPServiceType {
-    private let productIDs: Set<String>
-    private var purchasedProductIDs: Set<String> = []
-    private var productsRequest: SKProductsRequest?
-    private var productsCompletion: ProductsRequestCompletion?
-    
-    var canMakePayments: Bool {
+  private let productIDs: Set<String>
+  private var purchasedProductIDs: Set<String>
+  private var productsRequest: SKProductsRequest?
+  private var productsCompletion: ProductsRequestCompletion?
+  
+  var canMakePayments: Bool {
     SKPaymentQueue.canMakePayments()
   }
   
   init(productIDs: Set<String>) {
     self.productIDs = productIDs
-    self.purchasedProductIDs = productIDs
-      .filter { UserDefaults.standard.bool(forKey: $0) == true }
+//      self.purchasedProductIDs = productIDs
+//          .filter { UserDefaults.standard.bool(forKey: $0) == true }
+      self.purchasedProductIDs = Set<String>()
     
     super.init()
     SKPaymentQueue.default().add(self)
@@ -72,7 +73,7 @@ extension IAPService: SKProductsRequestDelegate {
   
   // failed
   func request(_ request: SKRequest, didFailWithError error: Error) {
-    print("Error: \(error.localizedDescription)")
+    print("Erorr: \(error.localizedDescription)")
     self.productsCompletion?(false, nil)
     self.clearRequestAndHandler()
   }
@@ -88,11 +89,11 @@ extension IAPService: SKPaymentTransactionObserver {
     transactions.forEach {
       switch $0.transactionState {
       case .purchased:
-        print("completed transaction")
-        self.deliverPurchaseNotificationFor(id: $0.original?.payment.productIdentifier)
-        SKPaymentQueue.default().finishTransaction($0)
+          print("completed transaction")
+          self.deliverPurchaseNotificationFor(id: $0.original?.payment.productIdentifier, transaction: $0)
+          SKPaymentQueue.default().finishTransaction($0)
       case .failed:
-        if let transactionError = $0.error as NSError?,
+          if let transactionError = $0.error as NSError?,
            let description = $0.error?.localizedDescription,
            transactionError.code != SKError.paymentCancelled.rawValue {
           print("Transaction erorr: \(description)")
@@ -100,7 +101,7 @@ extension IAPService: SKPaymentTransactionObserver {
         SKPaymentQueue.default().finishTransaction($0)
       case .restored:
         print("failed transaction")
-        self.deliverPurchaseNotificationFor(id: $0.original?.payment.productIdentifier)
+          self.deliverPurchaseNotificationFor(id: $0.original?.payment.productIdentifier, transaction: $0)
         SKPaymentQueue.default().finishTransaction($0)
       case .deferred:
         print("deferred")
@@ -112,14 +113,18 @@ extension IAPService: SKPaymentTransactionObserver {
     }
   }
   
-    private func deliverPurchaseNotificationFor(id: String?) {
-      guard let id = id else { return }
-      
-      self.purchasedProductIDs.insert(id)
-      UserDefaults.standard.set(true, forKey: id)
-      NotificationCenter.default.post( // <- 추가
-        name: .iapServicePurchaseNotification,
-        object: id
-      )
+    private func deliverPurchaseNotificationFor(id: String?, transaction: SKPaymentTransaction) {
+        guard let id = id else { return }
+
+        // transactionID를 추출하여 서버로 넘겨줄 수 있습니다.
+        let transactionID = transaction.transactionIdentifier ?? ""
+        print("Transaction ID: \(transactionID)")
+
+        self.purchasedProductIDs.insert(id)
+        UserDefaults.standard.set(true, forKey: id)
+        NotificationCenter.default.post(
+          name: .iapServicePurchaseNotification,
+          object: id
+        )
     }
 }

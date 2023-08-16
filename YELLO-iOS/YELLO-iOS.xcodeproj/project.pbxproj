@@ -219,7 +219,7 @@
 		C3C560C62A8A6F350074E988 /* FriendSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560C52A8A6F350074E988 /* FriendSearchResponseDTO.swift */; };
 		C3C560C92A8BB7E50074E988 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C560C82A8BB7E50074E988 /* StoreKit.framework */; };
 		C3C560CF2A8BB96B0074E988 /* IAPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560CE2A8BB96B0074E988 /* IAPService.swift */; };
-		C3C560D12A8BBE190074E988 /* PurchaseProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560D02A8BBE190074E988 /* PurchaseProduct.swift */; };
+		C3C560D12A8BBE190074E988 /* MyProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560D02A8BBE190074E988 /* MyProducts.swift */; };
 		C3C560D32A8BC2A80074E988 /* z.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560D22A8BC2A80074E988 /* z.swift */; };
 		C3C560D52A8BC2AC0074E988 /* y.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560D42A8BC2AC0074E988 /* y.swift */; };
 		C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BC02A56FCA600B84CAA /* AroundView.swift */; };
@@ -485,7 +485,7 @@
 		C3C560C52A8A6F350074E988 /* FriendSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchResponseDTO.swift; sourceTree = "<group>"; };
 		C3C560C82A8BB7E50074E988 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C3C560CE2A8BB96B0074E988 /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
-		C3C560D02A8BBE190074E988 /* PurchaseProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProduct.swift; sourceTree = "<group>"; };
+		C3C560D02A8BBE190074E988 /* MyProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProducts.swift; sourceTree = "<group>"; };
 		C3C560D22A8BC2A80074E988 /* z.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = z.swift; sourceTree = "<group>"; };
 		C3C560D42A8BC2AC0074E988 /* y.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = y.swift; sourceTree = "<group>"; };
 		C3C57BC02A56FCA600B84CAA /* AroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundView.swift; sourceTree = "<group>"; };
@@ -1581,7 +1581,7 @@
 			isa = PBXGroup;
 			children = (
 				C3C560CE2A8BB96B0074E988 /* IAPService.swift */,
-				C3C560D02A8BBE190074E988 /* PurchaseProduct.swift */,
+				C3C560D02A8BBE190074E988 /* MyProducts.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1948,7 +1948,7 @@
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				C3B1D8BB2A81208E0050D737 /* FriendSkeletonTableViewCell.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
-				C3C560D12A8BBE190074E988 /* PurchaseProduct.swift in Sources */,
+				C3C560D12A8BBE190074E988 /* MyProducts.swift in Sources */,
 				C3C57BF32A5C089600B84CAA /* FriendTableViewCell.swift in Sources */,
 				36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */,
 				C3A799BE2A494AFD00D3EFD8 /* Image.swift in Sources */,
