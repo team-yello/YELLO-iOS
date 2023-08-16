@@ -35,7 +35,7 @@ class KakaoConnectViewController: UIViewController {
     }
     
     @objc func connectButtonDidTap() {
-        Amplitude.instance().logEvent("click_onboarding_next", withEventProperties: ["onboard_view": "student_type"] )
+        Amplitude.instance().logEvent("click_onboarding_kakao_friends")
         TalkApi.shared.friends(limit: 100) {(friends, error) in
             if let error = error {
                 print(error)

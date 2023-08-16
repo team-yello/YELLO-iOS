@@ -11,6 +11,7 @@ import FirebaseCore
 import FirebaseMessaging
 import KakaoSDKCommon
 import KakaoSDKAuth
+import Amplitude
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// 디바이스 토큰 요청
         application.registerForRemoteNotifications()
         
+        /// Amplitude 설정
+        Amplitude.instance().defaultTracking.sessions = true
+        Amplitude.instance().defaultTracking = AMPDefaultTrackingOptions.initWithAllEnabled()
+        Amplitude.instance().initializeApiKey(Config.amplitude)
+
         return true
     }
     
@@ -103,4 +109,3 @@ extension AppDelegate: MessagingDelegate {
         print("Device token:", deviceToken) // 이 토큰은 FCM에서 알림을 테스트하는 데 사용할 수 있습니다.
     }
 }
-
