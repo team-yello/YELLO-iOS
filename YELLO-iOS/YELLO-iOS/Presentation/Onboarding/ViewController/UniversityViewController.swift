@@ -38,8 +38,7 @@ class UniversityViewController: OnboardingBaseViewController {
     override func setLayout() {
         
         view.addSubview(baseView)
-        nextViewController = genderViewController
-        
+        nextViewController = UserInfoViewController()
         baseView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview()
