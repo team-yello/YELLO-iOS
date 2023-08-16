@@ -76,7 +76,7 @@ extension IAPService: SKProductsRequestDelegate {
     self.clearRequestAndHandler()
       print("채은6")
 
-    products.forEach { print("Found product: \($0.productIdentifier) \($0.localizedTitle) \($0.price.floatValue)") }
+      products.forEach { print("Found product: \($0.productIdentifier) \($0.localizedTitle) \($0.price.floatValue)") }
   }
   
   // failed
@@ -104,11 +104,6 @@ extension IAPService: SKPaymentTransactionObserver {
           let productID = $0.payment.productIdentifier
           self.deliverPurchaseNotificationFor(id: productID, transaction: $0)
           print("completed transaction")
-//          self.deliverPurchaseNotificationFor(id: $0.original?.payment.productIdentifier, transaction: $0)
-//          print($0.original?.payment.productIdentifier)
-//          print($0)
-          let transactionID = $0.transactionIdentifier ?? ""
-          print("Transaction ID: \(transactionID)")
           SKPaymentQueue.default().finishTransaction($0)
           print("채은888888")
 
@@ -120,6 +115,8 @@ extension IAPService: SKPaymentTransactionObserver {
               print("채은9")
         }
         SKPaymentQueue.default().finishTransaction($0)
+          NotificationCenter.default.post(name: Notification.Name("HideLoadingIndicator"), object: nil)
+          
       case .restored:
         print("failed transaction")
           self.deliverPurchaseNotificationFor(id: $0.original?.payment.productIdentifier, transaction: $0)
@@ -137,7 +134,6 @@ extension IAPService: SKPaymentTransactionObserver {
       default:
         print("unknown")
           print("채은13")
-
       }
     }
   }
@@ -157,8 +153,4 @@ extension IAPService: SKPaymentTransactionObserver {
       )
       print("Notification delivered for product ID: \(id)")
   }
-  
-
-
-
 }

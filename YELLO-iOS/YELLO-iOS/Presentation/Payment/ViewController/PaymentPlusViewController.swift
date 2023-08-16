@@ -54,6 +54,9 @@ final class PaymentPlusViewController: BaseViewController {
                 }
             }
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(hideLoadingIndicator), name: Notification.Name("HideLoadingIndicator"), object: nil)
+
 
         NotificationCenter.default.addObserver(
           self,
@@ -295,7 +298,7 @@ extension PaymentPlusViewController {
         }
     }
 
-    private func hideLoadingIndicator() {
+    @objc private func hideLoadingIndicator() {
         print("채은31")
 
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
