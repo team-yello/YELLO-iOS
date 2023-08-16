@@ -163,6 +163,8 @@ extension MyYelloViewController {
                 // 탭바 뱃지에 쪽지 개수 반영
                 if data.totalCount > 99 {
                     self.tabBarController?.tabBar.items?[3].badgeValue = "99+"
+                } else if data.totalCount == 0 {
+                    self.tabBarController?.tabBar.items?[3].badgeValue = nil
                 } else {
                     self.tabBarController?.tabBar.items?[3].badgeValue = String(data.totalCount)
                 }
