@@ -58,6 +58,14 @@
 		2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2ADE23A92A5EB7660088FCB3 /* Lottie */; };
 		2AEE46EF2A603F9A000B4A9B /* VotingStart.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AEE46EE2A603F9A000B4A9B /* VotingStart.json */; };
 		2AFB01482A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB01472A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift */; };
+		2AFB01632A8D2EAC001BB2C7 /* pagenation_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015B2A8D2EAC001BB2C7 /* pagenation_5.json */; };
+		2AFB01642A8D2EAC001BB2C7 /* pagenation_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015C2A8D2EAC001BB2C7 /* pagenation_2.json */; };
+		2AFB01652A8D2EAC001BB2C7 /* pagenation_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015D2A8D2EAC001BB2C7 /* pagenation_3.json */; };
+		2AFB01662A8D2EAC001BB2C7 /* pagenation_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015E2A8D2EAC001BB2C7 /* pagenation_4.json */; };
+		2AFB01672A8D2EAC001BB2C7 /* pagenation_7.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015F2A8D2EAC001BB2C7 /* pagenation_7.json */; };
+		2AFB01682A8D2EAC001BB2C7 /* pagenation_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01602A8D2EAC001BB2C7 /* pagenation_8.json */; };
+		2AFB01692A8D2EAC001BB2C7 /* pagenation_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */; };
+		2AFB016A2A8D2EAC001BB2C7 /* pagenation_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */; };
 		3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAE72A608F0200D5FA40 /* SplashViewController.swift */; };
 		3628EAEA2A60903A00D5FA40 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE92A60903A00D5FA40 /* splash.json */; };
 		3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */; };
@@ -327,6 +335,14 @@
 		2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		2AEE46EE2A603F9A000B4A9B /* VotingStart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VotingStart.json; sourceTree = "<group>"; };
 		2AFB01472A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingUnreadResponseDTO.swift; sourceTree = "<group>"; };
+		2AFB015B2A8D2EAC001BB2C7 /* pagenation_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_5.json; sourceTree = "<group>"; };
+		2AFB015C2A8D2EAC001BB2C7 /* pagenation_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_2.json; sourceTree = "<group>"; };
+		2AFB015D2A8D2EAC001BB2C7 /* pagenation_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_3.json; sourceTree = "<group>"; };
+		2AFB015E2A8D2EAC001BB2C7 /* pagenation_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_4.json; sourceTree = "<group>"; };
+		2AFB015F2A8D2EAC001BB2C7 /* pagenation_7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_7.json; sourceTree = "<group>"; };
+		2AFB01602A8D2EAC001BB2C7 /* pagenation_8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_8.json; sourceTree = "<group>"; };
+		2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_6.json; sourceTree = "<group>"; };
+		2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_1.json; sourceTree = "<group>"; };
 		3608F9052A80E25600B09D82 /* YELLO-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YELLO-iOS.entitlements"; sourceTree = "<group>"; };
 		3628EAE72A608F0200D5FA40 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3628EAE92A60903A00D5FA40 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -970,6 +986,7 @@
 		2AD1A1AA2A57176200CB988B /* Voting */ = {
 			isa = PBXGroup;
 			children = (
+				2AFB014A2A8CFCC2001BB2C7 /* Lottie */,
 				2AA0DBB32A546E62002B1370 /* VotingViewController.swift */,
 				2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */,
 				2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */,
@@ -1001,6 +1018,21 @@
 				2AD1A1BA2A59559100CB988B /* VotingPointViewController.swift */,
 			);
 			path = VotingPoint;
+			sourceTree = "<group>";
+		};
+		2AFB014A2A8CFCC2001BB2C7 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */,
+				2AFB015C2A8D2EAC001BB2C7 /* pagenation_2.json */,
+				2AFB015D2A8D2EAC001BB2C7 /* pagenation_3.json */,
+				2AFB015E2A8D2EAC001BB2C7 /* pagenation_4.json */,
+				2AFB015B2A8D2EAC001BB2C7 /* pagenation_5.json */,
+				2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */,
+				2AFB015F2A8D2EAC001BB2C7 /* pagenation_7.json */,
+				2AFB01602A8D2EAC001BB2C7 /* pagenation_8.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		3608F9062A80EC2400B09D82 /* Shared */ = {
@@ -1855,13 +1887,21 @@
 				367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */,
 				3628EAEA2A60903A00D5FA40 /* splash.json in Resources */,
 				C3A79A002A49500000D3EFD8 /* Pretendard-Bold.otf in Resources */,
+				2AFB016A2A8D2EAC001BB2C7 /* pagenation_1.json in Resources */,
+				2AFB01682A8D2EAC001BB2C7 /* pagenation_8.json in Resources */,
 				2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */,
 				C3FF24A62A5EEF7400A97D40 /* Unbounded-SemiBold.ttf in Resources */,
+				2AFB01652A8D2EAC001BB2C7 /* pagenation_3.json in Resources */,
 				C3A79A012A49500000D3EFD8 /* Pretendard-ExtraBold.otf in Resources */,
 				C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */,
+				2AFB01632A8D2EAC001BB2C7 /* pagenation_5.json in Resources */,
+				2AFB01672A8D2EAC001BB2C7 /* pagenation_7.json in Resources */,
 				C3A79A052A49500000D3EFD8 /* Pretendard-Regular.otf in Resources */,
+				2AFB01662A8D2EAC001BB2C7 /* pagenation_4.json in Resources */,
+				2AFB01642A8D2EAC001BB2C7 /* pagenation_2.json in Resources */,
 				C3A79A042A49500000D3EFD8 /* Pretendard-Black.otf in Resources */,
 				C3A79A072A49500000D3EFD8 /* Pretendard-SemiBold.otf in Resources */,
+				2AFB01692A8D2EAC001BB2C7 /* pagenation_6.json in Resources */,
 				C390B8092A88D63000EA5A23 /* spinner_loading.json in Resources */,
 				C3A799A02A49490D00D3EFD8 /* Assets.xcassets in Resources */,
 				2A9808E92A81658500FBA5B3 /* GoogleService-Info.plist in Resources */,
