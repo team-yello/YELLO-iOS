@@ -1101,13 +1101,13 @@
 				367113672A7D21330037E0D2 /* SchoolSelectViewController.swift */,
 				367113722A7D6CED0037E0D2 /* UniversityViewController.swift */,
 				367DA01A2A863CE60043D23C /* HighSchoolViewController.swift */,
-				36E4275B2A5BCE860050B34E /* GenderViewController.swift */,
-				367DA01C2A86496D0043D23C /* NameViewController.swift */,
 				36E4277C2A5BD5D60050B34E /* UserInfoViewController.swift */,
 				36E4275D2A5BCE860050B34E /* AddFriendsViewController.swift */,
 				36E427902A5C9BD20050B34E /* RecommendIdViewController.swift */,
 				366CE5EF2A819DA800BE5F66 /* PushSettingViewController.swift */,
 				36E427942A5CA59F0050B34E /* OnboardingEndViewController.swift */,
+				36E4275B2A5BCE860050B34E /* GenderViewController.swift */,
+				367DA01C2A86496D0043D23C /* NameViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

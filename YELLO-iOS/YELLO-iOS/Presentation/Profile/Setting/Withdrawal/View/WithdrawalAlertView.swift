@@ -110,6 +110,7 @@ extension WithdrawalAlertView {
                     UserDefaults.standard.removeObject(forKey: "accessToken")
                     UserDefaults.standard.removeObject(forKey: "refreshToken")
                     UserDefaults.standard.removeObject(forKey: "isLoggined")
+                    User.shared.isFirstUser = false
                     let splashViewController = KakaoLoginViewController()
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                     sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: splashViewController)
