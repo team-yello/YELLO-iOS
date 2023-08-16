@@ -135,7 +135,7 @@ extension VotingViewController {
     func setAnimationView() {
         let dummy = VotingDummy.dummy()
         originView.yelloBalloon = .init(name: dummy[VotingViewController.pushCount].yelloBalloon)
-        let animationWidth: CGFloat = 60.adjustedWidth
+        let animationWidth: CGFloat = 72.adjustedWidth
         let animationHeight: CGFloat = 36.adjustedHeight
         originView.yelloBalloon.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
 

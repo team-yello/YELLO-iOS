@@ -133,16 +133,15 @@ enum StringLiterals {
         }
         
         enum ProgressLottie {
-            static let one = "pagenation_01"
-            static let two = "pagenation_02"
-            static let three = "pagenation_03"
-            static let four = "pagenation_04"
-            static let five = "pagenation_05"
-            static let six = "pagenation_06"
-            static let seven = "pagenation_07"
-            static let eight = "pagenation_08"
+            static let one = "pagenation_1"
+            static let two = "pagenation_2"
+            static let three = "pagenation_3"
+            static let four = "pagenation_4"
+            static let five = "pagenation_5"
+            static let six = "pagenation_6"
+            static let seven = "pagenation_7"
+            static let eight = "pagenation_8"
         }
-        
         
         enum VoteToast {
             static let skip = "한 번 선택하면 건너뛸 수 없어요."
@@ -330,4 +329,3 @@ enum StringLiterals {
         }
     }
 }
-
