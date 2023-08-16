@@ -13,7 +13,7 @@ enum MyProducts {
     static let nameKeyTwoProductID = "YELLO.iOS.nameKey.two"
     static let nameKeyFiveProductID = "YELLO.iOS.nameKey.five"
     
-    static let iapService: IAPServiceType = IAPService(productIDs: Set<String>(["YELLO.iOS.yelloPlus.monthly", "YELLO.iOS.nameKey.one", "YELLO.iOS.nameKey.two", "YELLO.iOS.nameKey.five"]))
+    static let iapService: IAPServiceType = IAPService(productIDs: Set<String>([yelloPlusProductID, nameKeyOneProductID, nameKeyTwoProductID, nameKeyFiveProductID]))
     
     static func getResourceProductName(_ id: String) -> String? {
         id.components(separatedBy: ".").last
