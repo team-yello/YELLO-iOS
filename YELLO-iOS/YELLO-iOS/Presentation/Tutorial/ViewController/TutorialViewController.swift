@@ -64,10 +64,10 @@ class TutorialViewController: UIViewController {
         
         if pageCount == 5 {
             var rootViewController = UIViewController()
-            if User.shared.isResigned {
-                rootViewController = YELLOTabBarController()
-            } else {
+            if User.shared.isFirstUser {
                 rootViewController = OnboardingEndViewController()
+            } else {
+                rootViewController = YELLOTabBarController()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate

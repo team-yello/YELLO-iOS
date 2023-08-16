@@ -31,6 +31,7 @@ class UniversityViewController: OnboardingBaseViewController {
     
     override func viewDidLoad() {
         step = 1
+        User.shared.isFirstUser = true
         super.viewDidLoad()
         setDelegate()
     }

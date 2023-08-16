@@ -25,7 +25,7 @@ struct User {
     var recommendId: String = ""
     
     var isResigned: Bool = false
-    var isResetting: Bool = true
+    var isFirstUser: Bool = false
     
     private init() {}
 }
