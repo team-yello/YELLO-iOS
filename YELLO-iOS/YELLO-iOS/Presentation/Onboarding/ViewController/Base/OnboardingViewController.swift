@@ -9,11 +9,12 @@ import UIKit
 
 import SnapKit
 import Then
+import Amplitude
 
 class OnboardingBaseViewController: BaseViewController {
     // MARK: - Variables
+    let paramaterArray: [String] = ["student_type", "school", "id", "friends"]
     // MARK: Componenet
-    
     let navigationBarView = YelloNavigationBarView()
     let nextButton = YelloButton(buttonText: "다음")
     let skipButton = UIButton()
@@ -23,7 +24,7 @@ class OnboardingBaseViewController: BaseViewController {
     var nextViewController: UIViewController?
     var bottomConstraint: NSLayoutConstraint?
     var isSkipable = false
-    var step = 1.0
+    var step = 1
     
     // MARK: Life Cycle
     override func viewDidAppear(_ animated: Bool) {
@@ -47,7 +48,7 @@ class OnboardingBaseViewController: BaseViewController {
         view.backgroundColor = .black
         
         navigationBarView.backButton.do {
-            $0.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(backButtonTapped(sender:)), for: .touchUpInside)
         }
         
         nextButton.do {
@@ -128,8 +129,11 @@ class OnboardingBaseViewController: BaseViewController {
         
     }
     
-    @objc func backButtonTapped() {
+    @objc func backButtonTapped(sender: UIButton) {
         navigationController?.popViewController(animated: false)
+        if step < 5 {
+            Amplitude.instance().logEvent("click_onboarding_next", withEventProperties: ["onboard_view": paramaterArray[step - 1]] )
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

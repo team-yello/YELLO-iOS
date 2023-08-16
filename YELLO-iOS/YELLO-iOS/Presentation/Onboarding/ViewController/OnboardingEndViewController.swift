@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Amplitude
+
 class OnboardingEndViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
@@ -39,6 +41,7 @@ class OnboardingEndViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func yelloButtondidTap() {
+        Amplitude.instance().logEvent("click_onboarding_yellostart")
         /// 온보딩 이후 rootViewController 변경
         self.baseView.goToYelloButton.isEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

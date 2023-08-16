@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Amplitude
+
 class TutorialViewController: UIViewController {
     
     var pageCount = 1
@@ -16,6 +18,7 @@ class TutorialViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        Amplitude.instance().logEvent("view_onboarding_tutorial", withEventProperties: ["tutorial_step" : "tutorial1"], outOfSession: true)
     }
     
     override func viewDidLoad() {
@@ -51,10 +54,13 @@ class TutorialViewController: UIViewController {
             switch pageCount {
             case 2:
                 baseView = SecondTutorialView()
+                Amplitude.instance().logEvent("view_onboarding_tutorial", withEventProperties: ["tutorial_step" : "tutorial2"], outOfSession: true)
             case 3:
                 baseView = ThirdTutorialView()
+                Amplitude.instance().logEvent("view_onboarding_tutorial", withEventProperties: ["tutorial_step" : "tutorial3"], outOfSession: true)
             case 4:
                 baseView = FourthTutorial()
+                Amplitude.instance().logEvent("view_onboarding_tutorial", withEventProperties: ["tutorial_step" : "tutorial4"], outOfSession: true)
             default:
                 baseView = UIView()
             }

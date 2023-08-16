@@ -9,6 +9,7 @@ import UIKit
 
 import KakaoSDKUser
 import KakaoSDKTalk
+import Amplitude
 
 class KakaoConnectViewController: UIViewController {
     
@@ -34,6 +35,7 @@ class KakaoConnectViewController: UIViewController {
     }
     
     @objc func connectButtonDidTap() {
+        Amplitude.instance().logEvent("click_onboarding_next", withEventProperties: ["onboard_view": "student_type"] )
         TalkApi.shared.friends(limit: 100) {(friends, error) in
             if let error = error {
                 print(error)

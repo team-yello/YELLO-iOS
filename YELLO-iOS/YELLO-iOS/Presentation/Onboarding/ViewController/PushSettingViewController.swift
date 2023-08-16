@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Amplitude
+
 class PushSettingViewController: UIViewController {
     // MARK: - Variables
     // MARK: Component
@@ -51,9 +53,14 @@ class PushSettingViewController: UIViewController {
     func requestAuthNoti() {
         let notiAuthOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
         userNotiCenter.requestAuthorization(options: notiAuthOptions) { (success, error) in
+            if success {
+                // 푸시 알림 권한 허용
+                Amplitude.instance().logEvent("click_onboarding_notification")
+            }
             if let error = error {
                 print(#function, error)
             }
+            
         }
     }
     
