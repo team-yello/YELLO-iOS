@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Lottie
 import SnapKit
 import Then
 
@@ -14,7 +15,7 @@ final class BaseVotingMainView: BaseView {
     let progressView = UIProgressView()
     var progressPercent = Float(VotingViewController.pushCount + 1) / 8.0
 
-    let yelloBalloon = UIImageView()
+    var yelloBalloon = LottieAnimationView()
     let yelloProgress = UIImageView()
     
     let yelloProgressBackGroundOne = UIImageView()
@@ -52,10 +53,6 @@ final class BaseVotingMainView: BaseView {
             $0.clipsToBounds = true
             $0.layer.sublayers![1].cornerRadius = 5
             $0.subviews[1].clipsToBounds = true
-        }
-        
-        yelloBalloon.do {
-            $0.image = ImageLiterals.Voting.imgYelloBalloon1
         }
         
         yelloProgress.do {
@@ -185,7 +182,6 @@ final class BaseVotingMainView: BaseView {
             .statusBarFrame.height ?? 20
         
         self.addSubviews(progressView,
-                         yelloBalloon,
                          yelloProgress,
                          yelloProgressBackGroundOne,
                          yelloProgressBackGroundTwo,
@@ -212,34 +208,29 @@ final class BaseVotingMainView: BaseView {
             $0.height.equalTo(6.adjusted)
         }
         
-        yelloBalloon.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(questionBackground.snp.top).offset(-71.adjusted)
-        }
-        
         yelloProgress.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
+            $0.bottom.equalTo(questionBackground.snp.top).offset(-13.adjustedHeight)
         }
         
         yelloProgressBackGroundOne.snp.makeConstraints {
             $0.leading.equalToSuperview()
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
+            $0.bottom.equalTo(questionBackground.snp.top).offset(-13.adjustedHeight)
         }
         
         yelloProgressBackGroundTwo.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(width / 5)
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
+            $0.bottom.equalTo(questionBackground.snp.top).offset(-13.adjustedHeight)
         }
         
         yelloProgressBackGroundThree.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(width / 5)
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
+            $0.bottom.equalTo(questionBackground.snp.top).offset(-13.adjustedHeight)
         }
         
         yelloProgressBackGroundFour.snp.makeConstraints {
             $0.trailing.equalToSuperview()
-            $0.top.equalTo(yelloBalloon.snp.bottom).offset(3.adjusted)
+            $0.bottom.equalTo(questionBackground.snp.top).offset(-13.adjustedHeight)
         }
         
         questionBackground.snp.makeConstraints {
