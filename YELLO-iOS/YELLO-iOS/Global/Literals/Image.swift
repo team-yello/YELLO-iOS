@@ -91,14 +91,6 @@ enum ImageLiterals {
         static var imgVotingStartBalloon1: UIImage { .load(named: "imgVotingStartBalloon1")}
         static var imgVotingStartBalloon2: UIImage { .load(named: "imgVotingStartBalloon2")}
         static var imgVotingStartBalloon3: UIImage { .load(named: "imgVotingStartBalloon3")}
-        static var imgYelloBalloon1: UIImage { .load(named: "imgYelloBalloon1")}
-        static var imgYelloBalloon2: UIImage { .load(named: "imgYelloBalloon2")}
-        static var imgYelloBalloon3: UIImage { .load(named: "imgYelloBalloon3")}
-        static var imgYelloBalloon4: UIImage { .load(named: "imgYelloBalloon4")}
-        static var imgYelloBalloon5: UIImage { .load(named: "imgYelloBalloon5")}
-        static var imgYelloBalloon6: UIImage { .load(named: "imgYelloBalloon6")}
-        static var imgYelloBalloon7: UIImage { .load(named: "imgYelloBalloon7")}
-        static var imgYelloBalloon8: UIImage { .load(named: "imgYelloBalloon8")}
         static var imgFace1: UIImage { .load(named: "imgFace1")}
         static var imgFace2: UIImage { .load(named: "imgFace2")}
         static var imgFace3: UIImage { .load(named: "imgFace3")}

@@ -126,10 +126,23 @@ enum StringLiterals {
             static let title = "옐로를 시작하고 싶다면?"
             static let text = "친구가 4명 이상 모이면 투표할 수 있어요.\n친구들을 초대해볼까요?"
         }
+        
         enum Start {
             static let title = "누구에게 어떤 메세지를 보낼까?"
             static let myPoint = "내 포인트"
         }
+        
+        enum ProgressLottie {
+            static let one = "pagenation_01"
+            static let two = "pagenation_02"
+            static let three = "pagenation_03"
+            static let four = "pagenation_04"
+            static let five = "pagenation_05"
+            static let six = "pagenation_06"
+            static let seven = "pagenation_07"
+            static let eight = "pagenation_08"
+        }
+        
         
         enum VoteToast {
             static let skip = "한 번 선택하면 건너뛸 수 없어요."
@@ -317,3 +330,4 @@ enum StringLiterals {
         }
     }
 }
+
