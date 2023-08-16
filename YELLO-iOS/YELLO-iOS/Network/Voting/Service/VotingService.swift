@@ -11,6 +11,7 @@ protocol VotingServiceProtocol {
     func getVotingSuffle(completion: @escaping (NetworkResult<BaseResponse<[VotingSuffleResponseDTO]>>) -> Void)
     func getVotingList(completion: @escaping (NetworkResult<BaseResponse<[VotingListResponseDTO]>>) -> Void)
     func postVotingAnswerList(requestDTO: VotingAnswerListRequestDTO, completion: @escaping (NetworkResult<BaseResponse<VotingAnswerListResponseDTO>>) -> Void)
+    func getUnreadCount(completion: @escaping (NetworkResult<BaseResponse<VotingUnreadResponseDTO>>) -> Void)
 }
 
 final class VotingService: APIRequestLoader<VotingTarget>, VotingServiceProtocol {
@@ -37,5 +38,10 @@ final class VotingService: APIRequestLoader<VotingTarget>, VotingServiceProtocol
         
         fetchData(target: .postVotingAnswerList(requestDTO),
                   responseData: BaseResponse<VotingAnswerListResponseDTO>.self, completion: completion)
+    }
+    func getUnreadCount(completion: @escaping (NetworkResult<BaseResponse<VotingUnreadResponseDTO>>) -> Void) {
+        fetchData(
+            target: .getUnreadCount,
+            responseData: BaseResponse<VotingUnreadResponseDTO>.self, completion: completion)
     }
 }

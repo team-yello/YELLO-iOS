@@ -142,7 +142,7 @@ extension VotingStartViewController {
                     guard let data = data.data else { return }
                     if data.isPossible {
                         let point = data.point
-                        self.originView.realMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 22)
+                        self.originView.topOfMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 24)
                         self.myPoint = point
                         UserDefaults.standard.set(point, forKey: "UserPoint")
                         self.originView.yellowButton.isEnabled = false

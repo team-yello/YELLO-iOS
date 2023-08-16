@@ -14,7 +14,7 @@ import KakaoSDKAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-        
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KakaoSDK.initSDK(appKey: Config.kakaoAppKey)
         UNUserNotificationCenter.current().delegate = self
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -48,6 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let state = UIApplication.shared.applicationState
+        if state == .background {
+            UIApplication.shared.applicationIconBadgeNumber += 1
+        }
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
