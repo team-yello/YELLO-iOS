@@ -71,8 +71,10 @@ class KakaoLoginViewController: UIViewController {
                     User.shared.isResigned = data.isResigned
                     
                     print("isResigned: \(User.shared.isResigned)")
-                    if User.shared.isResigned || isFirstTime() {
+                    if isFirstTime() {
                         rootViewController = PushSettingViewController()
+                    } else if User.shared.isResigned {
+                        rootViewController = TutorialViewController()
                     } else {
                         rootViewController = YELLOTabBarController()
                     }
