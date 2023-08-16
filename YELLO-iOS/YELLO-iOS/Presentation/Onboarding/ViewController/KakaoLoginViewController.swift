@@ -45,11 +45,15 @@ class KakaoLoginViewController: UIViewController {
                             guard let uuidInt = user.id else { return }
                             let uuid = String(uuidInt)
                             
-                            guard let email = user.kakaoAccount?.email else { return }
+                            guard let kakaoUser = user.kakaoAccount else {return}
+                            guard let email = kakaoUser.email else {return}
                             guard let profile = user.kakaoAccount?.profile?.profileImageUrl else {return}
                             User.shared.social = "KAKAO"
                             User.shared.uuid = uuid
                             User.shared.email = email
+                            User.shared.name = kakaoUser.name ?? ""
+                            User.shared.gender = kakaoUser.gender?.rawValue.uppercased() ?? ""
+                            print(User.shared.gender)
                             User.shared.profileImage = profile.absoluteString
                             
                         }
@@ -67,9 +71,8 @@ class KakaoLoginViewController: UIViewController {
                     var rootViewController: UIViewController = YELLOTabBarController()
                     User.shared.isResigned = data.isResigned
                     
-                    print("isResetting:\(User.shared.isResetting)")
                     print("isResigned: \(User.shared.isResigned)")
-                    if User.shared.isResigned || User.shared.isResetting {
+                    if User.shared.isResigned || isFirstTime() {
                         rootViewController = PushSettingViewController()
                     } else {
                         rootViewController = YELLOTabBarController()
