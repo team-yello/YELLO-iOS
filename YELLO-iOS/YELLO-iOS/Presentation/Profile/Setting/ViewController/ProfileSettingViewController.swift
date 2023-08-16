@@ -64,7 +64,7 @@ extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
                 
                 UserDefaults.standard.removeObject(forKey: "isLoggined")
                 User.shared.isResigned = false
-                User.shared.isResetting = false
+                User.shared.isFirstUser = false
                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
                 
                 self.navigationController?.popToRootViewController(animated: true)
