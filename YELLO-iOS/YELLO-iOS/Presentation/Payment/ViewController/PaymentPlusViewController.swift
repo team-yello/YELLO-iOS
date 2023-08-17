@@ -74,24 +74,51 @@ extension PaymentPlusViewController: HandleConfirmPaymentButtonDelegate {
 }
 
 extension PaymentPlusViewController {
+    func pushPaymentReadyViewController() {
+        let paymentReadyViewController = PaymentReadyViewController()
+        self.navigationController?.pushViewController(paymentReadyViewController, animated: true)
+    }
+    
+    // MARK: - Network
+    func payCheck(index: Int) {
+        let requestDTO = PayRequestBodyDTO(index: index)
+        NetworkService.shared.myYelloService.payCheck(requestDTO: requestDTO) { response in
+            switch response {
+            case .success:
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
     @objc private func paymentYelloPlusButtonTapped() {
-        print("옐로플러스 구독 결제 구현")
-        showPaymentConfirmView(state: .yelloPlus)
+        payCheck(index: 0)
+        pushPaymentReadyViewController()
+        print("옐로플러스 구독 결제")
+//        showPaymentConfirmView(state: .yelloPlus)
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
+        payCheck(index: 1)
+        pushPaymentReadyViewController()
         print("이름 열람권 1개 구입")
-        showPaymentConfirmView(state: .nameKeyOne)
+//        showPaymentConfirmView(state: .nameKeyOne)
     }
     
     @objc private func paymentNameKeyTwoButtonTapped() {
+        payCheck(index: 2)
+        pushPaymentReadyViewController()
         print("이름 열람권 3개 구입")
-        showPaymentConfirmView(state: .nameKeyTwo)
+//        showPaymentConfirmView(state: .nameKeyTwo)
     }
     
     @objc private func paymentNameKeyFiveButtonTapped() {
+        payCheck(index: 3)
+        pushPaymentReadyViewController()
         print("이름 열람권 5개 구입")
-        showPaymentConfirmView(state: .nameKeyFive)
+//        showPaymentConfirmView(state: .nameKeyFive)
     }
     
     func showPaymentConfirmView(state: PaymentStatus) {
