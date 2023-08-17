@@ -44,7 +44,7 @@ class OnboardingEndView: BaseView {
         
         guideLabel.do {
             $0.text = StringLiterals.Onboarding.endingTitle
-            $0.font = .uiHeadline03
+            $0.font = .uiHeadline00
             $0.textColor = .white
         }
         
