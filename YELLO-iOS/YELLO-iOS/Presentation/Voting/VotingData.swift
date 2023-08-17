@@ -17,6 +17,7 @@ struct VotingData: Codable {
     let questionId: Int
     var friendId: [Int]
     let questionPoint: Int
+    let subscribe: String
 }
 
 // 구조체를 UserDefault에 저장하는 함수
