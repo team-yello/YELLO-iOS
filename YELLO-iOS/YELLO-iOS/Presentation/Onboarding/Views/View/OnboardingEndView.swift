@@ -91,6 +91,10 @@ class OnboardingEndView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
+        titleIconImageView.snp.makeConstraints {
+            $0.size.equalTo(28.adjusted)
+        }
+        
         subGuideLabel.snp.makeConstraints {
             $0.bottom.equalTo(endingImageView.snp.top).offset(-20.adjusted)
             $0.centerX.equalToSuperview()

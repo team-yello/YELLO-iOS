@@ -61,7 +61,7 @@ final class BaseVotingETCView: BaseView {
         
         titleLabel.do {
             $0.textColor = .white
-            $0.font = .uiHeadline03
+            $0.font = .uiHeadline00
         }
         
         textLabel.do {

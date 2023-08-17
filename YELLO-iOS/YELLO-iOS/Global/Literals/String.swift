@@ -62,7 +62,6 @@ enum StringLiterals {
         static let endingText = "튜토리얼 끝!\n옐로에서 환영 선물을 준비했어요!"
         static let endingSubText = "앞으로 투표가 끝날 때마다 포인트를 줄게요!"
         static let endingButton = "옐로하러 가기"
-        
     }
     
     enum Tutorial {
@@ -76,8 +75,6 @@ enum StringLiterals {
         static let fourthToastText = "’이 질문 건너뛰기’ 버튼을 누르면\n포인트는 지급되지 않아요"
         static let fourthSubText = "다른 친구와 키워드를 선택하고 싶다면?"
         static let fourthTutorialText = "친구 선택지를 바꾸거나 질문을 skip"
-        
-        
     }
     
     enum Inviting {

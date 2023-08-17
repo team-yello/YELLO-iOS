@@ -58,8 +58,6 @@ class PushSettingView: BaseView {
         pushSettingImageView.do {
             $0.image = ImageLiterals.OnBoarding.pushNotification
         }
-        
-    
     }
     
     override func setLayout() {
