@@ -7,11 +7,11 @@
 
 import UIKit
 
+import Amplitude
 import FirebaseCore
 import FirebaseMessaging
 import KakaoSDKCommon
 import KakaoSDKAuth
-import Amplitude
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

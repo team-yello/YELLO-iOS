@@ -7,9 +7,9 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
-import Amplitude
 
 class OnboardingBaseViewController: BaseViewController {
     // MARK: - Variables
@@ -126,14 +126,14 @@ class OnboardingBaseViewController: BaseViewController {
         if let nextViewController = nextViewController {
             self.navigationController?.pushViewController(nextViewController, animated: false)
         } else {}
+        if step < 5 {
+            Amplitude.instance().logEvent("click_onboarding_next", withEventProperties: ["onboard_view": paramaterArray[step - 1]] )
+        }
         
     }
     
     @objc func backButtonTapped(sender: UIButton) {
         navigationController?.popViewController(animated: false)
-        if step < 5 {
-            Amplitude.instance().logEvent("click_onboarding_next", withEventProperties: ["onboard_view": paramaterArray[step - 1]] )
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

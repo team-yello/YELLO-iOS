@@ -147,9 +147,9 @@ class RecommendIdViewController: OnboardingBaseViewController {
         super.didTapButton(sender: sender)
         if sender == skipButton {
             User.shared.recommendId = ""
-            Amplitude.instance().logEvent("click_onboarding_next", withEventProperties: ["rec_exist": "pass"] )
+            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
         } else if sender == nextButton {
-            Amplitude.instance().logEvent("click_onboarding_next", withEventProperties: ["rec_exist": "next"] )
+            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
         }
         postUserInfo()
     }

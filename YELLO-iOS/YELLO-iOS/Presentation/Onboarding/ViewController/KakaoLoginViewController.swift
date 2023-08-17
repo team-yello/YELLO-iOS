@@ -7,8 +7,8 @@
 
 import UIKit
 
-import KakaoSDKUser
 import Amplitude
+import KakaoSDKUser
 
 class KakaoLoginViewController: UIViewController {
     // MARK: - Variables

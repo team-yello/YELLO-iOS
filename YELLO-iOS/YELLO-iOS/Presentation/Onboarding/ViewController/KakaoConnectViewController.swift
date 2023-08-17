@@ -7,9 +7,9 @@
 
 import UIKit
 
+import Amplitude
 import KakaoSDKUser
 import KakaoSDKTalk
-import Amplitude
 
 class KakaoConnectViewController: UIViewController {
     
