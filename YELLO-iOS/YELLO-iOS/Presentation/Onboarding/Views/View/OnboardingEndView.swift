@@ -44,7 +44,7 @@ class OnboardingEndView: BaseView {
         
         guideLabel.do {
             $0.text = StringLiterals.Onboarding.endingTitle
-            $0.font = .uiHeadline03
+            $0.font = .uiHeadline00
             $0.textColor = .white
         }
         
@@ -89,6 +89,10 @@ class OnboardingEndView: BaseView {
             $0.height.equalTo(28.adjustedHeight)
             $0.bottom.equalTo(subGuideLabel.snp.top).offset(-10.adjusted)
             $0.centerX.equalToSuperview()
+        }
+        
+        titleIconImageView.snp.makeConstraints {
+            $0.size.equalTo(28.adjusted)
         }
         
         subGuideLabel.snp.makeConstraints {

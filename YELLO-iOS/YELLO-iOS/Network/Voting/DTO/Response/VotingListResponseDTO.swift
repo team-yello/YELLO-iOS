@@ -12,6 +12,7 @@ struct VotingListResponseDTO: Decodable {
     let friendList: [FriendList]
     let keywordList: [String]
     let questionPoint: Int
+    let subscribe: String
 }
 
 struct Question: Decodable {

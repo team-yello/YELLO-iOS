@@ -149,7 +149,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         originView.titleLabel.snp.makeConstraints {
-            $0.bottom.equalTo(originView.textLabel.snp.top).offset(-2.adjustedHeight)
+            $0.bottom.equalTo(originView.textLabel.snp.top).offset(-4.adjustedHeight)
         }
         
         originView.textLabel.snp.makeConstraints {

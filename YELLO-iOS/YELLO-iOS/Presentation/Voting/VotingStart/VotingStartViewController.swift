@@ -16,7 +16,10 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     var myPoint = 0
-
+    let multiplyByTwoText = UILabel()
+    let multiplyByTwoImageView = UIImageView()
+    let multiplyByTwoStackView = UIStackView()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         originView.yellowButton.isEnabled = false
@@ -45,6 +48,23 @@ final class VotingStartViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .black
         
+        multiplyByTwoText.do {
+            $0.text = "Point"
+            $0.font = .uiPointLabel
+            $0.textColor = .white
+        }
+        
+        multiplyByTwoImageView.do {
+            $0.image = ImageLiterals.Voting.imgMultiplyByTwo
+        }
+        
+        multiplyByTwoStackView.do {
+            $0.axis = .horizontal
+            $0.addArrangedSubviews(multiplyByTwoText, multiplyByTwoImageView)
+            $0.alignment = .center
+            $0.spacing = 4.adjusted
+        }
+        
         originView.yellowButton.do {
             $0.setTitle("START!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
@@ -61,16 +81,16 @@ final class VotingStartViewController: BaseViewController {
             .first?
             .statusBarManager?
             .statusBarFrame.height ?? 20
-                
+        
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
         
-        view.addSubviews(originView)
+        view.addSubviews(originView, multiplyByTwoStackView)
 
         originView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-                
+        
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
             $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedWidth)
@@ -106,6 +126,16 @@ final class VotingStartViewController: BaseViewController {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 80.adjustedHeight)
             $0.width.equalTo(198.adjusted)
             $0.height.equalTo(58.adjusted)
+        }
+        
+        multiplyByTwoImageView.snp.makeConstraints {
+            $0.width.equalTo(33.adjusted)
+            $0.height.equalTo(19.adjusted)
+        }
+        
+        multiplyByTwoStackView.snp.makeConstraints {
+            $0.top.equalTo(originView.yellowButton.snp.bottom).offset(16.adjustedHeight)
+            $0.centerX.equalToSuperview()
         }
         
         originView.yelloFace.snp.makeConstraints {
@@ -167,27 +197,46 @@ extension VotingStartViewController {
         NetworkService.shared.votingService.getVotingList { result in
             switch result {
             case .success(let data):
-                    guard let data = data.data else { return }
-                    let votingList = data.map { data -> VotingData in
-                        var friends = [String]()
-                        var friendsID = [Int]()
-                        
-                        let friendListCount = min(data.friendList.count, 4)
-                        for i in 0..<friendListCount {
-                            friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
-                            friendsID.append(data.friendList[i].friendId)
-                        }
-                        
-                        var keywords = [String]()
-                        let keywordListCount = min(data.keywordList.count, 4)
-                        for i in 0..<keywordListCount {
-                            keywords.append(data.keywordList[i])
-                        }
-                        
-                        return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint)
+                guard let data = data.data else { return }
+                
+                let votingList = data.map { data -> VotingData in
+                    var friends = [String]()
+                    var friendsID = [Int]()
+                    
+                    let friendListCount = min(data.friendList.count, 4)
+                    for i in 0..<friendListCount {
+                        friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
+                        friendsID.append(data.friendList[i].friendId)
                     }
-                    saveVotingData(votingList)
-                    self.originView.yellowButton.isEnabled = true
+                    
+                    var keywords = [String]()
+                    let keywordListCount = min(data.keywordList.count, 4)
+                    for i in 0..<keywordListCount {
+                        keywords.append(data.keywordList[i])
+                    }
+                    
+                    return VotingData(nameHead: data.question.nameHead ?? "", nameFoot: data.question.nameFoot ?? "", keywordHead: data.question.keywordHead ?? "", keywordFoot: data.question.keywordFoot ?? "", friendList: friends, keywordList: keywords, questionId: data.question.questionId, friendId: friendsID, questionPoint: data.questionPoint, subscribe: data.subscribe)
+                }
+                saveVotingData(votingList)
+                self.originView.yellowButton.isEnabled = true
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
+    func getSubscribe() {
+        NetworkService.shared.votingService.getVotingList { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                let subscribeStatus = data[0].subscribe
+                if subscribeStatus == "CANCELED" || subscribeStatus == "ACTIVE" {
+                    self.multiplyByTwoStackView.isHidden = false
+                } else {
+                    self.multiplyByTwoStackView.isHidden = true
+                }
             default:
                 print("network failure")
                 return
@@ -202,18 +251,19 @@ extension VotingStartViewController {
         let animationWidth: CGFloat = 375.adjustedWidth
         let animationHeight: CGFloat = 667.adjustedHeight
         animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
-
+        
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
         animationView.animationSpeed = 1.1
-
+        
         let centerX = view.bounds.midX
         let centerY = view.bounds.midY - 50.adjustedHeight
-
+        
         animationView.center = CGPoint(x: centerX, y: centerY)
-
+        
         animationView.play()
         view.addSubview(animationView)
         view.bringSubviewToFront(originView)
+        view.bringSubviewToFront(multiplyByTwoStackView)
     }
 }

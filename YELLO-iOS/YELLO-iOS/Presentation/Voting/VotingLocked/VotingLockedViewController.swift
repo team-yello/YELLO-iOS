@@ -67,7 +67,7 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(6.adjustedHeight)
+            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(8.adjustedHeight)
         }
         
         originView.yelloImage.snp.makeConstraints {

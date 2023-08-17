@@ -13,6 +13,7 @@ import Then
 final class VotingPointViewController: BaseViewController {
 
     private let originView = BaseVotingETCView()
+    let multiplyByTwoImageView = UIImageView()
     var myPoint = 0
     var votingPlusPoint = 0
     var votingAnswer: [VoteAnswerList] = []
@@ -49,6 +50,10 @@ final class VotingPointViewController: BaseViewController {
             $0.setTextWithLineHeight(text: StringLiterals.Voting.Point.text, lineHeight: 20)
         }
         
+        multiplyByTwoImageView.do {
+            $0.image = ImageLiterals.Voting.imgMultiplyByTwo
+        }
+        
         originView.yelloImage.do {
             $0.image = ImageLiterals.Voting.imgPointAccumulate
         }
@@ -77,6 +82,8 @@ final class VotingPointViewController: BaseViewController {
         
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
+        view.addSubview(multiplyByTwoImageView)
+        
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
             $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedWidth)
@@ -93,6 +100,13 @@ final class VotingPointViewController: BaseViewController {
         
         originView.textLabel.snp.makeConstraints {
             $0.top.equalTo(originView.titleLabel.snp.bottom).offset(4.adjustedHeight)
+        }
+        
+        multiplyByTwoImageView.snp.makeConstraints {
+            $0.bottom.equalTo(originView.plusPoint.snp.bottom).offset(-14.adjustedHeight)
+            $0.trailing.equalTo(originView.plusPoint.snp.trailing).offset(25.adjustedHeight)
+            $0.width.equalTo(33.adjusted)
+            $0.height.equalTo(19.adjusted)
         }
         
         originView.plusPoint.snp.makeConstraints {

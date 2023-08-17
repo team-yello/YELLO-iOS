@@ -21,9 +21,9 @@ final class KakaoConnectView: BaseView {
         self.backgroundColor = .black
         
         titleLabel.do {
-            $0.text = "나의 Yell:o 친구는 어디있을까?"
+            $0.text = "나의 옐로 친구는 어딨을까?"
             $0.textColor = .white
-            $0.font = .uiHeadline03
+            $0.font = .uiHeadline00
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 28)
         }
         
