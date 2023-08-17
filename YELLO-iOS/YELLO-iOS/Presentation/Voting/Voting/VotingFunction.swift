@@ -113,6 +113,14 @@ extension VotingViewController {
             let previousData = loadUserData() ?? []
             let combinedData = previousData + votingAnswer
             saveUserData(combinedData)
+            
+            let status = votingList[0].subscribe
+            if status == "CANCELED" || status == "ACTIVE" {
+                viewController.multiplyByTwoImageView.isHidden = false
+            } else {
+                viewController.multiplyByTwoImageView.isHidden = true
+            }
+            
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             let viewController = VotingViewController()

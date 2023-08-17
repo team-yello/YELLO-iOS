@@ -22,6 +22,7 @@ final class YELLOTabBarController: UITabBarController {
     let aroundViewController = AroundViewController()
     let myYelloViewController = MyYelloViewController()
     let profileViewController = ProfileViewController()
+    let votingStartViewController = VotingStartViewController()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -209,6 +210,9 @@ extension YELLOTabBarController {
         
         /// 둘러보기 서버통신
         aroundViewController.aroundView.around()
+        
+        /// 옐로하기_시작 서버통신
+        votingStartViewController.getSubscribe()
         
         /// 내 쪽지 서버통신
         myYelloViewController.myYelloView.myYelloListView.myYello()
