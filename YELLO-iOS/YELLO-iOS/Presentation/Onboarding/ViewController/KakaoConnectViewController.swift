@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import KakaoSDKUser
 import KakaoSDKTalk
 
@@ -34,6 +35,7 @@ class KakaoConnectViewController: UIViewController {
     }
     
     @objc func connectButtonDidTap() {
+        Amplitude.instance().logEvent("click_onboarding_kakao_friends")
         TalkApi.shared.friends(limit: 100) {(friends, error) in
             if let error = error {
                 print(error)

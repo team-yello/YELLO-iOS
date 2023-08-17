@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Amplitude
 
 final class KakaoFriendViewController: UIViewController {
     
@@ -19,6 +20,7 @@ final class KakaoFriendViewController: UIViewController {
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
+        Amplitude.instance().logEvent("view_recommend_kakao")
         super.viewDidLoad()
         setUI()
     }

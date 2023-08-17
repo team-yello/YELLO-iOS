@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Amplitude
 
 class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: - Variables
@@ -119,6 +120,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 setAcessToken(accessToken: data.accessToken)
                 setRefreshToken(refreshToken: data.refreshToken)
                 setUsername(username: data.yelloID)
+                Amplitude.instance().logEvent("complete_onboarding_finish")
             default:
                 return
             }
@@ -145,6 +147,9 @@ class RecommendIdViewController: OnboardingBaseViewController {
         super.didTapButton(sender: sender)
         if sender == skipButton {
             User.shared.recommendId = ""
+            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
+        } else if sender == nextButton {
+            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
         }
         postUserInfo()
     }

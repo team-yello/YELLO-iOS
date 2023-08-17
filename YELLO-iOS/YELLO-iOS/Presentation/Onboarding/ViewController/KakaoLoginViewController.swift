@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import KakaoSDKUser
 
 class KakaoLoginViewController: UIViewController {
@@ -71,6 +72,7 @@ class KakaoLoginViewController: UIViewController {
                     User.shared.isResigned = data.isResigned
                     
                     print("isResigned: \(User.shared.isResigned)")
+                    Amplitude.instance().logEvent("complete_onboarding_finish")
                     if isFirstTime() {
                         rootViewController = PushSettingViewController()
                     } else if User.shared.isResigned {
@@ -92,6 +94,7 @@ class KakaoLoginViewController: UIViewController {
     
     // MARK: Objc Function
     @objc func kakaoLoginButtonDidTap() {
+        Amplitude.instance().logEvent("click_onboarding_kakao")
         /// 카카오톡 실행 가능 여부 확인
         /// isKakaoTalkLoginAvailable() : 카톡 설치 되어있으면 true
         if UserApi.isKakaoTalkLoginAvailable() {
@@ -116,6 +119,7 @@ class KakaoLoginViewController: UIViewController {
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
                     self.authNetwork(queryDTO: queryDTO)
+                    Amplitude.instance().logEvent("complete_onboarding_finish")
                 }
             }
         }

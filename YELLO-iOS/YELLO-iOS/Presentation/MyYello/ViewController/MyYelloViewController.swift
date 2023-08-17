@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Amplitude
 
 final class MyYelloViewController: BaseViewController {
     
@@ -36,6 +37,7 @@ final class MyYelloViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         unreadCount()
+        Amplitude.instance().logEvent("view_all_messages")
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.myYelloView.myYelloListView.myYelloTableView.reloadData()
