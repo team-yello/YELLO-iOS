@@ -126,17 +126,16 @@ extension PaymentPlusViewController {
     @objc private func paymentYelloPlusButtonTapped() {
         showLoadingIndicator()
         print("채은17")
-//        if !MyProducts.iapService.isProductPurchased(MyProducts.yelloPlusProductID) {
-//             이미 구독 중이 아니라면 구매 진행
+        
         if MyProducts.iapService.isProductPurchased(MyProducts.yelloPlusProductID) {
+            // 구독 중일 때
+            self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
+            hideLoadingIndicator()
             print(MyProducts.iapService.isProductPurchased(MyProducts.yelloPlusProductID))
+        } else {
+            // 이미 구독 중이 아니라면 구매 진행
             MyProducts.iapService.buyProduct(products[0])
-            }
-//            print("옐로플러스 구독 결제")
-//        } else {
-//            self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
-//            hideLoadingIndicator()
-//        }
+        }
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
@@ -202,7 +201,6 @@ extension PaymentPlusViewController {
     
     @objc private func restore() {
         print("채은22")
-        
         MyProducts.iapService.restorePurchases()
     }
     
@@ -232,7 +230,7 @@ extension PaymentPlusViewController {
         let productID = productID
         let transactionID = transactionID
         self.purchaseTicket(transactionID: transactionID, productID: productID)
-        self.hideLoadingIndicator()
+//        self.hideLoadingIndicator()
 
         print("상품 구매 완료: \(productID)")
         print("transactionID: \(transactionID)")
@@ -240,7 +238,7 @@ extension PaymentPlusViewController {
     
     private func verifySubscriptionPurchase(transactionID: String) {
         self.purchaseSubscibe(transactionID: transactionID)
-        self.hideLoadingIndicator()
+//        self.hideLoadingIndicator()
         print("채은29")
         print("구독 상품 구매 완료")
     }
@@ -263,6 +261,7 @@ extension PaymentPlusViewController {
                 print("network failure")
                 return
             }
+            self.hideLoadingIndicator()
         }
     }
     
@@ -301,6 +300,7 @@ extension PaymentPlusViewController {
                 print("network failure")
                 return
             }
+            self.hideLoadingIndicator()
         }
     }
     
@@ -318,7 +318,6 @@ extension PaymentPlusViewController {
     
     private func showLoadingIndicator() {
         print("채은30")
-        
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5) // 어둡게 딤처리된 배경색 설정
@@ -344,18 +343,10 @@ extension PaymentPlusViewController {
         dimView.removeFromSuperview()
     }
     
-    
     func showAlertView(title: String, message: String) {
-        // 1. alert view 만들기
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        // 2. alert action 만들기
         let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-
-        // 3. alert에 action 붙이기
         alert.addAction(action)
-
-        // 4. alert present하기
         present(alert, animated: true, completion: nil)
     }
 }
