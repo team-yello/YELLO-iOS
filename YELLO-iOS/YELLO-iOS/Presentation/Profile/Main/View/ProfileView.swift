@@ -86,8 +86,8 @@ extension ProfileView {
             $0.showsHorizontalScrollIndicator = false
             $0.rowHeight = UITableView.automaticDimension
             $0.estimatedRowHeight = 77.adjustedHeight
-            //            $0.sectionHeaderHeight = UITableView.automaticDimension
-            //            $0.estimatedSectionHeaderHeight = 304.adjustedHeight
+            $0.sectionHeaderHeight = UITableView.automaticDimension
+            $0.estimatedSectionHeaderHeight = 304.adjustedHeight
         }
         
         topButton.do {
@@ -259,7 +259,7 @@ extension ProfileView: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 304.adjustedHeight : 0
     }
     

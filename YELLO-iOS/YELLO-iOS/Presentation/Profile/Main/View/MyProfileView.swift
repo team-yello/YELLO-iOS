@@ -37,7 +37,7 @@ final class MyProfileView: UIView {
     let schoolSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
     
     // 옐로 플러스 여부에 따라서 달라짐
-    var isYelloPlus: Bool = true {
+    var isYelloPlus: Bool = false {
         didSet {
             updateProfileView()
         }
@@ -269,6 +269,7 @@ extension MyProfileView {
             $0.height.equalTo(48.adjustedHeight)
             $0.width.equalTo(129.adjustedWidth)
             $0.leading.equalTo(mainProfileView)
+            $0.bottom.equalToSuperview()
         }
         
         shopBackgroundView.snp.makeConstraints {
@@ -276,6 +277,7 @@ extension MyProfileView {
             $0.height.equalTo(48.adjustedHeight)
             $0.width.equalTo(206.adjustedWidth)
             $0.top.equalTo(addGroupButton)
+            $0.bottom.equalToSuperview()
         }
         
         shopButton.snp.makeConstraints {
