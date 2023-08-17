@@ -48,7 +48,7 @@ final class PaymentReadyViewController: BaseViewController {
             $0.titleLabel?.font = .uiBodySmall
             $0.backgroundColor = .grayscales800
             $0.layer.cornerRadius = 8
-            $0.addTarget(self, action: #selector(backButtonTapped(sender:)), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         }
     }
     
