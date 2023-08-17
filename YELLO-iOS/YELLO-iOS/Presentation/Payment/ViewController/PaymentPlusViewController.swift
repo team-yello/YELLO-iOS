@@ -55,8 +55,11 @@ final class PaymentPlusViewController: BaseViewController {
             }
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(hideLoadingIndicator), name: Notification.Name("HideLoadingIndicator"), object: nil)
-
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(hideLoadingIndicator),
+            name: Notification.Name("HideLoadingIndicator"),
+            object: nil)
 
         NotificationCenter.default.addObserver(
           self,
@@ -241,31 +244,6 @@ extension PaymentPlusViewController {
         print("구독 상품 구매 완료")
         // 서버와 통신 등의 작업을 수행합니다.
     }
-    
-//    @objc private func handlePurchaseNoti(_ notification: Notification) {
-//        guard let productID = notification.object as? String else { return }
-//        verifyPurchase(productID: productID)
-//    }
-//
-//    private func verifyPurchase(productID: String) {
-//        // 서버 통신 함수 추가
-//
-//        let productID = productID
-//        self.hideLoadingIndicator()
-//        switch productID {
-//        case MyProducts.yelloPlusProductID:
-//            showPaymentConfirmView(state: .yelloPlus)
-//        case MyProducts.nameKeyOneProductID:
-//            showPaymentConfirmView(state: .nameKeyOne)
-//        case MyProducts.nameKeyTwoProductID:
-//            showPaymentConfirmView(state: .nameKeyTwo)
-//        case MyProducts.nameKeyFiveProductID:
-//            showPaymentConfirmView(state: .nameKeyFive)
-//        default:
-//            print("여기는 들어옵니다")
-//            return
-//        }
-//    }
     
     // 원하는 순서대로 제품을 정렬하는 함수입니다.
     private func sortProducts(_ products: [SKProduct]) -> [SKProduct] {

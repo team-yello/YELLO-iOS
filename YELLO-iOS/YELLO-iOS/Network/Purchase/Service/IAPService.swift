@@ -143,6 +143,16 @@ extension IAPService: SKPaymentTransactionObserver {
           print("productID is nil")
           return
       }
+        
+        let transactionID = transaction.transactionIdentifier ?? ""
+        print("Transaction ID: \(transactionID)")
+//        
+//        if isProductPurchased(id) {
+//            NotificationCenter.default.post(name: Notification.Name("HideLoadingIndicator"), object: nil)
+//
+//            SKPaymentQueue.default().finishTransaction(transaction)
+//            return
+//        }
 
       self.purchasedProductIDs.insert(id)
       UserDefaults.standard.set(true, forKey: id)
