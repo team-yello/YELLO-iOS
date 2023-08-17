@@ -203,9 +203,6 @@ extension PaymentPlusViewController {
         
         guard let transactionID = notification.userInfo?["transactionID"] as? String else { return }
         
-//        // 소모품 구매일 경우 transactionID를 가져옴
-//        let transactionID = notification.userInfo?["transactionID"] as? String ?? ""
-        
         // 상품 구매
         if productID == MyProducts.nameKeyOneProductID ||
             productID == MyProducts.nameKeyTwoProductID ||
@@ -213,14 +210,12 @@ extension PaymentPlusViewController {
             print(transactionID)
             verifyConsumablePurchase(transactionID: transactionID, productID: productID)
             print("채은23")
-            
         }
         
         // 구독 상품 구매
         if productID == MyProducts.yelloPlusProductID {
             verifySubscriptionPurchase(transactionID: transactionID)
             print("채은24")
-            
         }
         print("여기")
     }
@@ -247,8 +242,11 @@ extension PaymentPlusViewController {
         NetworkService.shared.purchaseService.purchaseSubscibe(requestDTO: requestDTO) { result in
             switch result {
             case .success(let data):
-                guard let data = data.data else { return }
-                self.showPaymentConfirmView(state: .yelloPlus)
+                if data.status == 200 {
+                    self.showPaymentConfirmView(state: .yelloPlus)
+                } else {
+                    print("존재하지 않는 거래입니다.")
+                }
             default:
                 print("network failure")
                 return
@@ -261,24 +259,27 @@ extension PaymentPlusViewController {
         NetworkService.shared.purchaseService.purchaseTicket(requestDTO: requestDTO) { result in
             switch result {
             case .success(let data):
-                guard let data = data.data else { return }
-                
-                switch productID {
-                case MyProducts.nameKeyOneProductID:
-                    self.showPaymentConfirmView(state: .nameKeyOne)
-                    print("채은25")
-                    
-                case MyProducts.nameKeyTwoProductID:
-                    self.showPaymentConfirmView(state: .nameKeyTwo)
-                    print("채은26")
-                    
-                case MyProducts.nameKeyFiveProductID:
-                    self.showPaymentConfirmView(state: .nameKeyFive)
-                    print("채은27")
-                    
-                default:
-                    print("채은28")
-                    return
+                print(productID)
+                if data.status == 200 {
+                    switch productID {
+                    case MyProducts.nameKeyOneProductID:
+                        self.showPaymentConfirmView(state: .nameKeyOne)
+                        print("채은25")
+                        
+                    case MyProducts.nameKeyTwoProductID:
+                        self.showPaymentConfirmView(state: .nameKeyTwo)
+                        print("채은26")
+                        
+                    case MyProducts.nameKeyFiveProductID:
+                        self.showPaymentConfirmView(state: .nameKeyFive)
+                        print("채은27")
+                        
+                    default:
+                        print("채은28")
+                        return
+                    }
+                } else {
+                    print("존재하지 않는 거래입니다.")
                 }
             default:
                 print("network failure")
