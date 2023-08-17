@@ -34,7 +34,7 @@ final class WithdrawalCheckView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalCheck.title, lineHeight: 28.adjustedHeight)
+            $0.text = StringLiterals.Profile.WithdrawalCheck.title
             $0.textColor = .white
             $0.font = .uiHeadline00
         }

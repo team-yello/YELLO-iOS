@@ -66,7 +66,7 @@ final class WithdrawalView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.title, lineHeight: 28.adjustedHeight)
+            $0.text = StringLiterals.Profile.Withdrawal.title
             $0.font = .uiHeadline00
             $0.textColor = .yelloMain500
         }
