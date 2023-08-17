@@ -182,7 +182,9 @@ extension MyYelloListView: UITableViewDataSource {
             return 77.adjustedHeight
         }
         
-        if MyYelloListView.myYelloModelDummy[indexPath.row].nameHint != -1 {
+        let nameHintIndex = MyYelloListView.myYelloModelDummy[indexPath.row].nameHint
+        
+        if nameHintIndex == 0 || nameHintIndex == 1 || (nameHintIndex == -3 && MyYelloListView.myYelloModelDummy[indexPath.row].isRead == true) {
             return 98.adjustedHeight
         } else {
             return 74.adjustedHeight
