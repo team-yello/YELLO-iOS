@@ -110,6 +110,7 @@ final class AroundView: BaseView {
     // MARK: Custom Function
     /// 친구가 없을 때 초대 뷰를 띄우는 로직
     func updateView() {
+        aroundEmptyView.viewControllerName = "around"
         if self.aroundCount == 0 {
             self.aroundEmptyView.isHidden = false
         } else {

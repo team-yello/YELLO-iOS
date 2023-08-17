@@ -7,11 +7,14 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 import KakaoSDKShare
 
 final class InvitingView: BaseView {
+    
+    var rootViewController = ""
     
     let contentsView = UIView()
 
@@ -179,7 +182,7 @@ extension InvitingView {
         guard let filteredString = self.recommenderID.text else { return }
         let recommenderID = String(filteredString.dropFirst())
         UIPasteboard.general.string = recommenderID
-        
+        updateEvent()
         // 카카오톡 설치여부 확인
         if ShareApi.isKakaoTalkSharingAvailable() {
             // 카카오톡으로 카카오톡 공유 가능
@@ -210,7 +213,7 @@ extension InvitingView {
         let recommenderID = "추천인코드: " + filteredID + "\n\n우리 같이 YELL:O 해요!\nAndroid: https://play.google.com/store/apps/details?id=com.el.yello&hl=ko&gl=KR\niOS: https://apps.apple.com/app/id6451451050"
         UIPasteboard.general.string = recommenderID
         print(UIPasteboard.general.string ?? "")
-        
+        updateEvent()
         self.showToast(message: StringLiterals.Inviting.toastMessage)
     }
     
@@ -232,6 +235,34 @@ extension InvitingView {
                 return
             }
         }
+    }
+    
+    func updateEvent() {
+        var keyValue = ""
+        
+        switch rootViewController {
+        case "KakaoFriendViewController":
+            keyValue = "recommend_kakao_nofriend"
+        case "kakao":
+            keyValue = "recommend_kakao_yesfriend"
+        case "SchoolFriendViewController":
+            keyValue = "recommend_school_nofriend"
+        case "school":
+            keyValue = "recommend_school_yesfriend"
+        case "AroundViewController":
+            keyValue = "timeline_0friend"
+        case "VotingLockedViewController":
+            keyValue = "vote_4down"
+        case "VotingTimerViewController":
+            keyValue = "timeline_0friend"
+        default:
+            return
+        }
+        
+        print("✅✅키값은 이거야!!\(keyValue)")
+        
+        Amplitude.instance().logEvent("click_invite_link", withEventProperties: ["invite_view":keyValue])
+        
     }
 
 }
