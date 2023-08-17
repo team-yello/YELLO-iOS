@@ -100,6 +100,7 @@ extension MyYelloViewController: HandleUnlockButton {
             view.showToast(message: StringLiterals.MyYello.List.toastMessage)
         } else {
             let paymentPlusViewController = PaymentPlusViewController()
+            Amplitude.instance().logEvent("click_go_shop", withEventProperties: ["shop_button":"cta_main"])
             navigationController?.pushViewController(paymentPlusViewController, animated: true)
         }
     }

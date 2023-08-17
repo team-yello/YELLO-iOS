@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -133,6 +134,10 @@ extension MyYelloListView: UITableViewDelegate {
         if offsetY > contentHeight - visibleHeight {
             self.myYello()
         }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        Amplitude.instance().logEvent("scroll_all_messages")
     }
 }
 

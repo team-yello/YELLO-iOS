@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// Amplitude 설정
         Amplitude.instance().defaultTracking.sessions = true
+        Amplitude.instance().defaultTracking.screenViews = true
         Amplitude.instance().defaultTracking = AMPDefaultTrackingOptions.initWithAllEnabled()
         Amplitude.instance().initializeApiKey(Config.amplitude)
         

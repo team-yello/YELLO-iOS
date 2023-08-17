@@ -22,33 +22,33 @@ final class MyYelloDetailViewController: BaseViewController {
     // MARK: Constants
     let myYelloDetailView = MyYelloDetailView()
     var colorIndex: Int = 1
-
+    
     var myYelloBackgroundColorStringDummy: [MyYelloBackgroundColorStringDummy] =
     [MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.one,
                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.one),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.two,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.two),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.two),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.three,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.three),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.three),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.four,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.four),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.four),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.five,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.five),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.five),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.six,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.six),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.six),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.seven,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.seven),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.seven),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.eight,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.eight),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.eight),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.nine,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.nine),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.nine),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.ten,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.ten),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.ten),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.eleven,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.eleven),
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.eleven),
      MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.tweleve,
-                                        backgroundColorBottom: BackGroundColor.BackgroundColorBottom.tweleve)]
-
+                                       backgroundColorBottom: BackGroundColor.BackgroundColorBottom.tweleve)]
+    
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -60,10 +60,11 @@ final class MyYelloDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Amplitude.instance().logEvent("view_open_message")
+        myYelloDetailView.openedView()
         tabBarController?.tabBar.isHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(popViewController(_:)), name: NSNotification.Name("popView"), object: nil)
-
+        
     }
     
     // MARK: Layout Helpers
@@ -102,6 +103,16 @@ extension MyYelloDetailViewController {
             myYelloDetailView.showUseTicketAlert()
         } else {
             let paymentPlusViewController = PaymentPlusViewController()
+            if myYelloDetailView.isKeywordUsed && !(myYelloDetailView.isPlus) && !(myYelloDetailView.isSenderUsed) {
+                Amplitude.instance().logEvent("click_go_shop", withEventProperties: ["shop_button": "cta_keyword_nosub"])
+            } else if myYelloDetailView.isKeywordUsed && myYelloDetailView.isPlus && !(myYelloDetailView.isSenderUsed) {
+                Amplitude.instance().logEvent("click_go_shop", withEventProperties: ["shop_button": "cta_keyword_sub"])
+            } else if myYelloDetailView.isSenderUsed {
+                Amplitude.instance().logEvent("click_go_shop", withEventProperties: ["shop_button": "cta_firstletter"])
+            } else if !myYelloDetailView.isKeywordUsed && !myYelloDetailView.isSenderUsed {
+                Amplitude.instance().logEvent("click_go_shop", withEventProperties: ["shop_button": "cta_nothing"])
+            }
+            
             navigationController?.pushViewController(paymentPlusViewController, animated: true)
         }
     }
@@ -162,7 +173,7 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
                 
                 self.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
-
+                
                 if data.nameHint == 0 {
                     self.myYelloDetailView.isSenderUsed = true
                     if let initial = self.getFirstInitial(data.senderName as NSString, index: 0) {
