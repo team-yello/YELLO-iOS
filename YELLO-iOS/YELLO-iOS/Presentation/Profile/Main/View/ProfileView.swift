@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -298,6 +299,7 @@ extension ProfileView: UITableViewDataSource {
             return
         } else {
             print("Click Cell Number:" + String(indexPath.row))
+            Amplitude.instance().logEvent("click_profile_friend")
             self.presentModal(index: indexPath.row)
         }
     }

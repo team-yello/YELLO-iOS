@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import Kingfisher
 import SnapKit
 import Then
@@ -260,6 +261,7 @@ final class FriendProfileView: BaseView {
                 guard let data = data.data else { return }
                 dump(data)
                 print("통신 성공")
+                Amplitude.instance().logEvent("complete_profile_delete_friend")
             default:
                 print("network fail")
                 return

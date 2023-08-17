@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -27,6 +28,7 @@ final class ProfileViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Amplitude.instance().logEvent("view_profile")
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -40,6 +42,7 @@ final class ProfileViewController: BaseViewController {
         friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         profileView.handleShopButton = self
+        profileView.myFriendTableView.delegate = self
     }
     
     override func setLayout() {
@@ -65,6 +68,7 @@ final class ProfileViewController: BaseViewController {
 extension ProfileViewController: NavigationBarViewDelegate {
     func settingButtonTapped() {
         let profileSettingViewController = ProfileSettingViewController()
+        Amplitude.instance().logEvent("click_profile_manage")
         navigationController?.pushViewController(profileSettingViewController, animated: true)
     }
 }
@@ -117,5 +121,12 @@ extension ProfileViewController: HandleShopButton {
     func shopButtonTapped() {
         let paymentPlusViewController = PaymentPlusViewController()
         navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+}
+
+// MARK: scrollViewDelegate
+extension ProfileViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        Amplitude.instance().logEvent("scroll_profile_friends")
     }
 }

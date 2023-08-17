@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -290,6 +291,7 @@ extension MyProfileView {
     @objc private func addGroupButtonTapped() {
         let url = URL(string: "https://bit.ly/44xDDqC")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        Amplitude.instance().logEvent("click_profile_group")
     }
     
     // MARK: - Network
