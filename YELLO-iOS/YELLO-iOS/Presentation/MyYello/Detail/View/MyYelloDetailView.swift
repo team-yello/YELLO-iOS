@@ -33,7 +33,7 @@ final class MyYelloDetailView: BaseView {
     
     lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60.adjusted, height: 60.adjusted))
     lazy var keywordButton = HintButton(state: .keyword)
-    lazy var senderButton = MyYelloButton(state: .yesTicket)
+    lazy var senderButton = MyYelloButton(state: .noTicket)
     
     let logoImageView = UIImageView()
     let groupImageView = UIImageView()
@@ -41,7 +41,7 @@ final class MyYelloDetailView: BaseView {
     
     // MARK: Property
     weak var handleInstagramButtonDelegate: HandleInstagramButtonDelegate?
-    var haveTicket: Bool = true {
+    var haveTicket: Bool = false {
         didSet {
             if haveTicket {
                 senderButton.setButtonState(state: .yesTicket)
@@ -62,7 +62,7 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
-    var isPlus: Bool = true
+    var isPlus: Bool = false
     var isRead: Bool = false {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {

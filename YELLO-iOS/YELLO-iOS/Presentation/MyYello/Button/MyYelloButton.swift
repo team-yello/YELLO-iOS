@@ -21,13 +21,13 @@ final class MyYelloButton: UIButton {
     private enum Color {
         static var gradientColors = [
             UIColor.white,
-            UIColor.white.withAlphaComponent(0.9),
+//            UIColor.white.withAlphaComponent(0.9),
             UIColor.white.withAlphaComponent(0.6),
             UIColor.white.withAlphaComponent(0.3),
             UIColor.white.withAlphaComponent(0.0),
             UIColor.white.withAlphaComponent(0.3),
             UIColor.white.withAlphaComponent(0.6),
-            UIColor.white.withAlphaComponent(0.9),
+//            UIColor.white.withAlphaComponent(0.9),
             UIColor.white
         ]
     }
@@ -38,7 +38,7 @@ final class MyYelloButton: UIButton {
             .map { $0 / Double(Color.gradientColors.count) }
             .map(NSNumber.init)
         static let cornerRadius = 31.adjusted
-        static let cornerWidth = 2.0
+        static let cornerWidth = 3.0
     }
     
     private lazy var backgroundView = UIView()
@@ -92,11 +92,12 @@ final class MyYelloButton: UIButton {
     }
     
     private func setStyle() {
-        self.frame = CGRect(x: 0, y: 0, width: 400, height: 62.adjusted)
+        self.frame = CGRect(x: 0, y: 0, width: 343.adjusted, height: 62.adjusted)
         self.makeCornerRound(radius: Constants.cornerRadius)
         self.layer.cornerCurve = .continuous
 
         backgroundView.do {
+//            $0.frame = CGRect(x: 0, y: 0, width: 343.adjusted, height: 62.adjusted)
             $0.backgroundColor = .clear
             $0.makeCornerRound(radius: Constants.cornerRadius)
             $0.layer.cornerCurve = .continuous
@@ -111,29 +112,29 @@ final class MyYelloButton: UIButton {
         }
         
         lockImageView.do {
-            $0.image = ImageLiterals.MyYello.icLockWhite
+            $0.image = ImageLiterals.MyYello.icLock
         }
         
         buttonTitleLabel.do {
             $0.text = StringLiterals.MyYello.List.unlockButton
-            $0.textColor = .white
+            $0.textColor = .black
             $0.font = .uiSubtitle03
         }
         
         buttonTicketTitleLabel.do {
             $0.text = StringLiterals.MyYello.List.keyButton
-            $0.textColor = .black
+            $0.textColor = .white
             $0.font = .uiSubtitle03
         }
         
         keyImageView.do {
-            $0.image = ImageLiterals.MyYello.icKey
+            $0.image = ImageLiterals.MyYello.icKeyWhite
         }
         
         keyCountLabel.do {
-            $0.text = "2"
+            $0.text = "0"
             $0.font = .uiSubtitle02
-            $0.textColor = .purpleSub500
+            $0.textColor = .white
         }
         
         keyStackView.do {
@@ -166,9 +167,10 @@ final class MyYelloButton: UIButton {
                          findLabel)
         
         backgroundView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalTo(62.adjusted)
+            $0.edges.equalToSuperview()
+//            $0.centerX.equalToSuperview().offset(-1.adjustedHeight)
+//            $0.width.equalToSuperview()
+//            $0.height.equalTo(62.adjusted)
         }
         
         titleStackView.snp.makeConstraints {
@@ -187,20 +189,20 @@ final class MyYelloButton: UIButton {
     // MARK: Custom Function
     func setButtonState(state: TicketStatus) {
         switch state {
-        case .yesTicket:
+        case .noTicket:
             self.removeGradientBackground()
             self.backgroundColor = .yelloMain500
-            self.backgroundView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-            titleStackView.isHidden = true
-            backgroundView.isHidden = true
-            titleTicketStackView.isHidden = false
-            buttonTitleLabel.textColor = .black
-            
-        case .noTicket:
-            self.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
             titleStackView.isHidden = false
             backgroundView.isHidden = false
             titleTicketStackView.isHidden = true
+            buttonTitleLabel.textColor = .black
+            
+        case .yesTicket:
+            self.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            titleStackView.isHidden = true
+            backgroundView.isHidden = true
+            self.backgroundView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+            titleTicketStackView.isHidden = false
             buttonTitleLabel.textColor = .white
             
         case .useTicket:
@@ -222,7 +224,7 @@ final class MyYelloButton: UIButton {
         let shape = CAShapeLayer()
         shape.path = UIBezierPath(
             roundedRect: self.backgroundView.bounds.insetBy(dx: Constants.cornerWidth, dy: Constants.cornerWidth),
-            cornerRadius: self.backgroundView.layer.cornerRadius
+            cornerRadius: Constants.cornerRadius
         ).cgPath
         shape.lineWidth = Constants.cornerWidth
         shape.cornerRadius = Constants.cornerRadius
