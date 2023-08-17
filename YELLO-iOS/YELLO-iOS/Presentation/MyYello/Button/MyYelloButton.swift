@@ -111,29 +111,29 @@ final class MyYelloButton: UIButton {
         }
         
         lockImageView.do {
-            $0.image = ImageLiterals.MyYello.icLockWhite
+            $0.image = ImageLiterals.MyYello.icLock
         }
         
         buttonTitleLabel.do {
             $0.text = StringLiterals.MyYello.List.unlockButton
-            $0.textColor = .white
+            $0.textColor = .black
             $0.font = .uiSubtitle03
         }
         
         buttonTicketTitleLabel.do {
             $0.text = StringLiterals.MyYello.List.keyButton
-            $0.textColor = .black
+            $0.textColor = .white
             $0.font = .uiSubtitle03
         }
         
         keyImageView.do {
-            $0.image = ImageLiterals.MyYello.icKey
+            $0.image = ImageLiterals.MyYello.icKeyWhite
         }
         
         keyCountLabel.do {
             $0.text = "2"
             $0.font = .uiSubtitle02
-            $0.textColor = .purpleSub500
+            $0.textColor = .white
         }
         
         keyStackView.do {
@@ -187,20 +187,20 @@ final class MyYelloButton: UIButton {
     // MARK: Custom Function
     func setButtonState(state: TicketStatus) {
         switch state {
-        case .yesTicket:
+        case .noTicket:
             self.removeGradientBackground()
             self.backgroundColor = .yelloMain500
-            self.backgroundView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-            titleStackView.isHidden = true
-            backgroundView.isHidden = true
-            titleTicketStackView.isHidden = false
-            buttonTitleLabel.textColor = .black
-            
-        case .noTicket:
-            self.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
             titleStackView.isHidden = false
             backgroundView.isHidden = false
             titleTicketStackView.isHidden = true
+            buttonTitleLabel.textColor = .black
+            
+        case .yesTicket:
+            self.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            titleStackView.isHidden = true
+            backgroundView.isHidden = true
+            self.backgroundView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+            titleTicketStackView.isHidden = false
             buttonTitleLabel.textColor = .white
             
         case .useTicket:
