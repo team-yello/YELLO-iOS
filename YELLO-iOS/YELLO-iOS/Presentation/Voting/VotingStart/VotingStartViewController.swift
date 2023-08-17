@@ -16,6 +16,8 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     var myPoint = 0
+    let multiplyByTwoText = UILabel()
+    let multiplyByTwoImageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()

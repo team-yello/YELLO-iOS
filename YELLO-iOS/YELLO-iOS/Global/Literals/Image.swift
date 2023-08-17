@@ -113,7 +113,7 @@ enum ImageLiterals {
         static var imgProgress8: UIImage { .load(named: "imgProgress8")}
         static var imgPointAccumulate: UIImage { .load(named: "imgPointAccumulate")}
         static var imgVotingLocked: UIImage { .load(named: "imgVotingLocked")}
-
+        static var imgMultiplyByTwo: UIImage { .load(named: "imgMultiplyByTwo")}
     }
     
     enum Around {
