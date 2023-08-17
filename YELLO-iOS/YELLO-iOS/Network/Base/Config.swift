@@ -51,7 +51,7 @@ extension Config {
     
     static let amplitude: String = {
         guard let key = Config.infoDictionary[Keys.Plist.amplitudeKey] as? String else {
-            fatalError("kakao is not set in plist for this configuration.")
+            fatalError("amplitude is not set in plist for this configuration.")
         }
         return key
     }()

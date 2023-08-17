@@ -16,8 +16,8 @@ class ProgressBarManager {
     
     private var stepDictionary: [UIViewController: Double] = [:]
         
-        func updateProgress(for viewController: UIViewController, step: Double) {
-            stepDictionary[viewController] = step
+        func updateProgress(for viewController: UIViewController, step: Int) {
+            stepDictionary[viewController] = Double(step)
             updateProgressBar()
         }
         
