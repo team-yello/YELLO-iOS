@@ -259,6 +259,16 @@ extension MyYelloDetailViewController: HandleBackButtonDelegate {
 // MARK: HandleInstagramButtonDelegate
 extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
     @objc func instagramButtonTapped() {
+        
+        if myYelloDetailView.isKeywordUsed && !(myYelloDetailView.isPlus) {
+            Amplitude.instance().logEvent("click_instagram", withEventProperties: ["insta_view": "keyword"])
+        } else if myYelloDetailView.isSenderUsed {
+            Amplitude.instance().logEvent("click_instagram", withEventProperties: ["insta_view": "firstletter"])
+        } else if !myYelloDetailView.isKeywordUsed && !myYelloDetailView.isSenderUsed {
+            Amplitude.instance().logEvent("click_instagram", withEventProperties: ["insta_view": "message"])
+        }
+        
+        
         if let storyShareURL = URL(string: "instagram-stories://share?source_application=" + Config.metaAppID) {
             
             if UIApplication.shared.canOpenURL(storyShareURL) {
