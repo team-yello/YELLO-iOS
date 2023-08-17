@@ -42,7 +42,6 @@ final class ProfileViewController: BaseViewController {
         friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         profileView.handleShopButton = self
-        profileView.myFriendTableView.delegate = self
     }
     
     override func setLayout() {
@@ -121,12 +120,5 @@ extension ProfileViewController: HandleShopButton {
     func shopButtonTapped() {
         let paymentPlusViewController = PaymentPlusViewController()
         navigationController?.pushViewController(paymentPlusViewController, animated: true)
-    }
-}
-
-// MARK: scrollViewDelegate
-extension ProfileViewController: UITableViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        Amplitude.instance().logEvent("scroll_profile_friends")
     }
 }

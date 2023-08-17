@@ -214,7 +214,6 @@ extension ProfileView: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         isButtonHidden = scrollView.contentOffset.y <= 0
         updateButtonVisibility()
-        
         let tableView = self.myFriendTableView
         let offsetY = tableView.contentOffset.y
         let contentHeight = tableView.contentSize.height
@@ -222,6 +221,10 @@ extension ProfileView: UITableViewDelegate {
         if offsetY > contentHeight - visibleHeight {
             self.profileFriend()
         }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        Amplitude.instance().logEvent("scroll_profile_friends")
     }
 }
 
