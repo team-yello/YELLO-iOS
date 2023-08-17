@@ -37,6 +37,10 @@ final class PaymentPlusViewController: BaseViewController {
     
     // MARK: - Function
     // MARK: LifeCycle
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
@@ -197,66 +201,54 @@ extension PaymentPlusViewController {
     @objc private func handlePurchaseNoti(_ notification: Notification) {
         guard let productID = notification.object as? String else { return }
         
+        guard let transactionID = notification.userInfo?["transactionID"] as? String else { return }
+        
+//        // 소모품 구매일 경우 transactionID를 가져옴
+//        let transactionID = notification.userInfo?["transactionID"] as? String ?? ""
+        
         // 상품 구매
         if productID == MyProducts.nameKeyOneProductID ||
             productID == MyProducts.nameKeyTwoProductID ||
             productID == MyProducts.nameKeyFiveProductID {
-            verifyConsumablePurchase(productID: productID)
+            print(transactionID)
+            verifyConsumablePurchase(transactionID: transactionID, productID: productID)
             print("채은23")
             
         }
         
         // 구독 상품 구매
         if productID == MyProducts.yelloPlusProductID {
-            verifySubscriptionPurchase()
+            verifySubscriptionPurchase(transactionID: transactionID)
             print("채은24")
             
         }
         print("여기")
     }
     
-    private func verifyConsumablePurchase(productID: String) {
-        // 여기에 상품 구매에 대한 처리를 추가합니다.
+    private func verifyConsumablePurchase(transactionID: String, productID: String) {
         let productID = productID
+        let transactionID = transactionID
+        self.purchaseTicket(transactionID: transactionID, productID: productID)
         self.hideLoadingIndicator()
-        switch productID {
-        case MyProducts.nameKeyOneProductID:
-            showPaymentConfirmView(state: .nameKeyOne)
-            print("채은25")
-            
-        case MyProducts.nameKeyTwoProductID:
-            showPaymentConfirmView(state: .nameKeyTwo)
-            print("채은26")
-            
-        case MyProducts.nameKeyFiveProductID:
-            showPaymentConfirmView(state: .nameKeyFive)
-            print("채은27")
-            
-        default:
-            return
-            print("채은28")
-            
-        }
+
         print("상품 구매 완료: \(productID)")
-        // 서버와 통신 등의 작업을 수행합니다.
+        print("transactionID: \(transactionID)")
     }
     
-    private func verifySubscriptionPurchase() {
-        // 여기에 구독 상품 구매에 대한 처리를 추가합니다.
+    private func verifySubscriptionPurchase(transactionID: String) {
+        self.purchaseSubscibe(transactionID: transactionID)
         self.hideLoadingIndicator()
         print("채은29")
-        
-        showPaymentConfirmView(state: .yelloPlus)
         print("구독 상품 구매 완료")
-        // 서버와 통신 등의 작업을 수행합니다.
     }
     
-    func purchaseSubscibe() {
-        let requestDTO = PurchaseRequestDTO(transactionId: "", productId: MyProducts.yelloPlusProductID)
+    func purchaseSubscibe(transactionID: String) {
+        let requestDTO = PurchaseRequestDTO(transactionId: transactionID, productId: MyProducts.yelloPlusProductID)
         NetworkService.shared.purchaseService.purchaseSubscibe(requestDTO: requestDTO) { result in
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
+                self.showPaymentConfirmView(state: .yelloPlus)
             default:
                 print("network failure")
                 return
@@ -264,12 +256,30 @@ extension PaymentPlusViewController {
         }
     }
     
-    func purchaseTicket() {
-        let requestDTO = PurchaseRequestDTO(transactionId: "", productId: MyProducts.yelloPlusProductID)
+    func purchaseTicket(transactionID: String, productID: String) {
+        let requestDTO = PurchaseRequestDTO(transactionId: transactionID, productId: productID)
         NetworkService.shared.purchaseService.purchaseTicket(requestDTO: requestDTO) { result in
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
+                
+                switch productID {
+                case MyProducts.nameKeyOneProductID:
+                    self.showPaymentConfirmView(state: .nameKeyOne)
+                    print("채은25")
+                    
+                case MyProducts.nameKeyTwoProductID:
+                    self.showPaymentConfirmView(state: .nameKeyTwo)
+                    print("채은26")
+                    
+                case MyProducts.nameKeyFiveProductID:
+                    self.showPaymentConfirmView(state: .nameKeyFive)
+                    print("채은27")
+                    
+                default:
+                    print("채은28")
+                    return
+                }
             default:
                 print("network failure")
                 return

@@ -152,7 +152,8 @@ extension IAPService: SKPaymentTransactionObserver {
         print("채은14")
         NotificationCenter.default.post(
             name: .iapServicePurchaseNotification,
-            object: id
+            object: id,
+            userInfo: ["transactionID": transactionID] // transactionID를 userInfo에 추가
         )
         print("Notification delivered for product ID: \(id)")
     }
