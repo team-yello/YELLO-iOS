@@ -132,7 +132,7 @@ final class MyYelloButton: UIButton {
         }
         
         keyCountLabel.do {
-            $0.text = "2"
+            $0.text = "0"
             $0.font = .uiSubtitle02
             $0.textColor = .white
         }
