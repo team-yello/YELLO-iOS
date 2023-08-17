@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import Lottie
 import SnapKit
 import Then
@@ -25,10 +26,9 @@ final class VotingStartViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        Amplitude.instance().setUserProperties(["user_point" : myPoint])
         setAnimationView()
         getVotingAvailable()
-        
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         tabBarController?.tabBar.isHidden = false

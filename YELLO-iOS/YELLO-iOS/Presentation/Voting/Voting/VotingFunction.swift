@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -106,6 +107,9 @@ extension VotingViewController {
         // 투표 끝나면 포인트뷰컨으로 push
         if VotingViewController.pushCount > 6 {
             VotingViewController.pushCount = 0
+            User.shared.countVoting += votingAnswer.count
+            User.shared.countVotingCycle += 1
+            Amplitude.instance().setUserProperties(["user_message_sent": User.shared.countVoting, "": User.shared.countVotingCycle])
             let viewController = VotingPointViewController()
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint
@@ -304,6 +308,8 @@ extension VotingViewController {
             originView.skipButton.isEnabled = true
             view.showToast(message: StringLiterals.Voting.VoteToast.skip)
         } else {
+            User.shared.countVotingSkip += 1
+            Amplitude.instance().setUserProperties(["user_vote_skip" : User.shared.countVotingSkip])
             setNextViewController()
         }
     }

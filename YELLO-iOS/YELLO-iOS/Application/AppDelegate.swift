@@ -28,7 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Amplitude.instance().defaultTracking.sessions = true
         Amplitude.instance().defaultTracking = AMPDefaultTrackingOptions.initWithAllEnabled()
         Amplitude.instance().initializeApiKey(Config.amplitude)
-
+        
+        /// 접속 시간 전송
+        let currentDate = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let formattedDate = dateFormatter.string(from: currentDate)
+        
+        Amplitude.instance().setUserProperties(["user_last_use_date":formattedDate])
         return true
     }
     
