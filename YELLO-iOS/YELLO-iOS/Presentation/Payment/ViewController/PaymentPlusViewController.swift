@@ -8,8 +8,8 @@
 import UIKit
 
 import SnapKit
-import Then
 import StoreKit
+import Then
 
 final class PaymentPlusViewController: BaseViewController {
     
@@ -126,9 +126,17 @@ extension PaymentPlusViewController {
     @objc private func paymentYelloPlusButtonTapped() {
         showLoadingIndicator()
         print("채은17")
-        
-        MyProducts.iapService.buyProduct(products[0])
-        print("옐로플러스 구독 결제")
+//        if !MyProducts.iapService.isProductPurchased(MyProducts.yelloPlusProductID) {
+//             이미 구독 중이 아니라면 구매 진행
+        if MyProducts.iapService.isProductPurchased(MyProducts.yelloPlusProductID) {
+            print(MyProducts.iapService.isProductPurchased(MyProducts.yelloPlusProductID))
+            MyProducts.iapService.buyProduct(products[0])
+            }
+//            print("옐로플러스 구독 결제")
+//        } else {
+//            self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
+//            hideLoadingIndicator()
+//        }
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
@@ -244,8 +252,12 @@ extension PaymentPlusViewController {
             case .success(let data):
                 if data.status == 200 {
                     self.showPaymentConfirmView(state: .yelloPlus)
+                } else if (500...599).contains(data.status) {
+                    self.showAlertView(title: "서버 내부 오류 발생", message: "서버 내부에서 검증 오류가 발생했습니다.\n고객 센터로 환불 문의 해주세요.")
+                    // 서버 통신 실패, 환불 로직 추가
+                    print("서버 내부 오류 발생")
                 } else {
-                    print("존재하지 않는 거래입니다.")
+                    self.showAlertView(title: "결제 실패", message: "결제를 실패했습니다. 다시 시도해주세요.")
                 }
             default:
                 print("network failure")
@@ -278,8 +290,12 @@ extension PaymentPlusViewController {
                         print("채은28")
                         return
                     }
+                } else if (500...599).contains(data.status) {
+                    self.showAlertView(title: "서버 내부 오류 발생", message: "서버 내부에서 검증 오류가 발생했습니다.\n고객 센터로 환불 문의 해주세요.")
+                    // 서버 통신 실패, 환불 로직 추가
+                    print("서버 내부 오류 발생")
                 } else {
-                    print("존재하지 않는 거래입니다.")
+                    self.showAlertView(title: "결제 실패", message: "결제를 실패했습니다. 다시 시도해주세요ㅜ.")
                 }
             default:
                 print("network failure")
@@ -326,5 +342,20 @@ extension PaymentPlusViewController {
         loadingIndicator.stopAnimating()
         loadingIndicator.removeFromSuperview()
         dimView.removeFromSuperview()
+    }
+    
+    
+    func showAlertView(title: String, message: String) {
+        // 1. alert view 만들기
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        // 2. alert action 만들기
+        let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+
+        // 3. alert에 action 붙이기
+        alert.addAction(action)
+
+        // 4. alert present하기
+        present(alert, animated: true, completion: nil)
     }
 }
