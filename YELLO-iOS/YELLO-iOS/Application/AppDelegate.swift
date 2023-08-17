@@ -53,15 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return false
     }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        let state = UIApplication.shared.applicationState
-        if state == .background {
-            UIApplication.shared.applicationIconBadgeNumber += 1
-        }
-        completionHandler(UIBackgroundFetchResult.newData)
-    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
