@@ -21,13 +21,13 @@ final class MyYelloButton: UIButton {
     private enum Color {
         static var gradientColors = [
             UIColor.white,
-            UIColor.white.withAlphaComponent(0.9),
+//            UIColor.white.withAlphaComponent(0.9),
             UIColor.white.withAlphaComponent(0.6),
             UIColor.white.withAlphaComponent(0.3),
             UIColor.white.withAlphaComponent(0.0),
             UIColor.white.withAlphaComponent(0.3),
             UIColor.white.withAlphaComponent(0.6),
-            UIColor.white.withAlphaComponent(0.9),
+//            UIColor.white.withAlphaComponent(0.9),
             UIColor.white
         ]
     }
@@ -38,7 +38,7 @@ final class MyYelloButton: UIButton {
             .map { $0 / Double(Color.gradientColors.count) }
             .map(NSNumber.init)
         static let cornerRadius = 31.adjusted
-        static let cornerWidth = 2.0
+        static let cornerWidth = 3.0
     }
     
     private lazy var backgroundView = UIView()
@@ -92,11 +92,12 @@ final class MyYelloButton: UIButton {
     }
     
     private func setStyle() {
-        self.frame = CGRect(x: 0, y: 0, width: 400, height: 62.adjusted)
+        self.frame = CGRect(x: 0, y: 0, width: 343.adjusted, height: 62.adjusted)
         self.makeCornerRound(radius: Constants.cornerRadius)
         self.layer.cornerCurve = .continuous
 
         backgroundView.do {
+//            $0.frame = CGRect(x: 0, y: 0, width: 343.adjusted, height: 62.adjusted)
             $0.backgroundColor = .clear
             $0.makeCornerRound(radius: Constants.cornerRadius)
             $0.layer.cornerCurve = .continuous
@@ -166,9 +167,10 @@ final class MyYelloButton: UIButton {
                          findLabel)
         
         backgroundView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalTo(62.adjusted)
+            $0.edges.equalToSuperview()
+//            $0.centerX.equalToSuperview().offset(-1.adjustedHeight)
+//            $0.width.equalToSuperview()
+//            $0.height.equalTo(62.adjusted)
         }
         
         titleStackView.snp.makeConstraints {
@@ -222,7 +224,7 @@ final class MyYelloButton: UIButton {
         let shape = CAShapeLayer()
         shape.path = UIBezierPath(
             roundedRect: self.backgroundView.bounds.insetBy(dx: Constants.cornerWidth, dy: Constants.cornerWidth),
-            cornerRadius: self.backgroundView.layer.cornerRadius
+            cornerRadius: Constants.cornerRadius
         ).cgPath
         shape.lineWidth = Constants.cornerWidth
         shape.cornerRadius = Constants.cornerRadius
