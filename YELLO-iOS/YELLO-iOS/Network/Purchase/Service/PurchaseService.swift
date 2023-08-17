@@ -9,22 +9,22 @@ import Foundation
 
 protocol PurchaseServiceProtocol {
 
-    func purchaseSubscibe(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void)
+    func purchaseSubscibe(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
     
-    func purchaseTicket(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void)
+    func purchaseTicket(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
     
 }
 
 final class PurchaseService: APIRequestLoader<PurchaseTarget>, PurchaseServiceProtocol {
-    func purchaseSubscibe(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void) {
+    func purchaseSubscibe(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
         
         fetchData(target: .purchaseSubscibe(requestDTO),
-                  responseData: BaseResponse<String>.self, completion: completion)
+                  responseData: BaseResponse<String?>.self, completion: completion)
     }
     
-    func purchaseTicket(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void) {
+    func purchaseTicket(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
         
         fetchData(target: .purchaseTicket(requestDTO),
-                  responseData: BaseResponse<String>.self, completion: completion)
+                  responseData: BaseResponse<String?>.self, completion: completion)
     }
 }
