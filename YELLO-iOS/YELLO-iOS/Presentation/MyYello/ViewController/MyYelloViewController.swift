@@ -37,6 +37,7 @@ final class MyYelloViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         unreadCount()
+        myYelloView.myYelloListView.scrollCount = 0
         Amplitude.instance().logEvent("view_all_messages")
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -100,6 +101,7 @@ extension MyYelloViewController: HandleUnlockButton {
             view.showToast(message: StringLiterals.MyYello.List.toastMessage)
         } else {
             let paymentPlusViewController = PaymentPlusViewController()
+            Amplitude.instance().logEvent("click_go_shop", withEventProperties: ["shop_button":"cta_main"])
             navigationController?.pushViewController(paymentPlusViewController, animated: true)
         }
     }

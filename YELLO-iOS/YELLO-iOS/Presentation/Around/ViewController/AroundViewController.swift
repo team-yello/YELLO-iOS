@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -26,9 +27,12 @@ final class AroundViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Amplitude.instance().logEvent("view_timeline")
+        aroundView.scrollCount = 0 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
     }
+    
 }
 
 // MARK: - extension

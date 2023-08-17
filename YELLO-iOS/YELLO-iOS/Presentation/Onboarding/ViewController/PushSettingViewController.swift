@@ -55,11 +55,14 @@ class PushSettingViewController: UIViewController {
         userNotiCenter.requestAuthorization(options: notiAuthOptions) { (success, error) in
             if success {
                 // 푸시 알림 권한 허용
-                Amplitude.instance().logEvent("click_onboarding_notification")
+                Amplitude.instance().logEvent("click_onboarding_notification",withEventProperties: ["user_pushnotification":"enabled"])
+            } else {
+                Amplitude.instance().setUserProperties(["user_pushnotification":"disable"])
             }
             if let error = error {
                 print(#function, error)
             }
+            
             
         }
     }

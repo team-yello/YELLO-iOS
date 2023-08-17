@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -89,6 +90,8 @@ final class MyYelloDetailView: BaseView {
                 detailKeywordView.keywordLabel.isHidden = false
                 detailKeywordView.questionLabel.isHidden = true
                 MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
+                print("view_open_keyword")
+                Amplitude.instance().logEvent("view_open_keyword")
             }
         }
     }
@@ -310,6 +313,8 @@ extension MyYelloDetailView {
         usePointView.frame = viewController.view.bounds
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
+        
+        Amplitude.instance().logEvent("click_open_keyword")
         viewController.view.addSubview(usePointView)
     }
     
@@ -321,6 +326,9 @@ extension MyYelloDetailView {
         usePointView.frame = viewController.view.bounds
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
+    
+        Amplitude.instance().logEvent("click_open_firstletter")
+        
         viewController.view.addSubview(usePointView)
         if self.isPlus {
             usePointView.titleLabel.text = "0" + StringLiterals.MyYello.Alert.senderPoint
@@ -382,8 +390,10 @@ extension MyYelloDetailView {
             if isKeywordUsed == true {
                 if currentPoint < 300 && isPlus == false {
                     showLackAlert()
+                    Amplitude.instance().logEvent("click_open_keyword")
                 } else {
                     showUseSenderPointAlert()
+                    Amplitude.instance().logEvent("click_open_keyword")
                 }
             } else {
                 if currentPoint < 100 {
@@ -391,6 +401,18 @@ extension MyYelloDetailView {
                 } else {
                     showUsePointAlert()
                 }
+            }
+        }
+    }
+    
+    func openedView() {
+        /// 키워드 / 초성이 확인된 뷰를 보았을 때
+        if isKeywordUsed {
+            Amplitude.instance().logEvent("view_open_keyword")
+            print("view_open_keyword")
+            if isSenderUsed {
+                Amplitude.instance().logEvent("view_open_firstletter")
+                print("view_open_firstletter")
             }
         }
     }
@@ -426,6 +448,7 @@ extension MyYelloDetailView {
                     self.initialName = initial
                     self.detailSenderView.senderLabel.text = initial
                     self.getHintView.hintLabel.text = initial
+                    
                 }
                 self.nameIndex = data.nameIndex
                 MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = data.nameIndex
@@ -465,6 +488,7 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
             myYelloDetailKeyword(voteId: voteIdNumber)
  
             self.currentPoint -= 100
+            Amplitude.instance().logEvent("click_modal_keyword_yes")
             self.isKeywordUsed.toggle()
         } else {
             showGetSenderHintAlert()
@@ -473,6 +497,7 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
             
             if !isPlus {
                 self.currentPoint -= 300
+                Amplitude.instance().logEvent("click_modal_firstletter_yes")
             } else {
                 self.myYelloDetailNavigationBarView.pointLabel.text = String(self.currentPoint)
                 self.getHintView.pointLabel.text = String(self.currentPoint)

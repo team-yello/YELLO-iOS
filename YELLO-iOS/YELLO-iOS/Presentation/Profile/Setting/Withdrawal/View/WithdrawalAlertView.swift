@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 import KakaoSDKUser
@@ -94,6 +95,7 @@ extension WithdrawalAlertView {
     }
     
     @objc func yesButtonClicked() {
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal4"])
         NetworkService.shared.profileService.userDelete { result in
             switch result {
             case .success(let data):
@@ -111,6 +113,7 @@ extension WithdrawalAlertView {
                     UserDefaults.standard.removeObject(forKey: "refreshToken")
                     UserDefaults.standard.removeObject(forKey: "isLoggined")
                     User.shared.isFirstUser = false
+                    Amplitude.instance().logEvent("complete_withdrawal")
                     let splashViewController = KakaoLoginViewController()
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                     sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: splashViewController)

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -50,6 +51,7 @@ final class RecommendingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Amplitude.instance().logEvent("click_recommend_navigation")
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -131,6 +133,7 @@ extension RecommendingViewController {
     
     @objc private func searchButtonTapped() {
         let searchViewController = FriendSearchViewController()
+    //    Amplitude.instance().logEvent("click_search_button")
         self.navigationController?.pushViewController(searchViewController, animated: true)
     }
 }

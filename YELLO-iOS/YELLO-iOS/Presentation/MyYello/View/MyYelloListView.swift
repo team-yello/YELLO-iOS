@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -25,6 +26,7 @@ final class MyYelloListView: BaseView {
     var indexNumber: Int = -1
     var isFinishPaging = false
     var pageCount = -1
+    var scrollCount = 0
         
     static var myYelloModelDummy: [Yello] = []
     
@@ -133,6 +135,13 @@ extension MyYelloListView: UITableViewDelegate {
         if offsetY > contentHeight - visibleHeight {
             self.myYello()
         }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollCount < 1 {
+            Amplitude.instance().logEvent("scroll_all_messages")
+        }
+        scrollCount += 1
     }
 }
 

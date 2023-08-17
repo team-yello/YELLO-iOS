@@ -62,7 +62,11 @@ class FriendsTableViewCell: UITableViewCell {
     func configureFriendCell(_ model: FriendAdd) {
         nameLabel.text = model.friendInfo.name
         schoolLabel.text = model.friendInfo.groupName
-        profileImageView.kfSetImage(url: model.friendInfo.profileImage)
+        if model.friendInfo.profileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            self.profileImageView.kfSetImage(url: model.friendInfo.profileImage)
+        } else {
+            self.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+        }
         self.isTapped = model.isAdded
         updateCheckButtonImage()
     }

@@ -7,12 +7,15 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
 final class InviteBannerView: BaseView {
     
     // MARK: - Variables
+    var rootViewName = ""
+    
     // MARK: Component
     private let inviteImageView = UIImageView()
     private let inviteLabel = UILabel()
@@ -88,7 +91,13 @@ final class InviteBannerView: BaseView {
         invitingView.profileUserYelloId()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        
+        if rootViewName == "kakao" {
+            Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": "recommend_kakao_yesfriend"])
+        } else if rootViewName == "school" {
+            Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": "recommend_school_yesfriend"])
+        }
+        invitingView.rootViewController = rootViewName
         viewController.view.addSubview(invitingView)
         
     }

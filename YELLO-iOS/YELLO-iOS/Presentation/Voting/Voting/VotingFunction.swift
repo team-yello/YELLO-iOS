@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -106,6 +107,9 @@ extension VotingViewController {
         // 투표 끝나면 포인트뷰컨으로 push
         if VotingViewController.pushCount > 6 {
             VotingViewController.pushCount = 0
+            User.shared.countVoting += votingAnswer.count
+            User.shared.countVotingCycle += 1
+            Amplitude.instance().setUserProperties(["user_message_sent": User.shared.countVoting, "": User.shared.countVotingCycle])
             let viewController = VotingPointViewController()
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint
@@ -292,6 +296,10 @@ extension VotingViewController {
         
         keywordButtonClick = true
         keywordButtonTouch = false
+        let identify = AMPIdentify()
+            .add("user_message_sent", value: NSNumber(value: 1))
+        guard let identify = identify else {return}
+        Amplitude.instance().identify(identify)
     }
     
     @objc
@@ -312,6 +320,10 @@ extension VotingViewController {
             originView.skipButton.isEnabled = true
             view.showToast(message: StringLiterals.Voting.VoteToast.skip)
         } else {
+            let identify = AMPIdentify()
+                .add("user_vote_skip", value: NSNumber(value: 1))
+            guard let identify = identify else {return}
+            Amplitude.instance().identify(identify)
             setNextViewController()
         }
     }

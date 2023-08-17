@@ -121,6 +121,22 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 setRefreshToken(refreshToken: data.refreshToken)
                 setUsername(username: data.yelloID)
                 Amplitude.instance().logEvent("complete_onboarding_finish")
+                
+                let currentDate = Date()
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                
+                let formattedDate = dateFormatter.string(from: currentDate)
+                
+                var userProperties: [AnyHashable : Any] = [:]
+                userProperties["user_id"] = User.shared.yelloId
+                userProperties["user_sex"] = User.shared.gender
+                userProperties["user_grade"] = User.shared.groupAdmissionYear
+                userProperties["user_recommend"] = User.shared.recommendId.isEmpty ? "yes" : "no"
+                userProperties["user_signup_date"] = formattedDate
+                Amplitude.instance().setUserProperties(userProperties)
+                
             default:
                 return
             }

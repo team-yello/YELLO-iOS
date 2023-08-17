@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -201,6 +202,9 @@ final class VotingTimerViewController: BaseViewController {
         invitingView.profileUserYelloId()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        invitingView.rootViewController = "VotingTimerViewController"
+        Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": "timeline_0friend"])
         
         viewController.view.addSubview(invitingView)
     }

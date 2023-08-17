@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -122,6 +123,7 @@ final class WithdrawalCheckView: BaseView {
     
     // MARK: Objc Function
     @objc func showAlert() {
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
         if let withdrawalAlertView = withdrawalAlertView {

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -27,6 +28,8 @@ final class ProfileViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Amplitude.instance().logEvent("view_profile")
+        Amplitude.instance().setUserProperties(["user_friends": profileView.friendCount, "user_message_received":profileView.myYelloCount])
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -65,6 +68,7 @@ final class ProfileViewController: BaseViewController {
 extension ProfileViewController: NavigationBarViewDelegate {
     func settingButtonTapped() {
         let profileSettingViewController = ProfileSettingViewController()
+        Amplitude.instance().logEvent("click_profile_manage")
         navigationController?.pushViewController(profileSettingViewController, animated: true)
     }
 }

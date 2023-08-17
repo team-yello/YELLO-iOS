@@ -26,9 +26,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// Amplitude 설정
         Amplitude.instance().defaultTracking.sessions = true
+        Amplitude.instance().defaultTracking.screenViews = true
         Amplitude.instance().defaultTracking = AMPDefaultTrackingOptions.initWithAllEnabled()
         Amplitude.instance().initializeApiKey(Config.amplitude)
-
+        
+        /// 접속 시간 전송
+        let currentDate = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let formattedDate = dateFormatter.string(from: currentDate)
+        
+        Amplitude.instance().setUserProperties(["user_last_use_date":formattedDate])
+        
+        let identify = AMPIdentify()
+            .setOnce("user_invite", value: NSNumber(value: 0))
+            .setOnce("user_instagram", value: NSNumber(value: 0))
+            .setOnce("user_message_open", value: NSNumber(value: 0))
+            .setOnce("user_vote_skip", value: NSNumber(value: 0))
+        guard let identify = identify else { return true }
+        Amplitude.instance().identify(identify)
         return true
     }
     

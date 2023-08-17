@@ -58,6 +58,8 @@ extension SchoolFriendView {
     
     private func setStyle() {
         self.backgroundColor = .clear
+        inviteBannerView.rootViewName = "school"
+        emptyView.viewControllerName = "schoolFriend"
         
         inviteBannerView.do {
             $0.isHidden = true
@@ -113,6 +115,7 @@ extension SchoolFriendView {
     // MARK: Objc Function
     @objc func refreshTable(refresh: UIRefreshControl) {
         self.isRefreshing = true
+        
         if schoolFriendCount == 0 {
             self.inviteBannerView.isHidden = false
             self.emptyView.isHidden = true
