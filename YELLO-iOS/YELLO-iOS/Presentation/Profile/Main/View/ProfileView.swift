@@ -16,7 +16,7 @@ protocol HandleFriendCellDelegate: AnyObject {
 }
 
 final class ProfileView: UIView {
-
+    
     // MARK: - Variables
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
@@ -32,14 +32,14 @@ final class ProfileView: UIView {
     var myYelloCount = 0
     var profileFriendPage: Int = 0
     
-    var myProfileFriendModelDummy: [ProfileFriendResponseDetail] = [] 
+    var myProfileFriendModelDummy: [ProfileFriendResponseDetail] = []
     
     // MARK: Component
     let navigationBarView = NavigationBarView()
     let myProfileHeaderView = MyProfileHeaderView()
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
     let refreshControl = UIRefreshControl()
-
+    
     lazy var topButton = UIButton()
     private var isButtonHidden: Bool = false
     
@@ -66,7 +66,7 @@ extension ProfileView {
         setLayout()
     }
     
-    private func setStyle() {        
+    private func setStyle() {
         self.backgroundColor = .black
         
         refreshControl.do {
@@ -86,6 +86,8 @@ extension ProfileView {
             $0.showsHorizontalScrollIndicator = false
             $0.rowHeight = UITableView.automaticDimension
             $0.estimatedRowHeight = 77.adjustedHeight
+            //            $0.sectionHeaderHeight = UITableView.automaticDimension
+            //            $0.estimatedSectionHeaderHeight = 304.adjustedHeight
         }
         
         topButton.do {
@@ -100,7 +102,7 @@ extension ProfileView {
     
     private func setLayout() {
         self.addSubviews(navigationBarView,
-                        myFriendTableView,
+                         myFriendTableView,
                          topButton)
         
         navigationBarView.snp.makeConstraints {
@@ -167,43 +169,43 @@ extension ProfileView {
         
         self.pageCount += 1
         let queryDTO = ProfileFriendRequestQueryDTO(page: pageCount)
-
+        
         fetchingMore = true
         
         NetworkService.shared.profileService.profileFriend(queryDTO: queryDTO) { [weak self] response in
             guard let self = self else { return }
             
-                switch response {
-                case .success(let data):
-                    guard let data = data.data else { return }
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                let friendModels = data.friends.map { profileFriend in
                     
-                    let friendModels = data.friends.map { profileFriend in
-                        
-                        return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount)
-                    }
-                    
-                    if self.pageCount == 0 {
-                        self.friendCount = data.totalCount
-                    }
-                    
-                    // 중복되는 모델 필터 처리
-                    let uniqueFriendModels = friendModels.filter { model in
-                        !self.myProfileFriendModelDummy.contains { $0.userId == model.userId }
-                    }
-                    
-                    self.myProfileFriendModelDummy.append(contentsOf: uniqueFriendModels)
-                    self.fetchingMore = false
-                    self.myFriendTableView.reloadData()
-                    let totalPage = (data.totalCount) / 10
-                    if self.pageCount >= totalPage {
-                        self.isFinishPaging = true
-                    }
-                    
-                    print("통신 성공")
-                default:
-                    print("network fail")
-                    return
+                    return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount)
                 }
+                
+                if self.pageCount == 0 {
+                    self.friendCount = data.totalCount
+                }
+                
+                // 중복되는 모델 필터 처리
+                let uniqueFriendModels = friendModels.filter { model in
+                    !self.myProfileFriendModelDummy.contains { $0.userId == model.userId }
+                }
+                
+                self.myProfileFriendModelDummy.append(contentsOf: uniqueFriendModels)
+                self.fetchingMore = false
+                self.myFriendTableView.reloadData()
+                let totalPage = (data.totalCount) / 10
+                if self.pageCount >= totalPage {
+                    self.isFinishPaging = true
+                }
+                
+                print("통신 성공")
+            default:
+                print("network fail")
+                return
+            }
         }
     }
 }
@@ -249,14 +251,7 @@ extension ProfileView: UITableViewDataSource {
                 view?.myProfileView.nameSkeletonLabel.isHidden = true
                 view?.myProfileView.schoolSkeletonLabel.isHidden = true
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
-                if isYelloPlus {
-                    view?.myProfileView.profileImageBackgroundView.isHidden = false
-                    view?.myProfileView.profileStarImageView.isHidden = false
-                } else {
-                    view?.myProfileView.profileImageBackgroundView.isHidden = true
-                    view?.myProfileView.profileStarImageView.isHidden = true
-                }
-                view?.myProfileView.updateYelloPlusView()
+                view?.myProfileView.updateProfileView()
             }
             return view
         default:
