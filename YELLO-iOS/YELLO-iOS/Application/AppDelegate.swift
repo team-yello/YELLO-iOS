@@ -39,6 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let formattedDate = dateFormatter.string(from: currentDate)
         
         Amplitude.instance().setUserProperties(["user_last_use_date":formattedDate])
+        
+        let identify = AMPIdentify()
+            .setOnce("user_invite", value: NSNumber(value: 0))
+            .setOnce("user_instagram", value: NSNumber(value: 0))
+            .setOnce("user_message_open", value: NSNumber(value: 0))
+            .setOnce("user_vote_skip", value: NSNumber(value: 0))
+        guard let identify = identify else { return true }
+        Amplitude.instance().identify(identify)
         return true
     }
     

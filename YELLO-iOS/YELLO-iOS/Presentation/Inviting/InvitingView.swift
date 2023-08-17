@@ -261,7 +261,11 @@ extension InvitingView {
         
         print("✅✅키값은 이거야!!\(keyValue)")
         
-        Amplitude.instance().logEvent("click_invite_link", withEventProperties: ["invite_view":keyValue])
+        Amplitude.instance().logEvent("click_invite_link", withEventProperties: ["invite_view": keyValue])
+        let identify = AMPIdentify()
+            .add("user_invite", value: NSNumber(value: 1))
+        guard let identify = identify else {return}
+        Amplitude.instance().identify(identify)
         
     }
 

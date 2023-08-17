@@ -26,6 +26,7 @@ final class MyYelloListView: BaseView {
     var indexNumber: Int = -1
     var isFinishPaging = false
     var pageCount = -1
+    var scrollCount = 0
         
     static var myYelloModelDummy: [Yello] = []
     
@@ -137,7 +138,10 @@ extension MyYelloListView: UITableViewDelegate {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        Amplitude.instance().logEvent("scroll_all_messages")
+        if scrollCount < 1 {
+            Amplitude.instance().logEvent("scroll_all_messages")
+        }
+        scrollCount += 1
     }
 }
 

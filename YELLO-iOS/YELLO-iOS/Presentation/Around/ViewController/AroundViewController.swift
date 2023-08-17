@@ -23,19 +23,16 @@ final class AroundViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        setDelegate()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Amplitude.instance().logEvent("view_timeline")
+        aroundView.scrollCount = 0 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    private func setDelegate() {
-        aroundView.aroundTableView.delegate = self
-    }
 }
 
 // MARK: - extension
@@ -68,12 +65,5 @@ extension AroundViewController {
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
         
-    }
-}
-
-extension AroundViewController: UITableViewDelegate {
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("🏁스크롤 이벤트 감지")
-        Amplitude.instance().logEvent("scroll_timeline")
     }
 }
