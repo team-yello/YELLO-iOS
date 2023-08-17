@@ -251,6 +251,32 @@ extension PaymentPlusViewController {
         // 서버와 통신 등의 작업을 수행합니다.
     }
     
+    func purchaseSubscibe() {
+        let requestDTO = PurchaseRequestDTO(transactionId: "", productId: MyProducts.yelloPlusProductID)
+        NetworkService.shared.purchaseService.purchaseSubscibe(requestDTO: requestDTO) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
+    func purchaseTicket() {
+        let requestDTO = PurchaseRequestDTO(transactionId: "", productId: MyProducts.yelloPlusProductID)
+        NetworkService.shared.purchaseService.purchaseTicket(requestDTO: requestDTO) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
     // 원하는 순서대로 제품을 정렬하는 함수입니다.
     private func sortProducts(_ products: [SKProduct]) -> [SKProduct] {
         var sortedProducts: [SKProduct] = []
