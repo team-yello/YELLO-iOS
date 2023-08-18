@@ -19,6 +19,8 @@
 	</array>
 	<key>KAKAO_APP_KEY</key>
 	<string>$(KAKAO_APP_KEY)</string>
+	<key>KAKAO_TEMPLATE_ID</key>
+	<string>$(KAKAO_TEMPLATE_ID)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompassauth</string>
