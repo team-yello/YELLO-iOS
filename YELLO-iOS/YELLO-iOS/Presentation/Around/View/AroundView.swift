@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -24,6 +25,7 @@ final class AroundView: BaseView {
             updateView()
         }
     }
+    var scrollCount = 0
     
     var aroundModelDummy: [FriendVote] = []
     
@@ -202,6 +204,14 @@ extension AroundView: UITableViewDelegate {
         if offsetY > contentHeight - visibleHeight {
             self.around()
         }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollCount < 1 {
+            print("🏁스크롤 이벤트 감지")
+            Amplitude.instance().logEvent("scroll_timeline")
+        }
+        scrollCount += 1
     }
 }
 

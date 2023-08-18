@@ -288,6 +288,10 @@ extension VotingViewController {
         
         keywordButtonClick = true
         keywordButtonTouch = false
+        let identify = AMPIdentify()
+            .add("user_message_sent", value: NSNumber(value: 1))
+        guard let identify = identify else {return}
+        Amplitude.instance().identify(identify)
     }
     
     @objc
@@ -308,8 +312,10 @@ extension VotingViewController {
             originView.skipButton.isEnabled = true
             view.showToast(message: StringLiterals.Voting.VoteToast.skip)
         } else {
-            User.shared.countVotingSkip += 1
-            Amplitude.instance().setUserProperties(["user_vote_skip" : User.shared.countVotingSkip])
+            let identify = AMPIdentify()
+                .add("user_vote_skip", value: NSNumber(value: 1))
+            guard let identify = identify else {return}
+            Amplitude.instance().identify(identify)
             setNextViewController()
         }
     }
