@@ -27,11 +27,12 @@ final class YELLOTabBarController: UITabBarController {
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        network()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        network()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
@@ -57,7 +58,7 @@ final class YELLOTabBarController: UITabBarController {
     
     // MARK: - TabBar Item
     
-    private func setTabBarItems() {
+    func setTabBarItems() {
         var rootViewController: UIViewController
         /// 친구 수에 따라 rootViewController가 달라짐
         if startStatus == 1 {
@@ -86,7 +87,7 @@ final class YELLOTabBarController: UITabBarController {
     
     // MARK: - TabBar Style
     
-    private func setTabBarAppearance() {
+    func setTabBarAppearance() {
         
         /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
         let offset = UIOffset(horizontal: 0, vertical: -7) /// 수직 방향으로 -7만큼
@@ -208,9 +209,6 @@ extension YELLOTabBarController {
         
         /// 둘러보기 서버통신
         aroundViewController.aroundView.around()
-        
-        /// 옐로하기_시작 서버통신
-//        votingStartViewController.getSubscribe()
         
         /// 내 쪽지 서버통신
         myYelloViewController.myYelloView.myYelloListView.myYello()

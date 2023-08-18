@@ -34,7 +34,6 @@ final class VotingStartViewController: BaseViewController {
         getVotingAvailable()
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
-        tabBarController?.tabBar.isHidden = false
         getSubscribe()
     }
     
