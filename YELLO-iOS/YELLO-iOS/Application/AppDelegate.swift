@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import FirebaseCore
 import FirebaseMessaging
 import KakaoSDKCommon
@@ -14,7 +15,7 @@ import KakaoSDKAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-        
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KakaoSDK.initSDK(appKey: Config.kakaoAppKey)
         UNUserNotificationCenter.current().delegate = self
@@ -23,9 +24,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// 디바이스 토큰 요청
         application.registerForRemoteNotifications()
         
+        /// Amplitude 설정
+        Amplitude.instance().defaultTracking.sessions = true
+        Amplitude.instance().defaultTracking.screenViews = true
+        Amplitude.instance().defaultTracking = AMPDefaultTrackingOptions.initWithAllEnabled()
+        Amplitude.instance().initializeApiKey(Config.amplitude)
+        
+        /// 접속 시간 전송
+        let currentDate = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let formattedDate = dateFormatter.string(from: currentDate)
+        
+        Amplitude.instance().setUserProperties(["user_last_use_date":formattedDate])
+        
+        let identify = AMPIdentify()
+            .setOnce("user_invite", value: NSNumber(value: 0))
+            .setOnce("user_instagram", value: NSNumber(value: 0))
+            .setOnce("user_message_open", value: NSNumber(value: 0))
+            .setOnce("user_vote_skip", value: NSNumber(value: 0))
+        guard let identify = identify else { return true }
+        Amplitude.instance().identify(identify)
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -47,7 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return false
     }
-    
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -81,10 +104,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         completionHandler()
     }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
-    }
 }
 
 extension AppDelegate: MessagingDelegate {
@@ -95,4 +114,3 @@ extension AppDelegate: MessagingDelegate {
         print("Device token:", deviceToken) // 이 토큰은 FCM에서 알림을 테스트하는 데 사용할 수 있습니다.
     }
 }
-

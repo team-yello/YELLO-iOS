@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Amplitude
+
 class UniversityViewController: OnboardingBaseViewController {
     
     var schoolName = "" {
@@ -31,6 +33,7 @@ class UniversityViewController: OnboardingBaseViewController {
     
     override func viewDidLoad() {
         step = 1
+        User.shared.isFirstUser = true
         super.viewDidLoad()
         setDelegate()
     }
@@ -38,8 +41,7 @@ class UniversityViewController: OnboardingBaseViewController {
     override func setLayout() {
         
         view.addSubview(baseView)
-        nextViewController = genderViewController
-        
+        nextViewController = UserInfoViewController()
         baseView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview()
@@ -60,6 +62,12 @@ class UniversityViewController: OnboardingBaseViewController {
     override func setUser() {
         User.shared.groupId = self.groupId
         User.shared.groupAdmissionYear = self.groupAdmissionYear
+        guard let schoolText = baseView.schoolSearchTextField.text else { return }
+        guard let department = baseView.majorSearchTextField.text else { return }
+        var userProperties: [AnyHashable : Any] = [:]
+        userProperties["user_school"] = schoolText
+        userProperties["user_department"] = department
+        Amplitude.instance().setUserProperties(userProperties)
     }
     
     private func schoolPresentModal() {

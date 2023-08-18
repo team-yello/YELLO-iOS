@@ -133,6 +133,8 @@ extension KakaoFriendView {
     
     // MARK: Custom Function
     func updateView() {
+        emptyView.viewControllerName = "kakaoFriend"
+        inviteBannerView.rootViewName = "kakao"
         if self.kakaoFriendCount == 0 {
             self.inviteBannerView.isHidden = true
             self.emptyView.isHidden = false

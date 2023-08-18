@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 import KakaoSDKUser
@@ -55,6 +56,7 @@ extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
     
     @objc private func logoutButtonTapped() {
         // 로그아웃 로직 구현
+        Amplitude.instance().logEvent("click_profile_logout")
         UserApi.shared.logout {(error) in
             if let error = error {
                 print(error)
@@ -64,9 +66,9 @@ extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
                 
                 UserDefaults.standard.removeObject(forKey: "isLoggined")
                 User.shared.isResigned = false
-                User.shared.isResetting = false
+                User.shared.isFirstUser = false
                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
-                
+                Amplitude.instance().logEvent("complete_profile_delete")
                 self.navigationController?.popToRootViewController(animated: true)
             }
             

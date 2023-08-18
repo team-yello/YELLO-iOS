@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -22,7 +23,7 @@ extension VotingViewController {
         
         let progressPercent = Float(VotingViewController.pushCount + 1) / 8.0
         self.originView.progressView.setProgress(progressPercent, animated: true)
-        self.originView.yelloBalloon.image = dummy[VotingViewController.pushCount].yelloBalloon
+        setAnimationView()
         self.originView.yelloProgress.image =
         dummy[VotingViewController.pushCount].yelloProgress
         
@@ -106,6 +107,9 @@ extension VotingViewController {
         // 투표 끝나면 포인트뷰컨으로 push
         if VotingViewController.pushCount > 6 {
             VotingViewController.pushCount = 0
+            User.shared.countVoting += votingAnswer.count
+            User.shared.countVotingCycle += 1
+            Amplitude.instance().setUserProperties(["user_message_sent": User.shared.countVoting, "": User.shared.countVotingCycle])
             let viewController = VotingPointViewController()
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint
@@ -113,6 +117,14 @@ extension VotingViewController {
             let previousData = loadUserData() ?? []
             let combinedData = previousData + votingAnswer
             saveUserData(combinedData)
+            
+            let status = votingList[0].subscribe
+            if status == "CANCELED" || status == "ACTIVE" {
+                viewController.multiplyByTwoImageView.isHidden = false
+            } else {
+                viewController.multiplyByTwoImageView.isHidden = true
+            }
+            
             self.navigationController?.pushViewController(viewController, animated: false)
         } else {
             let viewController = VotingViewController()
@@ -128,6 +140,28 @@ extension VotingViewController {
                 self.navigationController?.pushViewController(viewController, animated: false)
             })
         }
+    }
+    
+    // MARK: - LottieAnimationView function
+    
+    func setAnimationView() {
+        let dummy = VotingDummy.dummy()
+        originView.yelloBalloon = .init(name: dummy[VotingViewController.pushCount].yelloBalloon)
+        let animationWidth: CGFloat = 72.adjustedWidth
+        let animationHeight: CGFloat = 36.adjustedHeight
+        originView.yelloBalloon.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
+
+        originView.yelloBalloon.contentMode = .scaleAspectFit
+        originView.yelloBalloon.loopMode = .loop
+        originView.yelloBalloon.animationSpeed = 1.1
+        originView.yelloBalloon.play()
+        
+        view.addSubview(originView.yelloBalloon)
+        originView.yelloBalloon.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(originView.yelloProgress.snp.top).offset(-8.adjustedHeight)
+        }
+        view.bringSubviewToFront(originView.yelloBalloon)
     }
 }
 
@@ -262,6 +296,10 @@ extension VotingViewController {
         
         keywordButtonClick = true
         keywordButtonTouch = false
+        let identify = AMPIdentify()
+            .add("user_message_sent", value: NSNumber(value: 1))
+        guard let identify = identify else {return}
+        Amplitude.instance().identify(identify)
     }
     
     @objc
@@ -282,6 +320,10 @@ extension VotingViewController {
             originView.skipButton.isEnabled = true
             view.showToast(message: StringLiterals.Voting.VoteToast.skip)
         } else {
+            let identify = AMPIdentify()
+                .add("user_vote_skip", value: NSNumber(value: 1))
+            guard let identify = identify else {return}
+            Amplitude.instance().identify(identify)
             setNextViewController()
         }
     }

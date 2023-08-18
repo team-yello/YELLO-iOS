@@ -54,7 +54,7 @@ extension MyProfileHeaderView {
         }
         
         friendCountView.snp.makeConstraints {
-            $0.top.equalTo(myProfileView.snp.bottom).offset(32.adjustedHeight)
+            $0.top.equalTo(myProfileView.snp.bottom).offset(40.adjustedHeight)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(8.adjustedHeight)
         }

@@ -25,7 +25,11 @@ struct User {
     var recommendId: String = ""
     
     var isResigned: Bool = false
-    var isResetting: Bool = true
+    var isFirstUser: Bool = false
+    
+    var countVotingSkip = 0
+    var countVoting = 0
+    var countVotingCycle = 0
     
     private init() {}
 }

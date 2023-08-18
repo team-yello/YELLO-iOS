@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -59,7 +60,7 @@ final class VotingTimerViewController: BaseViewController {
         super.viewDidLoad()
         
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
-        originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         getCreatedAt()
     }
     
@@ -149,7 +150,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         originView.titleLabel.snp.makeConstraints {
-            $0.bottom.equalTo(originView.textLabel.snp.top).offset(-2.adjustedHeight)
+            $0.bottom.equalTo(originView.textLabel.snp.top).offset(-4.adjustedHeight)
         }
         
         originView.textLabel.snp.makeConstraints {
@@ -201,6 +202,9 @@ final class VotingTimerViewController: BaseViewController {
         invitingView.profileUserYelloId()
         invitingView.frame = viewController.view.bounds
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        invitingView.rootViewController = "VotingTimerViewController"
+        Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": "timeline_0friend"])
         
         viewController.view.addSubview(invitingView)
     }
@@ -284,7 +288,6 @@ extension VotingTimerViewController {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
-                    self.cancelScheduledNotification()
                 }
                 self.remainingSeconds = duration
                 self.start(duration: duration)
@@ -309,7 +312,6 @@ extension VotingTimerViewController {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
-                    self.cancelScheduledNotification()
                 }
                 self.myPoint = data.point
             default:
@@ -317,12 +319,5 @@ extension VotingTimerViewController {
                 return
             }
         }
-    }
-    
-    // 예약된 푸시 알림 취소
-    func cancelScheduledNotification() {
-        let notificationIdentifier = "myPushAlarm" // 예약된 알림의 식별자
-        
-        userNotiCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
     }
 }

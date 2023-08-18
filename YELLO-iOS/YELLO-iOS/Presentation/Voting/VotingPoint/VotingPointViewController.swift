@@ -13,6 +13,7 @@ import Then
 final class VotingPointViewController: BaseViewController {
 
     private let originView = BaseVotingETCView()
+    let multiplyByTwoImageView = UIImageView()
     var myPoint = 0
     var votingPlusPoint = 0
     var votingAnswer: [VoteAnswerList] = []
@@ -49,6 +50,10 @@ final class VotingPointViewController: BaseViewController {
             $0.setTextWithLineHeight(text: StringLiterals.Voting.Point.text, lineHeight: 20)
         }
         
+        multiplyByTwoImageView.do {
+            $0.image = ImageLiterals.Voting.imgMultiplyByTwo
+        }
+        
         originView.yelloImage.do {
             $0.image = ImageLiterals.Voting.imgPointAccumulate
         }
@@ -77,6 +82,8 @@ final class VotingPointViewController: BaseViewController {
         
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
+        view.addSubview(multiplyByTwoImageView)
+        
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
             $0.trailing.equalTo(originView.topOfMyPoint.snp.leading).offset(-8.adjustedWidth)
@@ -93,6 +100,13 @@ final class VotingPointViewController: BaseViewController {
         
         originView.textLabel.snp.makeConstraints {
             $0.top.equalTo(originView.titleLabel.snp.bottom).offset(4.adjustedHeight)
+        }
+        
+        multiplyByTwoImageView.snp.makeConstraints {
+            $0.bottom.equalTo(originView.plusPoint.snp.bottom).offset(-14.adjustedHeight)
+            $0.trailing.equalTo(originView.plusPoint.snp.trailing).offset(25.adjustedHeight)
+            $0.width.equalTo(33.adjusted)
+            $0.height.equalTo(19.adjusted)
         }
         
         originView.plusPoint.snp.makeConstraints {
@@ -140,31 +154,9 @@ final class VotingPointViewController: BaseViewController {
             self.navigationController?.pushViewController(viewController, animated: true)
             self.originView.yellowButton.isEnabled = true
         }
-
-        requestSendNoti(seconds: 2402)
         
         UserDefaults.standard.removeObject(forKey: "UserDataKey")
         UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
     }
     
-    // 푸시 알림 전송
-    func requestSendNoti(seconds: Double) {
-        let notiContent = UNMutableNotificationContent()
-        notiContent.title = "친구에게 쪽지 보내고 포인트 받기"
-        notiContent.body = "대기시간이 다 지났어요. 친구들에게 투표해봐요!"
-        notiContent.userInfo = ["targetScene": "splash"] // 푸시 받을때 오는 데이터
-        
-        // 알림이 trigger되는 시간 설정
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
-        
-        let request = UNNotificationRequest(
-            identifier: "myPushAlarm",
-            content: notiContent,
-            trigger: trigger
-        )
-        
-        userNotiCenter.add(request) { (error) in
-            print(#function, error)
-        }
-    }
 }

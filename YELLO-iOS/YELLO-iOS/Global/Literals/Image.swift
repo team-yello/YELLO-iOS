@@ -49,6 +49,18 @@ enum ImageLiterals {
     
     }
     
+    enum Tutorial {
+        static var tutorial1: UIImage { .load(named: "tutorial1")}
+        static var tutorial2: UIImage { .load(named: "tutorial2")}
+        static var tutorial3: UIImage { .load(named: "tutorial3")}
+        static var tutorial4: UIImage { .load(named: "tutorial4")}
+        
+        static var tutorialLong1: UIImage { .load(named: "tutorialLong1")}
+        static var tutorialLong2: UIImage { .load(named: "tutorialLong2")}
+        static var tutorialLong3: UIImage { .load(named: "tutorialLong3")}
+        static var tutorialLong4: UIImage { .load(named: "tutorialLong4")}
+    }
+    
     enum TabBar {
         // not-Selected
         static var icPlusFriend: UIImage { .load(named: "icPlusFriend") }
@@ -79,14 +91,6 @@ enum ImageLiterals {
         static var imgVotingStartBalloon1: UIImage { .load(named: "imgVotingStartBalloon1")}
         static var imgVotingStartBalloon2: UIImage { .load(named: "imgVotingStartBalloon2")}
         static var imgVotingStartBalloon3: UIImage { .load(named: "imgVotingStartBalloon3")}
-        static var imgYelloBalloon1: UIImage { .load(named: "imgYelloBalloon1")}
-        static var imgYelloBalloon2: UIImage { .load(named: "imgYelloBalloon2")}
-        static var imgYelloBalloon3: UIImage { .load(named: "imgYelloBalloon3")}
-        static var imgYelloBalloon4: UIImage { .load(named: "imgYelloBalloon4")}
-        static var imgYelloBalloon5: UIImage { .load(named: "imgYelloBalloon5")}
-        static var imgYelloBalloon6: UIImage { .load(named: "imgYelloBalloon6")}
-        static var imgYelloBalloon7: UIImage { .load(named: "imgYelloBalloon7")}
-        static var imgYelloBalloon8: UIImage { .load(named: "imgYelloBalloon8")}
         static var imgFace1: UIImage { .load(named: "imgFace1")}
         static var imgFace2: UIImage { .load(named: "imgFace2")}
         static var imgFace3: UIImage { .load(named: "imgFace3")}
@@ -109,7 +113,7 @@ enum ImageLiterals {
         static var imgProgress8: UIImage { .load(named: "imgProgress8")}
         static var imgPointAccumulate: UIImage { .load(named: "imgPointAccumulate")}
         static var imgVotingLocked: UIImage { .load(named: "imgVotingLocked")}
-
+        static var imgMultiplyByTwo: UIImage { .load(named: "imgMultiplyByTwo")}
     }
     
     enum Around {

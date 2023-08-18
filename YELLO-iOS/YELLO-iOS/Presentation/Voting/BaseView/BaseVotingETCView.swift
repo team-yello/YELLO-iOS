@@ -42,9 +42,9 @@ final class BaseVotingETCView: BaseView {
         }
         
         topOfMyPoint.do {
-            $0.text = "2900"
+            $0.text = "0"
             $0.textColor = .white
-            $0.font = .uiBodyMedium
+            $0.font = .uiBodyLarge
         }
         
         balloonToday.do {
@@ -61,7 +61,7 @@ final class BaseVotingETCView: BaseView {
         
         titleLabel.do {
             $0.textColor = .white
-            $0.font = .uiHeadline03
+            $0.font = .uiHeadline00
         }
         
         textLabel.do {

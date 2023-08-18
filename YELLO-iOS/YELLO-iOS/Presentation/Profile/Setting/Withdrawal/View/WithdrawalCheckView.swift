@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -34,9 +35,9 @@ final class WithdrawalCheckView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalCheck.title, lineHeight: 24.adjustedHeight)
+            $0.text = StringLiterals.Profile.WithdrawalCheck.title
             $0.textColor = .white
-            $0.font = .uiSubtitle01
+            $0.font = .uiHeadline00
         }
         
         descriptionLabel.do {
@@ -122,6 +123,7 @@ final class WithdrawalCheckView: BaseView {
     
     // MARK: Objc Function
     @objc func showAlert() {
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
         if let withdrawalAlertView = withdrawalAlertView {

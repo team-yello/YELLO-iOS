@@ -33,6 +33,7 @@ final class PaymentNavigationBarView: BaseView {
         subscribeView.do {
             $0.backgroundColor = .grayscales900
             $0.makeCornerRound(radius: 8.adjustedHeight)
+            $0.isHidden = true
         }
         
         yelloPlusImageView.do {

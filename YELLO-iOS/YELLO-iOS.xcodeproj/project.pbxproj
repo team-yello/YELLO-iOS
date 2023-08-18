@@ -57,9 +57,21 @@
 		2ADE23A52A5EA9390088FCB3 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */; };
 		2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2ADE23A92A5EB7660088FCB3 /* Lottie */; };
 		2AEE46EF2A603F9A000B4A9B /* VotingStart.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AEE46EE2A603F9A000B4A9B /* VotingStart.json */; };
+		2AFB01482A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB01472A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift */; };
+		2AFB01632A8D2EAC001BB2C7 /* pagenation_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015B2A8D2EAC001BB2C7 /* pagenation_5.json */; };
+		2AFB01642A8D2EAC001BB2C7 /* pagenation_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015C2A8D2EAC001BB2C7 /* pagenation_2.json */; };
+		2AFB01652A8D2EAC001BB2C7 /* pagenation_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015D2A8D2EAC001BB2C7 /* pagenation_3.json */; };
+		2AFB01662A8D2EAC001BB2C7 /* pagenation_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015E2A8D2EAC001BB2C7 /* pagenation_4.json */; };
+		2AFB01672A8D2EAC001BB2C7 /* pagenation_7.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB015F2A8D2EAC001BB2C7 /* pagenation_7.json */; };
+		2AFB01682A8D2EAC001BB2C7 /* pagenation_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01602A8D2EAC001BB2C7 /* pagenation_8.json */; };
+		2AFB01692A8D2EAC001BB2C7 /* pagenation_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */; };
+		2AFB016A2A8D2EAC001BB2C7 /* pagenation_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */; };
 		3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAE72A608F0200D5FA40 /* SplashViewController.swift */; };
 		3628EAEA2A60903A00D5FA40 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE92A60903A00D5FA40 /* splash.json */; };
 		3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */; };
+		362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC3182A8BAC8E00121BDD /* ThirdTutorialView.swift */; };
+		362EC31B2A8BAD1E00121BDD /* FourthTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC31A2A8BAD1E00121BDD /* FourthTutorialView.swift */; };
+		362EC31D2A8BB5A400121BDD /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC31C2A8BB5A400121BDD /* UIScreen+.swift */; };
 		364D7DF02A85207D00CF18B7 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364D7DEF2A85207D00CF18B7 /* NameView.swift */; };
 		365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */; };
 		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
@@ -92,6 +104,7 @@
 		36871C7B2A664C69001CA514 /* JoinedFriendsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */; };
 		36871C7D2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36871C7C2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift */; };
 		369BF9682A6AFC640091CB85 /* TokenRefreshResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */; };
+		36A3B26F2A8D233600BA7CE0 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 36A3B26E2A8D233600BA7CE0 /* Amplitude */; };
 		36AD441A2A6812420087D7E0 /* MyRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AD44192A6812420087D7E0 /* MyRequestInterceptor.swift */; };
 		36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234952A61466A007933E4 /* YelloHelperLabel.swift */; };
 		36B234982A619853007933E4 /* onboarding_end.json in Resources */ = {isa = PBXBuildFile; fileRef = 36B234972A619853007933E4 /* onboarding_end.json */; };
@@ -102,6 +115,9 @@
 		36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234A12A61B447007933E4 /* UINavigationController+.swift */; };
 		36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */; };
 		36BF1DE82A7A5FCF00C58E74 /* YelloProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1DE72A7A5FCF00C58E74 /* YelloProgressBarView.swift */; };
+		36C209F02A8B6A39001BF12C /* FirstTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */; };
+		36C209F22A8B6E03001BF12C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209F12A8B6E03001BF12C /* TutorialViewController.swift */; };
+		36C209F62A8B8190001BF12C /* SecondTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209F52A8B8190001BF12C /* SecondTutorialView.swift */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
 		36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -327,10 +343,22 @@
 		2AD1A1D52A5C952000CB988B /* VotingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingFunction.swift; sourceTree = "<group>"; };
 		2ADE23A42A5EA9390088FCB3 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		2AEE46EE2A603F9A000B4A9B /* VotingStart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VotingStart.json; sourceTree = "<group>"; };
+		2AFB01472A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingUnreadResponseDTO.swift; sourceTree = "<group>"; };
+		2AFB015B2A8D2EAC001BB2C7 /* pagenation_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_5.json; sourceTree = "<group>"; };
+		2AFB015C2A8D2EAC001BB2C7 /* pagenation_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_2.json; sourceTree = "<group>"; };
+		2AFB015D2A8D2EAC001BB2C7 /* pagenation_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_3.json; sourceTree = "<group>"; };
+		2AFB015E2A8D2EAC001BB2C7 /* pagenation_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_4.json; sourceTree = "<group>"; };
+		2AFB015F2A8D2EAC001BB2C7 /* pagenation_7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_7.json; sourceTree = "<group>"; };
+		2AFB01602A8D2EAC001BB2C7 /* pagenation_8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_8.json; sourceTree = "<group>"; };
+		2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_6.json; sourceTree = "<group>"; };
+		2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_1.json; sourceTree = "<group>"; };
 		3608F9052A80E25600B09D82 /* YELLO-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YELLO-iOS.entitlements"; sourceTree = "<group>"; };
 		3628EAE72A608F0200D5FA40 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3628EAE92A60903A00D5FA40 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashTitleView.swift; sourceTree = "<group>"; };
+		362EC3182A8BAC8E00121BDD /* ThirdTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTutorialView.swift; sourceTree = "<group>"; };
+		362EC31A2A8BAD1E00121BDD /* FourthTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthTutorialView.swift; sourceTree = "<group>"; };
+		362EC31C2A8BB5A400121BDD /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		364D7DEF2A85207D00CF18B7 /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
 		36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +402,9 @@
 		36B234A12A61B447007933E4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelectView.swift; sourceTree = "<group>"; };
 		36BF1DE72A7A5FCF00C58E74 /* YelloProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloProgressBarView.swift; sourceTree = "<group>"; };
+		36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTutorialView.swift; sourceTree = "<group>"; };
+		36C209F12A8B6E03001BF12C /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		36C209F52A8B8190001BF12C /* SecondTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTutorialView.swift; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
 		36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -563,6 +594,7 @@
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
 				C3C560C92A8BB7E50074E988 /* StoreKit.framework in Frameworks */,
 				2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */,
+				36A3B26F2A8D233600BA7CE0 /* Amplitude in Frameworks */,
 				C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -815,6 +847,7 @@
 				2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */,
 				2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */,
 				2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */,
+				2AFB01472A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -972,6 +1005,7 @@
 		2AD1A1AA2A57176200CB988B /* Voting */ = {
 			isa = PBXGroup;
 			children = (
+				2AFB014A2A8CFCC2001BB2C7 /* Lottie */,
 				2AA0DBB32A546E62002B1370 /* VotingViewController.swift */,
 				2AD1A1D12A5BD13700CB988B /* BaseVotingMainView.swift */,
 				2AD1A1D32A5C3FC200CB988B /* VotingDummy.swift */,
@@ -1005,6 +1039,21 @@
 			path = VotingPoint;
 			sourceTree = "<group>";
 		};
+		2AFB014A2A8CFCC2001BB2C7 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */,
+				2AFB015C2A8D2EAC001BB2C7 /* pagenation_2.json */,
+				2AFB015D2A8D2EAC001BB2C7 /* pagenation_3.json */,
+				2AFB015E2A8D2EAC001BB2C7 /* pagenation_4.json */,
+				2AFB015B2A8D2EAC001BB2C7 /* pagenation_5.json */,
+				2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */,
+				2AFB015F2A8D2EAC001BB2C7 /* pagenation_7.json */,
+				2AFB01602A8D2EAC001BB2C7 /* pagenation_8.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		3608F9062A80EC2400B09D82 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -1032,6 +1081,34 @@
 				36E4278C2A5C92EC0050B34E /* FindMajorViewController.swift */,
 			);
 			path = Modal;
+			sourceTree = "<group>";
+		};
+		36C209EC2A8B69D9001BF12C /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				36C209ED2A8B69E5001BF12C /* View */,
+				36C209EE2A8B69F0001BF12C /* ViewController */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		36C209ED2A8B69E5001BF12C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */,
+				36C209F52A8B8190001BF12C /* SecondTutorialView.swift */,
+				362EC3182A8BAC8E00121BDD /* ThirdTutorialView.swift */,
+				362EC31A2A8BAD1E00121BDD /* FourthTutorialView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36C209EE2A8B69F0001BF12C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36C209F12A8B6E03001BF12C /* TutorialViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		36E2181C2A5D158E00FB3C9C /* Base */ = {
@@ -1075,13 +1152,13 @@
 				367113672A7D21330037E0D2 /* SchoolSelectViewController.swift */,
 				367113722A7D6CED0037E0D2 /* UniversityViewController.swift */,
 				367DA01A2A863CE60043D23C /* HighSchoolViewController.swift */,
-				36E4275B2A5BCE860050B34E /* GenderViewController.swift */,
-				367DA01C2A86496D0043D23C /* NameViewController.swift */,
 				36E4277C2A5BD5D60050B34E /* UserInfoViewController.swift */,
 				36E4275D2A5BCE860050B34E /* AddFriendsViewController.swift */,
 				36E427902A5C9BD20050B34E /* RecommendIdViewController.swift */,
 				366CE5EF2A819DA800BE5F66 /* PushSettingViewController.swift */,
 				36E427942A5CA59F0050B34E /* OnboardingEndViewController.swift */,
+				36E4275B2A5BCE860050B34E /* GenderViewController.swift */,
+				367DA01C2A86496D0043D23C /* NameViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1392,6 +1469,7 @@
 				36B234A12A61B447007933E4 /* UINavigationController+.swift */,
 				C31315AF2A7B806D00FB8B43 /* UIViewController+.swift */,
 				365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */,
+				362EC31C2A8BB5A400121BDD /* UIScreen+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1452,6 +1530,7 @@
 		C3A799C92A494B8E00D3EFD8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				36C209EC2A8B69D9001BF12C /* Tutorial */,
 				C3A799CE2A494C9200D3EFD8 /* Base */,
 				3628EAE62A608EDB00D5FA40 /* Splash */,
 				36E427562A5BCE860050B34E /* Onboarding */,
@@ -1829,6 +1908,7 @@
 				2A9808EE2A81806500FBA5B3 /* FirebaseAnalytics */,
 				2A9808F02A81806500FBA5B3 /* FirebaseMessaging */,
 				2A4C549C2A8622B200FFDF80 /* Kingfisher */,
+				36A3B26E2A8D233600BA7CE0 /* Amplitude */,
 			);
 			productName = "YELLO-iOS";
 			productReference = C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */;
@@ -1867,6 +1947,7 @@
 				C306E7282A630BD10031514C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				2A9808ED2A81806500FBA5B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2A4C549B2A8622B200FFDF80 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				36A3B26D2A8D233600BA7CE0 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
@@ -1891,13 +1972,21 @@
 				367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */,
 				3628EAEA2A60903A00D5FA40 /* splash.json in Resources */,
 				C3A79A002A49500000D3EFD8 /* Pretendard-Bold.otf in Resources */,
+				2AFB016A2A8D2EAC001BB2C7 /* pagenation_1.json in Resources */,
+				2AFB01682A8D2EAC001BB2C7 /* pagenation_8.json in Resources */,
 				2AD1A1C02A595FB900CB988B /* Unbounded-Medium.ttf in Resources */,
 				C3FF24A62A5EEF7400A97D40 /* Unbounded-SemiBold.ttf in Resources */,
+				2AFB01652A8D2EAC001BB2C7 /* pagenation_3.json in Resources */,
 				C3A79A012A49500000D3EFD8 /* Pretendard-ExtraBold.otf in Resources */,
 				C3A79A082A49500000D3EFD8 /* Pretendard-Light.otf in Resources */,
+				2AFB01632A8D2EAC001BB2C7 /* pagenation_5.json in Resources */,
+				2AFB01672A8D2EAC001BB2C7 /* pagenation_7.json in Resources */,
 				C3A79A052A49500000D3EFD8 /* Pretendard-Regular.otf in Resources */,
+				2AFB01662A8D2EAC001BB2C7 /* pagenation_4.json in Resources */,
+				2AFB01642A8D2EAC001BB2C7 /* pagenation_2.json in Resources */,
 				C3A79A042A49500000D3EFD8 /* Pretendard-Black.otf in Resources */,
 				C3A79A072A49500000D3EFD8 /* Pretendard-SemiBold.otf in Resources */,
+				2AFB01692A8D2EAC001BB2C7 /* pagenation_6.json in Resources */,
 				C390B8092A88D63000EA5A23 /* spinner_loading.json in Resources */,
 				C3A799A02A49490D00D3EFD8 /* Assets.xcassets in Resources */,
 				2A9808E92A81658500FBA5B3 /* GoogleService-Info.plist in Resources */,
@@ -1933,6 +2022,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36C209F62A8B8190001BF12C /* SecondTutorialView.swift in Sources */,
 				C37DFC512A854FE700D3B685 /* PaymentNameKeyButton.swift in Sources */,
 				C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */,
 				C3FF248A2A5E845A00A97D40 /* MyYelloEmptyView.swift in Sources */,
@@ -1961,6 +2051,7 @@
 				C3C560C02A8A6ED50074E988 /* SearchTarget.swift in Sources */,
 				3671136A2A7D2AC50037E0D2 /* YelloNavigationBarView.swift in Sources */,
 				2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */,
+				362EC31D2A8BB5A400121BDD /* UIScreen+.swift in Sources */,
 				C3FF248E2A5E8DB700A97D40 /* TabBarHeight.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
@@ -2004,6 +2095,7 @@
 				367DA01D2A86496D0043D23C /* NameViewController.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
+				2AFB01482A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift in Sources */,
 				367113712A7D6C740037E0D2 /* UniversityView.swift in Sources */,
 				C3FF24972A5E907D00A97D40 /* MyYelloNameTableViewCell.swift in Sources */,
 				C37DFC482A8501F300D3B685 /* PaymentPlusView.swift in Sources */,
@@ -2014,6 +2106,7 @@
 				2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */,
 				C3B83E662A8E051800A39CAC /* PurchaseResponseDTO.swift in Sources */,
 				C3B83E622A8E046000A39CAC /* PurchaseTarget.swift in Sources */,
+				36C209F22A8B6E03001BF12C /* TutorialViewController.swift in Sources */,
 				3662A0F42A654A6000F482EF /* MajorSearchResponseDTO.swift in Sources */,
 				C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
@@ -2103,6 +2196,7 @@
 				2A3705A42A62DC5C001AAC93 /* TargetType.swift in Sources */,
 				2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */,
 				C3A799C42A494B1500D3EFD8 /* Color.swift in Sources */,
+				36C209F02A8B6A39001BF12C /* FirstTutorialView.swift in Sources */,
 				2ADE23A52A5EA9390088FCB3 /* BackgroundColor.swift in Sources */,
 				C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */,
 				C3081E4B2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift in Sources */,
@@ -2117,6 +2211,7 @@
 				C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */,
 				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
+				362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
@@ -2141,6 +2236,7 @@
 				36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */,
 				2A3705DE2A62E392001AAC93 /* VotingService.swift in Sources */,
 				36B2349C2A61A22F007933E4 /* KakaoLoginView.swift in Sources */,
+				362EC31B2A8BAD1E00121BDD /* FourthTutorialView.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
@@ -2195,7 +2291,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BASE_URL = "http://13.124.196.224/api/v1";
+				BASE_URL = "http://3.38.231.223/api/v1";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2243,6 +2339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -2259,7 +2356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BASE_URL = "http://13.124.196.224/api/v1";
+				BASE_URL = "http://3.38.231.223/api/v1";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2300,6 +2397,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2336,7 +2434,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2373,7 +2471,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2432,6 +2530,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
+			};
+		};
+		36A3B26D2A8D233600BA7CE0 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		C306E7282A630BD10031514C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
@@ -2496,6 +2602,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		36A3B26E2A8D233600BA7CE0 /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36A3B26D2A8D233600BA7CE0 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
 		};
 		C306E7292A630BD10031514C /* SwiftKeychainWrapper */ = {
 			isa = XCSwiftPackageProductDependency;

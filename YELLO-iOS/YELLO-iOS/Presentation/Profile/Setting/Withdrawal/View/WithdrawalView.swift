@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -66,8 +67,8 @@ final class WithdrawalView: BaseView {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Withdrawal.title, lineHeight: 28.adjustedHeight)
-            $0.font = .uiHeadline03
+            $0.text = StringLiterals.Profile.Withdrawal.title
+            $0.font = .uiHeadline00
             $0.textColor = .yelloMain500
         }
         
@@ -296,6 +297,7 @@ final class WithdrawalView: BaseView {
     }
     
     @objc private func keepButtonTapped() {
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal2"])
         handleKeepButtonDelegate?.keepButtonTapped()
     }
     

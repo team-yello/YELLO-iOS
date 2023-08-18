@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Amplitude
 
 class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: - Variables
@@ -19,7 +20,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
-        step = 6
+        step = 4
         isSkipable = true
         nextViewController = pushViewController
         super.viewDidLoad()
@@ -119,6 +120,23 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 setAcessToken(accessToken: data.accessToken)
                 setRefreshToken(refreshToken: data.refreshToken)
                 setUsername(username: data.yelloID)
+                Amplitude.instance().logEvent("complete_onboarding_finish")
+                
+                let currentDate = Date()
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                
+                let formattedDate = dateFormatter.string(from: currentDate)
+                
+                var userProperties: [AnyHashable : Any] = [:]
+                userProperties["user_id"] = User.shared.yelloId
+                userProperties["user_sex"] = User.shared.gender
+                userProperties["user_grade"] = User.shared.groupAdmissionYear
+                userProperties["user_recommend"] = User.shared.recommendId.isEmpty ? "yes" : "no"
+                userProperties["user_signup_date"] = formattedDate
+                Amplitude.instance().setUserProperties(userProperties)
+                
             default:
                 return
             }
@@ -145,6 +163,9 @@ class RecommendIdViewController: OnboardingBaseViewController {
         super.didTapButton(sender: sender)
         if sender == skipButton {
             User.shared.recommendId = ""
+            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
+        } else if sender == nextButton {
+            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
         }
         postUserInfo()
     }

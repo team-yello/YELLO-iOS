@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -25,6 +26,7 @@ final class MyYelloListView: BaseView {
     var indexNumber: Int = -1
     var isFinishPaging = false
     var pageCount = -1
+    var scrollCount = 0
         
     static var myYelloModelDummy: [Yello] = []
     
@@ -134,6 +136,13 @@ extension MyYelloListView: UITableViewDelegate {
             self.myYello()
         }
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollCount < 1 {
+            Amplitude.instance().logEvent("scroll_all_messages")
+        }
+        scrollCount += 1
+    }
 }
 
 // MARK: UITableViewDataSource
@@ -182,7 +191,9 @@ extension MyYelloListView: UITableViewDataSource {
             return 77.adjustedHeight
         }
         
-        if MyYelloListView.myYelloModelDummy[indexPath.row].nameHint != -1 {
+        let nameHintIndex = MyYelloListView.myYelloModelDummy[indexPath.row].nameHint
+        
+        if nameHintIndex == 0 || nameHintIndex == 1 || (nameHintIndex == -3 && MyYelloListView.myYelloModelDummy[indexPath.row].isRead == true) {
             return 98.adjustedHeight
         } else {
             return 74.adjustedHeight

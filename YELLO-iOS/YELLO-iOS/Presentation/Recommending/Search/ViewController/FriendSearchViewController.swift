@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -133,6 +134,7 @@ final class FriendSearchViewController: BaseViewController {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
+                Amplitude.instance().logEvent("click_search_addfriend")
                 print("통신 성공")
             default:
                 print("network fail")

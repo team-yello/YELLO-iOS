@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -25,6 +26,7 @@ final class SchoolFriendViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        Amplitude.instance().logEvent("view_recommend_kakao")
         schoolFriendView.updateView()
     }
 }

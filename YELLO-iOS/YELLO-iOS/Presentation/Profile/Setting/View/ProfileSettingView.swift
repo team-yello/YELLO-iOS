@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -128,6 +129,7 @@ final class ProfileSettingView: BaseView {
     
     // MARK: Objc Function
     @objc private func withdrawalButtonTapped() {
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal1"])
         handleWithdrawalButtonDelegate?.withdrawalButtonTapped()
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -67,7 +68,7 @@ final class VotingLockedViewController: BaseViewController {
         }
         
         originView.textLabel.snp.makeConstraints {
-            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(6.adjustedHeight)
+            $0.top.equalTo(originView.titleLabel.snp.bottom).offset(8.adjustedHeight)
         }
         
         originView.yelloImage.snp.makeConstraints {
@@ -103,6 +104,9 @@ final class VotingLockedViewController: BaseViewController {
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         viewController.view.addSubview(invitingView)
+        invitingView.rootViewController = "VotingLockedViewController"
+        
+        Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": "vote_4down"])
     }
 }
 

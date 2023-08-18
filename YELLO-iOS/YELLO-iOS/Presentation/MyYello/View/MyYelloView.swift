@@ -24,7 +24,7 @@ final class MyYelloView: BaseView {
         }
     }
     weak var handleUnlockButton: HandleUnlockButton?
-    var haveTicket: Bool = true {
+    var haveTicket: Bool = false {
         didSet {
             if haveTicket {
                 unlockButton.setButtonState(state: .yesTicket)
@@ -37,7 +37,7 @@ final class MyYelloView: BaseView {
     // MARK: Component
     let myYellowNavigationBarView = MyYelloNavigationBarView()
     let myYelloListView = MyYelloListView()
-    lazy var unlockButton = MyYelloButton(state: .yesTicket)
+    lazy var unlockButton = MyYelloButton(state: .noTicket)
     
     // MARK: - Function
     // MARK: Layout Helpers

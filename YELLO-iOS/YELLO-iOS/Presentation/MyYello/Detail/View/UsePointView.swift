@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -165,6 +166,12 @@ extension UsePointView {
     @objc func noButtonTapped() {
         self.isHidden = true
         self.removeFromSuperview()
+        if let labelText = pointLabel.text, labelText.contains("100") {
+            Amplitude.instance().logEvent("click_modal_keyword_no")
+        } else if let labelText = pointLabel.text, labelText.contains("300")  {
+            Amplitude.instance().logEvent("click_modal_firstletter_no")
+        }
+       
     }
     
     @objc func confirmButtonTapped() {

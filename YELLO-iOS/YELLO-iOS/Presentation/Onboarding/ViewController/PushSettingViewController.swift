@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Amplitude
+
 class PushSettingViewController: UIViewController {
     // MARK: - Variables
     // MARK: Component
@@ -51,28 +53,24 @@ class PushSettingViewController: UIViewController {
     func requestAuthNoti() {
         let notiAuthOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
         userNotiCenter.requestAuthorization(options: notiAuthOptions) { (success, error) in
+            if success {
+                // 푸시 알림 권한 허용
+                Amplitude.instance().logEvent("click_onboarding_notification",withEventProperties: ["user_pushnotification":"enabled"])
+            } else {
+                Amplitude.instance().setUserProperties(["user_pushnotification":"disable"])
+            }
             if let error = error {
                 print(#function, error)
             }
+            
+            
         }
     }
     
     // MARK: objc Function
     @objc func tapButton() {
         requestAuthNoti()
-        var rootViewController = UIViewController()
-        if User.shared.isResigned {
-            rootViewController = YELLOTabBarController()
-        } else {
-            rootViewController = OnboardingEndViewController()
-        }
-        self.baseView.pushSettingButton.isEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            let yelloTabBarController = YELLOTabBarController()
-            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-            self.baseView.pushSettingButton.isEnabled = true
-        }
+        navigationController?.pushViewController(TutorialViewController(), animated: false)
     }
 
 }

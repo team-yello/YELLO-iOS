@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import KakaoSDKUser
 
 class KakaoLoginViewController: UIViewController {
@@ -45,11 +46,14 @@ class KakaoLoginViewController: UIViewController {
                             guard let uuidInt = user.id else { return }
                             let uuid = String(uuidInt)
                             
-                            guard let email = user.kakaoAccount?.email else { return }
+                            guard let kakaoUser = user.kakaoAccount else {return}
+                            guard let email = kakaoUser.email else {return}
                             guard let profile = user.kakaoAccount?.profile?.profileImageUrl else {return}
                             User.shared.social = "KAKAO"
                             User.shared.uuid = uuid
                             User.shared.email = email
+                            User.shared.name = kakaoUser.name ?? ""
+                            User.shared.gender = kakaoUser.gender?.rawValue.uppercased() ?? ""
                             User.shared.profileImage = profile.absoluteString
                             
                         }
@@ -67,10 +71,12 @@ class KakaoLoginViewController: UIViewController {
                     var rootViewController: UIViewController = YELLOTabBarController()
                     User.shared.isResigned = data.isResigned
                     
-                    print("isResetting:\(User.shared.isResetting)")
                     print("isResigned: \(User.shared.isResigned)")
-                    if User.shared.isResigned || User.shared.isResetting {
+                    Amplitude.instance().logEvent("complete_onboarding_finish")
+                    if isFirstTime() {
                         rootViewController = PushSettingViewController()
+                    } else if User.shared.isResigned {
+                        rootViewController = TutorialViewController()
                     } else {
                         rootViewController = YELLOTabBarController()
                     }
@@ -88,6 +94,7 @@ class KakaoLoginViewController: UIViewController {
     
     // MARK: Objc Function
     @objc func kakaoLoginButtonDidTap() {
+        Amplitude.instance().logEvent("click_onboarding_kakao")
         /// 카카오톡 실행 가능 여부 확인
         /// isKakaoTalkLoginAvailable() : 카톡 설치 되어있으면 true
         if UserApi.isKakaoTalkLoginAvailable() {
@@ -112,6 +119,7 @@ class KakaoLoginViewController: UIViewController {
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
                     self.authNetwork(queryDTO: queryDTO)
+                    Amplitude.instance().logEvent("complete_onboarding_finish")
                 }
             }
         }

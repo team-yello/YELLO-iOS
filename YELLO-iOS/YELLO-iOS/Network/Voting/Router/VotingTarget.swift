@@ -14,6 +14,7 @@ enum VotingTarget {
     case getVotingSuffle
     case getVotingList
     case postVotingAnswerList(_ requestDTO: VotingAnswerListRequestDTO)
+    case getUnreadCount
 }
 
 extension VotingTarget: TargetType {
@@ -25,7 +26,9 @@ extension VotingTarget: TargetType {
             return .hasAccessToken
         case .getVotingList:
             return .hasAccessToken
-        case .postVotingAnswerList(_):
+        case .postVotingAnswerList:
+            return .hasAccessToken
+        case .getUnreadCount:
             return .hasAccessToken
         }
     }
@@ -40,6 +43,8 @@ extension VotingTarget: TargetType {
             return .get
         case .postVotingAnswerList:
             return .post
+        case .getUnreadCount:
+            return .get
         }
     }
 
@@ -53,6 +58,8 @@ extension VotingTarget: TargetType {
             return "/vote/question"
         case .postVotingAnswerList:
             return "/vote"
+        case .getUnreadCount:
+            return "/vote/count"
         }
     }
 
@@ -66,6 +73,8 @@ extension VotingTarget: TargetType {
             return .requestPlain
         case let .postVotingAnswerList(requestDTO):
             return .requestWithBody(requestDTO)
+        case .getUnreadCount:
+            return .requestPlain
         }
     }
 

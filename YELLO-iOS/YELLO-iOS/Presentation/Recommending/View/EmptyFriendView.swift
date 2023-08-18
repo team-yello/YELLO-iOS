@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -18,6 +19,8 @@ final class EmptyFriendView: UIView {
     private let emptyImageView = UIImageView()
     private let emptyDescriptionLabel = UILabel()
     lazy var inviteButton = UIButton(frame: CGRect(x: 0, y: 0, width: 236.adjustedWidth, height: 48.adjustedHeight))
+    
+    var viewControllerName = ""
     private var invitingView = InvitingView()
     
     // MARK: - Function
@@ -106,7 +109,9 @@ extension EmptyFriendView {
     // MARK: Objc Function
     @objc func showAlert() {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-
+        
+        var keyValue = ""
+        
         invitingView.removeFromSuperview()
         invitingView = InvitingView()
         invitingView.profileUserYelloId()
@@ -114,6 +119,22 @@ extension EmptyFriendView {
         invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         viewController.view.addSubview(invitingView)
+        
+        switch viewControllerName {
+        case "kakaoFriend":
+            invitingView.rootViewController = "KakaoFriendViewController"
+            keyValue = "recommend_kakao_nofriend"
+        case "schoolFriend":
+            invitingView.rootViewController = "SchoolFriendViewController"
+            keyValue = "recommend_school_nofriend"
+        case "around":
+            invitingView.rootViewController = "AroundViewController"
+            keyValue = "timeline_0friend"
+        default :
+            return
+        }
+        
+        Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": keyValue])
         
     }
 }

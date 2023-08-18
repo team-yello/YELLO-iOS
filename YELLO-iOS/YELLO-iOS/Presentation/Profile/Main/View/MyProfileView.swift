@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -16,9 +17,9 @@ final class MyProfileView: UIView {
     // MARK: Component
     let mainProfileView = UIView()
     
-    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44
-        .adjusted, height: 44.adjusted))
-    let profileImageBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 48.adjusted, height: 48.adjusted))
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 48
+        .adjusted, height: 48.adjusted))
+    let profileStarGradientView = UIView(frame: CGRect(x: 0, y: 0, width: 344.adjusted, height: 6.adjustedHeight))
     let profileStarImageView = UIImageView()
     
     let nameLabel = UILabel()
@@ -35,6 +36,13 @@ final class MyProfileView: UIView {
     
     let nameSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
     let schoolSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
+    
+    // 옐로 플러스 여부에 따라서 달라짐
+    var isYelloPlus: Bool = false {
+        didSet {
+            updateProfileView()
+        }
+    }
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -62,7 +70,7 @@ extension MyProfileView {
         
         mainProfileView.do {
             $0.backgroundColor = .grayscales900
-            $0.makeCornerRound(radius: 12.adjustedHeight)
+            $0.roundCorners(cornerRadius: 12.adjustedHeight, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         }
         
         profileImageView.do {
@@ -72,9 +80,8 @@ extension MyProfileView {
             $0.layer.cornerCurve = .continuous
         }
         
-        profileImageBackgroundView.do {
+        profileStarGradientView.do {
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
-            $0.makeCornerRound(radius: 24.adjusted)
             $0.layer.cornerCurve = .continuous
             $0.isHidden = true
         }
@@ -126,7 +133,7 @@ extension MyProfileView {
         }
         
         addGroupButton.do {
-            $0.backgroundColor = .grayscales800
+            $0.backgroundColor = .grayscales900
             $0.makeCornerRound(radius: 24.adjustedHeight)
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.yelloMain500, for: .normal)
@@ -165,15 +172,17 @@ extension MyProfileView {
             $0.isHidden = true
         }
         
+        updateProfileView()
     }
     
     private func setLayout() {
-        self.addSubviews(mainProfileView,
-                         addGroupButton,
-                         shopBackgroundView)
+        self.addSubviews(
+            mainProfileView,
+            profileStarGradientView,
+            addGroupButton,
+            shopBackgroundView)
         
-        mainProfileView.addSubviews(profileImageBackgroundView,
-                                    profileImageView,
+        mainProfileView.addSubviews(profileImageView,
                                     profileStarImageView,
                                     nameLabel,
                                     instagramLabel,
@@ -189,19 +198,25 @@ extension MyProfileView {
         shopBackgroundView.addSubviews(shopButton)
         
         mainProfileView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalTo(profileStarGradientView.snp.bottom)
             $0.width.equalTo(343.adjustedWidth)
         }
         
-        profileImageBackgroundView.snp.makeConstraints {
+        profileStarGradientView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(mainProfileView)
+            $0.top.equalToSuperview()
+            $0.height.equalTo(6.adjustedHeight)
+        }
+        
+        profileImageView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(20.adjustedHeight)
-            $0.leading.equalToSuperview().inset(20.adjustedWidth)
-            $0.width.height.equalTo(48.adjusted)
+            $0.leading.equalToSuperview().inset(27.5.adjustedWidth)
+            $0.height.width.equalTo(48.adjusted)
         }
         
         profileStarImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(12.adjustedHeight)
-            $0.leading.equalToSuperview().inset(12.adjustedWidth)
+            $0.top.equalTo(mainProfileView).offset(10.adjustedHeight)
+            $0.leading.equalToSuperview().inset(18.adjustedWidth)
         }
         
         nameLabel.snp.makeConstraints {
@@ -255,6 +270,7 @@ extension MyProfileView {
             $0.height.equalTo(48.adjustedHeight)
             $0.width.equalTo(129.adjustedWidth)
             $0.leading.equalTo(mainProfileView)
+            $0.bottom.equalToSuperview()
         }
         
         shopBackgroundView.snp.makeConstraints {
@@ -262,6 +278,7 @@ extension MyProfileView {
             $0.height.equalTo(48.adjustedHeight)
             $0.width.equalTo(206.adjustedWidth)
             $0.top.equalTo(addGroupButton)
+            $0.bottom.equalToSuperview()
         }
         
         shopButton.snp.makeConstraints {
@@ -290,6 +307,7 @@ extension MyProfileView {
     @objc private func addGroupButtonTapped() {
         let url = URL(string: "https://bit.ly/44xDDqC")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        Amplitude.instance().logEvent("click_profile_group")
     }
     
     // MARK: - Network
@@ -319,19 +337,15 @@ extension MyProfileView {
         }
     }
     
-    func updateYelloPlusView() {
-        if profileImageBackgroundView.isHidden {
-            profileImageView.snp.makeConstraints {
-                $0.top.equalToSuperview().inset(20.adjustedHeight)
-                $0.leading.equalToSuperview().inset(20.adjustedWidth)
-                $0.width.height.equalTo(48.adjusted)
-            }
+    func updateProfileView() {
+        if isYelloPlus {
+            mainProfileView.roundCorners(cornerRadius: 12.adjustedHeight, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+            profileStarGradientView.isHidden = false
+            profileStarImageView.isHidden = false
         } else {
-            profileImageView.snp.makeConstraints {
-                $0.center.equalTo(profileImageBackgroundView)
-                $0.width.height.equalTo(44.adjusted)
-            }
-            profileImageView.makeCornerRound(radius: 22.adjusted)
+            mainProfileView.roundCorners(cornerRadius: 12.adjustedHeight, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+            profileStarGradientView.isHidden = true
+            profileStarImageView.isHidden = true
         }
     }
 }

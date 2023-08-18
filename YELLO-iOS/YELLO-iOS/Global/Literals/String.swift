@@ -58,12 +58,23 @@ enum StringLiterals {
         static let pushNotiHelper = "친구들에게 비밀쪽지가 도착하면\n알림을 드릴게요."
         static let pushNotiButtonText = "쪽지 알림 받기"
         
-        static let endingTitle = "200포인트 지급"
-        static let endingPlusTitle = "200+100포인트 지급"
+        static let endingTitle = "가입 포인트 지급"
         static let endingText = "튜토리얼 끝!\n옐로에서 환영 선물을 준비했어요!"
         static let endingSubText = "앞으로 투표가 끝날 때마다 포인트를 줄게요!"
         static let endingButton = "옐로하러 가기"
+    }
+    
+    enum Tutorial {
+        static let firstTutorialText = "친구가 4명 이상 모이면?\n옐로할 수 있어요!"
+        static let firstGuideText = "아무데나 클릭해서 넘기기"
         
+        static let secondTutorialText = "빈칸이 있는 랜덤한 질문에"
+        
+        static let thirdTutorialText = "친구와 키워드를 선택해요!"
+        
+        static let fourthToastText = "’이 질문 건너뛰기’ 버튼을 누르면\n포인트는 지급되지 않아요"
+        static let fourthSubText = "다른 친구와 키워드를 선택하고 싶다면?"
+        static let fourthTutorialText = "친구 선택지를 바꾸거나 질문을 skip"
     }
     
     enum Inviting {
@@ -112,9 +123,21 @@ enum StringLiterals {
             static let title = "옐로를 시작하고 싶다면?"
             static let text = "친구가 4명 이상 모이면 투표할 수 있어요.\n친구들을 초대해볼까요?"
         }
+        
         enum Start {
             static let title = "누구에게 어떤 메세지를 보낼까?"
             static let myPoint = "내 포인트"
+        }
+        
+        enum ProgressLottie {
+            static let one = "pagenation_1"
+            static let two = "pagenation_2"
+            static let three = "pagenation_3"
+            static let four = "pagenation_4"
+            static let five = "pagenation_5"
+            static let six = "pagenation_6"
+            static let seven = "pagenation_7"
+            static let eight = "pagenation_8"
         }
         
         enum VoteToast {
@@ -273,7 +296,7 @@ enum StringLiterals {
         
         enum Withdrawal {
             static let withdrawal = "계정 탈퇴"
-            static let title = "탈퇴하면 사라지는 것들이 있어요"
+            static let title = "탈퇴 주의사항이 있어요"
             static let description = "지금 계정을 탈퇴하시면\n아래의 데이터 및 엑세스 권한을 전부 잃게 돼요."
             static let warningTitle = "주의! 포인트 사라짐!"
             static let warningDescription = "다시 로그인을 하더라도,\n그동안 어렵게 모은 포인트는 영원히 사라져요."

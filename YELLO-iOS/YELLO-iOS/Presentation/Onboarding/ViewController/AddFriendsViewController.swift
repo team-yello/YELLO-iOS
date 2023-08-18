@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -34,7 +35,7 @@ class AddFriendsViewController: OnboardingBaseViewController {
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
-        step = 5
+        step = 3
         getJoinedFriends()
         super.viewDidLoad()
         super.nextViewController = RecommendIdViewController()
@@ -106,7 +107,7 @@ class AddFriendsViewController: OnboardingBaseViewController {
     
     override func setUser() {
         let friends = baseView.joinedFriendsList.filter {$0.isAdded == false}.map { $0.friendInfo.id }
-        print(friends)
+        Amplitude.instance().setUserProperties(["user_friends": friends.count])
         User.shared.friends = friends
     }
 

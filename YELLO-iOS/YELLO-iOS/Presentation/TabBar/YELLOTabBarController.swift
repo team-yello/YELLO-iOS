@@ -22,6 +22,7 @@ final class YELLOTabBarController: UITabBarController {
     let aroundViewController = AroundViewController()
     let myYelloViewController = MyYelloViewController()
     let profileViewController = ProfileViewController()
+    let votingStartViewController = VotingStartViewController()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -192,6 +193,7 @@ extension YELLOTabBarController {
                 }
                 self.setTabBarItems()
                 self.setTabBarAppearance()
+                self.myYelloViewController.unreadCount()
             default:
                 print("network failure")
                 return
@@ -208,6 +210,9 @@ extension YELLOTabBarController {
         
         /// 둘러보기 서버통신
         aroundViewController.aroundView.around()
+        
+        /// 옐로하기_시작 서버통신
+//        votingStartViewController.getSubscribe()
         
         /// 내 쪽지 서버통신
         myYelloViewController.myYelloView.myYelloListView.myYello()
@@ -234,7 +239,9 @@ extension YELLOTabBarController {
         if let userInfo = notification.userInfo {
             if let index = userInfo["index"] as? Int {
                 self.selectedIndex = index
-                if selectedIndex == 3 {
+                if selectedIndex == 2 {
+                    tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+                } else if selectedIndex == 3 {
                     tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                     
                     let myYelloDetailViewController = MyYelloDetailViewController()
