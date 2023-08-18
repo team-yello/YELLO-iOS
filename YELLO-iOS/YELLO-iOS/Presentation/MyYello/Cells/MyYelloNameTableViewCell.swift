@@ -188,9 +188,19 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             keywordLabel.snp.makeConstraints {
                 $0.leading.equalToSuperview()
             }
+        } else {
+            keywordHeadLabel.text = model.vote.keywordHead
+            keywordHeadLabel.snp.remakeConstraints {
+                $0.bottom.equalToSuperview()
+                $0.leading.equalToSuperview()
+            }
+            
+            keywordLabel.snp.remakeConstraints {
+                $0.bottom.equalTo(keywordHeadLabel)
+                $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-2.adjustedWidth)
+            }
         }
         
-        keywordHeadLabel.text = model.vote.keywordHead
         keywordLabel.text = model.vote.keyword
         keywordFootLabel.text = model.vote.keywordFoot ?? ""
         timeLabel.text = model.createdAt
