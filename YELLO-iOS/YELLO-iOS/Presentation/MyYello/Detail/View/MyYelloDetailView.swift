@@ -46,6 +46,7 @@ final class MyYelloDetailView: BaseView {
         didSet {
             if haveTicket {
                 senderButton.setButtonState(state: .yesTicket)
+                senderButton.keyCountLabel.text = String(self.ticketCount)
                 if isTicketUsed {
                     senderButton.setButtonState(state: .useTicket)
                 }
@@ -135,7 +136,6 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
-    var currentTicket: Int = 2
     var voteIdNumber: Int = 0
     var initialName: String = ""
     
@@ -358,7 +358,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         useTicketView.removeFromSuperview()
         useTicketView = UseTicketView()
-        useTicketView.ticketLabel.text = String(self.currentTicket)
+        useTicketView.ticketLabel.text = String(self.ticketCount)
         useTicketView.frame = viewController.view.bounds
         useTicketView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         useTicketView.handleConfirmTicketButtonDelegate = self

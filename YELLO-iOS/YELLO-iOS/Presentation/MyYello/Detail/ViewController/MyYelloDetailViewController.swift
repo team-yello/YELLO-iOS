@@ -156,6 +156,11 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.senderButton.isHidden = false
                 self.setBackgroundView()
                 
+                // DTO 추가
+                if data.isSubscribe {
+                    self.myYelloDetailView.isPlus = true
+                }
+                
                 if data.senderGender == "MALE" {
                     self.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.male
                 } else {
@@ -188,21 +193,16 @@ extension MyYelloDetailViewController {
                     self.myYelloDetailView.isSenderUsed = true
                     self.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
                     self.myYelloDetailView.isKeywordUsed = true
-                    self.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
                     self.myYelloDetailView.keywordButton.isHidden = true
                     self.myYelloDetailView.haveTicket = false
                     self.myYelloDetailView.senderButton.snp.makeConstraints {
                         $0.top.equalTo(self.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
                     }
+                    self.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
                 } else if data.nameHint == -2 {
                     self.myYelloDetailView.isTicketUsed = true
                     self.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
                     self.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
-                }
-                
-                // DTO 추가
-                if data.isSubscribe {
-                    self.myYelloDetailView.isPlus = true
                 }
                 
                 self.myYelloDetailView.ticketCount = data.ticketCount
