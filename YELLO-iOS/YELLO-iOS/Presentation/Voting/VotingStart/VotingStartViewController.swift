@@ -35,6 +35,7 @@ final class VotingStartViewController: BaseViewController {
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         tabBarController?.tabBar.isHidden = false
+        getSubscribe()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -63,7 +64,6 @@ final class VotingStartViewController: BaseViewController {
             $0.addArrangedSubviews(multiplyByTwoText, multiplyByTwoImageView)
             $0.alignment = .center
             $0.spacing = 4.adjusted
-            // 구독권 연결 후 수정 예정
             $0.isHidden = true
         }
         
