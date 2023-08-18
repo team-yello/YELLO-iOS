@@ -49,6 +49,15 @@ extension UILabel {
         self.attributedText = mutableAttributedString
     }
     
+    /// 특정 텍스트만 폰트를 다르게 주는 함수
+    func asFont(targetString: String, font: UIFont) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttribute(.font, value: font, range: range)
+        attributedText = attributedString
+    }
+    
     /// 텍스트가 두 줄일 때 각 줄에 폰트, 색상을 다르게 주는 함수
     static func createTwoLineLabel(text: String, firstLineFont: UIFont, firstLineColor: UIColor, secondLineFont: UIFont, secondLineColor: UIColor) -> UILabel {
         let label = UILabel()
