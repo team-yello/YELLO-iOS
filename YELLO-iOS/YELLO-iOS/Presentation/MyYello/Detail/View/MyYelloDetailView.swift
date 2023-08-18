@@ -495,7 +495,9 @@ extension MyYelloDetailView {
                 self.detailSenderView.senderLabel.text = initial
                 self.getFullNameView.hintLabel.text = initial
                 self.getFullNameView.ticketLabel.text = String(self.ticketCount - 1)
-                
+                self.isTicketUsed = true
+                self.senderButton.setButtonState(state: .useTicket)
+
                 MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
                 
                 dump(data)
@@ -559,6 +561,5 @@ extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
     func confirmTicketButtonTapped() {
         showGetFullNameAlert()
         myYelloDetailFullName(voteId: voteIdNumber)
-        isTicketUsed.toggle()
     }
 }
