@@ -30,7 +30,7 @@ final class FriendProfileView: BaseView {
     //    var indexNumber: Int = -1
     weak var handleDeleteFriendButtonDelegate: HandleDeleteFriendButtonDelegate?
     
-    private let profileImageView = UIImageView()
+    private let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 72.adjusted, height: 72.adjusted))
     private let nameLabel = UILabel()
     private let instagramLabel = UILabel()
     private let schoolLabel = UILabel()
@@ -51,7 +51,7 @@ final class FriendProfileView: BaseView {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 36.adjustedHeight)
+            $0.makeCornerRound(radius: 36.adjusted)
         }
         
         nameLabel.do {

@@ -63,6 +63,8 @@ final class VotingStartViewController: BaseViewController {
             $0.addArrangedSubviews(multiplyByTwoText, multiplyByTwoImageView)
             $0.alignment = .center
             $0.spacing = 4.adjusted
+            // 구독권 연결 후 수정 예정
+            $0.isHidden = true
         }
         
         originView.yellowButton.do {

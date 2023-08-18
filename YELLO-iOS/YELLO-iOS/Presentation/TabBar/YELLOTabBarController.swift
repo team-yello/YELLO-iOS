@@ -212,7 +212,7 @@ extension YELLOTabBarController {
         aroundViewController.aroundView.around()
         
         /// 옐로하기_시작 서버통신
-        votingStartViewController.getSubscribe()
+//        votingStartViewController.getSubscribe()
         
         /// 내 쪽지 서버통신
         myYelloViewController.myYelloView.myYelloListView.myYello()
