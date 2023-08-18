@@ -38,7 +38,7 @@ final class MyProfileView: UIView {
     let schoolSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
     
     // 옐로 플러스 여부에 따라서 달라짐
-    var isYelloPlus: Bool = false {
+    var isYelloPlus: Bool = true {
         didSet {
             updateProfileView()
         }
@@ -76,7 +76,7 @@ extension MyProfileView {
         profileImageView.do {
             $0.backgroundColor = .grayscales800
             $0.contentMode = .scaleAspectFill
-            $0.makeCornerRound(radius: 22.adjusted)
+            $0.makeCornerRound(radius: 24.adjusted)
             $0.layer.cornerCurve = .continuous
         }
         
