@@ -13,6 +13,8 @@ protocol PurchaseServiceProtocol {
     
     func purchaseTicket(requestDTO: PurchaseRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
     
+    func purchaseSubscibeNeed(completion: @escaping (NetworkResult<BaseResponse<PurchaseSubscibeNeedResponseDTO>>) -> Void)
+    
 }
 
 final class PurchaseService: APIRequestLoader<PurchaseTarget>, PurchaseServiceProtocol {
@@ -26,5 +28,9 @@ final class PurchaseService: APIRequestLoader<PurchaseTarget>, PurchaseServicePr
         
         fetchData(target: .purchaseTicket(requestDTO),
                   responseData: BaseResponse<String?>.self, completion: completion)
+    }
+    
+    func purchaseSubscibeNeed(completion: @escaping (NetworkResult<BaseResponse<PurchaseSubscibeNeedResponseDTO>>) -> Void) {
+        fetchData(target: .purchaseSubscibeNeed, responseData: BaseResponse<PurchaseSubscibeNeedResponseDTO>.self, completion: completion)
     }
 }
