@@ -162,20 +162,25 @@ extension MyYelloListView: UITableViewDataSource {
             cell.showShimmer()
             return cell
         } else {
-            if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false || (MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -3 && MyYelloListView.myYelloModelDummy[indexPath.row].isRead == false) {
+            if (MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -1 && MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false) || (MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -3 && MyYelloListView.myYelloModelDummy[indexPath.row].isRead == false) {
                 guard let defaultCell = tableView.dequeueReusableCell(withIdentifier: MyYelloDefaultTableViewCell.identifier, for: indexPath) as? MyYelloDefaultTableViewCell else { return UITableViewCell() }
-                
                 defaultCell.configureDefaultCell(MyYelloListView.myYelloModelDummy[indexPath.row])
                 defaultCell.isRead = MyYelloListView.myYelloModelDummy[indexPath.row].isRead
                 defaultCell.newView.isHidden = defaultCell.isRead
                 defaultCell.selectionStyle = .none
                 return defaultCell
-            } else if MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -1 {
+            } else if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == true && MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -1 {
                 guard let keywordCell = tableView.dequeueReusableCell(withIdentifier: MyYelloKeywordTableViewCell.identifier, for: indexPath) as? MyYelloKeywordTableViewCell else { return UITableViewCell() }
                 
                 keywordCell.configureKeywordCell(MyYelloListView.myYelloModelDummy[indexPath.row])
                 keywordCell.selectionStyle = .none
                 return keywordCell
+            } else if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false && MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -2 {
+                guard let onlyNameCell = tableView.dequeueReusableCell(withIdentifier: MyYelloOnlyNameTableViewCell.identifier, for: indexPath) as? MyYelloOnlyNameTableViewCell else { return UITableViewCell() }
+                
+                onlyNameCell.configureOnlyNameCell(MyYelloListView.myYelloModelDummy[indexPath.row])
+                onlyNameCell.selectionStyle = .none
+                return onlyNameCell
             } else {
                 guard let nameCell = tableView.dequeueReusableCell(withIdentifier: MyYelloNameTableViewCell.identifier, for: indexPath) as? MyYelloNameTableViewCell else { return UITableViewCell() }
                 
@@ -189,15 +194,18 @@ extension MyYelloListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if fetchingMore {
             return 77.adjustedHeight
-        }
-        
-        let nameHintIndex = MyYelloListView.myYelloModelDummy[indexPath.row].nameHint
-        
-        if nameHintIndex == 0 || nameHintIndex == 1 || (nameHintIndex == -3 && MyYelloListView.myYelloModelDummy[indexPath.row].isRead == true) {
-            return 98.adjustedHeight
         } else {
-            return 74.adjustedHeight
+            if (MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -1 && MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false) || (MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -3 && MyYelloListView.myYelloModelDummy[indexPath.row].isRead == false) {
+                return 74.adjustedHeight
+            } else if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == true && MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -1 {
+                return 74.adjustedHeight
+            } else if MyYelloListView.myYelloModelDummy[indexPath.row].isHintUsed == false && MyYelloListView.myYelloModelDummy[indexPath.row].nameHint == -2 {
+                return 74.adjustedHeight
+            } else {
+                return 98.adjustedHeight
+            }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

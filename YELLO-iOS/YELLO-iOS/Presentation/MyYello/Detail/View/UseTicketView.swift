@@ -82,7 +82,7 @@ final class UseTicketView: BaseView {
         }
         
         ticketLabel.do {
-            $0.text = "2"
+            $0.text = " "
             $0.textColor = .white
             $0.font = .uiKeywordBold
             $0.textAlignment = .right

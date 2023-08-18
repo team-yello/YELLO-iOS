@@ -46,18 +46,31 @@ final class MyYelloDetailView: BaseView {
         didSet {
             if haveTicket {
                 senderButton.setButtonState(state: .yesTicket)
+                senderButton.keyCountLabel.text = String(self.ticketCount)
+                if isTicketUsed {
+                    senderButton.setButtonState(state: .useTicket)
+                }
+                if nameIndex == -3 {
+                    senderButton.setButtonState(state: .noTicket)
+                }
             } else {
                 senderButton.setButtonState(state: .noTicket)
+                if isTicketUsed {
+                    senderButton.setButtonState(state: .useTicket)
+                }
             }
         }
     }
     var isTicketUsed: Bool = false {
         didSet {
-            senderButton.setButtonState(state: .useTicket)
             if isKeywordUsed == true {
+                senderButton.setButtonState(state: .useTicket)
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
                     $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                }
+                if self.nameIndex == -3 {
+                    senderButton.setButtonState(state: .noTicket)
                 }
             }
         }
@@ -129,7 +142,6 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
-    var currentTicket: Int = 2
     var voteIdNumber: Int = 0
     var initialName: String = ""
     
@@ -352,7 +364,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         useTicketView.removeFromSuperview()
         useTicketView = UseTicketView()
-        useTicketView.ticketLabel.text = String(self.currentTicket)
+        useTicketView.ticketLabel.text = String(self.ticketCount)
         useTicketView.frame = viewController.view.bounds
         useTicketView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         useTicketView.handleConfirmTicketButtonDelegate = self
@@ -483,7 +495,9 @@ extension MyYelloDetailView {
                 self.detailSenderView.senderLabel.text = initial
                 self.getFullNameView.hintLabel.text = initial
                 self.getFullNameView.ticketLabel.text = String(self.ticketCount - 1)
-                
+                self.isTicketUsed = true
+                self.senderButton.setButtonState(state: .useTicket)
+
                 MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
                 
                 dump(data)
@@ -547,6 +561,5 @@ extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
     func confirmTicketButtonTapped() {
         showGetFullNameAlert()
         myYelloDetailFullName(voteId: voteIdNumber)
-        isTicketUsed.toggle()
     }
 }

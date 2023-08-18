@@ -11,10 +11,10 @@ struct MyYelloDetailResponseDTO: Codable {
     let nameHint: Int
     let colorIndex: Int
     let currentPoint: Int
+    let ticketCount: Int
     let isAnswerRevealed: Bool
+    let isSubscribe: Bool
     let senderName: String
     let senderGender: String
     let vote: Vote
-    let ticketCount: Int
-    let isSubscribe: Bool
 }

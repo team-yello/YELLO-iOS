@@ -100,7 +100,12 @@ extension MyYelloDetailViewController {
     
     @objc private func senderButtonTapped() {
         if myYelloDetailView.haveTicket {
-            myYelloDetailView.showUseTicketAlert()
+            if myYelloDetailView.nameIndex == -3 {
+                let paymentPlusViewController = PaymentPlusViewController()
+                navigationController?.pushViewController(paymentPlusViewController, animated: true)
+            } else {
+                myYelloDetailView.showUseTicketAlert()
+            }
         } else {
             let paymentPlusViewController = PaymentPlusViewController()
             if myYelloDetailView.isKeywordUsed && !(myYelloDetailView.isPlus) && !(myYelloDetailView.isSenderUsed) {
@@ -156,6 +161,11 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.senderButton.isHidden = false
                 self.setBackgroundView()
                 
+                // DTO 추가
+                if data.isSubscribe {
+                    self.myYelloDetailView.isPlus = true
+                }
+                
                 if data.senderGender == "MALE" {
                     self.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.male
                 } else {
@@ -173,6 +183,7 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
                 
                 self.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
+                self.myYelloDetailView.nameIndex = data.nameHint
                 
                 if data.nameHint == 0 {
                     self.myYelloDetailView.isSenderUsed = true
@@ -188,17 +199,14 @@ extension MyYelloDetailViewController {
                     self.myYelloDetailView.isSenderUsed = true
                     self.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
                     self.myYelloDetailView.isKeywordUsed = true
-                    self.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
                     self.myYelloDetailView.keywordButton.isHidden = true
-                    self.myYelloDetailView.haveTicket = false
                     self.myYelloDetailView.senderButton.snp.makeConstraints {
                         $0.top.equalTo(self.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
                     }
-                }
-                
-                // DTO 추가
-                if data.isSubscribe {
-                    self.myYelloDetailView.isPlus = true
+                } else if data.nameHint == -2 {
+                    self.myYelloDetailView.isTicketUsed = true
+                    self.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
+                    self.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
                 }
                 
                 self.myYelloDetailView.ticketCount = data.ticketCount
@@ -274,7 +282,6 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
         } else if !myYelloDetailView.isKeywordUsed && !myYelloDetailView.isSenderUsed {
             Amplitude.instance().logEvent("click_instagram", withEventProperties: ["insta_view": "message"])
         }
-        
         
         if let storyShareURL = URL(string: "instagram-stories://share?source_application=" + Config.metaAppID) {
             

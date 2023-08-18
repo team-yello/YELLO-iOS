@@ -45,13 +45,6 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        genderImageView.image = nil
-        titleLabel.text = nil
-        timeLabel.text = nil
-    }
-    
     // MARK: Layout Helpers
     private func setUI() {
         setStyle()
@@ -76,7 +69,6 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
         newView.do {
             $0.backgroundColor = .semanticStatusYellow500
             $0.makeCornerRound(radius: 2.adjustedHeight)
-
         }
         
         timeLabel.do {
