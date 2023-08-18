@@ -268,7 +268,6 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
             Amplitude.instance().logEvent("click_instagram", withEventProperties: ["insta_view": "message"])
         }
         
-        
         if let storyShareURL = URL(string: "instagram-stories://share?source_application=" + Config.metaAppID) {
             
             if UIApplication.shared.canOpenURL(storyShareURL) {
