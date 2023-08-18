@@ -162,17 +162,6 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        genderImageView.image = nil
-        initialLabel.text = nil
-        nameLabel.text = nil
-        keywordHeadLabel.text = nil
-        keywordLabel.text = nil
-        keywordFootLabel.text = nil
-        timeLabel.text = nil
-    }
-    
     // MARK: Custom Function
     func configureNameCell(_ model: Yello) {
         if model.senderGender == "MALE" {
@@ -199,9 +188,19 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             keywordLabel.snp.makeConstraints {
                 $0.leading.equalToSuperview()
             }
+        } else {
+            keywordHeadLabel.text = model.vote.keywordHead
+            keywordHeadLabel.snp.remakeConstraints {
+                $0.bottom.equalToSuperview()
+                $0.leading.equalToSuperview()
+            }
+            
+            keywordLabel.snp.remakeConstraints {
+                $0.bottom.equalTo(keywordHeadLabel)
+                $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-2.adjustedWidth)
+            }
         }
         
-        keywordHeadLabel.text = model.vote.keywordHead
         keywordLabel.text = model.vote.keyword
         keywordFootLabel.text = model.vote.keywordFoot ?? ""
         timeLabel.text = model.createdAt
@@ -214,7 +213,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
             if let initial = getSecondInitial(model.senderName as NSString, index: 1) {
                 initialLabel.text = initial
             }
-        } else if model.nameHint == -3 {
+        } else if model.nameHint == -3 || model.nameHint == -2 {
             initialLabel.text = model.senderName
         }
     }

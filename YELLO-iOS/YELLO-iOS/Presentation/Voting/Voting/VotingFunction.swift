@@ -310,6 +310,8 @@ extension VotingViewController {
             view.showToast(message: StringLiterals.Voting.VoteToast.suffle)
         } else {
             suffleCount += 1
+            let questionId = votingList[VotingViewController.pushCount].questionId
+            Amplitude.instance().logEvent("click_vote_shuffle", withEventProperties: ["question_id": questionId, "count_shuffle":"shuffle\(suffleCount)"])
         }
     }
     
@@ -324,6 +326,8 @@ extension VotingViewController {
                 .add("user_vote_skip", value: NSNumber(value: 1))
             guard let identify = identify else {return}
             Amplitude.instance().identify(identify)
+            let questionId = votingList[VotingViewController.pushCount].questionId
+            Amplitude.instance().logEvent("click_vote_skip", withEventProperties: ["question_id": questionId])
             setNextViewController()
         }
     }

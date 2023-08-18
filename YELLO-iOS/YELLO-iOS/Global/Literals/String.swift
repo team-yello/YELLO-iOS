@@ -327,6 +327,7 @@ enum StringLiterals {
             static let available = "VOTE_AVAILABLE"
             static let newVote = "NEW_VOTE"
             static let newFriend = "NEW_FRIEND"
+            static let recommend = "RECOMMEND"
         }
     }
 }

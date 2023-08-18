@@ -118,7 +118,7 @@ extension FriendsTableViewCell {
         self.backgroundColor = .black
         
         profileImageView.do {
-            $0.backgroundColor = .yelloMain300
+            $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.contentMode = .scaleAspectFill
             $0.makeCornerRound(radius: 21.adjusted)
         }

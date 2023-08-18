@@ -29,12 +29,12 @@ final class YelloTextFieldView: UIView {
     
     /// 텍스트필드 상태도 인자로 받아서 분기 처리
     init(title: String, state: iconState,
-         placeholder: String = " ", helper: String = "") {
+         placeholder: String = "", helper: String = "") {
         super.init(frame: CGRect())
         titleLabel.text = title
         textField.placeholder = placeholder
-        textField.setButtonState(state: state)
         self.state = state
+        textField.setButtonState(state: state)
         helperLabel.setLabelStyle(text: helper, State: state)
         setUI()
     }

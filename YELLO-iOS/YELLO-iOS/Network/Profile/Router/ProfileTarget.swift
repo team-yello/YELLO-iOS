@@ -14,6 +14,7 @@ enum ProfileTarget {
     case profileFriend(_ queryDTO: ProfileFriendRequestQueryDTO)
     case profileDeleteFriend(id: Int)
     case deleteUser
+    case purchaseInfo
 }
 
 extension ProfileTarget: TargetType {
@@ -26,6 +27,8 @@ extension ProfileTarget: TargetType {
         case .profileDeleteFriend:
             return .hasAccessToken
         case .deleteUser:
+            return .hasAccessToken
+        case .purchaseInfo:
             return .hasAccessToken
         }
     }
@@ -40,6 +43,8 @@ extension ProfileTarget: TargetType {
             return .delete
         case .deleteUser:
             return .delete
+        case .purchaseInfo:
+            return .get
         }
     }
     
@@ -53,6 +58,8 @@ extension ProfileTarget: TargetType {
             return "/friend/\(id)"
         case .deleteUser:
             return "/user"
+        case .purchaseInfo:
+            return "/purchase/purchaseInfo"
         }
     }
 
@@ -65,6 +72,8 @@ extension ProfileTarget: TargetType {
         case .profileDeleteFriend:
             return .requestPlain
         case .deleteUser:
+            return .requestPlain
+        case .purchaseInfo:
             return .requestPlain
         }
     }

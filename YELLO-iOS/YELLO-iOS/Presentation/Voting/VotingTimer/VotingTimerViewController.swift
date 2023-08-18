@@ -71,8 +71,6 @@ final class VotingTimerViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
