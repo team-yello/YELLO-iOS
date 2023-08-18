@@ -21,13 +21,11 @@ final class MyYelloButton: UIButton {
     private enum Color {
         static var gradientColors = [
             UIColor.white,
-//            UIColor.white.withAlphaComponent(0.9),
             UIColor.white.withAlphaComponent(0.6),
             UIColor.white.withAlphaComponent(0.3),
             UIColor.white.withAlphaComponent(0.0),
             UIColor.white.withAlphaComponent(0.3),
             UIColor.white.withAlphaComponent(0.6),
-//            UIColor.white.withAlphaComponent(0.9),
             UIColor.white
         ]
     }
@@ -97,7 +95,6 @@ final class MyYelloButton: UIButton {
         self.layer.cornerCurve = .continuous
 
         backgroundView.do {
-//            $0.frame = CGRect(x: 0, y: 0, width: 343.adjusted, height: 62.adjusted)
             $0.backgroundColor = .clear
             $0.makeCornerRound(radius: Constants.cornerRadius)
             $0.layer.cornerCurve = .continuous
@@ -168,9 +165,6 @@ final class MyYelloButton: UIButton {
         
         backgroundView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-//            $0.centerX.equalToSuperview().offset(-1.adjustedHeight)
-//            $0.width.equalToSuperview()
-//            $0.height.equalTo(62.adjusted)
         }
         
         titleStackView.snp.makeConstraints {

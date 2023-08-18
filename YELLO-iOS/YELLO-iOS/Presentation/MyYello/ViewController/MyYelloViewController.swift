@@ -146,6 +146,13 @@ extension MyYelloViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
                     self.myYelloView.myYelloCount = data.totalCount
+                    if data.ticketCount == 0 {
+                        self.myYelloView.haveTicket = false
+                    } else {
+                        self.myYelloView.haveTicket = true
+                        self.myYelloView.unlockButton.keyCountLabel.text = String(data.ticketCount)
+                    }
+                    
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
                     self.myYelloView.resetLayout()
