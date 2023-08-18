@@ -58,7 +58,7 @@ extension UILabel {
         attributedText = attributedString
     }
     
-    func asCustomFont(targetString: String, color: UIColor?, font: UIFont){
+    func asCustomFont(targetString: String, color: UIColor?, font: UIFont) {
         let fullText = text ?? ""
         let attributedString = NSMutableAttributedString(string: fullText)
         let range = (fullText as NSString).range(of: targetString)
