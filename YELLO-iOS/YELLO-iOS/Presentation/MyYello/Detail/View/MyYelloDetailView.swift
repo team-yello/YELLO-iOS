@@ -464,6 +464,28 @@ extension MyYelloDetailView {
         }
     }
     
+    func myYelloDetailFullName(voteId: Int) {
+        NetworkService.shared.myYelloService.myYelloDetailFullName(voteId: voteId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                let initial = data.name
+                self.initialName = initial
+                self.detailSenderView.senderLabel.text = initial
+                self.getHintView.hintLabel.text = initial
+                
+                MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
+                
+                dump(data)
+                print("이름 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
     func getFirstInitial(_ str: NSString, index: Int) -> String? {
         let name = str
         var initialName: String = ""
@@ -515,6 +537,7 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
 extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
     func confirmTicketButtonTapped() {
         showGetFullNameAlert()
-        self.isTicketUsed = true
+        myYelloDetailFullName(voteId: voteIdNumber)
+        isTicketUsed.toggle()
     }
 }
