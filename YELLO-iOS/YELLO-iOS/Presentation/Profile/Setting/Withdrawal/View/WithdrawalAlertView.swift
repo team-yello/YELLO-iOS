@@ -95,7 +95,7 @@ extension WithdrawalAlertView {
     }
     
     @objc func yesButtonClicked() {
-        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal4"])
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button": "withdrawal4"])
         NetworkService.shared.profileService.userDelete { result in
             switch result {
             case .success(let data):

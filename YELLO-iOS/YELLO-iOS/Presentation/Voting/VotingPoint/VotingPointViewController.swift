@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -143,6 +144,7 @@ final class VotingPointViewController: BaseViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 dump(data)
+                Amplitude.instance().logEvent("click_vote_finish")
             default:
                 print("network failure")
                 return
