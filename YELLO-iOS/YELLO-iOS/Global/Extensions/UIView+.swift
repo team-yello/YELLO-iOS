@@ -141,7 +141,7 @@ extension UIView {
     func animateShimmer() {
         stopShimmering()
         let gradientLayer = CAGradientLayer()
-        let gradationColor = [UIColor.clear, .white.withAlphaComponent(0.5), .clear]
+        let gradationColor = [UIColor.clear, .white.withAlphaComponent(0.2), .clear]
         gradientLayer.frame = self.bounds
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
