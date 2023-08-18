@@ -64,6 +64,8 @@ final class MyYelloDetailView: BaseView {
     }
     
     var isPlus: Bool = false
+    var ticketCount: Int = 0
+    
     var isRead: Bool = false {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {

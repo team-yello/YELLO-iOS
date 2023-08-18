@@ -196,6 +196,13 @@ extension MyYelloDetailViewController {
                     }
                 }
                 
+                // DTO 추가
+                if data.isSubscribe {
+                    self.myYelloDetailView.isPlus = true
+                }
+                
+                self.myYelloDetailView.ticketCount = data.ticketCount
+                
                 dump(data)
                 print("통신 성공")
             default:

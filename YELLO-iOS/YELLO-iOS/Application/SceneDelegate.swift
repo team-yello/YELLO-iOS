@@ -129,7 +129,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             if let initial = myYelloDetailViewController.getSecondInitial(data.senderName as NSString, index: 1) {
                                 myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
                             }
+                        } else if data.nameHint == -3 {
+                            myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
+                            myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
+                            myYelloDetailViewController.myYelloDetailView.isKeywordUsed = true
+                            myYelloDetailViewController.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
+                            myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = true
+                            myYelloDetailViewController.myYelloDetailView.haveTicket = false
+                            myYelloDetailViewController.myYelloDetailView.senderButton.snp.makeConstraints {
+                                $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
+                            }
                         }
+                        if data.isSubscribe {
+                            myYelloDetailViewController.myYelloDetailView.isPlus = true
+                        }
+                        myYelloDetailViewController.myYelloDetailView.ticketCount = data.ticketCount
+                        
                         navigationController.pushViewController(myYelloDetailViewController, animated: true)
                     default:
                         print("network fail")

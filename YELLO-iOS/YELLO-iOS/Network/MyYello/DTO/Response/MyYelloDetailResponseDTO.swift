@@ -15,4 +15,6 @@ struct MyYelloDetailResponseDTO: Codable {
     let senderName: String
     let senderGender: String
     let vote: Vote
+    let ticketCount: Int
+    let isSubscribe: Bool
 }
