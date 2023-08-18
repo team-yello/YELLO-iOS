@@ -46,8 +46,14 @@ final class MyYelloDetailView: BaseView {
         didSet {
             if haveTicket {
                 senderButton.setButtonState(state: .yesTicket)
+                if isTicketUsed {
+                    senderButton.setButtonState(state: .useTicket)
+                }
             } else {
                 senderButton.setButtonState(state: .noTicket)
+                if isTicketUsed {
+                    senderButton.setButtonState(state: .useTicket)
+                }
             }
         }
     }

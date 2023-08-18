@@ -43,16 +43,6 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        genderImageView.image = nil
-        nameLabel.text = nil
-        keywordHeadLabel.text = nil
-        keywordLabel.text = nil
-        keywordFootLabel.text = nil
-        timeLabel.text = nil
-    }
-    
     private func setUI() {
         setStyle()
         setLayout()

@@ -194,6 +194,10 @@ extension MyYelloDetailViewController {
                     self.myYelloDetailView.senderButton.snp.makeConstraints {
                         $0.top.equalTo(self.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
                     }
+                } else if data.nameHint == -2 {
+                    self.myYelloDetailView.isTicketUsed = true
+                    self.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
+                    self.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
                 }
                 
                 // DTO 추가
@@ -274,7 +278,6 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
         } else if !myYelloDetailView.isKeywordUsed && !myYelloDetailView.isSenderUsed {
             Amplitude.instance().logEvent("click_instagram", withEventProperties: ["insta_view": "message"])
         }
-        
         
         if let storyShareURL = URL(string: "instagram-stories://share?source_application=" + Config.metaAppID) {
             
