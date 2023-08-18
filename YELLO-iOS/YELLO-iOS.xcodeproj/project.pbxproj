@@ -890,6 +890,15 @@
 			path = VotingTimer;
 			sourceTree = "<group>";
 		};
+		2A423DEF2A8F5EF500F56C06 /* NetworkEntity */ = {
+			isa = PBXGroup;
+			children = (
+				2A5FE1AD2A657AA6008F636C /* VotingData.swift */,
+				2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */,
+			);
+			path = NetworkEntity;
+			sourceTree = "<group>";
+		};
 		2A5FE1AF2A657B52008F636C /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -898,12 +907,12 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		2A5FE1B02A657B6B008F636C /* BaseView */ = {
+		2A5FE1B02A657B6B008F636C /* BaseVotingETCView */ = {
 			isa = PBXGroup;
 			children = (
 				2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */,
 			);
-			path = BaseView;
+			path = BaseVotingETCView;
 			sourceTree = "<group>";
 		};
 		2AA0DBA72A546C24002B1370 /* TabBar */ = {
@@ -941,10 +950,9 @@
 		2AA0DBAC2A546D99002B1370 /* Voting */ = {
 			isa = PBXGroup;
 			children = (
-				2A5FE1B02A657B6B008F636C /* BaseView */,
+				2A5FE1B02A657B6B008F636C /* BaseVotingETCView */,
+				2A423DEF2A8F5EF500F56C06 /* NetworkEntity */,
 				2A5FE1AF2A657B52008F636C /* Enum */,
-				2A5FE1AD2A657AA6008F636C /* VotingData.swift */,
-				2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */,
 				2AD1A1A92A57175600CB988B /* VotingLocked */,
 				2AD1A1B62A57475000CB988B /* VotingStart */,
 				2AD1A1AA2A57176200CB988B /* Voting */,
