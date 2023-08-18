@@ -28,7 +28,11 @@ final class ProfileView: UIView {
     var initialProfileFriendDataCount = 10
     var fetchingMore = false
     var isFinishPaging = false
-    var isYelloPlus = true
+    var isYelloPlus = false {
+        didSet {
+            self.myFriendTableView.reloadData()
+        }
+    }
     var pageCount = -1
     var myYelloCount = 0
     var profileFriendPage: Int = 0
@@ -209,6 +213,22 @@ extension ProfileView {
             }
         }
     }
+    
+    func purchaseInfo() {
+        NetworkService.shared.profileService.purchaseInfo { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                self.isYelloPlus = data.isSubscribe
+                
+                print("구독 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
 }
 
 // MARK: UITableViewDelegate
@@ -255,6 +275,7 @@ extension ProfileView: UITableViewDataSource {
                 view?.myProfileView.nameSkeletonLabel.isHidden = true
                 view?.myProfileView.schoolSkeletonLabel.isHidden = true
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
+                view?.myProfileView.isYelloPlus = self.isYelloPlus
                 view?.myProfileView.updateProfileView()
             }
             return view
