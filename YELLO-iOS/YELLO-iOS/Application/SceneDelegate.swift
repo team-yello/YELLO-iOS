@@ -63,7 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                   let messageNumber = path.split(separator: "/").last else {
                 let rootViewController = YELLOTabBarController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
-                if type == StringLiterals.PushAlarm.TypeName.available {
+                if type == StringLiterals.PushAlarm.TypeName.available || type == StringLiterals.PushAlarm.TypeName.recommend {
                     selectedIndex = 2
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
