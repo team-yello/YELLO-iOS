@@ -223,6 +223,10 @@ enum StringLiterals {
             static let paymentAlertKeyTwoTitle = "열람권 2개를 얻었어요!"
             static let paymentAlertKeyFiveTitle = "열람권 5개를 얻었어요!"
             static let paymentAlertKeyDescription = "열람권으로 누가 쪽지를 보냈는지 알아보세요."
+            
+            static let descriptionLabel = "옐로플러스 구독안내\n- 구독은 매주 자동으로 갱신되며, Apple을 통해 해지하실 수 있습니다.\n- 결제를 진행하시면 관련 약관에 동의하는 것으로 간주됩니다."
+            static let serviceButton = "서비스 이용 약관"
+            static let privacyButton = "개인정보처리방침"
         }
     }
     

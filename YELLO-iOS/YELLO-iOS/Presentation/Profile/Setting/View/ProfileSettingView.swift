@@ -25,7 +25,7 @@ final class ProfileSettingView: BaseView {
     let settingNavigationBarView = SettingNavigationBarView()
     lazy var centerButton = SettingCustomButton()
     lazy var privacyButton = SettingCustomButton()
-    lazy var serviveButton = SettingCustomButton()
+    lazy var serviceButton = SettingCustomButton()
     lazy var logoutButton = SettingCustomButton()
     let versionLabel = UILabel()
     lazy var withdrawalButton = UIButton()
@@ -45,9 +45,9 @@ final class ProfileSettingView: BaseView {
             $0.addTarget(self, action: #selector(privacyButtonTapped), for: .touchUpInside)
         }
         
-        serviveButton.do {
+        serviceButton.do {
             $0.updateTitle(text: StringLiterals.Profile.Setting.service)
-            $0.addTarget(self, action: #selector(serviveButtonTapped), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(serviceButtonTapped), for: .touchUpInside)
         }
         
         logoutButton.do {
@@ -78,7 +78,7 @@ final class ProfileSettingView: BaseView {
         self.addSubviews(settingNavigationBarView,
                          centerButton,
                          privacyButton,
-                         serviveButton,
+                         serviceButton,
                          logoutButton,
                          versionLabel,
                          withdrawalButton)
@@ -101,14 +101,14 @@ final class ProfileSettingView: BaseView {
             $0.height.equalTo(56.adjustedHeight)
         }
         
-        serviveButton.snp.makeConstraints {
+        serviceButton.snp.makeConstraints {
             $0.top.equalTo(privacyButton.snp.bottom).offset(4.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(56.adjustedHeight)
         }
         
         logoutButton.snp.makeConstraints {
-            $0.top.equalTo(serviveButton.snp.bottom).offset(4.adjustedHeight)
+            $0.top.equalTo(serviceButton.snp.bottom).offset(4.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(56.adjustedHeight)
         }
@@ -143,7 +143,7 @@ final class ProfileSettingView: BaseView {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
         
-    @objc private func serviveButtonTapped() {
+    @objc private func serviceButtonTapped() {
         // 이용약관 링크 연결
         let url = URL(string: "https://yell0.notion.site/2afc2a1e60774dfdb47c4d459f01b1d9")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)

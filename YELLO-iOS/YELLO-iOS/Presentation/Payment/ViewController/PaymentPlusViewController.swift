@@ -106,6 +106,8 @@ final class PaymentPlusViewController: BaseViewController {
         paymentPlusView.nameKeyOneButton.addTarget(self, action: #selector(paymentNameKeyOneButtonTapped), for: .touchUpInside)
         paymentPlusView.nameKeyTwoButton.addTarget(self, action: #selector(paymentNameKeyTwoButtonTapped), for: .touchUpInside)
         paymentPlusView.nameKeyFiveButton.addTarget(self, action: #selector(paymentNameKeyFiveButtonTapped), for: .touchUpInside)
+        paymentPlusView.serviceButton.addTarget(self, action: #selector(serviceButtonTapped), for: .touchUpInside)
+        paymentPlusView.privacyButton.addTarget(self, action: #selector(privacyButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -123,6 +125,19 @@ extension PaymentPlusViewController: HandleConfirmPaymentButtonDelegate {
 }
 
 extension PaymentPlusViewController {
+    
+    @objc private func privacyButtonTapped() {
+        // 개인정보 처리방침 링크 연결
+        let url = URL(string: "https://yell0.notion.site/97f57eaed6c749bbb134c7e8dc81ab3f")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+        
+    @objc private func serviceButtonTapped() {
+        // 이용약관 링크 연결
+        let url = URL(string: "https://yell0.notion.site/2afc2a1e60774dfdb47c4d459f01b1d9")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
     @objc private func paymentYelloPlusButtonTapped() {
         showLoadingIndicator()
         print("채은17")
