@@ -64,7 +64,15 @@ final class MyYelloDetailView: BaseView {
     }
     
     var isPlus: Bool = false
-    var ticketCount: Int = 0
+    var ticketCount: Int = 0 {
+        didSet {
+            if ticketCount == 0 {
+                haveTicket = false
+            } else {
+                haveTicket = true
+            }
+        }
+    }
     
     var isRead: Bool = false {
         didSet {
@@ -473,7 +481,8 @@ extension MyYelloDetailView {
                 let initial = data.name
                 self.initialName = initial
                 self.detailSenderView.senderLabel.text = initial
-                self.getHintView.hintLabel.text = initial
+                self.getFullNameView.hintLabel.text = initial
+                self.getFullNameView.ticketLabel.text = String(self.ticketCount - 1)
                 
                 MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
                 
