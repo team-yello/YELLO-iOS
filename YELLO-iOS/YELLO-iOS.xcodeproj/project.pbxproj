@@ -168,6 +168,7 @@
 		C390B8142A8A1DD800EA5A23 /* AroundResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C390B8132A8A1DD800EA5A23 /* AroundResponseDTO.swift */; };
 		C390B8162A8A1DE900EA5A23 /* AroundTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C390B8152A8A1DE900EA5A23 /* AroundTarget.swift */; };
 		C390B8182A8A1DF600EA5A23 /* AroundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C390B8172A8A1DF600EA5A23 /* AroundService.swift */; };
+		C39D3D842A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D3D832A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift */; };
 		C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4615A2A4FD44800734EF8 /* adjust+.swift */; };
 		C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799962A49490A00D3EFD8 /* AppDelegate.swift */; };
 		C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */; };
@@ -438,6 +439,7 @@
 		C390B8132A8A1DD800EA5A23 /* AroundResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundResponseDTO.swift; sourceTree = "<group>"; };
 		C390B8152A8A1DE900EA5A23 /* AroundTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundTarget.swift; sourceTree = "<group>"; };
 		C390B8172A8A1DF600EA5A23 /* AroundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundService.swift; sourceTree = "<group>"; };
+		C39D3D832A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSubscibeNeedResponseDTO.swift; sourceTree = "<group>"; };
 		C3A4615A2A4FD44800734EF8 /* adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "adjust+.swift"; sourceTree = "<group>"; };
 		C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YELLO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A799962A49490A00D3EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1508,6 +1510,7 @@
 			isa = PBXGroup;
 			children = (
 				C3B83E652A8E051800A39CAC /* PurchaseResponseDTO.swift */,
+				C39D3D832A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -2050,6 +2053,7 @@
 				C3FF249E2A5EE48200A97D40 /* MyYelloDetailView.swift in Sources */,
 				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
 				C3B472122A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift in Sources */,
+				C39D3D842A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				367113732A7D6CED0037E0D2 /* UniversityViewController.swift in Sources */,
 				3662A0F62A654B8D00F482EF /* JoinedFriendsRequestDTO.swift in Sources */,
