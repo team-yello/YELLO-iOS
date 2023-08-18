@@ -64,8 +64,6 @@ final class PaymentPlusViewController: BaseViewController {
         
         tabBarController?.tabBar.isHidden = true
         paymentPlusView.paymentView.bannerTimer()
-        print("채은16")
-        
     }
     
     private func getProducts() {
@@ -77,8 +75,6 @@ final class PaymentPlusViewController: BaseViewController {
                     self.products = self.sortProducts(products)
                     print(self.products)
                     self.setAddTarget()
-                    print("채은15")
-                    
                 }
             }
         }
@@ -151,7 +147,6 @@ extension PaymentPlusViewController {
     
     @objc private func paymentYelloPlusButtonTapped() {
         showLoadingIndicator()
-        print("채은17")
         if self.subscribeStatus == "NORMAL" {
             print("구독하고 있지 않는 사용자입니다.")
             MyProducts.iapService.buyProduct(self.products[0])
@@ -164,7 +159,6 @@ extension PaymentPlusViewController {
     
     @objc private func paymentNameKeyOneButtonTapped() {
         showLoadingIndicator()
-        print("채은18")
         
         MyProducts.iapService.buyProduct(products[1])
         print("이름 열람권 1개 구입")
@@ -172,7 +166,6 @@ extension PaymentPlusViewController {
     
     @objc private func paymentNameKeyTwoButtonTapped() {
         showLoadingIndicator()
-        print("채은19")
         
         MyProducts.iapService.buyProduct(products[2])
         print("이름 열람권 2개 구입")
@@ -180,15 +173,12 @@ extension PaymentPlusViewController {
     
     @objc private func paymentNameKeyFiveButtonTapped() {
         showLoadingIndicator()
-        print("채은20")
         
         MyProducts.iapService.buyProduct(products[3])
         print("이름 열람권 5개 구입")
     }
     
     func showPaymentConfirmView(state: PaymentStatus) {
-        print("채은21")
-        
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         paymentConfirmView.removeFromSuperview()
         paymentConfirmView = PaymentConfirmView()
@@ -224,7 +214,6 @@ extension PaymentPlusViewController {
     }
     
     @objc private func restore() {
-        print("채은22")
         MyProducts.iapService.restorePurchases()
     }
     
@@ -239,13 +228,11 @@ extension PaymentPlusViewController {
             productID == MyProducts.nameKeyFiveProductID {
             print(transactionID)
             verifyConsumablePurchase(transactionID: transactionID, productID: productID)
-            print("채은23")
         }
         
         // 구독 상품 구매
         if productID == MyProducts.yelloPlusProductID {
             verifySubscriptionPurchase(transactionID: transactionID)
-            print("채은24")
         }
         print("여기")
     }
@@ -260,7 +247,6 @@ extension PaymentPlusViewController {
     
     private func verifySubscriptionPurchase(transactionID: String) {
         self.purchaseSubscibe(transactionID: transactionID)
-        print("채은29")
         print("구독 상품 구매 완료")
     }
     
@@ -272,7 +258,7 @@ extension PaymentPlusViewController {
                 if data.status == 200 {
                     self.showPaymentConfirmView(state: .yelloPlus)
                 } else if (500...599).contains(data.status) {
-                    self.showAlertView(title: "서버 내부 오류 발생", message: "서버 내부에서 검증 오류가 발생했습니다.\n고객 센터로 환불 문의 해주세요.")
+                    self.showAlertView(title: "상품 지급 오류", message: "오류로 인해 상품이 지급되지 않았어요. 옐로 공식 카카오 채널로 문의주시면 해결을 도와드리겠습니다.")
                     // 서버 통신 실패, 환불 로직 추가
                     print("서버 내부 오류 발생")
                 } else {
@@ -296,23 +282,18 @@ extension PaymentPlusViewController {
                     switch productID {
                     case MyProducts.nameKeyOneProductID:
                         self.showPaymentConfirmView(state: .nameKeyOne)
-                        print("채은25")
                         
                     case MyProducts.nameKeyTwoProductID:
                         self.showPaymentConfirmView(state: .nameKeyTwo)
-                        print("채은26")
                         
                     case MyProducts.nameKeyFiveProductID:
                         self.showPaymentConfirmView(state: .nameKeyFive)
-                        print("채은27")
                         
                     default:
-                        print("채은28")
                         return
                     }
                 } else if (500...599).contains(data.status) {
                     self.showAlertView(title: "서버 내부 오류 발생", message: "서버 내부에서 검증 오류가 발생했습니다.\n고객 센터로 환불 문의 해주세요.")
-                    // 서버 통신 실패, 환불 로직 추가
                     print("서버 내부 오류 발생")
                 } else {
                     self.showAlertView(title: "결제 실패", message: "결제를 실패했습니다. 다시 시도해주세요ㅜ.")
@@ -351,7 +332,6 @@ extension PaymentPlusViewController {
     }
     
     private func showLoadingIndicator() {
-        print("채은30")
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5) // 어둡게 딤처리된 배경색 설정
@@ -367,9 +347,7 @@ extension PaymentPlusViewController {
         }
     }
     
-    @objc private func hideLoadingIndicator() {
-        print("채은31")
-        
+    @objc private func hideLoadingIndicator() {        
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
         loadingIndicator.stopAnimating()
