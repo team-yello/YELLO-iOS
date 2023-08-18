@@ -120,7 +120,8 @@ extension VotingViewController {
             
             let status = votingList[0].subscribe
             if status == "CANCELED" || status == "ACTIVE" {
-                viewController.multiplyByTwoImageView.isHidden = false
+                // 추후 false로 변경
+                viewController.multiplyByTwoImageView.isHidden = true
             } else {
                 viewController.multiplyByTwoImageView.isHidden = true
             }

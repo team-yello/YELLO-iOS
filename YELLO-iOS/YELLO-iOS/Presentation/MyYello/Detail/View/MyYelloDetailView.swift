@@ -64,6 +64,16 @@ final class MyYelloDetailView: BaseView {
     }
     
     var isPlus: Bool = false
+    var ticketCount: Int = 0 {
+        didSet {
+            if ticketCount == 0 {
+                haveTicket = false
+            } else {
+                haveTicket = true
+            }
+        }
+    }
+    
     var isRead: Bool = false {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
@@ -462,6 +472,29 @@ extension MyYelloDetailView {
         }
     }
     
+    func myYelloDetailFullName(voteId: Int) {
+        NetworkService.shared.myYelloService.myYelloDetailFullName(voteId: voteId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                let initial = data.name
+                self.initialName = initial
+                self.detailSenderView.senderLabel.text = initial
+                self.getFullNameView.hintLabel.text = initial
+                self.getFullNameView.ticketLabel.text = String(self.ticketCount - 1)
+                
+                MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
+                
+                dump(data)
+                print("이름 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
     func getFirstInitial(_ str: NSString, index: Int) -> String? {
         let name = str
         var initialName: String = ""
@@ -513,6 +546,7 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
 extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
     func confirmTicketButtonTapped() {
         showGetFullNameAlert()
-        self.isTicketUsed = true
+        myYelloDetailFullName(voteId: voteIdNumber)
+        isTicketUsed.toggle()
     }
 }

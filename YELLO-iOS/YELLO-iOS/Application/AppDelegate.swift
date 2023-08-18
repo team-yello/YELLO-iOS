@@ -89,7 +89,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         guard let type = userInfo["type"] as? String else { return }
         guard let path = userInfo["path"] as? String,
               let messageNumber = path.split(separator: "/").last else {
-            if type == StringLiterals.PushAlarm.TypeName.available {
+            if type == StringLiterals.PushAlarm.TypeName.available || type == StringLiterals.PushAlarm.TypeName.recommend {
                 NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2])
             } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
                 NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":4])

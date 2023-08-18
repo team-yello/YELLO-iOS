@@ -16,7 +16,7 @@ protocol MyYelloServiceProtocol {
     func myYelloDetailKeyword(voteId: Int, completion: @escaping (NetworkResult<BaseResponse<MyYelloDetailKeywordResponseDTO>>) -> Void)
     
     func myYelloDetailName(voteId: Int, completion: @escaping (NetworkResult<BaseResponse<MyYelloDetailNameResponseDTO>>) -> Void)
-    
+    func myYelloDetailFullName(voteId: Int, completion: @escaping (NetworkResult<BaseResponse<MyYelloDetailFullNameResponseDTO>>) -> Void)
     func payCheck(requestDTO: PayRequestBodyDTO, completion: @escaping (NetworkResult<PaymentResponseDTO>) -> Void)
     
 }
@@ -41,6 +41,11 @@ final class MyYelloService: APIRequestLoader<MyYelloTarget>, MyYelloServiceProto
     func myYelloDetailName(voteId: Int, completion: @escaping (NetworkResult<BaseResponse<MyYelloDetailNameResponseDTO>>) -> Void) {
         fetchData(target: .myYelloDetailName(voteId: voteId),
                   responseData: BaseResponse<MyYelloDetailNameResponseDTO>.self, completion: completion)
+    }
+    
+    func myYelloDetailFullName(voteId: Int, completion: @escaping (NetworkResult<BaseResponse<MyYelloDetailFullNameResponseDTO>>) -> Void) {
+        fetchData(target: .myYelloDetailFullName(voteId: voteId),
+                  responseData: BaseResponse<MyYelloDetailFullNameResponseDTO>.self, completion: completion)
     }
     
     func payCheck(requestDTO: PayRequestBodyDTO, completion: @escaping (NetworkResult<PaymentResponseDTO>) -> Void) {

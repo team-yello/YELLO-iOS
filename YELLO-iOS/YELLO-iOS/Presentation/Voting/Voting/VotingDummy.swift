@@ -31,6 +31,4 @@ extension VotingDummy {
                 VotingDummy(yelloBalloon: StringLiterals.Voting.ProgressLottie.eight,
                             yelloProgress: ImageLiterals.Voting.imgFace8)]
     }
-    
 }
-
