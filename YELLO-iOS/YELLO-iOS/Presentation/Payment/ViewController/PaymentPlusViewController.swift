@@ -126,16 +126,7 @@ extension PaymentPlusViewController {
     @objc private func paymentYelloPlusButtonTapped() {
         showLoadingIndicator()
         print("채은17")
-        
-        if MyProducts.iapService.isProductPurchased(MyProducts.yelloPlusProductID) {
-            // 구독 중일 때
-            self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
-            hideLoadingIndicator()
-            print(MyProducts.iapService.isProductPurchased(MyProducts.yelloPlusProductID))
-        } else {
-            // 이미 구독 중이 아니라면 구매 진행
-            MyProducts.iapService.buyProduct(products[0])
-        }
+        purchaseSubscribeNeed()
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
@@ -230,15 +221,12 @@ extension PaymentPlusViewController {
         let productID = productID
         let transactionID = transactionID
         self.purchaseTicket(transactionID: transactionID, productID: productID)
-//        self.hideLoadingIndicator()
-
         print("상품 구매 완료: \(productID)")
         print("transactionID: \(transactionID)")
     }
     
     private func verifySubscriptionPurchase(transactionID: String) {
         self.purchaseSubscibe(transactionID: transactionID)
-//        self.hideLoadingIndicator()
         print("채은29")
         print("구독 상품 구매 완료")
     }
@@ -301,6 +289,27 @@ extension PaymentPlusViewController {
                 return
             }
             self.hideLoadingIndicator()
+        }
+    }
+    
+    func purchaseSubscribeNeed() {
+        NetworkService.shared.purchaseService.purchaseSubscibeNeed { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                if data.subscribe == "NORMAL" {
+                    print("구독하고 있지 않는 사용자입니다.")
+                    MyProducts.iapService.buyProduct(self.products[0])
+                } else {
+                    print("구독하고 있는 사용자입니다.")
+                    self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
+                    self.hideLoadingIndicator()
+                }
+                print("hi")
+            default:
+                print("network failure")
+                return
+            }
         }
     }
     
