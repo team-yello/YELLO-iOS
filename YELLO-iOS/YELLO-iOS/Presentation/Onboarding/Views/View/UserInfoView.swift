@@ -15,12 +15,12 @@ class UserInfoView: BaseView {
     // MARK: - Variables
     // MARK: Constants
     let padding = 12
-    let stringLiteral = StringLiterals.Onboarding.self
     
     // MARK: Component
     let guideImageView = UIImageView()
-    lazy var idTextField = YelloTextFieldView(title: stringLiteral.idTitle, state: .id,
-                                              placeholder: stringLiteral.idPlaceholder)
+    let idTextField = YelloTextFieldView(title: StringLiterals.Onboarding.idTitle, state: .id,
+                                              placeholder: StringLiterals.Onboarding.idPlaceholder,
+                                              helper: StringLiterals.Onboarding.idHelper)
     let idLabel = UILabel()
     
     // MARK: - Function
@@ -30,10 +30,6 @@ class UserInfoView: BaseView {
             $0.image = ImageLiterals.OnBoarding.idGuide
         }
         
-        idTextField.helperLabel.do {
-            $0.text = stringLiteral.idHelper
-            $0.asColors(targetStrings: ["인스타그램", "아이디"], color: .yelloMain500)
-        }
     }
     
     override func setLayout() {

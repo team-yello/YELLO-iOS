@@ -32,13 +32,9 @@ final class YELLOTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getVotingAvailable()
-        setTabBarItems()
-        setTabBarAppearance()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
-        self.selectedIndex = 2
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -193,6 +189,7 @@ extension YELLOTabBarController {
                 }
                 self.setTabBarItems()
                 self.setTabBarAppearance()
+                self.selectedIndex = 2
                 self.myYelloViewController.unreadCount()
             default:
                 print("network failure")
@@ -202,6 +199,7 @@ extension YELLOTabBarController {
     }
     
     func network() {
+        getVotingAvailable()
         /// 추천친구 서버통신
         recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
             self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()

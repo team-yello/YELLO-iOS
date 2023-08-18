@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -17,6 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        if self.isLoggined {
+            yelloTabBarController.network()
+        }
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
@@ -24,10 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = splashViewController
         
         self.window?.makeKeyAndVisible()
-        
-        if self.isLoggined {
-            yelloTabBarController.network()
-        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) {
             guard let notificationResponse = connectionOptions.notificationResponse else {
@@ -167,6 +168,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidDisconnect(_ scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene else { return }
         guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
+        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step":VotingViewController.pushCount])
         
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"
@@ -191,6 +193,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene else { return }
         guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
+        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step":VotingViewController.pushCount])
         
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"

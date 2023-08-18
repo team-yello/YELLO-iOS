@@ -13,6 +13,8 @@ final class YelloHelperLabel: UILabel {
         self.numberOfLines = 2
         self.font = .uiLabelLarge
         setLabelStyle(text: "", State: .normal)
+        self.asCustomFont(targetString: "인스타그램 아이디", color: .yelloMain500, font: .uiBody05)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -25,6 +27,7 @@ final class YelloHelperLabel: UILabel {
             self.textColor = .semanticStatusRed500
         } else {
             self.textColor = .grayscales500
+            self.asCustomFont(targetString: "인스타그램 아이디", color: .yelloMain500, font: .uiBody05)
         }
     }
     
