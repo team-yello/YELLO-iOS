@@ -12,6 +12,7 @@ import Alamofire
 enum PurchaseTarget {
     case purchaseSubscibe(_ requestDTO: PurchaseRequestDTO)
     case purchaseTicket(_ requestDTO: PurchaseRequestDTO)
+    case purchaseSubscibeNeed
 }
 
 extension PurchaseTarget: TargetType {
@@ -20,6 +21,8 @@ extension PurchaseTarget: TargetType {
         case .purchaseSubscibe(_):
             return .hasAccessToken
         case .purchaseTicket(_):
+            return .hasAccessToken
+        case .purchaseSubscibeNeed:
             return .hasAccessToken
         }
     }
@@ -30,6 +33,8 @@ extension PurchaseTarget: TargetType {
             return .post
         case .purchaseTicket:
             return .post
+        case .purchaseSubscibeNeed:
+            return .get
         }
     }
     
@@ -39,6 +44,8 @@ extension PurchaseTarget: TargetType {
             return "/purchase/apple/verify/subscribe"
         case .purchaseTicket(_):
             return "/purchase/apple/verify/ticket"
+        case .purchaseSubscibeNeed:
+            return "/purchase/subscribeNeed"
         }
     }
     
@@ -48,6 +55,8 @@ extension PurchaseTarget: TargetType {
             return .requestWithBody(requestDTO)
         case let .purchaseTicket(requestDTO):
             return .requestWithBody(requestDTO)
+        case let .purchaseSubscibeNeed:
+            return .requestPlain
         }
     }
 }
