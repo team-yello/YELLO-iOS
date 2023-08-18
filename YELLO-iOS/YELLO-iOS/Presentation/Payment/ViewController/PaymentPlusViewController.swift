@@ -26,6 +26,16 @@ final class PaymentPlusViewController: BaseViewController {
     var paymentConfirmView = PaymentConfirmView()
     private let loadingIndicator = UIActivityIndicatorView(style: .large)
     private var dimView = UIView()
+    var subscribeStatus = "NORMAL" {
+        didSet {
+            if subscribeStatus == "NORMAL" {
+                paymentPlusView.paymentNavigationBarView.subscribeView.isHidden = true
+            } else {
+                paymentPlusView.paymentNavigationBarView.subscribeView.isHidden = false
+            }
+        }
+        
+    }
     
     private var products = [SKProduct]()
     private let productOrder: [String] = [
@@ -46,6 +56,7 @@ final class PaymentPlusViewController: BaseViewController {
         setDelegate()
         getProducts()
         setNotification()
+        purchaseSubscribeNeed()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,7 +152,14 @@ extension PaymentPlusViewController {
     @objc private func paymentYelloPlusButtonTapped() {
         showLoadingIndicator()
         print("채은17")
-        purchaseSubscribeNeed()
+        if self.subscribeStatus == "NORMAL" {
+            print("구독하고 있지 않는 사용자입니다.")
+            MyProducts.iapService.buyProduct(self.products[0])
+        } else {
+            print("구독하고 있는 사용자입니다.")
+            self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
+            self.hideLoadingIndicator()
+        }
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
@@ -312,15 +330,7 @@ extension PaymentPlusViewController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
-                if data.subscribe == "NORMAL" {
-                    print("구독하고 있지 않는 사용자입니다.")
-                    MyProducts.iapService.buyProduct(self.products[0])
-                } else {
-                    print("구독하고 있는 사용자입니다.")
-                    self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
-                    self.hideLoadingIndicator()
-                }
-                print("hi")
+                self.subscribeStatus = data.subscribe
             default:
                 print("network failure")
                 return
