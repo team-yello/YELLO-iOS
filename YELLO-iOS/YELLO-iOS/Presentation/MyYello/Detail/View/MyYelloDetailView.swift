@@ -50,6 +50,9 @@ final class MyYelloDetailView: BaseView {
                 if isTicketUsed {
                     senderButton.setButtonState(state: .useTicket)
                 }
+                if nameIndex == -3 {
+                    senderButton.setButtonState(state: .noTicket)
+                }
             } else {
                 senderButton.setButtonState(state: .noTicket)
                 if isTicketUsed {
@@ -60,11 +63,14 @@ final class MyYelloDetailView: BaseView {
     }
     var isTicketUsed: Bool = false {
         didSet {
-            senderButton.setButtonState(state: .useTicket)
             if isKeywordUsed == true {
+                senderButton.setButtonState(state: .useTicket)
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
                     $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                }
+                if self.nameIndex == -3 {
+                    senderButton.setButtonState(state: .noTicket)
                 }
             }
         }

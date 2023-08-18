@@ -100,7 +100,12 @@ extension MyYelloDetailViewController {
     
     @objc private func senderButtonTapped() {
         if myYelloDetailView.haveTicket {
-            myYelloDetailView.showUseTicketAlert()
+            if myYelloDetailView.nameIndex == -3 {
+                let paymentPlusViewController = PaymentPlusViewController()
+                navigationController?.pushViewController(paymentPlusViewController, animated: true)
+            } else {
+                myYelloDetailView.showUseTicketAlert()
+            }
         } else {
             let paymentPlusViewController = PaymentPlusViewController()
             if myYelloDetailView.isKeywordUsed && !(myYelloDetailView.isPlus) && !(myYelloDetailView.isSenderUsed) {
@@ -178,6 +183,7 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
                 
                 self.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
+                self.myYelloDetailView.nameIndex = data.nameHint
                 
                 if data.nameHint == 0 {
                     self.myYelloDetailView.isSenderUsed = true
@@ -194,11 +200,9 @@ extension MyYelloDetailViewController {
                     self.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
                     self.myYelloDetailView.isKeywordUsed = true
                     self.myYelloDetailView.keywordButton.isHidden = true
-                    self.myYelloDetailView.haveTicket = false
                     self.myYelloDetailView.senderButton.snp.makeConstraints {
                         $0.top.equalTo(self.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
                     }
-                    self.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
                 } else if data.nameHint == -2 {
                     self.myYelloDetailView.isTicketUsed = true
                     self.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
