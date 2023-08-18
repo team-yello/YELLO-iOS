@@ -189,12 +189,12 @@ extension KakaoFriendView {
                     self.recommendingKakaoFriendTableViewDummy.append(contentsOf: uniqueFriendModels)
                     self.fetchingMore = false
                     
-                    self.kakaoFriendTableView.reloadData()
-                    
                     let totalPage = (data.totalCount) / 100
                     if self.kakaoPage >= totalPage {
                         self.isFinishPaging = true
                     }
+                    
+                    self.kakaoFriendTableView.reloadData()
                     self.updateView()
                     print("통신 성공")
                 default:
@@ -304,16 +304,20 @@ extension KakaoFriendView: UITableViewDataSource {
             cell.showShimmer()
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as! FriendTableViewCell
-            
-            cell.selectionStyle = .none
-            
-            cell.isTapped = self.recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected
-            cell.updateAddButtonImage()
-            
-            cell.handleAddFriendButton = self
-            cell.configureFriendCell(self.recommendingKakaoFriendTableViewDummy[indexPath.row])
-            return cell
+            if indexPath.row < recommendingKakaoFriendTableViewDummy.count {
+                let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as! FriendTableViewCell
+                
+                cell.selectionStyle = .none
+                
+                cell.isTapped = self.recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected
+                cell.updateAddButtonImage()
+                
+                cell.handleAddFriendButton = self
+                cell.configureFriendCell(self.recommendingKakaoFriendTableViewDummy[indexPath.row])
+                return cell
+            } else {
+                return UITableViewCell()
+            }
         }
     }
     
