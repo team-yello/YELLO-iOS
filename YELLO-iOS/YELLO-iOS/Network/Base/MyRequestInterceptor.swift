@@ -9,10 +9,12 @@ import Foundation
 
 import Alamofire
 import UIKit
+import KakaoSDKUser
 
 final class MyRequestInterceptor: RequestInterceptor {
     private let maxRetryCount: Int = 3
     private var retryCount: Int = 0
+    var isrefreshed = false
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         print("🐭🐭interceptor adapt 작동!!🐭🐭")
@@ -48,7 +50,7 @@ final class MyRequestInterceptor: RequestInterceptor {
     func refreshToken(completion: @escaping (Bool) -> Void) {
         print("재발급 출발")
         
-        if retryCount < 3 {
+        if retryCount < maxRetryCount && !(isrefreshed) {
             let accessToken = KeychainHandler.shared.accessToken
             let refreshToken = KeychainHandler.shared.refreshToken
             let dto = TokenRefreshRequestDTO(accessToken: "Bearer \(accessToken)", refreshToken: "Bearer \(refreshToken)")
@@ -60,34 +62,42 @@ final class MyRequestInterceptor: RequestInterceptor {
                     if data.status == 201 {
                         KeychainHandler.shared.refreshToken = decodedData.refreshToken
                         KeychainHandler.shared.accessToken = decodedData.accessToken
-                        print("토큰 재발급 완료!")
+                        self.isrefreshed = true
                         completion(true)
                         return
                     } else if data.status == 403 {
-                        
-                        KeychainHandler.shared.refreshToken = ""
-                        KeychainHandler.shared.accessToken = ""
-                        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                        
-                        UserDefaults.standard.removeObject(forKey: "isLoggined")
-                        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
-                        
-                        print(data.message)
-                        return
+                        self.logout()
                     }
                 default:
-                    KeychainHandler.shared.refreshToken = ""
-                    KeychainHandler.shared.accessToken = ""
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                    
-                    UserDefaults.standard.removeObject(forKey: "isLoggined")
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
-                    
-                    print("실패")
-                    return
+                    self.logout()
                 }
             }
         }
         self.retryCount += 1
+    }
+    
+    func logout(){
+        UserApi.shared.logout {(error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("logout() success.")
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                
+                UserDefaults.standard.removeObject(forKey: "isLoggined")
+                User.shared.isResigned = false
+                User.shared.isFirstUser = false
+                
+                KeychainHandler.shared.refreshToken = ""
+                KeychainHandler.shared.accessToken = ""
+                
+                UserDefaults.standard.removeObject(forKey: "isLoggined")
+                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
+                
+                
+               sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
+            }
+            
+        }
     }
 }
