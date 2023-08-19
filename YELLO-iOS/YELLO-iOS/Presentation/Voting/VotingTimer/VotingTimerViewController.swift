@@ -71,14 +71,10 @@ final class VotingTimerViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
         
         getVotingAvailable()
     }
-    
+        
     // MARK: - Style
     
     override func setStyle() {
