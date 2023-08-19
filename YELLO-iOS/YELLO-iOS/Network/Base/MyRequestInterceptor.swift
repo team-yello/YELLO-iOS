@@ -50,7 +50,7 @@ final class MyRequestInterceptor: RequestInterceptor {
     func refreshToken(completion: @escaping (Bool) -> Void) {
         print("재발급 출발")
         
-        if retryCount < maxRetryCount && !(isrefreshed) {
+        if retryCount < maxRetryCount {
             let accessToken = KeychainHandler.shared.accessToken
             let refreshToken = KeychainHandler.shared.refreshToken
             let dto = TokenRefreshRequestDTO(accessToken: "Bearer \(accessToken)", refreshToken: "Bearer \(refreshToken)")
@@ -66,7 +66,9 @@ final class MyRequestInterceptor: RequestInterceptor {
                         completion(true)
                         return
                     } else if data.status == 403 {
-                        self.logout()
+                        if data.message.contains("재로그인") {
+                            self.logout()
+                        }
                     }
                 default:
                     self.logout()
@@ -84,17 +86,12 @@ final class MyRequestInterceptor: RequestInterceptor {
                 print("logout() success.")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
                 
-                UserDefaults.standard.removeObject(forKey: "isLoggined")
                 User.shared.isResigned = false
                 User.shared.isFirstUser = false
-                
-                KeychainHandler.shared.refreshToken = ""
-                KeychainHandler.shared.accessToken = ""
                 
                 UserDefaults.standard.removeObject(forKey: "isLoggined")
                 sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
                 
-               sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
             }
             
         }
