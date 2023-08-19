@@ -16,7 +16,7 @@ enum OnboardingTarget {
     case getCheckDuplicate(_ dto: IdValidRequestQueryDTO) /// 아이디 중복 확인
     case postFirendsList( _ query: JoinedFriendsRequestQueryDTO, _ dto: JoinedFriendsRequestDTO) /// 가입한 친구 목록 불러오기
     case postUserInfo(_ dto: SignUpRequestDTO ) /// 회원가입
-    case postRefreshToken
+    case postRefreshToken(_ dto: TokenRefreshRequestDTO)
 }
 
 extension OnboardingTarget: TargetType {
