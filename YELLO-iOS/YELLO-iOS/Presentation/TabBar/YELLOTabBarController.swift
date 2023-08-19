@@ -188,15 +188,15 @@ extension YELLOTabBarController {
                 } else {
                     self.startStatus = 3
                 }
-                self.setTabBarItems()
-                self.setTabBarAppearance()
-                self.selectedIndex = 2
-                self.myYelloViewController.unreadCount()
             default:
                 print("network failure")
                 return
             }
         }
+        self.setTabBarItems()
+        self.setTabBarAppearance()
+        self.selectedIndex = 2
+        self.myYelloViewController.unreadCount()
     }
     
     func network() {
