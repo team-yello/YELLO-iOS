@@ -46,7 +46,7 @@ final class VotingPointViewController: BaseViewController {
         view.backgroundColor = .black
         
         originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Point.title, lineHeight: 28)
+            $0.text = StringLiterals.Voting.Point.title
         }
         
         originView.textLabel.do {

@@ -29,7 +29,7 @@ final class VotingStartViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Amplitude.instance().setUserProperties(["user_point" : myPoint])
+        Amplitude.instance().setUserProperties(["user_point": myPoint])
         setAnimationView()
         getVotingAvailable()
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")

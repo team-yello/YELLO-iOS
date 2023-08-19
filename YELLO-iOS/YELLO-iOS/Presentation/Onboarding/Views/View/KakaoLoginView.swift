@@ -23,7 +23,6 @@ class KakaoLoginView: BaseView {
             $0.text = "Yell:o에 오신 걸 환영해요!"
             $0.textColor = .white
             $0.font = .uiHeadline00
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 28)
         }
         
         subTitleLabel.do {

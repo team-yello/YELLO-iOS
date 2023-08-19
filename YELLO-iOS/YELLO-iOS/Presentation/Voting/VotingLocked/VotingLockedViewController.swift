@@ -31,7 +31,7 @@ final class VotingLockedViewController: BaseViewController {
         view.backgroundColor = .black
         
         originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Locked.title, lineHeight: 28)
+            $0.text = StringLiterals.Voting.Locked.title
         }
         
         originView.textLabel.do {

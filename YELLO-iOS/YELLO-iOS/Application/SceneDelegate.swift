@@ -20,8 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        let yelloTabBarController = YELLOTabBarController()
-        let kakaologinViewController = KakaoLoginViewController()
         let splashViewController = SplashViewController()
         window?.rootViewController = splashViewController
         
@@ -44,11 +42,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
                 } else {
-                    let rootViewController = self.isLoggined ? yelloTabBarController : kakaologinViewController
-                    let navigationController = UINavigationController(rootViewController: rootViewController)
-                    navigationController.navigationBar.isHidden = true
-                    self.window?.rootViewController = navigationController
-                    self.window?.makeKeyAndVisible()
+                    if self.isLoggined {
+                        let yelloTabBarController = YELLOTabBarController()
+                        let navigationController = UINavigationController(rootViewController: yelloTabBarController)
+                        navigationController.navigationBar.isHidden = true
+                        self.window?.rootViewController = navigationController
+                        self.window?.makeKeyAndVisible()
+                    } else {
+                        let kakaologinViewController = KakaoLoginViewController()
+                        let navigationController = UINavigationController(rootViewController: kakaologinViewController)
+                        navigationController.navigationBar.isHidden = true
+                        self.window?.rootViewController = navigationController
+                        self.window?.makeKeyAndVisible()
+                    }
                 }
                 return
             }
@@ -58,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let type = userInfo["type"] as? String else { return }
             guard let path = userInfo["path"] as? String,
                   let messageNumber = path.split(separator: "/").last else {
-                let rootViewController = yelloTabBarController
+                let rootViewController = YELLOTabBarController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
                 if type == StringLiterals.PushAlarm.TypeName.available || type == StringLiterals.PushAlarm.TypeName.recommend {
                     selectedIndex = 2
@@ -74,7 +80,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return
             }
             
-            let rootViewController = yelloTabBarController
+            let rootViewController = YELLOTabBarController()
             let navigationController = UINavigationController(rootViewController: rootViewController)
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()

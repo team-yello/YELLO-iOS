@@ -89,7 +89,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Timer.title, lineHeight: 28)
+            $0.text = StringLiterals.Voting.Timer.title
         }
         
         originView.textLabel.do {
