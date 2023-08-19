@@ -119,6 +119,7 @@
 		36C209F02A8B6A39001BF12C /* FirstTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */; };
 		36C209F22A8B6E03001BF12C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209F12A8B6E03001BF12C /* TutorialViewController.swift */; };
 		36C209F62A8B8190001BF12C /* SecondTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209F52A8B8190001BF12C /* SecondTutorialView.swift */; };
+		36C5E1CD2A91273400184AAE /* TokenRefreshRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
 		36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -401,6 +402,7 @@
 		36C209F12A8B6E03001BF12C /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		36C209F52A8B8190001BF12C /* SecondTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTutorialView.swift; sourceTree = "<group>"; };
 		36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
+		36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequestDTO.swift; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
 		36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 				3662A0F52A654B8D00F482EF /* JoinedFriendsRequestDTO.swift */,
 				36871C7C2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift */,
 				3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */,
+				36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2036,6 +2039,7 @@
 				C3FF249B2A5EE46500A97D40 /* MyYelloDetailViewController.swift in Sources */,
 				C3A799EA2A494D6800D3EFD8 /* UIView+.swift in Sources */,
 				2A8AA7072A65150B005A664D /* VotingAnswerListResponseDTO.swift in Sources */,
+				36C5E1CD2A91273400184AAE /* TokenRefreshRequestDTO.swift in Sources */,
 				C3D266452A5C776F0041C7C7 /* ProfileView.swift in Sources */,
 				2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */,
 				36C209F22A8B6E03001BF12C /* TutorialViewController.swift in Sources */,
