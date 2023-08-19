@@ -121,11 +121,18 @@ extension VotingViewController {
             let status = votingList[0].subscribe
             if status == "CANCELED" || status == "ACTIVE" {
                 viewController.multiplyByTwoImageView.isHidden = false
+                viewController.myPoint += myPlusPoint
+                viewController.votingPlusPoint *= 2
             } else {
                 viewController.multiplyByTwoImageView.isHidden = true
             }
             
-            self.navigationController?.pushViewController(viewController, animated: false)
+            UserDefaults.standard.set(viewController.myPoint, forKey: "UserPoint")
+            UserDefaults.standard.set(viewController.votingPlusPoint, forKey: "UserPlusPointNotPost")
+            
+            UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
+                self.navigationController?.pushViewController(viewController, animated: false)
+            })
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
