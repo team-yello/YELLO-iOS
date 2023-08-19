@@ -76,7 +76,7 @@ final class MyRequestInterceptor: RequestInterceptor {
         self.retryCount += 1
     }
     
-    func logout(){
+    func logout() {
         UserApi.shared.logout {(error) in
             if let error = error {
                 print(error)
@@ -93,7 +93,6 @@ final class MyRequestInterceptor: RequestInterceptor {
                 
                 UserDefaults.standard.removeObject(forKey: "isLoggined")
                 sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
-                
                 
                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
             }
