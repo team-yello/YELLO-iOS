@@ -10,6 +10,7 @@ import Foundation
 // MARK: - DataClass
 struct MyYelloResponseDTO: Codable {
     let totalCount: Int
+    let ticketCount: Int
     let votes: [Yello]
 }
 

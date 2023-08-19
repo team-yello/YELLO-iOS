@@ -279,16 +279,20 @@ extension SchoolFriendView: UITableViewDataSource {
             cell.showShimmer()
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as! FriendTableViewCell
-            
-            cell.selectionStyle = .none
-            
-            cell.isTapped = self.recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected
-            cell.updateAddButtonImage()
-            
-            cell.handleAddFriendButton = self
-            cell.configureFriendCell(self.recommendingSchoolFriendTableViewDummy[indexPath.row])
-            return cell
+            if indexPath.row < recommendingSchoolFriendTableViewDummy.count {
+                let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.identifier, for: indexPath) as! FriendTableViewCell
+                
+                cell.selectionStyle = .none
+                
+                cell.isTapped = self.recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected
+                cell.updateAddButtonImage()
+                
+                cell.handleAddFriendButton = self
+                cell.configureFriendCell(self.recommendingSchoolFriendTableViewDummy[indexPath.row])
+                return cell
+            } else {
+                return UITableViewCell()
+            }
         }
     }
 

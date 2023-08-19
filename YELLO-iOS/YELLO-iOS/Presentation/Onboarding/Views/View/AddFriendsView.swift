@@ -56,6 +56,7 @@ class AddFriendsView: BaseView {
             $0.textColor = .purpleSub400
             
             $0.asColors(targetStrings: ["선택된 친구", "명"], color: .white)
+            $0.asFont(targetString: String(count), font: .uiBody05)
         }
         
         friendsTableView.do {

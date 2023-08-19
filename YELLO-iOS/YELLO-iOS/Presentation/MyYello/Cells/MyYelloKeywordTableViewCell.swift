@@ -43,16 +43,6 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        genderImageView.image = nil
-        nameLabel.text = nil
-        keywordHeadLabel.text = nil
-        keywordLabel.text = nil
-        keywordFootLabel.text = nil
-        timeLabel.text = nil
-    }
-    
     private func setUI() {
         setStyle()
         setLayout()
@@ -169,9 +159,20 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
             keywordLabel.snp.makeConstraints {
                 $0.leading.equalToSuperview()
             }
+        } else {
+            keywordHeadLabel.text = model.vote.keywordHead
+            
+            keywordHeadLabel.snp.remakeConstraints {
+                $0.bottom.equalToSuperview()
+                $0.leading.equalToSuperview()
+            }
+            
+            keywordLabel.snp.remakeConstraints {
+                $0.bottom.equalTo(keywordHeadLabel)
+                $0.leading.equalTo(keywordHeadLabel.snp.trailing).inset(-2.adjustedWidth)
+            }
         }
         
-        keywordHeadLabel.text = model.vote.keywordHead
         keywordLabel.text = model.vote.keyword
         keywordFootLabel.text = model.vote.keywordFoot ?? ""
         timeLabel.text = model.createdAt

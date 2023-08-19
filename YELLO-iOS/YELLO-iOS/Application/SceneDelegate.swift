@@ -7,27 +7,25 @@
 
 import UIKit
 
+import Amplitude
 import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     let isLoggined = UserDefaults.standard.bool(forKey: "isLoggined")
-    let yelloTabBarController = YELLOTabBarController()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
+        let yelloTabBarController = YELLOTabBarController()
+        let kakaologinViewController = KakaoLoginViewController()
         let splashViewController = SplashViewController()
         window?.rootViewController = splashViewController
         
         self.window?.makeKeyAndVisible()
-        
-        if self.isLoggined {
-            yelloTabBarController.network()
-        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) {
             guard let notificationResponse = connectionOptions.notificationResponse else {
@@ -46,8 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
                 } else {
-                    // Fallback to a default view controller if the last one was not found or could not be restored
-                    let rootViewController = self.isLoggined ? YELLOTabBarController() : KakaoLoginViewController()
+                    let rootViewController = self.isLoggined ? yelloTabBarController : kakaologinViewController
                     let navigationController = UINavigationController(rootViewController: rootViewController)
                     navigationController.navigationBar.isHidden = true
                     self.window?.rootViewController = navigationController
@@ -61,9 +58,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let type = userInfo["type"] as? String else { return }
             guard let path = userInfo["path"] as? String,
                   let messageNumber = path.split(separator: "/").last else {
-                let rootViewController = YELLOTabBarController()
+                let rootViewController = yelloTabBarController
                 let navigationController = UINavigationController(rootViewController: rootViewController)
-                if type == StringLiterals.PushAlarm.TypeName.available {
+                if type == StringLiterals.PushAlarm.TypeName.available || type == StringLiterals.PushAlarm.TypeName.recommend {
                     selectedIndex = 2
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
@@ -77,7 +74,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return
             }
             
-            let rootViewController = YELLOTabBarController()
+            let rootViewController = yelloTabBarController
             let navigationController = UINavigationController(rootViewController: rootViewController)
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()
@@ -129,7 +126,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             if let initial = myYelloDetailViewController.getSecondInitial(data.senderName as NSString, index: 1) {
                                 myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
                             }
+                        } else if data.nameHint == -3 {
+                            myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
+                            myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
+                            myYelloDetailViewController.myYelloDetailView.isKeywordUsed = true
+                            myYelloDetailViewController.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
+                            myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = true
+                            myYelloDetailViewController.myYelloDetailView.haveTicket = false
+                            myYelloDetailViewController.myYelloDetailView.senderButton.snp.makeConstraints {
+                                $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
+                            }
                         }
+                        if data.isSubscribe {
+                            myYelloDetailViewController.myYelloDetailView.isPlus = true
+                        }
+                        myYelloDetailViewController.myYelloDetailView.ticketCount = data.ticketCount
+                        
                         navigationController.pushViewController(myYelloDetailViewController, animated: true)
                     default:
                         print("network fail")
@@ -152,6 +164,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidDisconnect(_ scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene else { return }
         guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
+        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step":VotingViewController.pushCount])
         
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"
@@ -176,6 +189,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene else { return }
         guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
+        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step":VotingViewController.pushCount])
         
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"

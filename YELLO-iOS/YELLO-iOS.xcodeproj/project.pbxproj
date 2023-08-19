@@ -25,6 +25,7 @@
 		2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */; };
 		2A3705EC2A62E3D4001AAC93 /* ProfileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */; };
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
+		2A423DF12A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A423DF02A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift */; };
 		2A4C549D2A8622B200FFDF80 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4C549C2A8622B200FFDF80 /* Kingfisher */; };
 		2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1AD2A657AA6008F636C /* VotingData.swift */; };
 		2A5FE1B62A66FA07008F636C /* VoteAnswerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */; };
@@ -171,6 +172,7 @@
 		C31315B22A7CBA6F00FB8B43 /* MyYelloButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315B12A7CBA6F00FB8B43 /* MyYelloButton.swift */; };
 		C32322F52A619E92006DA50B /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F42A619E92006DA50B /* PaymentView.swift */; };
 		C32322F92A61ABF2006DA50B /* PaymentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */; };
+		C348B6D72A8FBBD600674371 /* PurchaseInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */; };
 		C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C363D46C2A78050600FD583D /* AroundTableViewCell.swift */; };
 		C363D4722A780F0D00FD583D /* AroundEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C363D4712A780F0D00FD583D /* AroundEmptyView.swift */; };
 		C37DFC462A8501E300D3B685 /* PaymentPlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFC452A8501E300D3B685 /* PaymentPlusViewController.swift */; };
@@ -307,6 +309,7 @@
 		2A3705E52A62E3BC001AAC93 /* MyYelloService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloService.swift; sourceTree = "<group>"; };
 		2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
 		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		2A423DF02A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailFullNameResponseDTO.swift; sourceTree = "<group>"; };
 		2A5FE1AD2A657AA6008F636C /* VotingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingData.swift; sourceTree = "<group>"; };
 		2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAnswerList.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
@@ -397,6 +400,7 @@
 		36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTutorialView.swift; sourceTree = "<group>"; };
 		36C209F12A8B6E03001BF12C /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		36C209F52A8B8190001BF12C /* SecondTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTutorialView.swift; sourceTree = "<group>"; };
+		36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
 		36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -449,6 +453,7 @@
 		C31315B12A7CBA6F00FB8B43 /* MyYelloButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloButton.swift; sourceTree = "<group>"; };
 		C32322F42A619E92006DA50B /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCollectionViewCell.swift; sourceTree = "<group>"; };
+		C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseInfoResponseDTO.swift; sourceTree = "<group>"; };
 		C363D46C2A78050600FD583D /* AroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundTableViewCell.swift; sourceTree = "<group>"; };
 		C363D4712A780F0D00FD583D /* AroundEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundEmptyView.swift; sourceTree = "<group>"; };
 		C37DFC452A8501E300D3B685 /* PaymentPlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPlusViewController.swift; sourceTree = "<group>"; };
@@ -848,6 +853,7 @@
 			children = (
 				C3B4720B2A65B54400770530 /* MyYelloResponseDTO.swift */,
 				C3B472112A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift */,
+				2A423DF02A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift */,
 				C3B4720F2A65E0A200770530 /* MyYelloDetailKeywordResponseDTO.swift */,
 				C3B4720D2A65DEC700770530 /* MyYelloDetailResponseDTO.swift */,
 				C3B472152A65EB0900770530 /* PaymenyResponseDTO.swift */,
@@ -869,6 +875,7 @@
 			children = (
 				C306E7422A6520830031514C /* ProfileUserResponseDTO.swift */,
 				C306E7442A656AC40031514C /* ProfileFriendResponseDTO.swift */,
+				C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -890,6 +897,15 @@
 			path = VotingTimer;
 			sourceTree = "<group>";
 		};
+		2A423DEF2A8F5EF500F56C06 /* NetworkEntity */ = {
+			isa = PBXGroup;
+			children = (
+				2A5FE1AD2A657AA6008F636C /* VotingData.swift */,
+				2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */,
+			);
+			path = NetworkEntity;
+			sourceTree = "<group>";
+		};
 		2A5FE1AF2A657B52008F636C /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -898,12 +914,12 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		2A5FE1B02A657B6B008F636C /* BaseView */ = {
+		2A5FE1B02A657B6B008F636C /* BaseVotingETCView */ = {
 			isa = PBXGroup;
 			children = (
 				2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */,
 			);
-			path = BaseView;
+			path = BaseVotingETCView;
 			sourceTree = "<group>";
 		};
 		2AA0DBA72A546C24002B1370 /* TabBar */ = {
@@ -941,10 +957,9 @@
 		2AA0DBAC2A546D99002B1370 /* Voting */ = {
 			isa = PBXGroup;
 			children = (
-				2A5FE1B02A657B6B008F636C /* BaseView */,
+				2A5FE1B02A657B6B008F636C /* BaseVotingETCView */,
+				2A423DEF2A8F5EF500F56C06 /* NetworkEntity */,
 				2A5FE1AF2A657B52008F636C /* Enum */,
-				2A5FE1AD2A657AA6008F636C /* VotingData.swift */,
-				2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */,
 				2AD1A1A92A57175600CB988B /* VotingLocked */,
 				2AD1A1B62A57475000CB988B /* VotingStart */,
 				2AD1A1AA2A57176200CB988B /* Voting */,
@@ -1381,6 +1396,7 @@
 		C3A7998A2A49490A00D3EFD8 = {
 			isa = PBXGroup;
 			children = (
+				36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */,
 				3662A0E22A63474000F482EF /* Config.xcconfig */,
 				C3A79A0A2A49526A00D3EFD8 /* .swiftlint.yml */,
 				2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */,
@@ -1975,6 +1991,7 @@
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
+				C348B6D72A8FBBD600674371 /* PurchaseInfoResponseDTO.swift in Sources */,
 				C3C560C42A8A6F290074E988 /* FriendSearchRequestQueryDTO.swift in Sources */,
 				C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */,
 				36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */,
@@ -2162,6 +2179,7 @@
 				C3A799D02A494CEC00D3EFD8 /* Config.swift in Sources */,
 				C3FF24AF2A5F35FF00A97D40 /* UsePointView.swift in Sources */,
 				36E427742A5BCE860050B34E /* YelloTextFieldView.swift in Sources */,
+				2A423DF12A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift in Sources */,
 				C31315A42A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift in Sources */,
 				C3A799972A49490A00D3EFD8 /* AppDelegate.swift in Sources */,
 				365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */,
@@ -2199,6 +2217,111 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		36C5E1C92A8FBDCD00184AAE /* DEV */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BASE_URL = "http://13.124.196.224/api/v1";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = DEV;
+		};
+		36C5E1CA2A8FBDCD00184AAE /* DEV */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_dev;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "$(BASE_URL)";
+				CODE_SIGN_ENTITLEMENTS = "YELLO-iOS/YELLO-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6H688X3AHM;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS.dev;
+				PRODUCT_NAME = "$(Yello_Bundle_Name)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				Yello_Bundle_Name = YELLO_Dev;
+				Yello_Bundle_identifier = YELLO.iOS.dev;
+			};
+			name = DEV;
+		};
 		C3A799A52A49490D00D3EFD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2328,7 +2451,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "$(BASE_URL)";
 				CODE_SIGN_ENTITLEMENTS = "YELLO-iOS/YELLO-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -2336,6 +2458,7 @@
 				DEVELOPMENT_TEAM = 6H688X3AHM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
@@ -2346,7 +2469,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2356,6 +2479,8 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				Yello_Bundle_Name = YELLO;
+				Yello_Bundle_identifier = YELLO.iOS;
 			};
 			name = Debug;
 		};
@@ -2365,7 +2490,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "$(BASE_URL)";
 				CODE_SIGN_ENTITLEMENTS = "YELLO-iOS/YELLO-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -2373,6 +2497,7 @@
 				DEVELOPMENT_TEAM = 6H688X3AHM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
@@ -2383,7 +2508,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2393,6 +2518,8 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				Yello_Bundle_Name = YELLO;
+				Yello_Bundle_identifier = YELLO.iOS;
 			};
 			name = Release;
 		};
@@ -2403,6 +2530,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3A799A52A49490D00D3EFD8 /* Debug */,
+				36C5E1C92A8FBDCD00184AAE /* DEV */,
 				C3A799A62A49490D00D3EFD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2412,6 +2540,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3A799A82A49490D00D3EFD8 /* Debug */,
+				36C5E1CA2A8FBDCD00184AAE /* DEV */,
 				C3A799A92A49490D00D3EFD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

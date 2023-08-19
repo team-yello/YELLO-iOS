@@ -80,10 +80,8 @@ class KakaoLoginViewController: UIViewController {
                     } else {
                         rootViewController = YELLOTabBarController()
                     }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-                    }
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                 }
             default:
                 print("network failure")
@@ -105,7 +103,7 @@ class KakaoLoginViewController: UIViewController {
                     print("----🚩카카오 톡으로 로그인 성공🚩----")
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
-
+                    
                     self.authNetwork(queryDTO: queryDTO)
                 }
             }

@@ -27,18 +27,15 @@ final class YELLOTabBarController: UITabBarController {
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        network()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getVotingAvailable()
-        setTabBarItems()
-        setTabBarAppearance()
+        
+        network()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
-        self.selectedIndex = 2
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +58,7 @@ final class YELLOTabBarController: UITabBarController {
     
     // MARK: - TabBar Item
     
-    private func setTabBarItems() {
+    func setTabBarItems() {
         var rootViewController: UIViewController
         /// 친구 수에 따라 rootViewController가 달라짐
         if startStatus == 1 {
@@ -90,7 +87,7 @@ final class YELLOTabBarController: UITabBarController {
     
     // MARK: - TabBar Style
     
-    private func setTabBarAppearance() {
+    func setTabBarAppearance() {
         
         /// 탭 바 아이템의 글씨를 조금 띄우기 위해 titlePositionAdjustment를 설정
         let offset = UIOffset(horizontal: 0, vertical: -7) /// 수직 방향으로 -7만큼
@@ -193,6 +190,7 @@ extension YELLOTabBarController {
                 }
                 self.setTabBarItems()
                 self.setTabBarAppearance()
+                self.selectedIndex = 2
                 self.myYelloViewController.unreadCount()
             default:
                 print("network failure")
@@ -202,6 +200,7 @@ extension YELLOTabBarController {
     }
     
     func network() {
+        getVotingAvailable()
         /// 추천친구 서버통신
         recommendingViewController.kakaoFriendViewController.kakaoFriendView.kakaoFriends { [weak self] in
             self?.recommendingViewController.kakaoFriendViewController.kakaoFriendView.recommendingKakaoFriend()
@@ -210,9 +209,6 @@ extension YELLOTabBarController {
         
         /// 둘러보기 서버통신
         aroundViewController.aroundView.around()
-        
-        /// 옐로하기_시작 서버통신
-//        votingStartViewController.getSubscribe()
         
         /// 내 쪽지 서버통신
         myYelloViewController.myYelloView.myYelloListView.myYello()
@@ -288,7 +284,21 @@ extension YELLOTabBarController {
                                 if let initial = myYelloDetailViewController.getSecondInitial(data.senderName as NSString, index: 1) {
                                     myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
                                 }
+                            } else if data.nameHint == -3 {
+                                myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
+                                myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
+                                myYelloDetailViewController.myYelloDetailView.isKeywordUsed = true
+                                myYelloDetailViewController.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
+                                myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = true
+                                myYelloDetailViewController.myYelloDetailView.haveTicket = false
+                                myYelloDetailViewController.myYelloDetailView.senderButton.snp.makeConstraints {
+                                    $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
+                                }
                             }
+                            if data.isSubscribe {
+                                myYelloDetailViewController.myYelloDetailView.isPlus = true
+                            }
+                            myYelloDetailViewController.myYelloDetailView.ticketCount = data.ticketCount
                             self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
                         default:
                             print("network fail")

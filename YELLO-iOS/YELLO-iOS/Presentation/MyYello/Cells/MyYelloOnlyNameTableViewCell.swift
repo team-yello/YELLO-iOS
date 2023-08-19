@@ -41,13 +41,6 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        genderImageView.image = nil
-        titleLabel.text = nil
-        timeLabel.text = nil
-    }
-    
     // MARK: Layout Helpers
     private func setUI() {
         setStyle()
@@ -65,8 +58,8 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
         
         nameStackView.do {
             $0.addArrangedSubviews(nameLabel, titleLabel)
-            $0.axis = .vertical
-            $0.spacing = 2.adjustedHeight
+            $0.axis = .horizontal
+            $0.spacing = 2.adjustedWidth
         }
         
         nameLabel.do {
@@ -76,7 +69,7 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
         }
         
         titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.nameTitle, lineHeight: 20.adjustedHeight)
+            $0.text = StringLiterals.MyYello.List.nameTitle
             $0.font = .uiBodySmall
             $0.textColor = .semanticGenderF300
         }
@@ -110,22 +103,22 @@ final class MyYelloOnlyNameTableViewCell: UITableViewCell {
     }
     
     // MARK: Custom Function
-    func configureDefaultCell(_ model: Yello) {
+    func configureOnlyNameCell(_ model: Yello) {
         
         if model.senderGender == "MALE" {
             contentView.backgroundColor = .semanticGenderM700
             genderImageView.image = ImageLiterals.MyYello.imgGenderMale
-            titleLabel.text = StringLiterals.MyYello.List.maleTitle
+            nameLabel.text = model.senderName
             nameLabel.textColor = .semanticGenderM300
             titleLabel.textColor = .semanticGenderM300
-            timeLabel.textColor = .semanticGenderM300
+            timeLabel.textColor = .semanticGenderM500
         } else {
             contentView.backgroundColor = .semanticGenderF700
             genderImageView.image = ImageLiterals.MyYello.imgGenderFemale
-            titleLabel.text = StringLiterals.MyYello.List.femaleTitle
+            nameLabel.text = model.senderName
             nameLabel.textColor = .semanticGenderF300
             titleLabel.textColor = .semanticGenderF300
-            timeLabel.textColor = .semanticGenderF300
+            timeLabel.textColor = .semanticGenderF500
         }
         
         timeLabel.text = model.createdAt

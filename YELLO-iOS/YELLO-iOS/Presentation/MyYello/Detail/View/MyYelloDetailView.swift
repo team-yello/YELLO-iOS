@@ -46,24 +46,47 @@ final class MyYelloDetailView: BaseView {
         didSet {
             if haveTicket {
                 senderButton.setButtonState(state: .yesTicket)
+                senderButton.keyCountLabel.text = String(self.ticketCount)
+                if isTicketUsed {
+                    senderButton.setButtonState(state: .useTicket)
+                }
+                if nameIndex == -3 {
+                    senderButton.setButtonState(state: .noTicket)
+                }
             } else {
                 senderButton.setButtonState(state: .noTicket)
+                if isTicketUsed {
+                    senderButton.setButtonState(state: .useTicket)
+                }
             }
         }
     }
     var isTicketUsed: Bool = false {
         didSet {
-            senderButton.setButtonState(state: .useTicket)
             if isKeywordUsed == true {
+                senderButton.setButtonState(state: .useTicket)
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
                     $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                }
+                if self.nameIndex == -3 {
+                    senderButton.setButtonState(state: .noTicket)
                 }
             }
         }
     }
     
     var isPlus: Bool = false
+    var ticketCount: Int = 0 {
+        didSet {
+            if ticketCount == 0 {
+                haveTicket = false
+            } else {
+                haveTicket = true
+            }
+        }
+    }
+    
     var isRead: Bool = false {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
@@ -119,7 +142,6 @@ final class MyYelloDetailView: BaseView {
         }
     }
     
-    var currentTicket: Int = 2
     var voteIdNumber: Int = 0
     var initialName: String = ""
     
@@ -342,7 +364,7 @@ extension MyYelloDetailView {
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         useTicketView.removeFromSuperview()
         useTicketView = UseTicketView()
-        useTicketView.ticketLabel.text = String(self.currentTicket)
+        useTicketView.ticketLabel.text = String(self.ticketCount)
         useTicketView.frame = viewController.view.bounds
         useTicketView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         useTicketView.handleConfirmTicketButtonDelegate = self
@@ -462,6 +484,31 @@ extension MyYelloDetailView {
         }
     }
     
+    func myYelloDetailFullName(voteId: Int) {
+        NetworkService.shared.myYelloService.myYelloDetailFullName(voteId: voteId) { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                let initial = data.name
+                self.initialName = initial
+                self.detailSenderView.senderLabel.text = initial
+                self.getFullNameView.hintLabel.text = initial
+                self.getFullNameView.ticketLabel.text = String(self.ticketCount - 1)
+                self.isTicketUsed = true
+                self.senderButton.setButtonState(state: .useTicket)
+
+                MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
+                
+                dump(data)
+                print("이름 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
+    
     func getFirstInitial(_ str: NSString, index: Int) -> String? {
         let name = str
         var initialName: String = ""
@@ -513,6 +560,6 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
 extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
     func confirmTicketButtonTapped() {
         showGetFullNameAlert()
-        self.isTicketUsed = true
+        myYelloDetailFullName(voteId: voteIdNumber)
     }
 }

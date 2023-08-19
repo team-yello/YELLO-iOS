@@ -177,8 +177,8 @@ extension InvitingView {
     
     @objc
     func kakaoButtonClicked() {
-//        let templateId = 95890
-        let templateId = 96906
+        let templateId = Config.kakaoTempleteId
+        
         guard let filteredString = self.recommenderID.text else { return }
         let recommenderID = String(filteredString.dropFirst())
         UIPasteboard.general.string = recommenderID
@@ -186,7 +186,7 @@ extension InvitingView {
         // 카카오톡 설치여부 확인
         if ShareApi.isKakaoTalkSharingAvailable() {
             // 카카오톡으로 카카오톡 공유 가능
-            ShareApi.shared.shareCustom(templateId: Int64(templateId),
+            ShareApi.shared.shareCustom(templateId: Int64(templateId) ?? 0,
                                         templateArgs: ["KEY": "\(recommenderID)"]) {(sharingResult, error) in
                 if let error = error {
                     print(error)
@@ -199,7 +199,7 @@ extension InvitingView {
             }
         } else {
             // 카카오톡 미설치: 웹 공유 사용 권장
-            if ShareApi.shared.makeCustomUrl(templateId: Int64(templateId),
+            if ShareApi.shared.makeCustomUrl(templateId: Int64(templateId) ?? 0,
                                              templateArgs: ["${KEY}": "제목입니다."]) != nil {
                 print("error")
             }
