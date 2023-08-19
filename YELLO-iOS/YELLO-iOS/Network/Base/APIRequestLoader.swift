@@ -13,6 +13,7 @@ class APIRequestLoader<T: TargetType> {
     private let configuration: URLSessionConfiguration
     private let apiLogger: APIEventLogger
     private let session: Session
+    private let interceptorSession: Session
     let interceptor = MyRequestInterceptor()
     
     init(
@@ -22,7 +23,8 @@ class APIRequestLoader<T: TargetType> {
         self.configuration = configuration
         self.apiLogger = apiLogger
         
-        session = Session(configuration: configuration, interceptor: interceptor, eventMonitors: [apiLogger])
+        session = Session(configuration: configuration, eventMonitors: [apiLogger])
+        interceptorSession = Session(configuration: configuration, interceptor: interceptor, eventMonitors: [apiLogger])
         
     }
     
