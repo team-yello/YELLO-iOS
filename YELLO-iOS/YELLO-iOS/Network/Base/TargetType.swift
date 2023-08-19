@@ -15,6 +15,7 @@ protocol TargetType: URLRequestConvertible {
     var path: String { get }
     var parameters: RequestParams { get }
     var headerType: HTTPHeaderType { get }
+    var authorization: Authorization { get }
 }
 
 extension TargetType {
@@ -48,6 +49,13 @@ extension TargetType {
             url: url.appendingPathComponent(path),
             method: method
         )
+        
+        switch authorization {
+        case .authorization:
+            urlRequest.setValue("Bearer \(KeychainHandler.shared.accessToken)", forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
+        case .unauthorization:
+            break
+        }
         
         switch headerType {
         case .plain:
