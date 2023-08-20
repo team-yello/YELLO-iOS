@@ -16,7 +16,14 @@ final class YELLOTabBarController: UITabBarController {
     
     private var tabs: [UIViewController] = []
     
-    private var startStatus: Int = 1
+    var startStatus: Int = 1 {
+        didSet {
+            self.setTabBarItems()
+            self.setTabBarAppearance()
+            self.selectedIndex = 2
+            self.myYelloViewController.unreadCount()
+        }
+    }
     private var messageIndex: Int = 0
     let recommendingViewController = RecommendingViewController()
     let aroundViewController = AroundViewController()
@@ -173,6 +180,12 @@ extension YELLOTabBarController: UITabBarControllerDelegate {
 
 extension YELLOTabBarController {
     func getVotingAvailable() {
+
+        self.setTabBarItems()
+        self.setTabBarAppearance()
+        self.selectedIndex = 2
+        self.myYelloViewController.unreadCount()
+        
         NetworkService.shared.votingService.getVotingAvailable {
             result in
             switch result {
@@ -180,18 +193,12 @@ extension YELLOTabBarController {
                 let status = data.status
                 guard let data = data.data else { return }
                 if status == 200 {
-                    if data.isPossible {
-                        self.startStatus = 1
-                    } else {
+                    if !data.isPossible {
                         self.startStatus = 2
                     }
                 } else {
                     self.startStatus = 3
                 }
-                self.setTabBarItems()
-                self.setTabBarAppearance()
-                self.selectedIndex = 2
-                self.myYelloViewController.unreadCount()
             default:
                 print("network failure")
                 return

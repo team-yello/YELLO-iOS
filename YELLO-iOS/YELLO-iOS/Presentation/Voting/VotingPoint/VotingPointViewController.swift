@@ -13,10 +13,11 @@ import Then
 
 final class VotingPointViewController: BaseViewController {
 
-    private let originView = BaseVotingETCView()
+    let originView = BaseVotingETCView()
     let multiplyByTwoImageView = UIImageView()
     var myPoint = 0
     var votingPlusPoint = 0
+    var votingPlusPointToPost = 0
     var votingAnswer: [VoteAnswerList] = []
     let userNotiCenter = UNUserNotificationCenter.current()
     
@@ -30,10 +31,11 @@ final class VotingPointViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = true
         
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
-        votingPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
+        votingPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPointNotPost")
+        votingPlusPointToPost = UserDefaults.standard.integer(forKey: "UserPlusPoint")
         
-        originView.topOfMyPoint.text = String(myPoint + votingPlusPoint)
-        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint + votingPlusPoint), lineHeight: 22)
+        originView.topOfMyPoint.text = String(myPoint)
+        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
         originView.plusPoint.setTextWithLineHeight(text: "+ " + String(votingPlusPoint) + " Point", lineHeight: 22)
         originView.plusPoint.asColor(targetString: String(votingPlusPoint), color: .yelloMain500)
     }
@@ -44,7 +46,7 @@ final class VotingPointViewController: BaseViewController {
         view.backgroundColor = .black
         
         originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Point.title, lineHeight: 28)
+            $0.text = StringLiterals.Voting.Point.title
         }
         
         originView.textLabel.do {
@@ -138,7 +140,7 @@ final class VotingPointViewController: BaseViewController {
     func yellowButtonClicked() {
         originView.yellowButton.isEnabled = false
         guard let loadedUserArray = loadUserData() else { return }
-        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: loadedUserArray, totalPoint: votingPlusPoint)
+        let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: loadedUserArray, totalPoint: votingPlusPointToPost)
         NetworkService.shared.votingService.postVotingAnswerList(requestDTO: requestDTO) { result in
             switch result {
             case .success(let data):
@@ -153,7 +155,8 @@ final class VotingPointViewController: BaseViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             let viewController = YELLOTabBarController()
-            self.navigationController?.pushViewController(viewController, animated: true)
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: viewController)
             self.originView.yellowButton.isEnabled = true
         }
         

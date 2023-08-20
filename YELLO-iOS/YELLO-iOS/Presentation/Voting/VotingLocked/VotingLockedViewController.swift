@@ -23,6 +23,7 @@ final class VotingLockedViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getVotingAvailable()
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - Style
@@ -31,7 +32,7 @@ final class VotingLockedViewController: BaseViewController {
         view.backgroundColor = .black
         
         originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Locked.title, lineHeight: 28)
+            $0.text = StringLiterals.Voting.Locked.title
         }
         
         originView.textLabel.do {

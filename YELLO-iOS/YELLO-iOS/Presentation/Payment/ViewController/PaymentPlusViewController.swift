@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import StoreKit
 import Then
@@ -155,6 +156,8 @@ extension PaymentPlusViewController {
             self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
             self.hideLoadingIndicator()
         }
+      
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"subscribe"])
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
@@ -162,6 +165,8 @@ extension PaymentPlusViewController {
         
         MyProducts.iapService.buyProduct(products[1])
         print("이름 열람권 1개 구입")
+      
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket1"])
     }
     
     @objc private func paymentNameKeyTwoButtonTapped() {
@@ -169,6 +174,8 @@ extension PaymentPlusViewController {
         
         MyProducts.iapService.buyProduct(products[2])
         print("이름 열람권 2개 구입")
+      
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket2"])
     }
     
     @objc private func paymentNameKeyFiveButtonTapped() {
@@ -176,6 +183,8 @@ extension PaymentPlusViewController {
         
         MyProducts.iapService.buyProduct(products[3])
         print("이름 열람권 5개 구입")
+      
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket5"])
     }
     
     func showPaymentConfirmView(state: PaymentStatus) {
