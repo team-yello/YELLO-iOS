@@ -5,36 +5,34 @@
 //  Created by 정채은 on 2023/08/20.
 //
 
-import Foundation
-
-enum VersionError: Error {
-    case invalidResponse, invalidBundleInfo
-}
+import UIKit
 
 class AppStoreCheck {
-    static func isUpdateAvailable(completion: @escaping (Bool?, Error?) -> Void) throws -> URLSessionDataTask {
-        guard let info = Bundle.main.infoDictionary,
-            let currentVersion = info["CFBundleShortVersionString"] as? String, // 현재 버전
-            let identifier = info["CFBundleIdentifier"] as? String,
-            let url = URL(string: "http://itunes.apple.com/kr/lookup?bundleId=\(identifier)") else {
-                throw VersionError.invalidBundleInfo
+    
+    // 현재 버전 : 타겟 -> 일반 -> Version
+    static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    // 개발자가 내부적으로 확인하기 위한 용도 : 타겟 -> 일반 -> Build
+    static let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    static let appStoreOpenUrlString = "itms-apps://itunes.apple.com/app/apple-store/AppleID"
+    
+    // 앱 스토어 최신 정보 확인
+    func latestVersion() -> String? {
+        let appleID = "6451451050"
+        guard let url = URL(string: "http://itunes.apple.com/lookup?id=\(appleID)&country=kr"),
+              let data = try? Data(contentsOf: url),
+              let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
+              let results = json["results"] as? [[String: Any]],
+              let appStoreVersion = results[0]["version"] as? String else {
+            return nil
         }
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            do {
-                if let error = error { throw error }
-                guard let data = data else { throw VersionError.invalidResponse }
-                let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]
-                guard let result = (json?["results"] as? [Any])?.first as? [String: Any], let version = result["version"] as? String else {
-                    throw VersionError.invalidResponse
-                }
-                let verFloat = NSString.init(string: version).floatValue
-                let currentVerFloat = NSString.init(string: currentVersion).floatValue
-                completion(verFloat > currentVerFloat, nil) // 현재 버전이 앱스토어 버전보다 큰지를 Bool값으로 반환
-            } catch {
-                completion(nil, error)
-            }
+        return appStoreVersion
+    }
+    
+    // 앱 스토어로 이동 -> urlStr 에 appStoreOpenUrlString 넣으면 이동
+    func openAppStore() {
+        guard let url = URL(string: AppStoreCheck.appStoreOpenUrlString) else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
-        task.resume()
-        return task
     }
 }
