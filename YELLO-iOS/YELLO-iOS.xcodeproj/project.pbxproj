@@ -1758,9 +1758,9 @@
 				C3FF24922A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift */,
 				C3FF24942A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift */,
 				C3FF24962A5E907D00A97D40 /* MyYelloNameTableViewCell.swift */,
-				C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */,
 				C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */,
 				C38A93ED2A83910400B9110B /* MyYelloSkeletonTableViewCell.swift */,
+				C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

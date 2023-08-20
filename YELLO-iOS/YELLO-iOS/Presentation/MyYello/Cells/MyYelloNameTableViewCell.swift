@@ -61,13 +61,13 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         initialLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 20.adjustedHeight)
+            $0.text = " "
             $0.font = .uiKeywordBold
             $0.textColor = .semanticGenderF300
         }
         
         sendLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.List.nameTitle, lineHeight: 20.adjustedHeight)
+            $0.text = StringLiterals.MyYello.List.nameTitle
             $0.font = .uiBodySmall
             $0.textColor = .semanticGenderF300
         }
@@ -97,7 +97,7 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 16.adjustedHeight)
+            $0.text = " "
             $0.font = .uiLabelLarge
             $0.textColor = .semanticGenderF500
         }
@@ -122,11 +122,13 @@ final class MyYelloNameTableViewCell: UITableViewCell {
         
         initialLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(13.adjustedHeight)
+            $0.height.equalTo(20.adjustedHeight)
             $0.leading.equalTo(genderImageView.snp.trailing).inset(-12.adjustedWidth)
         }
         
         sendLabel.snp.makeConstraints {
             $0.top.equalTo(initialLabel)
+            $0.height.equalTo(20.adjustedHeight)
             $0.leading.equalTo(initialLabel.snp.trailing).inset(-2.adjustedWidth)
         }
         
