@@ -271,6 +271,7 @@ extension MyYelloDetailViewController {
     func popViewController(_ notification: Notification) {
         tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
         tabBarController?.selectedIndex = 2
+        tabBarController?.tabBar.isHidden = false
         popView()
     }
 }

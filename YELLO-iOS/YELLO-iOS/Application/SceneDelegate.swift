@@ -94,6 +94,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     case .success(let data):
                         guard let data = data.data else { return }
 
+                        myYelloDetailViewController.myYelloDetailView.voteIdNumber = Int(messageNumber) ?? 0
                         myYelloDetailViewController.colorIndex = data.colorIndex
                         myYelloDetailViewController.myYelloDetailView.currentPoint = data.currentPoint
                         myYelloDetailViewController.myYelloDetailView.detailSenderView.isHidden = false
