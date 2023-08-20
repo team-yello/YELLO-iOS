@@ -293,10 +293,10 @@ extension PaymentPlusViewController {
                         return
                     }
                 } else if (500...599).contains(data.status) {
-                    self.showAlertView(title: "서버 내부 오류 발생", message: "서버 내부에서 검증 오류가 발생했습니다.\n고객 센터로 환불 문의 해주세요.")
+                    self.showAlertView(title: "상품 지급 오류", message: "오류로 인해 상품이 지급되지 않았어요. 옐로 공식 카카오 채널로 문의주시면 해결을 도와드리겠습니다.")
                     print("서버 내부 오류 발생")
                 } else {
-                    self.showAlertView(title: "결제 실패", message: "결제를 실패했습니다. 다시 시도해주세요ㅜ.")
+                    self.showAlertView(title: "결제 실패", message: "결제를 실패했습니다. 다시 시도해주세요.")
                 }
             default:
                 print("network failure")
