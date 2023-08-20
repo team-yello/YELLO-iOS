@@ -172,6 +172,7 @@
 		C31315B22A7CBA6F00FB8B43 /* MyYelloButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31315B12A7CBA6F00FB8B43 /* MyYelloButton.swift */; };
 		C32322F52A619E92006DA50B /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F42A619E92006DA50B /* PaymentView.swift */; };
 		C32322F92A61ABF2006DA50B /* PaymentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */; };
+		C3291A082A920D84007F2CF5 /* AppStoreCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3291A072A920D84007F2CF5 /* AppStoreCheck.swift */; };
 		C348B6D72A8FBBD600674371 /* PurchaseInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */; };
 		C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C363D46C2A78050600FD583D /* AroundTableViewCell.swift */; };
 		C363D4722A780F0D00FD583D /* AroundEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C363D4712A780F0D00FD583D /* AroundEmptyView.swift */; };
@@ -453,6 +454,7 @@
 		C31315B12A7CBA6F00FB8B43 /* MyYelloButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloButton.swift; sourceTree = "<group>"; };
 		C32322F42A619E92006DA50B /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCollectionViewCell.swift; sourceTree = "<group>"; };
+		C3291A072A920D84007F2CF5 /* AppStoreCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreCheck.swift; sourceTree = "<group>"; };
 		C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseInfoResponseDTO.swift; sourceTree = "<group>"; };
 		C363D46C2A78050600FD583D /* AroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundTableViewCell.swift; sourceTree = "<group>"; };
 		C363D4712A780F0D00FD583D /* AroundEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundEmptyView.swift; sourceTree = "<group>"; };
@@ -1057,6 +1059,7 @@
 			children = (
 				36EA2AB62A66FC0B003603C7 /* User.swift */,
 				C306E7262A630BB70031514C /* KeychainHandler.swift */,
+				C3291A072A920D84007F2CF5 /* AppStoreCheck.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -2079,6 +2082,7 @@
 				C3B472122A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				367113732A7D6CED0037E0D2 /* UniversityViewController.swift in Sources */,
+				C3291A082A920D84007F2CF5 /* AppStoreCheck.swift in Sources */,
 				3662A0F62A654B8D00F482EF /* JoinedFriendsRequestDTO.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
