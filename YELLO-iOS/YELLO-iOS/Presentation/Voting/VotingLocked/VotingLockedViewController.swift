@@ -23,6 +23,7 @@ final class VotingLockedViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getVotingAvailable()
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - Style

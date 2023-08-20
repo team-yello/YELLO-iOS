@@ -73,6 +73,7 @@ final class VotingTimerViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         getVotingAvailable()
+        tabBarController?.tabBar.isHidden = false
     }
         
     // MARK: - Style

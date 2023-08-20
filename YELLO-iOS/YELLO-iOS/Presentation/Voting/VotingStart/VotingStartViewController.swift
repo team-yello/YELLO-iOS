@@ -35,6 +35,7 @@ final class VotingStartViewController: BaseViewController {
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         getSubscribe()
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
