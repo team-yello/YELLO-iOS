@@ -231,7 +231,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func showUpdateAlert(version: String) {
         let alert = UIAlertController(
             title: "업데이트 알림",
-            message: "YELL:O의 새로운 버전이 있습니다. \(version) 버전으로 업데이트 해주세요.",
+            message: "더 나은 서비스를 위해 옐로가 수정되었어요! 업데이트해주시겠어요?",
             preferredStyle: .alert
         )
         
