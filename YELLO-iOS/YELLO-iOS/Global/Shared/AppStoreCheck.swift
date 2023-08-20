@@ -13,7 +13,7 @@ class AppStoreCheck {
     static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     // 개발자가 내부적으로 확인하기 위한 용도 : 타겟 -> 일반 -> Build
     static let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-    static let appStoreOpenUrlString = "itms-apps://itunes.apple.com/app/apple-store/AppleID"
+    static let appStoreOpenUrlString = "itms-apps://itunes.apple.com/app/apple-store/6451451050"
     
     // 앱 스토어 최신 정보 확인
     func latestVersion() -> String? {
