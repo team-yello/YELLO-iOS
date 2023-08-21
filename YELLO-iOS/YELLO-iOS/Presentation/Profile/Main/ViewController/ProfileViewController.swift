@@ -31,7 +31,7 @@ final class ProfileViewController: BaseViewController {
         Amplitude.instance().logEvent("view_profile")
         Amplitude.instance().setUserProperties(["user_friends": profileView.friendCount,
                                                 "user_message_received":profileView.myYelloCount,
-                                                "user_subscription" : profileView.isYelloPlus ? "yes" : "no"
+                                                "user_subscription" : profileView.isYelloPlus ? "yes" : "no",
                                                 "user_ticket":profileView.ticketCount])
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
