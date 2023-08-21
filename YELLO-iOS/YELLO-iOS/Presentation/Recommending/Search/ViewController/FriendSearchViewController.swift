@@ -175,10 +175,13 @@ extension FriendSearchViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.handleSearchAddFriendButton = self
-        cell.selectionStyle = .none
-        cell.configureFriendCell(allFriend[indexPath.row])
-        return cell
+        if indexPath.row < allFriend.count {
+            cell.handleSearchAddFriendButton = self
+            cell.selectionStyle = .none
+            cell.configureFriendCell(allFriend[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
