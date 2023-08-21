@@ -107,9 +107,13 @@ extension VotingViewController {
         // 투표 끝나면 포인트뷰컨으로 push
         if VotingViewController.pushCount > 6 {
             VotingViewController.pushCount = 0
-            User.shared.countVoting += votingAnswer.count
-            User.shared.countVotingCycle += 1
-            Amplitude.instance().setUserProperties(["user_message_sent": User.shared.countVoting, "": User.shared.countVotingCycle])
+            
+            let identify = AMPIdentify()
+                .add("user_instagram", value: NSNumber(value: votingAnswer.count))
+                .add("user_message_cycle", value: NSNumber(value: 1))
+            guard let identify = identify else {return}
+            Amplitude.instance().identify(identify)
+            
             let viewController = VotingPointViewController()
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint

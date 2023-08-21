@@ -295,6 +295,10 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
         } else if !myYelloDetailView.isKeywordUsed && !myYelloDetailView.isSenderUsed {
             Amplitude.instance().logEvent("click_instagram", withEventProperties: ["insta_view": "message"])
         }
+        let identify = AMPIdentify()
+            .add("user_instagram", value: NSNumber(value: 1))
+        guard let identify = identify else {return}
+        Amplitude.instance().identify(identify)
         
         if let storyShareURL = URL(string: "instagram-stories://share?source_application=" + Config.metaAppID) {
             
