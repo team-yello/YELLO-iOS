@@ -153,6 +153,13 @@ extension MyYelloViewController {
                         self.myYelloView.unlockButton.keyCountLabel.text = String(data.ticketCount)
                     }
                     
+                    Amplitude.instance().setUserProperties(["user_message_open": data.openCount,
+                                                            "user_message_open_keyword": data.openKeywordCount,
+                                                            "user_message_open_firstletter": data.openNameCount,
+                                                            "user_message_open_fullname": data.openFullNameCount,
+                                                            "user_message_received": data.totalCount])
+                    
+                    
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
                     self.myYelloView.resetLayout()

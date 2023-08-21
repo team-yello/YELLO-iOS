@@ -98,7 +98,7 @@ extension PaymentPlusViewController {
         payCheck(index: 0)
         pushPaymentReadyViewController()
         print("옐로플러스 구독 결제")
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"subscribe"])
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type": "subscribe"])
 //        showPaymentConfirmView(state: .yelloPlus)
     }
     
@@ -106,7 +106,7 @@ extension PaymentPlusViewController {
         payCheck(index: 1)
         pushPaymentReadyViewController()
         print("이름 열람권 1개 구입")
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket1"])
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type": "ticket1"])
 //        showPaymentConfirmView(state: .nameKeyOne)
     }
     
@@ -114,7 +114,7 @@ extension PaymentPlusViewController {
         payCheck(index: 2)
         pushPaymentReadyViewController()
         print("이름 열람권 3개 구입")
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket2"])
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type": "ticket2"])
 //        showPaymentConfirmView(state: .nameKeyTwo)
     }
     
@@ -122,7 +122,7 @@ extension PaymentPlusViewController {
         payCheck(index: 3)
         pushPaymentReadyViewController()
         print("이름 열람권 5개 구입")
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket5"])
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type": "ticket5"])
 //        showPaymentConfirmView(state: .nameKeyFive)
     }
     
