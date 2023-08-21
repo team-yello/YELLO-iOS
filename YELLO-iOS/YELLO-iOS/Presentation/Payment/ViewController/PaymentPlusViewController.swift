@@ -242,6 +242,7 @@ extension PaymentPlusViewController {
         // 구독 상품 구매
         if productID == MyProducts.yelloPlusProductID {
             verifySubscriptionPurchase(transactionID: transactionID)
+            
         }
         print("여기")
     }
@@ -252,6 +253,20 @@ extension PaymentPlusViewController {
         self.purchaseTicket(transactionID: transactionID, productID: productID)
         print("상품 구매 완료: \(productID)")
         print("transactionID: \(transactionID)")
+        
+        switch productID {
+        case MyProducts.yelloPlusProductID:
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "subscribe", "buy_price": 3900])
+        case MyProducts.nameKeyOneProductID:
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket1", "buy_price": 1400])
+        case MyProducts.nameKeyTwoProductID:
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket2", "buy_price": 2800])
+        case MyProducts.nameKeyFiveProductID:
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket5", "buy_price": 5900])
+        default:
+            break
+        }
+        
     }
     
     private func verifySubscriptionPurchase(transactionID: String) {
