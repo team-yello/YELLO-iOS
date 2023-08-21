@@ -38,7 +38,7 @@ final class MyProfileView: UIView {
     let schoolSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
     
     // 옐로 플러스 여부에 따라서 달라짐
-    var isYelloPlus: Bool = true {
+    var isYelloPlus: Bool = false {
         didSet {
             updateProfileView()
         }
