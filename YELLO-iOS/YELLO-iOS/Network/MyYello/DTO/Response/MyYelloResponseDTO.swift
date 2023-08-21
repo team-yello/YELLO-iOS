@@ -11,10 +11,10 @@ import Foundation
 struct MyYelloResponseDTO: Codable {
     let totalCount: Int
     let ticketCount: Int
-    let openCount: Int
-    let openKeywordCount: Int
-    let openNameCount: Int
-    let openFullNameCount: Int
+//    let openCount: Int
+//    let openKeywordCount: Int
+//    let openNameCount: Int
+//    let openFullNameCount: Int
     let votes: [Yello]
 }
 
