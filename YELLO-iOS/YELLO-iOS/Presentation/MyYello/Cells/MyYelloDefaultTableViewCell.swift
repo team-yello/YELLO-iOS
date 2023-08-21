@@ -72,7 +72,7 @@ final class MyYelloDefaultTableViewCell: UITableViewCell {
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: "1시간 전", lineHeight: 16.adjustedHeight)
+            $0.text = " "
             $0.font = .uiLabelLarge
             $0.textColor = .grayscales600
         }

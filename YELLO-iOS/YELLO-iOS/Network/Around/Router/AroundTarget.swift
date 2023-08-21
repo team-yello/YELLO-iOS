@@ -14,10 +14,17 @@ enum AroundTarget {
 }
 
 extension AroundTarget: TargetType {
+    var authorization: Authorization {
+        switch self {
+        case .around(_):
+            return .authorization
+        }
+    }
+    
     var headerType: HTTPHeaderType {
         switch self {
         case .around(_):
-            return .hasAccessToken
+            return .plain
         }
     }
     

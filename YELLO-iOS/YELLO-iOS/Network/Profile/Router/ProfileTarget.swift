@@ -18,18 +18,33 @@ enum ProfileTarget {
 }
 
 extension ProfileTarget: TargetType {
+    var authorization: Authorization {
+        switch self {
+        case .profileUser:
+            return .authorization
+        case .profileFriend:
+            return .authorization
+        case .profileDeleteFriend:
+            return .authorization
+        case .deleteUser:
+            return .authorization
+        case .purchaseInfo:
+            return .authorization
+        }
+    }
+    
     var headerType: HTTPHeaderType {
         switch self {
         case .profileUser:
-            return .hasAccessToken
+            return .plain
         case .profileFriend:
-            return .hasAccessToken
+            return .plain
         case .profileDeleteFriend:
-            return .hasAccessToken
+            return .plain
         case .deleteUser:
-            return .hasAccessToken
+            return .plain
         case .purchaseInfo:
-            return .hasAccessToken
+            return .plain
         }
     }
     

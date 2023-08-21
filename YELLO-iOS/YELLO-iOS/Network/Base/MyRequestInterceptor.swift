@@ -9,21 +9,21 @@ import Foundation
 
 import Alamofire
 import UIKit
+import KakaoSDKUser
 
 final class MyRequestInterceptor: RequestInterceptor {
     private let maxRetryCount: Int = 3
     private var retryCount: Int = 0
+    var isrefreshed = false
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         print("🐭🐭interceptor adapt 작동!!🐭🐭")
         /// request 될 때마다 실행됨
         let accessToken = KeychainHandler.shared.accessToken
-        let refreshToken = KeychainHandler.shared.refreshToken
         var urlRequest = urlRequest
         urlRequest.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
         completion(.success(urlRequest))
     }
-    
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         /// 에러 발생 시에만 실행됨
@@ -48,50 +48,52 @@ final class MyRequestInterceptor: RequestInterceptor {
     }
     
     func refreshToken(completion: @escaping (Bool) -> Void) {
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json",
-            "X-ACCESS-AUTH": "Bearer \(KeychainHandler.shared.accessToken)",
-            "X-REFRESH-AUTH": "Bearer \(KeychainHandler.shared.refreshToken)"
-        ]
+        print("재발급 출발")
         
-        let dataTask = AF.request(
-            Config.baseURL + "/auth/token/issue",
-            method: .post,
-            encoding: JSONEncoding.default,
-            headers: headers
-        )
-        
-        dataTask.responseData { responseData in
-            switch responseData.result {
-            case .success:
-                guard let value = responseData.value else { return }
-                
-                guard let decodedData = try? JSONDecoder().decode(TokenRefreshResponseDTO.self, from: value) else {
-                    print("decoding 실패")
-                    return
+        if retryCount < maxRetryCount {
+            let accessToken = KeychainHandler.shared.accessToken
+            let refreshToken = KeychainHandler.shared.refreshToken
+            let dto = TokenRefreshRequestDTO(accessToken: "Bearer \(accessToken)", refreshToken: "Bearer \(refreshToken)")
+            
+            NetworkService.shared.onboardingService.postRefreshToken(requsetDTO: dto) { result in
+                switch result {
+                case .success(let data):
+                    guard let decodedData = data.data else { return }
+                    if data.status == 201 {
+                        KeychainHandler.shared.refreshToken = decodedData.refreshToken
+                        KeychainHandler.shared.accessToken = decodedData.accessToken
+                        self.isrefreshed = true
+                        completion(true)
+                        return
+                    } else if data.status == 403 {
+                        if data.message.contains("재로그인") {
+                            self.logout()
+                        }
+                    }
+                default:
+                    self.logout()
                 }
-                if decodedData.status == 201 {
-                    KeychainHandler.shared.refreshToken = decodedData.data.refreshToken
-                    KeychainHandler.shared.accessToken = decodedData.data.accessToken
-                    print("토큰 재발급 완료!")
-                    completion(true)
-                } else if decodedData.status == 403 {
-                    KeychainHandler.shared.refreshToken = ""
-                    KeychainHandler.shared.accessToken = ""
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                    
-                    UserDefaults.standard.removeObject(forKey: "isLoggined")
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
-                    
-                    print(decodedData.message)
-                    
-                }
-                
-            case .failure:
-                KeychainHandler.shared.refreshToken = ""
-                KeychainHandler.shared.accessToken = ""
-                completion(false)
             }
+        }
+        self.retryCount += 1
+    }
+    
+    func logout() {
+        UserApi.shared.logout {(error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("logout() success.")
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                
+                User.shared.isResigned = false
+                User.shared.isFirstUser = false
+                
+                UserDefaults.standard.removeObject(forKey: "isLoggined")
+                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
+                
+            }
+            
         }
     }
 }

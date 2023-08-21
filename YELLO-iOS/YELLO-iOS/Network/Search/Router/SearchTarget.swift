@@ -14,6 +14,14 @@ enum SearchTarget {
 }
 
 extension SearchTarget: TargetType {
+    
+    var authorization: Authorization {
+        switch self {
+        case .friendSearch:
+            return .authorization
+        }
+    }
+    
     var headerType: HTTPHeaderType {
         switch self {
         case .friendSearch:
