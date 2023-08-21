@@ -16,6 +16,17 @@ enum PurchaseTarget {
 }
 
 extension PurchaseTarget: TargetType {
+    var authorization: Authorization {
+        switch self {
+        case .purchaseSubscibe(_):
+            return .authorization
+        case .purchaseTicket(_):
+            return .authorization
+        case .purchaseSubscibeNeed:
+            return .authorization
+        }
+    }
+    
     var headerType: HTTPHeaderType {
         switch self {
         case .purchaseSubscibe(_):
