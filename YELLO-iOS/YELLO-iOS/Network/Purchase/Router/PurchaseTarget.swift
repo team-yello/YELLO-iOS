@@ -30,11 +30,11 @@ extension PurchaseTarget: TargetType {
     var headerType: HTTPHeaderType {
         switch self {
         case .purchaseSubscibe(_):
-            return .hasAccessToken
+            return .plain
         case .purchaseTicket(_):
-            return .hasAccessToken
+            return .plain
         case .purchaseSubscibeNeed:
-            return .hasAccessToken
+            return .plain
         }
     }
     
