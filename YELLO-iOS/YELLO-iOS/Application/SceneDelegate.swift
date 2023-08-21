@@ -41,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     navigationController.navigationBar.isHidden = true
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
+                    self.checkAndUpdateIfNeeded()
                 } else {
                     if self.isLoggined {
                         let yelloTabBarController = YELLOTabBarController()
@@ -48,12 +49,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         navigationController.navigationBar.isHidden = true
                         self.window?.rootViewController = navigationController
                         self.window?.makeKeyAndVisible()
+                        self.checkAndUpdateIfNeeded()
                     } else {
                         let kakaologinViewController = KakaoLoginViewController()
                         let navigationController = UINavigationController(rootViewController: kakaologinViewController)
                         navigationController.navigationBar.isHidden = true
                         self.window?.rootViewController = navigationController
                         self.window?.makeKeyAndVisible()
+                        self.checkAndUpdateIfNeeded()
                     }
                 }
                 return
@@ -71,11 +74,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
+                    self.checkAndUpdateIfNeeded()
                 } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
                     selectedIndex = 4
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
+                    self.checkAndUpdateIfNeeded()
                 }
                 return
             }
@@ -84,6 +89,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let navigationController = UINavigationController(rootViewController: rootViewController)
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()
+            self.checkAndUpdateIfNeeded()
             
             if type == StringLiterals.PushAlarm.TypeName.newVote {
                 selectedIndex = 3
@@ -104,25 +110,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = false
                         myYelloDetailViewController.myYelloDetailView.senderButton.isHidden = false
                         myYelloDetailViewController.setBackgroundView()
-
+                        
                         if data.senderGender == "MALE" {
                             myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.male
                         } else {
                             myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.female
                         }
-
+                        
                         if data.vote.nameHead == nil {
                             myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = "너" + (data.vote.nameFoot ?? "")
                         } else {
                             myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
                         }
-
+                        
                         myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
                         myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordLabel.text = data.vote.keyword
                         myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
-
+                        
                         myYelloDetailViewController.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
-
+                        
                         if data.nameHint == 0 {
                             myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
                             if let initial = myYelloDetailViewController.getFirstInitial(data.senderName as NSString, index: 0) {
@@ -191,6 +197,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        checkAndUpdateIfNeeded()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -201,6 +208,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"
         UserDefaults.standard.set(className, forKey: "lastViewController")
+    }
+    
+    func checkAndUpdateIfNeeded() {
+        let marketingVersion = AppStoreCheck().latestVersion() ?? ""
+        let currentProjectVersion = AppStoreCheck.appVersion ?? ""
+        let splitMarketingVersion = marketingVersion.split(separator: ".").map { $0 }
+        let splitCurrentProjectVersion = currentProjectVersion.split(separator: ".").map { $0 }
+        
+        if splitCurrentProjectVersion[0] < splitMarketingVersion[0] {
+            showUpdateAlert(version: marketingVersion)
+        } else if splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
+            showUpdateAlert(version: marketingVersion)
+        } else {
+            print(marketingVersion)
+            print(currentProjectVersion)
+            print(splitMarketingVersion)
+            print(splitCurrentProjectVersion)
+            print("현재 최신 버젼입니다.")
+        }
+    }
+    
+    func showUpdateAlert(version: String) {
+        let alert = UIAlertController(
+            title: "업데이트 알림",
+            message: "더 나은 서비스를 위해 옐로가 수정되었어요! 업데이트해주시겠어요?",
+            preferredStyle: .alert
+        )
+        
+        let updateAction = UIAlertAction(title: "업데이트", style: .default) { _ in
+            AppStoreCheck().openAppStore()
+        }
+        
+        alert.addAction(updateAction)
+        window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
 }
 

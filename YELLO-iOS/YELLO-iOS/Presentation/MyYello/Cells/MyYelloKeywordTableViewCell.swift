@@ -83,7 +83,7 @@ final class MyYelloKeywordTableViewCell: UITableViewCell {
         }
         
         timeLabel.do {
-            $0.setTextWithLineHeight(text: " ", lineHeight: 16.adjustedHeight)
+            $0.text = " "
             $0.font = .uiLabelLarge
             $0.textColor = .semanticGenderF500
         }
