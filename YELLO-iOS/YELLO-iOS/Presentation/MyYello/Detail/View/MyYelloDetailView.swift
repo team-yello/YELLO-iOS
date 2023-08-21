@@ -29,7 +29,7 @@ final class MyYelloDetailView: BaseView {
     var getHintView = GetHintView()
     var useTicketView = UseTicketView()
     var getFullNameView = GetFullNameView()
-    var indexNumber: Int = 0
+    var indexNumber: Int = -1
     var nameIndex: Int = -1
     
     lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60.adjusted, height: 60.adjusted))
@@ -90,7 +90,9 @@ final class MyYelloDetailView: BaseView {
     var isRead: Bool = false {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                MyYelloListView.myYelloModelDummy[self.indexNumber].isRead = self.isRead
+                if self.indexNumber != -1 {
+                    MyYelloListView.myYelloModelDummy[self.indexNumber].isRead = self.isRead
+                }
             }
         }
     }
@@ -110,7 +112,11 @@ final class MyYelloDetailView: BaseView {
                     }
                 }
                 
-                MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
+                self.detailKeywordView.keywordLabel.isHidden = false
+                self.detailKeywordView.questionLabel.isHidden = true
+                if self.indexNumber != -1 {
+                    MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
+                }
                 print("view_open_keyword")
                 Amplitude.instance().logEvent("view_open_keyword")
             }
@@ -471,7 +477,9 @@ extension MyYelloDetailView {
                     
                 }
                 self.nameIndex = data.nameIndex
-                MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = data.nameIndex
+                if self.indexNumber != -1 {
+                    MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = data.nameIndex
+                }
                 
                 dump(data)
                 print("이름 통신 성공")
@@ -495,9 +503,10 @@ extension MyYelloDetailView {
                 self.getFullNameView.ticketLabel.text = String(self.ticketCount - 1)
                 self.isTicketUsed = true
                 self.senderButton.setButtonState(state: .useTicket)
-
-                MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
                 
+                if self.indexNumber != -1 {
+                    MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
+                }
                 dump(data)
                 print("이름 통신 성공")
             default:
