@@ -447,7 +447,7 @@ extension MyYelloDetailView {
                 }
             }
             if isTicketUsed {
-                if ! isKeywordUsed {
+                if !isKeywordUsed {
                     Amplitude.instance().logEvent("view_open_fullnamefirst")
                     print("view_open_fullnamefirst")
                 } else {
