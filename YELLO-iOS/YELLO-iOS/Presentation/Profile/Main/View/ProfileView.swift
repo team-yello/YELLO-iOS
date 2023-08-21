@@ -36,6 +36,7 @@ final class ProfileView: UIView {
     var pageCount = -1
     var myYelloCount = 0
     var profileFriendPage: Int = 0
+    var ticketCount = 0
     
     var myProfileFriendModelDummy: [ProfileFriendResponseDetail] = []
     
@@ -221,6 +222,7 @@ extension ProfileView {
                 guard let data = data.data else { return }
                 
                 self.isYelloPlus = data.isSubscribe
+                self.ticketCount = data.ticketCount
                 
                 print("구독 통신 성공")
             default:

@@ -22,6 +22,9 @@ final class PaymentPlusViewController: BaseViewController {
     }
     
     // MARK: - Variables
+    // MARK: Constants
+    let identify = AMPIdentify().setOnce("user_subscriptionbuy_count", value: NSNumber(value: 0))
+                                .setOnce("", value: NSNumber(value: 0)) ?? AMPIdentify()
     // MARK: Component
     let paymentPlusView = PaymentPlusView()
     var paymentConfirmView = PaymentConfirmView()
@@ -150,6 +153,15 @@ extension PaymentPlusViewController {
         showLoadingIndicator()
         if self.subscribeStatus == "NORMAL" {
             print("구독하고 있지 않는 사용자입니다.")
+            // 첫 구매 일자 구하기
+            let currentDate = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let formattedDate = dateFormatter.string(from: currentDate)
+            identify.setOnce("user_buy_date", value: NSString(string: formattedDate))
+                    .add("user_subscriptionbuy_count", value: NSNumber(value: 1))
+            Amplitude.instance().identify(identify)
+            
             MyProducts.iapService.buyProduct(self.products[0])
         } else {
             print("구독하고 있는 사용자입니다.")
@@ -162,10 +174,10 @@ extension PaymentPlusViewController {
     
     @objc private func paymentNameKeyOneButtonTapped() {
         showLoadingIndicator()
-        
+
         MyProducts.iapService.buyProduct(products[1])
         print("이름 열람권 1개 구입")
-      
+        
         Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket1"])
     }
     
@@ -254,18 +266,26 @@ extension PaymentPlusViewController {
         print("상품 구매 완료: \(productID)")
         print("transactionID: \(transactionID)")
         
+        identify.add("user_singlebuy_count", value: NSNumber(value: 1))
+        
         switch productID {
         case MyProducts.yelloPlusProductID:
             Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "subscribe", "buy_price": 3900])
+            identify.add("user_revenue", value: NSNumber(value: 3900))
         case MyProducts.nameKeyOneProductID:
             Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket1", "buy_price": 1400])
+            identify.add("user_revenue", value: NSNumber(value: 1400))
         case MyProducts.nameKeyTwoProductID:
             Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket2", "buy_price": 2800])
+            identify.add("user_revenue", value: NSNumber(value: 2800))
         case MyProducts.nameKeyFiveProductID:
             Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket5", "buy_price": 5900])
+            identify.add("user_revenue", value: NSNumber(value: 5900))
         default:
             break
         }
+        
+        Amplitude.instance().identify(identify)
         
     }
     
