@@ -15,6 +15,7 @@ protocol TargetType: URLRequestConvertible {
     var path: String { get }
     var parameters: RequestParams { get }
     var headerType: HTTPHeaderType { get }
+    var authorization: Authorization { get }
 }
 
 extension TargetType {
@@ -27,16 +28,17 @@ extension TargetType {
             return [
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue
             ]
-        case .hasAccessToken:
-            return [
-                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
-                HTTPHeaderFieldKey.authentication.rawValue: KeychainHandler.shared.accessToken
-            ]
         case .hasToken:
             return [
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
                 HTTPHeaderFieldKey.accessToken.rawValue: "Bearer \(KeychainHandler.shared.accessToken)",
-                HTTPHeaderFieldKey.refreshtoken.rawValue: "Bearer \(KeychainHandler.shared.refreshToken)" 
+                HTTPHeaderFieldKey.refreshtoken.rawValue: "Bearer \(KeychainHandler.shared.refreshToken)"
+            ]
+        case .refreshToken:
+            return [
+                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
+                HTTPHeaderFieldKey.xAccessAuth.rawValue: "Bearer \(KeychainHandler.shared.accessToken)",
+                HTTPHeaderFieldKey.xRefreshAuth.rawValue: "Bearer \(KeychainHandler.shared.refreshToken)"
             ]
         }
     }
@@ -44,24 +46,32 @@ extension TargetType {
 extension TargetType {
     func asURLRequest() throws -> URLRequest {
         let url = try baseURL.asURL()
+        let accessToken = KeychainHandler.shared.accessToken
         var urlRequest = try URLRequest(
             url: url.appendingPathComponent(path),
             method: method
         )
         
+        switch authorization {
+        case .authorization:
+            urlRequest.setValue("Bearer \(KeychainHandler.shared.accessToken)", forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
+        case .unauthorization:
+            break
+        }
+        
         switch headerType {
         case .plain:
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
-        case .hasAccessToken:
-            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
-            urlRequest.setValue(KeychainHandler.shared.accessToken, forHTTPHeaderField: HTTPHeaderFieldKey.authentication.rawValue)
         case .hasToken:
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
             urlRequest.setValue(KeychainHandler.shared.accessToken, forHTTPHeaderField: HTTPHeaderFieldKey.accessToken.rawValue)
             urlRequest.setValue(KeychainHandler.shared.refreshToken, forHTTPHeaderField: HTTPHeaderFieldKey.refreshtoken.rawValue)
-            
+        case.refreshToken:
+            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
+            urlRequest.setValue("Bearer \(KeychainHandler.shared.accessToken)", forHTTPHeaderField: HTTPHeaderFieldKey.xAccessAuth.rawValue)
+            urlRequest.setValue("Bearer \(KeychainHandler.shared.refreshToken)", forHTTPHeaderField: HTTPHeaderFieldKey.xRefreshAuth.rawValue)
         }
-
+        
         switch parameters {
         case .requestWithBody(let request):
             let params = request?.toDictionary() ?? [:]

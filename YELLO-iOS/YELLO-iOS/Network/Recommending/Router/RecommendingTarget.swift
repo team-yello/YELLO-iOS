@@ -16,14 +16,26 @@ enum RecommendingTarget {
 }
 
 extension RecommendingTarget: TargetType {
+    
+    var authorization: Authorization {
+        switch self {
+        case .recommendingKakaoFriend(_, _):
+            return .authorization
+        case .recommendingSchoolFriend(_):
+            return .authorization
+        case .recommendingAddFriend(_):
+            return .authorization
+        }
+    }
+    
     var headerType: HTTPHeaderType {
         switch self {
         case .recommendingKakaoFriend(_, _):
-            return .hasAccessToken
+            return .plain
         case .recommendingSchoolFriend(_):
-            return .hasAccessToken
+            return .plain
         case .recommendingAddFriend(_):
-            return .hasAccessToken
+            return .plain
         }
     }
     

@@ -110,8 +110,6 @@ final class MyYelloDetailView: BaseView {
                     }
                 }
                 
-                detailKeywordView.keywordLabel.isHidden = false
-                detailKeywordView.questionLabel.isHidden = true
                 MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
                 print("view_open_keyword")
                 Amplitude.instance().logEvent("view_open_keyword")

@@ -18,18 +18,33 @@ enum VotingTarget {
 }
 
 extension VotingTarget: TargetType {
+    var authorization: Authorization {
+        switch self {
+        case .getVotingAvailable:
+            return .authorization
+        case .getVotingSuffle:
+            return .authorization
+        case .getVotingList:
+            return .authorization
+        case .postVotingAnswerList:
+            return .authorization
+        case .getUnreadCount:
+            return .authorization
+        }
+    }
+    
     var headerType: HTTPHeaderType {
         switch self {
         case .getVotingAvailable:
-            return .hasAccessToken
+            return .plain
         case .getVotingSuffle:
-            return .hasAccessToken
+            return .plain
         case .getVotingList:
-            return .hasAccessToken
+            return .plain
         case .postVotingAnswerList:
-            return .hasAccessToken
+            return .plain
         case .getUnreadCount:
-            return .hasAccessToken
+            return .plain
         }
     }
     
