@@ -22,6 +22,12 @@ final class PaymentPlusView: BaseView {
     lazy var nameKeyOneButton = PaymentNameKeyButton(state: .one)
     lazy var nameKeyTwoButton = PaymentNameKeyButton(state: .two)
     lazy var nameKeyFiveButton = PaymentNameKeyButton(state: .five)
+    
+    let descriptionLabel = UILabel()
+    let descriptionStackView = UIStackView()
+    let serviceButton = UIButton()
+    let seperateLine = UIView()
+    let privacyButton = UIButton()
 
     override func setStyle() {
         self.backgroundColor = .black
@@ -55,7 +61,38 @@ final class PaymentPlusView: BaseView {
         nameKeyFiveButton.do {
             $0.makeShadow(radius: 8, color: UIColor(hex: "6437FF", alpha: 0.25), offset: CGSize(width: 0, height: 0), opacity: 0.25)
         }
-
+        
+        descriptionLabel.do {
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.descriptionLabel, lineHeight: 16.adjustedHeight)
+            $0.font = .uiLabelLarge
+            $0.asFont(targetString: "옐로플러스 구독안내", font: .uiBody05)
+            $0.numberOfLines = 3
+            $0.textAlignment = .left
+            $0.textColor = .grayscales300
+        }
+        
+        serviceButton.do {
+            $0.setTitle(StringLiterals.MyYello.Payment.serviceButton, for: .normal)
+            $0.titleLabel?.font = .uiLabelMedium
+            $0.titleLabel?.textColor = .white
+        }
+        
+        seperateLine.do {
+            $0.backgroundColor = .grayscales500
+        }
+        
+        privacyButton.do {
+            $0.setTitle(StringLiterals.MyYello.Payment.privacyButton, for: .normal)
+            $0.titleLabel?.font = .uiLabelMedium
+            $0.setTitleColor(.white, for: .normal)
+        }
+        
+        descriptionStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 6.adjustedWidth
+            $0.addArrangedSubviews(serviceButton, seperateLine, privacyButton)
+            $0.alignment = .center
+        }
     }
     
     override func setLayout() {
@@ -75,7 +112,10 @@ final class PaymentPlusView: BaseView {
                                nameKeyLabel,
                                nameKeyOneButton,
                                nameKeyTwoButton,
-                               nameKeyFiveButton)
+                               nameKeyFiveButton,
+                               descriptionLabel,
+                               descriptionStackView
+        )
         
         paymentNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
@@ -126,7 +166,24 @@ final class PaymentPlusView: BaseView {
         nameKeyFiveButton.snp.makeConstraints {
             $0.top.equalTo(nameKeyTwoButton.snp.bottom).offset(10.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(31.adjustedHeight)
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(nameKeyFiveButton.snp.bottom).offset(36.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        descriptionStackView.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(26.adjustedHeight)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(58.adjustedHeight)
+            $0.width.equalTo(162.adjustedWidth)
+            $0.height.equalTo(15.adjustedHeight)
+        }
+        
+        seperateLine.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(4.adjustedHeight)
+            $0.width.equalTo(1.adjustedWidth)
         }
     }
 }

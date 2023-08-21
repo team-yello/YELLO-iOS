@@ -372,6 +372,7 @@ extension MyYelloDetailView {
         useTicketView.frame = viewController.view.bounds
         useTicketView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         useTicketView.handleConfirmTicketButtonDelegate = self
+        Amplitude.instance().logEvent("click_open_fullname")
         viewController.view.addSubview(useTicketView)
     }
     
@@ -396,6 +397,7 @@ extension MyYelloDetailView {
         getFullNameView = GetFullNameView()
         getFullNameView.frame = viewController.view.bounds
         getFullNameView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         viewController.view.addSubview(getFullNameView)
     }
     
@@ -416,7 +418,6 @@ extension MyYelloDetailView {
             if isKeywordUsed == true {
                 if currentPoint < 300 && isPlus == false {
                     showLackAlert()
-                    Amplitude.instance().logEvent("click_open_keyword")
                 } else {
                     showUseSenderPointAlert()
                     Amplitude.instance().logEvent("click_open_keyword")
@@ -425,6 +426,7 @@ extension MyYelloDetailView {
                 if currentPoint < 100 {
                     showLackAlert()
                 } else {
+                    Amplitude.instance().logEvent("click_open_keyword")
                     showUsePointAlert()
                 }
             }
@@ -437,10 +439,24 @@ extension MyYelloDetailView {
             Amplitude.instance().logEvent("view_open_keyword")
             print("view_open_keyword")
             if isSenderUsed {
-                Amplitude.instance().logEvent("view_open_firstletter")
                 print("view_open_firstletter")
+                if isPlus {
+                    Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type":"sub_yes"])
+                } else {
+                    Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type":"sub_no"])
+                }
+            }
+            if isTicketUsed {
+                if ! isKeywordUsed {
+                    Amplitude.instance().logEvent("view_open_fullnamefirst")
+                    print("view_open_fullnamefirst")
+                } else {
+                    Amplitude.instance().logEvent("view_open_fullname")
+                    print("view_open_fullname")
+                }
             }
         }
+        
     }
     
     // MARK: - Network
@@ -566,6 +582,10 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
 
 extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
     func confirmTicketButtonTapped() {
+        if !isKeywordUsed {
+            Amplitude.instance().logEvent("click_open_fullnamefirst")
+        }
+        
         showGetFullNameAlert()
         myYelloDetailFullName(voteId: voteIdNumber)
     }

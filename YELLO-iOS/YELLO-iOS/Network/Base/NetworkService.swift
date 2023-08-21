@@ -19,4 +19,5 @@ final class NetworkService {
     let searchService: SearchServiceProtocol = SearchService(apiLogger: APIEventLogger())
     let myYelloService: MyYelloServiceProtocol = MyYelloService(apiLogger: APIEventLogger())
     let profileService: ProfileServiceProtocol = ProfileService(apiLogger: APIEventLogger())
+    let purchaseService: PurchaseServiceProtocol = PurchaseService(apiLogger: APIEventLogger())
 }

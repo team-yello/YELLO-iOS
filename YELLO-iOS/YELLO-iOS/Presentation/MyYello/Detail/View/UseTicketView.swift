@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -173,11 +174,13 @@ extension UseTicketView {
     
     // MARK: Objc Function
     @objc func noButtonTapped() {
+        Amplitude.instance().logEvent("click_modal_fullname_no")
         self.isHidden = true
         self.removeFromSuperview()
     }
     
     @objc func confirmTicketButtonTapped() {
+        Amplitude.instance().logEvent("click_modal_fullname_yes")
         noButtonTapped()
         handleConfirmTicketButtonDelegate?.confirmTicketButtonTapped()
     }

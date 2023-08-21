@@ -29,6 +29,9 @@ final class ProfileViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Amplitude.instance().logEvent("view_profile")
+        Amplitude.instance().setUserProperties(["user_friends": profileView.friendCount,
+                                                "user_message_received":profileView.myYelloCount,
+                                                "user_ticket":profileView.ticketCount])
         Amplitude.instance().setUserProperties(["user_friends": profileView.friendCount, "user_message_received":  profileView.myYelloCount, "user_subscription" : profileView.isYelloPlus ? "yes" : "no"])
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
