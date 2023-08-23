@@ -30,6 +30,7 @@ final class ProfileSettingView: BaseView {
     lazy var logoutButton = SettingCustomButton()
     let versionLabel = UILabel()
     lazy var withdrawalButton = UIButton()
+    let currentProjectVersion = AppStoreCheck.appVersion ?? ""
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -56,7 +57,7 @@ final class ProfileSettingView: BaseView {
         }
         
         versionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Setting.version, lineHeight: 20.adjustedHeight)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Setting.version + currentProjectVersion, lineHeight: 20.adjustedHeight)
             $0.textColor = .grayscales600
             $0.font = .uiBody02
         }
