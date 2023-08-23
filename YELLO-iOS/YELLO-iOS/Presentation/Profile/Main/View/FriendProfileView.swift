@@ -206,6 +206,7 @@ final class FriendProfileView: BaseView {
     
     @objc private func deleteFriendButtonTapped() {
         dismissView()
+        Amplitude.instance().logEvent("complete_profile_delete_friend")
         handleDeleteFriendButtonDelegate?.deleteFriendButtonTapped()
     }
     

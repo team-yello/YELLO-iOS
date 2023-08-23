@@ -11,7 +11,7 @@ import Amplitude
 import SnapKit
 import Then
 
-class OnboardingBaseViewController: BaseViewController {
+class OnboardingBaseViewController: UIViewController {
     // MARK: - Variables
     let paramaterArray: [String] = ["student_type", "school", "id", "friends"]
     // MARK: Componenet
@@ -27,6 +27,11 @@ class OnboardingBaseViewController: BaseViewController {
     var step = 1
     
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         ProgressBarManager.shared.updateProgress(for: self, step: step)
@@ -37,8 +42,20 @@ class OnboardingBaseViewController: BaseViewController {
         configUI()
         setProgressBar()
         super.viewDidLoad()
+        setUI()
         view.bringSubviewToFront(buttonStackView)
     }
+    
+    private func setUI() {
+        setStyle()
+        setLayout()
+    }
+    
+    func setStyle() {
+        view.backgroundColor = .black
+    }
+    
+    func setLayout() {}
     
     // MARK: - Function
     

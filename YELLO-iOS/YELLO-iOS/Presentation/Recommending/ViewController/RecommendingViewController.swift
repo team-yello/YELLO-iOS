@@ -133,7 +133,7 @@ extension RecommendingViewController {
     
     @objc private func searchButtonTapped() {
         let searchViewController = FriendSearchViewController()
-    //    Amplitude.instance().logEvent("click_search_button")
+        Amplitude.instance().logEvent("click_search_button")
         self.navigationController?.pushViewController(searchViewController, animated: true)
     }
 }

@@ -29,7 +29,7 @@ final class MyYelloDetailView: BaseView {
     var getHintView = GetHintView()
     var useTicketView = UseTicketView()
     var getFullNameView = GetFullNameView()
-    var indexNumber: Int = 0
+    var indexNumber: Int = -1
     var nameIndex: Int = -1
     
     lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60.adjusted, height: 60.adjusted))
@@ -90,7 +90,9 @@ final class MyYelloDetailView: BaseView {
     var isRead: Bool = false {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                MyYelloListView.myYelloModelDummy[self.indexNumber].isRead = self.isRead
+                if self.indexNumber != -1 {
+                    MyYelloListView.myYelloModelDummy[self.indexNumber].isRead = self.isRead
+                }
             }
         }
     }
@@ -110,9 +112,11 @@ final class MyYelloDetailView: BaseView {
                     }
                 }
                 
-                detailKeywordView.keywordLabel.isHidden = false
-                detailKeywordView.questionLabel.isHidden = true
-                MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
+                self.detailKeywordView.keywordLabel.isHidden = false
+                self.detailKeywordView.questionLabel.isHidden = true
+                if self.indexNumber != -1 {
+                    MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
+                }
                 print("view_open_keyword")
                 Amplitude.instance().logEvent("view_open_keyword")
             }
@@ -368,6 +372,7 @@ extension MyYelloDetailView {
         useTicketView.frame = viewController.view.bounds
         useTicketView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         useTicketView.handleConfirmTicketButtonDelegate = self
+        Amplitude.instance().logEvent("click_open_fullname")
         viewController.view.addSubview(useTicketView)
     }
     
@@ -392,6 +397,7 @@ extension MyYelloDetailView {
         getFullNameView = GetFullNameView()
         getFullNameView.frame = viewController.view.bounds
         getFullNameView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         viewController.view.addSubview(getFullNameView)
     }
     
@@ -412,7 +418,6 @@ extension MyYelloDetailView {
             if isKeywordUsed == true {
                 if currentPoint < 300 && isPlus == false {
                     showLackAlert()
-                    Amplitude.instance().logEvent("click_open_keyword")
                 } else {
                     showUseSenderPointAlert()
                     Amplitude.instance().logEvent("click_open_keyword")
@@ -421,6 +426,7 @@ extension MyYelloDetailView {
                 if currentPoint < 100 {
                     showLackAlert()
                 } else {
+                    Amplitude.instance().logEvent("click_open_keyword")
                     showUsePointAlert()
                 }
             }
@@ -433,10 +439,24 @@ extension MyYelloDetailView {
             Amplitude.instance().logEvent("view_open_keyword")
             print("view_open_keyword")
             if isSenderUsed {
-                Amplitude.instance().logEvent("view_open_firstletter")
                 print("view_open_firstletter")
+                if isPlus {
+                    Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type":"sub_yes"])
+                } else {
+                    Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type":"sub_no"])
+                }
+            }
+            if isTicketUsed {
+                if !isKeywordUsed {
+                    Amplitude.instance().logEvent("view_open_fullnamefirst")
+                    print("view_open_fullnamefirst")
+                } else {
+                    Amplitude.instance().logEvent("view_open_fullname")
+                    print("view_open_fullname")
+                }
             }
         }
+        
     }
     
     // MARK: - Network
@@ -473,7 +493,9 @@ extension MyYelloDetailView {
                     
                 }
                 self.nameIndex = data.nameIndex
-                MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = data.nameIndex
+                if self.indexNumber != -1 {
+                    MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = data.nameIndex
+                }
                 
                 dump(data)
                 print("이름 통신 성공")
@@ -497,9 +519,10 @@ extension MyYelloDetailView {
                 self.getFullNameView.ticketLabel.text = String(self.ticketCount - 1)
                 self.isTicketUsed = true
                 self.senderButton.setButtonState(state: .useTicket)
-
-                MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
                 
+                if self.indexNumber != -1 {
+                    MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
+                }
                 dump(data)
                 print("이름 통신 성공")
             default:
@@ -559,6 +582,10 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
 
 extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
     func confirmTicketButtonTapped() {
+        if !isKeywordUsed {
+            Amplitude.instance().logEvent("click_open_fullnamefirst")
+        }
+        
         showGetFullNameAlert()
         myYelloDetailFullName(voteId: voteIdNumber)
     }

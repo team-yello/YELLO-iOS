@@ -16,10 +16,29 @@ enum OnboardingTarget {
     case getCheckDuplicate(_ dto: IdValidRequestQueryDTO) /// 아이디 중복 확인
     case postFirendsList( _ query: JoinedFriendsRequestQueryDTO, _ dto: JoinedFriendsRequestDTO) /// 가입한 친구 목록 불러오기
     case postUserInfo(_ dto: SignUpRequestDTO ) /// 회원가입
-    case postRefreshToken
+    case postRefreshToken(_ dto: TokenRefreshRequestDTO)
 }
 
 extension OnboardingTarget: TargetType {
+    var authorization: Authorization {
+        switch self {
+        case .postTokenChange:
+            return .authorization
+        case .getSchoolList:
+            return .unauthorization
+        case .getMajorList:
+            return .unauthorization
+        case .getCheckDuplicate:
+            return .unauthorization
+        case .postFirendsList:
+            return .unauthorization
+        case .postUserInfo:
+            return .unauthorization
+        case .postRefreshToken:
+            return .unauthorization
+        }
+    }
+    
     var headerType: HTTPHeaderType {
         switch self {
         case .postTokenChange:
@@ -29,13 +48,13 @@ extension OnboardingTarget: TargetType {
         case .getMajorList:
             return .plain
         case .getCheckDuplicate:
-            return .hasAccessToken
+            return .plain
         case .postFirendsList:
             return .plain
         case .postUserInfo:
-            return .hasAccessToken
+            return .plain
         case .postRefreshToken:
-            return .hasToken
+            return .refreshToken
         }
     }
     
@@ -91,8 +110,8 @@ extension OnboardingTarget: TargetType {
             return .requestQuery(dto)
         case .postFirendsList(let query, let dto):
             return .requestQueryWithBody(query, bodyParameter: dto)
-        case .postRefreshToken:
-            return .requestPlain
+        case .postRefreshToken(let dto):
+            return .requestWithBody(dto)
         }
     }
 }

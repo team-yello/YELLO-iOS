@@ -50,7 +50,7 @@ final class FriendSearchTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        // 서버 통신 후 추가 예정
+        profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
     }
 }
 

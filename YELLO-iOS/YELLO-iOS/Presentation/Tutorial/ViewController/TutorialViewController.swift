@@ -12,7 +12,7 @@ import Amplitude
 class TutorialViewController: UIViewController {
     
     var pageCount = 1
-
+    
     var baseView: UIView = FirstTutorialView()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,10 +75,8 @@ class TutorialViewController: UIViewController {
             } else {
                 rootViewController = YELLOTabBarController()
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-            }
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         }
     }
     

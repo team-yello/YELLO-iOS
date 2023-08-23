@@ -24,7 +24,6 @@ final class KakaoConnectView: BaseView {
             $0.text = "나의 옐로 친구는 어딨을까?"
             $0.textColor = .white
             $0.font = .uiHeadline00
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 28)
         }
         
         subTitleLabel.do {

@@ -44,7 +44,6 @@ class PushSettingView: BaseView {
         guideLabel.do {
             $0.text = StringLiterals.Onboarding.pushNotiText
             $0.font = .uiHeadline00
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 28.adjusted)
             $0.textColor = .white
         }
         

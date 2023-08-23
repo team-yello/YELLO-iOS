@@ -19,20 +19,37 @@ enum MyYelloTarget {
 }
 
 extension MyYelloTarget: TargetType {
+    var authorization: Authorization {
+        switch self {
+        case .myYello:
+            return .authorization
+        case .myYelloDetail:
+            return .authorization
+        case .myYelloDetailKeyword:
+            return .authorization
+        case .myYelloDetailName:
+            return .authorization
+        case .myYelloDetailFullName:
+            return .authorization
+        case .payCheck:
+            return .authorization
+        }
+    }
+    
     var headerType: HTTPHeaderType {
         switch self {
         case .myYello:
-            return .hasAccessToken
+            return .plain
         case .myYelloDetail:
-            return .hasAccessToken
+            return .plain
         case .myYelloDetailKeyword:
-            return .hasAccessToken
+            return .plain
         case .myYelloDetailName:
-            return .hasAccessToken
+            return .plain
         case .myYelloDetailFullName:
-            return .hasAccessToken
+            return .plain
         case .payCheck:
-            return .hasAccessToken
+            return .plain
         }
     }
     

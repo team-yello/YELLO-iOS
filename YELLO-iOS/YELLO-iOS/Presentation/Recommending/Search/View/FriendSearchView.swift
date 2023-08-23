@@ -139,8 +139,13 @@ final class FriendSearchView: BaseView {
         loadingStackView.snp.makeConstraints {
             $0.top.equalTo(friendSearchResultTableView).offset(90.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(127.adjustedWidth)
+            $0.width.equalTo(400.adjustedWidth)
             $0.height.equalTo(64.adjustedHeight)
+        }
+        
+        loadingLabel.snp.makeConstraints {
+            $0.height.equalTo(20.adjustedHeight)
+            $0.width.equalTo(127.adjustedWidth)
         }
         
         loadingAnimationView.snp.makeConstraints {

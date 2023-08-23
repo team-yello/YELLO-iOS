@@ -71,14 +71,17 @@ final class VotingTimerViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
         
         getVotingAvailable()
+        tabBarController?.tabBar.isHidden = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+        
     // MARK: - Style
     
     override func setStyle() {
@@ -89,7 +92,7 @@ final class VotingTimerViewController: BaseViewController {
         }
         
         originView.titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Voting.Timer.title, lineHeight: 28)
+            $0.text = StringLiterals.Voting.Timer.title
         }
         
         originView.textLabel.do {

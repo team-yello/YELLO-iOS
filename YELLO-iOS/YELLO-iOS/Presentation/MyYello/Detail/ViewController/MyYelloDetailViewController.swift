@@ -67,6 +67,18 @@ final class MyYelloDetailViewController: BaseViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     // MARK: Layout Helpers
     override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -259,6 +271,7 @@ extension MyYelloDetailViewController {
     func popViewController(_ notification: Notification) {
         tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
         tabBarController?.selectedIndex = 2
+        tabBarController?.tabBar.isHidden = false
         popView()
     }
 }
@@ -282,6 +295,10 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
         } else if !myYelloDetailView.isKeywordUsed && !myYelloDetailView.isSenderUsed {
             Amplitude.instance().logEvent("click_instagram", withEventProperties: ["insta_view": "message"])
         }
+        let identify = AMPIdentify()
+            .add("user_instagram", value: NSNumber(value: 1))
+        guard let identify = identify else {return}
+        Amplitude.instance().identify(identify)
         
         if let storyShareURL = URL(string: "instagram-stories://share?source_application=" + Config.metaAppID) {
             

@@ -107,9 +107,13 @@ extension VotingViewController {
         // 투표 끝나면 포인트뷰컨으로 push
         if VotingViewController.pushCount > 6 {
             VotingViewController.pushCount = 0
-            User.shared.countVoting += votingAnswer.count
-            User.shared.countVotingCycle += 1
-            Amplitude.instance().setUserProperties(["user_message_sent": User.shared.countVoting, "": User.shared.countVotingCycle])
+            
+            let identify = AMPIdentify()
+                .add("user_instagram", value: NSNumber(value: votingAnswer.count))
+                .add("user_message_cycle", value: NSNumber(value: 1))
+            guard let identify = identify else {return}
+            Amplitude.instance().identify(identify)
+            
             let viewController = VotingPointViewController()
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint
@@ -121,11 +125,18 @@ extension VotingViewController {
             let status = votingList[0].subscribe
             if status == "CANCELED" || status == "ACTIVE" {
                 viewController.multiplyByTwoImageView.isHidden = false
+                viewController.myPoint += myPlusPoint
+                viewController.votingPlusPoint *= 2
             } else {
                 viewController.multiplyByTwoImageView.isHidden = true
             }
             
-            self.navigationController?.pushViewController(viewController, animated: false)
+            UserDefaults.standard.set(viewController.myPoint, forKey: "UserPoint")
+            UserDefaults.standard.set(viewController.votingPlusPoint, forKey: "UserPlusPointNotPost")
+            
+            UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
+                self.navigationController?.pushViewController(viewController, animated: false)
+            })
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
