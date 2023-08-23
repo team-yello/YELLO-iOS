@@ -136,7 +136,7 @@ final class ProfileSettingView: BaseView {
     
     @objc private func centerButtonTapped() {
         // 고객센터 링크 연결
-        let url = URL(string: "https://yell0.notion.site/YELLO-34028220a873416b91d5d2f1cd827432?pvs=4")!
+        let url = URL(string: "http://pf.kakao.com/_pcFzG/chat")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
