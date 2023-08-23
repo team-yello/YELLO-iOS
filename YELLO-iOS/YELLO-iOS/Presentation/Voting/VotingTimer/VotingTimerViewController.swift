@@ -315,6 +315,7 @@ extension VotingTimerViewController {
                     })
                 }
                 self.myPoint = data.point
+                self.originView.topOfMyPoint.setTextWithLineHeight(text: String(self.myPoint), lineHeight: 24)
             default:
                 print("network failure")
                 return
