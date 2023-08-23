@@ -42,6 +42,7 @@ final class MyYelloViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.myYelloView.myYelloListView.myYelloTableView.reloadData()
+        self.myYelloCount()
     }
     
     override func viewDidAppear(_ animated: Bool) {
