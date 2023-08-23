@@ -74,7 +74,7 @@ final class MyYelloDetailViewController: BaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         
         tabBarController?.tabBar.isHidden = true
     }

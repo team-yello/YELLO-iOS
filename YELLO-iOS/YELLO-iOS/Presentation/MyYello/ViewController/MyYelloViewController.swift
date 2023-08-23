@@ -159,7 +159,6 @@ extension MyYelloViewController {
                                                             "user_message_open_fullname": data.openFullNameCount,
                                                             "user_message_received": data.totalCount])
                     
-                    
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")
                     self.myYelloView.resetLayout()
