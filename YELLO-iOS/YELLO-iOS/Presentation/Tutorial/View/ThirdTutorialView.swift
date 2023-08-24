@@ -11,9 +11,12 @@ import SnapKit
 import Then
 
 final class ThirdTutorialView: UIView {
-    
+    // MARK: - Variables
+    // MARK: Component
     let tutorialImageView = UIImageView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -22,6 +25,8 @@ final class ThirdTutorialView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()

@@ -12,9 +12,12 @@ import Then
 import Lottie
 
 final class SecondTutorialView: UIView {
-    
+    // MARK: - Variables
+    // MARK: Component
     let tutorialImageView = UIImageView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -23,7 +26,9 @@ final class SecondTutorialView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUI(){
+    
+    // MARK: Layout Helpers
+    private func setUI() {
         setStyle()
         setLayout()
     }
