@@ -21,8 +21,8 @@ final class FriendSearchViewController: BaseViewController {
 
     private let friendSearchView = FriendSearchView()
     var allFriend: [Friend] = []
-    var pageCount = -1
-    var totalItemCount = -1
+    var pageCount = 0
+    var totalItemCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,6 @@ final class FriendSearchViewController: BaseViewController {
             return
         }
         
-        self.pageCount += 1
         let queryDTO: FriendSearchRequestQueryDTO = FriendSearchRequestQueryDTO(keyword: word, page: pageCount)
         
         self.fetchingMore = true
@@ -121,7 +120,9 @@ final class FriendSearchViewController: BaseViewController {
         let contentHeight = tableView.contentSize.height
         let visibleHeight = tableView.bounds.height
         self.friendSearchView.friendSearchTextfield.endEditing(true)
-        if offsetY > contentHeight - visibleHeight {
+        if offsetY > contentHeight - visibleHeight,
+            allFriend.count < totalItemCount {
+            pageCount += 1
             guard let text = friendSearchView.friendSearchTextfield.text else { return }
             searchFriend(text)
         }
@@ -150,7 +151,7 @@ extension FriendSearchViewController: UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
         isFinishPaging = false
-        pageCount = -1
+        pageCount = 0
         allFriend.removeAll()
         searchFriend(text)
         
