@@ -20,6 +20,7 @@ final class VotingStartViewController: BaseViewController {
     let multiplyByTwoText = UILabel()
     let multiplyByTwoImageView = UIImageView()
     let multiplyByTwoStackView = UIStackView()
+    private let status = 1
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ final class VotingStartViewController: BaseViewController {
         myPoint = String(UserDefaults.standard.integer(forKey: "UserPoint"))
         originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         getSubscribe()
+        UserDefaults.standard.set(status, forKey: "status")
         tabBarController?.tabBar.isHidden = false
     }
     

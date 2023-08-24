@@ -51,6 +51,7 @@ final class VotingTimerViewController: BaseViewController {
     
     private let speechBubbleBackground = UIImageView()
     private let speechBubbleText = UILabel()
+    private let status = 2
     
     override func loadView() {
         self.view = originView
@@ -73,6 +74,7 @@ final class VotingTimerViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         getVotingAvailable()
+        UserDefaults.standard.set(status, forKey: "status")
         tabBarController?.tabBar.isHidden = false
     }
     

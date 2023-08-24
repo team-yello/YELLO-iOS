@@ -15,6 +15,7 @@ final class VotingLockedViewController: BaseViewController {
     
     private let originView = BaseVotingETCView()
     private var invitingView = InvitingView()
+    private let status = 3
     
     override func loadView() {
         self.view = originView
@@ -23,6 +24,7 @@ final class VotingLockedViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getVotingAvailable()
+        UserDefaults.standard.set(status, forKey: "status")
         tabBarController?.tabBar.isHidden = false
     }
     
