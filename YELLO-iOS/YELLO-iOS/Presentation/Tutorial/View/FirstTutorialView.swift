@@ -14,12 +14,7 @@ import Lottie
 final class FirstTutorialView: UIView {
     
     let tutorialImageView = UIImageView()
-    let tutorialTitleLabel = UILabel()
-    let tutorialGuideLabel = UILabel()
     
-    let tutorialImage = UIScreen.main.isWiderThan375pt ? ImageLiterals.Tutorial.tutorialLong1 : ImageLiterals.Tutorial.tutorial1
-    let bottomMargin = UIScreen.main.isWiderThan375pt ? 320.adjustedHeight : 228.adjustedHeight
-    let guideBottomMargin = UIScreen.main.isWiderThan375pt ? 154.adjustedHeight : 88.adjustedHeight
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -34,41 +29,24 @@ final class FirstTutorialView: UIView {
     }
     
     private func setStyle() {
+        let screenHeight = UIScreen.main.bounds.height
+        
         tutorialImageView.do {
             $0.contentMode = .scaleAspectFill
-            $0.image = tutorialImage
-        }
-        
-        tutorialTitleLabel.do {
-            $0.text = StringLiterals.Tutorial.firstTutorialText
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 28.adjustedHeight)
-            $0.font = .uiHeadline02
-            $0.numberOfLines = 2
-            $0.textColor = .white
-            $0.textAlignment = .center
-        }
-        
-        tutorialGuideLabel.do {
-            $0.text = StringLiterals.Tutorial.firstGuideText
-            $0.font = .uiBody03
-            $0.textColor = .white
+            if screenHeight < 812 {
+                $0.image = ImageLiterals.Tutorial.tutorial1
+            } else if screenHeight == 812 {
+                $0.image = ImageLiterals.Tutorial.tutorialLong1
+            } else {
+                $0.image = ImageLiterals.Tutorial.tutorialMaxLong1
+            }
         }
     }
     
     private func setLayout() {
-        self.addSubviews(tutorialImageView, tutorialTitleLabel, tutorialGuideLabel)
+        self.addSubviews(tutorialImageView)
         tutorialImageView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-        }
-
-        tutorialTitleLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(bottomMargin)
-            $0.centerX.equalToSuperview()
-        }
-
-        tutorialGuideLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(guideBottomMargin)
-            $0.centerX.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
 }

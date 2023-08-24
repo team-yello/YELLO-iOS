@@ -13,11 +13,6 @@ import Then
 final class FourthTutorial: UIView {
     
     let tutorialImageView = UIImageView()
-    let tutorialTitleLabel = UILabel()
-    let tutorialGuideLabel = UILabel()
-    let tutorialToastLabel = UILabel()
-    let tutorialImage = UIScreen.main.isWiderThan375pt ? ImageLiterals.Tutorial.tutorialLong4 : ImageLiterals.Tutorial.tutorial4
-    let bottomMargin = UIScreen.main.isWiderThan375pt ? 155.adjusted : 87.adjusted
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,69 +22,32 @@ final class FourthTutorial: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
+        let screenHeight = UIScreen.main.bounds.height
+        
         tutorialImageView.do {
             $0.contentMode = .scaleAspectFill
-            $0.image = tutorialImage
-        }
-        
-        tutorialTitleLabel.do {
-            $0.text = StringLiterals.Tutorial.fourthTutorialText
-            $0.font = .uiHeadline02
-            $0.numberOfLines = 2
-            $0.textColor = .white
-            $0.textAlignment = .center
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 28.adjustedHeight)
-        }
-        
-        tutorialGuideLabel.do {
-            $0.text = StringLiterals.Tutorial.fourthSubText
-            $0.font = .uiBody03
-            $0.textColor = .grayscales500
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 20.adjustedHeight)
-        }
-        
-        tutorialToastLabel.do {
-            $0.text = StringLiterals.Tutorial.fourthToastText
-            $0.font = .uiLabelLarge
-            $0.textColor = .white
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 16.adjustedHeight)
-            $0.backgroundColor = .grayscales900
-            $0.makeCornerRound(radius: 4.adjusted)
-            $0.asColor(targetString: "’이 질문 건너뛰기’", color: .yelloMain500)
+            if screenHeight < 812 {
+                $0.image = ImageLiterals.Tutorial.tutorial4
+            } else if screenHeight == 812 {
+                $0.image = ImageLiterals.Tutorial.tutorialLong4
+            } else {
+                $0.image = ImageLiterals.Tutorial.tutorialMaxLong4
+            }
         }
     }
     
     private func setLayout() {
-        self.addSubviews(tutorialImageView,
-                         tutorialToastLabel,
-                         tutorialTitleLabel,
-                         tutorialGuideLabel)
+        self.addSubviews(tutorialImageView)
         
         tutorialImageView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.center.equalToSuperview()
-        }
-        
-        tutorialToastLabel.snp.makeConstraints {
-            $0.height.equalTo(55.adjustedHeight)
-            $0.centerY.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(72.adjustedWidth)
-        }
-        
-        tutorialGuideLabel.snp.makeConstraints {
-            $0.bottom.equalTo(tutorialTitleLabel.snp.top).offset(-6.adjustedHeight)
-            $0.leading.equalTo(tutorialTitleLabel)
-        }
-
-        tutorialTitleLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(bottomMargin)
-            $0.centerX.equalToSuperview()
         }
 
     }

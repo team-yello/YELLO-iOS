@@ -14,9 +14,6 @@ import Lottie
 final class SecondTutorialView: UIView {
     
     let tutorialImageView = UIImageView()
-    let tutorialTitleLabel = UILabel()
-    let tutorialImage = UIScreen.main.isWiderThan375pt ? ImageLiterals.Tutorial.tutorialLong2 : ImageLiterals.Tutorial.tutorial2
-    let bottomMargin = UIScreen.main.isWiderThan375pt ? 370.adjusted : 313.adjusted
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,31 +29,25 @@ final class SecondTutorialView: UIView {
     }
     
     private func setStyle() {
+        let screenHeight = UIScreen.main.bounds.height
+        
         tutorialImageView.do {
             $0.contentMode = .scaleAspectFill
-            $0.image = tutorialImage
-        }
-        
-        tutorialTitleLabel.do {
-            $0.text = StringLiterals.Tutorial.secondTutorialText
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 28.adjustedHeight)
-            $0.font = .uiHeadline02
-            $0.numberOfLines = 2
-            $0.textColor = .white
-            $0.textAlignment = .center
+            if screenHeight < 812 {
+                $0.image = ImageLiterals.Tutorial.tutorial2
+            } else if screenHeight == 812 {
+                $0.image = ImageLiterals.Tutorial.tutorialLong2
+            } else {
+                $0.image = ImageLiterals.Tutorial.tutorialMaxLong2
+            }
         }
         
     }
     
     private func setLayout() {
-        self.addSubviews(tutorialImageView, tutorialTitleLabel)
+        self.addSubviews(tutorialImageView)
         tutorialImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-
-        tutorialTitleLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(bottomMargin)
-            $0.centerX.equalToSuperview()
         }
 
     }
