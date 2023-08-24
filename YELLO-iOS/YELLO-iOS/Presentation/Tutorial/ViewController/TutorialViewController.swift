@@ -22,6 +22,7 @@ class TutorialViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         Amplitude.instance().logEvent("view_onboarding_tutorial", withEventProperties: ["tutorial_step": "tutorial1"], outOfSession: true)
     }
     
