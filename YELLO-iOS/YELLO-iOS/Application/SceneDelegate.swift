@@ -45,6 +45,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 } else {
                     if self.isLoggined {
                         let yelloTabBarController = YELLOTabBarController()
+                        let status = UserDefaults.standard.integer(forKey: "status")
+                        yelloTabBarController.startStatus = status
                         let navigationController = UINavigationController(rootViewController: yelloTabBarController)
                         navigationController.navigationBar.isHidden = true
                         self.window?.rootViewController = navigationController
