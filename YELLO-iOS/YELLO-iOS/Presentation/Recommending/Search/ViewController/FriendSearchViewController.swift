@@ -153,6 +153,13 @@ extension FriendSearchViewController: UITextFieldDelegate {
         pageCount = -1
         allFriend.removeAll()
         searchFriend(text)
+        
+        // 아무것도 검색하지 않았을 때 아무것도 뜨지 않게 처리
+        if text.isEmpty {
+            allFriend.removeAll()
+            self.friendSearchView.noResultView.isHidden = true
+            self.friendSearchView.loadingStackView.isHidden = true
+        }
     }
 }
 
