@@ -185,26 +185,30 @@ extension ProfileView {
             case .success(let data):
                 guard let data = data.data else { return }
                 
-                let friendModels = data.friends.map { profileFriend in
+                // 배열의 정보와 서버통신에서의 친구들 값이 다르다면 다시 받아온 후 reload
+                if self.myProfileFriendModelDummy != data.friends {
                     
-                    return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount)
-                }
-                
-                if self.pageCount == 0 {
-                    self.friendCount = data.totalCount
-                }
-                
-                // 중복되는 모델 필터 처리
-                let uniqueFriendModels = friendModels.filter { model in
-                    !self.myProfileFriendModelDummy.contains { $0.userId == model.userId }
-                }
-                
-                self.myProfileFriendModelDummy.append(contentsOf: uniqueFriendModels)
-                self.fetchingMore = false
-                self.myFriendTableView.reloadData()
-                let totalPage = (data.totalCount) / 10
-                if self.pageCount >= totalPage {
-                    self.isFinishPaging = true
+                    let friendModels = data.friends.map { profileFriend in
+                        
+                        return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount)
+                    }
+                    
+                    if self.pageCount == 0 {
+                        self.friendCount = data.totalCount
+                    }
+                    
+                    // 중복되는 모델 필터 처리
+                    let uniqueFriendModels = friendModels.filter { model in
+                        !self.myProfileFriendModelDummy.contains { $0.userId == model.userId }
+                    }
+                    
+                    self.myProfileFriendModelDummy.append(contentsOf: uniqueFriendModels)
+                    self.fetchingMore = false
+                    self.myFriendTableView.reloadData()
+                    let totalPage = (data.totalCount) / 10
+                    if self.pageCount >= totalPage {
+                        self.isFinishPaging = true
+                    }
                 }
                 
                 print("통신 성공")
