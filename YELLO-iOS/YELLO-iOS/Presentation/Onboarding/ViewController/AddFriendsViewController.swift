@@ -122,6 +122,13 @@ extension AddFriendsViewController: UITableViewDataSourcePrefetching {
             getJoinedFriends()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = baseView.friendsTableView.cellForRow(at: indexPath) as? FriendsTableViewCell {
+            cell.checkButtonDidTap()
+        }
+        
+    }
 }
 
 // MARK: UITableViewDelegate
