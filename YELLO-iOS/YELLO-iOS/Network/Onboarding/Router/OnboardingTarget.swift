@@ -17,6 +17,7 @@ enum OnboardingTarget {
     case postFirendsList( _ query: JoinedFriendsRequestQueryDTO, _ dto: JoinedFriendsRequestDTO) /// 가입한 친구 목록 불러오기
     case postUserInfo(_ dto: SignUpRequestDTO ) /// 회원가입
     case postRefreshToken(_ dto: TokenRefreshRequestDTO)
+    case putDeviceToken(_ dto: DeviceTokenRefreshRequestDTO)
 }
 
 extension OnboardingTarget: TargetType {
@@ -36,6 +37,8 @@ extension OnboardingTarget: TargetType {
             return .unauthorization
         case .postRefreshToken:
             return .unauthorization
+        case .putDeviceToken:
+            return .authorization
         }
     }
     
@@ -55,6 +58,8 @@ extension OnboardingTarget: TargetType {
             return .plain
         case .postRefreshToken:
             return .refreshToken
+        case .putDeviceToken:
+            return .plain
         }
     }
     
@@ -74,6 +79,8 @@ extension OnboardingTarget: TargetType {
             return .post
         case .postRefreshToken:
             return .post
+        case .putDeviceToken:
+            return .put
         }
     }
     
@@ -82,7 +89,7 @@ extension OnboardingTarget: TargetType {
         case .postTokenChange:
             return "/auth/oauth"
         case .getSchoolList:
-            return "/auth/school/school"
+            return "/auth/school"
         case .getCheckDuplicate:
             return "/auth/valid"
         case .postUserInfo:
@@ -93,6 +100,8 @@ extension OnboardingTarget: TargetType {
             return "/auth/friend"
         case .postRefreshToken:
             return "/auth/token/issue"
+        case .putDeviceToken:
+            return "/user/device"
         }
     }
     
@@ -111,6 +120,8 @@ extension OnboardingTarget: TargetType {
         case .postFirendsList(let query, let dto):
             return .requestQueryWithBody(query, bodyParameter: dto)
         case .postRefreshToken(let dto):
+            return .requestWithBody(dto)
+        case .putDeviceToken(let dto):
             return .requestWithBody(dto)
         }
     }

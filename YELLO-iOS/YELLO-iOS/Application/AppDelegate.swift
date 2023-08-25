@@ -113,8 +113,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("FirebaseMessaging")
-        let deviceToken:[String: String] = ["token": fcmToken ?? ""]
-        User.shared.deviceToken = fcmToken ?? ""
-        print("Device token:", deviceToken) // 이 토큰은 FCM에서 알림을 테스트하는 데 사용할 수 있습니다.
+        guard let fcmToken = fcmToken else { return }
+        let deviceToken:[String: String] = ["token": fcmToken]
+        
+        let requestDTO = DeviceTokenRefreshRequestDTO(deviceToken: fcmToken)
+        NetworkService.shared.onboardingService.putRefreshDeviceToken(requsetDTO: requestDTO) { result in
+            switch result {
+            case .success(let data):
+                if data.status == 200 || data.status == 201 {
+                    User.shared.deviceToken = fcmToken
+                }
+            default:
+                print("deviceToken 재발급 오류")
+            }
+        }
+        User.shared.deviceToken = fcmToken
+        print("Device token 재발급 완료:", deviceToken)
     }
 }
