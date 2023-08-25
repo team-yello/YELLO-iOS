@@ -15,6 +15,7 @@ final class VotingLockedViewController: BaseViewController {
     
     private let originView = BaseVotingETCView()
     private var invitingView = InvitingView()
+    private let status = 3
     
     override func loadView() {
         self.view = originView
@@ -23,6 +24,7 @@ final class VotingLockedViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getVotingAvailable()
+        UserDefaults.standard.set(status, forKey: "status")
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -129,7 +131,7 @@ extension VotingLockedViewController {
                     if data.isPossible {
                         let viewController = VotingStartViewController()
                         viewController.originView.yellowButton.isEnabled = false
-                        viewController.myPoint = data.point
+                        viewController.myPoint = String(data.point)
                         UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
                             // 전환 시 스르륵 바뀌는 애니메이션 적용
                             self.navigationController?.pushViewController(viewController, animated: false)

@@ -36,8 +36,9 @@ final class ProfileViewController: BaseViewController {
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.profileView.myProfileHeaderView.myProfileView.profileUser()
+        self.profileView.myProfileHeaderView.profileUser()
         self.profileView.purchaseInfo()
+        self.resetProfileView()
     }
     
     override func setStyle() {
@@ -65,6 +66,15 @@ final class ProfileViewController: BaseViewController {
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
+    }
+    
+    func resetProfileView() {
+        self.profileView.pageCount = -1
+        self.profileView.isFinishPaging = false
+        self.profileView.fetchingMore = false
+        self.profileView.myFriendTableView.reloadData()
+        self.profileView.myProfileFriendModelDummy = []
+        self.profileView.profileFriend()
     }
 }
 
@@ -111,9 +121,7 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
             self.profileView.myFriendTableView.deleteRows(at: [[0, self.profileView.indexNumber]], with: .right)
-            self.profileView.myProfileHeaderView.myProfileView.profileUser()
-            self.profileView.initialProfileFriendDataCount -= 1
-            self.profileView.friendCount -= 1
+            self.profileView.myProfileHeaderView.profileUser()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.profileView.myFriendTableView.reloadData()
             }
