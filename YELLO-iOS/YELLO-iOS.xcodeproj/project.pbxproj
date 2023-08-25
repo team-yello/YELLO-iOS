@@ -33,6 +33,7 @@
 		2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */; };
 		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
 		2A8AA7072A65150B005A664D /* VotingAnswerListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */; };
+		2A8D66D22A97C5AE009DEC3F /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8D66D12A97C5AE009DEC3F /* NetworkCheck.swift */; };
 		2A9808E92A81658500FBA5B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */; };
 		2A9808EF2A81806500FBA5B3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2A9808EE2A81806500FBA5B3 /* FirebaseAnalytics */; };
 		2A9808F12A81806500FBA5B3 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2A9808F02A81806500FBA5B3 /* FirebaseMessaging */; };
@@ -326,6 +327,7 @@
 		2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingListResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
 		2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListResponseDTO.swift; sourceTree = "<group>"; };
+		2A8D66D12A97C5AE009DEC3F /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 		2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundViewController.swift; sourceTree = "<group>"; };
@@ -1455,6 +1457,7 @@
 			children = (
 				C3A799962A49490A00D3EFD8 /* AppDelegate.swift */,
 				C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */,
+				2A8D66D12A97C5AE009DEC3F /* NetworkCheck.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -2190,6 +2193,7 @@
 				C306E7432A6520830031514C /* ProfileUserResponseDTO.swift in Sources */,
 				C363D4722A780F0D00FD583D /* AroundEmptyView.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
+				2A8D66D22A97C5AE009DEC3F /* NetworkCheck.swift in Sources */,
 				3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */,
 				2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */,
 				36E4276B2A5BCE860050B34E /* GenderViewController.swift in Sources */,

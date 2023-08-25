@@ -41,7 +41,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     navigationController.navigationBar.isHidden = true
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
-                    self.checkAndUpdateIfNeeded()
+                    if NetworkCheck.shared.isConnected {
+                        self.checkAndUpdateIfNeeded()
+                    }
                 } else {
                     if self.isLoggined {
                         let yelloTabBarController = YELLOTabBarController()
@@ -51,14 +53,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         navigationController.navigationBar.isHidden = true
                         self.window?.rootViewController = navigationController
                         self.window?.makeKeyAndVisible()
-                        self.checkAndUpdateIfNeeded()
+                        if NetworkCheck.shared.isConnected {
+                            self.checkAndUpdateIfNeeded()
+                        }
                     } else {
                         let kakaologinViewController = KakaoLoginViewController()
                         let navigationController = UINavigationController(rootViewController: kakaologinViewController)
                         navigationController.navigationBar.isHidden = true
                         self.window?.rootViewController = navigationController
                         self.window?.makeKeyAndVisible()
-                        self.checkAndUpdateIfNeeded()
+                        if NetworkCheck.shared.isConnected {
+                            self.checkAndUpdateIfNeeded()
+                        }
                     }
                 }
                 return
@@ -76,13 +82,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
-                    self.checkAndUpdateIfNeeded()
+                    if NetworkCheck.shared.isConnected {
+                        self.checkAndUpdateIfNeeded()
+                    }
                 } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
                     selectedIndex = 4
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
                     self.window?.makeKeyAndVisible()
-                    self.checkAndUpdateIfNeeded()
+                    if NetworkCheck.shared.isConnected {
+                        self.checkAndUpdateIfNeeded()
+                    }
                 }
                 return
             }
@@ -91,8 +101,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let navigationController = UINavigationController(rootViewController: rootViewController)
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()
-            self.checkAndUpdateIfNeeded()
-            
+            if NetworkCheck.shared.isConnected {
+                self.checkAndUpdateIfNeeded()
+            }
             if type == StringLiterals.PushAlarm.TypeName.newVote {
                 selectedIndex = 3
                 rootViewController.selectedIndex = selectedIndex
@@ -199,7 +210,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
-        checkAndUpdateIfNeeded()
+        if NetworkCheck.shared.isConnected {
+            self.checkAndUpdateIfNeeded()
+        }
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

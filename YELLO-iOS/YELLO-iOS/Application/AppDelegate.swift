@@ -17,6 +17,7 @@ import KakaoSDKAuth
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        NetworkCheck.shared.startMonitoring()
         KakaoSDK.initSDK(appKey: Config.kakaoAppKey)
         UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
