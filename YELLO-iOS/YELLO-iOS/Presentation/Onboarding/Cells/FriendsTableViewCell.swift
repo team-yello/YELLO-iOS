@@ -155,7 +155,7 @@ extension FriendsTableViewCell {
         
         profileImageView.snp.makeConstraints {
             $0.size.equalTo(42.adjusted)
-            $0.leading.equalToSuperview().offset(8.adjusted)
+            $0.leading.equalToSuperview().offset(24.adjusted)
             $0.centerY.equalToSuperview()
         }
         
@@ -165,7 +165,7 @@ extension FriendsTableViewCell {
         }
         
         checkButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(8.adjusted)
+            $0.trailing.equalToSuperview().inset(26.adjusted)
             $0.centerY.equalToSuperview()
             $0.size.equalTo(24.adjusted)
         }

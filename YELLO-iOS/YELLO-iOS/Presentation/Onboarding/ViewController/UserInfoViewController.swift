@@ -131,6 +131,7 @@ class UserInfoViewController: OnboardingBaseViewController {
     @objc func idCancelTapped() {
         baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
         baseView.idTextField.textField.setButtonState(state: .id)
+        nextButton.setButtonEnable(state: false)
     }
     
 }

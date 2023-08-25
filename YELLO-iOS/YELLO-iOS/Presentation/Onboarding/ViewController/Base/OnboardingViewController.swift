@@ -13,6 +13,7 @@ import Then
 
 class OnboardingBaseViewController: UIViewController {
     // MARK: - Variables
+    // MARK: - Property
     let paramaterArray: [String] = ["student_type", "school", "id", "friends"]
     // MARK: Componenet
     let navigationBarView = YelloNavigationBarView()
@@ -43,9 +44,11 @@ class OnboardingBaseViewController: UIViewController {
         setProgressBar()
         super.viewDidLoad()
         setUI()
+        setNotificationCenter()
         view.bringSubviewToFront(buttonStackView)
     }
     
+    // MARK: Layout Helper
     private func setUI() {
         setStyle()
         setLayout()
@@ -56,8 +59,6 @@ class OnboardingBaseViewController: UIViewController {
     }
     
     func setLayout() {}
-    
-    // MARK: - Function
     
     // MARK: Custom Function
     /// ConfigUI 반복 사용되는 부분 설정
@@ -113,6 +114,9 @@ class OnboardingBaseViewController: UIViewController {
             $0.top.equalTo(navigationBarView.snp.bottom)
             $0.height.equalTo(4)
         }
+    }
+    
+    func setNotificationCenter() {
         
         let safeArea = self.view.safeAreaLayoutGuide
         

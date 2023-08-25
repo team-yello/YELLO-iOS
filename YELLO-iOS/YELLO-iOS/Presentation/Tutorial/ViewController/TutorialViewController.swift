@@ -10,14 +10,19 @@ import UIKit
 import Amplitude
 
 class TutorialViewController: UIViewController {
-    
+    // MARK: - Variables
+    // MARK: Property
     var pageCount = 1
     
+    // MARK: Component
     var baseView: UIView = FirstTutorialView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         Amplitude.instance().logEvent("view_onboarding_tutorial", withEventProperties: ["tutorial_step": "tutorial1"], outOfSession: true)
     }
     
@@ -27,7 +32,8 @@ class TutorialViewController: UIViewController {
         addTarget()
     }
     
-    private func setUI(){
+    // MARK: Layout Helpers
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -42,11 +48,13 @@ class TutorialViewController: UIViewController {
         }
     }
     
+    // MARK: Custom Function
     private func addTarget() {
         baseView.isUserInteractionEnabled = true
         baseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapView)))
     }
     
+    // MARK: Objc Function
     @objc func tapView() {
         pageCount += 1
         
