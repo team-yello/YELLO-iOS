@@ -101,6 +101,12 @@ final class FriendSearchViewController: BaseViewController {
                 } else {
                     self.friendSearchView.noResultView.isHidden = true
                 }
+                
+                if word.isEmpty && data.totalCount == 0 {
+                    self.friendSearchView.noResultView.isHidden = true
+                    self.friendSearchView.loadingStackView.isHidden = true
+                }
+                
                 self.friendSearchView.friendSearchResultTableView.reloadData()
                 
                 let totalPage = (data.totalCount) / 10
