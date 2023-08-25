@@ -74,7 +74,7 @@ extension ProfileTarget: TargetType {
         case .deleteUser:
             return "/user"
         case .purchaseInfo:
-            return "/purchase/purchaseInfo"
+            return "/purchase"
         }
     }
 
