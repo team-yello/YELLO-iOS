@@ -310,33 +310,6 @@ extension MyProfileView {
         Amplitude.instance().logEvent("click_profile_group")
     }
     
-    // MARK: - Network
-    func profileUser() {
-        NetworkService.shared.profileService.profileUser { response in
-            switch response {
-            case .success(let data):
-                guard let data = data.data else { return }
-                
-                if data.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
-                    self.profileImageView.kfSetImage(url: data.profileImageUrl)
-                } else {
-                    self.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
-                }
-                self.nameLabel.text = data.name
-                self.instagramLabel.text = "@" + data.yelloId
-                self.schoolLabel.text = data.group
-                self.messageView.countLabel.text = String(data.yelloCount)
-                self.friendView.countLabel.text = String(data.friendCount)
-                self.pointView.countLabel.text = String(data.point)
-                
-                print("내 프로필 통신 성공")
-            default:
-                print("network fail")
-                return
-            }
-        }
-    }
-    
     func updateProfileView() {
         if isYelloPlus {
             mainProfileView.roundCorners(cornerRadius: 12.adjustedHeight, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])

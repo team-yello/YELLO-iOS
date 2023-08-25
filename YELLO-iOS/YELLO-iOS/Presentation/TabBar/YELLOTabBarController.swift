@@ -223,7 +223,7 @@ extension YELLOTabBarController {
         
         /// 내 프로필 서버통신
         profileViewController.profileView.profileFriend()
-        profileViewController.profileView.myProfileHeaderView.myProfileView.profileUser()
+        profileViewController.profileView.myProfileHeaderView.profileUser()
     }
     
     // MARK: -  Notification

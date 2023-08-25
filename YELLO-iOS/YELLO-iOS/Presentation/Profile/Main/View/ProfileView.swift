@@ -25,7 +25,6 @@ final class ProfileView: UIView {
     var indexNumber: Int = -1
     var friendCount: Int = 0
     
-    var initialProfileFriendDataCount = 10
     var fetchingMore = false
     var isFinishPaging = false
     var isYelloPlus = false {
@@ -190,10 +189,6 @@ extension ProfileView {
                     return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount)
                 }
                 
-                if self.pageCount == 0 {
-                    self.friendCount = data.totalCount
-                }
-                
                 // 중복되는 모델 필터 처리
                 let uniqueFriendModels = friendModels.filter { model in
                     !self.myProfileFriendModelDummy.contains { $0.userId == model.userId }
@@ -271,9 +266,7 @@ extension ProfileView: UITableViewDataSource {
             
             DispatchQueue.main.async { [self] in
                 view?.addBottomBorderWithColor(color: .black)
-                view?.myProfileView.profileUser()
-                view?.friendCountView.friendCountLabel.text = String(self.friendCount) + "명"
-                view?.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
+                view?.profileUser()
                 view?.myProfileView.nameSkeletonLabel.isHidden = true
                 view?.myProfileView.schoolSkeletonLabel.isHidden = true
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
