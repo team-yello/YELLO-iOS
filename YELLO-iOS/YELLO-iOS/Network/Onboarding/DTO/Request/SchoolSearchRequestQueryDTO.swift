@@ -9,6 +9,6 @@ import Foundation
 
 // MARK: - SchoolSearchRequestDTO
 struct SchoolSearchRequestQueryDTO: Codable {
-    let search: String
+    let keyword: String
     let page: Int
 }
