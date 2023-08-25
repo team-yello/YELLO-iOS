@@ -42,6 +42,7 @@ final class MyYelloViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.myYelloView.myYelloListView.myYelloTableView.reloadData()
+        self.myYelloCount()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -158,7 +159,6 @@ extension MyYelloViewController {
                                                             "user_message_open_firstletter": data.openNameCount,
                                                             "user_message_open_fullname": data.openFullNameCount,
                                                             "user_message_received": data.totalCount])
-                    
                     
                     print(self.myYelloCount)
                     print("내 옐로 count 통신 성공")

@@ -290,7 +290,7 @@ enum StringLiterals {
             static let privacy = "개인정보 처리방침"
             static let service = "이용약관"
             static let logout = "로그아웃"
-            static let version = "버전 1.0"
+            static let version = "버전 "
             static let withdrawal = "계정 탈퇴"
         }
         

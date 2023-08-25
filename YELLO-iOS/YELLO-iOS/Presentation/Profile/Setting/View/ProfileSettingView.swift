@@ -30,6 +30,7 @@ final class ProfileSettingView: BaseView {
     lazy var logoutButton = SettingCustomButton()
     let versionLabel = UILabel()
     lazy var withdrawalButton = UIButton()
+    let currentProjectVersion = AppStoreCheck.appVersion ?? ""
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -56,7 +57,7 @@ final class ProfileSettingView: BaseView {
         }
         
         versionLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.Setting.version, lineHeight: 20.adjustedHeight)
+            $0.setTextWithLineHeight(text: StringLiterals.Profile.Setting.version + currentProjectVersion, lineHeight: 20.adjustedHeight)
             $0.textColor = .grayscales600
             $0.font = .uiBody02
         }
@@ -135,7 +136,7 @@ final class ProfileSettingView: BaseView {
     
     @objc private func centerButtonTapped() {
         // 고객센터 링크 연결
-        let url = URL(string: "https://yell0.notion.site/YELLO-34028220a873416b91d5d2f1cd827432?pvs=4")!
+        let url = URL(string: "http://pf.kakao.com/_pcFzG/chat")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
