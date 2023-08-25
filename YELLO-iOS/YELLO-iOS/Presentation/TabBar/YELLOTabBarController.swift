@@ -20,7 +20,6 @@ final class YELLOTabBarController: UITabBarController {
         didSet {
             self.setTabBarItems()
             self.setTabBarAppearance()
-            self.selectedIndex = 2
             self.myYelloViewController.unreadCount()
         }
     }
