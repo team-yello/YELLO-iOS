@@ -34,6 +34,7 @@ class StudentIdViewController: BaseViewController {
     override func setStyle() {
         view.addSubview(studentIdTableView)
         view.backgroundColor = .grayscales900
+        
         studentIdTableView.do {
             $0.dataSource = self
             $0.delegate = self
@@ -67,7 +68,7 @@ extension StudentIdViewController: UITableViewDataSource {
         cell.makeCornerRound(radius: CGFloat(Constraints.round))
         cell.backgroundColor = .grayscales900
         cell.textLabel?.textAlignment = .center
-        cell.selectionStyle = .gray
+        cell.selectionStyle = .none
         return cell
     }
 }
@@ -79,11 +80,17 @@ extension StudentIdViewController: UITableViewDelegate {
               let cellTitle = currentCell.textLabel?.text else {
             return
         }
-        
+        currentCell.backgroundColor = .grayscales800
         // 학번 문자열에서 숫자 부분 추출
         let studentId = cellTitle.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         guard let studentId = Int(studentId) else { return }
         delegate?.didSelectStudentId(studentId)
         self.dismiss(animated: true)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard let deselectedCell = tableView.cellForRow(at: indexPath) else { return }
+        deselectedCell.backgroundColor = .grayscales900
     }
 }

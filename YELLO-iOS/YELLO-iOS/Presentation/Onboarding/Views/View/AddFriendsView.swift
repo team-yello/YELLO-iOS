@@ -64,6 +64,7 @@ class AddFriendsView: BaseView {
             $0.backgroundColor = .black
             $0.rowHeight = 58.adjusted
             $0.separatorStyle = .none
+            $0.indicatorStyle = .white
             $0.dataSource = self
         }
         

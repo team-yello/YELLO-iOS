@@ -50,7 +50,6 @@ class FriendsTableViewCell: UITableViewCell {
     /// 재사용 이슈 해결
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         profileImageView.image = nil
         nameLabel.text = nil
         schoolLabel.text = nil
@@ -115,7 +114,11 @@ extension FriendsTableViewCell {
     }
     
     private func setStyle() {
-        self.backgroundColor = .black
+        
+        self.do {
+            $0.backgroundColor = .black
+            $0.makeCornerRound(radius: 8.adjusted)
+        }
         
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
