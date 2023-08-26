@@ -40,7 +40,7 @@ final class YELLOTabBarController: UITabBarController {
         super.viewDidLoad()
         
         network()
-        purchaseSubscribeNeed()
+//        purchaseSubscribeNeed()
 
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
@@ -228,6 +228,7 @@ extension YELLOTabBarController {
         profileViewController.profileView.myProfileHeaderView.profileUser()
     }
     
+    /// 구독 연장 여부 서버통신
     func purchaseSubscribeNeed() {
         NetworkService.shared.purchaseService.purchaseSubscibeNeed { result in
             switch result {
