@@ -25,7 +25,6 @@ final class SubscriptionExtensionView: BaseView {
     let subscriptionImage = UIImageView()
     let subscriptionButton = UIView()
 
-    
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.5)
 
@@ -46,7 +45,18 @@ final class SubscriptionExtensionView: BaseView {
         }
         
         dateOfTermination.do {
-            $0.text = "2023-08-26"
+            let today = Date()
+            var dayComponent = DateComponents()
+            dayComponent.day = 1  // 내일을 의미하므로 1을 추가
+
+            if let tomorrow = Calendar.current.date(byAdding: dayComponent, to: today) {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"  // 원하는 형식 설정
+                let dateString = dateFormatter.string(from: tomorrow)
+                $0.text = dateString
+                print(dateString)
+            }
+            
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 24.adjusted)
             $0.textColor = .white
             $0.font = .uiSubtitle01
