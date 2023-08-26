@@ -29,6 +29,7 @@ final class YELLOTabBarController: UITabBarController {
     let myYelloViewController = MyYelloViewController()
     let profileViewController = ProfileViewController()
     let votingStartViewController = VotingStartViewController()
+    let subscriptionExtensionView = SubscriptionExtensionView()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -42,11 +43,14 @@ final class YELLOTabBarController: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(goToShop(_:)), name: NSNotification.Name("goToShop"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        toResubscribeView()
+
         self.delegate = self
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -318,5 +322,24 @@ extension YELLOTabBarController {
                 }
             }
         }
+    }
+    
+    @objc
+    func goToShop(_ notification: Notification) {
+        self.selectedIndex = 3
+        let paymentPlusViewController = PaymentPlusViewController()
+        self.navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+}
+
+extension YELLOTabBarController {
+    func toResubscribeView() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+
+        // subscriptionView 서버통신
+        subscriptionExtensionView.frame = viewController.view.bounds
+        subscriptionExtensionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                
+        viewController.view.addSubview(subscriptionExtensionView)
     }
 }
