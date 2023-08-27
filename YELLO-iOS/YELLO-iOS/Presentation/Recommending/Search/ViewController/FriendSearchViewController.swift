@@ -96,15 +96,16 @@ final class FriendSearchViewController: BaseViewController {
                 
                 self.totalItemCount = data.totalCount
                 if data.totalCount == 0 {
-                    self.allFriend.removeAll()
-                    self.friendSearchView.noResultView.isHidden = false
+                    if word.isEmpty {
+                        self.allFriend.removeAll()
+                        self.friendSearchView.noResultView.isHidden = true
+                        self.friendSearchView.loadingStackView.isHidden = true
+                    } else {
+                        self.allFriend.removeAll()
+                        self.friendSearchView.noResultView.isHidden = false
+                    }
                 } else {
                     self.friendSearchView.noResultView.isHidden = true
-                }
-                
-                if word.isEmpty && data.totalCount == 0 {
-                    self.friendSearchView.noResultView.isHidden = true
-                    self.friendSearchView.loadingStackView.isHidden = true
                 }
                 
                 self.friendSearchView.friendSearchResultTableView.reloadData()
@@ -167,6 +168,7 @@ extension FriendSearchViewController: UITextFieldDelegate {
             allFriend.removeAll()
             self.friendSearchView.friendSearchResultTableView.reloadData()
             self.friendSearchView.loadingStackView.isHidden = true
+            self.friendSearchView.noResultView.isHidden = true
         }
     }
 }
