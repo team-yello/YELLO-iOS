@@ -151,7 +151,7 @@ final class SubscriptionExtensionView: BaseView {
         benefitImage.snp.makeConstraints {
             $0.top.equalTo(unsubscribeLabel.snp.bottom).offset(22.adjustedHeight)
             $0.leading.equalToSuperview().inset(16.adjusted)
-            $0.width.equalTo(328.adjusted)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
             $0.height.equalTo(160.adjusted)
         }
         
