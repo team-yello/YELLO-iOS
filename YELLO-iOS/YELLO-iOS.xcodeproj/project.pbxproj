@@ -99,6 +99,7 @@
 		3671136F2A7D3F9D0037E0D2 /* HighSchoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671136E2A7D3F9D0037E0D2 /* HighSchoolView.swift */; };
 		367113712A7D6C740037E0D2 /* UniversityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367113702A7D6C740037E0D2 /* UniversityView.swift */; };
 		367113732A7D6CED0037E0D2 /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367113722A7D6CED0037E0D2 /* UniversityViewController.swift */; };
+		367229D12A991BC700724494 /* DeviceTokenRefreshRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367229D02A991BC700724494 /* DeviceTokenRefreshRequestDTO.swift */; };
 		367DA01B2A863CE60043D23C /* HighSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367DA01A2A863CE60043D23C /* HighSchoolViewController.swift */; };
 		367DA01D2A86496D0043D23C /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367DA01C2A86496D0043D23C /* NameViewController.swift */; };
 		367F1CD22A5408E100CDF47B /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */; };
@@ -392,6 +393,7 @@
 		3671136E2A7D3F9D0037E0D2 /* HighSchoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolView.swift; sourceTree = "<group>"; };
 		367113702A7D6C740037E0D2 /* UniversityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityView.swift; sourceTree = "<group>"; };
 		367113722A7D6CED0037E0D2 /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
+		367229D02A991BC700724494 /* DeviceTokenRefreshRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenRefreshRequestDTO.swift; sourceTree = "<group>"; };
 		367DA01A2A863CE60043D23C /* HighSchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolViewController.swift; sourceTree = "<group>"; };
 		367DA01C2A86496D0043D23C /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		367F1CD12A5408E100CDF47B /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
@@ -815,6 +817,7 @@
 				36871C7C2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift */,
 				3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */,
 				36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */,
+				367229D02A991BC700724494 /* DeviceTokenRefreshRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2088,6 +2091,7 @@
 				C306E7472A656D170031514C /* ProfileFriendRequestQueryDTO.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
+				367229D12A991BC700724494 /* DeviceTokenRefreshRequestDTO.swift in Sources */,
 				C3B1D8BB2A81208E0050D737 /* FriendSkeletonTableViewCell.swift in Sources */,
 				2AA0DBC32A553788002B1370 /* YELLOTabBarController.swift in Sources */,
 				C3C560D12A8BBE190074E988 /* MyProducts.swift in Sources */,
