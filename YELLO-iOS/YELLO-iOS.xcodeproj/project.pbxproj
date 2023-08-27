@@ -34,6 +34,7 @@
 		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
 		2A8AA7072A65150B005A664D /* VotingAnswerListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */; };
 		2A8D66D22A97C5AE009DEC3F /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8D66D12A97C5AE009DEC3F /* NetworkCheck.swift */; };
+		2A8D66D92A9A363A009DEC3F /* SubscriptionExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8D66D82A9A363A009DEC3F /* SubscriptionExtensionView.swift */; };
 		2A9808E92A81658500FBA5B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */; };
 		2A9808EF2A81806500FBA5B3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2A9808EE2A81806500FBA5B3 /* FirebaseAnalytics */; };
 		2A9808F12A81806500FBA5B3 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2A9808F02A81806500FBA5B3 /* FirebaseMessaging */; };
@@ -329,6 +330,7 @@
 		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
 		2A8AA7062A65150B005A664D /* VotingAnswerListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListResponseDTO.swift; sourceTree = "<group>"; };
 		2A8D66D12A97C5AE009DEC3F /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
+		2A8D66D82A9A363A009DEC3F /* SubscriptionExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionExtensionView.swift; sourceTree = "<group>"; };
 		2A9808E82A81658500FBA5B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2AA0DBAF2A546E1D002B1370 /* RecommendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingViewController.swift; sourceTree = "<group>"; };
 		2AA0DBB12A546E4B002B1370 /* AroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundViewController.swift; sourceTree = "<group>"; };
@@ -949,6 +951,14 @@
 			path = BaseVotingETCView;
 			sourceTree = "<group>";
 		};
+		2A8D66D52A9A3512009DEC3F /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				2A8D66D82A9A363A009DEC3F /* SubscriptionExtensionView.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
 		2AA0DBA72A546C24002B1370 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1558,6 +1568,7 @@
 		C3A799C92A494B8E00D3EFD8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2A8D66D52A9A3512009DEC3F /* Subscription */,
 				36C209EC2A8B69D9001BF12C /* Tutorial */,
 				C3A799CE2A494C9200D3EFD8 /* Base */,
 				3628EAE62A608EDB00D5FA40 /* Splash */,
@@ -2223,6 +2234,7 @@
 				36B2349E2A61A6A8007933E4 /* KakaoConnectViewController.swift in Sources */,
 				C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */,
 				2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */,
+				2A8D66D92A9A363A009DEC3F /* SubscriptionExtensionView.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */,
 				366CE5EC2A819CA600BE5F66 /* PushSettingView.swift in Sources */,

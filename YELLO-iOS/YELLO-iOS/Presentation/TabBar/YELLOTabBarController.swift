@@ -29,6 +29,7 @@ final class YELLOTabBarController: UITabBarController {
     let myYelloViewController = MyYelloViewController()
     let profileViewController = ProfileViewController()
     let votingStartViewController = VotingStartViewController()
+    let subscriptionExtensionView = SubscriptionExtensionView()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -39,9 +40,11 @@ final class YELLOTabBarController: UITabBarController {
         super.viewDidLoad()
         
         network()
-        
+//        purchaseSubscribeNeed()
+
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(goToShop(_:)), name: NSNotification.Name("goToShop"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,6 +228,22 @@ extension YELLOTabBarController {
         profileViewController.profileView.myProfileHeaderView.profileUser()
     }
     
+    /// 구독 연장 여부 서버통신
+    func purchaseSubscribeNeed() {
+        NetworkService.shared.purchaseService.purchaseSubscibeNeed { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                if data.isSubscribeNeeded {
+                    self.toResubscribeView()
+                }
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
     // MARK: -  Notification
     
     @objc
@@ -318,5 +337,24 @@ extension YELLOTabBarController {
                 }
             }
         }
+    }
+    
+    @objc
+    func goToShop(_ notification: Notification) {
+        self.selectedIndex = 3
+        let paymentPlusViewController = PaymentPlusViewController()
+        self.navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+}
+
+extension YELLOTabBarController {
+    // 구독 연장 여부 뷰로 가기
+    func toResubscribeView() {
+        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+
+        subscriptionExtensionView.frame = viewController.view.bounds
+        subscriptionExtensionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                
+        viewController.view.addSubview(subscriptionExtensionView)
     }
 }
