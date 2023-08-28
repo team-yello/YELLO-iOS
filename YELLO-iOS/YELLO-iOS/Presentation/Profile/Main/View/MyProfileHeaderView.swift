@@ -59,4 +59,34 @@ extension MyProfileHeaderView {
             $0.bottom.equalToSuperview().inset(8.adjustedHeight)
         }
     }
+    
+    // MARK: - Network
+    func profileUser() {
+        NetworkService.shared.profileService.profileUser { response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                if data.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
+                    self.myProfileView.profileImageView.kfSetImage(url: data.profileImageUrl)
+                } else {
+                    self.myProfileView.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+                }
+                self.myProfileView.nameLabel.text = data.name
+                self.myProfileView.instagramLabel.text = "@" + data.yelloId
+                self.myProfileView.schoolLabel.text = data.group
+                self.myProfileView.messageView.countLabel.text = String(data.yelloCount)
+                self.myProfileView.friendView.countLabel.text = String(data.friendCount)
+                self.myProfileView.pointView.countLabel.text = String(data.point)
+                
+                self.friendCountView.friendCountLabel.text = String(data.friendCount) + "명"
+                self.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
+                
+                print("내 프로필 통신 성공")
+            default:
+                print("network fail")
+                return
+            }
+        }
+    }
 }

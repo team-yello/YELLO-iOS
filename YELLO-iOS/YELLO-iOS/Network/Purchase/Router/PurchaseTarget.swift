@@ -56,7 +56,7 @@ extension PurchaseTarget: TargetType {
         case .purchaseTicket(_):
             return "/purchase/apple/verify/ticket"
         case .purchaseSubscibeNeed:
-            return "/purchase/subscribeNeed"
+            return "/purchase/subscribe"
         }
     }
     

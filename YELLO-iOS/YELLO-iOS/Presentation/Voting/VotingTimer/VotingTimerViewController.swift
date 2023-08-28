@@ -24,7 +24,7 @@ final class VotingTimerViewController: BaseViewController {
             }
             if remainingSeconds == 0 {
                 let viewController = VotingStartViewController()
-                viewController.myPoint = myPoint
+                viewController.myPoint = String(myPoint)
                 UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
                     // 전환 시 스르륵 바뀌는 애니메이션 적용
                     self.navigationController?.pushViewController(viewController, animated: false)
@@ -51,6 +51,7 @@ final class VotingTimerViewController: BaseViewController {
     
     private let speechBubbleBackground = UIImageView()
     private let speechBubbleText = UILabel()
+    private let status = 2
     
     override func loadView() {
         self.view = originView
@@ -73,6 +74,7 @@ final class VotingTimerViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         getVotingAvailable()
+        UserDefaults.standard.set(status, forKey: "status")
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -284,7 +286,7 @@ extension VotingTimerViewController {
                 
                 if data.isPossible {
                     let viewController = VotingStartViewController()
-                    viewController.myPoint = self.myPoint
+                    viewController.myPoint = String(self.myPoint)
                     UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
@@ -308,13 +310,14 @@ extension VotingTimerViewController {
                 guard let data = data.data else { return }
                 if data.isPossible {
                     let viewController = VotingStartViewController()
-                    viewController.myPoint = data.point
+                    viewController.myPoint = String(data.point)
                     UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
                     })
                 }
                 self.myPoint = data.point
+                self.originView.topOfMyPoint.setTextWithLineHeight(text: String(self.myPoint), lineHeight: 24)
             default:
                 print("network failure")
                 return

@@ -314,7 +314,7 @@ extension MyYelloDetailView {
         groupImageView.isHidden = true
         instagramIDLabel.isHidden = true
         
-        if isSenderUsed == true {
+        if isSenderUsed == true || isTicketUsed == true && isKeywordUsed == true {
             keywordButton.isHidden = true
         } else {
             keywordButton.isHidden = false

@@ -59,6 +59,11 @@ enum ImageLiterals {
         static var tutorialLong2: UIImage { .load(named: "tutorialLong2")}
         static var tutorialLong3: UIImage { .load(named: "tutorialLong3")}
         static var tutorialLong4: UIImage { .load(named: "tutorialLong4")}
+        
+        static var tutorialMaxLong1: UIImage { .load(named: "tutorialMaxLong1")}
+        static var tutorialMaxLong2: UIImage { .load(named: "tutorialMaxLong2")}
+        static var tutorialMaxLong3: UIImage { .load(named: "tutorialMaxLong3")}
+        static var tutorialMaxLong4: UIImage { .load(named: "tutorialMaxLong4")}
     }
     
     enum TabBar {
@@ -184,6 +189,12 @@ enum ImageLiterals {
         static var imgWithdrawalThird: UIImage { .load(named: "imgWithdrawalThird")}
         static var imgWarning: UIImage { .load(named: "imgWarning")}
         static var imgWithdrawalPoint: UIImage { .load(named: "imgWithdrawalPoint")}
+    }
+
+    enum SubscriptionExtension {
+        static var imgBenefit: UIImage { .load(named: "imgBenefit")}
+        static var icExit: UIImage { .load(named: "icExit")}
+        static var btnSubscriptionExtension: UIImage { .load(named: "btnSubscriptionExtension").withRenderingMode(.alwaysOriginal)}
     }
 }
 

@@ -151,6 +151,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: Objc Function
     @objc func idCancelTapped() {
         baseView.recommendIdTextField.helperLabel.setLabelStyle(text: "추천인의 아이디를 입력해주세요.", State: .normal)
+        nextButton.setButtonEnable(state: false)
     }
     
     @objc func textFieldDidChange() {

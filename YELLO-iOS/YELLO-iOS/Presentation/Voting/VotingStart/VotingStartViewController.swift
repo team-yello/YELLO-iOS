@@ -16,10 +16,11 @@ final class VotingStartViewController: BaseViewController {
     
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
-    var myPoint = 0
+    var myPoint = "000"
     let multiplyByTwoText = UILabel()
     let multiplyByTwoImageView = UIImageView()
     let multiplyByTwoStackView = UIStackView()
+    private let status = 1
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +33,10 @@ final class VotingStartViewController: BaseViewController {
         Amplitude.instance().setUserProperties(["user_point": myPoint])
         setAnimationView()
         getVotingAvailable()
-        myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        myPoint = String(UserDefaults.standard.integer(forKey: "UserPoint"))
         originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         getSubscribe()
+        UserDefaults.standard.set(status, forKey: "status")
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -181,7 +183,7 @@ extension VotingStartViewController {
                     if data.isPossible {
                         let point = data.point
                         self.originView.topOfMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 24)
-                        self.myPoint = point
+                        self.myPoint = String(point)
                         UserDefaults.standard.set(point, forKey: "UserPoint")
                         self.originView.yellowButton.isEnabled = false
                         self.getVotingList()

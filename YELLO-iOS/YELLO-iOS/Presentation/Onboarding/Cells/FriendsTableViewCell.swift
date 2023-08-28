@@ -50,7 +50,6 @@ class FriendsTableViewCell: UITableViewCell {
     /// 재사용 이슈 해결
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         profileImageView.image = nil
         nameLabel.text = nil
         schoolLabel.text = nil
@@ -115,7 +114,11 @@ extension FriendsTableViewCell {
     }
     
     private func setStyle() {
-        self.backgroundColor = .black
+        
+        self.do {
+            $0.backgroundColor = .black
+            $0.makeCornerRound(radius: 8.adjusted)
+        }
         
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
@@ -155,7 +158,7 @@ extension FriendsTableViewCell {
         
         profileImageView.snp.makeConstraints {
             $0.size.equalTo(42.adjusted)
-            $0.leading.equalToSuperview().offset(8.adjusted)
+            $0.leading.equalToSuperview().offset(24.adjusted)
             $0.centerY.equalToSuperview()
         }
         
@@ -165,7 +168,7 @@ extension FriendsTableViewCell {
         }
         
         checkButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(8.adjusted)
+            $0.trailing.equalToSuperview().inset(26.adjusted)
             $0.centerY.equalToSuperview()
             $0.size.equalTo(24.adjusted)
         }
