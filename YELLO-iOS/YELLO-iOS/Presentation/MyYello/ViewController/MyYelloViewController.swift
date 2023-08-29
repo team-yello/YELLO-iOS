@@ -16,6 +16,8 @@ final class MyYelloViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     let myYelloView = MyYelloView()
+    let paymentPlusViewController = PaymentPlusViewController()
+
     var countFetchingMore: Bool = false {
         didSet {
             if countFetchingMore {
@@ -32,6 +34,7 @@ final class MyYelloViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
+        self.paymentPlusViewController.getProducts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,7 +104,6 @@ extension MyYelloViewController: HandleUnlockButton {
         if myYelloView.haveTicket {
             view.showToast(message: StringLiterals.MyYello.List.toastMessage)
         } else {
-            let paymentPlusViewController = PaymentPlusViewController()
             Amplitude.instance().logEvent("click_go_shop", withEventProperties: ["shop_button":"cta_main"])
             navigationController?.pushViewController(paymentPlusViewController, animated: true)
         }
@@ -111,7 +113,6 @@ extension MyYelloViewController: HandleUnlockButton {
 // MARK: HandleUnlockButton
 extension MyYelloViewController: HandleShopButton {
     func shopButtonTapped() {
-        let paymentPlusViewController = PaymentPlusViewController()
         navigationController?.pushViewController(paymentPlusViewController, animated: true)
     }
 }

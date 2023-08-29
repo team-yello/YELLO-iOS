@@ -30,6 +30,7 @@ final class YELLOTabBarController: UITabBarController {
     let profileViewController = ProfileViewController()
     let votingStartViewController = VotingStartViewController()
     let subscriptionExtensionView = SubscriptionExtensionView()
+    let paymentPlusViewController = PaymentPlusViewController()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -226,6 +227,9 @@ extension YELLOTabBarController {
         /// 내 프로필 서버통신
         profileViewController.profileView.profileFriend()
         profileViewController.profileView.myProfileHeaderView.profileUser()
+        
+        /// 상점 상품 얻기
+        paymentPlusViewController.getProducts()
     }
     
     /// 구독 연장 여부 서버통신
@@ -342,7 +346,6 @@ extension YELLOTabBarController {
     @objc
     func goToShop(_ notification: Notification) {
         self.selectedIndex = 3
-        let paymentPlusViewController = PaymentPlusViewController()
         self.navigationController?.pushViewController(paymentPlusViewController, animated: true)
     }
 }

@@ -21,6 +21,8 @@ final class MyYelloDetailViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Constants
     let myYelloDetailView = MyYelloDetailView()
+    let paymentPlusViewController = PaymentPlusViewController()
+
     var colorIndex: Int = 1
     
     var myYelloBackgroundColorStringDummy: [MyYelloBackgroundColorStringDummy] =
@@ -55,6 +57,7 @@ final class MyYelloDetailViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
+        self.paymentPlusViewController.getProducts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,13 +116,11 @@ extension MyYelloDetailViewController {
     @objc private func senderButtonTapped() {
         if myYelloDetailView.haveTicket {
             if myYelloDetailView.nameIndex == -3 {
-                let paymentPlusViewController = PaymentPlusViewController()
                 navigationController?.pushViewController(paymentPlusViewController, animated: true)
             } else {
                 myYelloDetailView.showUseTicketAlert()
             }
         } else {
-            let paymentPlusViewController = PaymentPlusViewController()
             if myYelloDetailView.isKeywordUsed && !(myYelloDetailView.isPlus) && !(myYelloDetailView.isSenderUsed) {
                 Amplitude.instance().logEvent("click_go_shop", withEventProperties: ["shop_button": "cta_keyword_nosub"])
             } else if myYelloDetailView.isKeywordUsed && myYelloDetailView.isPlus && !(myYelloDetailView.isSenderUsed) {
