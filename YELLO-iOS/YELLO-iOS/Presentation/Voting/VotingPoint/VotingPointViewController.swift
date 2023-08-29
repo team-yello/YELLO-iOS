@@ -153,10 +153,11 @@ final class VotingPointViewController: BaseViewController {
             }
         }
         
+        let viewController = YELLOTabBarController()
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+        viewController.startStatus = 2
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            let viewController = YELLOTabBarController()
-            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-            viewController.startStatus = 2
             sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: viewController)
             self.originView.yellowButton.isEnabled = true
         }
