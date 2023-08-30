@@ -11,6 +11,8 @@ import Amplitude
 class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: - Variables
     var isExisted = false
+    private var didPostUserInfo = false
+    private var isFail = false
     
     // MARK: Component
     let pushViewController = PushSettingViewController()
@@ -138,6 +140,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 Amplitude.instance().setUserProperties(userProperties)
                 
             default:
+                self.isFail = true
                 return
             }
         }
@@ -161,14 +164,25 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func didTapButton(sender: UIButton) {
-        super.didTapButton(sender: sender)
-        if sender == skipButton {
-            User.shared.recommendId = ""
-            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
-        } else if sender == nextButton {
-            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
+        
+        if isFail {
+            view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
+            return
         }
-        postUserInfo()
+        
+        super.didTapButton(sender: sender)
+        
+        if !didPostUserInfo {
+            didPostUserInfo = true
+            
+            if sender == skipButton {
+                User.shared.recommendId = ""
+                Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
+            } else if sender == nextButton {
+                Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
+            }
+            postUserInfo()
+        }
     }
 }
 
