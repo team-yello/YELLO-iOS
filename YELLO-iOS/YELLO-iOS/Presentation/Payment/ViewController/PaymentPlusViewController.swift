@@ -70,7 +70,7 @@ final class PaymentPlusViewController: BaseViewController {
         paymentPlusView.paymentView.bannerTimer()
     }
     
-    private func getProducts() {
+    func getProducts() {
         MyProducts.iapService.getProducts { [self] success, products in
             print("load products \(products ?? [])")
             if success, let products = products {

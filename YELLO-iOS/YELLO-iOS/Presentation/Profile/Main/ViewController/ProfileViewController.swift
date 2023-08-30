@@ -18,6 +18,7 @@ final class ProfileViewController: BaseViewController {
     let profileView = ProfileView()
     let friendProfileViewController = FriendProfileViewController()
     let bottomSheetViewController = BottomFriendProfileViewController()
+    let paymentPlusViewController = PaymentPlusViewController()
     
     var isFinishPaging = false
     var isLoadingData = false
@@ -39,6 +40,7 @@ final class ProfileViewController: BaseViewController {
         self.profileView.myProfileHeaderView.profileUser()
         self.profileView.purchaseInfo()
         self.resetProfileView()
+        self.paymentPlusViewController.getProducts()
     }
     
     override func setStyle() {
@@ -131,7 +133,6 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
 
 extension ProfileViewController: HandleShopButton {
     func shopButtonTapped() {
-        let paymentPlusViewController = PaymentPlusViewController()
         navigationController?.pushViewController(paymentPlusViewController, animated: true)
     }
 }
