@@ -11,6 +11,7 @@ import Amplitude
 class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: - Variables
     var isExisted = false
+    private var didPostUserInfo = false
     
     // MARK: Component
     let pushViewController = PushSettingViewController()
@@ -162,13 +163,18 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     override func didTapButton(sender: UIButton) {
         super.didTapButton(sender: sender)
-        if sender == skipButton {
-            User.shared.recommendId = ""
-            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
-        } else if sender == nextButton {
-            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
+        
+        if !didPostUserInfo {
+            didPostUserInfo = true
+            
+            if sender == skipButton {
+                User.shared.recommendId = ""
+                Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
+            } else if sender == nextButton {
+                Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
+            }
+            postUserInfo()
         }
-        postUserInfo()
     }
 }
 
