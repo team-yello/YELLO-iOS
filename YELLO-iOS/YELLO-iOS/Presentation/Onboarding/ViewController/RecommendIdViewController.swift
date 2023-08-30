@@ -12,6 +12,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: - Variables
     var isExisted = false
     private var didPostUserInfo = false
+    private var isFail = false
     
     // MARK: Component
     let pushViewController = PushSettingViewController()
@@ -139,7 +140,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 Amplitude.instance().setUserProperties(userProperties)
                 
             default:
-                self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
+                self.isFail = true
                 return
             }
         }
@@ -163,6 +164,12 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func didTapButton(sender: UIButton) {
+        
+        if isFail {
+            view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
+            return
+        }
+        
         super.didTapButton(sender: sender)
         
         if !didPostUserInfo {
