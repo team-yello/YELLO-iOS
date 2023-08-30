@@ -77,14 +77,20 @@ class TutorialViewController: UIViewController {
         }
         
         if pageCount == 5 {
-            var rootViewController = UIViewController()
-            if User.shared.isFirstUser {
-                rootViewController = OnboardingEndViewController()
-            } else {
-                rootViewController = YELLOTabBarController()
-            }
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+
+            if User.shared.isFirstUser {
+                let rootViewController = OnboardingEndViewController()
+                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+            } else {
+                // QA 깜빡이는 이슈 수정 부분
+                let rootViewController = YELLOTabBarController()
+                let status = UserDefaults.standard.integer(forKey: "status")
+                rootViewController.startStatus = status
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                }
+            }
         }
     }
     

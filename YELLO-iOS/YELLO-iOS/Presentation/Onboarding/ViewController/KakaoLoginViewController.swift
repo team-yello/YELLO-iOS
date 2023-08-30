@@ -68,20 +68,28 @@ class KakaoLoginViewController: UIViewController {
                     KeychainHandler.shared.refreshToken = data.refreshToken
                     UserDefaults.standard.setValue(true, forKey: "isLoggined")
                     
-                    var rootViewController: UIViewController = YELLOTabBarController()
                     User.shared.isResigned = data.isResigned
                     
                     print("isResigned: \(User.shared.isResigned)")
                     Amplitude.instance().logEvent("complete_onboarding_finish")
-                    if isFirstTime() {
-                        rootViewController = PushSettingViewController()
-                    } else if User.shared.isResigned {
-                        rootViewController = TutorialViewController()
-                    } else {
-                        rootViewController = YELLOTabBarController()
-                    }
+                    
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+
+                    if isFirstTime() {
+                        let rootViewController = PushSettingViewController()
+                        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                    } else if User.shared.isResigned {
+                        let rootViewController = TutorialViewController()
+                        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                    } else {
+                        // QA 깜빡이는 이슈 수정 부분
+                        let rootViewController = YELLOTabBarController()
+                        let status = UserDefaults.standard.integer(forKey: "status")
+                        rootViewController.startStatus = status
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                        }
+                    }
                 }
             default:
                 print("network failure")
