@@ -139,6 +139,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 Amplitude.instance().setUserProperties(userProperties)
                 
             default:
+                self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
                 return
             }
         }
