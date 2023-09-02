@@ -51,7 +51,7 @@ final class MyYelloDetailView: BaseView {
                     senderButton.setButtonState(state: .useTicket)
                 }
                 if nameIndex == -3 {
-                    senderButton.setButtonState(state: .noTicket)
+                    senderButton.setButtonState(state: .useTicket)
                 }
             } else {
                 senderButton.setButtonState(state: .noTicket)
@@ -70,7 +70,7 @@ final class MyYelloDetailView: BaseView {
                     $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
                 }
                 if self.nameIndex == -3 {
-                    senderButton.setButtonState(state: .noTicket)
+                    senderButton.setButtonState(state: .useTicket)
                 }
             }
         }
