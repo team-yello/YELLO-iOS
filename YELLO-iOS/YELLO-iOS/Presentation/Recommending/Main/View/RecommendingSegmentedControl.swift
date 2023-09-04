@@ -35,7 +35,7 @@ final class RecommendingSegmentedControl: UISegmentedControl {
     }()
     
     // MARK: - Function
-    // MARK: init
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         removeBackgroundAndDivider()
@@ -60,6 +60,7 @@ final class RecommendingSegmentedControl: UISegmentedControl {
 // MARK: - extension
 extension RecommendingSegmentedControl {
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
