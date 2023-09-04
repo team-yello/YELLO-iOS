@@ -51,11 +51,8 @@ final class MyRequestInterceptor: RequestInterceptor {
         print("재발급 출발")
         
         if retryCount < maxRetryCount {
-            let accessToken = KeychainHandler.shared.accessToken
-            let refreshToken = KeychainHandler.shared.refreshToken
-            let dto = TokenRefreshRequestDTO(accessToken: "Bearer \(accessToken)", refreshToken: "Bearer \(refreshToken)")
             
-            NetworkService.shared.onboardingService.postRefreshToken(requsetDTO: dto) { result in
+            NetworkService.shared.onboardingService.postRefreshToken() { result in
                 switch result {
                 case .success(let data):
                     guard let decodedData = data.data else { return }

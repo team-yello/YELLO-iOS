@@ -16,8 +16,8 @@ protocol OnboardingServiceProtocol {
     func getSchoolList(queryDTO: SchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<SchoolSearchResponseDTO>>) -> Void)
     func getMajorList(queryDTO: MajorSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<MajorSearchResponseDTO>>) -> Void)
     func postJoinedFriends(queryDTO: JoinedFriendsRequestQueryDTO, requestDTO: JoinedFriendsRequestDTO, completion: @escaping (NetworkResult<BaseResponse<JoinedFriendsResponseDTO>>) -> Void)
-    func postRefreshToken(requsetDTO: TokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void)
-    func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) ->Void)
+    func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void)
+    func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void)
     
 }
 
@@ -47,11 +47,11 @@ final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingSer
         fetchData(target: .postFirendsList(queryDTO, requestDTO), responseData: BaseResponse<JoinedFriendsResponseDTO>.self, completion: completion)
     }
     
-    func postRefreshToken(requsetDTO: TokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>)->Void) {
-        fetchData(target: .postRefreshToken(requsetDTO), responseData: BaseResponse<TokenRefreshResponseDTO>.self, completion: completion)
+    func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void) {
+        fetchData(target: .postRefreshToken, responseData: BaseResponse<TokenRefreshResponseDTO>.self, completion: completion)
     }
     
-    func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>)->Void) {
+    func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void) {
         fetchData(target: .putDeviceToken(requsetDTO), responseData: BaseResponse.self, completion: completion)
     }
     

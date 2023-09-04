@@ -16,7 +16,7 @@ enum OnboardingTarget {
     case getCheckDuplicate(_ dto: IdValidRequestQueryDTO) /// 아이디 중복 확인
     case postFirendsList( _ query: JoinedFriendsRequestQueryDTO, _ dto: JoinedFriendsRequestDTO) /// 가입한 친구 목록 불러오기
     case postUserInfo(_ dto: SignUpRequestDTO ) /// 회원가입
-    case postRefreshToken(_ dto: TokenRefreshRequestDTO)
+    case postRefreshToken
     case putDeviceToken(_ dto: DeviceTokenRefreshRequestDTO)
 }
 
@@ -36,7 +36,7 @@ extension OnboardingTarget: TargetType {
         case .postUserInfo:
             return .unauthorization
         case .postRefreshToken:
-            return .unauthorization
+            return .authorization
         case .putDeviceToken:
             return .authorization
         }
@@ -119,8 +119,8 @@ extension OnboardingTarget: TargetType {
             return .requestQuery(dto)
         case .postFirendsList(let query, let dto):
             return .requestQueryWithBody(query, bodyParameter: dto)
-        case .postRefreshToken(let dto):
-            return .requestWithBody(dto)
+        case .postRefreshToken:
+            return .requestPlain
         case .putDeviceToken(let dto):
             return .requestWithBody(dto)
         }
