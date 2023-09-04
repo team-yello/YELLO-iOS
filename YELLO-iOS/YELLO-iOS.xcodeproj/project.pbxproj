@@ -982,10 +982,7 @@
 		2AA0DBAB2A546D87002B1370 /* Recommending */ = {
 			isa = PBXGroup;
 			children = (
-				C3C57BEE2A5C066B00B84CAA /* ViewController */,
-				C3C57BED2A5C066200B84CAA /* View */,
-				C3C57BF12A5C087600B84CAA /* Cells */,
-				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
+				C312C00B2AA5F80A00C73D0F /* Main */,
 				C31315A92A7A5F8100FB8B43 /* Search */,
 			);
 			path = Recommending;
@@ -1260,6 +1257,25 @@
 				C30F81082A7F732B009DBB8D /* HintButton.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		C312C00A2AA5F7F500C73D0F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C312C00B2AA5F80A00C73D0F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C3C57BEE2A5C066B00B84CAA /* ViewController */,
+				C3C57BED2A5C066200B84CAA /* View */,
+				C3C57BF12A5C087600B84CAA /* Cells */,
+				C312C00A2AA5F7F500C73D0F /* Model */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		C31315A22A78E4B800FB8B43 /* Cell */ = {
