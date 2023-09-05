@@ -307,10 +307,20 @@ extension VotingTimerViewController {
             result in
             switch result {
             case .success(let data):
+                let status = data.status
                 guard let data = data.data else { return }
-                if data.isPossible {
-                    let viewController = VotingStartViewController()
-                    viewController.myPoint = String(data.point)
+                if status == 200 {
+                    if data.isPossible {
+                        let viewController = VotingStartViewController()
+                        viewController.myPoint = String(data.point)
+                        UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
+                            // 전환 시 스르륵 바뀌는 애니메이션 적용
+                            self.navigationController?.pushViewController(viewController, animated: false)
+                        })
+                    }
+                }
+                if status == 400 {
+                    let viewController = VotingLockedViewController()
                     UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
                         // 전환 시 스르륵 바뀌는 애니메이션 적용
                         self.navigationController?.pushViewController(viewController, animated: false)
