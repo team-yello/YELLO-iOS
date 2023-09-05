@@ -310,7 +310,6 @@ extension VotingTimerViewController {
                 let status = data.status
                 guard let data = data.data else {
                     if status == 400 {
-                        print("hiiiiiiiii")
                         let viewController = VotingLockedViewController()
                         UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
                             // 전환 시 스르륵 바뀌는 애니메이션 적용
