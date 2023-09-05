@@ -308,7 +308,17 @@ extension VotingTimerViewController {
             switch result {
             case .success(let data):
                 let status = data.status
-                guard let data = data.data else { return }
+                guard let data = data.data else {
+                    if status == 400 {
+                        print("hiiiiiiiii")
+                        let viewController = VotingLockedViewController()
+                        UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
+                            // 전환 시 스르륵 바뀌는 애니메이션 적용
+                            self.navigationController?.pushViewController(viewController, animated: false)
+                        })
+                    }
+                    return
+                }
                 if status == 200 {
                     if data.isPossible {
                         let viewController = VotingStartViewController()
@@ -318,13 +328,6 @@ extension VotingTimerViewController {
                             self.navigationController?.pushViewController(viewController, animated: false)
                         })
                     }
-                }
-                if status == 400 {
-                    let viewController = VotingLockedViewController()
-                    UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
-                        // 전환 시 스르륵 바뀌는 애니메이션 적용
-                        self.navigationController?.pushViewController(viewController, animated: false)
-                    })
                 }
                 self.myPoint = data.point
                 self.originView.topOfMyPoint.setTextWithLineHeight(text: String(self.myPoint), lineHeight: 24)
