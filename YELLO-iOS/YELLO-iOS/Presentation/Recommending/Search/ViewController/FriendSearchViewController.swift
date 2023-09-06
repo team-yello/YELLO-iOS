@@ -85,7 +85,12 @@ final class FriendSearchViewController: BaseViewController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
-                self.allFriend.append(contentsOf: data.friendList)
+                // 중복되는 모델 필터 처리
+                let uniqueFriendModels = data.friendList.filter { model in
+                    !self.allFriend.contains { $0.id == model.id }
+                }
+                
+                self.allFriend.append(contentsOf: uniqueFriendModels)
                 self.fetchingMore = false
                 
                 if !self.isScroll {
