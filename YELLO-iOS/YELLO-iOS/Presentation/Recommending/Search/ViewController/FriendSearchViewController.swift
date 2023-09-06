@@ -96,15 +96,18 @@ final class FriendSearchViewController: BaseViewController {
                 
                 self.totalItemCount = data.totalCount
                 if data.totalCount == 0 {
-                    if word == nil {
+                    if word == "" {
+                        // 전부 지웠을 때
                         self.allFriend.removeAll()
                         self.friendSearchView.noResultView.isHidden = true
                         self.friendSearchView.loadingStackView.isHidden = true
                     } else {
+                        // 검색 결과 없을 때
                         self.allFriend.removeAll()
                         self.friendSearchView.noResultView.isHidden = false
                     }
                 } else {
+                    // 검색 결과 있을 떄
                     self.friendSearchView.noResultView.isHidden = true
                 }
                 
