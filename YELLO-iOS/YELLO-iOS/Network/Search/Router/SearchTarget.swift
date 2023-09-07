@@ -10,7 +10,7 @@ import Alamofire
 
 @frozen
 enum SearchTarget {
-    case friendSearch(_ dto: FriendSearchRequestQueryDTO) /// 학교 검색
+    case friendSearch(_ query: FriendSearchRequestQueryDTO)
 }
 
 extension SearchTarget: TargetType {
@@ -45,8 +45,8 @@ extension SearchTarget: TargetType {
     
     var parameters: RequestParams {
         switch self {
-        case .friendSearch(let dto):
-            return .requestQuery(dto)
+        case .friendSearch(let query):
+            return .requestQuery(query)
         }
     }
 }
