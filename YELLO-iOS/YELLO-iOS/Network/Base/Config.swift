@@ -16,6 +16,7 @@ enum Config {
             static let kakaoAppKey = "KAKAO_APP_KEY"
             static let amplitudeKey = "AMPLITUDE_KEY"
             static let kakaoTempleteId = "KAKAO_TEMPLATE_ID"
+            static let apiKey = "API_KEY"
         }
     }
     
@@ -60,6 +61,13 @@ extension Config {
     static let kakaoTempleteId: String = {
         guard let key = Config.infoDictionary[Keys.Plist.kakaoTempleteId] as? String else {
             fatalError("kakaoTempleteId is not set in plist for this configuration.")
+        }
+        return key
+    }()
+    
+    static let key: String = {
+        guard let key = Config.infoDictionary[Keys.Plist.kakaoTempleteId] as? String else {
+            fatalError("apiKey is not set in plist for this configuration.")
         }
         return key
     }()
