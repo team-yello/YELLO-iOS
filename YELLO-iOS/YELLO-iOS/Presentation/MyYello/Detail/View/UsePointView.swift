@@ -163,20 +163,24 @@ final class UsePointView: BaseView {
 extension UsePointView {
     
     // MARK: Objc Function
-    @objc func noButtonTapped() {
+    @objc func noButtonTapped(_ sender: UIButton) {
         self.isHidden = true
         self.removeFromSuperview()
         
-        if let labelText = titleLabel.text, labelText.contains("100") {
-            Amplitude.instance().logEvent("click_modal_keyword_no")
-        } else if let labelText = titleLabel.text, labelText.contains("300") {
-            Amplitude.instance().logEvent("click_modal_firstletter_no")
+        guard let labelText = titleLabel.text else { return }
+        
+        if sender != confirmButton {
+            if labelText.contains("100") {
+                Amplitude.instance().logEvent("click_modal_keyword_no")
+            } else if labelText.contains("300") {
+                Amplitude.instance().logEvent("click_modal_firstletter_no")
+            }
         }
        
     }
     
     @objc func confirmButtonTapped() {
-        noButtonTapped()
+        noButtonTapped(confirmButton)
         handleConfirmButtonDelegate?.confirmButtonTapped()
     }
 }
