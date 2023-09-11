@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -139,6 +140,7 @@ final class VotingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step" : VotingViewController.pushCount])
         Color.shared.restoreFromUserDefaults()
         votingList = loadVotingData() ?? []
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")

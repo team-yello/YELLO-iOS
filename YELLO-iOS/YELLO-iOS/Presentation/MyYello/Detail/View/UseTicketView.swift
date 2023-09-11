@@ -39,6 +39,7 @@ final class UseTicketView: BaseView {
     
     // MARK: Property
     weak var handleConfirmTicketButtonDelegate: HandleConfirmTicketButtonDelegate?
+    var isFullnameFirst = false
     
     // MARK: - Function
     // MARK: Layout Helpers
@@ -173,15 +174,23 @@ final class UseTicketView: BaseView {
 extension UseTicketView {
     
     // MARK: Objc Function
-    @objc func noButtonTapped() {
-        Amplitude.instance().logEvent("click_modal_fullname_no")
+    @objc func noButtonTapped(_ sender: UIButton) {
+        if isFullnameFirst {
+            Amplitude.instance().logEvent("click_open_fullnamefirst")
+        } else {
+            if sender == noButton {
+                Amplitude.instance().logEvent("click_modal_fullname_no")
+            } else {
+                Amplitude.instance().logEvent("click_modal_fullname_yes")
+            }
+        }
+        
         self.isHidden = true
         self.removeFromSuperview()
     }
     
     @objc func confirmTicketButtonTapped() {
-        Amplitude.instance().logEvent("click_modal_fullname_yes")
-        noButtonTapped()
+        noButtonTapped(confirmButton)
         handleConfirmTicketButtonDelegate?.confirmTicketButtonTapped()
     }
 }

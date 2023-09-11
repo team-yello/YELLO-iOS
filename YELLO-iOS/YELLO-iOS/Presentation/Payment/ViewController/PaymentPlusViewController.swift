@@ -356,6 +356,7 @@ extension PaymentPlusViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 self.subscribeStatus = data.subscribe
+                Amplitude.instance().setUserProperties(["user_subscription": "yes"])
             default:
                 print("network failure")
                 return

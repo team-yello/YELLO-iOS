@@ -31,9 +31,10 @@ final class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         Amplitude.instance().logEvent("view_profile")
         Amplitude.instance().setUserProperties(["user_friends": profileView.friendCount,
-                                                "user_message_received":profileView.myYelloCount,
-                                                "user_subscription" : profileView.isYelloPlus ? "yes" : "no",
-                                                "user_ticket":profileView.ticketCount])
+                                                "user_message_received": profileView.myYelloCount,
+                                                "user_subscription": profileView.isYelloPlus ? "yes" : "no",
+                                                "user_ticket": profileView.ticketCount,
+                                                "user_name": profileView.myProfileHeaderView.myProfileView.nameLabel.text ?? ""])
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
