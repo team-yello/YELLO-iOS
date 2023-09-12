@@ -133,6 +133,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 
                 var userProperties: [AnyHashable : Any] = [:]
                 userProperties["user_id"] = User.shared.yelloId
+                userProperties["user_name"] = User.shared.name
                 userProperties["user_sex"] = User.shared.gender
                 userProperties["user_grade"] = User.shared.groupAdmissionYear
                 userProperties["user_recommend"] = User.shared.recommendId.isEmpty ? "yes" : "no"

@@ -117,8 +117,6 @@ final class MyYelloDetailView: BaseView {
                 if self.indexNumber != -1 {
                     MyYelloListView.myYelloModelDummy[indexNumber].isHintUsed = self.isKeywordUsed
                 }
-                print("view_open_keyword")
-                Amplitude.instance().logEvent("view_open_keyword")
             }
         }
     }
@@ -339,9 +337,8 @@ extension MyYelloDetailView {
         usePointView.frame = viewController.view.bounds
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
-        
-        Amplitude.instance().logEvent("click_open_keyword")
         viewController.view.addSubview(usePointView)
+        Amplitude.instance().logEvent("click_open_keyword")
     }
     
     func showUseSenderPointAlert() {
@@ -352,9 +349,6 @@ extension MyYelloDetailView {
         usePointView.frame = viewController.view.bounds
         usePointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         usePointView.handleConfirmButtonDelegate = self
-    
-        Amplitude.instance().logEvent("click_open_firstletter")
-        
         viewController.view.addSubview(usePointView)
         if self.isPlus {
             usePointView.titleLabel.text = "0" + StringLiterals.MyYello.Alert.senderPoint
@@ -362,6 +356,7 @@ extension MyYelloDetailView {
             usePointView.titleLabel.text = "300" + StringLiterals.MyYello.Alert.senderPoint
         }
         usePointView.confirmButton.setTitle(StringLiterals.MyYello.Alert.senderButton, for: .normal)
+        Amplitude.instance().logEvent("click_open_firstletter")
     }
     
     func showUseTicketAlert() {
@@ -420,43 +415,16 @@ extension MyYelloDetailView {
                     showLackAlert()
                 } else {
                     showUseSenderPointAlert()
-                    Amplitude.instance().logEvent("click_open_keyword")
                 }
             } else {
                 if currentPoint < 100 {
                     showLackAlert()
                 } else {
-                    Amplitude.instance().logEvent("click_open_keyword")
                     showUsePointAlert()
+                    Amplitude.instance().logEvent("click_open_keyword")
                 }
             }
         }
-    }
-    
-    func openedView() {
-        /// 키워드 / 초성이 확인된 뷰를 보았을 때
-        if isKeywordUsed {
-            Amplitude.instance().logEvent("view_open_keyword")
-            print("view_open_keyword")
-            if isSenderUsed {
-                print("view_open_firstletter")
-                if isPlus {
-                    Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type":"sub_yes"])
-                } else {
-                    Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type":"sub_no"])
-                }
-            }
-            if isTicketUsed {
-                if !isKeywordUsed {
-                    Amplitude.instance().logEvent("view_open_fullnamefirst")
-                    print("view_open_fullnamefirst")
-                } else {
-                    Amplitude.instance().logEvent("view_open_fullname")
-                    print("view_open_fullname")
-                }
-            }
-        }
-        
     }
     
     // MARK: - Network
@@ -470,6 +438,8 @@ extension MyYelloDetailView {
                 self.detailKeywordView.questionLabel.isHidden = true
                 self.detailKeywordView.keywordLabel.text = data.answer
                 self.getHintView.hintLabel.text = data.answer
+                
+                Amplitude.instance().logEvent("view_open_keyword")
                 
                 dump(data)
                 print("키워드 통신 성공")
@@ -490,6 +460,12 @@ extension MyYelloDetailView {
                     self.initialName = initial
                     self.detailSenderView.senderLabel.text = initial
                     self.getHintView.hintLabel.text = initial
+                    
+                    if self.isPlus {
+                        Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type":"sub_yes"])
+                    } else {
+                        Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type":"sub_no"])
+                    }
                     
                 }
                 self.nameIndex = data.nameIndex
@@ -523,6 +499,14 @@ extension MyYelloDetailView {
                 if self.indexNumber != -1 {
                     MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
                 }
+                
+                
+                if !self.isKeywordUsed {
+                    Amplitude.instance().logEvent("view_open_fullnamefirst")
+                } else {
+                    Amplitude.instance().logEvent("view_open_fullname")
+                }
+                
                 dump(data)
                 print("이름 통신 성공")
             default:
@@ -556,7 +540,7 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
         if self.isKeywordUsed == false {
             showGetHintAlert()
             myYelloDetailKeyword(voteId: voteIdNumber)
- 
+            
             self.currentPoint -= 100
             Amplitude.instance().logEvent("click_modal_keyword_yes")
             self.isKeywordUsed.toggle()
@@ -582,10 +566,7 @@ extension MyYelloDetailView: HandleConfirmButtonDelegate {
 
 extension MyYelloDetailView: HandleConfirmTicketButtonDelegate {
     func confirmTicketButtonTapped() {
-        if !isKeywordUsed {
-            Amplitude.instance().logEvent("click_open_fullnamefirst")
-        }
-        
+        useTicketView.isFullnameFirst = !isKeywordUsed
         showGetFullNameAlert()
         myYelloDetailFullName(voteId: voteIdNumber)
     }
