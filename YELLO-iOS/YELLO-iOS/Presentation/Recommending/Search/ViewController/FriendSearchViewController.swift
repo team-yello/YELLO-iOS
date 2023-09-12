@@ -61,7 +61,7 @@ final class FriendSearchViewController: BaseViewController {
         friendSearchView.friendSearchTextfield.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
-    func searchFriend(_ word: String) {
+    func searchFriend(_ word: String?) {
         if fetchingMore { // 이미 데이터를 가져오는 중이면 리턴
             return
         }
@@ -70,7 +70,7 @@ final class FriendSearchViewController: BaseViewController {
             return
         }
         
-        let queryDTO: FriendSearchRequestQueryDTO = FriendSearchRequestQueryDTO(keyword: word, page: pageCount)
+        let queryDTO: FriendSearchRequestQueryDTO = FriendSearchRequestQueryDTO(keyword: word ?? "", page: pageCount)
         
         self.fetchingMore = true
         if !self.isScroll {
@@ -85,7 +85,12 @@ final class FriendSearchViewController: BaseViewController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
-                self.allFriend.append(contentsOf: data.friendList)
+                // 중복되는 모델 필터 처리
+                let uniqueFriendModels = data.friendList.filter { model in
+                    !self.allFriend.contains { $0.id == model.id }
+                }
+                
+                self.allFriend.append(contentsOf: uniqueFriendModels)
                 self.fetchingMore = false
                 
                 if !self.isScroll {
@@ -96,15 +101,18 @@ final class FriendSearchViewController: BaseViewController {
                 
                 self.totalItemCount = data.totalCount
                 if data.totalCount == 0 {
-                    if word.isEmpty {
+                    if word == "" {
+                        // 전부 지웠을 때
                         self.allFriend.removeAll()
                         self.friendSearchView.noResultView.isHidden = true
                         self.friendSearchView.loadingStackView.isHidden = true
                     } else {
+                        // 검색 결과 없을 때
                         self.allFriend.removeAll()
                         self.friendSearchView.noResultView.isHidden = false
                     }
                 } else {
+                    // 검색 결과 있을 떄
                     self.friendSearchView.noResultView.isHidden = true
                 }
                 
@@ -159,6 +167,7 @@ extension FriendSearchViewController: UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
         isFinishPaging = false
+        fetchingMore = false
         pageCount = 0
         allFriend.removeAll()
         searchFriend(text)

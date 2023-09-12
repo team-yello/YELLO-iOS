@@ -60,7 +60,6 @@ final class PaymentPlusViewController: BaseViewController {
         setDelegate()
         getProducts()
         setNotification()
-        purchaseSubscribeNeed()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +67,7 @@ final class PaymentPlusViewController: BaseViewController {
         
         tabBarController?.tabBar.isHidden = true
         paymentPlusView.paymentView.bannerTimer()
+        purchaseSubscribeNeed()
     }
     
     func getProducts() {

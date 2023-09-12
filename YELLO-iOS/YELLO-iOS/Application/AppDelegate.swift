@@ -115,19 +115,21 @@ extension AppDelegate: MessagingDelegate {
         print("FirebaseMessaging")
         guard let fcmToken = fcmToken else { return }
         let deviceToken:[String: String] = ["token": fcmToken]
-        
-        let requestDTO = DeviceTokenRefreshRequestDTO(deviceToken: fcmToken)
-        NetworkService.shared.onboardingService.putRefreshDeviceToken(requsetDTO: requestDTO) { result in
-            switch result {
-            case .success(let data):
-                if data.status == 200 || data.status == 201 {
-                    User.shared.deviceToken = fcmToken
+        if fcmToken != User.shared.deviceToken {
+            let requestDTO = DeviceTokenRefreshRequestDTO(deviceToken: fcmToken)
+            NetworkService.shared.onboardingService.putRefreshDeviceToken(requsetDTO: requestDTO) { result in
+                switch result {
+                case .success(let data):
+                    if data.status == 200 || data.status == 201 {
+                        User.shared.deviceToken = fcmToken
+                        print("Device token 재발급 완료:", deviceToken)
+                    }
+                default:
+                    print("deviceToken 재발급 오류")
                 }
-            default:
-                print("deviceToken 재발급 오류")
             }
         }
         User.shared.deviceToken = fcmToken
-        print("Device token 재발급 완료:", deviceToken)
+        print("Device token:", deviceToken)
     }
 }
