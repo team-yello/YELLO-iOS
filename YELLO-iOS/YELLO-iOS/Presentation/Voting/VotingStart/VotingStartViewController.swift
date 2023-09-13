@@ -243,6 +243,18 @@ extension VotingStartViewController {
                     var friendsID = [Int]()
                     
                     let friendListCount = min(data.friendList.count, 4)
+                    
+                    if friendListCount >= 1 || friendListCount <= 3 {
+                        for i in 0..<friendListCount {
+                            friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
+                            friendsID.append(data.friendList[i].friendId)
+                        }
+                        for i in friendListCount..<4 {
+                            friends.append("")
+                            friendsID.append(-1)
+                        }
+                    }
+                    
                     for i in 0..<friendListCount {
                         friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
                         friendsID.append(data.friendList[i].friendId)
