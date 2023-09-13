@@ -66,6 +66,15 @@ extension VotingViewController {
                 $0.textColor = .grayscales600
                 $0.font = .uiBody02
             }
+            originView.nameTwoButton.isEnabled = false
+            // 투명한 버튼 추가
+            let overlayTwoButton = UIButton(frame: originView.nameTwoButton.frame)
+            overlayTwoButton.addTarget(self, action: #selector(showToast), for: .touchUpInside)
+            overlayTwoButton.backgroundColor = .clear
+            view.addSubview(overlayTwoButton)
+            overlayTwoButton.snp.makeConstraints {
+                $0.edges.equalTo(originView.nameTwoButton)
+            }
         } else {
             nameTextTwo = UILabel.createTwoLineLabel(text: second,
                                                      firstLineFont: firstLineFont,
@@ -81,6 +90,15 @@ extension VotingViewController {
                 $0.textColor = .grayscales600
                 $0.font = .uiBody02
             }
+            originView.nameThreeButton.isEnabled = false
+            // 투명한 버튼 추가
+            let overlayThreeButton = UIButton(frame: originView.nameThreeButton.frame)
+            overlayThreeButton.addTarget(self, action: #selector(showToast), for: .touchUpInside)
+            overlayThreeButton.backgroundColor = .clear
+            view.addSubview(overlayThreeButton)
+            overlayThreeButton.snp.makeConstraints {
+                $0.edges.equalTo(originView.nameThreeButton)
+            }
         } else {
             nameTextThree = UILabel.createTwoLineLabel(text: third,
                                                        firstLineFont: firstLineFont,
@@ -95,6 +113,15 @@ extension VotingViewController {
                 $0.text = "친구를 추가해주세요!"
                 $0.textColor = .grayscales600
                 $0.font = .uiBody02
+            }
+            originView.nameFourButton.isEnabled = false
+            // 투명한 버튼 추가
+            let overlayFourButton = UIButton(frame: originView.nameFourButton.frame)
+            overlayFourButton.addTarget(self, action: #selector(showToast), for: .touchUpInside)
+            overlayFourButton.backgroundColor = .clear
+            view.addSubview(overlayFourButton)
+            overlayFourButton.snp.makeConstraints {
+                $0.edges.equalTo(originView.nameFourButton)
             }
         } else {
             nameTextFour = UILabel.createTwoLineLabel(text: fourth,
@@ -365,5 +392,10 @@ extension VotingViewController {
             Amplitude.instance().logEvent("click_vote_skip", withEventProperties: ["question_id": questionId])
             setNextViewController()
         }
+    }
+    
+    @objc
+    func showToast() {
+        view.showToast(message: StringLiterals.Voting.VoteToast.moreFriend)
     }
 }
