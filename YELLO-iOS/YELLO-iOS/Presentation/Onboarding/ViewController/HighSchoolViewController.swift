@@ -17,7 +17,6 @@ class HighSchoolViewController: OnboardingBaseViewController {
     let studentIdViewController = StudentIdViewController()
     lazy var studentIdView = StudentIdView()
     lazy var userViewController = UserInfoViewController()
-    lazy var genderViewController = GenderViewController()
     let bottomSheetViewController = BaseBottomViewController()
     
     // MARK: Property
@@ -43,7 +42,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
     
     override func setLayout() {
         view.addSubview(baseView)
-        nextViewController = genderViewController
+        nextViewController = userViewController
         baseView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(4.adjustedHeight)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -95,7 +94,6 @@ class HighSchoolViewController: OnboardingBaseViewController {
     }
     
     override func setUser() {
-        //고등학교 정보 저장
     }
     
     // MARK: Objc Function
