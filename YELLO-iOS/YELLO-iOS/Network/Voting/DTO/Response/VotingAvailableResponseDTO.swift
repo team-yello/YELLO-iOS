@@ -11,4 +11,5 @@ struct VotingAvailableResponseDTO: Decodable {
     let point: Int
     let createdAt: String
     let isPossible: Bool
+    let friendStatus: Int
 }
