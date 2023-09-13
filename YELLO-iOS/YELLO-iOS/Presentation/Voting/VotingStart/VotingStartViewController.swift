@@ -206,10 +206,12 @@ extension VotingStartViewController {
                 let status = data.status
                 if status == 200 {
                     guard let data = data.data else { return }
-                    if data.friendStatus == 0 {
-                        self.speechBubbleBackground.isHidden = false
-                    }
                     if data.isPossible {
+                        if data.friendStatus == 0 {
+                            self.speechBubbleBackground.isHidden = false
+                        } else if data.friendStatus == 1 {
+                            self.speechBubbleBackground.isHidden = true
+                        }
                         let point = data.point
                         self.originView.topOfMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 24)
                         self.myPoint = String(point)

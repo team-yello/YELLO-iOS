@@ -60,25 +60,49 @@ extension VotingViewController {
                                                  secondLineColor: secondLineColor)
         
         nameTextTwo.removeFromSuperview()
-        nameTextTwo = UILabel.createTwoLineLabel(text: second,
-                                                 firstLineFont: firstLineFont,
-                                                 firstLineColor: firstLineColor,
-                                                 secondLineFont: secondLineFont,
-                                                 secondLineColor: secondLineColor)
+        if second.isEmpty {
+            nameTextTwo.do {
+                $0.text = "친구를 추가해주세요!"
+                $0.textColor = .grayscales600
+                $0.font = .uiBody02
+            }
+        } else {
+            nameTextTwo = UILabel.createTwoLineLabel(text: second,
+                                                     firstLineFont: firstLineFont,
+                                                     firstLineColor: firstLineColor,
+                                                     secondLineFont: secondLineFont,
+                                                     secondLineColor: secondLineColor)
+        }
         
         nameTextThree.removeFromSuperview()
-        nameTextThree = UILabel.createTwoLineLabel(text: third,
-                                                   firstLineFont: firstLineFont,
-                                                   firstLineColor: firstLineColor,
-                                                   secondLineFont: secondLineFont,
-                                                   secondLineColor: secondLineColor)
-    
+        if third.isEmpty {
+            nameTextThree.do {
+                $0.text = "친구를 추가해주세요!"
+                $0.textColor = .grayscales600
+                $0.font = .uiBody02
+            }
+        } else {
+            nameTextThree = UILabel.createTwoLineLabel(text: third,
+                                                       firstLineFont: firstLineFont,
+                                                       firstLineColor: firstLineColor,
+                                                       secondLineFont: secondLineFont,
+                                                       secondLineColor: secondLineColor)
+        }
+        
         nameTextFour.removeFromSuperview()
-        nameTextFour = UILabel.createTwoLineLabel(text: fourth,
-                                                  firstLineFont: firstLineFont,
-                                                  firstLineColor: firstLineColor,
-                                                  secondLineFont: secondLineFont,
-                                                  secondLineColor: secondLineColor)
+        if fourth.isEmpty {
+            nameTextFour.do {
+                $0.text = "친구를 추가해주세요!"
+                $0.textColor = .grayscales600
+                $0.font = .uiBody02
+            }
+        } else {
+            nameTextFour = UILabel.createTwoLineLabel(text: fourth,
+                                                      firstLineFont: firstLineFont,
+                                                      firstLineColor: firstLineColor,
+                                                      secondLineFont: secondLineFont,
+                                                      secondLineColor: secondLineColor)
+        }
         
         originView.nameOneButton.addSubview(nameTextOne)
         originView.nameTwoButton.addSubview(nameTextTwo)
