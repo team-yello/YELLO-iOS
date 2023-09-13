@@ -147,6 +147,10 @@ enum StringLiterals {
             static let moreFriend = "4명 이상의 친구를 가지면 선택지가 채워져요."
         }
         
+        enum Vote {
+            static let plusFriend = "친구를 추가해주세요!"
+        }
+        
         enum Point {
             static let title = "투표 포인트 적립!"
             static let text = "투표로 포인트를 모아 쪽지를 열어보세요."

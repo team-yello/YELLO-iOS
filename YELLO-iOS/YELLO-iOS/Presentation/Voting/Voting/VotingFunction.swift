@@ -62,7 +62,7 @@ extension VotingViewController {
         nameTextTwo.removeFromSuperview()
         if second.isEmpty {
             nameTextTwo.do {
-                $0.text = "친구를 추가해주세요!"
+                $0.text = StringLiterals.Voting.Vote.plusFriend
                 $0.textColor = .grayscales600
                 $0.font = .uiBody02
             }
@@ -86,7 +86,7 @@ extension VotingViewController {
         nameTextThree.removeFromSuperview()
         if third.isEmpty {
             nameTextThree.do {
-                $0.text = "친구를 추가해주세요!"
+                $0.text = StringLiterals.Voting.Vote.plusFriend
                 $0.textColor = .grayscales600
                 $0.font = .uiBody02
             }
@@ -110,7 +110,7 @@ extension VotingViewController {
         nameTextFour.removeFromSuperview()
         if fourth.isEmpty {
             nameTextFour.do {
-                $0.text = "친구를 추가해주세요!"
+                $0.text = StringLiterals.Voting.Vote.plusFriend
                 $0.textColor = .grayscales600
                 $0.font = .uiBody02
             }
