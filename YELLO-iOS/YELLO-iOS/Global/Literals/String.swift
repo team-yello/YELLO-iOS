@@ -144,6 +144,11 @@ enum StringLiterals {
             static let skip = "한 번 선택하면 건너뛸 수 없어요."
             static let cancel = "한 번 선택하면 취소할 수 없어요."
             static let suffle = "이름을 선택하면 셔플을 사용할 수 없어요."
+            static let moreFriend = "4명 이상의 친구를 가지면 선택지가 채워져요."
+        }
+        
+        enum Vote {
+            static let plusFriend = "친구를 추가해주세요!"
         }
         
         enum Point {
