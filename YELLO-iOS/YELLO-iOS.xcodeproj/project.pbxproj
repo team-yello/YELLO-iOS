@@ -120,6 +120,8 @@
 		36C209F02A8B6A39001BF12C /* FirstTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */; };
 		36C209F22A8B6E03001BF12C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209F12A8B6E03001BF12C /* TutorialViewController.swift */; };
 		36C209F62A8B8190001BF12C /* SecondTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209F52A8B8190001BF12C /* SecondTutorialView.swift */; };
+		36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A52AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift */; };
+		36C4C4A82AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */; };
 		36C5E1CD2A91273400184AAE /* TokenRefreshRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
 		36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */; };
@@ -410,6 +412,8 @@
 		36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTutorialView.swift; sourceTree = "<group>"; };
 		36C209F12A8B6E03001BF12C /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		36C209F52A8B8190001BF12C /* SecondTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTutorialView.swift; sourceTree = "<group>"; };
+		36C4C4A52AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolSearchRequestQueryDTO.swift; sourceTree = "<group>"; };
+		36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolSearchResponseDTO.swift; sourceTree = "<group>"; };
 		36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
 		36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequestDTO.swift; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
@@ -812,6 +816,7 @@
 				3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */,
 				36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */,
 				367229D02A991BC700724494 /* DeviceTokenRefreshRequestDTO.swift */,
+				36C4C4A52AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -827,6 +832,7 @@
 				3662A0FB2A65795200F482EF /* IdValidResponseDTO.swift */,
 				36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */,
 				369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */,
+				36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -2084,6 +2090,7 @@
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C348B6D72A8FBBD600674371 /* PurchaseInfoResponseDTO.swift in Sources */,
+				36C4C4A82AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift in Sources */,
 				C3C560C42A8A6F290074E988 /* FriendSearchRequestQueryDTO.swift in Sources */,
 				C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */,
 				36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */,
@@ -2249,6 +2256,7 @@
 				C30F81092A7F732B009DBB8D /* HintButton.swift in Sources */,
 				C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */,
 				C3B83E682A8E08D500A39CAC /* PurchaseService.swift in Sources */,
+				36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */,
 				C3B472142A65E24900770530 /* PayRequestBodyDTO.swift in Sources */,
 				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
 				2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */,
@@ -2406,7 +2414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS.dev;
 				PRODUCT_NAME = "$(Yello_Bundle_Name)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2567,7 +2575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2607,7 +2615,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

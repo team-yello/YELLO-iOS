@@ -18,10 +18,16 @@ protocol OnboardingServiceProtocol {
     func postJoinedFriends(queryDTO: JoinedFriendsRequestQueryDTO, requestDTO: JoinedFriendsRequestDTO, completion: @escaping (NetworkResult<BaseResponse<JoinedFriendsResponseDTO>>) -> Void)
     func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void)
     func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void)
+    func getHighSchoolList(queryDTO: HighSchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolSearchResponseDTO>>) -> Void)
     
 }
 
 final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingServiceProtocol {
+    
+    func getHighSchoolList(queryDTO: HighSchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolSearchResponseDTO>>) -> Void) {
+        fetchData(target: .getHighschoolList(queryDTO), responseData: BaseResponse<HighSchoolSearchResponseDTO>.self, completion: completion)
+    }
+    
     
     func postTokenChange(queryDTO: KakaoLoginRequestDTO, completion: @escaping (NetworkResult<BaseResponse<KakaoLoginResponseDTO>>) -> Void) {
         fetchData(target: .postTokenChange(queryDTO), responseData: BaseResponse<KakaoLoginResponseDTO>.self, completion: completion)
