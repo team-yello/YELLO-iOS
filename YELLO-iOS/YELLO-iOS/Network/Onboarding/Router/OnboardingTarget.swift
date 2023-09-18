@@ -96,7 +96,7 @@ extension OnboardingTarget: TargetType {
         case .postTokenChange:
             return "/auth/oauth"
         case .getSchoolList:
-            return "/auth/school"
+            return "/auth/group/univ/name"
         case .getCheckDuplicate:
             return "/auth/valid"
         case .postUserInfo:
