@@ -95,8 +95,10 @@ final class MyYelloSkeletonTableViewCell: UITableViewCell {
 
 extension MyYelloSkeletonTableViewCell {
     func showShimmer() {
-        self.genderImageView.animateShimmer()
-        self.titleLabel.animateShimmer()
-        self.timeLabel.animateShimmer()
+        let shimmerArray = [genderImageView, titleLabel, timeLabel]
+        
+        shimmerArray.forEach {
+            $0.animateShimmer()
+        }
     }
 }
