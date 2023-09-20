@@ -41,7 +41,7 @@ final class InvitingView: BaseView {
         contentsView.backgroundColor = .white
         
         closeButton.do {
-            $0.setTitle("닫기", for: .normal)
+            $0.setTitle(StringLiterals.Inviting.close, for: .normal)
             $0.setImage(ImageLiterals.InvitingPopUp.icClose, for: .normal)
             $0.setTitleColor(.grayscales600, for: .normal)
             $0.imageView?.contentMode = .scaleAspectFit
@@ -75,7 +75,7 @@ final class InvitingView: BaseView {
         }
         
         recommender.do {
-            $0.text = "내 추천인 코드"
+            $0.text = StringLiterals.Inviting.myRecommendCode
             $0.textColor = .purpleSub500
             $0.font = .uiBody04
         }
@@ -169,14 +169,12 @@ final class InvitingView: BaseView {
 
 extension InvitingView {
     
-    @objc
-    func closeButtonClicked() {
+    @objc func closeButtonClicked() {
         self.isHidden = true
         self.removeFromSuperview()
     }
     
-    @objc
-    func kakaoButtonClicked() {
+    @objc func kakaoButtonClicked() {
         let templateId = Config.kakaoTempleteId
         
         guard let filteredString = self.recommenderID.text else { return }
