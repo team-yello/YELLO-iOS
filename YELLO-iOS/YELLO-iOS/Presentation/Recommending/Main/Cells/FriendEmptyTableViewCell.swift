@@ -12,6 +12,8 @@ import Then
 
 final class FriendEmptyTableViewCell: UITableViewCell {
     
+    /// 해당 파일은 현재 사용하지 않습니다.
+    
     // MARK: - Variables
     // MARK: Constants
     static let identifier = "FriendEmptyTableViewCell"
