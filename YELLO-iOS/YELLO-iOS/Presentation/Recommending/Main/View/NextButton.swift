@@ -11,6 +11,8 @@ class NextButton: UIButton {
 
     // MARK: - Functions
     // MARK: Layout Helpers
+    
+    /// 배너 버튼 터치 영역 넓히기
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         let expandedBounds = bounds.insetBy(dx: -295.adjustedWidth, dy: -98.adjustedHeight)
         return expandedBounds.contains(point)
