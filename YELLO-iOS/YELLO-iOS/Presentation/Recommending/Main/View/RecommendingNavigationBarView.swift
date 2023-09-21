@@ -50,6 +50,5 @@ final class RecommendingNavigationBarView: BaseView {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
-        
     }
 }

@@ -1308,7 +1308,7 @@
 		C31315AB2A7A5F8F00FB8B43 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C390B8082A88D63000EA5A23 /* spinner_loading.json */,
+				C3C227E02ABB87740036BF2B /* Lottie */,
 				C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */,
 			);
 			path = View;
@@ -1647,6 +1647,14 @@
 				C39D3D832A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		C3C227E02ABB87740036BF2B /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				C390B8082A88D63000EA5A23 /* spinner_loading.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		C3C560B92A8A6E410074E988 /* Search */ = {
