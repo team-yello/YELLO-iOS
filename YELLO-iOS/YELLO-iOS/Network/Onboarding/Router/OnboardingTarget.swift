@@ -19,6 +19,7 @@ enum OnboardingTarget {
     case postRefreshToken
     case putDeviceToken(_ dto: DeviceTokenRefreshRequestDTO)
     case getHighschoolList(_ dto: HighSchoolSearchRequestQueryDTO)
+    case getHighschoolClass(_ dto: HighSchoolClassRequestQueryDTO)
 }
 
 extension OnboardingTarget: TargetType {
@@ -41,6 +42,8 @@ extension OnboardingTarget: TargetType {
         case .putDeviceToken:
             return .authorization
         case .getHighschoolList:
+            return .unauthorization
+        case .getHighschoolClass:
             return .unauthorization
         }
     }
@@ -65,6 +68,8 @@ extension OnboardingTarget: TargetType {
             return .plain
         case .getHighschoolList:
             return .plain
+        case .getHighschoolClass:
+            return .plain
         }
     }
     
@@ -88,6 +93,9 @@ extension OnboardingTarget: TargetType {
             return .put
         case .getHighschoolList:
             return .get
+        case .getHighschoolClass:
+            return .get
+            
         }
     }
     
@@ -111,6 +119,8 @@ extension OnboardingTarget: TargetType {
             return "/user/device"
         case .getHighschoolList:
             return "/auth/group/high/name"
+        case .getHighschoolClass:
+            return "/auth/group/high/class"
         }
     }
     
@@ -133,6 +143,8 @@ extension OnboardingTarget: TargetType {
         case .putDeviceToken(let dto):
             return .requestWithBody(dto)
         case .getHighschoolList(let dto):
+            return .requestQuery(dto)
+        case .getHighschoolClass(let dto):
             return .requestQuery(dto)
         }
     }

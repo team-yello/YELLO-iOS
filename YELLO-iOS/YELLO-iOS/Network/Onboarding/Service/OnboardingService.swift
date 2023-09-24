@@ -19,15 +19,11 @@ protocol OnboardingServiceProtocol {
     func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void)
     func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void)
     func getHighSchoolList(queryDTO: HighSchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolSearchResponseDTO>>) -> Void)
+    func getHighSchoolClass(queryDTO: HighSchoolClassRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolClassResponseDTO>>) -> Void)
     
 }
 
 final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingServiceProtocol {
-    
-    func getHighSchoolList(queryDTO: HighSchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolSearchResponseDTO>>) -> Void) {
-        fetchData(target: .getHighschoolList(queryDTO), responseData: BaseResponse<HighSchoolSearchResponseDTO>.self, completion: completion)
-    }
-    
     
     func postTokenChange(queryDTO: KakaoLoginRequestDTO, completion: @escaping (NetworkResult<BaseResponse<KakaoLoginResponseDTO>>) -> Void) {
         fetchData(target: .postTokenChange(queryDTO), responseData: BaseResponse<KakaoLoginResponseDTO>.self, completion: completion)
@@ -59,6 +55,14 @@ final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingSer
     
     func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void) {
         fetchData(target: .putDeviceToken(requsetDTO), responseData: BaseResponse.self, completion: completion)
+    }
+    
+    func getHighSchoolList(queryDTO: HighSchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolSearchResponseDTO>>) -> Void) {
+        fetchData(target: .getHighschoolList(queryDTO), responseData: BaseResponse<HighSchoolSearchResponseDTO>.self, completion: completion)
+    }
+    
+    func getHighSchoolClass(queryDTO: HighSchoolClassRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolClassResponseDTO>>) -> Void) {
+        fetchData(target: .getHighschoolClass(queryDTO), responseData: BaseResponse<HighSchoolClassResponseDTO>.self, completion: completion)
     }
     
 }
