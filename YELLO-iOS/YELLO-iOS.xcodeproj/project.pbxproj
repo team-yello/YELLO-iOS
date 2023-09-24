@@ -115,6 +115,8 @@
 		36B2349E2A61A6A8007933E4 /* KakaoConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */; };
 		36B234A02A61A6BC007933E4 /* KakaoConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */; };
 		36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234A12A61B447007933E4 /* UINavigationController+.swift */; };
+		36BE79BE2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */; };
+		36BE79C02AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */; };
 		36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */; };
 		36BF1DE82A7A5FCF00C58E74 /* YelloProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1DE72A7A5FCF00C58E74 /* YelloProgressBarView.swift */; };
 		36C209F02A8B6A39001BF12C /* FirstTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */; };
@@ -407,6 +409,8 @@
 		36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectViewController.swift; sourceTree = "<group>"; };
 		36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectView.swift; sourceTree = "<group>"; };
 		36B234A12A61B447007933E4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolClassRequestQueryDTO.swift; sourceTree = "<group>"; };
+		36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolClassResponseDTO.swift; sourceTree = "<group>"; };
 		36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelectView.swift; sourceTree = "<group>"; };
 		36BF1DE72A7A5FCF00C58E74 /* YelloProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloProgressBarView.swift; sourceTree = "<group>"; };
 		36C209EF2A8B6A38001BF12C /* FirstTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTutorialView.swift; sourceTree = "<group>"; };
@@ -817,6 +821,7 @@
 				36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */,
 				367229D02A991BC700724494 /* DeviceTokenRefreshRequestDTO.swift */,
 				36C4C4A52AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift */,
+				36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -833,6 +838,7 @@
 				36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */,
 				369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */,
 				36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */,
+				36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -2197,6 +2203,7 @@
 				2A3705DA2A62E35F001AAC93 /* VotingAvailableResponseDTO.swift in Sources */,
 				36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */,
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
+				36BE79C02AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift in Sources */,
 				3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */,
 				C3FF24A02A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift in Sources */,
 				C306E7432A6520830031514C /* ProfileUserResponseDTO.swift in Sources */,
@@ -2218,6 +2225,7 @@
 				2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */,
 				3662A0F22A65498800F482EF /* MajorSearchRequestQueryDTO.swift in Sources */,
 				C3C57BF02A5C06C600B84CAA /* KakaoFriendView.swift in Sources */,
+				36BE79BE2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift in Sources */,
 				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
 				C3B4720A2A65B1CB00770530 /* MyYelloRequestQueryDTO.swift in Sources */,
 				2A3705A62A62DC7D001AAC93 /* APIEventLogger.swift in Sources */,
