@@ -46,7 +46,7 @@ class KakaoConnectViewController: UIViewController {
                     allFriends.append(String(id))
                 })
                 User.shared.kakaoFriends = allFriends
-                self.navigationController?.pushViewController(UniversityViewController(), animated: true)
+                self.navigationController?.pushViewController(SchoolSelectViewController(), animated: true)
             }
         }
         

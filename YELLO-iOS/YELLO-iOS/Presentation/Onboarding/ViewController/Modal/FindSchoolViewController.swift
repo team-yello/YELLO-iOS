@@ -11,6 +11,7 @@ class FindSchoolViewController: SearchBaseViewController {
     
     // MARK: - Variables
     // MARK: Property
+    var isHighSchool = false
     var allSchool: [String] = []
     var pageCount: Int = 0
     var totalItemCount: Int = 0
@@ -31,21 +32,39 @@ class FindSchoolViewController: SearchBaseViewController {
     }
     
     func searchSchool(_ word: String) {
-        let queryDTO: SchoolSearchRequestQueryDTO = SchoolSearchRequestQueryDTO(keyword: word, page: pageCount)
-        NetworkService.shared.onboardingService.getSchoolList(queryDTO: queryDTO) { result in
-            switch result {
-            case .success(let data):
-                guard let data = data.data else { return }
-                self.allArr.append(contentsOf: data.groupNameList)
-                self.totalItemCount = data.totalCount 
-                self.searchView.searchResultTableView.reloadData()
-            default:
-                print(ErrorPointer.self)
-                return
-            }
-            
-        }
         
+       
+        if isHighSchool {
+            /// 고등학교인 경우
+            let highschoolQueryDTO: HighSchoolSearchRequestQueryDTO = HighSchoolSearchRequestQueryDTO(keyword: word, page: pageCount)
+            NetworkService.shared.onboardingService.getHighSchoolList(queryDTO: highschoolQueryDTO) { result in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    self.allArr.append(contentsOf: data.groupNameList)
+                    self.totalItemCount = data.totalCount
+                    self.searchView.searchResultTableView.reloadData()
+                default:
+                    print(ErrorPointer.self)
+                    return
+                }
+            }
+        } else {
+            /// 대학교인 경우
+            let schoolQueryDTO: SchoolSearchRequestQueryDTO = SchoolSearchRequestQueryDTO(keyword: word, page: pageCount)
+            NetworkService.shared.onboardingService.getSchoolList(queryDTO: schoolQueryDTO) { result in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data else { return }
+                    self.allArr.append(contentsOf: data.groupNameList)
+                    self.totalItemCount = data.totalCount
+                    self.searchView.searchResultTableView.reloadData()
+                default:
+                    print(ErrorPointer.self)
+                    return
+                }
+            }
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -69,7 +88,7 @@ class FindSchoolViewController: SearchBaseViewController {
     }
     
     @objc func helperButtonDidTap() {
-        let url = URL(string: "https://bit.ly/46Yv0Hc")!
+        let url = isHighSchool ? URL(string: "https://forms.gle/sMyn6uq7oHDovSdi8")! : URL(string: "https://bit.ly/46Yv0Hc")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
