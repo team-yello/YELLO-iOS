@@ -38,7 +38,7 @@ class UniversityViewController: OnboardingBaseViewController {
     }
     
     override func setLayout() {
-        
+        navigationBarView.backButton.isHidden = true
         view.addSubview(baseView)
         nextViewController = UserInfoViewController()
         baseView.snp.makeConstraints {

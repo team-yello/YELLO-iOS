@@ -17,6 +17,8 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     var myPoint = "000"
+    private let speechBubbleBackground = UIImageView()
+    private let speechBubbleText = UILabel()
     let multiplyByTwoText = UILabel()
     let multiplyByTwoImageView = UIImageView()
     let multiplyByTwoStackView = UIStackView()
@@ -57,6 +59,17 @@ final class VotingStartViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .black
         
+        speechBubbleBackground.do {
+            $0.image = ImageLiterals.Voting.lbSpeechBubble
+            $0.isHidden = true // 특정조건에서 false로 바꿀 것임
+        }
+        
+        speechBubbleText.do {
+            $0.setTextWithLineHeight(text: "💛4명 이상의 친구💛를 가지면 옐로가 더 재밌어요!", lineHeight: 15)
+            $0.textColor = .white
+            $0.font = .uiLabelMedium
+        }
+        
         multiplyByTwoText.do {
             $0.text = "Point"
             $0.font = .uiPointLabel
@@ -95,7 +108,8 @@ final class VotingStartViewController: BaseViewController {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
         
-        view.addSubviews(originView, multiplyByTwoStackView)
+        view.addSubviews(originView, multiplyByTwoStackView, speechBubbleBackground)
+        speechBubbleBackground.addSubview(speechBubbleText)
 
         originView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -130,6 +144,18 @@ final class VotingStartViewController: BaseViewController {
             $0.trailing.equalToSuperview().inset(73.adjusted)
             $0.width.equalTo(124.adjusted)
             $0.height.equalTo(36.adjusted)
+        }
+        
+        speechBubbleBackground.snp.makeConstraints {
+            $0.width.equalTo(238.adjusted)
+            $0.height.equalTo(42.adjusted)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-11.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        speechBubbleText.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(6.adjusted)
+            $0.centerX.equalToSuperview()
         }
         
         originView.yellowButton.snp.makeConstraints {
@@ -181,6 +207,11 @@ extension VotingStartViewController {
                 if status == 200 {
                     guard let data = data.data else { return }
                     if data.isPossible {
+                        if data.friendStatus == 0 {
+                            self.speechBubbleBackground.isHidden = false
+                        } else if data.friendStatus == 1 {
+                            self.speechBubbleBackground.isHidden = true
+                        }
                         let point = data.point
                         self.originView.topOfMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 24)
                         self.myPoint = String(point)
@@ -214,6 +245,18 @@ extension VotingStartViewController {
                     var friendsID = [Int]()
                     
                     let friendListCount = min(data.friendList.count, 4)
+                    
+                    if friendListCount >= 1 || friendListCount <= 3 {
+                        for i in 0..<friendListCount {
+                            friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
+                            friendsID.append(data.friendList[i].friendId)
+                        }
+                        for i in friendListCount..<4 {
+                            friends.append("")
+                            friendsID.append(-1)
+                        }
+                    }
+                    
                     for i in 0..<friendListCount {
                         friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
                         friendsID.append(data.friendList[i].friendId)
@@ -274,6 +317,7 @@ extension VotingStartViewController {
         animationView.play()
         view.addSubview(animationView)
         view.bringSubviewToFront(originView)
+        view.bringSubviewToFront(speechBubbleBackground)
         view.bringSubviewToFront(multiplyByTwoStackView)
     }
 }
