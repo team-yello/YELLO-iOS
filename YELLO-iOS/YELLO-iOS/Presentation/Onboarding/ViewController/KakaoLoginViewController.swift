@@ -80,9 +80,9 @@ class KakaoLoginViewController: UIViewController {
                                 }
                                 
                                 /// 확인 후 플로우 변경
-                                let nextViewController = allowList[0].agreed ? UniversityViewController() : KakaoConnectViewController()
+                                let nextViewController = allowList[0].agreed ? SchoolSelectViewController() : KakaoConnectViewController()
                                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: nextViewController)
+                                self.navigationController?.pushViewController(nextViewController, animated: true)
                             }
                         }
                         

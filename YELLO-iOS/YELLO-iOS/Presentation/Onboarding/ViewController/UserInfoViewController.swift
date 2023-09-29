@@ -24,7 +24,7 @@ class UserInfoViewController: OnboardingBaseViewController {
     
     // MARK: LifeCycle
     override func viewDidLoad() {
-        step = 2
+        step = 3
         super.viewDidLoad()
         setDelegate()
         super.nextViewController = addFriendViewController

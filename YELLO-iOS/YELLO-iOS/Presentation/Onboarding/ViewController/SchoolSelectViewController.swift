@@ -13,6 +13,11 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     let highSchoolViewController = HighSchoolViewController()
     let universityViewController = UniversityViewController()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationBarView.backButton.isHidden = true
+    }
+    
     override func viewDidLoad() {
         step = 1
         super.viewDidLoad()
