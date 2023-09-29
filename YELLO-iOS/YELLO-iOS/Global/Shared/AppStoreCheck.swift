@@ -18,7 +18,7 @@ class AppStoreCheck {
     // 앱 스토어 최신 정보 확인
     func latestVersion(completion: @escaping (String?) -> Void) {
         let appleID = "6451451050"
-        guard let url = URL(string: "http://itunes.apple.com/lookup?id=\(appleID)&country=kr") else {
+        guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(appleID)&country=kr") else {
             completion(nil)
             return
         }
