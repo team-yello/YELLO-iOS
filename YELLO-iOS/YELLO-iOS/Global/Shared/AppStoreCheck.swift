@@ -16,16 +16,24 @@ class AppStoreCheck {
     static let appStoreOpenUrlString = "itms-apps://itunes.apple.com/app/apple-store/6451451050"
     
     // 앱 스토어 최신 정보 확인
-    func latestVersion() -> String? {
+    func latestVersion(completion: @escaping (String?) -> Void) {
         let appleID = "6451451050"
-        guard let url = URL(string: "http://itunes.apple.com/lookup?id=\(appleID)&country=kr"),
-              let data = try? Data(contentsOf: url),
-              let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-              let results = json["results"] as? [[String: Any]],
-              let appStoreVersion = results[0]["version"] as? String else {
-            return nil
+        guard let url = URL(string: "http://itunes.apple.com/lookup?id=\(appleID)&country=kr") else {
+            completion(nil)
+            return
         }
-        return appStoreVersion
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data, error == nil,
+                  let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
+                  let results = json["results"] as? [[String: Any]],
+                  let appStoreVersion = results[0]["version"] as? String else {
+                completion(nil)
+                return
+            }
+            
+            completion(appStoreVersion)
+        }.resume()
     }
     
     // 앱 스토어로 이동 -> urlStr 에 appStoreOpenUrlString 넣으면 이동
