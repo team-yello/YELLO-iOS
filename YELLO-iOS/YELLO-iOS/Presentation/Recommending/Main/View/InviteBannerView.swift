@@ -26,7 +26,6 @@ final class InviteBannerView: BaseView {
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
-        invitingView = InvitingView()
         
         inviteImageView.do {
             $0.image = ImageLiterals.Recommending.imgBannerInvite
@@ -88,17 +87,17 @@ final class InviteBannerView: BaseView {
         invitingView.removeFromSuperview()
         
         invitingView = InvitingView()
-        invitingView.profileUserYelloId()
-        invitingView.frame = viewController.view.bounds
-        invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.invitingView.profileUserYelloId()
+        self.invitingView.frame = viewController.view.bounds
+        self.invitingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         if rootViewName == "kakao" {
             Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": "recommend_kakao_yesfriend"])
         } else if rootViewName == "school" {
             Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": "recommend_school_yesfriend"])
         }
+        
         invitingView.rootViewController = rootViewName
         viewController.view.addSubview(invitingView)
-        
     }
 }
