@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = splashViewController
         
         self.window?.makeKeyAndVisible()
+        self.checkAndUpdateIfNeeded()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) {
             guard let notificationResponse = connectionOptions.notificationResponse else {
@@ -222,23 +223,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let className = "\(String(describing: type(of: topViewController)))"
         UserDefaults.standard.set(className, forKey: "lastViewController")
     }
-    
     func checkAndUpdateIfNeeded() {
-        let marketingVersion = AppStoreCheck().latestVersion() ?? ""
-        let currentProjectVersion = AppStoreCheck.appVersion ?? ""
-        let splitMarketingVersion = marketingVersion.split(separator: ".").map { $0 }
-        let splitCurrentProjectVersion = currentProjectVersion.split(separator: ".").map { $0 }
-        
-        if splitCurrentProjectVersion[0] < splitMarketingVersion[0] {
-            showUpdateAlert(version: marketingVersion)
-        } else if splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
-            showUpdateAlert(version: marketingVersion)
-        } else {
-            print(marketingVersion)
-            print(currentProjectVersion)
-            print(splitMarketingVersion)
-            print(splitCurrentProjectVersion)
-            print("현재 최신 버젼입니다.")
+        AppStoreCheck().latestVersion { marketingVersion in
+            DispatchQueue.main.async {
+                guard let marketingVersion = marketingVersion else {
+                    print("앱스토어 버전을 찾지 못했습니다.")
+                    return
+                }
+                
+                let currentProjectVersion = AppStoreCheck.appVersion ?? ""
+                let splitMarketingVersion = marketingVersion.split(separator: ".").map { $0 }
+                let splitCurrentProjectVersion = currentProjectVersion.split(separator: ".").map { $0 }
+
+                print(marketingVersion)
+                print(currentProjectVersion)
+                print(splitMarketingVersion)
+                print(splitCurrentProjectVersion)
+                
+                if splitCurrentProjectVersion.count > 0 && splitMarketingVersion.count > 0 {
+                    if splitCurrentProjectVersion[0] < splitMarketingVersion[0] {
+                        self.showUpdateAlert(version: marketingVersion)
+                    } else if splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
+                        self.showUpdateAlert(version: marketingVersion)
+                    } else {
+//                        print(marketingVersion)
+//                        print(currentProjectVersion)
+//                        print(splitMarketingVersion)
+//                        print(splitCurrentProjectVersion)
+                        print("현재 최신 버전입니다.")
+                    }
+                }
+            }
         }
     }
     

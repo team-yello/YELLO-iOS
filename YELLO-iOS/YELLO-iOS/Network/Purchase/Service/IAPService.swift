@@ -26,10 +26,11 @@ final class IAPService: NSObject, IAPServiceType {
     
     // App Store Connect에 등록된 productsID
     private let productIDs: Set<String>
-    // App Stroe Connect에 등록된 product 중 구매한 productsID
+    // App Store Connect에 등록된 product 중 구매한 productsID
     private var purchasedProductIDs: Set<String>
     private var productsRequest: SKProductsRequest?
     private var productsCompletion: ProductsRequestCompletion?
+    private var processedTransactionIDs: Set<String> = Set()
     
     // 구매 가능 여부
     var canMakePayments: Bool {
@@ -140,14 +141,19 @@ extension IAPService: SKPaymentTransactionObserver {
         
         let transactionID = transaction.transactionIdentifier ?? ""
         print("Transaction ID: \(transactionID)")
-        
-        self.purchasedProductIDs.insert(id)
-        UserDefaults.standard.set(true, forKey: id)
-        NotificationCenter.default.post(
-            name: .iapServicePurchaseNotification,
-            object: id,
-            userInfo: ["transactionID": transactionID] // transactionID를 userInfo에 추가
-        )
-        print("Notification delivered for product ID: \(id)")
+        // 중복 처리를 방지하기 위해 이미 처리한 트랜잭션인지 확인
+        if !processedTransactionIDs.contains(transactionID) {
+            // 중복 처리 방지를 위해 트랜잭션 ID를 추가
+            processedTransactionIDs.insert(transactionID)
+            
+            self.purchasedProductIDs.insert(id)
+            UserDefaults.standard.set(true, forKey: id)
+            NotificationCenter.default.post(
+                name: .iapServicePurchaseNotification,
+                object: id,
+                userInfo: ["transactionID": transactionID] // transactionID를 userInfo에 추가
+            )
+            print("Notification delivered for product ID: \(id)")
+        }
     }
 }
