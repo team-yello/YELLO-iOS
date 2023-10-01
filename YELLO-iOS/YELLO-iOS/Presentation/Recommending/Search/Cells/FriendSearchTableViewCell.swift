@@ -34,6 +34,7 @@ final class FriendSearchTableViewCell: UITableViewCell {
             updateAddButtonImage()
         }
     }
+    
     weak var handleSearchAddFriendButton: HandleSearchAddFriendButton?
     
     // MARK: - Function
@@ -98,7 +99,7 @@ extension FriendSearchTableViewCell {
         
         addButton.do {
             $0.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
-            $0.tintColor = .yellow
+            $0.tintColor = .yelloMain500
             $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         }
         
