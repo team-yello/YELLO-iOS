@@ -13,6 +13,7 @@ final class KakaoConnectView: BaseView {
     let subTitleLabel = UILabel()
     let imageView = UIImageView()
     let kakaoConnectButton = UIButton()
+    let privacyButton = UIButton()
     
     let stackView = UIStackView()
     
@@ -53,6 +54,14 @@ final class KakaoConnectView: BaseView {
             $0.makeCornerRound(radius: 8)
         }
         
+        privacyButton.do {
+            $0.setImage(ImageLiterals.OnBoarding.icAlertCircle, for: .normal)
+            $0.setTitle("개인정보처리방침", for: .normal)
+            $0.setTitleColor(.grayscales500, for: .normal)
+            $0.titleLabel?.font = .uiLabelLarge
+            $0.setUnderline()
+            $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 0)
+        }
     }
     
     override func setLayout() {
@@ -60,7 +69,8 @@ final class KakaoConnectView: BaseView {
         self.addSubviews(titleLabel,
                          subTitleLabel,
                          imageView,
-                         kakaoConnectButton)
+                         kakaoConnectButton,
+                        privacyButton)
         
         titleLabel.snp.makeConstraints {
             $0.bottom.equalTo(subTitleLabel.snp.top).offset(-8.adjustedHeight)
@@ -80,6 +90,11 @@ final class KakaoConnectView: BaseView {
             $0.height.equalTo(48.adjustedHeight)
             $0.bottom.equalToSuperview().inset(91.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+        }
+        
+        privacyButton.snp.makeConstraints {
+            $0.top.equalTo(kakaoConnectButton.snp.bottom).offset(18)
+            $0.centerX.equalToSuperview()
         }
     }
 }
