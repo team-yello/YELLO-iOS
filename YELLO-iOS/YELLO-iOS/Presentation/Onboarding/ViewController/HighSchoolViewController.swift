@@ -40,8 +40,8 @@ class HighSchoolViewController: OnboardingBaseViewController {
     
     // MARK: Layout Helpers
     override func setStyle() {
-        studentIdView.studentIdList = (1...10).map { "\($0)반" }
-        studentIdViewController.studentIdList = (1...10).map { "\($0)반" }
+        studentIdView.studentIdList = (1...20).map { "\($0)반" }
+        studentIdViewController.studentIdList = (1...20).map { "\($0)반" }
     }
     
     override func setLayout() {

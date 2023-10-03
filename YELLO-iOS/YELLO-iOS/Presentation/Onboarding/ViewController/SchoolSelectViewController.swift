@@ -35,6 +35,8 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     private func addTarget() {
         baseView.highSchoolButton.addTarget(self, action: #selector(setSchoolLevel(sender:)), for: .touchUpInside)
         baseView.univButton.addTarget(self, action: #selector(setSchoolLevel(sender:)), for: .touchUpInside)
+        baseView.highSchoolButton.checkButton.addTarget(self, action: #selector(setSchoolLevel(sender: )), for: .touchUpInside)
+        baseView.univButton.checkButton.addTarget(self, action: #selector(setSchoolLevel(sender: )), for: .touchUpInside)
     }
     
     @objc func setSchoolLevel(sender: YelloSelectButton) {
