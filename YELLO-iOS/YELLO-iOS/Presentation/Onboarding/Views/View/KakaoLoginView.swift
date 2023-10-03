@@ -98,7 +98,7 @@ class KakaoLoginView: BaseView {
         })
         
         privacyButton.snp.makeConstraints {
-            $0.top.equalTo(kakaoButton.snp.bottom).offset(18)
+            $0.top.equalTo(kakaoButton.snp.bottom).offset(18.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
      

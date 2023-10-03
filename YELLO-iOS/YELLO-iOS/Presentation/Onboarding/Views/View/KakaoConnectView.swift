@@ -93,7 +93,7 @@ final class KakaoConnectView: BaseView {
         }
         
         privacyButton.snp.makeConstraints {
-            $0.top.equalTo(kakaoConnectButton.snp.bottom).offset(18)
+            $0.top.equalTo(kakaoConnectButton.snp.bottom).offset(18.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
     }
