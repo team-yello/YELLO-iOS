@@ -30,6 +30,7 @@ class KakaoLoginViewController: UIViewController {
     // MARK: Custom Function
     func addTarget() {
         baseView.kakaoButton.addTarget(self, action: #selector(kakaoLoginButtonDidTap), for: .touchUpInside)
+        baseView.privacyButton.addTarget(self, action: #selector(privacyButtonDidTap), for: .touchUpInside)
     }
     
     func authNetwork(queryDTO: KakaoLoginRequestDTO) {
@@ -99,7 +100,7 @@ class KakaoLoginViewController: UIViewController {
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-
+                    
                     if isFirstTime() {
                         let rootViewController = PushSettingViewController()
                         sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
@@ -154,6 +155,11 @@ class KakaoLoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func privacyButtonDidTap() {
+        guard let url = URL(string: "https://yell0.notion.site/97f57eaed6c749bbb134c7e8dc81ab3f") else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
 }

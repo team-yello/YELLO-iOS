@@ -20,6 +20,7 @@ enum StringLiterals {
     }
     
     enum Onboarding {
+        static let privacyButtonText = "개인정보처리방침"
         static let selectHighText = "고등학생"
         static let selectUnivText = "대학생"
         static let selectFemaleText = "여자"
