@@ -110,7 +110,7 @@ extension OnboardingTarget: TargetType {
         case .postUserInfo:
             return "/auth/signup"
         case .getMajorList:
-            return "/auth/school/department"
+            return "/auth/group/univ/department"
         case .postFirendsList:
             return "/auth/friend"
         case .postRefreshToken:

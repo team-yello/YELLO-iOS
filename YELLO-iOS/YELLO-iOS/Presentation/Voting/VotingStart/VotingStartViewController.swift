@@ -189,6 +189,7 @@ final class VotingStartViewController: BaseViewController {
         let viewController = VotingViewController()
         viewController.votingList = loadVotingData() ?? []
         viewController.myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        Amplitude.instance().logEvent("click_vote_start")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
