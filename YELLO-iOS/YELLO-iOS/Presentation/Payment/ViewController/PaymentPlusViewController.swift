@@ -256,7 +256,6 @@ extension PaymentPlusViewController {
             verifySubscriptionPurchase(transactionID: transactionID)
             
         }
-        print("여기")
     }
     
     private func verifyConsumablePurchase(transactionID: String, productID: String) {

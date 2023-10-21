@@ -58,7 +58,7 @@ class FindMajorViewController: SearchBaseViewController {
     
     // MARK: Objc Function
     func searchMajor(_ word: String) {
-        let queryDTO: MajorSearchRequestQueryDTO = MajorSearchRequestQueryDTO(school: schoolName, keyword: word, page: pageCount)
+        let queryDTO: MajorSearchRequestQueryDTO = MajorSearchRequestQueryDTO(name: schoolName, keyword: word, page: pageCount)
         
         NetworkService.shared.onboardingService.getMajorList(queryDTO: queryDTO) { [weak self] result in
             switch result {

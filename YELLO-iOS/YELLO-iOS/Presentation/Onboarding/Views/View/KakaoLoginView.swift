@@ -56,7 +56,7 @@ class KakaoLoginView: BaseView {
         
         privacyButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icAlertCircle, for: .normal)
-            $0.setTitle("개인정보처리방침", for: .normal)
+            $0.setTitle(StringLiterals.Onboarding.privacyButtonText, for: .normal)
             $0.setTitleColor(.grayscales500, for: .normal)
             $0.titleLabel?.font = .uiLabelLarge
             $0.setUnderline()
@@ -98,7 +98,7 @@ class KakaoLoginView: BaseView {
         })
         
         privacyButton.snp.makeConstraints {
-            $0.top.equalTo(kakaoButton.snp.bottom).offset(18)
+            $0.top.equalTo(kakaoButton.snp.bottom).offset(18.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
      
