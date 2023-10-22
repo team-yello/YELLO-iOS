@@ -95,8 +95,6 @@ class KakaoLoginViewController: UIViewController {
                     UserDefaults.standard.setValue(true, forKey: "isLoggined")
                     
                     User.shared.isResigned = data.isResigned
-                    
-                    print("isResigned: \(User.shared.isResigned)")
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
@@ -108,7 +106,6 @@ class KakaoLoginViewController: UIViewController {
                         let rootViewController = TutorialViewController()
                         sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                     } else {
-                        // QA 깜빡이는 이슈 수정 부분
                         let rootViewController = YELLOTabBarController()
                         let status = UserDefaults.standard.integer(forKey: "status")
                         rootViewController.startStatus = status
@@ -126,6 +123,7 @@ class KakaoLoginViewController: UIViewController {
     
     // MARK: Objc Function
     @objc func kakaoLoginButtonDidTap() {
+        baseView.kakaoButton.isEnabled = false
         Amplitude.instance().logEvent("click_onboarding_kakao")
         /// 카카오톡 실행 가능 여부 확인
         /// isKakaoTalkLoginAvailable() : 카톡 설치 되어있으면 true
@@ -135,6 +133,7 @@ class KakaoLoginViewController: UIViewController {
                     print("🚩🚩\(error)")
                 } else {
                     print("----🚩카카오 톡으로 로그인 성공🚩----")
+                    self.baseView.kakaoButton.isEnabled = false
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
@@ -142,12 +141,13 @@ class KakaoLoginViewController: UIViewController {
                 }
             }
         } else {
-            // 카톡 없으면 -> 계정으로 로그인
+            /// 카톡 없으면 -> 계정으로 로그인
             UserApi.shared.loginWithKakaoAccount { (oauthToken, error) in
                 if let error = error {
                     print(error)
                 } else {
                     print("카카오 계정으로 로그인 성공")
+                    self.baseView.kakaoButton.isEnabled = false
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)

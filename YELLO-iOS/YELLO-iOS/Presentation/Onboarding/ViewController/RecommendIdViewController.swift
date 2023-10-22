@@ -53,6 +53,8 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     func addTarget() {
+        nextButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        skipButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         baseView.recommendIdTextField.textField.cancelButton.addTarget(self, action: #selector(idCancelTapped), for: .touchUpInside)
         baseView.recommendIdTextField.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
@@ -121,6 +123,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
                 setAcessToken(accessToken: data.accessToken)
                 setRefreshToken(refreshToken: data.refreshToken)
+                print("유저 토큰 저장 완료: acess \(KeychainHandler.shared.accessToken) \n refresh \(KeychainHandler.shared.refreshToken)")
                 setUsername(username: data.yelloID)
                 Amplitude.instance().logEvent("complete_onboarding_finish")
                 
@@ -139,9 +142,10 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 userProperties["user_recommend"] = User.shared.recommendId.isEmpty ? "yes" : "no"
                 userProperties["user_signup_date"] = formattedDate
                 Amplitude.instance().setUserProperties(userProperties)
-                
+                self.didPostUserInfo = true
             default:
                 self.isFail = true
+                self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
                 return
             }
         }
@@ -165,24 +169,24 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func didTapButton(sender: UIButton) {
-        
         if isFail {
-            view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
+            nextButton.isEnabled = true
+            skipButton.isEnabled = true
+            self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
             return
         }
         
-        super.didTapButton(sender: sender)
+        setUser()
+        postUserInfo()
+        if sender == skipButton {
+            User.shared.recommendId = ""
+            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
+        } else if sender == nextButton {
+            Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
+        }
         
-        if !didPostUserInfo {
-            didPostUserInfo = true
-            
-            if sender == skipButton {
-                User.shared.recommendId = ""
-                Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
-            } else if sender == nextButton {
-                Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
-            }
-            postUserInfo()
+        if didPostUserInfo && !isFail {
+            self.navigationController?.pushViewController(pushViewController, animated: false)
         }
     }
 }
