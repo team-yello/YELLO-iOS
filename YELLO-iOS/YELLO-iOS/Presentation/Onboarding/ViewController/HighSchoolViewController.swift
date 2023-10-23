@@ -7,18 +7,12 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
 class HighSchoolViewController: OnboardingBaseViewController {
     // MARK: - Variables
-    // MARK: Constants
-    let schoolSearchViewController = FindSchoolViewController()
-    let studentIdViewController = StudentIdViewController()
-    lazy var studentIdView = StudentIdView()
-    lazy var userViewController = UserInfoViewController()
-    let bottomSheetViewController = BaseBottomViewController()
-    
     // MARK: Property
     var isSelectLevel = false
     var highSchoolName = ""
@@ -28,6 +22,11 @@ class HighSchoolViewController: OnboardingBaseViewController {
     
     // MARK: Component
     let baseView = HighSchoolView()
+    let schoolSearchViewController = FindSchoolViewController()
+    let studentIdViewController = StudentIdViewController()
+    lazy var studentIdView = StudentIdView()
+    lazy var userViewController = UserInfoViewController()
+    let bottomSheetViewController = BaseBottomViewController()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -111,7 +110,12 @@ class HighSchoolViewController: OnboardingBaseViewController {
     
     override func setUser() {
         User.shared.groupId = groupId
-        User.shared.groupAdmissionYear = schoolLevel    }
+        User.shared.groupAdmissionYear = schoolLevel
+        var userProperties: [AnyHashable : Any] = [:]
+        userProperties["user_school"] = highSchoolName
+        userProperties["user_department"] = schoolLevel
+        Amplitude.instance().setUserProperties(userProperties)
+    }
     
     /// 학년 추출
     func extractNumbers(from text: String) -> Int {
