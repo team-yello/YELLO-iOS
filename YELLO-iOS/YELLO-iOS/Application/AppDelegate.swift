@@ -8,6 +8,7 @@
 import UIKit
 
 import Amplitude
+import Firebase
 import FirebaseCore
 import FirebaseMessaging
 import KakaoSDKCommon
