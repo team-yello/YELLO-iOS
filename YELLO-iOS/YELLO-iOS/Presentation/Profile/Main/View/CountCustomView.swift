@@ -10,36 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
-final class CountCustomView: UIView {
+final class CountCustomView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
     var countLabel = UILabel()
     var titleLabel = UILabel()
     
-    // MARK: - Function
-    // MARK: LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension CountCustomView {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         countLabel.do {
             $0.setTextWithLineHeight(text: "0", lineHeight: 30.adjustedHeight)
             $0.font = .uiHeadline02
@@ -51,10 +30,9 @@ extension CountCustomView {
             $0.font = .uiLabelMedium
             $0.textColor = .grayscales500
         }
-        
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(countLabel,
                         titleLabel)
         
