@@ -297,7 +297,7 @@ final class WithdrawalView: BaseView {
     }
     
     @objc private func keepButtonTapped() {
-        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal2"])
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button" : "withdrawal2"])
         handleKeepButtonDelegate?.keepButtonTapped()
     }
     

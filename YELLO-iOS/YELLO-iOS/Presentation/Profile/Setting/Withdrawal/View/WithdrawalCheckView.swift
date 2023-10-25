@@ -123,18 +123,14 @@ final class WithdrawalCheckView: BaseView {
     
     // MARK: Objc Function
     @objc func showAlert() {
-        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button" : "withdrawal3"])
         guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
         if let withdrawalAlertView = withdrawalAlertView {
             withdrawalAlertView.removeFromSuperview()
+            withdrawalAlertView.frame = viewController.view.bounds
+            withdrawalAlertView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            viewController.view.addSubview(withdrawalAlertView)
         }
-        
-        withdrawalAlertView = WithdrawalAlertView()
-        withdrawalAlertView?.frame = viewController.view.bounds
-        withdrawalAlertView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        viewController.view.addSubview(withdrawalAlertView!)
-        
     }
 }

@@ -40,14 +40,14 @@ final class WithdrawalAlertView: BaseView {
             $0.setTitle(StringLiterals.Profile.WithdrawalAlert.no, for: .normal)
             $0.setTitleColor(.grayscales600, for: .normal)
             $0.titleLabel?.font = .uiButton
-            $0.addTarget(self, action: #selector(noButtonClicked), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
         }
         
         yesButton.do {
             $0.setTitle(StringLiterals.Profile.WithdrawalAlert.yes, for: .normal)
             $0.setTitleColor(.semanticStatusRed500, for: .normal)
             $0.titleLabel?.font = .uiButton
-            $0.addTarget(self, action: #selector(yesButtonClicked), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(yesButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -89,12 +89,12 @@ final class WithdrawalAlertView: BaseView {
 extension WithdrawalAlertView {
     
     // MARK: Objc Function
-    @objc func noButtonClicked() {
+    @objc func noButtonTapped() {
         self.isHidden = true
         self.removeFromSuperview()
     }
     
-    @objc func yesButtonClicked() {
+    @objc func yesButtonTapped() {
         Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button": "withdrawal4"])
         NetworkService.shared.profileService.userDelete { result in
             switch result {
@@ -123,6 +123,5 @@ extension WithdrawalAlertView {
                 return
             }
         }
-        
     }
 }

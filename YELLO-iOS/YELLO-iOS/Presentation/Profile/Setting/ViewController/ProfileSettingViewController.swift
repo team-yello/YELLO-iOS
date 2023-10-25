@@ -27,10 +27,8 @@ final class ProfileSettingViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         tabBarController?.tabBar.isHidden = true
     }
-    
     
     // MARK: Layout Helpers
     override func setStyle() {
@@ -68,7 +66,6 @@ extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
     }
     
     @objc private func logoutButtonTapped() {
-        // 로그아웃 로직 구현
         Amplitude.instance().logEvent("click_profile_logout")
         UserApi.shared.logout {(error) in
             if let error = error {
@@ -84,7 +81,6 @@ extension ProfileSettingViewController: HandleWithdrawalButtonDelegate {
                 Amplitude.instance().logEvent("complete_profile_logout")
                 self.navigationController?.popToRootViewController(animated: true)
             }
-            
         }
     }
 }
