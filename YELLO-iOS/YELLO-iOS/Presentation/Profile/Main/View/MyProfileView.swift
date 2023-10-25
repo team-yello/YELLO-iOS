@@ -11,12 +11,11 @@ import Amplitude
 import SnapKit
 import Then
 
-final class MyProfileView: UIView {
+final class MyProfileView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
     let mainProfileView = UIView()
-    
     let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 48
         .adjusted, height: 48.adjusted))
     let profileStarGradientView = UIView(frame: CGRect(x: 0, y: 0, width: 344.adjusted, height: 6.adjustedHeight))
@@ -33,7 +32,6 @@ final class MyProfileView: UIView {
     private let addGroupButton = UIButton(frame: CGRect(x: 0, y: 0, width: 129.adjustedWidth, height: 48.adjustedHeight))
     lazy var shopButton = UIButton(frame: CGRect(x: 0, y: 0, width: 202.adjustedWidth, height: 44.adjustedHeight))
     let shopBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 206.adjustedWidth, height: 48.adjustedHeight))
-    
     let nameSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
     let schoolSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
     
@@ -44,29 +42,8 @@ final class MyProfileView: UIView {
         }
     }
     
-    // MARK: - Function
-    // MARK: LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension MyProfileView {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         
         mainProfileView.do {
             $0.backgroundColor = .grayscales900
@@ -171,11 +148,10 @@ extension MyProfileView {
             $0.makeCornerRound(radius: 2.adjustedHeight)
             $0.isHidden = true
         }
-        
         updateProfileView()
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(
             mainProfileView,
             profileStarGradientView,

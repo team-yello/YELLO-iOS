@@ -15,7 +15,7 @@ protocol NavigationBarViewDelegate: AnyObject {
     func settingButtonTapped()
 }
 
-final class NavigationBarView: UIView {
+final class NavigationBarView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
@@ -25,34 +25,8 @@ final class NavigationBarView: UIView {
     private let profileLabel = UILabel()
     lazy var settingButton = UIButton()
 
-    // MARK: - Function
-    // MARK: LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension NavigationBarView {
-    
-    // MARK: Objc Function
-    @objc private func settingButtonTapped() {
-        delegate?.settingButtonTapped()
-    }
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         self.backgroundColor = .black
         
         profileLabel.do {
@@ -69,15 +43,9 @@ extension NavigationBarView {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(profileLabel,
                         settingButton)
-        
-        let statusBarHeight = UIApplication.shared.connectedScenes
-                    .compactMap { $0 as? UIWindowScene }
-                    .first?
-                    .statusBarManager?
-                    .statusBarFrame.height ?? 20
         
         profileLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -90,5 +58,10 @@ extension NavigationBarView {
             $0.width.equalTo(33.adjustedWidth)
             $0.height.equalTo(28.adjustedHeight)
         }
+    }
+    
+    // MARK: Objc Function
+    @objc private func settingButtonTapped() {
+        delegate?.settingButtonTapped()
     }
 }

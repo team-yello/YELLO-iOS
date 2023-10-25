@@ -83,7 +83,6 @@ extension MyProfileHeaderView {
                 self.friendCountView.friendCountLabel.text = String(data.friendCount) + "명"
                 self.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
                 
-                
                 Amplitude.instance().setUserProperties(["user_friends": data.friendCount,
                                                         "user_message_received": data.yelloCount,
                                                         "user_name": data.name])

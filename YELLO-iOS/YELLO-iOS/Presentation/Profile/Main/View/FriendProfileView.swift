@@ -26,8 +26,6 @@ final class FriendProfileView: BaseView {
     // MARK: - Variables
     // MARK: Component
     weak var handleBottomSheetButtonDelegate: HandleBottomSheetButtonDelegate?
-    
-    //    var indexNumber: Int = -1
     weak var handleDeleteFriendButtonDelegate: HandleDeleteFriendButtonDelegate?
     
     private let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 72.adjusted, height: 72.adjusted))

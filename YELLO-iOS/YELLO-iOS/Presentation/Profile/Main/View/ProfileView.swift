@@ -16,7 +16,7 @@ protocol HandleFriendCellDelegate: AnyObject {
     func presentModal(index: Int)
 }
 
-final class ProfileView: UIView {
+final class ProfileView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
@@ -52,26 +52,10 @@ final class ProfileView: UIView {
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
         setDelegate()
     }
     
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension ProfileView {
-    
-    // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         self.backgroundColor = .black
         
         refreshControl.do {
@@ -105,7 +89,7 @@ extension ProfileView {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(navigationBarView,
                          myFriendTableView,
                          topButton)
