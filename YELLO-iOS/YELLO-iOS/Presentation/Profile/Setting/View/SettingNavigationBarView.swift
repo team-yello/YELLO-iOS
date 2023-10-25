@@ -15,7 +15,7 @@ protocol HandleBackButtonDelegate: AnyObject {
     func popView()
 }
 
-final class SettingNavigationBarView: UIView {
+final class SettingNavigationBarView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
@@ -24,30 +24,8 @@ final class SettingNavigationBarView: UIView {
     // MARK: Component
     lazy var backButton = UIButton()
     let titleLabel = UILabel()
-
-    // MARK: - Function
-    // MARK: LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
     
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension SettingNavigationBarView {
-    
-    // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         self.backgroundColor = .black
         
         titleLabel.do {
@@ -63,7 +41,7 @@ extension SettingNavigationBarView {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(backButton,
                          titleLabel)
         

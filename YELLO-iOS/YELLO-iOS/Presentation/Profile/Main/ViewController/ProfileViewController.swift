@@ -26,6 +26,11 @@ final class ProfileViewController: BaseViewController {
     
     // MARK: - Function
     // MARK: LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setDelegate()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Amplitude.instance().logEvent("view_profile")
@@ -40,15 +45,6 @@ final class ProfileViewController: BaseViewController {
         self.profileView.purchaseInfo()
         self.resetProfileView()
         self.paymentPlusViewController.getProducts()
-    }
-    
-    override func setStyle() {
-        view.backgroundColor = .black
-        profileView.navigationBarView.delegate = self
-        profileView.handleFriendCellDelegate = self
-        friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
-        bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
-        profileView.handleShopButton = self
     }
     
     override func setLayout() {
@@ -67,6 +63,14 @@ final class ProfileViewController: BaseViewController {
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
+    }
+    
+    func setDelegate() {
+        profileView.navigationBarView.delegate = self
+        profileView.handleFriendCellDelegate = self
+        friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
+        bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
+        profileView.handleShopButton = self
     }
     
     func resetProfileView() {

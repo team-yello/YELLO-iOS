@@ -34,8 +34,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        setStyle()
-        setLayout()
+        setUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +44,11 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: UI
+    
+    func setUI() {
+        setStyle()
+        setLayout()
+    }
     
     /// Attributes (속성) 설정 메서드
     func setStyle() {
