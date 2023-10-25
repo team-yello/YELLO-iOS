@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 // MARK: - Around
-final class AroundEmptyView: UIView {
+final class AroundEmptyView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
@@ -19,29 +19,8 @@ final class AroundEmptyView: UIView {
     private let aroundDescriptionLabel = UILabel()
     private let aroundImageView = UIImageView()
     
-    // MARK: - Function
-    // MARK: LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension AroundEmptyView {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         self.backgroundColor = .black
         
         aroundLabel.do {
@@ -63,7 +42,7 @@ extension AroundEmptyView {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubviews(
             aroundLabel,
             aroundDescriptionLabel,
@@ -91,6 +70,5 @@ extension AroundEmptyView {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview().offset(21.5.adjusted)
         }
-        
     }
 }

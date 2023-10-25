@@ -12,7 +12,7 @@ import SnapKit
 import Then
 
 // MARK: - Around
-final class AroundViewController: UIViewController {
+final class AroundViewController: BaseViewController {
 
     // MARK: - Variables
     // MARK: Component
@@ -20,35 +20,15 @@ final class AroundViewController: UIViewController {
 
     // MARK: - Function
     // MARK: LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUI()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Amplitude.instance().logEvent("view_timeline")
         aroundView.scrollCount = 0 
         self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.isHidden = true
     }
-    
-}
 
-// MARK: - extension
-extension AroundViewController {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
-        view.backgroundColor = .black
-    }
-    
-    private func setLayout() {
+    override func setLayout() {
         view.addSubviews(aroundView)
         
         let tabbarHeight = 60 + safeAreaBottomInset()
@@ -64,6 +44,5 @@ extension AroundViewController {
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
-        
     }
 }
