@@ -38,8 +38,8 @@ final class AroundView: BaseView {
     
     // MARK: Layout Helpers
     override func setUI() {
-        setStyle()
-        setLayout()
+        super.setUI()
+        setDelegate()
         updateView()
     }
     
@@ -63,8 +63,6 @@ final class AroundView: BaseView {
         aroundTableView.do {
             $0.register(AroundTableViewCell.self, forCellReuseIdentifier: AroundTableViewCell.identifier)
             $0.register(AroundSkeletonTableViewCell.self, forCellReuseIdentifier: AroundSkeletonTableViewCell.identifier)
-            $0.dataSource = self
-            $0.delegate = self
             $0.separatorStyle = .none
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
@@ -118,6 +116,11 @@ final class AroundView: BaseView {
         } else {
             self.aroundEmptyView.isHidden = true
         }
+    }
+    
+    func setDelegate() {
+        aroundTableView.dataSource = self
+        aroundTableView.delegate = self
     }
     
     // MARK: Objc Function

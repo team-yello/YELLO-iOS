@@ -39,7 +39,6 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8.adjustedHeight, right: 0))
     }
     
@@ -91,9 +90,6 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
     }
     
     private func setLayout() {
-        
-        // 데이터 어떻게 들어오는지에 따라서 변경 예정
-        //        let maxKeywordLength = votingList[VotingViewController.pushCount].keywordList.compactMap { $0.count }.max() ?? 0
         let keywordLength = (keywordLabel.text?.count ?? 0 * 14).adjusted + 28.adjusted
         
         contentView.addSubviews(genderImageView,
