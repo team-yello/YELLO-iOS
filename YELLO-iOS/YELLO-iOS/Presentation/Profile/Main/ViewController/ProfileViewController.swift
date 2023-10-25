@@ -22,7 +22,6 @@ final class ProfileViewController: BaseViewController {
     
     var isFinishPaging = false
     var isLoadingData = false
-    
     var pageCount = -1
     
     // MARK: - Function
@@ -35,7 +34,6 @@ final class ProfileViewController: BaseViewController {
                                                 "user_subscription": profileView.isYelloPlus ? "yes" : "no",
                                                 "user_ticket": profileView.ticketCount,
                                                 "user_name": profileView.myProfileHeaderView.myProfileView.nameLabel.text ?? ""])
-        self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.profileView.myProfileHeaderView.profileUser()
