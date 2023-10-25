@@ -197,6 +197,8 @@ final class AroundTableViewCell: UITableViewCell {
     
     // MARK: Custom Function
     func configureAroundCell(_ model: FriendVote) {
+        
+        /// 보낸 사람 성별에 따른 디자인
         if model.senderGender == "MALE" {
             self.genderImageView.image = ImageLiterals.MyYello.imgGenderMale
             self.genderLabel.text = StringLiterals.Around.male
@@ -209,13 +211,16 @@ final class AroundTableViewCell: UITableViewCell {
         
         self.receiverLabel.text = model.receiverName
         
+        /// 투표 첫번째 줄
         if model.vote.nameHead == nil {
             self.nameLabel.text = "너" + (model.vote.nameFoot ?? "")
         } else {
             self.nameLabel.text = (model.vote.nameHead ?? "") + " 너" + (model.vote.nameFoot ?? "")
         }
         
-        if model.vote.keywordHead == nil {
+        /// 투표 두번째 줄의 keywordHead에 아무것도 없을 때
+        if model.vote.keywordHead == nil || model.vote.keywordHead == "" {
+            /// 힌트 사용 여부에 따른 레이아웃 변경
             if model.isHintUsed == true {
                 self.keywordLabel.snp.remakeConstraints {
                     $0.top.equalTo(nameLabel.snp.bottom).offset(-1.adjustedHeight)
@@ -239,6 +244,7 @@ final class AroundTableViewCell: UITableViewCell {
                     $0.leading.equalTo(keywordView.snp.trailing).inset(-6.adjustedWidth)
                 }
             }
+            /// 투표 두번째 줄의 keywordHead가 있을 때
         } else {
             if model.isHintUsed == true {
                 keywordLabel.snp.remakeConstraints {
