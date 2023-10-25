@@ -1077,7 +1077,6 @@
 			isa = PBXGroup;
 			children = (
 				C3D2664A2A5D1F2D0041C7C7 /* Main */,
-				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
 				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
 			);
 			path = Profile;
@@ -1843,6 +1842,7 @@
 				C3D2663F2A5C75FA0041C7C7 /* ViewController */,
 				C3D2663E2A5C75EE0041C7C7 /* View */,
 				C31315A22A78E4B800FB8B43 /* Cell */,
+				C3E7A80B2AE8E00300C18F6F /* Model */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1873,6 +1873,14 @@
 				C3D266542A5D24540041C7C7 /* SettingCustomButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C3E7A80B2AE8E00300C18F6F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C3FF246D2A5D477400A97D40 /* Withdrawal */ = {
