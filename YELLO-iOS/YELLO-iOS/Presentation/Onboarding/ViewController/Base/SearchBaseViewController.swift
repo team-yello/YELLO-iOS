@@ -99,6 +99,6 @@ extension SearchBaseViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier) as! SearchResultTableViewCell
         cell.titleLabel.text = searchResult
         cell.selectionStyle = .none
-        return cell
+        return cell //????
     }
 }
