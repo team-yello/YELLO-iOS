@@ -42,8 +42,9 @@ class APIRequestLoader<T: TargetType> {
                 
                 let networkRequest = self.judgeStatus(by: statusCode, value, type: M.self)
                 completion(networkRequest)
-                
-                if (!KeychainHandler.shared.refreshToken.isEmpty || !KeychainHandler.shared.accessToken.isEmpty) && statusCode == 401 {
+                if KeychainHandler.shared.refreshToken.isEmpty || KeychainHandler.shared.accessToken.isEmpty {
+                    return
+                } else if statusCode == 401 {
                     print("유저 토큰 만료됨: acess \(KeychainHandler.shared.accessToken) \n refresh \(KeychainHandler.shared.refreshToken)")
                     self.interceptor.refreshToken { [weak self] isSuccess in
                         if isSuccess {
