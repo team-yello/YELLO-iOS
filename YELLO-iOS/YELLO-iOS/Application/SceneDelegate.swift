@@ -230,10 +230,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     print("앱스토어 버전을 찾지 못했습니다.")
                     return
                 }
-                
                 let currentProjectVersion = AppStoreCheck.appVersion ?? ""
-                let splitMarketingVersion = marketingVersion.split(separator: ".").map { $0 }
-                let splitCurrentProjectVersion = currentProjectVersion.split(separator: ".").map { $0 }
+                let splitMarketingVersion = marketingVersion.split(separator: ".").compactMap { Int($0) }
+                let splitCurrentProjectVersion = currentProjectVersion.split(separator: ".").compactMap { Int($0) }
+                
 
                 print(marketingVersion)
                 print(currentProjectVersion)
