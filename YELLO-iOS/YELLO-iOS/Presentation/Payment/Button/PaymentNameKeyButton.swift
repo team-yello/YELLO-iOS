@@ -85,15 +85,14 @@ final class PaymentNameKeyButton: UIButton {
         
         priceBeforeLabel.do {
             $0.font = .uiBody02
-            $0.textColor = .grayscales300
+            $0.textColor = .grayscales400
             $0.isUserInteractionEnabled = false
         }
         
         priceBeforeView.do {
-            $0.backgroundColor = .grayscales300
+            $0.backgroundColor = .grayscales400
             $0.isUserInteractionEnabled = false
         }
-        
     }
     
     private func setLayout() {
