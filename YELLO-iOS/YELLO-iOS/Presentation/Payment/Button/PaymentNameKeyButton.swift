@@ -80,21 +80,17 @@ final class PaymentNameKeyButton: UIButton {
             $0.textColor = .white
             $0.roundCorners(cornerRadius: 10.adjustedHeight, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMaxYCorner])
             $0.backgroundColor = .purpleSub800
-            $0.isHidden = true
             $0.isUserInteractionEnabled = false
         }
         
         priceBeforeLabel.do {
-            $0.text = StringLiterals.MyYello.Payment.nameKeyFivePriceBefore
             $0.font = .uiBody02
-            $0.textColor = .grayscales600
-            $0.isHidden = true
+            $0.textColor = .grayscales300
             $0.isUserInteractionEnabled = false
         }
         
         priceBeforeView.do {
-            $0.backgroundColor = .grayscales600
-            $0.isHidden = true
+            $0.backgroundColor = .grayscales300
             $0.isUserInteractionEnabled = false
         }
         
@@ -160,24 +156,20 @@ final class PaymentNameKeyButton: UIButton {
         case .one:
             nameKeyTitleLabel.text = StringLiterals.MyYello.Payment.nameKeyOne
             keyImageView.image = ImageLiterals.Payment.imgNameKeyOne
-            priceLabel.text = StringLiterals.MyYello.Payment.nameKeyOnePrice
+            priceLabel.text = StringLiterals.MyYello.Payment.nameKeyOneSalePrice
+            priceBeforeLabel.text = StringLiterals.MyYello.Payment.nameKeyOnePrice
             
         case .two:
             nameKeyTitleLabel.text = StringLiterals.MyYello.Payment.nameKeyTwo
             keyImageView.image = ImageLiterals.Payment.imgNameKeyTwo
-            priceLabel.text = StringLiterals.MyYello.Payment.nameKeyTwoPrice
+            priceLabel.text = StringLiterals.MyYello.Payment.nameKeyTwoSalePrice
+            priceBeforeLabel.text = StringLiterals.MyYello.Payment.nameKeyTwoPrice
 
         case .five:
             nameKeyTitleLabel.text = StringLiterals.MyYello.Payment.nameKeyFive
             keyImageView.image = ImageLiterals.Payment.imgNameKeyFive
             priceLabel.text = StringLiterals.MyYello.Payment.nameKeyFivePrice
-            discountLabel.isHidden = false
-            priceBeforeLabel.isHidden = false
-            priceBeforeView.isHidden = false
-
-        default:
-            return
-            
+            priceBeforeLabel.text = StringLiterals.MyYello.Payment.nameKeyFivePriceBefore
         }
     }
 }
