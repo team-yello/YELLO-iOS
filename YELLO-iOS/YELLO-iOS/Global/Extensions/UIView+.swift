@@ -120,15 +120,15 @@ extension UIView {
     }
     
     // 그라데이션 배경 적용
-    func applyGradientBackground(topColor: UIColor, bottomColor: UIColor) {
+    func applyGradientBackground(topColor: UIColor, bottomColor: UIColor, startPointX: Double = 0.0, startPointY: Double = 0.0, endPointX: Double = 1.0, endPointY: Double = 1.0) {
 
         removeGradientBackground()
 
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradientLayer.startPoint = CGPoint(x: startPointX, y: startPointY)
+        gradientLayer.endPoint = CGPoint(x: endPointX, y: endPointY)
         layer.insertSublayer(gradientLayer, at: 0)
        }
 

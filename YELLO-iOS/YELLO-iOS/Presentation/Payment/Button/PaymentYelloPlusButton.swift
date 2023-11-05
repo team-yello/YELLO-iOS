@@ -41,7 +41,7 @@ final class PaymentYelloPlusButton: UIButton {
     
     private func setStyle() {
         backgroundView.do {
-            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"), startPointY: 0.5, endPointY: 0.5)
             $0.makeCornerRound(radius: 8.adjustedHeight)
             $0.layer.cornerCurve = .continuous
             $0.isUserInteractionEnabled = false
