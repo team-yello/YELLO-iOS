@@ -189,7 +189,7 @@ enum StringLiterals {
             static let send = "님이 보냄"
             static let female = "익명의 여학생"
             static let male = "익명의 남학생"
-            static let instagram = "인스타그램 공유하기"
+            static let instagram = "스토리 공유하기"
             static let keywordButton = "100포인트로 키워드 확인하기"
             static let sendButton = "300포인트로 초성 1개 확인하기"
             static let plusSendButton = "0포인트로 초성 1개 확인하기"
