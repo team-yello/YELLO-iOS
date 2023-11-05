@@ -32,9 +32,9 @@ final class MyYelloDetailView: BaseView {
     var indexNumber: Int = -1
     var nameIndex: Int = -1
     
-    lazy var instagramButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60.adjusted, height: 60.adjusted))
+    lazy var instagramButton = InstagramButton(frame: CGRect(x: 0, y: 0, width: 60.adjusted, height: 60.adjusted))
     let instagramLabel = UILabel()
-    let instagramView = UIView()
+    lazy var instagramView = UIView()
     
     lazy var keywordButton = HintButton(state: .keyword)
     lazy var senderButton = MyYelloButton(state: .noTicket)
