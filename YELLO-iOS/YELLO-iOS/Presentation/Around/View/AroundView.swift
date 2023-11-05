@@ -61,7 +61,7 @@ final class AroundView: BaseView {
         }
         
         aroundTableView.do {
-            $0.register(AroundTableViewCell.self, forCellReuseIdentifier: AroundTableViewCell.identifier)
+            $0.register(TimeLineTableViewCell.self, forCellReuseIdentifier: TimeLineTableViewCell.identifier)
             $0.register(AroundSkeletonTableViewCell.self, forCellReuseIdentifier: AroundSkeletonTableViewCell.identifier)
             $0.dataSource = self
             $0.delegate = self
@@ -224,7 +224,7 @@ extension AroundView: UITableViewDataSource {
             cell.showShimmer()
             return cell
         } else {
-            guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: AroundTableViewCell.identifier, for: indexPath) as? AroundTableViewCell else { return UITableViewCell() }
+            guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: TimeLineTableViewCell.identifier, for: indexPath) as? TimeLineTableViewCell else { return UITableViewCell() }
             aroundCell.configureAroundCell(aroundModelDummy[indexPath.row])
             aroundCell.selectionStyle = .none
             return aroundCell
