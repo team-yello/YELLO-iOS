@@ -89,10 +89,10 @@ final class VotingStartViewController: BaseViewController {
         }
         
         originView.yellowButton.do {
-            $0.setTitle("START!", for: .normal)
+            $0.setTitle("쪽지 보내기", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
-            $0.titleLabel?.font = .uiVotingLabel
-            $0.makeCornerRound(radius: 30.adjusted)
+            $0.titleLabel?.font = .uiHeadline01
+            $0.makeCornerRound(radius: 33.adjusted)
         }
     }
     
@@ -159,9 +159,9 @@ final class VotingStartViewController: BaseViewController {
         }
         
         originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 80.adjustedHeight)
-            $0.width.equalTo(198.adjusted)
-            $0.height.equalTo(58.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 40.adjustedHeight)
+            $0.width.equalTo(315.adjusted)
+            $0.height.equalTo(66.adjusted)
         }
         
         multiplyByTwoImageView.snp.makeConstraints {
@@ -170,7 +170,7 @@ final class VotingStartViewController: BaseViewController {
         }
         
         multiplyByTwoStackView.snp.makeConstraints {
-            $0.top.equalTo(originView.yellowButton.snp.bottom).offset(16.adjustedHeight)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-70.adjusted)
             $0.centerX.equalToSuperview()
         }
         
