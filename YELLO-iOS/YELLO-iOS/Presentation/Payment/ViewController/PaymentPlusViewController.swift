@@ -269,17 +269,17 @@ extension PaymentPlusViewController {
         
         switch productID {
         case MyProducts.yelloPlusProductID:
-            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "subscribe", "buy_price": 3900])
-            identify.add("user_revenue", value: NSNumber(value: 3900))
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "subscribe", "buy_price": 2900])
+            identify.add("user_revenue", value: NSNumber(value: 2900))
         case MyProducts.nameKeyOneProductID:
-            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket1", "buy_price": 1400])
-            identify.add("user_revenue", value: NSNumber(value: 1400))
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket1", "buy_price": 990])
+            identify.add("user_revenue", value: NSNumber(value: 990))
         case MyProducts.nameKeyTwoProductID:
-            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket2", "buy_price": 2800])
-            identify.add("user_revenue", value: NSNumber(value: 2800))
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket2", "buy_price": 1900])
+            identify.add("user_revenue", value: NSNumber(value: 1900))
         case MyProducts.nameKeyFiveProductID:
-            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket5", "buy_price": 5900])
-            identify.add("user_revenue", value: NSNumber(value: 5900))
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket5", "buy_price": 3900])
+            identify.add("user_revenue", value: NSNumber(value: 3900))
         default:
             break
         }
