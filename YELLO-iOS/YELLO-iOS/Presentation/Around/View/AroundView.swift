@@ -164,7 +164,7 @@ final class AroundView: BaseView {
                 self.aroundCount = data.totalCount
                 
                 let friendVote = data.friendVotes.map { around in
-                    return FriendVote(id: around.id, receiverName: around.receiverName, senderGender: around.senderGender, vote: around.vote, isHintUsed: around.isHintUsed, createdAt: around.createdAt)
+                    return FriendVote(id: around.id, receiverName: around.receiverName, senderGender: around.senderGender, receiverProfileImage: around.receiverProfileImage, vote: around.vote, isHintUsed: around.isHintUsed, createdAt: around.createdAt)
                 }
                 
                 // 중복되는 모델 필터 처리

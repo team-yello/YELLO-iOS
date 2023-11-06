@@ -51,7 +51,7 @@ final class TimeLineTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        receiverProfileImageView.image = nil
+        receiverProfileImageView.image = nil
         genderLabel.text = nil
         receiverLabel.text = nil
         nameLabel.text = nil
@@ -216,6 +216,12 @@ final class TimeLineTableViewCell: UITableViewCell {
             self.genderLabel.text = StringLiterals.Around.receiveFemale
             self.genderLabel.textColor = .semanticGenderF500
             self.keywordLabel.textColor = .semanticGenderF300
+        }
+        
+        if model.receiverProfileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
+            self.receiverProfileImageView.kfSetImage(url: model.receiverProfileImage)
+        } else {
+            self.receiverProfileImageView.image = ImageLiterals.Profile.imgDefaultProfile
         }
         
         self.receiverLabel.text = model.receiverName
