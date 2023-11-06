@@ -22,6 +22,11 @@ final class MyYelloNavigationBarView: BaseView {
     let yelloNumberLabel = UILabel()
     let yelloCountLabel = UILabel()
     lazy var shopButton = UIButton(frame: CGRect(x: 0, y: 0, width: 67.adjustedWidth, height: 28.adjustedHeight))
+    
+    let saleView = UIView()
+    let saleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 8.adjustedWidth, height: 22.adjustedHeight))
+    let saleTriangle = UIImageView()
+    
     let shopBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 71.adjustedWidth, height: 32.adjustedHeight))
     let countSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 70.adjustedWidth, height: 16.adjustedHeight))
     
@@ -51,7 +56,7 @@ final class MyYelloNavigationBarView: BaseView {
         }
         
         shopBackgroundView.do {
-            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"), startPointY: 0.5, endPointY: 0.5)
             $0.makeCornerRound(radius: 16.adjustedHeight)
             $0.layer.cornerCurve = .continuous
         }
@@ -74,6 +79,20 @@ final class MyYelloNavigationBarView: BaseView {
             $0.makeCornerRound(radius: 2.adjustedHeight)
             $0.isHidden = true
         }
+        
+        saleLabel.do {
+            $0.backgroundColor = .purpleSub500
+            $0.text = StringLiterals.MyYello.NavigationBar.sale
+            $0.textColor = .white
+            $0.font = .uiBodyMedium
+            $0.makeCornerRound(radius: 4.adjustedHeight)
+            $0.textAlignment = .center
+        }
+        
+        saleTriangle.do {
+            $0.image = ImageLiterals.MyYello.icSalePolygon
+            $0.contentMode = .scaleAspectFill
+        }
     }
     
     override func setLayout() {
@@ -81,7 +100,11 @@ final class MyYelloNavigationBarView: BaseView {
                          shopBackgroundView,
                          yelloNumberLabel,
                          yelloCountLabel,
-                         countSkeletonLabel)
+                         countSkeletonLabel,
+                         saleView)
+        
+        saleView.addSubviews(saleLabel,
+                             saleTriangle)
         
         shopBackgroundView.addSubview(shopButton)
         
@@ -121,6 +144,24 @@ final class MyYelloNavigationBarView: BaseView {
         shopButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.trailing.bottom.top.equalToSuperview().inset(2.adjustedWidth)
+        }
+        
+        saleView.snp.makeConstraints {
+            $0.centerY.equalTo(shopBackgroundView)
+            $0.trailing.equalTo(shopBackgroundView.snp.leading).offset(-6.adjustedHeight)
+            $0.height.equalTo(22.adjustedHeight)
+            $0.width.equalTo(55.adjustedWidth)
+        }
+        
+        saleLabel.snp.makeConstraints {
+            $0.height.equalTo(22.adjustedHeight)
+            $0.width.equalTo(48.adjustedWidth)
+        }
+        
+        saleTriangle.snp.makeConstraints {
+            $0.width.height.equalTo(10.adjusted)
+            $0.centerY.equalTo(saleLabel)
+            $0.leading.equalTo(saleLabel.snp.trailing).offset(-3.adjustedWidth)
         }
     }
 }

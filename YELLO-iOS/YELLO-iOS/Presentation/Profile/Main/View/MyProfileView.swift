@@ -33,6 +33,7 @@ final class MyProfileView: UIView {
     private let addGroupButton = UIButton(frame: CGRect(x: 0, y: 0, width: 129.adjustedWidth, height: 48.adjustedHeight))
     lazy var shopButton = UIButton(frame: CGRect(x: 0, y: 0, width: 202.adjustedWidth, height: 44.adjustedHeight))
     let shopBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 206.adjustedWidth, height: 48.adjustedHeight))
+    let saleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 48.adjustedWidth, height: 22.adjustedHeight))
     
     let nameSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
     let schoolSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
@@ -81,7 +82,7 @@ extension MyProfileView {
         }
         
         profileStarGradientView.do {
-            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"), startPointY: 0.5, endPointY: 0.5)
             $0.layer.cornerCurve = .continuous
             $0.isHidden = true
         }
@@ -155,9 +156,18 @@ extension MyProfileView {
         }
         
         shopBackgroundView.do {
-            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"))
+            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"), startPointY: 0.5, endPointY: 0.5)
             $0.makeCornerRound(radius: 24.adjustedHeight)
             $0.layer.cornerCurve = .continuous
+        }
+        
+        saleLabel.do {
+            $0.backgroundColor = .purpleSub500
+            $0.text = StringLiterals.MyYello.NavigationBar.sale
+            $0.textColor = .white
+            $0.font = .uiBodyMedium
+            $0.makeCornerRound(radius: 4.adjustedHeight)
+            $0.textAlignment = .center
         }
         
         nameSkeletonLabel.do {
@@ -180,7 +190,8 @@ extension MyProfileView {
             mainProfileView,
             profileStarGradientView,
             addGroupButton,
-            shopBackgroundView)
+            shopBackgroundView,
+            saleLabel)
         
         mainProfileView.addSubviews(profileImageView,
                                     profileStarImageView,
@@ -286,6 +297,13 @@ extension MyProfileView {
             $0.leading.trailing.bottom.top.equalToSuperview().inset(2.adjustedWidth)
             $0.height.equalTo(44.adjustedHeight)
             $0.width.equalTo(202.adjustedWidth)
+        }
+        
+        saleLabel.snp.makeConstraints {
+            $0.height.equalTo(22.adjustedHeight)
+            $0.width.equalTo(48.adjustedWidth)
+            $0.trailing.equalTo(shopBackgroundView).inset(6.adjustedWidth)
+            $0.top.equalTo(mainProfileView.snp.bottom).offset(4.adjustedHeight)
         }
         
         nameSkeletonLabel.snp.makeConstraints {
