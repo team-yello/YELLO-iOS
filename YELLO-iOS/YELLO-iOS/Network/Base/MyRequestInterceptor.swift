@@ -47,9 +47,8 @@ final class MyRequestInterceptor: RequestInterceptor {
         }
     }
     
-    func refreshToken(completion: @escaping (Bool) -> Void) {
+    func refresh() {
         print("재발급 출발")
-        
         if retryCount < maxRetryCount {
             
             NetworkService.shared.onboardingService.postRefreshToken() { result in
@@ -60,7 +59,6 @@ final class MyRequestInterceptor: RequestInterceptor {
                         KeychainHandler.shared.refreshToken = decodedData.refreshToken
                         KeychainHandler.shared.accessToken = decodedData.accessToken
                         self.isrefreshed = true
-                        completion(true)
                         return
                     } else if data.status == 403 {
                         if data.message.contains("재로그인") {
@@ -75,21 +73,48 @@ final class MyRequestInterceptor: RequestInterceptor {
         self.retryCount += 1
     }
     
+    func refreshToken(completion: @escaping (Bool) -> Void) {
+        print("재발급 출발")
+        
+        NetworkService.shared.onboardingService.postRefreshToken() { result in
+            switch result {
+            case .success(let data):
+                if data.status == 403 {
+                    completion(false)
+                    self.logout()
+                }
+                if data.status == 201 {
+                    guard let data = data.data else { return }
+                    KeychainHandler.shared.refreshToken = data.refreshToken
+                    KeychainHandler.shared.accessToken = data.accessToken
+                    self.isrefreshed = true
+                    completion(true)
+                    return
+                }
+                
+            default:
+                completion(false)
+                self.logout()
+            }
+        }
+        self.retryCount += 1
+    }
+    
     func logout() {
         UserApi.shared.logout {(error) in
             if let error = error {
-                print(error)
+                print("kakao ERROR: \(error)")
             } else {
-                print("logout() success.")
-                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                
-                User.shared.isResigned = false
-                User.shared.isFirstUser = false
-                
-                UserDefaults.standard.removeObject(forKey: "isLoggined")
-                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
                 
             }
+            print("logout() success.")
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+            
+            User.shared.isResigned = false
+            User.shared.isFirstUser = false
+            
+            UserDefaults.standard.removeObject(forKey: "isLoggined")
+            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
             
         }
     }
