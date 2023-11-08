@@ -89,9 +89,9 @@ final class VotingStartViewController: BaseViewController {
         }
         
         originView.yellowButton.do {
-            $0.setTitle("쪽지 보내기", for: .normal)
+            $0.setTitle("START!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
-            $0.titleLabel?.font = .uiHeadline01
+            $0.titleLabel?.font = .uiTimeLabel
             $0.makeCornerRound(radius: 33.adjusted)
         }
     }
