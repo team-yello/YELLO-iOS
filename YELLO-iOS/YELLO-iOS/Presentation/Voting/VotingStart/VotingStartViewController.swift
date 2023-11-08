@@ -205,12 +205,13 @@ final class VotingStartViewController: BaseViewController {
         viewController.myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         Amplitude.instance().logEvent("click_vote_start")
         
+        // 버튼의 높이 늘림
         self.originView.yellowButton.snp.updateConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 40.adjustedHeight)
             $0.height.equalTo(66.adjusted)
         }
         self.view.layoutIfNeeded()
-        // 0.3초 후에 버튼의 높이를 다시 줄임
+        // 0.5초 후에 버튼의 높이를 다시 줄임
         UIView.animate(withDuration: 0.5, animations: {
             self.originView.yellowButton.snp.updateConstraints {
                 $0.bottom.equalTo(self.view.safeAreaInsets.bottom).inset(tabBarHeight + 45.adjustedHeight)
