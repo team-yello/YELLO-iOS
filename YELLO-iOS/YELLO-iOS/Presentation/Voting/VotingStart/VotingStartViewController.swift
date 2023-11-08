@@ -22,6 +22,7 @@ final class VotingStartViewController: BaseViewController {
     let multiplyByTwoText = UILabel()
     let multiplyByTwoImageView = UIImageView()
     let multiplyByTwoStackView = UIStackView()
+    private let buttonShadow = UIView()
     private let status = 1
         
     override func viewDidLoad() {
@@ -92,6 +93,11 @@ final class VotingStartViewController: BaseViewController {
             $0.setTitle("START!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
             $0.titleLabel?.font = .uiTimeLabel
+            $0.makeCornerRound(radius: 31.adjusted)
+        }
+        
+        buttonShadow.do {
+            $0.backgroundColor = UIColor(hex: "D1D412", alpha: 1)
             $0.makeCornerRound(radius: 33.adjusted)
         }
     }
@@ -108,7 +114,7 @@ final class VotingStartViewController: BaseViewController {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
         
-        view.addSubviews(originView, multiplyByTwoStackView, speechBubbleBackground)
+        view.addSubviews(originView, multiplyByTwoStackView, speechBubbleBackground, buttonShadow)
         speechBubbleBackground.addSubview(speechBubbleText)
 
         originView.snp.makeConstraints {
@@ -149,7 +155,7 @@ final class VotingStartViewController: BaseViewController {
         speechBubbleBackground.snp.makeConstraints {
             $0.width.equalTo(238.adjusted)
             $0.height.equalTo(42.adjusted)
-            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-11.adjustedHeight)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-10.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
@@ -159,9 +165,16 @@ final class VotingStartViewController: BaseViewController {
         }
         
         originView.yellowButton.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 45.adjustedHeight)
+            $0.width.equalTo(315.adjusted)
+            $0.height.equalTo(61.adjusted)
+        }
+        
+        buttonShadow.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 40.adjustedHeight)
             $0.width.equalTo(315.adjusted)
             $0.height.equalTo(66.adjusted)
+            $0.centerX.equalToSuperview()
         }
         
         multiplyByTwoImageView.snp.makeConstraints {
@@ -186,13 +199,28 @@ final class VotingStartViewController: BaseViewController {
     
     @objc
     func yellowButtonClicked() {
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let viewController = VotingViewController()
         viewController.votingList = loadVotingData() ?? []
         viewController.myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         Amplitude.instance().logEvent("click_vote_start")
-        self.navigationController?.pushViewController(viewController, animated: true)
+        
+        self.originView.yellowButton.snp.updateConstraints {
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 40.adjustedHeight)
+            $0.height.equalTo(66.adjusted)
+        }
+        self.view.layoutIfNeeded()
+        // 0.3초 후에 버튼의 높이를 다시 줄임
+        UIView.animate(withDuration: 0.5, animations: {
+            self.originView.yellowButton.snp.updateConstraints {
+                $0.bottom.equalTo(self.view.safeAreaInsets.bottom).inset(tabBarHeight + 45.adjustedHeight)
+                $0.height.equalTo(61.adjusted)
+            }
+            self.view.layoutIfNeeded()
+        }) { _ in
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
-    
 }
 
 extension VotingStartViewController {
@@ -317,6 +345,7 @@ extension VotingStartViewController {
         
         animationView.play()
         view.addSubview(animationView)
+        view.bringSubviewToFront(buttonShadow)
         view.bringSubviewToFront(originView)
         view.bringSubviewToFront(speechBubbleBackground)
         view.bringSubviewToFront(multiplyByTwoStackView)
