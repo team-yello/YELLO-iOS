@@ -18,10 +18,7 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
     
     // MARK: Component
     let genderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20.adjusted, height: 20.adjusted))
-    let receiverStackView = UIStackView()
     let genderLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 36.adjustedWidth, height: 13.adjustedHeight))
-    let polygonImageView = UIImageView()
-    let receiverLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 36.adjustedWidth, height: 13.adjustedHeight))
     let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 149.adjustedWidth, height: 16.adjustedHeight))
     let keywordLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 231.adjustedWidth, height: 16.adjustedHeight))
     
@@ -56,25 +53,10 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
         
         genderImageView.do {
             $0.backgroundColor = .grayscales600
-            $0.makeCornerRound(radius: 10.adjusted)
-        }
-        
-        receiverStackView.do {
-            $0.axis = .horizontal
-            $0.alignment = .center
-            $0.spacing = 4
+            $0.makeCornerRound(radius: 14.adjusted)
         }
         
         genderLabel.do {
-            $0.backgroundColor = .grayscales700
-            $0.makeCornerRound(radius: 2.adjustedHeight)
-        }
-        
-        polygonImageView.do {
-            $0.image = ImageLiterals.Around.icPolygon
-        }
-        
-        receiverLabel.do {
             $0.backgroundColor = .grayscales700
             $0.makeCornerRound(radius: 2.adjustedHeight)
         }
@@ -97,48 +79,38 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
         let keywordLength = (keywordLabel.text?.count ?? 0 * 14).adjusted + 28.adjusted
         
         contentView.addSubviews(genderImageView,
-                                receiverStackView,
+                                genderLabel,
                                 nameLabel,
                                 keywordLabel)
-        
-        receiverStackView.addArrangedSubviews(genderLabel, polygonImageView, receiverLabel)
-        
+                
         contentView.snp.makeConstraints {
             $0.width.equalTo(343.adjustedWidth)
             $0.height.equalTo(108.adjustedHeight)
         }
         
         genderImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16.adjustedHeight)
+            $0.top.equalToSuperview().inset(12.adjustedHeight)
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
-            $0.width.height.equalTo(20.adjusted)
+            $0.width.height.equalTo(28.adjusted)
         }
         
         genderLabel.snp.makeConstraints {
             $0.width.equalTo(36.adjustedWidth)
             $0.height.equalTo(13.adjustedHeight)
-        }
-        
-        receiverLabel.snp.makeConstraints {
-            $0.width.equalTo(36.adjustedWidth)
-            $0.height.equalTo(13.adjustedHeight)
-        }
-        
-        receiverStackView.snp.makeConstraints {
             $0.leading.equalTo(genderImageView.snp.trailing).inset(-8.adjustedWidth)
             $0.centerY.equalTo(genderImageView)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(receiverStackView.snp.bottom).offset(14.adjustedHeight)
-            $0.leading.equalTo(receiverStackView)
+            $0.top.equalTo(genderLabel.snp.bottom).offset(14.adjustedHeight)
+            $0.leading.equalTo(genderLabel)
             $0.height.equalTo(16.adjustedHeight)
             $0.width.equalTo(149.adjustedWidth)
         }
         
         keywordLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(6.adjustedHeight)
-            $0.leading.equalTo(receiverStackView)
+            $0.leading.equalTo(genderLabel)
             $0.height.equalTo(16.adjustedHeight)
             $0.width.equalTo(231.adjustedWidth)
         }
@@ -149,7 +121,6 @@ extension AroundSkeletonTableViewCell {
     func showShimmer() {
         self.genderImageView.animateShimmer()
         self.genderLabel.animateShimmer()
-        self.receiverLabel.animateShimmer()
         self.nameLabel.animateShimmer()
         self.keywordLabel.animateShimmer()
     }

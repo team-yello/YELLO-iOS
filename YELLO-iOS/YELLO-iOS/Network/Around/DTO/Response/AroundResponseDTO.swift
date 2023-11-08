@@ -16,7 +16,7 @@ struct AroundResponseDTO: Codable {
 // MARK: - FriendVote
 struct FriendVote: Codable {
     let id: Int
-    let receiverName, senderGender: String
+    let receiverName, senderGender, receiverProfileImage: String
     let vote: Vote
     let isHintUsed: Bool
     let createdAt: String
