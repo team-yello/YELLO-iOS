@@ -32,6 +32,7 @@ class KakaoConnectViewController: UIViewController {
     
     func addTarget() {
         baseView.kakaoConnectButton.addTarget(self, action: #selector(connectButtonDidTap), for: .touchUpInside)
+        baseView.privacyButton.addTarget(self, action: #selector(privacyButtonDidTap), for: .touchUpInside)
     }
     
     @objc func connectButtonDidTap() {
@@ -46,10 +47,15 @@ class KakaoConnectViewController: UIViewController {
                     allFriends.append(String(id))
                 })
                 User.shared.kakaoFriends = allFriends
-                self.navigationController?.pushViewController(UniversityViewController(), animated: true)
+                self.navigationController?.pushViewController(SchoolSelectViewController(), animated: true)
             }
         }
         
+    }
+    
+    @objc func privacyButtonDidTap() {
+        guard let url = URL(string: "https://yell0.notion.site/97f57eaed6c749bbb134c7e8dc81ab3f") else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
 }

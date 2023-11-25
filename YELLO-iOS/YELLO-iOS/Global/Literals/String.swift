@@ -20,6 +20,7 @@ enum StringLiterals {
     }
     
     enum Onboarding {
+        static let privacyButtonText = "개인정보처리방침"
         static let selectHighText = "고등학생"
         static let selectUnivText = "대학생"
         static let selectFemaleText = "여자"
@@ -120,6 +121,9 @@ enum StringLiterals {
         static let aroundDescription = "아직 구현되지 않은 기능이에요.\n조금만 기다려주세요!"
         static let female = "여학생"
         static let male = "남학생"
+        static let receiveFemale = "여학생에게 받음"
+        static let receiveMale = "남학생에게 받음"
+        
     }
     
     enum Voting {
@@ -148,6 +152,11 @@ enum StringLiterals {
             static let skip = "한 번 선택하면 건너뛸 수 없어요."
             static let cancel = "한 번 선택하면 취소할 수 없어요."
             static let suffle = "이름을 선택하면 셔플을 사용할 수 없어요."
+            static let moreFriend = "4명 이상의 친구를 가지면 선택지가 채워져요."
+        }
+        
+        enum Vote {
+            static let plusFriend = "친구를 추가해주세요!"
         }
         
         enum Point {
@@ -166,6 +175,7 @@ enum StringLiterals {
             static let myYello = "내 쪽지"
             static let yelloNumber = "받은 쪽지"
             static let shop = "상점"
+            static let sale = "SALE"
         }
         
         enum Empty {
@@ -187,7 +197,7 @@ enum StringLiterals {
             static let send = "님이 보냄"
             static let female = "익명의 여학생"
             static let male = "익명의 남학생"
-            static let instagram = "인스타그램 공유하기"
+            static let instagram = "스토리 공유하기"
             static let keywordButton = "100포인트로 키워드 확인하기"
             static let sendButton = "300포인트로 초성 1개 확인하기"
             static let plusSendButton = "0포인트로 초성 1개 확인하기"
@@ -230,19 +240,22 @@ enum StringLiterals {
             static let yelloPlusTitle = "옐로플러스의 특별한 혜택은?"
             static let subscribing = "옐로플러스 구독 중"
             static let yelloPlusSubscribe = "옐로플러스 구독하기"
-            static let discount50Percent = "(50%할인)"
+            static let discount50Percent = "(63%할인)"
             static let yelloPlusPriceBefore = "7900원"
-            static let yelloPlusPrice = "3900원"
+            static let yelloPlusPrice = "2900원"
             static let forWeek = "/주"
             
+            static let sale = "SALE!"
             static let nameKeyOne = "이름 열람권 1개"
             static let nameKeyOnePrice = "1400원"
+            static let nameKeyOneSalePrice = "990원"
             static let nameKeyTwo = "이름 열람권 2개"
             static let nameKeyTwoPrice = "2800원"
+            static let nameKeyTwoSalePrice = "1900원"
             static let nameKeyFive = "이름 열람권 5개"
             static let discount = "   할인!"
             static let nameKeyFivePriceBefore = "7000원"
-            static let nameKeyFivePrice = "5900원"
+            static let nameKeyFivePrice = "3900원"
             
             static let paymentAlertPlusTitle = "구독권을 얻었어요!"
             static let paymentAlertPlusDescription = "옐로플러스의 특별한 혜택을 마음껏 즐겨보세요."

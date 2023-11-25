@@ -18,6 +18,8 @@ protocol OnboardingServiceProtocol {
     func postJoinedFriends(queryDTO: JoinedFriendsRequestQueryDTO, requestDTO: JoinedFriendsRequestDTO, completion: @escaping (NetworkResult<BaseResponse<JoinedFriendsResponseDTO>>) -> Void)
     func postRefreshToken(completion: @escaping (NetworkResult<BaseResponse<TokenRefreshResponseDTO>>) -> Void)
     func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void)
+    func getHighSchoolList(queryDTO: HighSchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolSearchResponseDTO>>) -> Void)
+    func getHighSchoolClass(queryDTO: HighSchoolClassRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolClassResponseDTO>>) -> Void)
     
 }
 
@@ -53,6 +55,14 @@ final class OnboardingService: APIRequestLoader<OnboardingTarget>, OnboardingSer
     
     func putRefreshDeviceToken(requsetDTO: DeviceTokenRefreshRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String>>) -> Void) {
         fetchData(target: .putDeviceToken(requsetDTO), responseData: BaseResponse.self, completion: completion)
+    }
+    
+    func getHighSchoolList(queryDTO: HighSchoolSearchRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolSearchResponseDTO>>) -> Void) {
+        fetchData(target: .getHighschoolList(queryDTO), responseData: BaseResponse<HighSchoolSearchResponseDTO>.self, completion: completion)
+    }
+    
+    func getHighSchoolClass(queryDTO: HighSchoolClassRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<HighSchoolClassResponseDTO>>) -> Void) {
+        fetchData(target: .getHighschoolClass(queryDTO), responseData: BaseResponse<HighSchoolClassResponseDTO>.self, completion: completion)
     }
     
 }

@@ -7,24 +7,26 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
 class HighSchoolViewController: OnboardingBaseViewController {
     // MARK: - Variables
-    // MARK: Constants
+    // MARK: Property
+    var isSelectLevel = false
+    var highSchoolName = ""
+    var schoolLevel = 0
+    var schoolClass = 0
+    var groupId = 0
+    
+    // MARK: Component
+    let baseView = HighSchoolView()
     let schoolSearchViewController = FindSchoolViewController()
     let studentIdViewController = StudentIdViewController()
     lazy var studentIdView = StudentIdView()
     lazy var userViewController = UserInfoViewController()
-    lazy var genderViewController = GenderViewController()
     let bottomSheetViewController = BaseBottomViewController()
-    
-    // MARK: Property
-    var isSelectLevel = false
-    
-    // MARK: Component
-    let baseView = HighSchoolView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -37,13 +39,13 @@ class HighSchoolViewController: OnboardingBaseViewController {
     
     // MARK: Layout Helpers
     override func setStyle() {
-        studentIdView.studentIdList = (1...10).map { "\($0)반" }
-        studentIdViewController.studentIdList = (1...10).map { "\($0)반" }
+        studentIdView.studentIdList = (1...20).map { "\($0)반" }
+        studentIdViewController.studentIdList = (1...20).map { "\($0)반" }
     }
     
     override func setLayout() {
         view.addSubview(baseView)
-        nextViewController = genderViewController
+        nextViewController = userViewController
         baseView.snp.makeConstraints {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(4.adjustedHeight)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -82,20 +84,45 @@ class HighSchoolViewController: OnboardingBaseViewController {
         }
     }
     
+    func getSchoolClass(keyword: String) {
+        let queryDTO = HighSchoolClassRequestQueryDTO(name: self.highSchoolName, keyword: keyword)
+        NetworkService.shared.onboardingService.getHighSchoolClass(queryDTO: queryDTO) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self.groupId = data.groupId
+            default:
+                print("network Error")
+            }
+        }
+    }
+    
     func checkButtonEnable() {
         let schoolText = baseView.schoolSearchTextField.text ?? ""
         let studentIDText = baseView.classSearchTextField.text ?? ""
         
         let isSchoolTextFilled = !schoolText.isEmpty
         let isStudentIDTextFilled = !studentIDText.isEmpty
-        
         let isButtonEnabled = isSchoolTextFilled && isStudentIDTextFilled && self.isSelectLevel
         
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
     
     override func setUser() {
-        //고등학교 정보 저장
+        User.shared.groupId = groupId
+        User.shared.groupAdmissionYear = schoolLevel
+        var userProperties: [AnyHashable : Any] = [:]
+        userProperties["user_school"] = highSchoolName
+        userProperties["user_department"] = schoolLevel
+        Amplitude.instance().setUserProperties(userProperties)
+    }
+    
+    /// 학년 추출
+    func extractNumbers(from text: String) -> Int {
+        let numberCharacterSet = CharacterSet.decimalDigits
+        let numbers = Int(text.components(separatedBy: numberCharacterSet.inverted).joined()) ??
+        0
+        return numbers
     }
     
     // MARK: Objc Function
@@ -108,10 +135,12 @@ class HighSchoolViewController: OnboardingBaseViewController {
                 button.makeBorder(width: 1, color: .grayscales700)
             }
         }
-        
         isSelectLevel = true
+        guard let buttonTitleLabel = sender.titleLabel else { return }
+        self.schoolLevel = extractNumbers(from: buttonTitleLabel.text ?? "")
     }
 
+    
 }
 
 extension HighSchoolViewController: UITextFieldDelegate {
@@ -120,8 +149,10 @@ extension HighSchoolViewController: UITextFieldDelegate {
         switch textField {
         case baseView.schoolSearchTextField:
             let nextViewController = FindSchoolViewController()
+            nextViewController.isHighSchool = true
             nextViewController.delegate = self
             self.present(nextViewController, animated: true)
+            baseView.classSearchTextField.text = ""
         case baseView.classSearchTextField:
             textField.resignFirstResponder()
             classModalPresent()
@@ -139,6 +170,7 @@ extension HighSchoolViewController: UITextFieldDelegate {
 extension HighSchoolViewController: SearchResultTableViewSelectDelegate {
     func didSelectSchoolResult(_ result: String) {
         baseView.schoolSearchTextField.text = result
+        self.highSchoolName = result
         checkButtonEnable()
     }
 }
@@ -146,6 +178,7 @@ extension HighSchoolViewController: SearchResultTableViewSelectDelegate {
 extension HighSchoolViewController: SelectStudentIdDelegate {
     func didSelectStudentId(_ result: Int) {
         baseView.classSearchTextField.text = "\(result)반"
+        getSchoolClass(keyword: String(result))
         checkButtonEnable()
     }
 }

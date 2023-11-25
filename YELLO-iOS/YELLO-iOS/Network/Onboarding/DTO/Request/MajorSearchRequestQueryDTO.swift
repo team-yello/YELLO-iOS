@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - MajorSearchRequestQueryDTO
 struct MajorSearchRequestQueryDTO: Codable {
-    let school: String
+    let name: String
     let keyword: String
     let page: Int
 }

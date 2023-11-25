@@ -39,10 +39,13 @@ class APIRequestLoader<T: TargetType> {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let value = response.value else { return }
+                
                 let networkRequest = self.judgeStatus(by: statusCode, value, type: M.self)
                 completion(networkRequest)
-                
-                if statusCode == 401 {
+                if KeychainHandler.shared.refreshToken.isEmpty || KeychainHandler.shared.accessToken.isEmpty {
+                    return
+                } else if statusCode == 401 {
+                    print("유저 토큰 만료됨: acess \(KeychainHandler.shared.accessToken) \n refresh \(KeychainHandler.shared.refreshToken)")
                     self.interceptor.refreshToken { [weak self] isSuccess in
                         if isSuccess {
                             // 토큰 갱신 성공하면 다시 fetchData를 호출하여 재시도

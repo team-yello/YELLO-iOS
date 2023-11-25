@@ -18,6 +18,8 @@ enum OnboardingTarget {
     case postUserInfo(_ dto: SignUpRequestDTO ) /// 회원가입
     case postRefreshToken
     case putDeviceToken(_ dto: DeviceTokenRefreshRequestDTO)
+    case getHighschoolList(_ dto: HighSchoolSearchRequestQueryDTO)
+    case getHighschoolClass(_ dto: HighSchoolClassRequestQueryDTO)
 }
 
 extension OnboardingTarget: TargetType {
@@ -39,6 +41,10 @@ extension OnboardingTarget: TargetType {
             return .authorization
         case .putDeviceToken:
             return .authorization
+        case .getHighschoolList:
+            return .unauthorization
+        case .getHighschoolClass:
+            return .unauthorization
         }
     }
     
@@ -59,6 +65,10 @@ extension OnboardingTarget: TargetType {
         case .postRefreshToken:
             return .refreshToken
         case .putDeviceToken:
+            return .plain
+        case .getHighschoolList:
+            return .plain
+        case .getHighschoolClass:
             return .plain
         }
     }
@@ -81,6 +91,11 @@ extension OnboardingTarget: TargetType {
             return .post
         case .putDeviceToken:
             return .put
+        case .getHighschoolList:
+            return .get
+        case .getHighschoolClass:
+            return .get
+            
         }
     }
     
@@ -89,19 +104,23 @@ extension OnboardingTarget: TargetType {
         case .postTokenChange:
             return "/auth/oauth"
         case .getSchoolList:
-            return "/auth/school"
+            return "/auth/group/univ/name"
         case .getCheckDuplicate:
             return "/auth/valid"
         case .postUserInfo:
             return "/auth/signup"
         case .getMajorList:
-            return "/auth/school/department"
+            return "/auth/group/univ/department"
         case .postFirendsList:
             return "/auth/friend"
         case .postRefreshToken:
             return "/auth/token/issue"
         case .putDeviceToken:
             return "/user/device"
+        case .getHighschoolList:
+            return "/auth/group/high/name"
+        case .getHighschoolClass:
+            return "/auth/group/high/class"
         }
     }
     
@@ -123,6 +142,10 @@ extension OnboardingTarget: TargetType {
             return .requestPlain
         case .putDeviceToken(let dto):
             return .requestWithBody(dto)
+        case .getHighschoolList(let dto):
+            return .requestQuery(dto)
+        case .getHighschoolClass(let dto):
+            return .requestQuery(dto)
         }
     }
 }

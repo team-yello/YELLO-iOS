@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = splashViewController
         
         self.window?.makeKeyAndVisible()
+        self.checkAndUpdateIfNeeded()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.3) {
             guard let notificationResponse = connectionOptions.notificationResponse else {
@@ -119,7 +120,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         myYelloDetailViewController.myYelloDetailView.detailSenderView.isHidden = false
                         myYelloDetailViewController.myYelloDetailView.detailKeywordView.isHidden = false
                         myYelloDetailViewController.myYelloDetailView.genderLabel.isHidden = false
-                        myYelloDetailViewController.myYelloDetailView.instagramButton.isHidden = false
+                        myYelloDetailViewController.myYelloDetailView.instagramView.isHidden = false
                         myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = false
                         myYelloDetailViewController.myYelloDetailView.senderButton.isHidden = false
                         myYelloDetailViewController.setBackgroundView()
@@ -160,7 +161,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = true
                             myYelloDetailViewController.myYelloDetailView.haveTicket = false
                             myYelloDetailViewController.myYelloDetailView.senderButton.snp.makeConstraints {
-                                $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
+                                $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramView.snp.bottom).offset(77.adjustedHeight)
                             }
                         }
                         if data.isSubscribe {
@@ -190,7 +191,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidDisconnect(_ scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene else { return }
         guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
-        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step":VotingViewController.pushCount])
         
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"
@@ -218,29 +218,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene else { return }
         guard let topViewController = topViewController(controller: windowScene.windows.first?.rootViewController) else { return }
-        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step":VotingViewController.pushCount])
         
         // Save the class name of topViewController to UserDefaults
         let className = "\(String(describing: type(of: topViewController)))"
         UserDefaults.standard.set(className, forKey: "lastViewController")
     }
-    
     func checkAndUpdateIfNeeded() {
-        let marketingVersion = AppStoreCheck().latestVersion() ?? ""
-        let currentProjectVersion = AppStoreCheck.appVersion ?? ""
-        let splitMarketingVersion = marketingVersion.split(separator: ".").map { $0 }
-        let splitCurrentProjectVersion = currentProjectVersion.split(separator: ".").map { $0 }
-        
-        if splitCurrentProjectVersion[0] < splitMarketingVersion[0] {
-            showUpdateAlert(version: marketingVersion)
-        } else if splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
-            showUpdateAlert(version: marketingVersion)
-        } else {
-            print(marketingVersion)
-            print(currentProjectVersion)
-            print(splitMarketingVersion)
-            print(splitCurrentProjectVersion)
-            print("현재 최신 버젼입니다.")
+        AppStoreCheck().latestVersion { marketingVersion in
+            DispatchQueue.main.async {
+                guard let marketingVersion = marketingVersion else {
+                    print("앱스토어 버전을 찾지 못했습니다.")
+                    return
+                }
+                let currentProjectVersion = AppStoreCheck.appVersion ?? ""
+                let splitMarketingVersion = marketingVersion.split(separator: ".").compactMap { Int($0) }
+                let splitCurrentProjectVersion = currentProjectVersion.split(separator: ".").compactMap { Int($0) }
+                
+
+                print(marketingVersion)
+                print(currentProjectVersion)
+                print(splitMarketingVersion)
+                print(splitCurrentProjectVersion)
+                
+                if splitCurrentProjectVersion.count > 0 && splitMarketingVersion.count > 0 {
+                    if splitCurrentProjectVersion[0] < splitMarketingVersion[0] {
+                        self.showUpdateAlert(version: marketingVersion)
+                    } else if splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
+                        self.showUpdateAlert(version: marketingVersion)
+                    } else {
+//                        print(marketingVersion)
+//                        print(currentProjectVersion)
+//                        print(splitMarketingVersion)
+//                        print(splitCurrentProjectVersion)
+                        print("현재 최신 버전입니다.")
+                    }
+                }
+            }
         }
     }
     

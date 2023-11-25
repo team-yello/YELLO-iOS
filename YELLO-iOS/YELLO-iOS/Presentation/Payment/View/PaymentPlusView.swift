@@ -45,9 +45,11 @@ final class PaymentPlusView: BaseView {
         }
         
         nameKeyLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.paymentSender, lineHeight: 24.adjustedHeight)
-            $0.font = .uiSubtitle01
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.sale + "\n" + StringLiterals.MyYello.Payment.paymentSender, lineHeight: 24.adjustedHeight)
+            $0.textAlignment = .left
+            $0.font = .uiHeadline03
             $0.textColor = .white
+            $0.asCustomFont(targetString: StringLiterals.MyYello.Payment.sale, color: .yelloMain500, font: .uiHeadline03)
         }
         
         nameKeyOneButton.do {
@@ -149,7 +151,7 @@ final class PaymentPlusView: BaseView {
         }
         
         nameKeyLabel.snp.makeConstraints {
-            $0.top.equalTo(paymentYelloPlusButton.snp.bottom).offset(34.adjustedHeight)
+            $0.top.equalTo(paymentYelloPlusButton.snp.bottom).offset(28.adjustedHeight)
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
         

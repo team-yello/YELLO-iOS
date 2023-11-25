@@ -29,17 +29,16 @@ class UniversityViewController: OnboardingBaseViewController {
     let studentIdViewController = StudentIdViewController()
     let bottomSheet = BaseBottomViewController()
     let userViewController = UserInfoViewController()
-    lazy var genderViewController = GenderViewController()
     
     override func viewDidLoad() {
-        step = 1
+        step = 2
         User.shared.isFirstUser = true
         super.viewDidLoad()
         setDelegate()
     }
     
     override func setLayout() {
-        
+        navigationBarView.backButton.isHidden = true
         view.addSubview(baseView)
         nextViewController = UserInfoViewController()
         baseView.snp.makeConstraints {

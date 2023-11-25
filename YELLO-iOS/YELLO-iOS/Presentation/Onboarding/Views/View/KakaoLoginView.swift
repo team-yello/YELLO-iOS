@@ -13,6 +13,7 @@ class KakaoLoginView: BaseView {
     let subTitleLabel = UILabel()
     let imageView = UIImageView()
     let kakaoButton = UIButton()
+    let privacyButton = UIButton()
     
     let stackView = UIStackView()
     
@@ -52,6 +53,15 @@ class KakaoLoginView: BaseView {
             $0.setImage(ImageLiterals.OnBoarding.icKakao, for: .normal)
             $0.makeCornerRound(radius: 8.adjusted)
         }
+        
+        privacyButton.do {
+            $0.setImage(ImageLiterals.OnBoarding.icAlertCircle, for: .normal)
+            $0.setTitle(StringLiterals.Onboarding.privacyButtonText, for: .normal)
+            $0.setTitleColor(.grayscales500, for: .normal)
+            $0.titleLabel?.font = .uiLabelLarge
+            $0.setUnderline()
+            $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 0)
+        }
     }
     
     override func setLayout() {
@@ -59,7 +69,8 @@ class KakaoLoginView: BaseView {
         self.addSubviews(titleLabel,
                          subTitleLabel,
                          imageView,
-                         kakaoButton)
+                         kakaoButton,
+                         privacyButton)
         
         titleLabel.snp.makeConstraints {
             $0.bottom.equalTo(subTitleLabel.snp.top).offset(-8.adjustedHeight)
@@ -85,6 +96,11 @@ class KakaoLoginView: BaseView {
             $0.leading.equalToSuperview().offset(28.adjustedHeight)
             $0.centerY.equalToSuperview()
         })
+        
+        privacyButton.snp.makeConstraints {
+            $0.top.equalTo(kakaoButton.snp.bottom).offset(18.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
      
     }
 }

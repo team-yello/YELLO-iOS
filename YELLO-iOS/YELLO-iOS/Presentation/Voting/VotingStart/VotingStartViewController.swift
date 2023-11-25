@@ -17,9 +17,12 @@ final class VotingStartViewController: BaseViewController {
     let originView = BaseVotingETCView()
     private var animationView = LottieAnimationView()
     var myPoint = "000"
+    private let speechBubbleBackground = UIImageView()
+    private let speechBubbleText = UILabel()
     let multiplyByTwoText = UILabel()
     let multiplyByTwoImageView = UIImageView()
     let multiplyByTwoStackView = UIStackView()
+    private let buttonShadow = UIView()
     private let status = 1
         
     override func viewDidLoad() {
@@ -57,6 +60,17 @@ final class VotingStartViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .black
         
+        speechBubbleBackground.do {
+            $0.image = ImageLiterals.Voting.lbSpeechBubble
+            $0.isHidden = true // 특정조건에서 false로 바꿀 것임
+        }
+        
+        speechBubbleText.do {
+            $0.setTextWithLineHeight(text: "💛4명 이상의 친구💛를 가지면 옐로가 더 재밌어요!", lineHeight: 15)
+            $0.textColor = .white
+            $0.font = .uiLabelMedium
+        }
+        
         multiplyByTwoText.do {
             $0.text = "Point"
             $0.font = .uiPointLabel
@@ -78,8 +92,13 @@ final class VotingStartViewController: BaseViewController {
         originView.yellowButton.do {
             $0.setTitle("START!", for: .normal)
             $0.addTarget(self, action: #selector(yellowButtonClicked), for: .touchUpInside)
-            $0.titleLabel?.font = .uiVotingLabel
-            $0.makeCornerRound(radius: 30.adjusted)
+            $0.titleLabel?.font = .uiTimeLabel
+            $0.makeCornerRound(radius: 31.adjusted)
+        }
+        
+        buttonShadow.do {
+            $0.backgroundColor = UIColor(hex: "D1D412", alpha: 1)
+            $0.makeCornerRound(radius: 33.adjusted)
         }
     }
     
@@ -95,7 +114,8 @@ final class VotingStartViewController: BaseViewController {
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let width = UIScreen.main.bounds.size.width
         
-        view.addSubviews(originView, multiplyByTwoStackView)
+        view.addSubviews(originView, multiplyByTwoStackView, speechBubbleBackground, buttonShadow)
+        speechBubbleBackground.addSubview(speechBubbleText)
 
         originView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -132,10 +152,29 @@ final class VotingStartViewController: BaseViewController {
             $0.height.equalTo(36.adjusted)
         }
         
+        speechBubbleBackground.snp.makeConstraints {
+            $0.width.equalTo(238.adjusted)
+            $0.height.equalTo(42.adjusted)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-10.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        speechBubbleText.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(6.adjusted)
+            $0.centerX.equalToSuperview()
+        }
+        
         originView.yellowButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 80.adjustedHeight)
-            $0.width.equalTo(198.adjusted)
-            $0.height.equalTo(58.adjusted)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 45.adjustedHeight)
+            $0.width.equalTo(315.adjusted)
+            $0.height.equalTo(61.adjusted)
+        }
+        
+        buttonShadow.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 40.adjustedHeight)
+            $0.width.equalTo(315.adjusted)
+            $0.height.equalTo(66.adjusted)
+            $0.centerX.equalToSuperview()
         }
         
         multiplyByTwoImageView.snp.makeConstraints {
@@ -144,7 +183,7 @@ final class VotingStartViewController: BaseViewController {
         }
         
         multiplyByTwoStackView.snp.makeConstraints {
-            $0.top.equalTo(originView.yellowButton.snp.bottom).offset(16.adjustedHeight)
+            $0.bottom.equalTo(originView.yellowButton.snp.top).offset(-70.adjusted)
             $0.centerX.equalToSuperview()
         }
         
@@ -160,12 +199,29 @@ final class VotingStartViewController: BaseViewController {
     
     @objc
     func yellowButtonClicked() {
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
         let viewController = VotingViewController()
         viewController.votingList = loadVotingData() ?? []
         viewController.myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
-        self.navigationController?.pushViewController(viewController, animated: true)
+        Amplitude.instance().logEvent("click_vote_start")
+        
+        // 버튼의 높이 늘림
+        self.originView.yellowButton.snp.updateConstraints {
+            $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 40.adjustedHeight)
+            $0.height.equalTo(66.adjusted)
+        }
+        self.view.layoutIfNeeded()
+        // 0.5초 후에 버튼의 높이를 다시 줄임
+        UIView.animate(withDuration: 0.5, animations: {
+            self.originView.yellowButton.snp.updateConstraints {
+                $0.bottom.equalTo(self.view.safeAreaInsets.bottom).inset(tabBarHeight + 45.adjustedHeight)
+                $0.height.equalTo(61.adjusted)
+            }
+            self.view.layoutIfNeeded()
+        }) { _ in
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
-    
 }
 
 extension VotingStartViewController {
@@ -181,6 +237,11 @@ extension VotingStartViewController {
                 if status == 200 {
                     guard let data = data.data else { return }
                     if data.isPossible {
+                        if data.friendStatus == 0 {
+                            self.speechBubbleBackground.isHidden = false
+                        } else if data.friendStatus == 1 {
+                            self.speechBubbleBackground.isHidden = true
+                        }
                         let point = data.point
                         self.originView.topOfMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 24)
                         self.myPoint = String(point)
@@ -214,6 +275,18 @@ extension VotingStartViewController {
                     var friendsID = [Int]()
                     
                     let friendListCount = min(data.friendList.count, 4)
+                    
+                    if friendListCount >= 1 || friendListCount <= 3 {
+                        for i in 0..<friendListCount {
+                            friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
+                            friendsID.append(data.friendList[i].friendId)
+                        }
+                        for i in friendListCount..<4 {
+                            friends.append("")
+                            friendsID.append(-1)
+                        }
+                    }
+                    
                     for i in 0..<friendListCount {
                         friends.append(data.friendList[i].friendName + "\n@" + data.friendList[i].friendYelloId)
                         friendsID.append(data.friendList[i].friendId)
@@ -273,7 +346,9 @@ extension VotingStartViewController {
         
         animationView.play()
         view.addSubview(animationView)
+        view.bringSubviewToFront(buttonShadow)
         view.bringSubviewToFront(originView)
+        view.bringSubviewToFront(speechBubbleBackground)
         view.bringSubviewToFront(multiplyByTwoStackView)
     }
 }

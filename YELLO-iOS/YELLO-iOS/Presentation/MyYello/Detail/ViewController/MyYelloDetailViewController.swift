@@ -63,7 +63,6 @@ final class MyYelloDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Amplitude.instance().logEvent("view_open_message")
-        myYelloDetailView.openedView()
         tabBarController?.tabBar.isHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(popViewController(_:)), name: NSNotification.Name("popView"), object: nil)
@@ -144,6 +143,7 @@ extension MyYelloDetailViewController {
             myYelloDetailView.genderLabel.textColor = .black
             myYelloDetailView.senderButton.findLabel.textColor = .black
             myYelloDetailView.instagramButton.setTitleColor(.black, for: .normal)
+            myYelloDetailView.instagramLabel.textColor = .black
         }
         
         let gradientView = UIView(frame: view.bounds)
@@ -169,7 +169,7 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.detailSenderView.isHidden = false
                 self.myYelloDetailView.detailKeywordView.isHidden = false
                 self.myYelloDetailView.genderLabel.isHidden = false
-                self.myYelloDetailView.instagramButton.isHidden = false
+                self.myYelloDetailView.instagramView.isHidden = false
                 self.myYelloDetailView.keywordButton.isHidden = false
                 self.myYelloDetailView.senderButton.isHidden = false
                 self.setBackgroundView()
@@ -198,6 +198,25 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
                 self.myYelloDetailView.nameIndex = data.nameHint
                 
+                if data.senderName != "옐로팀" {
+                    if data.isAnswerRevealed {
+                        Amplitude.instance().logEvent("view_open_keyword")
+                        if data.nameHint > -1 {
+                            Amplitude.instance().logEvent("view_open_firstletter")
+                        } else if data.nameHint == -2 {
+                            Amplitude.instance().logEvent("view_open_fullnameFirst")
+                        }
+                    } else {
+                        if data.nameHint == -3 {
+                            if data.isSubscribe {
+                                Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type": "sub_yes"])
+                            } else {
+                                Amplitude.instance().logEvent("view_open_firstletter", withEventProperties: ["subscription type": "sub_no"])
+                            }
+                        }
+                    }
+                }
+                
                 if data.nameHint == 0 {
                     self.myYelloDetailView.isSenderUsed = true
                     if let initial = self.getFirstInitial(data.senderName as NSString, index: 0) {
@@ -214,7 +233,7 @@ extension MyYelloDetailViewController {
                     self.myYelloDetailView.isKeywordUsed = true
                     self.myYelloDetailView.keywordButton.isHidden = true
                     self.myYelloDetailView.senderButton.snp.makeConstraints {
-                        $0.top.equalTo(self.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
+                        $0.top.equalTo(self.myYelloDetailView.instagramView.snp.bottom).offset(77.adjustedHeight)
                     }
                 } else if data.nameHint == -2 {
                     self.myYelloDetailView.isTicketUsed = true
@@ -223,6 +242,10 @@ extension MyYelloDetailViewController {
                 }
                 
                 self.myYelloDetailView.ticketCount = data.ticketCount
+
+                
+                Amplitude.instance().setUserProperties(["user_subscription": data.isSubscribe ? "yes" : "no",
+                                                        "user_ticket": data.ticketCount])
                 
                 dump(data)
                 print("통신 성공")

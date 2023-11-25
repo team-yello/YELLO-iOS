@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -108,22 +109,42 @@ final class VotingViewController: BaseViewController {
                     originView.suffleNum.textColor = UIColor(hex: "191919", alpha: 0.4)
                 }
                 originView.suffleButton.isEnabled = false
+                // 친구 1~3명일 때 suffle button 누르면 분기처리
                 NetworkService.shared.votingService.getVotingSuffle { result in
                     switch result {
                     case .success(let data):
                         guard let data = data.data else { return }
-                        
-                        let first = data[0].friendName + "\n@" + data[0].friendYelloId
-                        let second = data[1].friendName + "\n@" + data[1].friendYelloId
-                        let third = data[2].friendName + "\n@" + data[2].friendYelloId
-                        let fourth = data[3].friendName + "\n@" + data[3].friendYelloId
-                        
-                        self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
-                        self.votingList[VotingViewController.pushCount].friendId[1] = data[1].friendId
-                        self.votingList[VotingViewController.pushCount].friendId[2] = data[2].friendId
-                        self.votingList[VotingViewController.pushCount].friendId[3] = data[3].friendId
-                        
-                        self.setNameText(first: first, second: second, third: third, fourth: fourth)
+                        if data.count == 4 {
+                            let first = data[0].friendName + "\n@" + data[0].friendYelloId
+                            let second = data[1].friendName + "\n@" + data[1].friendYelloId
+                            let third = data[2].friendName + "\n@" + data[2].friendYelloId
+                            let fourth = data[3].friendName + "\n@" + data[3].friendYelloId
+                            
+                            self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
+                            self.votingList[VotingViewController.pushCount].friendId[1] = data[1].friendId
+                            self.votingList[VotingViewController.pushCount].friendId[2] = data[2].friendId
+                            self.votingList[VotingViewController.pushCount].friendId[3] = data[3].friendId
+                            
+                            self.setNameText(first: first, second: second, third: third, fourth: fourth)
+                        } else if data.count == 1 {
+                            let first = data[0].friendName + "\n@" + data[0].friendYelloId
+                            self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
+                            self.setNameText(first: first, second: "", third: "", fourth: "")
+                        } else if data.count == 2 {
+                            let first = data[0].friendName + "\n@" + data[0].friendYelloId
+                            let second = data[1].friendName + "\n@" + data[1].friendYelloId
+                            self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
+                            self.votingList[VotingViewController.pushCount].friendId[1] = data[1].friendId
+                            self.setNameText(first: first, second: second, third: "", fourth: "")
+                        } else if data.count == 3 {
+                            let first = data[0].friendName + "\n@" + data[0].friendYelloId
+                            let second = data[1].friendName + "\n@" + data[1].friendYelloId
+                            let third = data[2].friendName + "\n@" + data[2].friendYelloId
+                            self.votingList[VotingViewController.pushCount].friendId[0] = data[0].friendId
+                            self.votingList[VotingViewController.pushCount].friendId[1] = data[1].friendId
+                            self.votingList[VotingViewController.pushCount].friendId[2] = data[2].friendId
+                            self.setNameText(first: first, second: second, third: third, fourth: "")
+                        }
                         self.originView.suffleButton.isEnabled = true
                     default:
                         print("network failure")
@@ -139,6 +160,7 @@ final class VotingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step" : VotingViewController.pushCount])
         Color.shared.restoreFromUserDefaults()
         votingList = loadVotingData() ?? []
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
