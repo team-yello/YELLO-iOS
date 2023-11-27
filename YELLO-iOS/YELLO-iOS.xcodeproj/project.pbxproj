@@ -266,6 +266,8 @@
 		C3B83E642A8E04C800A39CAC /* PurchaseRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E632A8E04C800A39CAC /* PurchaseRequestDTO.swift */; };
 		C3B83E662A8E051800A39CAC /* PurchaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E652A8E051800A39CAC /* PurchaseResponseDTO.swift */; };
 		C3B83E682A8E08D500A39CAC /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E672A8E08D500A39CAC /* PurchaseService.swift */; };
+		C3BF63022AF7DE09000C7900 /* InstagramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BF63012AF7DE09000C7900 /* InstagramButton.swift */; };
+		C3BF63042AF7E1EA000C7900 /* TimeLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BF63032AF7E1EA000C7900 /* TimeLineTableViewCell.swift */; };
 		C3C560C02A8A6ED50074E988 /* SearchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560BF2A8A6ED50074E988 /* SearchTarget.swift */; };
 		C3C560C22A8A6EED0074E988 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560C12A8A6EED0074E988 /* SearchService.swift */; };
 		C3C560C42A8A6F290074E988 /* FriendSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560C32A8A6F290074E988 /* FriendSearchRequestQueryDTO.swift */; };
@@ -558,6 +560,8 @@
 		C3B83E632A8E04C800A39CAC /* PurchaseRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseRequestDTO.swift; sourceTree = "<group>"; };
 		C3B83E652A8E051800A39CAC /* PurchaseResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseResponseDTO.swift; sourceTree = "<group>"; };
 		C3B83E672A8E08D500A39CAC /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
+		C3BF63012AF7DE09000C7900 /* InstagramButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramButton.swift; sourceTree = "<group>"; };
+		C3BF63032AF7E1EA000C7900 /* TimeLineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineTableViewCell.swift; sourceTree = "<group>"; };
 		C3C560BF2A8A6ED50074E988 /* SearchTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTarget.swift; sourceTree = "<group>"; };
 		C3C560C12A8A6EED0074E988 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		C3C560C32A8A6F290074E988 /* FriendSearchRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchRequestQueryDTO.swift; sourceTree = "<group>"; };
@@ -1308,6 +1312,7 @@
 			isa = PBXGroup;
 			children = (
 				C30F81082A7F732B009DBB8D /* HintButton.swift */,
+				C3BF63012AF7DE09000C7900 /* InstagramButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -1391,6 +1396,7 @@
 			children = (
 				C363D46C2A78050600FD583D /* AroundTableViewCell.swift */,
 				C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */,
+				C3BF63032AF7E1EA000C7900 /* TimeLineTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2307,6 +2313,7 @@
 				3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */,
 				C3FF24A02A5EE48E00A97D40 /* MyYelloDetailNavigationBarView.swift in Sources */,
 				C306E7432A6520830031514C /* ProfileUserResponseDTO.swift in Sources */,
+				C3BF63022AF7DE09000C7900 /* InstagramButton.swift in Sources */,
 				C363D4722A780F0D00FD583D /* AroundEmptyView.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				2A8D66D22A97C5AE009DEC3F /* NetworkCheck.swift in Sources */,
@@ -2338,6 +2345,7 @@
 				2A8D66D92A9A363A009DEC3F /* SubscriptionExtensionView.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
 				36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */,
+				C3BF63042AF7E1EA000C7900 /* TimeLineTableViewCell.swift in Sources */,
 				366CE5EC2A819CA600BE5F66 /* PushSettingView.swift in Sources */,
 				2A3705A42A62DC5C001AAC93 /* TargetType.swift in Sources */,
 				2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */,
@@ -2523,7 +2531,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.11.0;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS.dev;
 				PRODUCT_NAME = "$(Yello_Bundle_Name)";
@@ -2686,7 +2694,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.11.0;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2727,7 +2735,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.11.0;
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
