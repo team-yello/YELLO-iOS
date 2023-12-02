@@ -112,12 +112,13 @@ extension FriendSkeletonTableViewCell {
             $0.top.equalTo(schoolLabel.snp.bottom).offset(19.adjustedHeight)
         }
     }
-}
-
-extension FriendSkeletonTableViewCell {
+    
+    // MARK: Custom Function
     func showShimmer() {
-        self.profileImageView.animateShimmer()
-        self.nameLabel.animateShimmer()
-        self.schoolLabel.animateShimmer()
+        let shimmerArray = [profileImageView, nameLabel, schoolLabel]
+        
+        shimmerArray.forEach {
+            $0.animateShimmer()
+        }
     }
 }

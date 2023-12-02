@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class SchoolFriendView: UIView {
+final class SchoolFriendView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
@@ -36,27 +36,16 @@ final class SchoolFriendView: UIView {
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
         setDelegate()
     }
     
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension SchoolFriendView {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
+    override func setUI() {
+        super.setUI()
         updateView()
     }
     
-    private func setStyle() {
+    override func setStyle() {
         self.backgroundColor = .clear
         inviteBannerView.rootViewName = "school"
         emptyView.viewControllerName = "schoolFriend"
@@ -83,7 +72,7 @@ extension SchoolFriendView {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         
         self.addSubviews(inviteBannerView,
                          schoolFriendTableView)
@@ -106,6 +95,10 @@ extension SchoolFriendView {
             $0.center.equalToSuperview()
         }
     }
+}
+
+// MARK: - extension
+extension SchoolFriendView {
     
     private func setDelegate() {
         schoolFriendTableView.dataSource = self

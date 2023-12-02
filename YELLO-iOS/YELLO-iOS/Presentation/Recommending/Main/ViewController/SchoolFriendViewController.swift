@@ -11,40 +11,21 @@ import Amplitude
 import SnapKit
 import Then
 
-final class SchoolFriendViewController: UIViewController {
+final class SchoolFriendViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
     let schoolFriendView = SchoolFriendView()
     
     // MARK: - Function
-    // MARK: LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUI()
-    }
-    
+    // MARK: LifeCycle    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         Amplitude.instance().logEvent("view_recommend_kakao")
         schoolFriendView.updateView()
     }
-}
-
-// MARK: - extension
-extension SchoolFriendViewController {
     
-    // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
-        view.backgroundColor = .black
-    }
-    
-    private func setLayout() {
+    override func setLayout() {
         let tabbarHeight = 60 + safeAreaBottomInset()
         
         view.addSubview(schoolFriendView)

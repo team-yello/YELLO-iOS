@@ -119,9 +119,10 @@ final class AroundSkeletonTableViewCell: UITableViewCell {
 
 extension AroundSkeletonTableViewCell {
     func showShimmer() {
-        self.genderImageView.animateShimmer()
-        self.genderLabel.animateShimmer()
-        self.nameLabel.animateShimmer()
-        self.keywordLabel.animateShimmer()
+        let shimmerArray = [genderImageView, genderLabel, receiverLabel, nameLabel, keywordLabel]
+        
+        shimmerArray.forEach {
+            $0.animateShimmer()
+        }
     }
 }

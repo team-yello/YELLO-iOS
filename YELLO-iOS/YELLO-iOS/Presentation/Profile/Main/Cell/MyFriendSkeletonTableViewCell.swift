@@ -95,8 +95,10 @@ extension MyFriendSkeletonTableViewCell {
     }
     
     func showShimmer() {
-        self.profileImageView.animateShimmer()
-        self.nameLabel.animateShimmer()
-        self.schoolLabel.animateShimmer()
+        let shimmerArray = [profileImageView, nameLabel, schoolLabel]
+        
+        shimmerArray.forEach {
+            $0.animateShimmer()
+        }
     }
 }

@@ -83,6 +83,10 @@ enum StringLiterals {
         static let firstText = "친구가 내 추천인 코드로 가입하면"
         static let secondText = "40분 대기 초기화 + 100포인트 지급!"
         static let toastMessage = "링크가 복사되었습니다."
+        static let close = "닫기"
+        static let myRecommendCode = "내 추천인 코드"
+        static let copyStringHeader = "추천인코드: "
+        static let copyStringFooter = "\n\n우리 같이 YELL:O 해요!\nAndroid: https://play.google.com/store/apps/details?id=com.el.yello&hl=ko&gl=KR\niOS: https://apps.apple.com/app/id6451451050"
     }
     
     enum Recommending {

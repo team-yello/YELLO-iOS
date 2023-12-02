@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import KakaoSDKTalk
 
-final class KakaoFriendView: UIView {
+final class KakaoFriendView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
@@ -37,27 +37,16 @@ final class KakaoFriendView: UIView {
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
         setDelegate()
     }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
-// MARK: - extension
-extension KakaoFriendView {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
+    override func setUI() {
+        super.setUI()
         updateView()
     }
     
-    private func setStyle() {
+    override func setStyle() {
         self.backgroundColor = .black
         
         inviteBannerView.do {
@@ -82,7 +71,7 @@ extension KakaoFriendView {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         
         self.addSubviews(
             inviteBannerView,
@@ -106,6 +95,10 @@ extension KakaoFriendView {
             $0.center.equalToSuperview()
         }
     }
+}
+
+// MARK: - extension
+extension KakaoFriendView {
     
     private func setDelegate() {
         kakaoFriendTableView.dataSource = self

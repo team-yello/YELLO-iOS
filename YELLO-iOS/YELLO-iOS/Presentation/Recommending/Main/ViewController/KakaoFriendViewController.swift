@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import Amplitude
 
-final class KakaoFriendViewController: UIViewController {
+final class KakaoFriendViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
@@ -22,24 +22,9 @@ final class KakaoFriendViewController: UIViewController {
     override func viewDidLoad() {
         Amplitude.instance().logEvent("view_recommend_kakao")
         super.viewDidLoad()
-        setUI()
-    }
-}
-
-// MARK: - extension
-extension KakaoFriendViewController {
-    
-    // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
     }
     
-    private func setStyle() {
-        view.backgroundColor = .black
-    }
-    
-    private func setLayout() {
+    override func setLayout() {
         let tabbarHeight = 60 + safeAreaBottomInset()
         
         view.addSubview(kakaoFriendView)

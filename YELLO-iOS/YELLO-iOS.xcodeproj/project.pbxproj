@@ -1040,10 +1040,7 @@
 		2AA0DBAB2A546D87002B1370 /* Recommending */ = {
 			isa = PBXGroup;
 			children = (
-				C3C57BEE2A5C066B00B84CAA /* ViewController */,
-				C3C57BED2A5C066200B84CAA /* View */,
-				C3C57BF12A5C087600B84CAA /* Cells */,
-				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
+				C312C00B2AA5F80A00C73D0F /* Main */,
 				C31315A92A7A5F8100FB8B43 /* Search */,
 			);
 			path = Recommending;
@@ -1317,6 +1314,25 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		C312C00A2AA5F7F500C73D0F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C312C00B2AA5F80A00C73D0F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C3C57BEE2A5C066B00B84CAA /* ViewController */,
+				C3C57BED2A5C066200B84CAA /* View */,
+				C3C57BF12A5C087600B84CAA /* Cells */,
+				C312C00A2AA5F7F500C73D0F /* Model */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		C31315A22A78E4B800FB8B43 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1347,7 +1363,7 @@
 		C31315AB2A7A5F8F00FB8B43 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C390B8082A88D63000EA5A23 /* spinner_loading.json */,
+				C3C227E02ABB87740036BF2B /* Lottie */,
 				C31315A72A7A5F7E00FB8B43 /* FriendSearchView.swift */,
 			);
 			path = View;
@@ -1687,6 +1703,14 @@
 				C39D3D832A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		C3C227E02ABB87740036BF2B /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				C390B8082A88D63000EA5A23 /* spinner_loading.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		C3C560B92A8A6E410074E988 /* Search */ = {

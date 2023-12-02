@@ -41,7 +41,7 @@ final class InvitingView: BaseView {
         contentsView.backgroundColor = .white
         
         closeButton.do {
-            $0.setTitle("닫기", for: .normal)
+            $0.setTitle(StringLiterals.Inviting.close, for: .normal)
             $0.setImage(ImageLiterals.InvitingPopUp.icClose, for: .normal)
             $0.setTitleColor(.grayscales600, for: .normal)
             $0.imageView?.contentMode = .scaleAspectFit
@@ -75,7 +75,7 @@ final class InvitingView: BaseView {
         }
         
         recommender.do {
-            $0.text = "내 추천인 코드"
+            $0.text = StringLiterals.Inviting.myRecommendCode
             $0.textColor = .purpleSub500
             $0.font = .uiBody04
         }
@@ -169,14 +169,13 @@ final class InvitingView: BaseView {
 
 extension InvitingView {
     
-    @objc
-    func closeButtonClicked() {
+    // MARK: Objc function
+    @objc func closeButtonClicked() {
         self.isHidden = true
         self.removeFromSuperview()
     }
     
-    @objc
-    func kakaoButtonClicked() {
+    @objc func kakaoButtonClicked() {
         let templateId = Config.kakaoTempleteId
         
         guard let filteredString = self.recommenderID.text else { return }
@@ -206,11 +205,10 @@ extension InvitingView {
         }
     }
     
-    @objc
-    func copyButtonClicked() {
+    @objc func copyButtonClicked() {
         guard let recommender = self.recommenderID.text else { return }
         let filteredID = String(recommender.dropFirst())
-        let recommenderID = "추천인코드: " + filteredID + "\n\n우리 같이 YELL:O 해요!\nAndroid: https://play.google.com/store/apps/details?id=com.el.yello&hl=ko&gl=KR\niOS: https://apps.apple.com/app/id6451451050"
+        let recommenderID = StringLiterals.Inviting.copyStringHeader + filteredID + StringLiterals.Inviting.copyStringFooter
         UIPasteboard.general.string = recommenderID
         print(UIPasteboard.general.string ?? "")
         updateEvent()

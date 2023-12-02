@@ -11,7 +11,7 @@ import Amplitude
 import SnapKit
 import Then
 
-final class RecommendingViewController: UIViewController {
+final class RecommendingViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Component
@@ -43,7 +43,6 @@ final class RecommendingViewController: UIViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
         setDelegate()
         setAddTarget()
         setSegmentedControl()
@@ -55,25 +54,16 @@ final class RecommendingViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
     }
-}
-
-// MARK: - extension
-extension RecommendingViewController {
     
     // MARK: Layout Helpers
-    private func setUI() {
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         view.backgroundColor = .black
         pageViewController.do {
             $0.setViewControllers([self.dataViewControllers[0]], direction: .forward, animated: true)
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.navigationController?.navigationBar.isHidden = true
         
         view.addSubviews(
@@ -105,6 +95,10 @@ extension RecommendingViewController {
             $0.bottom.equalToSuperview()
         }
     }
+}
+
+// MARK: - extension
+extension RecommendingViewController {
     
     // MARK: Custom Function
     private func setDelegate() {

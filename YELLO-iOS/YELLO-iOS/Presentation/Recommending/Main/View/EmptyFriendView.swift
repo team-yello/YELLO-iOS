@@ -11,7 +11,7 @@ import Amplitude
 import SnapKit
 import Then
 
-final class EmptyFriendView: UIView {
+final class EmptyFriendView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
@@ -24,29 +24,8 @@ final class EmptyFriendView: UIView {
     private var invitingView = InvitingView()
     
     // MARK: - Function
-    // MARK: LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - extension
-extension EmptyFriendView {
-    
     // MARK: Layout Helpers
-    private func setUI() {
-        invitingView = InvitingView()
-        setStyle()
-        setLayout()
-    }
-    
-    private func setStyle() {
+    override func setStyle() {
         self.backgroundColor = .black
         emptyImageView.do {
             $0.image = ImageLiterals.Recommending.imgBannerInvite
@@ -70,7 +49,7 @@ extension EmptyFriendView {
         }
     }
     
-    private func setLayout() {
+    override func setLayout() {
         self.addSubview(containView)
         containView.addSubviews(emptyImageView,
                                 emptyDescriptionLabel,
@@ -135,6 +114,5 @@ extension EmptyFriendView {
         }
         
         Amplitude.instance().logEvent("click_invite", withEventProperties: ["invite_view": keyValue])
-        
     }
 }

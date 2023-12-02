@@ -27,6 +27,7 @@ final class FriendTableViewCell: UITableViewCell {
     let schoolLabel = UILabel()
     lazy var addButton = UIButton()
     let separatorLine = UIView()
+    
     var isTapped: Bool = false
     
     weak var handleAddFriendButton: HandleAddFriendButton?
@@ -94,7 +95,7 @@ extension FriendTableViewCell {
         
         addButton.do {
             $0.setImage(ImageLiterals.Recommending.icAddFriendButton, for: .normal)
-            $0.tintColor = .yellow
+            $0.tintColor = .yelloMain500
             $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
             $0.isHidden = false
         }
