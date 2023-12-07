@@ -27,7 +27,7 @@ enum StringLiterals {
         static let selectMaleText = "남자"
         
         static let schoolSearchText = "학교가 어디인가요?"
-        static let highSchoolSearchPlaceholder = "ex. 옐로고등학교"
+        static let highSchoolSearchPlaceholder = "ex. 옐로중/고등학교"
         static let univSearchPlaceholder = "ex. 옐로대학교"
         static let selectLevelText = "몇 학년인가요?"
         static let selectClassText = "몇 반인가요?"
