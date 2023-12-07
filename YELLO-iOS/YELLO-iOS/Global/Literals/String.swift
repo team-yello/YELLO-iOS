@@ -21,13 +21,13 @@ enum StringLiterals {
     
     enum Onboarding {
         static let privacyButtonText = "개인정보처리방침"
-        static let selectHighText = "고등학생"
+        static let selectHighText = "중/고등학생"
         static let selectUnivText = "대학생"
         static let selectFemaleText = "여자"
         static let selectMaleText = "남자"
         
         static let schoolSearchText = "학교가 어디인가요?"
-        static let highSchoolSearchPlaceholder = "ex. 옐로고등학교"
+        static let highSchoolSearchPlaceholder = "ex. 옐로중/고등학교"
         static let univSearchPlaceholder = "ex. 옐로대학교"
         static let selectLevelText = "몇 학년인가요?"
         static let selectClassText = "몇 반인가요?"
