@@ -15,6 +15,7 @@ class KakaoLoginViewController: UIViewController {
     // MARK: - Variables
     // MARK: Component
     let baseView = KakaoLoginView()
+    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -82,7 +83,6 @@ class KakaoLoginViewController: UIViewController {
                                 
                                 /// 확인 후 플로우 변경
                                 let nextViewController = allowList[0].agreed ? SchoolSelectViewController() : KakaoConnectViewController()
-                                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
                                 self.navigationController?.pushViewController(nextViewController, animated: true)
                             }
                         }
@@ -97,20 +97,18 @@ class KakaoLoginViewController: UIViewController {
                     User.shared.isResigned = data.isResigned
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                    
                     if isFirstTime() {
                         let rootViewController = PushSettingViewController()
-                        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                        self.sceneDelegate  .window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                     } else if User.shared.isResigned {
                         let rootViewController = TutorialViewController()
-                        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                        self.sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                     } else {
                         let rootViewController = YELLOTabBarController()
                         let status = UserDefaults.standard.integer(forKey: "status")
                         rootViewController.startStatus = status
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                            self.sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                         }
                     }
                 }
@@ -134,7 +132,6 @@ class KakaoLoginViewController: UIViewController {
                 } else {
                     print("----🚩카카오 톡으로 로그인 성공🚩----")
                     DispatchQueue.main.async {
-                        self.baseView.kakaoButton.isEnabled = false
                         Amplitude.instance().logEvent("complete_onboarding_finish")
                         guard let kakaoToken = oauthToken?.accessToken else { return }
                         let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
@@ -149,7 +146,6 @@ class KakaoLoginViewController: UIViewController {
                     print(error)
                 } else {
                     print("카카오 계정으로 로그인 성공")
-                    self.baseView.kakaoButton.isEnabled = false
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
