@@ -15,6 +15,7 @@ class KakaoLoginViewController: UIViewController {
     // MARK: - Variables
     // MARK: Component
     let baseView = KakaoLoginView()
+    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -42,19 +43,21 @@ class KakaoLoginViewController: UIViewController {
                         if let error = error {
                             print(error)
                         } else {
-                            print("me() success.")
-                            _ = user
-                            guard let user = user else { return }
-                            guard let uuidInt = user.id else { return }
-                            guard let kakaoUser = user.kakaoAccount else {return}
-                            guard let email = kakaoUser.email else {return}
-                            guard let profile = user.kakaoAccount?.profile?.profileImageUrl else {return}
-                            User.shared.social = "KAKAO"
-                            User.shared.uuid = String(uuidInt)
-                            User.shared.email = email
-                            User.shared.name = kakaoUser.name ?? ""
-                            User.shared.gender = kakaoUser.gender?.rawValue.uppercased() ?? ""
-                            User.shared.profileImage = profile.absoluteString
+                            DispatchQueue.main.async {
+                                print("me() success.")
+                                guard let user = user else { return }
+                                guard let uuidInt = user.id else { return }
+                                guard let kakaoUser = user.kakaoAccount else {return}
+                                guard let email = kakaoUser.email else {return}
+                                guard let profile = user.kakaoAccount?.profile?.profileImageUrl else {return}
+                                User.shared.social = "KAKAO"
+                                User.shared.uuid = String(uuidInt)
+                                User.shared.email = email
+                                User.shared.name = kakaoUser.name ?? ""
+                                User.shared.gender = kakaoUser.gender?.rawValue.uppercased() ?? ""
+                                User.shared.profileImage = profile.absoluteString
+                            }
+                            
                         }
                         
                         UserApi.shared.scopes(scopes: ["friends"]) { (scopeInfo, error) in
@@ -62,28 +65,29 @@ class KakaoLoginViewController: UIViewController {
                                 print(error)
                             } else {
                                 /// 동의항목 확인하기
-                                guard let scopeInfo = scopeInfo else { return }
-                                guard let allowList = scopeInfo.scopes else { return }
-                                if allowList[0].agreed {
-                                    Amplitude.instance().logEvent("click_onboarding_kakao_friends")
-                                    TalkApi.shared.friends(limit: 100) {(friends, error) in
-                                        if let error = error {
-                                            print(error)
-                                        } else {
-                                            var allFriends: [String] = []
-                                            friends?.elements?.forEach({
-                                                guard let id = $0.id else { return }
-                                                allFriends.append(String(id))
-                                            })
-                                            User.shared.kakaoFriends = allFriends
+                                DispatchQueue.main.async {
+                                    guard let scopeInfo = scopeInfo else { return }
+                                    guard let allowList = scopeInfo.scopes else { return }
+                                    if allowList[0].agreed {
+                                        Amplitude.instance().logEvent("click_onboarding_kakao_friends")
+                                        TalkApi.shared.friends(limit: 100) {(friends, error) in
+                                            if let error = error {
+                                                print(error)
+                                            } else {
+                                                var allFriends: [String] = []
+                                                friends?.elements?.forEach({
+                                                    guard let id = $0.id else { return }
+                                                    allFriends.append(String(id))
+                                                })
+                                                User.shared.kakaoFriends = allFriends
+                                            }
                                         }
                                     }
+                                    
+                                    /// 확인 후 플로우 변경
+                                    let nextViewController = allowList[0].agreed ? SchoolSelectViewController() : KakaoConnectViewController()
+                                    self.navigationController?.pushViewController(nextViewController, animated: true)
                                 }
-                                
-                                /// 확인 후 플로우 변경
-                                let nextViewController = allowList[0].agreed ? SchoolSelectViewController() : KakaoConnectViewController()
-                                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                                self.navigationController?.pushViewController(nextViewController, animated: true)
                             }
                         }
                         
@@ -97,20 +101,18 @@ class KakaoLoginViewController: UIViewController {
                     User.shared.isResigned = data.isResigned
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                    
                     if isFirstTime() {
                         let rootViewController = PushSettingViewController()
-                        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                        self.sceneDelegate  .window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                     } else if User.shared.isResigned {
                         let rootViewController = TutorialViewController()
-                        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                        self.sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                     } else {
                         let rootViewController = YELLOTabBarController()
                         let status = UserDefaults.standard.integer(forKey: "status")
                         rootViewController.startStatus = status
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+                            self.sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                         }
                     }
                 }
@@ -133,11 +135,12 @@ class KakaoLoginViewController: UIViewController {
                     print("🚩🚩\(error)")
                 } else {
                     print("----🚩카카오 톡으로 로그인 성공🚩----")
-                    self.baseView.kakaoButton.isEnabled = false
-                    Amplitude.instance().logEvent("complete_onboarding_finish")
-                    guard let kakaoToken = oauthToken?.accessToken else { return }
-                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
-                    self.authNetwork(queryDTO: queryDTO)
+                    DispatchQueue.main.async {
+                        Amplitude.instance().logEvent("complete_onboarding_finish")
+                        guard let kakaoToken = oauthToken?.accessToken else { return }
+                        let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
+                        self.authNetwork(queryDTO: queryDTO)
+                    }
                 }
             }
         } else {
@@ -147,7 +150,6 @@ class KakaoLoginViewController: UIViewController {
                     print(error)
                 } else {
                     print("카카오 계정으로 로그인 성공")
-                    self.baseView.kakaoButton.isEnabled = false
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     guard let kakaoToken = oauthToken?.accessToken else { return }
                     let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
