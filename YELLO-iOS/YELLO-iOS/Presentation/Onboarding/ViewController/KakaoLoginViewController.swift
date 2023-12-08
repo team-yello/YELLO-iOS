@@ -133,11 +133,13 @@ class KakaoLoginViewController: UIViewController {
                     print("🚩🚩\(error)")
                 } else {
                     print("----🚩카카오 톡으로 로그인 성공🚩----")
-                    self.baseView.kakaoButton.isEnabled = false
-                    Amplitude.instance().logEvent("complete_onboarding_finish")
-                    guard let kakaoToken = oauthToken?.accessToken else { return }
-                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
-                    self.authNetwork(queryDTO: queryDTO)
+                    DispatchQueue.main.async {
+                        self.baseView.kakaoButton.isEnabled = false
+                        Amplitude.instance().logEvent("complete_onboarding_finish")
+                        guard let kakaoToken = oauthToken?.accessToken else { return }
+                        let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
+                        self.authNetwork(queryDTO: queryDTO)
+                    }
                 }
             }
         } else {
