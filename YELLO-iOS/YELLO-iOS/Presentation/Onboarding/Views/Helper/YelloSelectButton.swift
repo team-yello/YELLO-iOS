@@ -166,7 +166,7 @@ extension YelloSelectButton {
                 buttonLabel.textColor = .semanticGenderM500
             }
         case .school:
-            let schoolLevel = (self.buttonText == "고등학생") ? SchoolLevel.high : SchoolLevel.univ
+            let schoolLevel = (self.buttonText == "중/고등학생") ? SchoolLevel.high : SchoolLevel.univ
             buttonLabel.textColor = .grayscales500
             switch schoolLevel {
             case .high:
