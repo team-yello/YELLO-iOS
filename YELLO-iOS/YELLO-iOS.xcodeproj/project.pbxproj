@@ -73,6 +73,8 @@
 		362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC3182A8BAC8E00121BDD /* ThirdTutorialView.swift */; };
 		362EC31B2A8BAD1E00121BDD /* FourthTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC31A2A8BAD1E00121BDD /* FourthTutorialView.swift */; };
 		362EC31D2A8BB5A400121BDD /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC31C2A8BB5A400121BDD /* UIScreen+.swift */; };
+		363D815F2B2616040095F6CC /* NameCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D815E2B2616040095F6CC /* NameCheckView.swift */; };
+		363D81612B261ABF0095F6CC /* NameCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81602B261ABF0095F6CC /* NameCheckViewController.swift */; };
 		365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */; };
 		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
 		36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCE2A692A7700010D84 /* StudentIdView.swift */; };
@@ -1269,6 +1271,7 @@
 			children = (
 				36B2349B2A61A22F007933E4 /* KakaoLoginView.swift */,
 				36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */,
+				363D815E2B2616040095F6CC /* NameCheckView.swift */,
 				36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */,
 				3671136E2A7D3F9D0037E0D2 /* HighSchoolView.swift */,
 				367113702A7D6C740037E0D2 /* UniversityView.swift */,
@@ -2328,6 +2331,7 @@
 				C3FF24872A5E844400A97D40 /* MyYelloView.swift in Sources */,
 				C390B8182A8A1DF600EA5A23 /* AroundService.swift in Sources */,
 				C3B4720E2A65DEC700770530 /* MyYelloDetailResponseDTO.swift in Sources */,
+				363D81612B261ABF0095F6CC /* NameCheckViewController.swift in Sources */,
 				C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */,
 				2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */,
 				3662A0F22A65498800F482EF /* MajorSearchRequestQueryDTO.swift in Sources */,
