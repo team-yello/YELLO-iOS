@@ -39,7 +39,6 @@ class KakaoLoginViewController: UIViewController {
             switch result {
             case .success(let data):
                 if data.status == 403 {
-                    print("여기여기여기")
                     UserApi.shared.me() {(user, error) in
                         if let error = error {
                             print(error)
