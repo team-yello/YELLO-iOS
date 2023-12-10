@@ -14,7 +14,7 @@ class APIRequestLoader<T: TargetType> {
     private let apiLogger: APIEventLogger
     private let session: Session
     private let interceptorSession: Session
-    let interceptor = MyRequestInterceptor()
+    let interceptor = YelloRequestInterceptor()
     
     init(
         configuration: URLSessionConfiguration = .default,
@@ -33,7 +33,12 @@ class APIRequestLoader<T: TargetType> {
         responseData: M.Type,
         completion: @escaping (NetworkResult<M>) -> Void
     ) {
-        let dataRequest = session.request(target)
+        var dataRequest = session.request(target)
+        
+        if target.authorization == .authorization {
+            dataRequest = interceptorSession.request(target).validate()
+        }
+        
         dataRequest.responseData { response in
             switch response.result {
             case .success:
@@ -42,21 +47,6 @@ class APIRequestLoader<T: TargetType> {
                 
                 let networkRequest = self.judgeStatus(by: statusCode, value, type: M.self)
                 completion(networkRequest)
-                if KeychainHandler.shared.refreshToken.isEmpty || KeychainHandler.shared.accessToken.isEmpty {
-                    return
-                } else if statusCode == 401 {
-                    print("유저 토큰 만료됨: acess \(KeychainHandler.shared.accessToken) \n refresh \(KeychainHandler.shared.refreshToken)")
-                    self.interceptor.refreshToken { [weak self] isSuccess in
-                        if isSuccess {
-                            // 토큰 갱신 성공하면 다시 fetchData를 호출하여 재시도
-                            self?.fetchData(target: target, responseData: responseData, completion: completion)
-                        } else {
-                            // 토큰 갱신 실패로 실패 처리
-                            completion(.failure)
-                        }
-                    }
-                    return
-                }
             case .failure:
                 completion(.networkErr)
             }
