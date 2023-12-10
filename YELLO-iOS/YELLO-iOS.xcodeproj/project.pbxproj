@@ -75,6 +75,8 @@
 		362EC31D2A8BB5A400121BDD /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EC31C2A8BB5A400121BDD /* UIScreen+.swift */; };
 		363D815F2B2616040095F6CC /* NameCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D815E2B2616040095F6CC /* NameCheckView.swift */; };
 		363D81612B261ABF0095F6CC /* NameCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81602B261ABF0095F6CC /* NameCheckViewController.swift */; };
+		363D81642B262A460095F6CC /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81622B262A450095F6CC /* NameViewController.swift */; };
+		363D81652B262A460095F6CC /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81632B262A460095F6CC /* NameView.swift */; };
 		365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */; };
 		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
 		36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCE2A692A7700010D84 /* StudentIdView.swift */; };
@@ -398,6 +400,10 @@
 		362EC3182A8BAC8E00121BDD /* ThirdTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTutorialView.swift; sourceTree = "<group>"; };
 		362EC31A2A8BAD1E00121BDD /* FourthTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthTutorialView.swift; sourceTree = "<group>"; };
 		362EC31C2A8BB5A400121BDD /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		363D815E2B2616040095F6CC /* NameCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCheckView.swift; sourceTree = "<group>"; };
+		363D81602B261ABF0095F6CC /* NameCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCheckViewController.swift; sourceTree = "<group>"; };
+		363D81622B262A450095F6CC /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		363D81632B262A460095F6CC /* NameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
 		36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
 		36621BCE2A692A7700010D84 /* StudentIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentIdView.swift; sourceTree = "<group>"; };
@@ -1245,6 +1251,8 @@
 				36E2181C2A5D158E00FB3C9C /* Base */,
 				36B234992A61A20C007933E4 /* KakaoLoginViewController.swift */,
 				36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */,
+				363D81602B261ABF0095F6CC /* NameCheckViewController.swift */,
+				363D81622B262A450095F6CC /* NameViewController.swift */,
 				367113672A7D21330037E0D2 /* SchoolSelectViewController.swift */,
 				367113722A7D6CED0037E0D2 /* UniversityViewController.swift */,
 				367DA01A2A863CE60043D23C /* HighSchoolViewController.swift */,
@@ -1272,6 +1280,7 @@
 				36B2349B2A61A22F007933E4 /* KakaoLoginView.swift */,
 				36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */,
 				363D815E2B2616040095F6CC /* NameCheckView.swift */,
+				363D81632B262A460095F6CC /* NameView.swift */,
 				36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */,
 				3671136E2A7D3F9D0037E0D2 /* HighSchoolView.swift */,
 				367113702A7D6C740037E0D2 /* UniversityView.swift */,
@@ -2247,6 +2256,7 @@
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
 				2AFB01482A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift in Sources */,
 				367113712A7D6C740037E0D2 /* UniversityView.swift in Sources */,
+				363D81642B262A460095F6CC /* NameViewController.swift in Sources */,
 				C3FF24972A5E907D00A97D40 /* MyYelloNameTableViewCell.swift in Sources */,
 				C37DFC482A8501F300D3B685 /* PaymentPlusView.swift in Sources */,
 				C3FF249B2A5EE46500A97D40 /* MyYelloDetailViewController.swift in Sources */,
@@ -2299,6 +2309,7 @@
 				C3B472122A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift in Sources */,
 				C39D3D842A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
+				363D815F2B2616040095F6CC /* NameCheckView.swift in Sources */,
 				367113732A7D6CED0037E0D2 /* UniversityViewController.swift in Sources */,
 				C3291A082A920D84007F2CF5 /* AppStoreCheck.swift in Sources */,
 				3662A0F62A654B8D00F482EF /* JoinedFriendsRequestDTO.swift in Sources */,
@@ -2321,6 +2332,7 @@
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				2A8D66D22A97C5AE009DEC3F /* NetworkCheck.swift in Sources */,
 				3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */,
+				363D81652B262A460095F6CC /* NameView.swift in Sources */,
 				2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */,
 				C3FF24772A5D796B00A97D40 /* FriendProfileViewController.swift in Sources */,
 				C31315B02A7B806D00FB8B43 /* UIViewController+.swift in Sources */,
