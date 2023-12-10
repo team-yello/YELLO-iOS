@@ -22,13 +22,13 @@ final class KakaoConnectView: BaseView {
         self.backgroundColor = .black
         
         titleLabel.do {
-            $0.text = "나의 옐로 친구는 어딨을까?"
+            $0.text = StringLiterals.Onboarding.KakaoConnect.titleText
             $0.textColor = .white
             $0.font = .uiHeadline00
         }
         
         subTitleLabel.do {
-            $0.text = "친구 목록을 불러와봐요!"
+            $0.text = StringLiterals.Onboarding.KakaoConnect.subTitleText
             $0.font = .uiBodySmall
             $0.textColor = .grayscales500
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 22)
@@ -48,7 +48,7 @@ final class KakaoConnectView: BaseView {
         
         kakaoConnectButton.do {
             $0.backgroundColor = UIColor(hex: "FEE500")
-            $0.setTitle("카카오톡 친구 연결하기", for: .normal)
+            $0.setTitle(StringLiterals.Onboarding.KakaoConnect.connectButton, for: .normal)
             $0.titleLabel?.font = .uiBody01
             $0.setTitleColor(UIColor(hex: "191600"), for: .normal)
             $0.makeCornerRound(radius: 8)
@@ -56,7 +56,7 @@ final class KakaoConnectView: BaseView {
         
         privacyButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icAlertCircle, for: .normal)
-            $0.setTitle(StringLiterals.Onboarding.privacyButtonText, for: .normal)
+            $0.setTitle(StringLiterals.Onboarding.KakaoLogin.privacyButtonText, for: .normal)
             $0.setTitleColor(.grayscales500, for: .normal)
             $0.titleLabel?.font = .uiLabelLarge
             $0.setUnderline()
