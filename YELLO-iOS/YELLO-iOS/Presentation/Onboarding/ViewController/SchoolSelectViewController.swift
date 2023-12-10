@@ -15,12 +15,14 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationBarView.isHidden = false
+        progressBarView.isHidden = false
         navigationBarView.backButton.isHidden = true
     }
     
     override func viewDidLoad() {
-        step = 1
         super.viewDidLoad()
+        super.step = 1
         addTarget()
     }
     
@@ -43,11 +45,11 @@ class SchoolSelectViewController: OnboardingBaseViewController {
         
         if sender == baseView.highSchoolButton {
             schoolLevel = .high
+            nextViewController = highSchoolViewController
         } else {
             schoolLevel = .univ
+            nextViewController = universityViewController
         }
-        
-        self.nextViewController = ( schoolLevel == .high ) ? highSchoolViewController : universityViewController
         nextButton.setButtonEnable(state: true)
     }
     
