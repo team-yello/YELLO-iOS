@@ -35,21 +35,19 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     }
     
     private func addTarget() {
-        baseView.highSchoolButton.addTarget(self, action: #selector(setSchoolLevel(sender:)), for: .touchUpInside)
-        baseView.univButton.addTarget(self, action: #selector(setSchoolLevel(sender:)), for: .touchUpInside)
-        baseView.highSchoolButton.checkButton.addTarget(self, action: #selector(setSchoolLevel(sender: )), for: .touchUpInside)
-        baseView.univButton.checkButton.addTarget(self, action: #selector(setSchoolLevel(sender: )), for: .touchUpInside)
+        baseView.highSchoolButton.addTarget(self, action: #selector(highButtonDidTap), for: .touchUpInside)
+        baseView.univButton.addTarget(self, action: #selector(univButtonDidTap), for: .touchUpInside)
+        baseView.highSchoolButton.checkButton.addTarget(self, action: #selector(highButtonDidTap), for: .touchUpInside)
+        baseView.univButton.checkButton.addTarget(self, action: #selector(univButtonDidTap), for: .touchUpInside)
     }
     
-    @objc func setSchoolLevel(sender: YelloSelectButton) {
-        
-        if sender == baseView.highSchoolButton {
-            schoolLevel = .high
-            nextViewController = highSchoolViewController
-        } else {
-            schoolLevel = .univ
-            nextViewController = universityViewController
-        }
+    @objc func highButtonDidTap() {
+        nextViewController = highSchoolViewController
+        nextButton.setButtonEnable(state: true)
+    }
+    
+    @objc func univButtonDidTap() {
+        nextViewController = universityViewController
         nextButton.setButtonEnable(state: true)
     }
     
