@@ -15,7 +15,7 @@ class OnboardingEndView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
-    var isRecommand = !(User.shared.recommendId.isEmpty)
+    var isRecommand = !(UserManager.shared.recommendId.isEmpty)
     
     // MARK: Constants
     let buttonHeight = 48.adjustedHeight
@@ -28,7 +28,7 @@ class OnboardingEndView: BaseView {
     let subGuideLabel = UILabel()
     let endingImageView = UIImageView()
     let subTitleLabel  = UILabel()
-    let goToYelloButton = YelloButton(buttonText: StringLiterals.Onboarding.endingButton,
+    let goToYelloButton = YelloButton(buttonText: StringLiterals.Onboarding.End.endingButton,
                                       isEnabled: true)
     
     // MARK: - Function
@@ -43,7 +43,7 @@ class OnboardingEndView: BaseView {
         }
         
         guideLabel.do {
-            $0.text = StringLiterals.Onboarding.endingTitle
+            $0.text = StringLiterals.Onboarding.End.endingTitle
             $0.font = .uiHeadline00
             $0.textColor = .white
         }
@@ -53,7 +53,7 @@ class OnboardingEndView: BaseView {
         }
         
         subGuideLabel.do {
-            $0.text = StringLiterals.Onboarding.endingText
+            $0.text = StringLiterals.Onboarding.End.endingText
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 22)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales600
@@ -64,7 +64,7 @@ class OnboardingEndView: BaseView {
         }
         
         subTitleLabel.do {
-            $0.text = StringLiterals.Onboarding.endingSubText
+            $0.text = StringLiterals.Onboarding.End.endingSubText
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 22)
             $0.textColor = .white
             $0.font = .uiSubtitle02

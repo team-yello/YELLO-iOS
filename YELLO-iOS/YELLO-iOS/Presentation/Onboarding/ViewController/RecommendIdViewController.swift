@@ -71,13 +71,13 @@ class RecommendIdViewController: OnboardingBaseViewController {
             return
         } else {
             idTextFieldView.textField.setButtonState(state: .cancel)
-            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.recommandHelper, State: .normal)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Recommand.recommandHelper, State: .normal)
         }
         
         let isButtonEnabled = !(idText.isEmpty) && isValidId && isExisted
         if isButtonEnabled {
             baseView.recommendIdTextField.textField.setButtonState(state: .done)
-            baseView.recommendIdTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.recommandHelper, State: .normal)
+            baseView.recommendIdTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Recommand.recommandHelper, State: .normal)
         }
         nextButton.setButtonEnable(state: isButtonEnabled)
     }
@@ -108,10 +108,10 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     private func postUserInfo() {
-        let user = User.shared
+        let user = UserManager.shared
         let requestDTO = SignUpRequestDTO(social: user.social, uuid: user.uuid, deviceToken: user.deviceToken, email: user.email, profileImage: user.profileImage, groupID: user.groupId, groupAdmissionYear: user.groupAdmissionYear, name: user.name, yelloID: user.yelloId, gender: user.gender, friends: user.friends, recommendID: user.recommendId)
         
-        NetworkService.shared.onboardingService.postUserInfo(requestDTO: requestDTO) { result in
+        NetworkService.shared.onboardingService.postUserInfo(requestDTO: requestDTO) { [self] result in
             switch result {
             case .success(let data):
                 guard let data = data.data else {
@@ -135,14 +135,15 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 let formattedDate = dateFormatter.string(from: currentDate)
                 
                 var userProperties: [AnyHashable : Any] = [:]
-                userProperties["user_id"] = User.shared.yelloId
-                userProperties["user_name"] = User.shared.name
-                userProperties["user_sex"] = User.shared.gender
-                userProperties["user_grade"] = User.shared.groupAdmissionYear
-                userProperties["user_recommend"] = User.shared.recommendId.isEmpty ? "yes" : "no"
+                userProperties["user_id"] = UserManager.shared.yelloId
+                userProperties["user_name"] = UserManager.shared.name
+                userProperties["user_sex"] = UserManager.shared.gender
+                userProperties["user_grade"] = UserManager.shared.groupAdmissionYear
+                userProperties["user_recommend"] = UserManager.shared.recommendId.isEmpty ? "yes" : "no"
                 userProperties["user_signup_date"] = formattedDate
                 Amplitude.instance().setUserProperties(userProperties)
                 self.didPostUserInfo = true
+                self.navigationController?.pushViewController(pushViewController, animated: false)
             default:
                 self.isFail = true
                 self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
@@ -153,7 +154,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     override func setUser() {
         guard let text = baseView.recommendIdTextField.textField.text else { return }
-        User.shared.recommendId = text
+        UserManager.shared.recommendId = text
     }
     
     // MARK: Objc Function
@@ -169,24 +170,20 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func didTapButton(sender: UIButton) {
+        
+        nextButton.isEnabled = true
+        skipButton.isEnabled = true
         if isFail {
-            nextButton.isEnabled = true
-            skipButton.isEnabled = true
             self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
             return
         }
-        
         setUser()
         postUserInfo()
         if sender == skipButton {
-            User.shared.recommendId = ""
+            UserManager.shared.recommendId = ""
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
         } else if sender == nextButton {
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
-        }
-        
-        if didPostUserInfo && !isFail {
-            self.navigationController?.pushViewController(pushViewController, animated: false)
         }
     }
 }

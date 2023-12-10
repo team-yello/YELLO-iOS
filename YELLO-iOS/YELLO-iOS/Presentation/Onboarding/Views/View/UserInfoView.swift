@@ -18,9 +18,9 @@ class UserInfoView: BaseView {
     
     // MARK: Component
     let guideImageView = UIImageView()
-    let idTextField = YelloTextFieldView(title: StringLiterals.Onboarding.idTitle, state: .id,
-                                              placeholder: StringLiterals.Onboarding.idPlaceholder,
-                                              helper: StringLiterals.Onboarding.idHelper)
+    let idTextField = YelloTextFieldView(title: StringLiterals.Onboarding.Id.idTitle, state: .id,
+                                         placeholder: StringLiterals.Onboarding.Id.idPlaceholder,
+                                         helper: StringLiterals.Onboarding.Id.idHelper)
     let idLabel = UILabel()
     
     // MARK: - Function

@@ -20,49 +20,82 @@ enum StringLiterals {
     }
     
     enum Onboarding {
-        static let privacyButtonText = "개인정보처리방침"
-        static let selectHighText = "중/고등학생"
-        static let selectUnivText = "대학생"
-        static let selectFemaleText = "여자"
-        static let selectMaleText = "남자"
+        enum KakaoLogin {
+            static let titleText = "Yell:o에 오신 걸 환영해요!"
+            static let subTitleText = "가입을 시작해볼까요?"
+            static let startButtonText = "카카오로 시작하기"
+            static let privacyButtonText = "개인정보처리방침"
+        }
         
-        static let schoolSearchText = "학교가 어디인가요?"
-        static let highSchoolSearchPlaceholder = "ex. 옐로중/고등학교"
-        static let univSearchPlaceholder = "ex. 옐로대학교"
-        static let selectLevelText = "몇 학년인가요?"
-        static let selectClassText = "몇 반인가요?"
-        static let selectClassPlaceholder = "ex. 1반"
-        static let majorSearchText = "무슨 학과인가요?"
-        static let majorSearchPlaceholder = "ex. 노랑학과"
-        static let studentIdText = "몇 학번인가요?"
-        static let studentIdPlaceholder = "ex. 23학번"
-        static let universityToastText = "학교를 먼저 선택해주세요"
+        enum KakaoConnect {
+            static let titleText = "나의 옐로 친구는 어딨을까?"
+            static let subTitleText = "친구 목록을 불러와봐요!"
+            static let connectButton = "카카오톡 친구 연결하기"
+        }
         
-        static let nameHelper = "이름은 가입 후 바꿀 수 없으니 정확히 적어주세요!"
-        static let nameError = "자음과 모음 조합의 한글만 입력 가능해요."
+        enum CheckName {
+            static let checkYesButton = "네, 맞아요"
+            static let checkNoButton = "제 이름이 아니에요"
+            static let checkTitle = "님이 맞으신가요?"
+        }
         
-        static let idTitle = "내가 사용할 아이디는?"
-        static let idHelper = "인스타그램 아이디로 하면 친구들이 찾기 쉬워요!\n(최대 20자)"
-        static let idPlaceholder = "yelloworld"
-        static let idError = "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요."
+        enum SchoolSelect {
+            static let selectHighText = "중/고등학생"
+            static let selectUnivText = "대학생"
+        }
+        enum School {
+            static let schoolSearchText = "학교가 어디인가요?"
+            static let highSchoolSearchPlaceholder = "ex. 옐로중/고등학교"
+            static let univSearchPlaceholder = "ex. 옐로대학교"
+            static let selectLevelText = "몇 학년인가요?"
+            static let selectClassText = "몇 반인가요?"
+            static let selectClassPlaceholder = "ex. 1반"
+            static let majorSearchText = "무슨 학과인가요?"
+            static let majorSearchPlaceholder = "ex. 노랑학과"
+            static let studentIdText = "몇 학번인가요?"
+            static let studentIdPlaceholder = "ex. 23학번"
+            static let universityToastText = "학교를 먼저 선택해주세요"
+        }
         
-        static let idDuplicate = "이미 사용하고 있는 아이디에요."
+        enum Name {
+            static let title = "나의 이름은?"
+            static let namePlaceHolder = "ex.김옐로"
+            static let nameHelper = "이후에는 이름 수정이 어려우니 실제 이름을 적어주세요."
+            static let nameError = "특수문자, 한글 외 문자는 입력할 수 없어요."
+        }
         
-        static let addFriendText = "친구를 추가하세요!"
-        static let addFriendSubText = "친구가 많을수록 쪽지도 많이 받아요."
+        enum Id {
+            static let idTitle = "내가 사용할 아이디는?"
+            static let idHelper = "인스타그램 아이디로 하면 친구들이 찾기 쉬워요!\n(최대 20자)"
+            static let idPlaceholder = "yelloworld"
+            static let idError = "문자, 숫자, 밑줄, 마침표만 사용할 수 있어요."
+            
+            static let idDuplicate = "이미 사용하고 있는 아이디에요."
+        }
         
-        static let recommandTitle = "추천인 코드"
-        static let recommandSubTitle = "추천인의 아이디를 입력하면 +100 point!"
-        static let recommandHelper = "추천인이 없다면 건너뛰어도 돼요."
+        enum Friend {
+            static let addFriendText = "친구를 추가하세요!"
+            static let addFriendSubText = "친구가 많을수록 쪽지도 많이 받아요."
+        }
         
-        static let pushNotiText = "띵동! 쪽지 도착"
-        static let pushNotiHelper = "친구들에게 비밀쪽지가 도착하면\n알림을 드릴게요."
-        static let pushNotiButtonText = "쪽지 알림 받기"
+        enum Recommand {
+            static let recommandTitle = "추천인 코드"
+            static let recommandSubTitle = "추천인의 아이디를 입력하면 +100 point!"
+            static let recommandHelper = "추천인이 없다면 건너뛰어도 돼요."
+        }
         
-        static let endingTitle = "가입 포인트 지급"
-        static let endingText = "튜토리얼 끝!\n옐로에서 환영 선물을 준비했어요!"
-        static let endingSubText = "앞으로 투표가 끝날 때마다 포인트를 줄게요!"
-        static let endingButton = "옐로하러 가기"
+        enum Notification {
+            static let pushNotiText = "띵동! 쪽지 도착"
+            static let pushNotiHelper = "친구들에게 비밀쪽지가 도착하면\n알림을 드릴게요."
+            static let pushNotiButtonText = "쪽지 알림 받기"
+        }
+        
+        enum End {
+            static let endingTitle = "가입 포인트 지급"
+            static let endingText = "튜토리얼 끝!\n옐로에서 환영 선물을 준비했어요!"
+            static let endingSubText = "앞으로 투표가 끝날 때마다 포인트를 줄게요!"
+            static let endingButton = "옐로하러 가기"
+        }
     }
     
     enum Tutorial {
