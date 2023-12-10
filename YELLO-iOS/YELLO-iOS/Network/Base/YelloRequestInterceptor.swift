@@ -53,7 +53,6 @@ final class YelloRequestInterceptor: RequestInterceptor {
             }
         } else {
             topViewController()?.view.showToast(message: "네트워크 에러입니다. 잠시 후 다시 실행해주세요")
-            logout()
             completion(.doNotRetry)
         }
         
