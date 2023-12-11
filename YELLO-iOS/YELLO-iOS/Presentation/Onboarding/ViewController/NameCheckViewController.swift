@@ -27,19 +27,19 @@ class NameCheckViewController: UIViewController {
     
     // MARK: Custom Function
     func addTarget() {
-        nameCheckView.yesButton.addTarget(self, action: #selector(yesButtonClicked), for: .touchUpInside)
-        nameCheckView.noButton.addTarget(self, action: #selector(noButtonClicked), for: .touchUpInside)
+        nameCheckView.yesButton.addTarget(self, action: #selector(yesButtonTapped), for: .touchUpInside)
+        nameCheckView.noButton.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Objc Function
-    @objc func noButtonClicked() {
+    @objc func noButtonTapped() {
         let nameViewController = NameViewController()
         nameViewController.initialName = UserManager.shared.name
         self.navigationController?.pushViewController(nameViewController, animated: true)
         
     }
     
-    @objc func yesButtonClicked() {
+    @objc func yesButtonTapped() {
         self.navigationController?.pushViewController(SchoolSelectViewController(), animated: true)
     }
 }
