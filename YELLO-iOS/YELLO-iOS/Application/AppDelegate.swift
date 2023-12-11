@@ -116,13 +116,13 @@ extension AppDelegate: MessagingDelegate {
         print("FirebaseMessaging")
         guard let fcmToken = fcmToken else { return }
         let deviceToken:[String: String] = ["token": fcmToken]
-        if fcmToken != User.shared.deviceToken {
+        if UserManager.shared.deviceToken.isEmpty {
             let requestDTO = DeviceTokenRefreshRequestDTO(deviceToken: fcmToken)
             NetworkService.shared.onboardingService.putRefreshDeviceToken(requsetDTO: requestDTO) { result in
                 switch result {
                 case .success(let data):
                     if data.status == 200 || data.status == 201 {
-                        User.shared.deviceToken = fcmToken
+                        UserManager.shared.deviceToken = fcmToken
                         print("Device token 재발급 완료:", deviceToken)
                     }
                 default:
@@ -130,7 +130,7 @@ extension AppDelegate: MessagingDelegate {
                 }
             }
         }
-        User.shared.deviceToken = fcmToken
+        UserManager.shared.deviceToken = fcmToken
         print("Device token:", deviceToken)
     }
 }

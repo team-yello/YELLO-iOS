@@ -46,9 +46,15 @@ class KakaoConnectViewController: UIViewController {
                     guard let id = $0.id else { return }
                     allFriends.append(String(id))
                 })
-                User.shared.kakaoFriends = allFriends
-                self.navigationController?.pushViewController(SchoolSelectViewController(), animated: true)
+                UserManager.shared.kakaoFriends = allFriends
+               
             }
+        }
+        
+        if UserManager.shared.name.isEmpty || UserManager.shared.isNeedModName {
+            self.navigationController?.pushViewController(NameViewController(), animated: true)
+        } else {
+            self.navigationController?.pushViewController(NameCheckViewController(), animated: true)
         }
         
     }

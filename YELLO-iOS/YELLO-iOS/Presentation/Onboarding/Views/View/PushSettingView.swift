@@ -23,7 +23,7 @@ class PushSettingView: BaseView {
     
     let pushSettingImageView = UIImageView()
     
-    let pushSettingButton = YelloButton(buttonText: StringLiterals.Onboarding.pushNotiButtonText,
+    let pushSettingButton = YelloButton(buttonText: StringLiterals.Onboarding.Notification.pushNotiButtonText,
                                         isEnabled: true )
     
     // MARK: - Function
@@ -42,13 +42,13 @@ class PushSettingView: BaseView {
         }
         
         guideLabel.do {
-            $0.text = StringLiterals.Onboarding.pushNotiText
+            $0.text = StringLiterals.Onboarding.Notification.pushNotiText
             $0.font = .uiHeadline00
             $0.textColor = .white
         }
         
         subGuideLabel.do {
-            $0.text = StringLiterals.Onboarding.pushNotiHelper
+            $0.text = StringLiterals.Onboarding.Notification.pushNotiHelper
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 22.adjusted)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales600

@@ -22,8 +22,8 @@ class AddFriendsViewController: OnboardingBaseViewController {
     var isLoadingData = false
     
     var pageCount = -1
-    var friendsKakaoID: [String] = User.shared.kakaoFriends
-    var groupId = User.shared.groupId
+    var friendsKakaoID: [String] = UserManager.shared.kakaoFriends
+    var groupId = UserManager.shared.groupId
     
     var data: JoinedFriendsResponseDTO?
     var addFriends: [FriendAdd] = []
@@ -108,7 +108,7 @@ class AddFriendsViewController: OnboardingBaseViewController {
     override func setUser() {
         let friends = baseView.joinedFriendsList.filter {$0.isAdded == false}.map { $0.friendInfo.id }
         Amplitude.instance().setUserProperties(["user_friends": friends.count])
-        User.shared.friends = friends
+        UserManager.shared.friends = friends
     }
 
 }

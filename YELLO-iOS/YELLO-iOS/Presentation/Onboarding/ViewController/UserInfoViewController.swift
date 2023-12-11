@@ -66,16 +66,16 @@ class UserInfoViewController: OnboardingBaseViewController {
         if !isIDEmpty, !isEnglishOnly {
             // 영어, 온점, 밑줄 이외의 문자가 포함되어 있으면 에러 처리
             idTextFieldView.textField.setButtonState(state: .error)
-            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idError, State: .error)
+            idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Id.idError, State: .error)
             self.isButtonEnable = false
         } else {
             if isIdDuplicate {
                 idTextFieldView.textField.setButtonState(state: .error)
-                idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idDuplicate, State: .error)
+                idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Id.idDuplicate, State: .error)
             } else {
                 idTextFieldView.textField.rightViewMode = .never
                 idTextFieldView.textField.setButtonState(state: .id)
-                idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
+                idTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Id.idHelper, State: .id)
             }
         }
         
@@ -103,7 +103,7 @@ class UserInfoViewController: OnboardingBaseViewController {
     
     override func setUser() {
         guard let id = baseView.idTextField.textField.text else { return }
-        User.shared.yelloId = id
+        UserManager.shared.yelloId = id
     }
     
     // MARK: objc Function
@@ -129,7 +129,7 @@ class UserInfoViewController: OnboardingBaseViewController {
         }
     
     @objc func idCancelTapped() {
-        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .id)
+        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Id.idHelper, State: .id)
         baseView.idTextField.textField.setButtonState(state: .id)
         nextButton.setButtonEnable(state: false)
     }
@@ -141,7 +141,7 @@ class UserInfoViewController: OnboardingBaseViewController {
 extension UserInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         baseView.idTextField.textField.setButtonState(state: .cancel)
-        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.idHelper, State: .normal)
+        baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Id.idHelper, State: .normal)
     
     }
     

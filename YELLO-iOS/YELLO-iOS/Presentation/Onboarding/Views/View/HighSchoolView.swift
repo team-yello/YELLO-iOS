@@ -13,7 +13,7 @@ import Then
 class HighSchoolView: UIView {
     // MARK: - Variables
     // MARK: Constants
-    let stringLiteral = StringLiterals.Onboarding.self
+    let stringLiteral = StringLiterals.Onboarding.School.self
     // MARK: Property
     var level = 1
     

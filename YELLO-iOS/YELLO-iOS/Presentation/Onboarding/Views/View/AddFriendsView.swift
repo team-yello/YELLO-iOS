@@ -33,7 +33,7 @@ class AddFriendsView: BaseView {
     }
     
     // MARK: Component
-    let addFriendsLabel = YelloGuideLabel(labelText: StringLiterals.Onboarding.addFriendText)
+    let addFriendsLabel = YelloGuideLabel(labelText: StringLiterals.Onboarding.Friend.addFriendText)
     let subGuideLabel =  UILabel()
     let countFriendLabel = UILabel()
     let friendsTableView = UITableView()
@@ -44,7 +44,7 @@ class AddFriendsView: BaseView {
         count = joinedFriendsList.count
         
         subGuideLabel.do {
-            $0.text = StringLiterals.Onboarding.addFriendSubText
+            $0.text = StringLiterals.Onboarding.Friend.addFriendSubText
             $0.font = .uiBodySmall
             $0.textColor = .grayscales500
             $0.setTextWithLineHeight(text: subGuideLabel.text, lineHeight: 22.adjustedHeight)

@@ -26,7 +26,7 @@ extension OnboardingTarget: TargetType {
     var authorization: Authorization {
         switch self {
         case .postTokenChange:
-            return .authorization
+            return .unauthorization
         case .getSchoolList:
             return .unauthorization
         case .getMajorList:
@@ -38,7 +38,7 @@ extension OnboardingTarget: TargetType {
         case .postUserInfo:
             return .unauthorization
         case .postRefreshToken:
-            return .authorization
+            return .unauthorization
         case .putDeviceToken:
             return .authorization
         case .getHighschoolList:

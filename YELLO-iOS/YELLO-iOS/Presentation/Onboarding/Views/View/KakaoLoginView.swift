@@ -21,13 +21,13 @@ class KakaoLoginView: BaseView {
         self.backgroundColor = .black
         
         titleLabel.do {
-            $0.text = "Yell:o에 오신 걸 환영해요!"
+            $0.text = StringLiterals.Onboarding.KakaoLogin.titleText
             $0.textColor = .white
             $0.font = .uiHeadline00
         }
         
         subTitleLabel.do {
-            $0.text = "가입을 시작해볼까요?"
+            $0.text = StringLiterals.Onboarding.KakaoLogin.subTitleText
             $0.font = .uiBodySmall
             $0.textColor = .grayscales500
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 22)
@@ -47,7 +47,7 @@ class KakaoLoginView: BaseView {
         
         kakaoButton.do {
             $0.backgroundColor = UIColor(hex: "FEE500")
-            $0.setTitle("카카오로 시작하기", for: .normal)
+            $0.setTitle(StringLiterals.Onboarding.KakaoLogin.startButtonText, for: .normal)
             $0.titleLabel?.font = .uiBody01
             $0.setTitleColor(UIColor(hex: "191600"), for: .normal)
             $0.setImage(ImageLiterals.OnBoarding.icKakao, for: .normal)
@@ -56,7 +56,7 @@ class KakaoLoginView: BaseView {
         
         privacyButton.do {
             $0.setImage(ImageLiterals.OnBoarding.icAlertCircle, for: .normal)
-            $0.setTitle(StringLiterals.Onboarding.privacyButtonText, for: .normal)
+            $0.setTitle(StringLiterals.Onboarding.KakaoLogin.privacyButtonText, for: .normal)
             $0.setTitleColor(.grayscales500, for: .normal)
             $0.titleLabel?.font = .uiLabelLarge
             $0.setUnderline()

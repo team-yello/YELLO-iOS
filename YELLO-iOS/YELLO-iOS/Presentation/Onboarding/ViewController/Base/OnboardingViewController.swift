@@ -20,12 +20,12 @@ class OnboardingBaseViewController: UIViewController {
     let nextButton = YelloButton(buttonText: "다음")
     let skipButton = UIButton()
     private let buttonStackView = UIStackView()
-    private let progressBarView = ProgressBarManager.shared.progressBarView
+    let progressBarView = ProgressBarManager.shared.progressBarView
     
     var nextViewController: UIViewController?
     var bottomConstraint: NSLayoutConstraint?
     var isSkipable = false
-    var step = 1
+    var step = 0
     
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +36,9 @@ class OnboardingBaseViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ProgressBarManager.shared.updateProgress(for: self, step: step)
+        if step > 0 {
+            ProgressBarManager.shared.updateProgress(for: self, step: step)
+        }
         configUI()
     }
     
@@ -89,7 +91,7 @@ class OnboardingBaseViewController: UIViewController {
         }
         
         skipButton.isHidden = !(isSkipable)
-    
+        
         view.addSubviews(navigationBarView, progressBarView, buttonStackView)
         
         nextButton.snp.makeConstraints {
@@ -148,7 +150,7 @@ class OnboardingBaseViewController: UIViewController {
         if let nextViewController = nextViewController {
             self.navigationController?.pushViewController(nextViewController, animated: false)
         } else {}
-        if step < 5 {
+        if step < 5 && step > 0 {
             Amplitude.instance().logEvent("click_onboarding_next", withEventProperties: ["onboard_view": paramaterArray[step - 1]] )
         }
         
@@ -166,11 +168,11 @@ class OnboardingBaseViewController: UIViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight: CGFloat
             keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
-            self.bottomConstraint?.constant = -1 * keyboardHeight - 12
+            self.bottomConstraint?.constant = -1 * keyboardHeight - 12.adjustedHeight
         }
     }
     
     @objc private func keyboardWillHide(notification: NSNotification) {
-        self.bottomConstraint?.constant = 0
+        self.bottomConstraint?.constant = -34.adjustedHeight
     }
 }

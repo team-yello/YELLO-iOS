@@ -19,14 +19,14 @@ class RecommendIdView: BaseView {
     let guideLabel = YelloGuideLabel(labelText: "추천인 코드")
     let subGuideLabel = UILabel()
     lazy var recommendIdTextField = YelloTextFieldView(title: "", state: .id,
-                                                  placeholder: stringLiteral.idPlaceholder,
-                                                  helper: stringLiteral.recommandHelper )
+                                                       placeholder: stringLiteral.Id.idPlaceholder,
+                                                       helper: stringLiteral.Recommand.recommandHelper )
     
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
         subGuideLabel.do {
-            $0.text = stringLiteral.recommandSubTitle
+            $0.text = stringLiteral.Recommand.recommandSubTitle
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 22)
             $0.font = .uiBodySmall
             $0.textColor = .grayscales600

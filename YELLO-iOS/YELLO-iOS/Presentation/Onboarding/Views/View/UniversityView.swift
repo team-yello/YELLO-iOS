@@ -12,7 +12,8 @@ import Then
 
 class UniversityView: UIView {
     // MARK: - Variables
-    let stringLiteral = StringLiterals.Onboarding.self
+    let stringLiteral = StringLiterals.Onboarding.School.self
+    
     // MARK: Component
     let guideImageView = UIImageView()
     lazy var guideTitleLabel = YelloGuideLabel(labelText: stringLiteral.schoolSearchText)

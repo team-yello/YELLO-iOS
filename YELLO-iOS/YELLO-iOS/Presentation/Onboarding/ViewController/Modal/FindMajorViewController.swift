@@ -64,10 +64,12 @@ class FindMajorViewController: SearchBaseViewController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
-                self?.allMajor.append(contentsOf: data.groupList)
-                self?.allArr.append(contentsOf: data.groupList.map { $0.departmentName })
-                self?.totalItemCount = data.totalCount
-                self?.searchView.searchResultTableView.reloadData()
+                DispatchQueue.main.async {
+                    self?.allMajor.append(contentsOf: data.groupList)
+                    self?.allArr.append(contentsOf: data.groupList.map { $0.departmentName })
+                    self?.totalItemCount = data.totalCount
+                    self?.searchView.searchResultTableView.reloadData()
+                }
             default:
                 print(ErrorPointer.self)
                 return
@@ -76,12 +78,13 @@ class FindMajorViewController: SearchBaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        pageCount = 0
-        allMajor.removeAll()
-        allArr.removeAll()
-        searchMajor(text)
+    @objc func textFieldDidChange(_ textField: YelloTextField) {
+        textField.debounce(delay: 0.5) { text in
+            guard let text = textField.text else { return }
+            self.pageCount = 0
+            self.allArr.removeAll()
+            self.searchMajor(text)
+        }
     }
     
     @objc func helperButtonDidTap() {

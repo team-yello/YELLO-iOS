@@ -79,7 +79,7 @@ class TutorialViewController: UIViewController {
         if pageCount == 5 {
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
 
-            if User.shared.isFirstUser {
+            if UserManager.shared.isFirstUser {
                 let rootViewController = OnboardingEndViewController()
                 sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
             } else {

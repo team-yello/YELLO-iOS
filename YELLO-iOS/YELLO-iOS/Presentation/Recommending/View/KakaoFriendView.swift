@@ -157,7 +157,7 @@ extension KakaoFriendView {
         self.kakaoPage += 1
         
         let queryDTO = RecommendingRequestQueryDTO(page: self.kakaoPage)
-        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: User.shared.kakaoFriends)
+        let requestDTO = RecommendingFriendRequestDTO(friendKakaoId: UserManager.shared.kakaoFriends)
         
         self.fetchingMore = true
         
@@ -232,7 +232,7 @@ extension KakaoFriendView {
                     guard let id = $0.id else { return }
                     allFriends.append(String(id))
                 })
-                User.shared.kakaoFriends = allFriends
+                UserManager.shared.kakaoFriends = allFriends
             }
             // 친구 목록 받아오는 작업이 완료된 후, completion 블록을 호출하여 다음 작업 수행
             completion()

@@ -11,8 +11,8 @@ import SnapKit
 import Then
 
 class SchoolSelectView: UIView {
-    let highSchoolButton = YelloSelectButton(buttonFormat: .school, buttonText: StringLiterals.Onboarding.selectHighText)
-    let univButton = YelloSelectButton(buttonFormat: .school, buttonText: StringLiterals.Onboarding.selectUnivText)
+    let highSchoolButton = YelloSelectButton(buttonFormat: .school, buttonText: StringLiterals.Onboarding.SchoolSelect.selectHighText)
+    let univButton = YelloSelectButton(buttonFormat: .school, buttonText: StringLiterals.Onboarding.SchoolSelect.selectUnivText)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +23,7 @@ class SchoolSelectView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }

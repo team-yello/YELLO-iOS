@@ -14,7 +14,6 @@ import Then
 /// 버튼 타입 설정 (학력/성별)
 @frozen enum ButtonFormat {
     case school
-    case gender
 }
 /// 성별 구분
 @frozen enum Gender {
@@ -31,7 +30,7 @@ class YelloSelectButton: UIButton {
     // MARK: - Variables
     // MARK: Property
     var buttonText = ""
-    var buttonFormat: ButtonFormat = .gender
+    var buttonFormat: ButtonFormat = .school
     var gender: Gender = .female
     var schoolLevel: SchoolLevel = .high
     var IconImage: UIImage?
@@ -122,19 +121,6 @@ extension YelloSelectButton {
     // MARK: Custom Function
     private func setSelected() {
         switch buttonFormat {
-        case .gender:
-            self.iconImageView.image = IconImage?.withTintColor(.white, renderingMode: .alwaysOriginal)
-            self.buttonLabel.textColor = .white
-            self.makeBorder(width: 1, color: .white)
-            
-            switch gender {
-            case .female:
-                self.backgroundColor = .semanticGenderF700
-                self.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleFemale, for: .normal)
-            case .male:
-                self.backgroundColor = .semanticGenderM700
-                self.checkButton.setImage(ImageLiterals.OnBoarding.icCheckCircleMale, for: .normal)
-            }
         case .school:
             schoolLevel = (buttonText == "대학생") ? .univ : .high
             buttonLabel.textColor = .yelloMain500
@@ -154,17 +140,6 @@ extension YelloSelectButton {
     private func setButtonUI() {
         
         switch buttonFormat {
-        case .gender:
-            gender = (self.buttonText == "여자") ? Gender.female : Gender.male
-            
-            switch gender {
-            case .female:
-                IconImage = ImageLiterals.OnBoarding.icYelloFaceFemale
-                buttonLabel.textColor = .semanticGenderF500
-            case .male:
-                IconImage = ImageLiterals.OnBoarding.icYelloFaceMale
-                buttonLabel.textColor = .semanticGenderM500
-            }
         case .school:
             let schoolLevel = (self.buttonText == "중/고등학생") ? SchoolLevel.high : SchoolLevel.univ
             buttonLabel.textColor = .grayscales500
@@ -189,11 +164,8 @@ extension YelloSelectButton {
                 button.makeBorder(width: 1, color: .grayscales700)
                 var image = UIImage()
                 switch buttonFormat {
-                case .gender:
-                    image = (buttonText == stringLiteral.selectFemaleText) ? imageLiteral.icYelloFaceMale : imageLiteral.icYelloFaceFemale
-                    
                 case .school:
-                    image = (buttonText == stringLiteral.selectHighText) ? imageLiteral.icUniv : imageLiteral.icHighschool
+                    image = (buttonText == stringLiteral.SchoolSelect.selectHighText) ? imageLiteral.icUniv : imageLiteral.icHighschool
                 }
                 button.iconImageView.image = image.withTintColor(.grayscales700, renderingMode: .alwaysOriginal)
                 button.buttonLabel.textColor = .grayscales700

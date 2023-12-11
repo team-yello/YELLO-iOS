@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct User {
-    static var shared = User()
+struct UserManager {
+    static var shared = UserManager()
     
     var social: String = ""
     var uuid: String = ""
@@ -26,6 +26,7 @@ struct User {
     
     var isResigned: Bool = false
     var isFirstUser: Bool = false
+    var isNeedModName: Bool = false
     
     var countVotingSkip = 0
     var countVoting = 0

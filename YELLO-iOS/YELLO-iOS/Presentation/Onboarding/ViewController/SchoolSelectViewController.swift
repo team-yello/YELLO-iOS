@@ -15,12 +15,14 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationBarView.isHidden = false
+        progressBarView.isHidden = false
         navigationBarView.backButton.isHidden = true
     }
     
     override func viewDidLoad() {
-        step = 1
         super.viewDidLoad()
+        super.step = 1
         addTarget()
     }
     
@@ -33,21 +35,19 @@ class SchoolSelectViewController: OnboardingBaseViewController {
     }
     
     private func addTarget() {
-        baseView.highSchoolButton.addTarget(self, action: #selector(setSchoolLevel(sender:)), for: .touchUpInside)
-        baseView.univButton.addTarget(self, action: #selector(setSchoolLevel(sender:)), for: .touchUpInside)
-        baseView.highSchoolButton.checkButton.addTarget(self, action: #selector(setSchoolLevel(sender: )), for: .touchUpInside)
-        baseView.univButton.checkButton.addTarget(self, action: #selector(setSchoolLevel(sender: )), for: .touchUpInside)
+        baseView.highSchoolButton.addTarget(self, action: #selector(highButtonDidTap), for: .touchUpInside)
+        baseView.univButton.addTarget(self, action: #selector(univButtonDidTap), for: .touchUpInside)
+        baseView.highSchoolButton.checkButton.addTarget(self, action: #selector(highButtonDidTap), for: .touchUpInside)
+        baseView.univButton.checkButton.addTarget(self, action: #selector(univButtonDidTap), for: .touchUpInside)
     }
     
-    @objc func setSchoolLevel(sender: YelloSelectButton) {
-        
-        if sender == baseView.highSchoolButton {
-            schoolLevel = .high
-        } else {
-            schoolLevel = .univ
-        }
-        
-        self.nextViewController = ( schoolLevel == .high ) ? highSchoolViewController : universityViewController
+    @objc func highButtonDidTap() {
+        nextViewController = highSchoolViewController
+        nextButton.setButtonEnable(state: true)
+    }
+    
+    @objc func univButtonDidTap() {
+        nextViewController = universityViewController
         nextButton.setButtonEnable(state: true)
     }
     
