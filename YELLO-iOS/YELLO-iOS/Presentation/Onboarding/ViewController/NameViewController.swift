@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class NameViewController: OnboardingBaseViewController {
+final class NameViewController: OnboardingBaseViewController {
     // MARK: - Variables
     var isButtonEnable = false
     var initialName = ""

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class NameCheckView: BaseView {
+final class NameCheckView: BaseView {
     // MARK: - Variables
     // MARK: Property
     let backgroundView = UIView()

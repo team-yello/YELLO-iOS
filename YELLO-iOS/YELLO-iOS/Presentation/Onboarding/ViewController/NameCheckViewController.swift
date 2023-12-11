@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class NameCheckViewController: UIViewController {
+final class NameCheckViewController: UIViewController {
     // MARK: - Variables
     let nameCheckView = NameCheckView()
     
