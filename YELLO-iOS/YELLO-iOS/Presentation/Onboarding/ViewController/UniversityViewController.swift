@@ -32,13 +32,12 @@ class UniversityViewController: OnboardingBaseViewController {
     
     override func viewDidLoad() {
         step = 2
-        User.shared.isFirstUser = true
+        UserManager.shared.isFirstUser = true
         super.viewDidLoad()
         setDelegate()
     }
     
     override func setLayout() {
-        navigationBarView.backButton.isHidden = true
         view.addSubview(baseView)
         nextViewController = UserInfoViewController()
         baseView.snp.makeConstraints {
@@ -59,8 +58,8 @@ class UniversityViewController: OnboardingBaseViewController {
     }
     
     override func setUser() {
-        User.shared.groupId = self.groupId
-        User.shared.groupAdmissionYear = self.groupAdmissionYear
+        UserManager.shared.groupId = self.groupId
+        UserManager.shared.groupAdmissionYear = self.groupAdmissionYear
         guard let schoolText = baseView.schoolSearchTextField.text else { return }
         guard let department = baseView.majorSearchTextField.text else { return }
         var userProperties: [AnyHashable : Any] = [:]
@@ -114,7 +113,7 @@ extension UniversityViewController: UITextFieldDelegate {
         guard let schoolText = baseView.schoolSearchTextField.text else {return}
         
         if schoolText.isEmpty && textField == baseView.majorSearchTextField {
-            view.showToast(message: StringLiterals.Onboarding.universityToastText, at: 88)
+            view.showToast(message: StringLiterals.Onboarding.School.universityToastText, at: 88)
             textField.endEditing(true)
             return
         }

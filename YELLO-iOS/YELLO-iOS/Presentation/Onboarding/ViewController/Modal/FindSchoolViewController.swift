@@ -33,7 +33,6 @@ class FindSchoolViewController: SearchBaseViewController {
     
     func searchSchool(_ word: String) {
         
-       
         if isHighSchool {
             /// 고등학교인 경우
             let highschoolQueryDTO: HighSchoolSearchRequestQueryDTO = HighSchoolSearchRequestQueryDTO(keyword: word, page: pageCount)
@@ -41,9 +40,11 @@ class FindSchoolViewController: SearchBaseViewController {
                 switch result {
                 case .success(let data):
                     guard let data = data.data else { return }
-                    self.allArr.append(contentsOf: data.groupNameList)
-                    self.totalItemCount = data.totalCount
-                    self.searchView.searchResultTableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.allArr.append(contentsOf: data.groupNameList)
+                        self.totalItemCount = data.totalCount
+                        self.searchView.searchResultTableView.reloadData()
+                    }
                 default:
                     print(ErrorPointer.self)
                     return
@@ -56,9 +57,11 @@ class FindSchoolViewController: SearchBaseViewController {
                 switch result {
                 case .success(let data):
                     guard let data = data.data else { return }
-                    self.allArr.append(contentsOf: data.groupNameList)
-                    self.totalItemCount = data.totalCount
-                    self.searchView.searchResultTableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.allArr.append(contentsOf: data.groupNameList)
+                        self.totalItemCount = data.totalCount
+                        self.searchView.searchResultTableView.reloadData()
+                    }
                 default:
                     print(ErrorPointer.self)
                     return
@@ -80,11 +83,14 @@ class FindSchoolViewController: SearchBaseViewController {
         }
     }
     // MARK: Objc Function
-    @objc func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: YelloTextField) {
         guard let text = textField.text else { return }
-        pageCount = 0
-        allArr.removeAll()
-        searchSchool(text)
+        textField.debounce(delay: 0.5) { text in
+            guard let text = textField.text else { return }
+            self.pageCount = 0
+            self.allArr.removeAll()
+            self.searchSchool(text)
+        }
     }
     
     @objc func helperButtonDidTap() {

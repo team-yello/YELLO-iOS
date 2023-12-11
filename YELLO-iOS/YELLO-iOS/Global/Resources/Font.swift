@@ -140,4 +140,8 @@ extension UIFont {
     class var uiInstagram: UIFont {
         return UIFont(name: "Unbounded-Regular", size: 10.0.adjusted)!
     }
+    
+    class var uiPopUpTitle: UIFont {
+        return UIFont(name: "Pretendard-ExtraBold", size: 16.0.adjusted)!
+    }
 }

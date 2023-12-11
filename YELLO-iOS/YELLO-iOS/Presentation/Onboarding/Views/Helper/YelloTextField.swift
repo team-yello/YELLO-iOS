@@ -31,6 +31,14 @@ final class YelloTextField: UITextField {
     // MARK: Property
     var textFieldState = iconState.normal
     var isCanceled = false
+    deinit {
+        self.removeTarget(self, action: #selector(self.editingChanged(_:)), for: .editingChanged)
+    }
+    
+    private var workItem: DispatchWorkItem?
+    private var delay: Double = 0
+    private var callback: ((String?) -> Void)? = nil
+    
     
     // MARK: Components
     private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
@@ -179,11 +187,29 @@ extension YelloTextField {
         self.rightView = buttonStackView
     }
     
+    func debounce(delay: Double, callback: @escaping ((String?) -> Void)) {
+        self.delay = delay
+        self.callback = callback
+        DispatchQueue.main.async {
+            self.callback?(self.text)
+        }
+        self.addTarget(self, action: #selector(self.editingChanged(_:)), for: .editingChanged)
+    }
+    
     // MARK: Objc Function
     @objc func cancelButtonDidTap() {
         isCanceled.toggle()
         self.setButtonState(state: .normal)
         self.rightViewMode = .never
         self.text = ""
+    }
+
+    @objc private func editingChanged(_ sender: UITextField) {
+      self.workItem?.cancel()
+      let workItem = DispatchWorkItem(block: { [weak self] in
+          self?.callback?(sender.text)
+      })
+      self.workItem = workItem
+      DispatchQueue.main.asyncAfter(deadline: .now() + self.delay, execute: workItem)
     }
 }

@@ -43,22 +43,24 @@ class KakaoLoginViewController: UIViewController {
                         if let error = error {
                             print(error)
                         } else {
-                            DispatchQueue.main.async {
                                 print("me() success.")
-                                guard let user = user else { return }
-                                guard let uuidInt = user.id else { return }
-                                guard let kakaoUser = user.kakaoAccount else {return}
-                                guard let email = kakaoUser.email else {return}
-                                guard let profile = user.kakaoAccount?.profile?.profileImageUrl else {return}
-                                User.shared.social = "KAKAO"
-                                User.shared.uuid = String(uuidInt)
-                                User.shared.email = email
-                                User.shared.name = kakaoUser.name ?? ""
-                                User.shared.gender = kakaoUser.gender?.rawValue.uppercased() ?? ""
-                                User.shared.profileImage = profile.absoluteString
+                                if let user = user {
+                                    UserManager.shared.social = "KAKAO"
+                                    if let uuidInt = user.id { UserManager.shared.uuid = String(uuidInt) }
+                                    if let kakaoUser = user.kakaoAccount {
+                                        if let email = kakaoUser.email { UserManager.shared.email = email }
+                                        if let name = kakaoUser.name {
+                                            UserManager.shared.name = name
+                                        } else {
+                                            UserManager.shared.isNeedModName = true
+                                        }
+                                        UserManager.shared.gender = kakaoUser.gender?.rawValue.uppercased() ?? ""
+                                        if let profile = kakaoUser.profile?.profileImageUrl {
+                                            UserManager.shared.profileImage = profile.absoluteString
+                                        }
+                                    }
+                                }
                             }
-                            
-                        }
                         
                         UserApi.shared.scopes(scopes: ["friends"]) { (scopeInfo, error) in
                             if let error = error {
@@ -79,14 +81,17 @@ class KakaoLoginViewController: UIViewController {
                                                     guard let id = $0.id else { return }
                                                     allFriends.append(String(id))
                                                 })
-                                                User.shared.kakaoFriends = allFriends
+                                                UserManager.shared.kakaoFriends = allFriends
                                             }
                                         }
+                                        if UserManager.shared.isNeedModName || UserManager.shared.name.isEmpty {
+                                            self.navigationController?.pushViewController(NameViewController(), animated: true)
+                                        } else {
+                                            self.navigationController?.pushViewController(NameCheckViewController(), animated: true)
+                                        }
+                                    } else {
+                                        self.navigationController?.pushViewController(KakaoConnectViewController(), animated: true)
                                     }
-                                    
-                                    /// 확인 후 플로우 변경
-                                    let nextViewController = allowList[0].agreed ? SchoolSelectViewController() : KakaoConnectViewController()
-                                    self.navigationController?.pushViewController(nextViewController, animated: true)
                                 }
                             }
                         }
@@ -98,13 +103,13 @@ class KakaoLoginViewController: UIViewController {
                     KeychainHandler.shared.refreshToken = data.refreshToken
                     UserDefaults.standard.setValue(true, forKey: "isLoggined")
                     
-                    User.shared.isResigned = data.isResigned
+                    UserManager.shared.isResigned = data.isResigned
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     
                     if isFirstTime() {
                         let rootViewController = PushSettingViewController()
                         self.sceneDelegate  .window?.rootViewController = UINavigationController(rootViewController: rootViewController)
-                    } else if User.shared.isResigned {
+                    } else if UserManager.shared.isResigned {
                         let rootViewController = TutorialViewController()
                         self.sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: rootViewController)
                     } else {
@@ -138,7 +143,7 @@ class KakaoLoginViewController: UIViewController {
                     DispatchQueue.main.async {
                         Amplitude.instance().logEvent("complete_onboarding_finish")
                         guard let kakaoToken = oauthToken?.accessToken else { return }
-                        let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
+                        let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: UserManager.shared.deviceToken)
                         self.authNetwork(queryDTO: queryDTO)
                     }
                 }
@@ -152,7 +157,7 @@ class KakaoLoginViewController: UIViewController {
                     print("카카오 계정으로 로그인 성공")
                     Amplitude.instance().logEvent("complete_onboarding_finish")
                     guard let kakaoToken = oauthToken?.accessToken else { return }
-                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: User.shared.deviceToken)
+                    let queryDTO = KakaoLoginRequestDTO(accessToken: kakaoToken, social: "KAKAO", deviceToken: UserManager.shared.deviceToken)
                     self.authNetwork(queryDTO: queryDTO)
                 }
             }

@@ -109,8 +109,8 @@ class HighSchoolViewController: OnboardingBaseViewController {
     }
     
     override func setUser() {
-        User.shared.groupId = groupId
-        User.shared.groupAdmissionYear = schoolLevel
+        UserManager.shared.groupId = groupId
+        UserManager.shared.groupAdmissionYear = schoolLevel
         var userProperties: [AnyHashable : Any] = [:]
         userProperties["user_school"] = highSchoolName
         userProperties["user_department"] = schoolLevel

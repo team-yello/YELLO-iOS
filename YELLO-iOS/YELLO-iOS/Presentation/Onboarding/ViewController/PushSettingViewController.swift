@@ -23,7 +23,7 @@ class PushSettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(User.shared)
+        print(UserManager.shared)
         setUI()
     }
     
