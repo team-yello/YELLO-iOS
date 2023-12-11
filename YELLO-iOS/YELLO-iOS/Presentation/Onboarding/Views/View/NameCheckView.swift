@@ -45,7 +45,7 @@ class NameCheckView: BaseView {
         
         yesButton.do {
             $0.setTitle(StringLiterals.Onboarding.CheckName.checkYesButton, for: .normal)
-            $0.setTitleColor(.semanticStatusRed500, for: .normal)
+            $0.setTitleColor(.yelloMain500, for: .normal)
             $0.titleLabel?.font = .uiButton
         }
     }
@@ -72,14 +72,14 @@ class NameCheckView: BaseView {
         }
         
         noButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(26.adjustedHeight)
-            $0.leading.equalToSuperview().inset(34.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(23.adjustedHeight)
+            $0.leading.equalToSuperview().inset(36.adjustedWidth)
             $0.height.equalTo(28.adjustedHeight)
         }
         
         yesButton.snp.makeConstraints {
             $0.bottom.equalTo(noButton)
-            $0.trailing.equalToSuperview().inset(34.adjustedWidth)
+            $0.trailing.equalToSuperview().inset(36.adjustedWidth)
             $0.width.equalTo(74.adjustedWidth)
             $0.height.equalTo(28.adjustedHeight)
         }
