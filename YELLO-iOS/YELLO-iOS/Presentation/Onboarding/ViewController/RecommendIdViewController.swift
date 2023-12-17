@@ -153,8 +153,9 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func setUser() {
-        guard let text = baseView.recommendIdTextField.textField.text else { return }
-        UserManager.shared.recommendId = text
+        if let text = baseView.recommendIdTextField.textField.text {
+            UserManager.shared.recommendId = text
+        }
     }
     
     // MARK: Objc Function
@@ -170,21 +171,21 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func didTapButton(sender: UIButton) {
-        
         nextButton.isEnabled = true
         skipButton.isEnabled = true
         if isFail {
             self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
             return
         }
-        setUser()
-        postUserInfo()
         if sender == skipButton {
             UserManager.shared.recommendId = ""
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
         } else if sender == nextButton {
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
         }
+        
+        setUser()
+        postUserInfo()
     }
 }
 

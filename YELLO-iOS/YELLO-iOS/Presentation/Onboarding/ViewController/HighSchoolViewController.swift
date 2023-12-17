@@ -139,8 +139,6 @@ class HighSchoolViewController: OnboardingBaseViewController {
         guard let buttonTitleLabel = sender.titleLabel else { return }
         self.schoolLevel = extractNumbers(from: buttonTitleLabel.text ?? "")
     }
-
-    
 }
 
 extension HighSchoolViewController: UITextFieldDelegate {
