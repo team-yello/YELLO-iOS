@@ -110,6 +110,12 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     private func postUserInfo() {
         let user = UserManager.shared
+        
+        if user.gender == "" {
+            UserManager.shared.gender = "FEMALE"
+            Crashlytics.crashlytics().log("성별값이 올바르지 않습니다. 기본값으로 설정합니다.")
+        }
+        
         let requestDTO = SignUpRequestDTO(social: user.social, uuid: user.uuid, deviceToken: user.deviceToken, email: user.email, profileImage: user.profileImage, groupID: user.groupId, groupAdmissionYear: user.groupAdmissionYear, name: user.name, yelloID: user.yelloId, gender: user.gender, friends: user.friends, recommendID: user.recommendId)
         
         NetworkService.shared.onboardingService.postUserInfo(requestDTO: requestDTO) { [self] result in

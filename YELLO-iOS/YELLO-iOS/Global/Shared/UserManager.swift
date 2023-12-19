@@ -19,7 +19,7 @@ struct UserManager {
     var groupAdmissionYear: Int = 0
     var name: String = ""
     var yelloId: String = ""
-    var gender: String = "FEMALE"
+    var gender: String = ""
     var friends: [Int] = []
     var kakaoFriends: [String] = []
     var recommendId: String = ""
