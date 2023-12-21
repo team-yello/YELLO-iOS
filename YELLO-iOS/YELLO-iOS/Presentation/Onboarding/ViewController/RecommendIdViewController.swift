@@ -7,6 +7,7 @@
 
 import UIKit
 import Amplitude
+import FirebaseCrashlytics
 
 class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: - Variables
@@ -109,6 +110,12 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     private func postUserInfo() {
         let user = UserManager.shared
+        
+        if user.gender == "" {
+            UserManager.shared.gender = "FEMALE"
+            Crashlytics.crashlytics().log("성별값이 올바르지 않습니다. 기본값으로 설정합니다.")
+        }
+        
         let requestDTO = SignUpRequestDTO(social: user.social, uuid: user.uuid, deviceToken: user.deviceToken, email: user.email, profileImage: user.profileImage, groupID: user.groupId, groupAdmissionYear: user.groupAdmissionYear, name: user.name, yelloID: user.yelloId, gender: user.gender, friends: user.friends, recommendID: user.recommendId)
         
         NetworkService.shared.onboardingService.postUserInfo(requestDTO: requestDTO) { [self] result in
@@ -144,6 +151,12 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 Amplitude.instance().setUserProperties(userProperties)
                 self.didPostUserInfo = true
                 self.navigationController?.pushViewController(pushViewController, animated: false)
+            case .requestErr(let data):
+                self.isFail = true
+                self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
+                Crashlytics.crashlytics().setUserID(UserManager.shared.yelloId)
+                Crashlytics.crashlytics().log("dto: \(requestDTO) \n message: \(data.message)")
+                return
             default:
                 self.isFail = true
                 self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
@@ -153,8 +166,9 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func setUser() {
-        guard let text = baseView.recommendIdTextField.textField.text else { return }
-        UserManager.shared.recommendId = text
+        if let text = baseView.recommendIdTextField.textField.text {
+            UserManager.shared.recommendId = text
+        }
     }
     
     // MARK: Objc Function
@@ -170,21 +184,21 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func didTapButton(sender: UIButton) {
-        
         nextButton.isEnabled = true
         skipButton.isEnabled = true
         if isFail {
             self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
             return
         }
-        setUser()
-        postUserInfo()
         if sender == skipButton {
             UserManager.shared.recommendId = ""
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
         } else if sender == nextButton {
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
         }
+        
+        setUser()
+        postUserInfo()
     }
 }
 

@@ -10,12 +10,12 @@ import Foundation
 struct UserManager {
     static var shared = UserManager()
     
-    var social: String = ""
+    var social: String = "KAKAO"
     var uuid: String = ""
     var email: String = ""
     var deviceToken: String = ""
     var profileImage: String = ""
-    var groupId: Int = 0
+    var groupId: Int = 1
     var groupAdmissionYear: Int = 0
     var name: String = ""
     var yelloId: String = ""
