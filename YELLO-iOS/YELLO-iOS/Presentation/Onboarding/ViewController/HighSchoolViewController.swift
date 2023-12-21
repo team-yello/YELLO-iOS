@@ -9,6 +9,7 @@ import UIKit
 
 import Amplitude
 import SnapKit
+import FirebaseCrashlytics
 import Then
 
 class HighSchoolViewController: OnboardingBaseViewController {
@@ -89,8 +90,11 @@ class HighSchoolViewController: OnboardingBaseViewController {
         NetworkService.shared.onboardingService.getHighSchoolClass(queryDTO: queryDTO) { result in
             switch result {
             case .success(let data):
-                guard let data = data.data else { return }
-                self.groupId = data.groupId
+                if let data = data.data {
+                    self.groupId = data.groupId
+                } else {
+                    Crashlytics.crashlytics().log("dto: \(queryDTO) \n data: \(String(describing: data.data))")
+                }
             default:
                 print("network Error")
             }
