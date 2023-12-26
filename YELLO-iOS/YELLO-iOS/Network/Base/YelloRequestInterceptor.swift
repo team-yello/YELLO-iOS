@@ -63,7 +63,6 @@ final class YelloRequestInterceptor: RequestInterceptor {
             switch result {
             case .success(let data):
                 if data.status == 403 {
-                    completion(false)
                     self.logout()
                 }
                 if data.status == 201 {
@@ -89,15 +88,15 @@ final class YelloRequestInterceptor: RequestInterceptor {
             } else {
                 DispatchQueue.main.async {
                     print("logout() success.")
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                    
-                    UserManager.shared.isResigned = false
-                    UserManager.shared.isFirstUser = false
-                    
-                    UserDefaults.standard.removeObject(forKey: "isLoggined")
-                    sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
                 }
             }
         }
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+        
+        UserManager.shared.isResigned = false
+        UserManager.shared.isFirstUser = false
+        
+        UserDefaults.standard.removeObject(forKey: "isLoggined")
+        sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: KakaoLoginViewController())
     }
 }

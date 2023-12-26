@@ -54,7 +54,9 @@ class KakaoLoginViewController: UIViewController {
                                         } else {
                                             UserManager.shared.isNeedModName = true
                                         }
-                                        UserManager.shared.gender = kakaoUser.gender?.rawValue.uppercased() ?? ""
+                                        if let gender = kakaoUser.gender {
+                                            UserManager.shared.gender = gender.rawValue.uppercased()
+                                        }
                                         if let profile = kakaoUser.profile?.profileImageUrl {
                                             UserManager.shared.profileImage = profile.absoluteString
                                         }
