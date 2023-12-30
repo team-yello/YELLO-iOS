@@ -271,6 +271,7 @@
 		C3B83E642A8E04C800A39CAC /* PurchaseRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E632A8E04C800A39CAC /* PurchaseRequestDTO.swift */; };
 		C3B83E662A8E051800A39CAC /* PurchaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E652A8E051800A39CAC /* PurchaseResponseDTO.swift */; };
 		C3B83E682A8E08D500A39CAC /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E672A8E08D500A39CAC /* PurchaseService.swift */; };
+		C3BAECD02B40184800F8FD74 /* RecommendFriendProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BAECCF2B40184800F8FD74 /* RecommendFriendProfileView.swift */; };
 		C3BF63022AF7DE09000C7900 /* InstagramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BF63012AF7DE09000C7900 /* InstagramButton.swift */; };
 		C3BF63042AF7E1EA000C7900 /* TimeLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BF63032AF7E1EA000C7900 /* TimeLineTableViewCell.swift */; };
 		C3C560C02A8A6ED50074E988 /* SearchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C560BF2A8A6ED50074E988 /* SearchTarget.swift */; };
@@ -570,6 +571,7 @@
 		C3B83E632A8E04C800A39CAC /* PurchaseRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseRequestDTO.swift; sourceTree = "<group>"; };
 		C3B83E652A8E051800A39CAC /* PurchaseResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseResponseDTO.swift; sourceTree = "<group>"; };
 		C3B83E672A8E08D500A39CAC /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
+		C3BAECCF2B40184800F8FD74 /* RecommendFriendProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendFriendProfileView.swift; sourceTree = "<group>"; };
 		C3BF63012AF7DE09000C7900 /* InstagramButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramButton.swift; sourceTree = "<group>"; };
 		C3BF63032AF7E1EA000C7900 /* TimeLineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineTableViewCell.swift; sourceTree = "<group>"; };
 		C3C560BF2A8A6ED50074E988 /* SearchTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTarget.swift; sourceTree = "<group>"; };
@@ -1810,6 +1812,7 @@
 				C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */,
 				C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */,
 				C31315A32A7A5B8700FB8B43 /* RecommendingNavigationBarView.swift */,
+				C3BAECCF2B40184800F8FD74 /* RecommendFriendProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2351,6 +2354,7 @@
 				2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */,
 				3662A0F22A65498800F482EF /* MajorSearchRequestQueryDTO.swift in Sources */,
 				C3C57BF02A5C06C600B84CAA /* KakaoFriendView.swift in Sources */,
+				C3BAECD02B40184800F8FD74 /* RecommendFriendProfileView.swift in Sources */,
 				36BE79BE2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift in Sources */,
 				2AA0DBC12A552D63002B1370 /* YELLOTabBarItem.swift in Sources */,
 				C3B4720A2A65B1CB00770530 /* MyYelloRequestQueryDTO.swift in Sources */,

@@ -162,6 +162,7 @@ enum ImageLiterals {
         static var icSearchWhite: UIImage { .load(named: "icSearchWhite")}
         static var imgFriendSearch: UIImage { .load(named: "imgFriendSearch")}
         static var imgSearchNoResult: UIImage { .load(named: "imgSearchNoResult")}
+        static var btnAddFriend: UIImage { .load(named: "btnAddFriend")}
     }
     
     enum Payment {
