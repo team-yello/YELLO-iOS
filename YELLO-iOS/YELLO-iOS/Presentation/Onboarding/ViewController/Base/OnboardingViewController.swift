@@ -77,9 +77,11 @@ class OnboardingBaseViewController: UIViewController {
         }
         
         skipButton.do {
+            $0.makeCornerRound(radius: 24.adjusted)
+            $0.makeBorder(width: 1, color: .grayscales200)
             $0.setTitle("건너뛰기", for: .normal)
             $0.titleLabel?.font = .uiBody01
-            $0.setTitleColor(.white, for: .normal)
+            $0.setTitleColor(.grayscales200, for: .normal)
             $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         }
         
@@ -104,7 +106,8 @@ class OnboardingBaseViewController: UIViewController {
         }
         
         skipButton.snp.makeConstraints {
-            $0.height.equalTo(32)
+            $0.height.equalTo(48.adjusted)
+            $0.leading.trailing.equalToSuperview()
         }
         
         buttonStackView.snp.makeConstraints {
