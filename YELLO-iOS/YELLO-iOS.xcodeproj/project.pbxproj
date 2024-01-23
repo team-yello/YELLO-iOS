@@ -180,6 +180,7 @@
 		36EA2AB72A66FC0B003603C7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA2AB62A66FC0B003603C7 /* UserManager.swift */; };
 		C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */; };
 		C303C8242B6005980077C423 /* WithdrawalReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8232B6005980077C423 /* WithdrawalReasonView.swift */; };
+		C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */; };
 		C305A5B22A85F997007C4A69 /* PaymentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */; };
 		C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7262A630BB70031514C /* KeychainHandler.swift */; };
 		C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C306E7292A630BD10031514C /* SwiftKeychainWrapper */; };
@@ -484,6 +485,7 @@
 		36EA2AB62A66FC0B003603C7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonViewController.swift; sourceTree = "<group>"; };
 		C303C8232B6005980077C423 /* WithdrawalReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonView.swift; sourceTree = "<group>"; };
+		C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonCollectionViewCell.swift; sourceTree = "<group>"; };
 		C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmView.swift; sourceTree = "<group>"; };
 		C306E7262A630BB70031514C /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendRequestDTO.swift; sourceTree = "<group>"; };
@@ -1317,6 +1319,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		C303C8272B6009CE0077C423 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		C305A5B02A85F2CE007C4A69 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -1905,6 +1915,7 @@
 			children = (
 				C3FF24A92A5F330700A97D40 /* ViewController */,
 				C3FF24AA2A5F331000A97D40 /* View */,
+				C303C8272B6009CE0077C423 /* Cell */,
 			);
 			path = Withdrawal;
 			sourceTree = "<group>";
@@ -1962,8 +1973,8 @@
 		C3FF24A92A5F330700A97D40 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
 				C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */,
+				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
 				C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */,
 			);
 			path = ViewController;
@@ -1972,10 +1983,10 @@
 		C3FF24AA2A5F331000A97D40 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
 				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
-				C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */,
+				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
 				C303C8232B6005980077C423 /* WithdrawalReasonView.swift */,
+				C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2389,6 +2400,7 @@
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */,
 				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
+				C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */,
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
 				362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
