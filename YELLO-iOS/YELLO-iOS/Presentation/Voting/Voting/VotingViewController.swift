@@ -29,7 +29,7 @@ final class VotingViewController: BaseViewController {
     
     let originView = BaseVotingMainView()
   
-    private let nameStackView = UIStackView()
+    let nameStackView = UIStackView()
     let nameHead = UILabel()
     var nameMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 70.adjusted, height: 34.adjusted))
 
@@ -41,7 +41,7 @@ final class VotingViewController: BaseViewController {
     var nameTextThree = UILabel()
     var nameTextFour = UILabel()
     
-    private let keywordStackView = UIStackView()
+    let keywordStackView = UIStackView()
     let keywordHead = UILabel()
     var keywordMiddleBackground = UIView(frame: CGRect(x: 0, y: 0, width: 150.adjusted, height: 34.adjusted))
     let keywordMiddleText = UILabel()
@@ -160,7 +160,7 @@ final class VotingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step" : VotingViewController.pushCount])
+        Amplitude.instance().logEvent("view_vote_question", withEventProperties: ["vote_step": VotingViewController.pushCount])
         Color.shared.restoreFromUserDefaults()
         votingList = loadVotingData() ?? []
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")

@@ -196,9 +196,28 @@ extension VotingViewController {
             saveUserData(combinedData)
             print(combinedData)
             
-            UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.5, options: .transitionCrossDissolve, animations: {
-                // 전환 시 스르륵 바뀌는 애니메이션 적용
+            let topAnimatedView = self.originView.questionBackground
+            let nameAnimatedViews = [self.originView.nameOneButton, self.originView.nameTwoButton, self.originView.nameThreeButton, self.originView.nameFourButton]
+            let keywordAnimatedViews = [self.originView.keywordOneButton, self.originView.keywordTwoButton, self.originView.keywordThreeButton, self.originView.keywordFourButton]
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                // 원하는 애니메이션 구현
+                let newXPosition = -200.adjusted
+                topAnimatedView.frame.origin.x = CGFloat(newXPosition)
+                for nameView in nameAnimatedViews {
+                    nameView.frame.origin.x = CGFloat(newXPosition)
+                }
+                for keywordView in keywordAnimatedViews {
+                    keywordView.frame.origin.x = CGFloat(newXPosition + 148.adjusted)
+                }
+                
+                self.keywordMiddleText.frame.origin.x = CGFloat(newXPosition)
+                self.nameMiddleText.frame.origin.x = CGFloat(newXPosition)
+                
                 VotingViewController.pushCount += 1
+
+            }, completion: { _ in
+                // 애니메이션이 완료된 후에 화면 전환
                 self.navigationController?.pushViewController(viewController, animated: false)
             })
         }
