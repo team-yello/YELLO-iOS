@@ -196,29 +196,25 @@ extension VotingViewController {
             saveUserData(combinedData)
             print(combinedData)
             
-            let topAnimatedView = self.originView.questionBackground
-            let nameAnimatedViews = [self.originView.nameOneButton, self.originView.nameTwoButton, self.originView.nameThreeButton, self.originView.nameFourButton]
-            let keywordAnimatedViews = [self.originView.keywordOneButton, self.originView.keywordTwoButton, self.originView.keywordThreeButton, self.originView.keywordFourButton]
+            let topAnimatedView = viewController.originView.questionBackground
+            let nameAnimatedViews = [viewController.originView.nameOneButton, viewController.originView.nameTwoButton, viewController.originView.nameThreeButton, viewController.originView.nameFourButton]
+            let keywordAnimatedViews = [viewController.originView.keywordOneButton, viewController.originView.keywordTwoButton, viewController.originView.keywordThreeButton, viewController.originView.keywordFourButton]
             
-            UIView.animate(withDuration: 0.5, animations: {
-                // 서서히 사라지게 설정
-                self.nameMiddleText.alpha = 0
-                self.keywordMiddleText.alpha = 0
+            UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.5, options: .transitionCrossDissolve, animations: {
+                VotingViewController.pushCount += 1
                 
-                // 원하는 애니메이션 구현
-                let newXPosition = -200.adjusted
+                // 검정색 배경들이 밀리는 것과 같은 애니메이션 구현
+                let newXPosition = -1000.adjusted
                 topAnimatedView.frame.origin.x = CGFloat(newXPosition)
                 
-                for nameView in nameAnimatedViews {
-                    nameView.frame.origin.x = CGFloat(newXPosition)
-                }
                 for keywordView in keywordAnimatedViews {
                     keywordView.frame.origin.x = CGFloat(newXPosition + 148.adjusted)
                 }
                 
-                VotingViewController.pushCount += 1
-            }, completion: { _ in
-                // 애니메이션이 완료된 후에 화면 전환
+                for nameView in nameAnimatedViews {
+                    nameView.frame.origin.x = CGFloat(newXPosition)
+                }
+                
                 self.navigationController?.pushViewController(viewController, animated: false)
             })
         }
