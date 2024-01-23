@@ -238,10 +238,25 @@ extension YELLOTabBarController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
-                if data.isSubscribeNeeded {
-                    self.toResubscribeView()
+                
+                let currentDate = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                
+                if data.subscribe == "canceled" {
+                    if let expiredDate = dateFormatter.date(from: data.expiredDate) {
+                        // 만료일이 오늘 또는 오늘 이후라면
+                        if currentDate.compare(expiredDate) == .orderedAscending {
+                            // 하루 이하로 남았으면
+                            self.toResubscribeView()
+                        }
+                    }
                 }
+                print("여기야아아아아아ㅏㅇ")
+                print(data)
+                
             default:
+                print("여기야아아아아아ㅏㅇ")
                 print("network failure")
                 return
             }

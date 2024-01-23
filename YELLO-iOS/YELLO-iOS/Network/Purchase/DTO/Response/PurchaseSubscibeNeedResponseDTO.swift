@@ -8,6 +8,7 @@
 import Foundation
 
 struct PurchaseSubscibeNeedResponseDTO: Codable {
+    let id: Int64
     let subscribe: String
-    let isSubscribeNeeded: Bool
+    let expiredDate: String
 }
