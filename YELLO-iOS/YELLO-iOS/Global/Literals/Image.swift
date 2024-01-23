@@ -152,6 +152,7 @@ enum ImageLiterals {
         static var icArrowLeftWhite: UIImage { .load(named: "icArrowLeftWhite") }
         static var btnDelete: UIImage { .load(named: "btnDelete") }
         static var icProfileStar: UIImage { .load(named: "icProfileStar") }
+        static var icEdit: UIImage { .load(named: "ic_Edit") }
     }
     
     enum Recommending {
