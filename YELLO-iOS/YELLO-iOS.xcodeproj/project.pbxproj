@@ -128,6 +128,8 @@
 		36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A52AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift */; };
 		36C4C4A82AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */; };
 		36C5E1CD2A91273400184AAE /* TokenRefreshRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */; };
+		36D98F352B5FB2B7003B2B11 /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */; };
+		36D98F372B602442003B2B11 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F362B602442003B2B11 /* InfoView.swift */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
 		36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -457,6 +459,8 @@
 		36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolSearchResponseDTO.swift; sourceTree = "<group>"; };
 		36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
 		36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequestDTO.swift; sourceTree = "<group>"; };
+		36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileView.swift; sourceTree = "<group>"; };
+		36D98F362B602442003B2B11 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
 		36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -1840,6 +1844,8 @@
 				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
 				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
+				36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */,
+				36D98F362B602442003B2B11 /* InfoView.swift */,
 				C307ECB52A607357000F5BA9 /* FriendCountView.swift */,
 				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
 				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
@@ -2311,6 +2317,7 @@
 				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
 				C3B472122A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift in Sources */,
 				C39D3D842A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift in Sources */,
+				36D98F352B5FB2B7003B2B11 /* MainProfileView.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				363D815F2B2616040095F6CC /* NameCheckView.swift in Sources */,
 				367113732A7D6CED0037E0D2 /* UniversityViewController.swift in Sources */,
@@ -2413,6 +2420,7 @@
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
+				36D98F372B602442003B2B11 /* InfoView.swift in Sources */,
 				3662A0EA2A64437900F482EF /* KakaoLoginRequestDTO.swift in Sources */,
 				36BF1DE82A7A5FCF00C58E74 /* YelloProgressBarView.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
