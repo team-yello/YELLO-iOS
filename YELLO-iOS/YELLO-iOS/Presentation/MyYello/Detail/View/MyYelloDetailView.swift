@@ -68,7 +68,7 @@ final class MyYelloDetailView: BaseView {
                 senderButton.setButtonState(state: .useTicket)
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
-                    $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                    $0.top.equalTo(instagramButton.snp.bottom).offset(125.adjustedHeight)
                 }
                 if self.nameIndex == -3 {
                     senderButton.setButtonState(state: .noTicket)
@@ -109,7 +109,7 @@ final class MyYelloDetailView: BaseView {
                 if isTicketUsed {
                     keywordButton.isHidden = true
                     senderButton.snp.makeConstraints {
-                        $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                        $0.top.equalTo(instagramButton.snp.bottom).offset(125.adjustedHeight)
                     }
                 }
                 
@@ -127,7 +127,7 @@ final class MyYelloDetailView: BaseView {
             if self.isSenderUsed == true {
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
-                    $0.top.equalTo(instagramButton.snp.bottom).offset(77.adjustedHeight)
+                    $0.top.equalTo(instagramButton.snp.bottom).offset(125.adjustedHeight)
                 }
                 
                 instagramButton.snp.makeConstraints {
