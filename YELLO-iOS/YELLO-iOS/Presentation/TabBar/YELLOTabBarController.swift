@@ -41,7 +41,7 @@ final class YELLOTabBarController: UITabBarController {
         super.viewDidLoad()
         
         network()
-//        purchaseSubscribeNeed()
+        purchaseSubscribeNeed()
 
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
