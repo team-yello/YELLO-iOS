@@ -366,6 +366,20 @@ enum StringLiterals {
             static let no = "아니요"
             static let yes = "네, 탈퇴합니다"
         }
+        
+        enum WithdrawalReason {
+            static let title = "탈퇴 사유를 적어주세요."
+            static let nobody = "앱에 아는 사람들이 없어서"
+            static let expensive = "구독권과 열람권의 가격이 비싸서"
+            static let error = "오류가 많아서"
+            static let notFunny = "재밌는 콘텐츠 또는 질문이 없어서"
+            static let lessPoint = "포인트를 너무 적게 줘서"
+            static let delete = "내 정보를 삭제하고 싶어서"
+            static let otherApp = "다른 앱이 더 재밌어서"
+            static let etc = "기타"
+            static let etcReason = "사유를 적어주세요.(최대 30자)"
+            static let complete = "완료"
+        }
     }
     
     enum PushAlarm {

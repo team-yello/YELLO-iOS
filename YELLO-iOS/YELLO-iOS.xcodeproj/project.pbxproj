@@ -178,6 +178,8 @@
 		36E60EC32AE6DFC4005035D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 36E60EC22AE6DFC4005035D3 /* FirebaseStorage */; };
 		36E60EC52AE6DFC4005035D3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 36E60EC42AE6DFC4005035D3 /* FirebaseStorageCombine-Community */; };
 		36EA2AB72A66FC0B003603C7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA2AB62A66FC0B003603C7 /* UserManager.swift */; };
+		C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */; };
+		C303C8242B6005980077C423 /* WithdrawalReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8232B6005980077C423 /* WithdrawalReasonView.swift */; };
 		C305A5B22A85F997007C4A69 /* PaymentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */; };
 		C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7262A630BB70031514C /* KeychainHandler.swift */; };
 		C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C306E7292A630BD10031514C /* SwiftKeychainWrapper */; };
@@ -480,6 +482,8 @@
 		36E427942A5CA59F0050B34E /* OnboardingEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndViewController.swift; sourceTree = "<group>"; };
 		36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndView.swift; sourceTree = "<group>"; };
 		36EA2AB62A66FC0B003603C7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonViewController.swift; sourceTree = "<group>"; };
+		C303C8232B6005980077C423 /* WithdrawalReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonView.swift; sourceTree = "<group>"; };
 		C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmView.swift; sourceTree = "<group>"; };
 		C306E7262A630BB70031514C /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendRequestDTO.swift; sourceTree = "<group>"; };
@@ -1960,6 +1964,7 @@
 			children = (
 				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
 				C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */,
+				C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1970,6 +1975,7 @@
 				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
 				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
 				C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */,
+				C303C8232B6005980077C423 /* WithdrawalReasonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2389,6 +2395,7 @@
 				C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				C30F81092A7F732B009DBB8D /* HintButton.swift in Sources */,
+				C303C8242B6005980077C423 /* WithdrawalReasonView.swift in Sources */,
 				C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */,
 				C3B83E682A8E08D500A39CAC /* PurchaseService.swift in Sources */,
 				36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */,
@@ -2397,6 +2404,7 @@
 				2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */,
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
 				367DA01B2A863CE60043D23C /* HighSchoolViewController.swift in Sources */,
+				C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
 				2A3705C82A62E297001AAC93 /* SignUpResponseDTO.swift in Sources */,
