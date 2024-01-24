@@ -73,7 +73,7 @@ final class MainProfileView: UIView {
         }
         
         EditProfileButton.do {
-            $0.setImage(ImageLiterals.Profile.icEdit, for: .normal)
+            $0.setImage(ImageLiterals.Profile.icRight, for: .normal)
         }
         
         nameLabel.do {
