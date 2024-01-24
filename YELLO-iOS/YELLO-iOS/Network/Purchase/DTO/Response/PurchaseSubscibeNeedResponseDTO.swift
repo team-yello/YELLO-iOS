@@ -8,7 +8,7 @@
 import Foundation
 
 struct PurchaseSubscibeNeedResponseDTO: Codable {
-    let id: Int64
+    let id: Int
     let subscribe: String
     let expiredDate: String
 }
