@@ -76,12 +76,15 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
         }
         
         etcTextView.do {
+            $0.text = StringLiterals.Profile.WithdrawalReason.etcReason
             $0.font = .uiBody02
             $0.textColor = .grayscales600
             $0.textAlignment = .left
             $0.makeCornerRound(radius: 8.adjustedHeight)
             $0.backgroundColor = .grayscales800
             $0.isHidden = true
+            $0.textContainerInset = UIEdgeInsets(top: 12.adjustedHeight, left: 14.adjustedWidth, bottom: 12.adjustedHeight, right: 14.adjustedWidth)
+            $0.isUserInteractionEnabled = true
         }
     }
     

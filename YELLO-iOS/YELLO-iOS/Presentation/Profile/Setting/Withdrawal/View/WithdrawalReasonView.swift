@@ -45,7 +45,8 @@ final class WithdrawalReasonView: BaseView {
         
         reasonCollectionView.do {
             $0.backgroundColor = .clear
-            $0.isHidden = false
+            $0.showsVerticalScrollIndicator = false
+            $0.showsHorizontalScrollIndicator = false
             $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 26.adjustedHeight, right: 0)
         }
         
@@ -126,6 +127,7 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
         } else {
             cell.setTextView(isEtc: false)
         }
+        cell.isUserInteractionEnabled = !cell.isReasonSelected
         return cell
     }
     
