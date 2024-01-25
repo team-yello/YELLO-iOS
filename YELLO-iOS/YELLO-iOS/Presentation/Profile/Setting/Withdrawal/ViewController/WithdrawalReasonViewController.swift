@@ -32,24 +32,22 @@ final class WithdrawalReasonViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
     }
+    
+    private func setAddTarget() {
+        withdrawalReasonView.completeButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+    }
 }
 
 extension WithdrawalReasonViewController {
     // MARK: Objc Function
     @objc func showAlert() {
-        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
-//        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-//        
-//        if let withdrawalAlertView = withdrawalAlertView {
-//            withdrawalAlertView.removeFromSuperview()
-//        }
-//        
-//        withdrawalAlertView = WithdrawalAlertView()
-//        withdrawalAlertView?.frame = viewController.view.bounds
-//        withdrawalAlertView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        
-//        viewController.view.addSubview(withdrawalAlertView!)
-//        
+//        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
+        
+        let withdrawalAlertView = WithdrawalAlertView()
+        self.view.addSubview(withdrawalAlertView)
+        withdrawalAlertView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
 

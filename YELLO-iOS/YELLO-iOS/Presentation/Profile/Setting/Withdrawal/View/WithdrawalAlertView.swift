@@ -27,8 +27,12 @@ final class WithdrawalAlertView: BaseView {
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
-        contentsView.makeCornerRound(radius: 12.adjustedHeight)
-        contentsView.backgroundColor = .grayscales900
+        contentsView.do {
+            $0.makeCornerRound(radius: 12.adjustedHeight)
+            $0.backgroundColor = .grayscales900
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(noButtonClicked))
+            $0.addGestureRecognizer(tapGestureRecognizer)
+        }
         
         titleLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalAlert.title, lineHeight: 22.adjustedHeight)
