@@ -281,7 +281,7 @@ extension YELLOTabBarController {
                             myYelloDetailViewController.myYelloDetailView.detailSenderView.isHidden = false
                             myYelloDetailViewController.myYelloDetailView.detailKeywordView.isHidden = false
                             myYelloDetailViewController.myYelloDetailView.genderLabel.isHidden = false
-                            myYelloDetailViewController.myYelloDetailView.instagramView.isHidden = false
+                            myYelloDetailViewController.myYelloDetailView.instagramButton.isHidden = false
                             myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = false
                             myYelloDetailViewController.myYelloDetailView.senderButton.isHidden = false
                             myYelloDetailViewController.setBackgroundView()
@@ -322,7 +322,7 @@ extension YELLOTabBarController {
                                 myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = true
                                 myYelloDetailViewController.myYelloDetailView.haveTicket = false
                                 myYelloDetailViewController.myYelloDetailView.senderButton.snp.makeConstraints {
-                                    $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramView.snp.bottom).offset(77.adjustedHeight)
+                                    $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
                                 }
                             }
                             if data.isSubscribe {

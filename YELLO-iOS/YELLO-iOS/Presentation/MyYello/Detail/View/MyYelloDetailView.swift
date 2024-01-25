@@ -32,9 +32,7 @@ final class MyYelloDetailView: BaseView {
     var indexNumber: Int = -1
     var nameIndex: Int = -1
     
-    lazy var instagramButton = InstagramButton(frame: CGRect(x: 0, y: 0, width: 60.adjusted, height: 60.adjusted))
-    let instagramLabel = UILabel()
-    lazy var instagramView = UIView()
+    lazy var instagramButton = InstagramButton()
     
     lazy var keywordButton = HintButton(state: .keyword)
     lazy var senderButton = MyYelloButton(state: .noTicket)
@@ -70,7 +68,7 @@ final class MyYelloDetailView: BaseView {
                 senderButton.setButtonState(state: .useTicket)
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
-                    $0.top.equalTo(instagramView.snp.bottom).offset(77.adjustedHeight)
+                    $0.top.equalTo(instagramButton.snp.bottom).offset(125.adjustedHeight)
                 }
                 if self.nameIndex == -3 {
                     senderButton.setButtonState(state: .noTicket)
@@ -111,7 +109,7 @@ final class MyYelloDetailView: BaseView {
                 if isTicketUsed {
                     keywordButton.isHidden = true
                     senderButton.snp.makeConstraints {
-                        $0.top.equalTo(instagramView.snp.bottom).offset(77.adjustedHeight)
+                        $0.top.equalTo(instagramButton.snp.bottom).offset(125.adjustedHeight)
                     }
                 }
                 
@@ -129,10 +127,10 @@ final class MyYelloDetailView: BaseView {
             if self.isSenderUsed == true {
                 keywordButton.isHidden = true
                 senderButton.snp.makeConstraints {
-                    $0.top.equalTo(instagramView.snp.bottom).offset(77.adjustedHeight)
+                    $0.top.equalTo(instagramButton.snp.bottom).offset(125.adjustedHeight)
                 }
                 
-                instagramView.snp.makeConstraints {
+                instagramButton.snp.makeConstraints {
                     $0.top.equalTo(detailKeywordView.snp.bottom).offset(44.adjustedHeight)
                 }
             }
@@ -170,22 +168,9 @@ final class MyYelloDetailView: BaseView {
             $0.isHidden = true
         }
         
-        instagramView.do {
-            $0.isHidden = true
-        }
-        
         instagramButton.do {
-            $0.backgroundColor = UIColor(white: 1.0, alpha: 0.35)
-            $0.makeCornerRound(radius: 30.adjusted)
-            $0.layer.cornerCurve = .continuous
-            $0.setImage(ImageLiterals.MyYello.imgInstagram, for: .normal)
             $0.addTarget(self, action: #selector(instagramButtonTapped), for: .touchUpInside)
-        }
-        
-        instagramLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Detail.instagram, lineHeight: 20.adjustedHeight)
-            $0.textColor = .white
-            $0.font = .uiBodySmall
+            $0.isHidden = true
         }
         
         keywordButton.do {
@@ -225,12 +210,9 @@ final class MyYelloDetailView: BaseView {
                          detailSenderView,
                          genderLabel,
                          detailKeywordView,
-                         instagramView,
+                         instagramButton,
                          keywordButton,
                          senderButton)
-        
-        instagramView.addSubviews(instagramButton,
-                                  instagramLabel)
         
         myYelloDetailNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
@@ -255,26 +237,13 @@ final class MyYelloDetailView: BaseView {
             $0.centerX.equalToSuperview()
         }
         
-        instagramView.snp.makeConstraints {
-            $0.top.equalTo(detailKeywordView.snp.bottom).offset(33.adjustedHeight)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(84.adjustedHeight)
-            $0.width.equalTo(89.adjustedWidth)
-        }
-        
         instagramButton.snp.makeConstraints {
-            $0.width.height.equalTo(60.adjusted)
-            $0.top.centerX.equalToSuperview()
-        }
-        
-        instagramLabel.snp.makeConstraints {
-            $0.top.equalTo(instagramButton.snp.bottom).offset(4.adjustedHeight)
-            $0.width.equalTo(89.adjustedWidth)
-            $0.centerX.bottom.equalToSuperview()
+            $0.top.equalTo(detailKeywordView.snp.bottom).offset(16.adjustedHeight)
+            $0.centerX.equalToSuperview()
         }
         
         keywordButton.snp.makeConstraints {
-            $0.top.equalTo(instagramView.snp.bottom).offset(33.adjustedHeight)
+            $0.top.equalTo(instagramButton.snp.bottom).offset(94.adjustedHeight)
             $0.height.equalTo(54.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
@@ -300,7 +269,7 @@ extension MyYelloDetailView {
     // MARK: Custom Function
     func setInstagramUI() {
         myYelloDetailNavigationBarView.isHidden = true
-        instagramView.isHidden = true
+        instagramButton.isHidden = true
         keywordButton.isHidden = true
         senderButton.isHidden = true
         
@@ -332,7 +301,7 @@ extension MyYelloDetailView {
     
     func endInstagram() {
         myYelloDetailNavigationBarView.isHidden = false
-        instagramView.isHidden = false
+        instagramButton.isHidden = false
         senderButton.isHidden = false
         
         logoImageView.isHidden = true

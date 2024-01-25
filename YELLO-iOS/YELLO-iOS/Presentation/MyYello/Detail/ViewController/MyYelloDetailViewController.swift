@@ -143,7 +143,6 @@ extension MyYelloDetailViewController {
             myYelloDetailView.genderLabel.textColor = .black
             myYelloDetailView.senderButton.findLabel.textColor = .black
             myYelloDetailView.instagramButton.setTitleColor(.black, for: .normal)
-            myYelloDetailView.instagramLabel.textColor = .black
         }
         
         let gradientView = UIView(frame: view.bounds)
@@ -169,7 +168,7 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.detailSenderView.isHidden = false
                 self.myYelloDetailView.detailKeywordView.isHidden = false
                 self.myYelloDetailView.genderLabel.isHidden = false
-                self.myYelloDetailView.instagramView.isHidden = false
+                self.myYelloDetailView.instagramButton.isHidden = false
                 self.myYelloDetailView.keywordButton.isHidden = false
                 self.myYelloDetailView.senderButton.isHidden = false
                 self.setBackgroundView()
@@ -233,7 +232,7 @@ extension MyYelloDetailViewController {
                     self.myYelloDetailView.isKeywordUsed = true
                     self.myYelloDetailView.keywordButton.isHidden = true
                     self.myYelloDetailView.senderButton.snp.makeConstraints {
-                        $0.top.equalTo(self.myYelloDetailView.instagramView.snp.bottom).offset(77.adjustedHeight)
+                        $0.top.equalTo(self.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
                     }
                 } else if data.nameHint == -2 {
                     self.myYelloDetailView.isTicketUsed = true
