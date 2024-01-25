@@ -27,11 +27,12 @@ final class WithdrawalAlertView: BaseView {
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(noButtonClicked))
+        self.addGestureRecognizer(tapGestureRecognizer)
+        
         contentsView.do {
             $0.makeCornerRound(radius: 12.adjustedHeight)
             $0.backgroundColor = .grayscales900
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(noButtonClicked))
-            $0.addGestureRecognizer(tapGestureRecognizer)
         }
         
         titleLabel.do {
