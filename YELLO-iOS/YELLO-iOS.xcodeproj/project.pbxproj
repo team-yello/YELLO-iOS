@@ -293,6 +293,7 @@
 		C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF42A5C093D00B84CAA /* FriendModel.swift */; };
 		C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */; };
 		C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */; };
+		C3C5D8232B628AC500C8D27C /* ReasonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */; };
 		C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */; };
 		C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */; };
 		C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */; };
@@ -595,6 +596,7 @@
 		C3C57BF42A5C093D00B84CAA /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFriendView.swift; sourceTree = "<group>"; };
 		C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendView.swift; sourceTree = "<group>"; };
+		C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonHeaderView.swift; sourceTree = "<group>"; };
 		C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountCustomView.swift; sourceTree = "<group>"; };
 		C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
@@ -1987,6 +1989,7 @@
 				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
 				C303C8232B6005980077C423 /* WithdrawalReasonView.swift */,
 				C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */,
+				C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2340,6 +2343,7 @@
 				C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
 				C390B8142A8A1DD800EA5A23 /* AroundResponseDTO.swift in Sources */,
+				C3C5D8232B628AC500C8D27C /* ReasonHeaderView.swift in Sources */,
 				2A3705DA2A62E35F001AAC93 /* VotingAvailableResponseDTO.swift in Sources */,
 				36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */,
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,

@@ -23,14 +23,14 @@ final class WithdrawalReasonView: BaseView {
     var selectedIndex = -1
     
     let withdrawalNavigationBarView = SettingNavigationBarView()
-    private let scrollView = UIScrollView()
-    private let titleLabel = UILabel()
+    let reasonHeaderView = ReasonHeaderView()
     lazy var reasonCollectionView = UICollectionView(frame: .zero, collectionViewLayout: reasonFlowLayout)
     let reasonFlowLayout = UICollectionViewFlowLayout()
     let completeButton = UIButton()
     
     func setCollectionView() {
         reasonCollectionView.register(ReasonCollectionViewCell.self, forCellWithReuseIdentifier: ReasonCollectionViewCell.identifier)
+        reasonCollectionView.register(ReasonHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ReasonHeaderView.identifier)
         reasonCollectionView.delegate = self
         reasonCollectionView.dataSource = self
     }
@@ -43,27 +43,15 @@ final class WithdrawalReasonView: BaseView {
             $0.backgroundColor = .black
         }
         
-        scrollView.do {
-            $0.backgroundColor = .clear
-        }
-        
-        titleLabel.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalReason.title, lineHeight: 32.adjustedHeight)
-            $0.font = .uiHeadline01
-            $0.textColor = .white
-        }
-        
         reasonCollectionView.do {
             $0.backgroundColor = .clear
-            $0.showsVerticalScrollIndicator = false
-            $0.isScrollEnabled = false
             $0.isHidden = false
+            $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 26.adjustedHeight, right: 0)
         }
         
         reasonFlowLayout.do {
             $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 4.adjustedWidth
-            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 68.adjustedWidth, height: 56.adjustedHeight)
         }
         
         completeButton.do {
@@ -85,11 +73,8 @@ final class WithdrawalReasonView: BaseView {
             .statusBarFrame.height ?? 20
         
         self.addSubviews(withdrawalNavigationBarView,
-                         scrollView,
+                         reasonCollectionView,
                          completeButton)
-        
-        scrollView.addSubviews(titleLabel,
-                               reasonCollectionView)
         
         withdrawalNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
@@ -97,22 +82,11 @@ final class WithdrawalReasonView: BaseView {
             $0.height.equalTo(48.adjustedHeight)
         }
         
-        scrollView.snp.makeConstraints {
-            $0.top.equalTo(withdrawalNavigationBarView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
-        
-        titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(39.adjustedHeight)
-            $0.centerX.equalToSuperview()
-        }
-        
         reasonCollectionView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20.adjustedHeight)
+            $0.top.equalTo(withdrawalNavigationBarView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(476.adjustedHeight)
             $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(108.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(82.adjustedHeight)
         }
         
         completeButton.snp.makeConstraints {
@@ -131,15 +105,46 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
         return reasonList.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ReasonHeaderView.identifier, for: indexPath) as? ReasonHeaderView else {
+                return ReasonHeaderView()
+            }
+            
+            header.setUI()
+            return header
+        }
+        return UICollectionReusableView()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReasonCollectionViewCell.identifier, for: indexPath) as? ReasonCollectionViewCell else { return UICollectionViewCell() }
         cell.dataBind(data: reasonList[indexPath.row])
         cell.isReasonSelected = (indexPath.row == selectedIndex)
+        if selectedIndex == 7 && indexPath.row == 7 {
+            cell.setTextView(isEtc: true)
+        } else {
+            cell.setTextView(isEtc: false)
+        }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: 91.adjustedHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.row
         reasonCollectionView.reloadData()
+    }
+}
+
+extension WithdrawalReasonView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if selectedIndex == 7 && indexPath.row == 7 {
+            return CGSize(width: UIScreen.main.bounds.width - 68.adjustedWidth, height: 141.adjustedHeight)
+        } else {
+            return CGSize(width: UIScreen.main.bounds.width - 68.adjustedWidth, height: 56.adjustedHeight)
+        }
     }
 }

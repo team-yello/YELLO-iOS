@@ -20,6 +20,8 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
     let unselectedView = UIView()
     let selectedView = UIView()
     let descriptionLabel = UILabel()
+    let etcTextView = UITextView()
+    
     var isReasonSelected = false {
         didSet {
             setButtonStyle()
@@ -31,10 +33,15 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
+        setDelegate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setDelegate() {
+        etcTextView.delegate = self
     }
     
     private func setUI() {
@@ -67,25 +74,32 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
             $0.font = .uiBodyLarge
             $0.isUserInteractionEnabled = false
         }
+        
+        etcTextView.do {
+            $0.font = .uiBody02
+            $0.textColor = .grayscales600
+            $0.textAlignment = .left
+            $0.makeCornerRound(radius: 8.adjustedHeight)
+            $0.backgroundColor = .grayscales800
+            $0.isHidden = true
+        }
     }
     
     private func setLayout() {
         self.addSubviews(reasonView)
         reasonView.addSubviews(unselectedView,
-                                 descriptionLabel)
+                               descriptionLabel,
+                               etcTextView)
+        
         unselectedView.addSubview(selectedView)
         
-        self.snp.makeConstraints {
+        reasonView.snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.width - 68.adjustedWidth)
             $0.height.equalTo(56.adjustedHeight)
         }
         
-        reasonView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
         unselectedView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().inset(20.adjustedHeight)
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
             $0.width.height.equalTo(18.adjusted)
         }
@@ -96,8 +110,16 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(unselectedView)
             $0.leading.equalTo(unselectedView.snp.trailing).offset(8.adjustedWidth)
+        }
+        
+        etcTextView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(45.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(76.adjustedHeight)
+            $0.width.equalTo(275.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(20.adjustedHeight)
         }
     }
     
@@ -116,10 +138,35 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
             }
             
             selectedView.isHidden = true
+            
+        }
+    }
+    
+    func setTextView(isEtc: Bool) {
+        etcTextView.isHidden = !isEtc
+        if isEtc {
+            reasonView.snp.updateConstraints {
+                $0.width.equalTo(UIScreen.main.bounds.width - 68.adjustedWidth)
+                $0.height.equalTo(141.adjustedHeight)
+            }
+        } else {
+            reasonView.snp.updateConstraints {
+                $0.width.equalTo(UIScreen.main.bounds.width - 68.adjustedWidth)
+                $0.height.equalTo(56.adjustedHeight)
+            }
         }
     }
     
     func dataBind(data: String) {
         self.descriptionLabel.text = data
+    }
+}
+
+extension ReasonCollectionViewCell: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == StringLiterals.Profile.WithdrawalReason.etcReason {
+            textView.text = nil
+            textView.textColor = .white
+        }
     }
 }
