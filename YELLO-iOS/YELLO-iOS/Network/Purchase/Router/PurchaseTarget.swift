@@ -56,7 +56,7 @@ extension PurchaseTarget: TargetType {
         case .purchaseTicket(_):
             return "/purchase/apple/verify/ticket"
         case .purchaseSubscibeNeed:
-            return "/purchase/subscribe"
+            return "/user/subscribe"
         }
     }
     
@@ -66,7 +66,7 @@ extension PurchaseTarget: TargetType {
             return .requestWithBody(requestDTO)
         case let .purchaseTicket(requestDTO):
             return .requestWithBody(requestDTO)
-        case let .purchaseSubscibeNeed:
+        case .purchaseSubscibeNeed:
             return .requestPlain
         }
     }

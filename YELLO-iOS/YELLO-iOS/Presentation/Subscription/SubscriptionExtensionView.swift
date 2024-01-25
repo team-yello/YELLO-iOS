@@ -51,10 +51,9 @@ final class SubscriptionExtensionView: BaseView {
 
             if let tomorrow = Calendar.current.date(byAdding: dayComponent, to: today) {
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"  // 원하는 형식 설정
+                dateFormatter.dateFormat = "yyyy-MM-dd"
                 let dateString = dateFormatter.string(from: tomorrow)
                 $0.text = dateString
-                print(dateString)
             }
             
             $0.setTextWithLineHeight(text: $0.text, lineHeight: 24.adjusted)

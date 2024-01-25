@@ -41,7 +41,7 @@ final class YELLOTabBarController: UITabBarController {
         super.viewDidLoad()
         
         network()
-//        purchaseSubscribeNeed()
+        purchaseSubscribeNeed()
 
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
@@ -238,8 +238,21 @@ extension YELLOTabBarController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
-                if data.isSubscribeNeeded {
-                    self.toResubscribeView()
+                
+                let currentDate = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                
+                if data.subscribe == "canceled" {
+                    if let expiredDate = dateFormatter.date(from: data.expiredDate) {
+                        let calendar = Calendar.current
+                        if let daysDifference = calendar.dateComponents([.day], from: currentDate, to: expiredDate).day {
+                            if daysDifference <= 1 {
+                                // 하루 이하로 남았으면
+                                self.toResubscribeView()
+                            }
+                        }
+                    }
                 }
             default:
                 print("network failure")
