@@ -15,7 +15,8 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
     // MARK: - Variables
     // MARK: Constants
     static let identifier = "ReasonCollectionViewCell"
-    let reasonButton = UIButton()
+    
+    let reasonView = UIView()
     let unselectedView = UIView()
     let selectedView = UIView()
     let descriptionLabel = UILabel()
@@ -36,48 +37,51 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
     private func setUI() {
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
-        reasonButton.do {
+        reasonView.do {
             $0.makeCornerRound(radius: 8.adjustedHeight)
-            $0.backgroundColor = .grayscales700
+            $0.backgroundColor = .grayscales900
+            $0.isUserInteractionEnabled = false
         }
         
         unselectedView.do {
             $0.makeCornerRound(radius: 9.adjusted)
             $0.makeBorder(width: 2, color: .grayscales700)
-            $0.backgroundColor = .clear
+            $0.isUserInteractionEnabled = false
         }
         
         selectedView.do {
             $0.makeCornerRound(radius: 4.adjusted)
             $0.backgroundColor = .white
             $0.isHidden = true
+            $0.isUserInteractionEnabled = false
         }
         
         descriptionLabel.do {
             $0.textColor = .white
             $0.font = .uiBodyLarge
+            $0.isUserInteractionEnabled = false
         }
     }
     
     private func setLayout() {
-        self.addSubviews(reasonButton)
-        reasonButton.addSubviews(unselectedView,
+        self.addSubviews(reasonView)
+        reasonView.addSubviews(unselectedView,
                                  descriptionLabel)
         unselectedView.addSubview(selectedView)
         
-        reasonButton.snp.makeConstraints {
-            $0.top.equalTo(56.adjustedHeight)
+        self.snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.width - 68.adjustedWidth)
+            $0.height.equalTo(56.adjustedHeight)
+        }
+        
+        reasonView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         unselectedView.snp.makeConstraints {
@@ -99,19 +103,23 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
     
     private func setButtonStyle() {
         if isReasonSelected {
-            reasonButton.do {
+            reasonView.do {
                 $0.backgroundColor = .black
                 $0.makeBorder(width: 1, color: .white)
             }
             
             selectedView.isHidden = false
         } else {
-            reasonButton.do {
-                $0.backgroundColor = .grayscales700
+            reasonView.do {
+                $0.backgroundColor = .grayscales900
                 $0.makeBorder(width: 0, color: .clear)
             }
             
             selectedView.isHidden = true
         }
+    }
+    
+    func dataBind(data: String) {
+        self.descriptionLabel.text = data
     }
 }

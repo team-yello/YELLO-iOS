@@ -15,6 +15,12 @@ final class WithdrawalReasonViewController: BaseViewController {
     
     private let withdrawalReasonView = WithdrawalReasonView()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        withdrawalReasonView.setCollectionView()
+        self.setAddTarget()
+    }
+    
     override func setStyle() {
         withdrawalReasonView.withdrawalNavigationBarView.handleBackButtonDelegate = self
     }

@@ -12,14 +12,14 @@ import Then
 
 final class WithdrawalReasonView: BaseView {
 
-    let reasonList: [String] = [StringLiterals.Profile.WithdrawalReason.nobody,
-                                StringLiterals.Profile.WithdrawalReason.expensive,
-                                StringLiterals.Profile.WithdrawalReason.error,
-                                StringLiterals.Profile.WithdrawalReason.notFunny,
-                                StringLiterals.Profile.WithdrawalReason.lessPoint,
-                                StringLiterals.Profile.WithdrawalReason.delete,
-                                StringLiterals.Profile.WithdrawalReason.otherApp,
-                                StringLiterals.Profile.WithdrawalReason.etc]
+    let reasonList = [StringLiterals.Profile.WithdrawalReason.nobody,
+                      StringLiterals.Profile.WithdrawalReason.expensive,
+                      StringLiterals.Profile.WithdrawalReason.error,
+                      StringLiterals.Profile.WithdrawalReason.notFunny,
+                      StringLiterals.Profile.WithdrawalReason.lessPoint,
+                      StringLiterals.Profile.WithdrawalReason.delete,
+                      StringLiterals.Profile.WithdrawalReason.otherApp,
+                      StringLiterals.Profile.WithdrawalReason.etc]    
     var selectedIndex = -1
     
     let withdrawalNavigationBarView = SettingNavigationBarView()
@@ -29,25 +29,22 @@ final class WithdrawalReasonView: BaseView {
     let reasonFlowLayout = UICollectionViewFlowLayout()
     let completeButton = UIButton()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setCollectionView()
-    }
-    
-    private func setCollectionView() {
+    func setCollectionView() {
         reasonCollectionView.register(ReasonCollectionViewCell.self, forCellWithReuseIdentifier: ReasonCollectionViewCell.identifier)
         reasonCollectionView.delegate = self
         reasonCollectionView.dataSource = self
     }
     
     override func setStyle() {
+        self.backgroundColor = .black
+        
         withdrawalNavigationBarView.do {
             $0.titleLabel.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalCheck.withdrawal, lineHeight: 24.adjustedHeight)
             $0.backgroundColor = .black
         }
         
         scrollView.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .clear
         }
         
         titleLabel.do {
@@ -60,11 +57,13 @@ final class WithdrawalReasonView: BaseView {
             $0.backgroundColor = .clear
             $0.showsVerticalScrollIndicator = false
             $0.isScrollEnabled = false
+            $0.isHidden = false
         }
         
         reasonFlowLayout.do {
-            $0.scrollDirection = .horizontal
+            $0.scrollDirection = .vertical
             $0.minimumLineSpacing = 4.adjustedWidth
+            $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 68.adjustedWidth, height: 56.adjustedHeight)
         }
         
         completeButton.do {
@@ -90,7 +89,7 @@ final class WithdrawalReasonView: BaseView {
                          completeButton)
         
         scrollView.addSubviews(titleLabel,
-                         reasonCollectionView)
+                               reasonCollectionView)
         
         withdrawalNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
@@ -110,8 +109,10 @@ final class WithdrawalReasonView: BaseView {
         
         reasonCollectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20.adjustedHeight)
-            $0.leading.trailing.equalToSuperview().inset(34.adjustedWidth)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(476.adjustedHeight)
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(108.adjustedHeight)
         }
         
         completeButton.snp.makeConstraints {
@@ -131,18 +132,14 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReasonCollectionViewCell.identifier,
-                                                            for: indexPath) as? ReasonCollectionViewCell else {return UICollectionViewCell()}
-        cell.descriptionLabel.text = reasonList[indexPath.row]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReasonCollectionViewCell.identifier, for: indexPath) as? ReasonCollectionViewCell else { return UICollectionViewCell() }
+        cell.dataBind(data: reasonList[indexPath.row])
+        cell.isReasonSelected = (indexPath.row == selectedIndex)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReasonCollectionViewCell.identifier,
-                                                            for: indexPath) as? ReasonCollectionViewCell else { return }
-        cell.isReasonSelected = true
-//        if selectedIndex == indexPath.row {
-//            
-//        }
+        selectedIndex = indexPath.row
+        reasonCollectionView.reloadData()
     }
 }
