@@ -21,6 +21,11 @@ final class WithdrawalReasonView: BaseView {
                       StringLiterals.Profile.WithdrawalReason.otherApp,
                       StringLiterals.Profile.WithdrawalReason.etc]    
     var selectedIndex = -1
+    var isCompleteEnabled = false {
+        didSet {
+            self.setCompleteButton(isEnabled: isCompleteEnabled)
+        }
+    }
     
     let withdrawalNavigationBarView = SettingNavigationBarView()
     let reasonHeaderView = ReasonHeaderView()
@@ -57,12 +62,13 @@ final class WithdrawalReasonView: BaseView {
         
         completeButton.do {
             $0.backgroundColor = .black
-            $0.layer.borderColor = UIColor.grayscales700.cgColor
+            $0.layer.borderColor = UIColor.grayscales600.cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 24.adjustedHeight
             $0.titleLabel?.font = .uiBodyMedium
-            $0.setTitleColor(.semanticStatusRed500, for: .normal)
+            $0.setTitleColor(.grayscales600, for: .normal)
             $0.setTitle(StringLiterals.Profile.WithdrawalReason.complete, for: .normal)
+            $0.isEnabled = false
         }
     }
     
@@ -96,6 +102,14 @@ final class WithdrawalReasonView: BaseView {
             $0.height.equalTo(48.adjustedHeight)
             $0.width.equalTo(343.adjustedWidth)
             $0.bottom.equalToSuperview().inset(34.adjustedHeight)
+        }
+    }
+    
+    func setCompleteButton(isEnabled: Bool) {
+        completeButton.do {
+            $0.layer.borderColor = isEnabled ? UIColor.grayscales700.cgColor : UIColor.grayscales600.cgColor
+            $0.setTitleColor(isEnabled ? .semanticStatusRed500 : .grayscales600, for: .normal)
+            $0.isEnabled = isEnabled
         }
     }
 }
@@ -136,6 +150,9 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+        // 추후 사유 빈칸일 때 제외로 수정
+        isCompleteEnabled = true
         selectedIndex = indexPath.row
         reasonCollectionView.reloadData()
     }
