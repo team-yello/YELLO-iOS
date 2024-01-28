@@ -41,7 +41,7 @@ final class YELLOTabBarController: UITabBarController {
         super.viewDidLoad()
         
         network()
-        purchaseSubscribeNeed()
+        getUserNotification()
 
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
@@ -230,6 +230,26 @@ extension YELLOTabBarController {
         
         /// 상점 상품 얻기
         paymentPlusViewController.getProducts()
+    }
+    
+    func getUserNotification() {
+        NetworkService.shared.notificationService.userNotification { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                if data.isAvailable {
+                } else {
+                    print("새로운 공지가 없습니다")
+                }
+            default:
+                print("network failure")
+                return
+            }
+        }
+        
+        // 유저 대상 공지 확인 후 재구독 유도
+        purchaseSubscribeNeed()
     }
     
     /// 구독 연장 여부 서버통신
