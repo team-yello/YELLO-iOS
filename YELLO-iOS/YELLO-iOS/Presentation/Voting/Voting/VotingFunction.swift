@@ -194,7 +194,7 @@ extension VotingViewController {
             let previousData = loadUserData() ?? []
             let combinedData = previousData + votingAnswer
             saveUserData(combinedData)
-            print(combinedData)
+            VotingViewController.pushCount += 1
             
             let topAnimatedView = viewController.originView.questionBackground
             let nameAnimatedViews = [viewController.originView.nameOneButton, viewController.originView.nameTwoButton, viewController.originView.nameThreeButton, viewController.originView.nameFourButton]
@@ -207,7 +207,6 @@ extension VotingViewController {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.3, options: .allowUserInteraction, animations: {
-                    VotingViewController.pushCount += 1
                     
                     // 검정색 배경들이 밀리는 것과 같은 애니메이션 구현
                     let newXPosition = -500.adjusted
@@ -403,6 +402,10 @@ extension VotingViewController {
     
     @objc
     func skipButtonClicked() {
+        self.originView.skipButton.isEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.originView.skipButton.isEnabled = true
+        }
         if keywordButtonClick {
             originView.skipButton.isEnabled = false
             originView.skipButton.isEnabled = true
