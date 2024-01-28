@@ -29,6 +29,7 @@
 		2A4C549D2A8622B200FFDF80 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4C549C2A8622B200FFDF80 /* Kingfisher */; };
 		2A5E08FA2B6692DD00CDB3DF /* NotificationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08F92B6692DD00CDB3DF /* NotificationResponseDTO.swift */; };
 		2A5E08FC2B66935B00CDB3DF /* NotificationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08FB2B66935B00CDB3DF /* NotificationTarget.swift */; };
+		2A5E08FE2B6693FD00CDB3DF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */; };
 		2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1AD2A657AA6008F636C /* VotingData.swift */; };
 		2A5FE1B62A66FA07008F636C /* VoteAnswerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
@@ -359,6 +360,7 @@
 		2A423DF02A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailFullNameResponseDTO.swift; sourceTree = "<group>"; };
 		2A5E08F92B6692DD00CDB3DF /* NotificationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationResponseDTO.swift; sourceTree = "<group>"; };
 		2A5E08FB2B66935B00CDB3DF /* NotificationTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTarget.swift; sourceTree = "<group>"; };
+		2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2A5FE1AD2A657AA6008F636C /* VotingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingData.swift; sourceTree = "<group>"; };
 		2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAnswerList.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
@@ -1036,6 +1038,7 @@
 		2A5E08F72B66928000CDB3DF /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2351,6 +2354,7 @@
 				C3FF24952A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift in Sources */,
 				C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */,
 				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
+				2A5E08FE2B6693FD00CDB3DF /* NotificationService.swift in Sources */,
 				C32322F52A619E92006DA50B /* PaymentView.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
 				2A3705CA2A62E2A2001AAC93 /* KakaoLoginResponseDTO.swift in Sources */,
