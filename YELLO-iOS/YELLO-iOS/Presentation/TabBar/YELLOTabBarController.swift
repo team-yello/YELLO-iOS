@@ -31,6 +31,7 @@ final class YELLOTabBarController: UITabBarController {
     let votingStartViewController = VotingStartViewController()
     let subscriptionExtensionView = SubscriptionExtensionView()
     let paymentPlusViewController = PaymentPlusViewController()
+    let userNotificationView = NotificationView()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -240,7 +241,9 @@ extension YELLOTabBarController {
                 
                 if data.isAvailable {
                 } else {
-                    print("새로운 공지가 없습니다")
+                    self.userNotificationView.frame = self.view.bounds
+                    self.userNotificationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    self.view.addSubview(self.userNotificationView)
                 }
             default:
                 print("network failure")

@@ -18,14 +18,10 @@ final class NotificationView: BaseView {
     private let closeButton = UIButton()
 
     override func setStyle() {
-        self.backgroundColor = .black.withAlphaComponent(0.5)
-        
-        notificationImageView.do {
-            $0.backgroundColor = .systemYellow
-        }
-        
+        self.backgroundColor = .black
+
         doNotSeeAgainButton.do {
-            $0.setImage(UIImage(imageLiteralResourceName: "notCheckBox"), for: .normal)
+            $0.setImage(UIImage(imageLiteralResourceName: "btnNotCheckBox"), for: .normal)
             $0.imageView?.contentMode = .scaleAspectFill
         }
         
@@ -55,7 +51,7 @@ final class NotificationView: BaseView {
                          closeButton)
         
         notificationImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(statusBarHeight + 126.adjusted)
+            $0.top.equalToSuperview().inset(statusBarHeight + 126.adjustedHeight)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(252.adjusted)
             $0.height.equalTo(336.adjusted)
@@ -69,12 +65,12 @@ final class NotificationView: BaseView {
         
         doNotSeeAgainLabel.snp.makeConstraints {
             $0.leading.equalTo(doNotSeeAgainButton.snp.trailing).offset(8.adjusted)
-            $0.centerX.equalTo(doNotSeeAgainButton)
+            $0.centerY.equalTo(doNotSeeAgainButton)
         }
         
         closeButton.snp.makeConstraints {
             $0.top.equalTo(notificationImageView.snp.bottom).offset(8.adjusted)
-            $0.trailing.equalTo(notificationImageView).offset(13.adjusted)
+            $0.trailing.equalTo(notificationImageView).offset(-13.adjusted)
             $0.width.equalTo(21.adjusted)
             $0.height.equalTo(24.adjusted)
         }
