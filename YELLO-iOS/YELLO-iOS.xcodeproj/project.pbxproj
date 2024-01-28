@@ -27,6 +27,7 @@
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
 		2A423DF12A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A423DF02A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift */; };
 		2A4C549D2A8622B200FFDF80 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4C549C2A8622B200FFDF80 /* Kingfisher */; };
+		2A55DDA52B669BCC00290FE8 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A55DDA42B669BCC00290FE8 /* NotificationView.swift */; };
 		2A5E08FA2B6692DD00CDB3DF /* NotificationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08F92B6692DD00CDB3DF /* NotificationResponseDTO.swift */; };
 		2A5E08FC2B66935B00CDB3DF /* NotificationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08FB2B66935B00CDB3DF /* NotificationTarget.swift */; };
 		2A5E08FE2B6693FD00CDB3DF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */; };
@@ -358,6 +359,7 @@
 		2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
 		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		2A423DF02A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailFullNameResponseDTO.swift; sourceTree = "<group>"; };
+		2A55DDA42B669BCC00290FE8 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		2A5E08F92B6692DD00CDB3DF /* NotificationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationResponseDTO.swift; sourceTree = "<group>"; };
 		2A5E08FB2B66935B00CDB3DF /* NotificationTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTarget.swift; sourceTree = "<group>"; };
 		2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -1007,6 +1009,14 @@
 				2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */,
 			);
 			path = NetworkEntity;
+			sourceTree = "<group>";
+		};
+		2A55DDA32B669AF900290FE8 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				2A55DDA42B669BCC00290FE8 /* NotificationView.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		2A5E08F42B66925C00CDB3DF /* Notification */ = {
@@ -1688,6 +1698,7 @@
 		C3A799C92A494B8E00D3EFD8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2A55DDA32B669AF900290FE8 /* Notification */,
 				2A8D66D52A9A3512009DEC3F /* Subscription */,
 				36C209EC2A8B69D9001BF12C /* Tutorial */,
 				C3A799CE2A494C9200D3EFD8 /* Base */,
@@ -2324,6 +2335,7 @@
 				3662A0F42A654A6000F482EF /* MajorSearchResponseDTO.swift in Sources */,
 				C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
+				2A55DDA52B669BCC00290FE8 /* NotificationView.swift in Sources */,
 				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,
 				36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */,
 				C3FF24752A5D6E9500A97D40 /* WithdrawalAlertView.swift in Sources */,
