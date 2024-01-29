@@ -1,3 +1,4 @@
+
 //
 //  WithdrawalReasonView.swift
 //  YELLO-iOS
@@ -19,7 +20,7 @@ final class WithdrawalReasonView: BaseView {
                       StringLiterals.Profile.WithdrawalReason.lessPoint,
                       StringLiterals.Profile.WithdrawalReason.delete,
                       StringLiterals.Profile.WithdrawalReason.otherApp,
-                      StringLiterals.Profile.WithdrawalReason.etc]    
+                      StringLiterals.Profile.WithdrawalReason.etc]
     var selectedIndex = -1
     var isCompleteEnabled = false {
         didSet {
@@ -138,10 +139,11 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
         cell.isReasonSelected = (indexPath.row == selectedIndex)
         if selectedIndex == 7 && indexPath.row == 7 {
             cell.setTextView(isEtc: true)
+            cell.etcTextView.isUserInteractionEnabled = true
+            cell.etcTextView.delegate = self
         } else {
             cell.setTextView(isEtc: false)
         }
-        cell.isUserInteractionEnabled = !cell.isReasonSelected
         return cell
     }
     
@@ -164,6 +166,18 @@ extension WithdrawalReasonView: UICollectionViewDelegateFlowLayout {
             return CGSize(width: UIScreen.main.bounds.width - 68.adjustedWidth, height: 141.adjustedHeight)
         } else {
             return CGSize(width: UIScreen.main.bounds.width - 68.adjustedWidth, height: 56.adjustedHeight)
+        }
+    }
+}
+//
+extension WithdrawalReasonView: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == StringLiterals.Profile.WithdrawalReason.etcReason {
+            textView.text = nil
+            textView.textColor = .white
+        } else if textView.text.isEmpty {
+            textView.text = StringLiterals.Profile.WithdrawalReason.etcReason
+            textView.textColor = .grayscales600
         }
     }
 }

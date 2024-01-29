@@ -33,15 +33,10 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
-        setDelegate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setDelegate() {
-        etcTextView.delegate = self
     }
     
     private func setUI() {
@@ -53,7 +48,7 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
         reasonView.do {
             $0.makeCornerRound(radius: 8.adjustedHeight)
             $0.backgroundColor = .grayscales900
-            $0.isUserInteractionEnabled = false
+            $0.isUserInteractionEnabled = true
         }
         
         unselectedView.do {
@@ -85,6 +80,7 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
             $0.isHidden = true
             $0.textContainerInset = UIEdgeInsets(top: 12.adjustedHeight, left: 14.adjustedWidth, bottom: 12.adjustedHeight, right: 14.adjustedWidth)
             $0.isUserInteractionEnabled = true
+            $0.accessibilityRespondsToUserInteraction = true
         }
     }
     
@@ -141,7 +137,6 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
             }
             
             selectedView.isHidden = true
-            
         }
     }
     
@@ -152,6 +147,8 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
                 $0.width.equalTo(UIScreen.main.bounds.width - 68.adjustedWidth)
                 $0.height.equalTo(141.adjustedHeight)
             }
+            etcTextView.becomeFirstResponder()
+            
         } else {
             reasonView.snp.updateConstraints {
                 $0.width.equalTo(UIScreen.main.bounds.width - 68.adjustedWidth)
@@ -162,14 +159,5 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
     
     func dataBind(data: String) {
         self.descriptionLabel.text = data
-    }
-}
-
-extension ReasonCollectionViewCell: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == StringLiterals.Profile.WithdrawalReason.etcReason {
-            textView.text = nil
-            textView.textColor = .white
-        }
     }
 }
