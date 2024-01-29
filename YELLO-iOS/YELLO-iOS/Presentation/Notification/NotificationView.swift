@@ -21,6 +21,10 @@ final class NotificationView: BaseView {
 
     override func setStyle() {
         self.backgroundColor = .black
+        
+        notificationImageView.do {
+            $0.contentMode = .scaleAspectFill
+        }
 
         doNotSeeAgainButton.do {
             $0.setImage(UIImage(imageLiteralResourceName: "btnNotCheckBox"), for: .normal)
