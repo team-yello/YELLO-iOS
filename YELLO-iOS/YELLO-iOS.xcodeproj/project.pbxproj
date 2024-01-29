@@ -128,6 +128,7 @@
 		36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A52AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift */; };
 		36C4C4A82AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */; };
 		36C5E1CD2A91273400184AAE /* TokenRefreshRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */; };
+		36CFF9A82B67F5FB008DDB9D /* EditProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */; };
 		36D98F352B5FB2B7003B2B11 /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */; };
 		36D98F372B602442003B2B11 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F362B602442003B2B11 /* InfoView.swift */; };
 		36D98F392B617B5D003B2B11 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */; };
@@ -462,6 +463,7 @@
 		36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolSearchResponseDTO.swift; sourceTree = "<group>"; };
 		36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
 		36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequestDTO.swift; sourceTree = "<group>"; };
+		36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderView.swift; sourceTree = "<group>"; };
 		36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileView.swift; sourceTree = "<group>"; };
 		36D98F362B602442003B2B11 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -1100,6 +1102,7 @@
 		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				36CFF9A32B67F53F008DDB9D /* Edit */,
 				C3D2664A2A5D1F2D0041C7C7 /* Main */,
 				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
 				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
@@ -1225,6 +1228,41 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		36CFF9A32B67F53F008DDB9D /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				36CFF9A42B67F547008DDB9D /* ViewController */,
+				36CFF9A52B67F54E008DDB9D /* View */,
+				36CFF9A62B67F555008DDB9D /* Cell */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		36CFF9A42B67F547008DDB9D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		36CFF9A52B67F54E008DDB9D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36D98F3A2B617BBD003B2B11 /* EditProfileView.swift */,
+				36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36CFF9A62B67F555008DDB9D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				36D98F3C2B617DD7003B2B11 /* EditProfileTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		36E2181C2A5D158E00FB3C9C /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1346,7 +1384,6 @@
 			children = (
 				C3D266462A5C77A20041C7C7 /* MyFriendTableViewCell.swift */,
 				C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */,
-				36D98F3C2B617DD7003B2B11 /* EditProfileTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1849,15 +1886,14 @@
 			isa = PBXGroup;
 			children = (
 				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
-				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
 				36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */,
 				36D98F362B602442003B2B11 /* InfoView.swift */,
-				36D98F3A2B617BBD003B2B11 /* EditProfileView.swift */,
 				C307ECB52A607357000F5BA9 /* FriendCountView.swift */,
 				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
 				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
 				C3FF24782A5D798700A97D40 /* FriendProfileView.swift */,
+				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1868,7 +1904,6 @@
 				2AA0DBB72A546E93002B1370 /* ProfileViewController.swift */,
 				C3FF24762A5D796B00A97D40 /* FriendProfileViewController.swift */,
 				36621BD22A693D4C00010D84 /* BottomFriendProfileViewController.swift */,
-				36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2254,6 +2289,7 @@
 				3662A0E82A64414800F482EF /* OnboardingService.swift in Sources */,
 				C37DFC4A2A85022B00D3B685 /* PaymentNavigationBarView.swift in Sources */,
 				C3FF248C2A5E846D00A97D40 /* MyYelloNavigationBarView.swift in Sources */,
+				36CFF9A82B67F5FB008DDB9D /* EditProfileHeaderView.swift in Sources */,
 				367113642A7D082C0037E0D2 /* ProgressBarManager.swift in Sources */,
 				3662A0F82A6577E000F482EF /* IdValidRequestQueryDTO.swift in Sources */,
 				C3FF24992A5EAEA400A97D40 /* MyYelloModel.swift in Sources */,

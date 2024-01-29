@@ -8,6 +8,12 @@
 import UIKit
 
 class EditProfileViewController: UIViewController {
+    
+    let editProfileView = EditProfileView()
+    
+    override func loadView() {
+        self.view = editProfileView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
