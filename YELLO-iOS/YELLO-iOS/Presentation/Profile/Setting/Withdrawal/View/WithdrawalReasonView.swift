@@ -27,6 +27,7 @@ final class WithdrawalReasonView: BaseView {
         }
     }
     var etcReason: String = ""
+    var tap = UITapGestureRecognizer()
     
     let withdrawalNavigationBarView = SettingNavigationBarView()
     let reasonHeaderView = ReasonHeaderView()
@@ -42,7 +43,6 @@ final class WithdrawalReasonView: BaseView {
     }
     
     override func setStyle() {
-        hideKeyboardWhenTappedAround()
         self.backgroundColor = .black
         
         withdrawalNavigationBarView.do {
@@ -147,6 +147,7 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
             cell.setTextView(isEtc: true)
             cell.etcTextView.isUserInteractionEnabled = true
             cell.etcTextView.delegate = self
+            self.hideKeyboardWhenTappedAround()
         } else {
             cell.setTextView(isEtc: false)
         }
@@ -163,6 +164,10 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
             selectedIndex = indexPath.row
             isCompleteEnabled = selectedIndex != 7 ? true : false
             reasonCollectionView.reloadData()
+            if indexPath.row == 7 {
+                let indexPath = IndexPath(item: self.reasonList.count - 1, section: 0)
+                reasonCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            }
         }
     }
 }
@@ -215,31 +220,30 @@ extension WithdrawalReasonView: UITextViewDelegate {
 
 extension WithdrawalReasonView {
     func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = true
         self.addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard() {
         self.endEditing(true)
+        self.removeGestureRecognizer(tap)
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            reasonCollectionView.snp.updateConstraints {
-                $0.bottom.equalToSuperview().inset(26.adjustedHeight + keyboardSize.height)
-            }
-            let indexPath = IndexPath(item: self.reasonList.count - 1, section: 0)
-            reasonCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+            let scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            reasonCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 26.adjustedHeight, right: 0)
+            reasonCollectionView.scrollIndicatorInsets = scrollIndicatorInsets
         }
+        let indexPath = IndexPath(item: self.reasonList.count - 1, section: 0)
+        reasonCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
-        reasonCollectionView.snp.updateConstraints {
-            $0.bottom.equalToSuperview().inset(82.adjustedHeight)
-        }
+        reasonCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 26.adjustedHeight, right: 0)
+        reasonCollectionView.scrollIndicatorInsets = .zero
     }
 }
 
-// TODO: 스크롤 수정
-// TODO: Return 버튼 누르면 키보드 사라지도록
+// TODO: 플레이스 홀더 오류.. 수정
