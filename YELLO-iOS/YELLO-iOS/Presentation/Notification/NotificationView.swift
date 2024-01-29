@@ -16,6 +16,8 @@ final class NotificationView: BaseView {
     let doNotSeeAgainButton = UIButton()
     private let doNotSeeAgainLabel = UILabel()
     private let closeButton = UIButton()
+    
+    var isTapped: Bool = false
 
     override func setStyle() {
         self.backgroundColor = .black
@@ -23,6 +25,7 @@ final class NotificationView: BaseView {
         doNotSeeAgainButton.do {
             $0.setImage(UIImage(imageLiteralResourceName: "btnNotCheckBox"), for: .normal)
             $0.imageView?.contentMode = .scaleAspectFill
+            $0.addTarget(self, action: #selector(doNotSeeButtonTapped), for: .touchUpInside)
         }
         
         doNotSeeAgainLabel.do {
@@ -35,6 +38,7 @@ final class NotificationView: BaseView {
             $0.setTitle("닫기", for: .normal)
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiButton02
+            $0.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -74,5 +78,20 @@ final class NotificationView: BaseView {
             $0.width.equalTo(21.adjusted)
             $0.height.equalTo(24.adjusted)
         }
+    }
+}
+
+extension NotificationView {
+    @objc
+    private func doNotSeeButtonTapped() {
+        isTapped.toggle()
+        doNotSeeAgainButton.setImage(UIImage(imageLiteralResourceName: isTapped ? "btnCheckBox" : "btnNotCheckBox"), for: .normal)
+        UserDefaults.standard.set(isTapped, forKey: "isTapped")
+    }
+    
+    @objc
+    private func closeButtonTapped() {
+        self.isHidden = true
+        self.removeFromSuperview()
     }
 }

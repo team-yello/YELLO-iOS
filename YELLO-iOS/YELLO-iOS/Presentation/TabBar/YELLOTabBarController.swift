@@ -241,10 +241,17 @@ extension YELLOTabBarController {
                 
                 if data.isAvailable {
                 } else {
-                    self.userNotificationView.frame = self.view.bounds
-                    self.userNotificationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                    self.view.addSubview(self.userNotificationView)
+                    // 다시 보지 않기 버튼을 안눌렀거나 이전 공지와 현재 공지의 title이 다른 경우에만 표시
+                    if !UserDefaults.standard.bool(forKey: "isTapped") || UserDefaults.standard.string(forKey: "notificationTitle") != data.title {
+                        self.userNotificationView.frame = self.view.bounds
+                        self.userNotificationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                        self.view.addSubview(self.userNotificationView)
+                    }
                 }
+                
+                let notificationTitle = data.title
+                UserDefaults.standard.set(notificationTitle, forKey: "notificationTitle")
+                
             default:
                 print("network failure")
                 return
