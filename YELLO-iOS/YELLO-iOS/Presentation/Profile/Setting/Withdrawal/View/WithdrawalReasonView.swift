@@ -26,6 +26,7 @@ final class WithdrawalReasonView: BaseView {
             self.setCompleteButton(isEnabled: isCompleteEnabled)
         }
     }
+    var etcReason: String = ""
     
     let withdrawalNavigationBarView = SettingNavigationBarView()
     let reasonHeaderView = ReasonHeaderView()
@@ -158,10 +159,11 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
-        // 추후 사유 빈칸일 때 제외로 수정
-        isCompleteEnabled = true
-        selectedIndex = indexPath.row
-        reasonCollectionView.reloadData()
+        if indexPath.row != selectedIndex {
+            selectedIndex = indexPath.row
+            isCompleteEnabled = selectedIndex != 7 ? true : false
+            reasonCollectionView.reloadData()
+        }
     }
 }
 
@@ -180,13 +182,25 @@ extension WithdrawalReasonView: UITextViewDelegate {
         if textView.text == StringLiterals.Profile.WithdrawalReason.etcReason {
             textView.text = nil
             textView.textColor = .white
-        } else if textView.text.isEmpty {
-            textView.text = StringLiterals.Profile.WithdrawalReason.etcReason
-            textView.textColor = .grayscales600
+        }
+    
+        if !self.etcReason.isEmpty {
+            textView.text = self.etcReason
         }
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        if textView.text.isEmpty || textView.text == "" || textView.text == StringLiterals.Profile.WithdrawalReason.etcReason {
+            self.isCompleteEnabled = false
+            textView.text = StringLiterals.Profile.WithdrawalReason.etcReason
+            textView.textColor = .grayscales600
+            self.etcReason = ""
+        } else {
+            self.isCompleteEnabled = true
+            self.etcReason = textView.text
+            print(etcReason)
+        }
+        
         textView.resignFirstResponder()
         return true
     }
@@ -215,9 +229,8 @@ extension WithdrawalReasonView {
             reasonCollectionView.snp.updateConstraints {
                 $0.bottom.equalToSuperview().inset(26.adjustedHeight + keyboardSize.height)
             }
-            
             let indexPath = IndexPath(item: self.reasonList.count - 1, section: 0)
-            reasonCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            reasonCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
         }
     }
 
@@ -228,6 +241,5 @@ extension WithdrawalReasonView {
     }
 }
 
-// TODO: 플레이스 홀더 수정
 // TODO: 스크롤 수정
 // TODO: Return 버튼 누르면 키보드 사라지도록

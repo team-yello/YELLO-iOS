@@ -146,9 +146,7 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
             reasonView.snp.updateConstraints {
                 $0.width.equalTo(UIScreen.main.bounds.width - 68.adjustedWidth)
                 $0.height.equalTo(141.adjustedHeight)
-            }
-            etcTextView.becomeFirstResponder()
-            
+            }            
         } else {
             reasonView.snp.updateConstraints {
                 $0.width.equalTo(UIScreen.main.bounds.width - 68.adjustedWidth)
