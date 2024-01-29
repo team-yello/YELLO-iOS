@@ -18,6 +18,7 @@ final class WithdrawalReasonViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         withdrawalReasonView.setCollectionView()
+        withdrawalReasonView.setNotificationCenter()
         self.setAddTarget()
     }
     

@@ -1,4 +1,3 @@
-
 //
 //  WithdrawalReasonView.swift
 //  YELLO-iOS
@@ -42,6 +41,7 @@ final class WithdrawalReasonView: BaseView {
     }
     
     override func setStyle() {
+        hideKeyboardWhenTappedAround()
         self.backgroundColor = .black
         
         withdrawalNavigationBarView.do {
@@ -104,6 +104,11 @@ final class WithdrawalReasonView: BaseView {
             $0.width.equalTo(343.adjustedWidth)
             $0.bottom.equalToSuperview().inset(34.adjustedHeight)
         }
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func setCompleteButton(isEnabled: Bool) {
@@ -169,7 +174,7 @@ extension WithdrawalReasonView: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-//
+
 extension WithdrawalReasonView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == StringLiterals.Profile.WithdrawalReason.etcReason {
@@ -180,4 +185,49 @@ extension WithdrawalReasonView: UITextViewDelegate {
             textView.textColor = .grayscales600
         }
     }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let maxCharacterCount = 30
+        let currentText = textView.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: text)
+        return newText.count <= maxCharacterCount
+    }
 }
+
+extension WithdrawalReasonView {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        self.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            reasonCollectionView.snp.updateConstraints {
+                $0.bottom.equalToSuperview().inset(26.adjustedHeight + keyboardSize.height)
+            }
+            
+            let indexPath = IndexPath(item: self.reasonList.count - 1, section: 0)
+            reasonCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        reasonCollectionView.snp.updateConstraints {
+            $0.bottom.equalToSuperview().inset(82.adjustedHeight)
+        }
+    }
+}
+
+// TODO: 플레이스 홀더 수정
+// TODO: 스크롤 수정
+// TODO: Return 버튼 누르면 키보드 사라지도록
