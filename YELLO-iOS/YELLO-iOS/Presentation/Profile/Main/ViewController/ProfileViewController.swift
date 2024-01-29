@@ -50,6 +50,7 @@ final class ProfileViewController: BaseViewController {
         friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         profileView.handleShopButton = self
+        profileView.handleEditButton = self
     }
     
     override func setLayout() {
@@ -137,5 +138,11 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
 extension ProfileViewController: HandleShopButton {
     func shopButtonTapped() {
         navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+}
+
+extension ProfileViewController: HandleEditButton {
+    func editButtonTapped() {
+        navigationController?.pushViewController(EditProfileViewController(), animated: true)
     }
 }

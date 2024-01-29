@@ -135,9 +135,4 @@ extension MyProfileView {
             $0.top.equalTo(infoStackView.snp.bottom).offset(4.adjustedHeight)
         }
     }
-    
-    // MARK: Objc Function
-    @objc func editProfileButtonTapped(){
-        // 프로필 수정뷰로 이동
-    }
 }
