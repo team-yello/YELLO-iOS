@@ -11,14 +11,14 @@ import Then
 import SnapKit
 
 final class MainProfileView: UIView {
-    
     // MARK: - Variables
+    // MARK: Property
     // MARK: Component
     let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 48
         .adjusted, height: 48.adjusted))
     let profileStarGradientView = UIView(frame: CGRect(x: 0, y: 0, width: 344.adjusted, height: 6.adjustedHeight))
     let profileStarImageView = UIImageView()
-    let EditProfileButton = UIButton()
+    let editProfileButton = UIButton()
     
     let nameLabel = UILabel()
     let instagramLabel = UILabel()
@@ -42,7 +42,8 @@ final class MainProfileView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUI(){
+    
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -72,7 +73,7 @@ final class MainProfileView: UIView {
             $0.isHidden = true
         }
         
-        EditProfileButton.do {
+        editProfileButton.do {
             $0.setImage(ImageLiterals.Profile.icRight, for: .normal)
         }
         
@@ -119,7 +120,7 @@ final class MainProfileView: UIView {
                          nameLabel,
                          instagramLabel,
                          schoolLabel,
-                         EditProfileButton,
+                         editProfileButton,
                          profileStarGradientView,
                          nameSkeletonLabel,
                          schoolSkeletonLabel)
@@ -144,9 +145,10 @@ final class MainProfileView: UIView {
             $0.leading.equalTo(nameLabel.snp.leading)
         }
         
-        EditProfileButton.snp.makeConstraints {
+        editProfileButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(15)
             $0.centerY.equalToSuperview()
+            $0.size.equalTo(24.adjusted)
         }
         
         nameSkeletonLabel.snp.makeConstraints {
