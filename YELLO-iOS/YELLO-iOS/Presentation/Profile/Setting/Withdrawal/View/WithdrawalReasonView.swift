@@ -147,7 +147,6 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
             cell.setTextView(isEtc: true)
             cell.etcTextView.isUserInteractionEnabled = true
             cell.etcTextView.delegate = self
-            self.hideKeyboardWhenTappedAround()
         } else {
             cell.setTextView(isEtc: false)
         }
@@ -184,6 +183,7 @@ extension WithdrawalReasonView: UICollectionViewDelegateFlowLayout {
 
 extension WithdrawalReasonView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        hideKeyboardWhenTappedAround()
         if textView.text == StringLiterals.Profile.WithdrawalReason.etcReason {
             textView.text = nil
             textView.textColor = .white
@@ -247,3 +247,4 @@ extension WithdrawalReasonView {
 }
 
 // TODO: 플레이스 홀더 오류.. 수정
+// TODO: 텍스트뷰 선택 후 스크롤 범위 확인
