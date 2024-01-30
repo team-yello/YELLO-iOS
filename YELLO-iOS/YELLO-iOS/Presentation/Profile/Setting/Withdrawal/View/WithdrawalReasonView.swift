@@ -147,6 +147,9 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
             cell.setTextView(isEtc: true)
             cell.etcTextView.isUserInteractionEnabled = true
             cell.etcTextView.delegate = self
+            cell.etcTextView.text = self.etcReason.isEmpty ? StringLiterals.Profile.WithdrawalReason.etcReason : self.etcReason
+            cell.etcTextView.textColor = self.etcReason.isEmpty ? .grayscales600 : .white
+            self.isCompleteEnabled = !self.etcReason.isEmpty
         } else {
             cell.setTextView(isEtc: false)
         }
@@ -188,10 +191,6 @@ extension WithdrawalReasonView: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .white
         }
-    
-        if !self.etcReason.isEmpty {
-            textView.text = self.etcReason
-        }
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
@@ -203,9 +202,7 @@ extension WithdrawalReasonView: UITextViewDelegate {
         } else {
             self.isCompleteEnabled = true
             self.etcReason = textView.text
-            print(etcReason)
         }
-        
         textView.resignFirstResponder()
         return true
     }
@@ -232,8 +229,8 @@ extension WithdrawalReasonView {
     
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-            reasonCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 26.adjustedHeight, right: 0)
+            let scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height - 26.adjustedHeight, right: 0)
+            reasonCollectionView.contentInset = scrollIndicatorInsets
             reasonCollectionView.scrollIndicatorInsets = scrollIndicatorInsets
         }
         let indexPath = IndexPath(item: self.reasonList.count - 1, section: 0)
@@ -245,6 +242,3 @@ extension WithdrawalReasonView {
         reasonCollectionView.scrollIndicatorInsets = .zero
     }
 }
-
-// TODO: 플레이스 홀더 오류.. 수정
-// TODO: 텍스트뷰 선택 후 스크롤 범위 확인

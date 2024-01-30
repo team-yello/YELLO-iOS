@@ -71,7 +71,6 @@ final class ReasonCollectionViewCell: UICollectionViewCell {
         }
         
         etcTextView.do {
-            $0.text = StringLiterals.Profile.WithdrawalReason.etcReason
             $0.font = .uiBody02
             $0.textColor = .grayscales600
             $0.textAlignment = .left
