@@ -34,13 +34,13 @@ final class NotificationView: BaseView {
         }
         
         doNotSeeAgainLabel.do {
-            $0.text = "다시 보지 않기"
+            $0.text = StringLiterals.Notification.doNotSeeAgainLabel
             $0.textColor = .white
             $0.font = .uiBody02
         }
         
         closeButton.do {
-            $0.setTitle("닫기", for: .normal)
+            $0.setTitle(StringLiterals.Notification.close, for: .normal)
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = .uiButton02
             $0.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
