@@ -151,10 +151,12 @@ enum ImageLiterals {
         static var icArrowUp: UIImage { .load(named: "icArrowUp") }
         static var icArrowLeftWhite: UIImage { .load(named: "icArrowLeftWhite") }
         static var icRight: UIImage { .load(named: "icRight")}
+        static var icRightSmall: UIImage { .load(named: "chevron-right-small")}
         static var btnDelete: UIImage { .load(named: "btnDelete") }
         static var icProfileStar: UIImage { .load(named: "icProfileStar") }
         static var icEdit: UIImage { .load(named: "ic_Edit") }
         static var icRotate: UIImage { .load(named: "rotate-ccw") }
+        static var icAlert: UIImage { .load(named: "alert-circle") }
     }
     
     enum Recommending {
