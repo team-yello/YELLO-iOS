@@ -16,6 +16,7 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     let profileView = ProfileView()
+    let editProfileViewController = EditProfileViewController()
     let friendProfileViewController = FriendProfileViewController()
     let bottomSheetViewController = BottomFriendProfileViewController()
     let paymentPlusViewController = PaymentPlusViewController()
@@ -143,6 +144,7 @@ extension ProfileViewController: HandleShopButton {
 
 extension ProfileViewController: HandleEditButton {
     func editButtonTapped() {
-        navigationController?.pushViewController(EditProfileViewController(), animated: true)
+        editProfileViewController.userInfoList = profileView.myProfileHeaderView.userInfoList
+        navigationController?.pushViewController(editProfileViewController, animated: true)
     }
 }
