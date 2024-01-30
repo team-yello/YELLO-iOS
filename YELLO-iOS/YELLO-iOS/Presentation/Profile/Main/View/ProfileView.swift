@@ -164,7 +164,6 @@ extension ProfileView {
     }
     
     @objc func editButtonTapped() {
-        print("여기는?")
         handleEditButton?.editButtonTapped()
     }
     
