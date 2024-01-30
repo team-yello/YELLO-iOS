@@ -185,6 +185,8 @@
 		36E60EC52AE6DFC4005035D3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 36E60EC42AE6DFC4005035D3 /* FirebaseStorageCombine-Community */; };
 		36EA2AB72A66FC0B003603C7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA2AB62A66FC0B003603C7 /* UserManager.swift */; };
 		36ECE0E82B68B2EE000FCCBF /* EditSchoolInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0E72B68B2EE000FCCBF /* EditSchoolInfoViewController.swift */; };
+		36ECE0EA2B68B4EC000FCCBF /* EditSchoolInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */; };
+		36ECE0EF2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0EE2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift */; };
 		C305A5B22A85F997007C4A69 /* PaymentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */; };
 		C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7262A630BB70031514C /* KeychainHandler.swift */; };
 		C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C306E7292A630BD10031514C /* SwiftKeychainWrapper */; };
@@ -494,6 +496,8 @@
 		36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndView.swift; sourceTree = "<group>"; };
 		36EA2AB62A66FC0B003603C7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		36ECE0E72B68B2EE000FCCBF /* EditSchoolInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoViewController.swift; sourceTree = "<group>"; };
+		36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoView.swift; sourceTree = "<group>"; };
+		36ECE0EE2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoTableViewCell.swift; sourceTree = "<group>"; };
 		C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmView.swift; sourceTree = "<group>"; };
 		C306E7262A630BB70031514C /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendRequestDTO.swift; sourceTree = "<group>"; };
@@ -1254,6 +1258,7 @@
 			children = (
 				36D98F3A2B617BBD003B2B11 /* EditProfileView.swift */,
 				36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */,
+				36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1262,6 +1267,7 @@
 			isa = PBXGroup;
 			children = (
 				36D98F3C2B617DD7003B2B11 /* EditProfileTableViewCell.swift */,
+				36ECE0EE2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2235,6 +2241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36ECE0EA2B68B4EC000FCCBF /* EditSchoolInfoView.swift in Sources */,
 				36C209F62A8B8190001BF12C /* SecondTutorialView.swift in Sources */,
 				C37DFC512A854FE700D3B685 /* PaymentNameKeyButton.swift in Sources */,
 				C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */,
@@ -2276,6 +2283,7 @@
 				C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */,
 				36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */,
 				C306E7472A656D170031514C /* ProfileFriendRequestQueryDTO.swift in Sources */,
+				36ECE0EF2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
 				367229D12A991BC700724494 /* DeviceTokenRefreshRequestDTO.swift in Sources */,
