@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import KakaoSDKUser
 
 class EditProfileHeaderView: UITableViewHeaderFooterView {
     // MARK: - Variables
@@ -45,6 +46,7 @@ class EditProfileHeaderView: UITableViewHeaderFooterView {
             $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -3, bottom: 0, right: 0)
             $0.makeCornerRound(radius: 4.adjusted)
             $0.backgroundColor = .grayscales900
+            $0.addTarget(self, action: #selector(kakaoSyncButtonDidTapped), for: .touchUpInside)
         }
     }
     
@@ -64,5 +66,23 @@ class EditProfileHeaderView: UITableViewHeaderFooterView {
             $0.centerX.equalToSuperview()
         }
         
+    }
+    
+    @objc func kakaoSyncButtonDidTapped() {
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if let user {
+                    if let kakaoAccount = user.kakaoAccount {
+                        if let profileImage = kakaoAccount.profile?.profileImageUrl {
+                            UserManager.shared.profileImage = profileImage.absoluteString
+                            self.profileImageView.kfSetImage(url: profileImage.absoluteString)
+                        }
+                    }
+                }
+            }
+            
+        }
     }
 }
