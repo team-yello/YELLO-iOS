@@ -15,6 +15,7 @@ final class KakaoFriendView: UIView {
     
     // MARK: - Variables
     // MARK: Property
+    weak var handleFriendCellDelegate: HandleFriendCellDelegate?
     var fetchingMore = false
     var isRefreshing = false
     var isFinishPaging = false
@@ -222,6 +223,26 @@ extension KakaoFriendView {
         }
     }
     
+    func addFriendAtModal(friendId: Int) {
+        recommendingAddFriend(friendId: friendId)
+        
+        if let index = self.recommendingKakaoFriendTableViewDummy.firstIndex(where: { $0.friends.id == friendId }) {
+            recommendingKakaoFriendTableViewDummy.remove(at: index)
+            kakaoFriendCount = recommendingKakaoFriendTableViewDummy.count
+            let indexPath = IndexPath(row: index, section: 0)
+            kakaoFriendTableView.deleteRows(at: [indexPath], with: .right)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.kakaoFriendTableView.reloadData()
+            }
+            self.updateView()
+        }
+    }
+    
+    private func presentModal(index: Int) {
+        handleFriendCellDelegate?.presentModal(index: index)
+    }
+    
     func kakaoFriends(completion: @escaping () -> Void) {
         TalkApi.shared.friends(limit: 100) { [weak self] (friends, error) in
             if let error = error {
@@ -246,7 +267,7 @@ extension KakaoFriendView: HandleAddFriendButton {
         let point = sender.convert(CGPoint.zero, to: kakaoFriendTableView)
         guard let indexPath = kakaoFriendTableView.indexPathForRow(at: point) else { return }
         
-        // 삭제 서버통신
+        // 친구 추가 서버통신
         recommendingAddFriend(friendId: recommendingKakaoFriendTableViewDummy[indexPath.row].friends.id)
         
         recommendingKakaoFriendTableViewDummy[indexPath.row].isButtonSelected = true
@@ -323,5 +344,13 @@ extension KakaoFriendView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if fetchingMore {
+            return
+        } else {
+            self.presentModal(index: self.recommendingKakaoFriendTableViewDummy[indexPath.row].friends.id)
+        }
     }
 }

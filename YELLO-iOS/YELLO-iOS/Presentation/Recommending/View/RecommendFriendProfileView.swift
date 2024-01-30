@@ -14,13 +14,17 @@ import Then
 
 // MARK: - Protocol
 protocol HandleAddFriendButtonDelegate: AnyObject {
-    func addFriendButtonTapped()
+    func addFriendButtonTapped(id: Int)
 }
 
 final class RecommendFriendProfileView: BaseView {
     
     // MARK: - Variables
     // MARK: Component
+    weak var handleBottomSheetButtonDelegate: HandleBottomSheetButtonDelegate?
+    weak var handleAddFriendButtonDelegate: HandleAddFriendButtonDelegate?
+    var userId: Int = -1
+
     private let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 72.adjusted, height: 72.adjusted))
     private let nameLabel = UILabel()
     private let instagramLabel = UILabel()
@@ -136,12 +140,15 @@ final class RecommendFriendProfileView: BaseView {
     // MARK: Objc Function
     @objc private func addButtonTapped() {
         addButton.setImage(ImageLiterals.Recommending.icAddFriendButtonTapped, for: .normal)
-//        dismissView()
-//        handleAddFriendButtonDelegate?.addButtonTapped()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.dismissView()
+            self.handleAddFriendButtonDelegate?.addFriendButtonTapped(id: self.userId)
+        }
     }
     
     // MARK: Layout Helpers
     func configureMyProfileFriendDetailCell(_ model: ProfileFriendResponseDetail) {
+        self.userId = model.userId
         if model.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
             profileImageView.kfSetImage(url: model.profileImageUrl)
         } else {
@@ -154,19 +161,12 @@ final class RecommendFriendProfileView: BaseView {
         friendCountView.countLabel.text = String(model.friendCount)
     }
     
-    // MARK: - Network
-//    func profileDeleteFriend(id: Int) {
-//        NetworkService.shared.profileService.profileDeleteFriend(id: id) { response in
-//            switch response {
-//            case .success(let data):
-//                guard let data = data.data else { return }
-//                dump(data)
-//                print("통신 성공")
-//                Amplitude.instance().logEvent("complete_profile_delete_friend")
-//            default:
-//                print("network fail")
-//                return
-//            }
-//        }
-//    }
+    // MARK: Layout Helpers
+    private func dismissView() {
+        handleBottomSheetButtonDelegate?.dismissView()
+    }
+    
+    func layoutChange() {
+        addButton.setImage(ImageLiterals.Recommending.btnAddFriend, for: .normal)
+    }
 }

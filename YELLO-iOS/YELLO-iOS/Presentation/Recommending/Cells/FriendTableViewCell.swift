@@ -28,6 +28,7 @@ final class FriendTableViewCell: UITableViewCell {
     lazy var addButton = UIButton()
     let separatorLine = UIView()
     var isTapped: Bool = false
+    var friendId: Int = -1
     
     weak var handleAddFriendButton: HandleAddFriendButton?
     
@@ -143,6 +144,7 @@ extension FriendTableViewCell {
     
     // MARK: Custom Function
     func configureFriendCell(_ model: FriendModel) {
+        friendId = model.friends.id
         addButton.isHidden = false
         nameLabel.text = model.friends.name
         schoolLabel.text = model.friends.group
