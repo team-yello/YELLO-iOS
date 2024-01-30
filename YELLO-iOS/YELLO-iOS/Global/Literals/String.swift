@@ -338,7 +338,7 @@ enum StringLiterals {
             static let major = "학과"
             static let studentId = "학번"
             static let grade = "학년"
-            static let shcoolClass = "반"
+            static let schoolClass = "반"
         }
         
         enum Setting {
