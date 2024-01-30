@@ -13,6 +13,7 @@ enum RecommendingTarget {
     case recommendingKakaoFriend(_ queryDTO: RecommendingRequestQueryDTO, _ requestDTO: RecommendingFriendRequestDTO)
     case recommendingSchoolFriend(_ queryDTO: RecommendingRequestQueryDTO)
     case recommendingAddFriend(_ friendId: Int)
+    case recommendingDetailFriend(_ friendId: Int)
 }
 
 extension RecommendingTarget: TargetType {
@@ -25,6 +26,8 @@ extension RecommendingTarget: TargetType {
             return .authorization
         case .recommendingAddFriend(_):
             return .authorization
+        case .recommendingDetailFriend(_):
+            return .authorization
         }
     }
     
@@ -35,6 +38,8 @@ extension RecommendingTarget: TargetType {
         case .recommendingSchoolFriend(_):
             return .plain
         case .recommendingAddFriend(_):
+            return .plain
+        case .recommendingDetailFriend(_):
             return .plain
         }
     }
@@ -47,6 +52,8 @@ extension RecommendingTarget: TargetType {
             return .get
         case .recommendingAddFriend:
             return .post
+        case .recommendingDetailFriend:
+            return .get
         }
     }
     
@@ -58,6 +65,8 @@ extension RecommendingTarget: TargetType {
             return "/friend/recommend/school"
         case .recommendingAddFriend(let friendId):
             return "friend/\(friendId)"
+        case .recommendingDetailFriend(let friendId):
+            return "user/\(friendId)"
         }
     }
 
@@ -68,6 +77,8 @@ extension RecommendingTarget: TargetType {
         case let .recommendingSchoolFriend(queryDTO):
             return .requestQuery(queryDTO)
         case .recommendingAddFriend:
+            return .requestPlain
+        case .recommendingDetailFriend:
             return .requestPlain
         }
     }
