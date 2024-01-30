@@ -42,7 +42,7 @@ final class WithdrawalReasonViewController: BaseViewController {
 extension WithdrawalReasonViewController {
     // MARK: Objc Function
     @objc func showAlert() {
-//        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
+        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
         
         let withdrawalAlertView = WithdrawalAlertView()
         self.view.addSubview(withdrawalAlertView)
