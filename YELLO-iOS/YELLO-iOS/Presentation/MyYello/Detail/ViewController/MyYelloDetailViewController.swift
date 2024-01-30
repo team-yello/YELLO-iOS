@@ -242,7 +242,6 @@ extension MyYelloDetailViewController {
                 
                 self.myYelloDetailView.ticketCount = data.ticketCount
 
-                
                 Amplitude.instance().setUserProperties(["user_subscription": data.isSubscribe ? "yes" : "no",
                                                         "user_ticket": data.ticketCount])
                 

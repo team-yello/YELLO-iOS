@@ -31,6 +31,7 @@ final class YELLOTabBarController: UITabBarController {
     let votingStartViewController = VotingStartViewController()
     let subscriptionExtensionView = SubscriptionExtensionView()
     let paymentPlusViewController = PaymentPlusViewController()
+    let userNotificationView = NotificationView()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -41,7 +42,7 @@ final class YELLOTabBarController: UITabBarController {
         super.viewDidLoad()
         
         network()
-        purchaseSubscribeNeed()
+        getUserNotification()
 
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
@@ -232,6 +233,35 @@ extension YELLOTabBarController {
         paymentPlusViewController.getProducts()
     }
     
+    func getUserNotification() {
+        NetworkService.shared.notificationService.userNotification { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                
+                if data.isAvailable {
+                    // 다시 보지 않기 버튼을 안눌렀거나 이전 공지와 현재 공지의 title이 다른 경우에만 표시
+                    if !UserDefaults.standard.bool(forKey: "isTapped") || UserDefaults.standard.string(forKey: "notificationTitle") != data.title {
+                        self.userNotificationView.frame = self.view.bounds
+                        self.userNotificationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                        self.userNotificationView.notificationImageView.kfSetImage(url: data.imageUrl)
+                        self.view.addSubview(self.userNotificationView)
+                    }
+                }
+                
+                let notificationTitle = data.title
+                UserDefaults.standard.set(notificationTitle, forKey: "notificationTitle")
+                
+            default:
+                print("network failure")
+                return
+            }
+        }
+        
+        // 유저 대상 공지 확인 후 재구독 유도
+        purchaseSubscribeNeed()
+    }
+    
     /// 구독 연장 여부 서버통신
     func purchaseSubscribeNeed() {
         NetworkService.shared.purchaseService.purchaseSubscibeNeed { result in
@@ -283,71 +313,8 @@ extension YELLOTabBarController {
                     tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                     
                     let myYelloDetailViewController = MyYelloDetailViewController()
-                    NetworkService.shared.myYelloService.myYelloDetail(voteId: messageIndex) { response in
-                        switch response {
-                        case .success(let data):
-                            guard let data = data.data else { return }
-                            
-                            myYelloDetailViewController.myYelloDetailView.voteIdNumber = self.messageIndex
-                            myYelloDetailViewController.colorIndex = data.colorIndex
-                            myYelloDetailViewController.myYelloDetailView.currentPoint = data.currentPoint
-                            myYelloDetailViewController.myYelloDetailView.detailSenderView.isHidden = false
-                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.isHidden = false
-                            myYelloDetailViewController.myYelloDetailView.genderLabel.isHidden = false
-                            myYelloDetailViewController.myYelloDetailView.instagramButton.isHidden = false
-                            myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = false
-                            myYelloDetailViewController.myYelloDetailView.senderButton.isHidden = false
-                            myYelloDetailViewController.setBackgroundView()
-                            
-                            if data.senderGender == "MALE" {
-                                myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.male
-                            } else {
-                                myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.female
-                            }
-                            
-                            if data.vote.nameHead == nil {
-                                myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = "너" + (data.vote.nameFoot ?? "")
-                            } else {
-                                myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
-                            }
-                            
-                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
-                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordLabel.text = data.vote.keyword
-                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
-                            
-                            myYelloDetailViewController.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
-
-                            if data.nameHint == 0 {
-                                myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
-                                if let initial = myYelloDetailViewController.getFirstInitial(data.senderName as NSString, index: 0) {
-                                    myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
-                                }
-                            } else if data.nameHint == 1 {
-                                myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
-                                if let initial = myYelloDetailViewController.getSecondInitial(data.senderName as NSString, index: 1) {
-                                    myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
-                                }
-                            } else if data.nameHint == -3 {
-                                myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
-                                myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
-                                myYelloDetailViewController.myYelloDetailView.isKeywordUsed = true
-                                myYelloDetailViewController.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
-                                myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = true
-                                myYelloDetailViewController.myYelloDetailView.haveTicket = false
-                                myYelloDetailViewController.myYelloDetailView.senderButton.snp.makeConstraints {
-                                    $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
-                                }
-                            }
-                            if data.isSubscribe {
-                                myYelloDetailViewController.myYelloDetailView.isPlus = true
-                            }
-                            myYelloDetailViewController.myYelloDetailView.ticketCount = data.ticketCount
-                            self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
-                        default:
-                            print("network fail")
-                            return
-                        }
-                    }
+                    myYelloDetailViewController.myYelloDetail(voteId:  Int(messageIndex))
+                    self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
                     
                 } else if selectedIndex == 4 {
                     tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

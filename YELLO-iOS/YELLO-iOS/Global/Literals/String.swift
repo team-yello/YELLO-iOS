@@ -383,4 +383,9 @@ enum StringLiterals {
         static let unsubscribeLabel = "옐로플러스의 구독을 해지했어요."
         static let benefitLabel = "곧 위와 같은 혜택을 누릴 수 없게 돼요.\n\n옐로플러스의 특별한 서비스를\n계속 이용하시려면, 버튼을 눌러\n구독을 계속해 보세요!"
     }
+    
+    enum Notification {
+        static let doNotSeeAgainLabel = "다시 보지 않기"
+        static let close = "닫기"
+    }
 }
