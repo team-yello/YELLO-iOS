@@ -18,10 +18,14 @@ final class EditProfileViewController: BaseViewController {
     let editProfileView = EditProfileView()
     
     override func loadView() {
-        self.tabBarController?.tabBar.isHidden = true
         self.view = editProfileView
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
@@ -36,6 +40,7 @@ final class EditProfileViewController: BaseViewController {
     private func setDelegate() {
         editProfileView.profileTableView.dataSource = self
         editProfileView.profileTableView.delegate = self
+        editProfileView.navigationBarView.handleBackButtonDelegate = self
     }
 }
 
@@ -77,6 +82,7 @@ extension EditProfileViewController: UITableViewDataSource {
                 return cell
             }
         }
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -92,5 +98,16 @@ extension EditProfileViewController: UITableViewDataSource {
 }
 
 extension EditProfileViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.item > 1 {
+            // 변경 가능 셀 부터
+            navigationController?.pushViewController(EditSchoolInfoViewController(), animated: true)
+        }
+    }
+}
+
+extension EditProfileViewController: HandleBackButtonDelegate {
+    func popView() {
+        navigationController?.popViewController(animated: true)
+    }
 }

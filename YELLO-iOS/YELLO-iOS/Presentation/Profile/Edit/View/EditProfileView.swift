@@ -14,7 +14,7 @@ class EditProfileView: UIView {
     
     // MARK: - Variables
     // MARK: Component
-    let navigationBarView = NavigationBarView()
+    let navigationBarView = SettingNavigationBarView()
     let editHeaderView = EditProfileHeaderView()
     let profileTableView = UITableView(frame: .zero, style: .grouped)
     
@@ -35,8 +35,14 @@ class EditProfileView: UIView {
     private func setStlye() {
         self.backgroundColor = .black
         
+        navigationBarView.do {
+            $0.titleLabel.text = StringLiterals.Profile.EditProfile.profileInfoTitle
+        }
+        
         profileTableView.do {
             $0.backgroundColor = .clear
+            $0.showsVerticalScrollIndicator = false
+            $0.showsHorizontalScrollIndicator = false
             $0.register(EditProfileTableViewCell.self, forCellReuseIdentifier: EditProfileTableViewCell.reusableId)
             $0.register(EditProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: EditProfileHeaderView.reusableId)
             $0.rowHeight = 75.adjustedHeight
