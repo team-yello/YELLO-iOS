@@ -42,6 +42,7 @@ class EditProfileHeaderView: UITableViewHeaderFooterView {
             $0.setTitleColor(.grayscales400, for: .normal)
             $0.titleLabel?.font = .uiLabelSmall
             $0.setImage(ImageLiterals.Profile.icRotate, for: .normal)
+            $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: -3, bottom: 0, right: 0)
             $0.makeCornerRound(radius: 4.adjusted)
             $0.backgroundColor = .grayscales900
         }
@@ -57,6 +58,8 @@ class EditProfileHeaderView: UITableViewHeaderFooterView {
         }
         
         kakaoSyncButton.snp.makeConstraints {
+            $0.height.equalTo(22.adjustedHeight)
+            $0.width.equalTo(94.adjustedWidth)
             $0.top.equalTo(profileImageView.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
         }
