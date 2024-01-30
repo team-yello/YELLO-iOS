@@ -12,7 +12,11 @@ import Then
 
 class EditProfileView: UIView {
     
-    let profileTableView = UITableView(frame: .zero, style: .plain)
+    // MARK: - Variables
+    // MARK: Component
+    let navigationBarView = NavigationBarView()
+    let editHeaderView = EditProfileHeaderView()
+    let profileTableView = UITableView(frame: .zero, style: .grouped)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,32 +33,35 @@ class EditProfileView: UIView {
     }
     
     private func setStlye() {
+        self.backgroundColor = .black
+        
         profileTableView.do {
             $0.backgroundColor = .clear
             $0.register(EditProfileTableViewCell.self, forCellReuseIdentifier: EditProfileTableViewCell.reusableId)
+            $0.register(EditProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: EditProfileHeaderView.reusableId)
             $0.rowHeight = 75.adjustedHeight
-            $0.dataSource = self
         }
     }
     
     private func setLayout() {
-        self.addSubviews(profileTableView)
+        let statusBarHeight = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?
+            .statusBarManager?
+            .statusBarFrame.height ?? 20
+        
+        self.addSubviews(navigationBarView, profileTableView)
+        
+        navigationBarView.snp.makeConstraints {
+            $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(48.adjustedHeight)
+        }
         
         profileTableView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+            $0.top.equalTo(navigationBarView.snp.bottom)
+            $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
-    }
-}
-
-extension EditProfileView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EditProfileTableViewCell.reusableId) as? EditProfileTableViewCell else { return UITableViewCell() }
-        cell.configureCell(isEditable: true, title: "이름", info: "김효원")
-        return cell
     }
 }

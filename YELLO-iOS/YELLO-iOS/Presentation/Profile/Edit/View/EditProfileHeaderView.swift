@@ -7,21 +7,25 @@
 
 import UIKit
 
-class EditProfileHeaderView: UIView {
+import SnapKit
+import Then
+
+class EditProfileHeaderView: UITableViewHeaderFooterView {
     // MARK: - Variables
+    static let reusableId = "EditProfileView"
     // MARK: Component
     let profileImageView = UIImageView()
     let kakaoSyncButton = UIButton()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -30,18 +34,32 @@ class EditProfileHeaderView: UIView {
         profileImageView.do {
             $0.image = ImageLiterals.Profile.imgDefaultProfile
             $0.makeCornerRound(radius: 36.adjusted)
+            $0.contentMode = .scaleAspectFill
         }
         
         kakaoSyncButton.do {
             $0.setTitle(StringLiterals.Profile.EditProfile.kakaoSync, for: .normal)
             $0.setTitleColor(.grayscales400, for: .normal)
             $0.titleLabel?.font = .uiLabelSmall
+            $0.setImage(ImageLiterals.Profile.icRotate, for: .normal)
             $0.makeCornerRound(radius: 4.adjusted)
             $0.backgroundColor = .grayscales900
         }
     }
     
     private func setLayout() {
-        <#code#>
+        self.addSubviews(profileImageView, kakaoSyncButton)
+        
+        profileImageView.snp.makeConstraints {
+            $0.size.equalTo(72.adjusted)
+            $0.top.equalToSuperview().offset(32.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        kakaoSyncButton.snp.makeConstraints {
+            $0.top.equalTo(profileImageView.snp.bottom).offset(10)
+            $0.centerX.equalToSuperview()
+        }
+        
     }
 }
