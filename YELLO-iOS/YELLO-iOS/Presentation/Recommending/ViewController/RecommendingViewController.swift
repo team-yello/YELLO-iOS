@@ -205,8 +205,6 @@ extension RecommendingViewController: HandleFriendCellDelegate {
                 sheet.prefersGrabberVisible = true
                 present(nav, animated: true, completion: nil)
             }
-        } else {
-
         }
     }
 }

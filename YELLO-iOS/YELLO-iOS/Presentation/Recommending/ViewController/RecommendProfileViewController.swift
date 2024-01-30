@@ -20,6 +20,7 @@ final class RecommendProfileViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.resetProfile()
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
@@ -41,6 +42,15 @@ final class RecommendProfileViewController: BaseViewController {
         recommendFriendProfileView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    private func resetProfile() {
+        recommendFriendProfileView.profileImageView.image = nil
+        recommendFriendProfileView.nameLabel.text = nil
+        recommendFriendProfileView.instagramLabel.text = nil
+        recommendFriendProfileView.schoolLabel.text = nil
+        recommendFriendProfileView.messageCountView.countLabel.text = nil
+        recommendFriendProfileView.friendCountView.countLabel.text = nil
     }
 }
 

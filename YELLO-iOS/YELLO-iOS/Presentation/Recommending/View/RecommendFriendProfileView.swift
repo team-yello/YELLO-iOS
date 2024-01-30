@@ -25,12 +25,12 @@ final class RecommendFriendProfileView: BaseView {
     weak var handleAddFriendButtonDelegate: HandleAddFriendButtonDelegate?
     var userId: Int = -1
 
-    private let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 72.adjusted, height: 72.adjusted))
-    private let nameLabel = UILabel()
-    private let instagramLabel = UILabel()
-    private let schoolLabel = UILabel()
-    private let messageCountView = CountCustomView()
-    private let friendCountView = CountCustomView()
+    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 72.adjusted, height: 72.adjusted))
+    let nameLabel = UILabel()
+    let instagramLabel = UILabel()
+    let schoolLabel = UILabel()
+    let messageCountView = CountCustomView()
+    let friendCountView = CountCustomView()
     let addButton = UIButton()
     private let groupView = UIView()
     
