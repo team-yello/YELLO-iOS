@@ -304,12 +304,7 @@ extension AroundView: UITableViewDataSource {
             return cell
         } else {
             guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: TimeLineTableViewCell.identifier, for: indexPath) as? TimeLineTableViewCell else { return UITableViewCell() }
-            if isUserSenderVote {
-                aroundCell.configureAroundCell(aroundModelDummy[indexPath.row])
-                aroundCell.genderLabel.text = StringLiterals.Around.fromMe
-            } else {
-                aroundCell.configureAroundCell(aroundModelDummy[indexPath.row])
-            }
+            aroundCell.configureAroundCell(aroundModelDummy[indexPath.row])
             aroundCell.selectionStyle = .none
             return aroundCell
         }

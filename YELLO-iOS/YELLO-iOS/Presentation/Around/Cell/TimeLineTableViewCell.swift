@@ -218,6 +218,10 @@ final class TimeLineTableViewCell: UITableViewCell {
             self.keywordLabel.textColor = .semanticGenderF300
         }
         
+        if model.isUserSenderVote {
+            self.genderLabel.text = StringLiterals.Around.fromMe
+        }
+        
         if model.receiverProfileImage != StringLiterals.Recommending.Title.defaultProfileImageLink {
             self.receiverProfileImageView.kfSetImage(url: model.receiverProfileImage)
         } else {
