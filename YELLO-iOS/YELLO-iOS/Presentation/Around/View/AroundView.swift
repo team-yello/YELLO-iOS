@@ -31,6 +31,13 @@ final class AroundView: BaseView {
     
     // MARK: Component
     private let aroundNavigationBarView = UIView()
+    private let topDescriptionView = UIView()
+    private let descriptionImageView = UIImageView()
+    private let descriptionLabel = UILabel()
+    private let filterButton = UIButton()
+    private let filterButtonStackView = UIStackView()
+    private let filterButtonLabel = UILabel()
+    private let filterButtonImageView = UIImageView()
     private let aroundLabel = UILabel()
     lazy var aroundTableView = UITableView()
     let refreshControl = UIRefreshControl()
@@ -52,6 +59,37 @@ final class AroundView: BaseView {
         
         aroundNavigationBarView.do {
             $0.backgroundColor = .black
+        }
+        
+        descriptionImageView.do {
+            $0.image = ImageLiterals.Around.icInformation
+        }
+        
+        descriptionLabel.do {
+            $0.text = StringLiterals.Around.info
+            $0.textColor = .grayscales600
+            $0.font = .uiLabelSmall
+        }
+        
+        filterButton.do {
+            $0.backgroundColor = .black
+            $0.makeBorder(width: 1, color: .grayscales800)
+            $0.makeCornerRound(radius: 14.adjustedHeight)
+        }
+        
+        filterButtonStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 6.adjustedWidth
+        }
+        
+        filterButtonLabel.do {
+            $0.text = StringLiterals.Around.allYello
+            $0.textColor = .grayscales500
+            $0.font = .uiLabelLarge
+        }
+        
+        filterButtonImageView.do {
+            $0.image = ImageLiterals.Around.icChevronDownGray
         }
         
         aroundLabel.do {
@@ -81,7 +119,17 @@ final class AroundView: BaseView {
     override func setLayout() {
         self.addSubviews(
             aroundNavigationBarView,
+            topDescriptionView,
             aroundTableView)
+        
+        topDescriptionView.addSubviews(descriptionImageView,
+                                       descriptionLabel,
+                                       filterButton)
+        
+        filterButton.addSubviews(filterButtonStackView)
+        
+        filterButtonStackView.addArrangedSubviews(filterButtonLabel,
+                                                  filterButtonImageView)
         
         aroundTableView.addSubviews(aroundEmptyView)
         
@@ -98,8 +146,36 @@ final class AroundView: BaseView {
             $0.centerY.equalToSuperview()
         }
         
+        topDescriptionView.snp.makeConstraints {
+            $0.top.equalTo(aroundNavigationBarView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(36.adjustedHeight)
+        }
+        
+        descriptionImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(16.adjustedWidth)
+            $0.centerY.equalToSuperview()
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(descriptionImageView.snp.trailing).offset(2.adjustedWidth)
+        }
+        
+        filterButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.height.equalTo(26.adjustedHeight)
+            $0.width.equalTo(99.adjustedWidth)
+        }
+        
+        filterButtonStackView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(20.adjustedWidth)
+        }
+        
         aroundTableView.snp.makeConstraints {
-            $0.top.equalTo(aroundNavigationBarView.snp.bottom).offset(12.adjustedHeight)
+            $0.top.equalTo(topDescriptionView.snp.bottom).offset(12.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalToSuperview()
         }
