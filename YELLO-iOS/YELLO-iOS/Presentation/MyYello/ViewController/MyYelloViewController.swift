@@ -17,6 +17,7 @@ final class MyYelloViewController: BaseViewController {
     // MARK: Component
     let myYelloView = MyYelloView()
     let paymentPlusViewController = PaymentPlusViewController()
+    var noticeURL: String?
 
     var countFetchingMore: Bool = false {
         didSet {
@@ -46,14 +47,7 @@ final class MyYelloViewController: BaseViewController {
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.myYelloView.myYelloListView.myYelloTableView.reloadData()
         self.myYelloCount()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        self.myYelloNotice()
     }
     
     // MARK: Layout Helpers
@@ -89,6 +83,7 @@ final class MyYelloViewController: BaseViewController {
     private func setAddTarget() {
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshCount), for: .valueChanged)
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
+        myYelloView.myYellowNavigationBarView.noticeButton.addTarget(self, action: #selector(myYelloNoticeButtonTapped), for: .touchUpInside)
 
     }
     
@@ -205,5 +200,18 @@ extension MyYelloViewController {
         MyYelloListView.myYelloModelDummy = []
         myYelloView.myYelloListView.myYello()
         refresh.endRefreshing()
+    }
+    
+    func myYelloNotice() {
+        // 공지 서버 통신 함수
+        myYelloView.myYellowNavigationBarView.noticeButtonLabel.text = "지금 옐로는 학교 대항전 진행 중!"
+        myYelloView.myYellowNavigationBarView.clickMeButtonLabel.isHidden = false
+        self.noticeURL = "https://www.naver.com"
+    }
+    
+    @objc func myYelloNoticeButtonTapped() {
+        let url = URL(string: noticeURL ?? "") ?? URL(fileURLWithPath: "")
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        
     }
 }

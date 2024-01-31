@@ -55,19 +55,20 @@ final class MyYelloNavigationBarView: BaseView {
         
         noticeButtonImageView.do {
             $0.image = ImageLiterals.MyYello.icMegaphone
+            $0.isUserInteractionEnabled = false
         }
         
         noticeButtonLabel.do {
-            $0.text = "지금 옐로는 학교 대항전 진행 중!"
             $0.textColor = .white
             $0.font = .uiLabelLarge
+            $0.isUserInteractionEnabled = false
         }
         
         clickMeButtonLabel.do {
             $0.text = StringLiterals.MyYello.NavigationBar.clickMe
             $0.textColor = .yelloMain500
             $0.font = .uiLabelLarge
-//            $0.isHidden = true
+            $0.isUserInteractionEnabled = false
         }
         
         shopButton.do {
