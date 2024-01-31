@@ -143,6 +143,7 @@ enum ImageLiterals {
         static var icKeyWhite: UIImage { .load(named: "icKeyWhite") }
         static var icShop: UIImage { .load(named: "icShop") }
         static var icSalePolygon: UIImage { .load(named: "icSalePolygon") }
+        static var icMegaphone: UIImage { .load(named: "icMegaphone") }
     }
     
     enum Profile {
