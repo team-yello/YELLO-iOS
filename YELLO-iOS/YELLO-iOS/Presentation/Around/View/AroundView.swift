@@ -26,7 +26,7 @@ final class AroundView: BaseView {
         }
     }
     var scrollCount = 0
-    var isAllYello = true
+    var isUserSenderVote = false
     
     var aroundModelDummy: [FriendVote] = []
     
@@ -225,7 +225,7 @@ final class AroundView: BaseView {
         }
         
         self.aroundPage += 1
-        let queryDTO = AroundRequestQueryDTO(page: aroundPage, type: "")
+        let queryDTO = AroundRequestQueryDTO(page: aroundPage, type: isUserSenderVote ? "send" : "")
         
         self.fetchingMore = true
         
@@ -243,7 +243,7 @@ final class AroundView: BaseView {
                 self.aroundCount = data.totalCount
                 
                 let friendVote = data.friendVotes.map { around in
-                    return FriendVote(id: around.id, receiverName: around.receiverName, senderGender: around.senderGender, receiverProfileImage: around.receiverProfileImage, vote: around.vote, isHintUsed: around.isHintUsed, createdAt: around.createdAt)
+                    return FriendVote(id: around.id, receiverName: around.receiverName, senderGender: around.senderGender, receiverProfileImage: around.receiverProfileImage, vote: around.vote, isHintUsed: around.isHintUsed, createdAt: around.createdAt, isUserSenderVote: around.isUserSenderVote)
                 }
                 
                 // 중복되는 모델 필터 처리
@@ -304,7 +304,12 @@ extension AroundView: UITableViewDataSource {
             return cell
         } else {
             guard let aroundCell = tableView.dequeueReusableCell(withIdentifier: TimeLineTableViewCell.identifier, for: indexPath) as? TimeLineTableViewCell else { return UITableViewCell() }
-            aroundCell.configureAroundCell(aroundModelDummy[indexPath.row])
+            if isUserSenderVote {
+                aroundCell.configureAroundCell(aroundModelDummy[indexPath.row])
+                aroundCell.genderLabel.text = StringLiterals.Around.fromMe
+            } else {
+                aroundCell.configureAroundCell(aroundModelDummy[indexPath.row])
+            }
             aroundCell.selectionStyle = .none
             return aroundCell
         }
@@ -325,20 +330,29 @@ extension AroundView: UITableViewDataSource {
 
 extension AroundView {
     @objc private func filterButtonTapped() {
-        isAllYello.toggle()
+        isUserSenderVote.toggle()
         
-        if isAllYello {
-            filterButtonLabel.text = StringLiterals.Around.allYello
-            filterButtonStackView.spacing = 6.adjustedWidth
-            filterButtonStackView.snp.updateConstraints {
-                $0.leading.equalToSuperview().inset(20.adjustedWidth)
-            }
-        } else {
+        if isUserSenderVote {
             filterButtonLabel.text = StringLiterals.Around.myYello
             filterButtonStackView.spacing = 0
             filterButtonStackView.snp.updateConstraints {
                 $0.leading.equalToSuperview().inset(8.adjustedWidth)
             }
+        } else {
+            filterButtonLabel.text = StringLiterals.Around.allYello
+            filterButtonStackView.spacing = 6.adjustedWidth
+            filterButtonStackView.snp.updateConstraints {
+                $0.leading.equalToSuperview().inset(20.adjustedWidth)
+            }
         }
+
+        self.aroundPage = -1
+        self.aroundCount = -1
+        self.isFinishPaging = false
+        self.fetchingMore = false
+        self.aroundTableView.reloadData()
+        self.aroundModelDummy = []
+        self.around()
+        self.updateView()
     }
 }
