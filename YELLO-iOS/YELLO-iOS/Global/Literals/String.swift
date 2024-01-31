@@ -152,6 +152,10 @@ enum StringLiterals {
         static let male = "남학생"
         static let receiveFemale = "여학생에게 받음"
         static let receiveMale = "남학생에게 받음"
+        static let info = "쪽지를 보낸 사람의 이름은 공개되지 않아요."
+        static let allYello = "모든 쪽지"
+        static let myYello = "내가 보낸 쪽지"
+        static let fromMe = "나에게 받음"
         
     }
     
