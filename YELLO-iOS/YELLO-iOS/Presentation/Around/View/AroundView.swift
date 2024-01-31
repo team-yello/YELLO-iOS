@@ -26,6 +26,7 @@ final class AroundView: BaseView {
         }
     }
     var scrollCount = 0
+    var isAllYello = true
     
     var aroundModelDummy: [FriendVote] = []
     
@@ -75,11 +76,13 @@ final class AroundView: BaseView {
             $0.backgroundColor = .black
             $0.makeBorder(width: 1, color: .grayscales800)
             $0.makeCornerRound(radius: 14.adjustedHeight)
+            $0.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         }
         
         filterButtonStackView.do {
             $0.axis = .horizontal
             $0.spacing = 6.adjustedWidth
+            $0.isUserInteractionEnabled = false
         }
         
         filterButtonLabel.do {
@@ -317,5 +320,25 @@ extension AroundView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 116.adjustedHeight
+    }
+}
+
+extension AroundView {
+    @objc private func filterButtonTapped() {
+        isAllYello.toggle()
+        
+        if isAllYello {
+            filterButtonLabel.text = StringLiterals.Around.allYello
+            filterButtonStackView.spacing = 6.adjustedWidth
+            filterButtonStackView.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(20.adjustedWidth)
+            }
+        } else {
+            filterButtonLabel.text = StringLiterals.Around.myYello
+            filterButtonStackView.spacing = 0
+            filterButtonStackView.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(8.adjustedWidth)
+            }
+        }
     }
 }
