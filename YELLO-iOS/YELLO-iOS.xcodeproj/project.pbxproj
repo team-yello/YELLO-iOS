@@ -182,6 +182,9 @@
 		36E60EC32AE6DFC4005035D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 36E60EC22AE6DFC4005035D3 /* FirebaseStorage */; };
 		36E60EC52AE6DFC4005035D3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 36E60EC42AE6DFC4005035D3 /* FirebaseStorageCombine-Community */; };
 		36EA2AB72A66FC0B003603C7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA2AB62A66FC0B003603C7 /* UserManager.swift */; };
+		C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */; };
+		C303C8242B6005980077C423 /* WithdrawalReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8232B6005980077C423 /* WithdrawalReasonView.swift */; };
+		C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */; };
 		C305A5B22A85F997007C4A69 /* PaymentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */; };
 		C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7262A630BB70031514C /* KeychainHandler.swift */; };
 		C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C306E7292A630BD10031514C /* SwiftKeychainWrapper */; };
@@ -294,6 +297,7 @@
 		C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF42A5C093D00B84CAA /* FriendModel.swift */; };
 		C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */; };
 		C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */; };
+		C3C5D8232B628AC500C8D27C /* ReasonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */; };
 		C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */; };
 		C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */; };
 		C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */; };
@@ -488,6 +492,9 @@
 		36E427942A5CA59F0050B34E /* OnboardingEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndViewController.swift; sourceTree = "<group>"; };
 		36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndView.swift; sourceTree = "<group>"; };
 		36EA2AB62A66FC0B003603C7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonViewController.swift; sourceTree = "<group>"; };
+		C303C8232B6005980077C423 /* WithdrawalReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonView.swift; sourceTree = "<group>"; };
+		C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonCollectionViewCell.swift; sourceTree = "<group>"; };
 		C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmView.swift; sourceTree = "<group>"; };
 		C306E7262A630BB70031514C /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendRequestDTO.swift; sourceTree = "<group>"; };
@@ -597,6 +604,7 @@
 		C3C57BF42A5C093D00B84CAA /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFriendView.swift; sourceTree = "<group>"; };
 		C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendView.swift; sourceTree = "<group>"; };
+		C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonHeaderView.swift; sourceTree = "<group>"; };
 		C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountCustomView.swift; sourceTree = "<group>"; };
 		C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
@@ -1371,6 +1379,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		C303C8272B6009CE0077C423 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		C305A5B02A85F2CE007C4A69 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -1961,6 +1977,7 @@
 			children = (
 				C3FF24A92A5F330700A97D40 /* ViewController */,
 				C3FF24AA2A5F331000A97D40 /* View */,
+				C303C8272B6009CE0077C423 /* Cell */,
 			);
 			path = Withdrawal;
 			sourceTree = "<group>";
@@ -2018,8 +2035,9 @@
 		C3FF24A92A5F330700A97D40 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
 				C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */,
+				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
+				C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2027,9 +2045,11 @@
 		C3FF24AA2A5F331000A97D40 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
 				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
+				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
+				C303C8232B6005980077C423 /* WithdrawalReasonView.swift */,
 				C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */,
+				C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2387,6 +2407,7 @@
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
 				2A5E08FA2B6692DD00CDB3DF /* NotificationResponseDTO.swift in Sources */,
 				C390B8142A8A1DD800EA5A23 /* AroundResponseDTO.swift in Sources */,
+				C3C5D8232B628AC500C8D27C /* ReasonHeaderView.swift in Sources */,
 				2A3705DA2A62E35F001AAC93 /* VotingAvailableResponseDTO.swift in Sources */,
 				36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */,
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
@@ -2447,12 +2468,14 @@
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */,
 				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
+				C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */,
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
 				362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				C30F81092A7F732B009DBB8D /* HintButton.swift in Sources */,
+				C303C8242B6005980077C423 /* WithdrawalReasonView.swift in Sources */,
 				C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */,
 				C3B83E682A8E08D500A39CAC /* PurchaseService.swift in Sources */,
 				36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */,
@@ -2461,6 +2484,7 @@
 				2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */,
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
 				367DA01B2A863CE60043D23C /* HighSchoolViewController.swift in Sources */,
+				C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
 				2A3705C82A62E297001AAC93 /* SignUpResponseDTO.swift in Sources */,

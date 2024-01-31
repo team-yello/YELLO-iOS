@@ -66,7 +66,6 @@ final class WithdrawalCheckView: BaseView {
             $0.titleLabel?.font = .uiBodyMedium
             $0.setTitleColor(.semanticStatusRed500, for: .normal)
             $0.setTitle(StringLiterals.Profile.WithdrawalCheck.confirm, for: .normal)
-            $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         }
     }
     
@@ -119,22 +118,5 @@ final class WithdrawalCheckView: BaseView {
             $0.height.equalTo(48.adjustedHeight)
             $0.width.equalTo(343.adjustedWidth)
         }
-    }
-    
-    // MARK: Objc Function
-    @objc func showAlert() {
-        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
-        guard let viewController = UIApplication.shared.keyWindow?.rootViewController else { return }
-        
-        if let withdrawalAlertView = withdrawalAlertView {
-            withdrawalAlertView.removeFromSuperview()
-        }
-        
-        withdrawalAlertView = WithdrawalAlertView()
-        withdrawalAlertView?.frame = viewController.view.bounds
-        withdrawalAlertView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        viewController.view.addSubview(withdrawalAlertView!)
-        
     }
 }
