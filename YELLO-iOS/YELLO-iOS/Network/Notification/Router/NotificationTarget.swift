@@ -38,7 +38,7 @@ extension NotificationTarget: TargetType {
     var path: String {
         switch self {
         case .userNotification:
-            return "/notice"
+            return "/v1/notice"
         }
     }
     
