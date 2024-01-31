@@ -9,5 +9,5 @@ import Foundation
 
 struct AroundRequestQueryDTO: Codable {
     let page: Int
-    let type: String
+    let type: String?
 }
