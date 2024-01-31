@@ -16,14 +16,14 @@ enum AroundTarget {
 extension AroundTarget: TargetType {
     var authorization: Authorization {
         switch self {
-        case .around(_):
+        case .around:
             return .authorization
         }
     }
     
     var headerType: HTTPHeaderType {
         switch self {
-        case .around(_):
+        case .around:
             return .plain
         }
     }
@@ -37,7 +37,7 @@ extension AroundTarget: TargetType {
     
     var path: String {
         switch self {
-        case .around(_):
+        case .around:
             return "/vote/friend"
         }
     }

@@ -225,7 +225,7 @@ final class AroundView: BaseView {
         }
         
         self.aroundPage += 1
-        let queryDTO = AroundRequestQueryDTO(page: aroundPage)
+        let queryDTO = AroundRequestQueryDTO(page: aroundPage, type: "")
         
         self.fetchingMore = true
         
@@ -330,13 +330,13 @@ extension AroundView {
         if isAllYello {
             filterButtonLabel.text = StringLiterals.Around.allYello
             filterButtonStackView.spacing = 6.adjustedWidth
-            filterButtonStackView.snp.makeConstraints {
+            filterButtonStackView.snp.updateConstraints {
                 $0.leading.equalToSuperview().inset(20.adjustedWidth)
             }
         } else {
             filterButtonLabel.text = StringLiterals.Around.myYello
             filterButtonStackView.spacing = 0
-            filterButtonStackView.snp.makeConstraints {
+            filterButtonStackView.snp.updateConstraints {
                 $0.leading.equalToSuperview().inset(8.adjustedWidth)
             }
         }
