@@ -39,7 +39,7 @@ extension SearchTarget: TargetType {
     var path: String {
         switch self {
         case .friendSearch:
-            return "/friend/search"
+            return "/v1/friend/search"
         }
     }
     

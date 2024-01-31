@@ -38,7 +38,7 @@ extension AroundTarget: TargetType {
     var path: String {
         switch self {
         case .around(_):
-            return "/vote/friend"
+            return "/v1/vote/friend"
         }
     }
 
