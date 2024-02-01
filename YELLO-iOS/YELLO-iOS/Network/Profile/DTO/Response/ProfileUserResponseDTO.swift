@@ -12,7 +12,12 @@ struct ProfileUserResponseDTO: Codable {
     let name: String
     let profileImageUrl: String?
     let group: String
+    let groupType: String
+    let groupName: String
+    let subGroupName: String
     let yelloId: String
+    let subscribe: String
+    let groupAdmissionYear: Int
     let yelloCount: Int
     let friendCount: Int
     let point: Int

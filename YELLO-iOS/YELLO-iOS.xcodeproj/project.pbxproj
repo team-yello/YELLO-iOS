@@ -122,6 +122,7 @@
 		36B2349E2A61A6A8007933E4 /* KakaoConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */; };
 		36B234A02A61A6BC007933E4 /* KakaoConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */; };
 		36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234A12A61B447007933E4 /* UINavigationController+.swift */; };
+		36B7CAAF2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7CAAE2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift */; };
 		36BE79BE2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */; };
 		36BE79C02AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */; };
 		36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */; };
@@ -467,6 +468,7 @@
 		36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectViewController.swift; sourceTree = "<group>"; };
 		36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectView.swift; sourceTree = "<group>"; };
 		36B234A12A61B447007933E4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		36B7CAAE2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpadateDateResponseDTO.swift; sourceTree = "<group>"; };
 		36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolClassRequestQueryDTO.swift; sourceTree = "<group>"; };
 		36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolClassResponseDTO.swift; sourceTree = "<group>"; };
 		36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelectView.swift; sourceTree = "<group>"; };
@@ -1007,6 +1009,7 @@
 				C306E7422A6520830031514C /* ProfileUserResponseDTO.swift */,
 				C306E7442A656AC40031514C /* ProfileFriendResponseDTO.swift */,
 				C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */,
+				36B7CAAE2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -2484,6 +2487,7 @@
 				C306E7432A6520830031514C /* ProfileUserResponseDTO.swift in Sources */,
 				C3BF63022AF7DE09000C7900 /* InstagramButton.swift in Sources */,
 				C363D4722A780F0D00FD583D /* AroundEmptyView.swift in Sources */,
+				36B7CAAF2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				2A8D66D22A97C5AE009DEC3F /* NetworkCheck.swift in Sources */,
 				3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */,
