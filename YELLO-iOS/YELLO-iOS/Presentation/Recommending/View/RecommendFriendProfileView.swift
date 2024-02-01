@@ -95,7 +95,7 @@ final class RecommendFriendProfileView: BaseView {
         profileImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(40.adjustedHeight)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(72.adjusted)
+            $0.size.equalTo(72.adjusted)
         }
         
         groupView.snp.makeConstraints {
