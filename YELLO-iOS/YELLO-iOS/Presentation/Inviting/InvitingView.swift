@@ -86,29 +86,31 @@ final class InvitingView: BaseView {
         }
         
         backGroundView.do {
-            $0.backgroundColor = .grayscales50
+            $0.backgroundColor = .grayscales100
             $0.makeCornerRound(radius: 8.adjustedHeight)
         }
         
         recommender.do {
             $0.text = "내 추천인 코드"
-            $0.textColor = .purpleSub500
-            $0.font = .uiBody04
+            $0.textColor = .grayscales600
+            $0.font = .uiLabelLarge
         }
         
         recommenderID.do {
             $0.text = " "
-            $0.textColor = .black
-            $0.font = .uiExtraLarge
+            $0.textColor = .purpleSub500
+            $0.font = .uiLittleLage
         }
         
         kakaoButton.do {
             $0.setImage(ImageLiterals.InvitingPopUp.icKakaoShare, for: .normal)
+            $0.imageView?.contentMode = .scaleAspectFill
             $0.addTarget(self, action: #selector(kakaoButtonClicked), for: .touchUpInside)
         }
         
         copyButton.do {
             $0.setImage(ImageLiterals.InvitingPopUp.icLinkCopy, for: .normal)
+            $0.imageView?.contentMode = .scaleAspectFill
             $0.addTarget(self, action: #selector(copyButtonClicked), for: .touchUpInside)
         }
     }
@@ -148,39 +150,53 @@ final class InvitingView: BaseView {
         }
         
         textLabelOne.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12.adjustedHeight)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(18.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         textLabelTwo.snp.makeConstraints {
-            $0.top.equalTo(textLabelOne.snp.bottom)
+            $0.top.equalTo(textLabelOne.snp.bottom).offset(1.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(70.adjusted)
+            $0.height.equalTo(20.adjusted)
+        }
+        
+        textLabelThree.snp.makeConstraints {
+            $0.top.equalTo(textLabelTwo.snp.bottom).offset(14.adjusted)
             $0.centerX.equalToSuperview()
+        }
+        
+        textLabelFour.snp.makeConstraints {
+            $0.top.equalTo(textLabelThree.snp.bottom).offset(3.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(94.adjusted)
+            $0.height.equalTo(20.adjusted)
         }
         
         backGroundView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(14.adjustedWidth)
-            $0.top.equalTo(textLabelTwo.snp.bottom).offset(20.adjustedHeight)
-            $0.height.equalTo(108.adjustedHeight)
+            $0.top.equalTo(textLabelFour.snp.bottom).offset(18.adjustedHeight)
+            $0.height.equalTo(80.adjustedHeight)
         }
         
         recommender.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(27.adjustedHeight)
+            $0.top.equalToSuperview().inset(17.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
         recommenderID.snp.makeConstraints {
-            $0.top.equalTo(recommender.snp.bottom).offset(2.adjustedHeight)
+            $0.top.equalTo(recommender.snp.bottom)
             $0.centerX.equalToSuperview()
         }
         
         kakaoButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(100.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(50.adjustedHeight)
+            $0.leading.equalToSuperview().inset(94.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(36.adjustedHeight)
+            $0.size.equalTo(48.adjusted)
         }
         
         copyButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(100.adjustedWidth)
-            $0.bottom.equalToSuperview().inset(50.adjustedHeight)
+            $0.trailing.equalToSuperview().inset(94.adjustedWidth)
+            $0.bottom.equalToSuperview().inset(36.adjustedHeight)
+            $0.size.equalTo(48.adjusted)
         }
     }
 }
