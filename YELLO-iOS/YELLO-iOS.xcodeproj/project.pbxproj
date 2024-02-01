@@ -1182,10 +1182,10 @@
 		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				36B7CAB72B6BF92F003C57FF /* Model */,
 				36B7CAB62B6BED04003C57FF /* Helper */,
 				36CFF9A32B67F53F008DDB9D /* Edit */,
 				C3D2664A2A5D1F2D0041C7C7 /* Main */,
-				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
 				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
 			);
 			path = Profile;
@@ -1287,6 +1287,14 @@
 				36B7CAB42B6BECF2003C57FF /* DateConverter.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		36B7CAB72B6BF92F003C57FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		36C209EC2A8B69D9001BF12C /* Tutorial */ = {
