@@ -123,6 +123,7 @@
 		36B234A02A61A6BC007933E4 /* KakaoConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */; };
 		36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234A12A61B447007933E4 /* UINavigationController+.swift */; };
 		36B7CAAF2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7CAAE2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift */; };
+		36B7CAB12B6BD97A003C57FF /* EditProfileRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7CAB02B6BD97A003C57FF /* EditProfileRequestDTO.swift */; };
 		36BE79BE2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */; };
 		36BE79C02AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */; };
 		36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */; };
@@ -469,6 +470,7 @@
 		36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectView.swift; sourceTree = "<group>"; };
 		36B234A12A61B447007933E4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		36B7CAAE2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpadateDateResponseDTO.swift; sourceTree = "<group>"; };
+		36B7CAB02B6BD97A003C57FF /* EditProfileRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestDTO.swift; sourceTree = "<group>"; };
 		36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolClassRequestQueryDTO.swift; sourceTree = "<group>"; };
 		36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolClassResponseDTO.swift; sourceTree = "<group>"; };
 		36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelectView.swift; sourceTree = "<group>"; };
@@ -1018,6 +1020,7 @@
 			isa = PBXGroup;
 			children = (
 				C306E7462A656D170031514C /* ProfileFriendRequestQueryDTO.swift */,
+				36B7CAB02B6BD97A003C57FF /* EditProfileRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2537,6 +2540,7 @@
 				C3FF24B12A5F361C00A97D40 /* GetHintView.swift in Sources */,
 				3662A0F02A651FD100F482EF /* SchoolSearchResponseDTO.swift in Sources */,
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
+				36B7CAB12B6BD97A003C57FF /* EditProfileRequestDTO.swift in Sources */,
 				C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */,
 				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
 				C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */,
