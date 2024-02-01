@@ -330,6 +330,26 @@ enum StringLiterals {
             static let toastMessage = " 님과 친구 끊기를 완료했어요."
         }
         
+        enum EditProfile {
+            static let profileInfoTitle = "프로필 정보"
+            static let kakaoSync = "카카오톡 동기화"
+            static let name = "이름"
+            static let id = "아이디"
+            static let school = "학교"
+            static let major = "학과"
+            static let studentId = "학번"
+            static let grade = "학년"
+            static let schoolClass = "반"
+            
+            static let profileEditTitle = "프로필 수정"
+            static let guideText = "1년에 한 번만 수정할 수 있어요.\n신중히 수정해 주세요!"
+            static let modifireDateText = "마지막 수정일 : "
+            
+            static let saveButton = "저장"
+            static let convertHighButton = "중/고등학생으로 전환"
+            static let convertUnivButton = "대학생으로 전환"
+        }
+        
         enum Setting {
             static let setting = "프로필 관리"
             static let center = "고객센터"

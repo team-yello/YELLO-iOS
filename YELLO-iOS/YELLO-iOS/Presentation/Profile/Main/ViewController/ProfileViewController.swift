@@ -16,6 +16,7 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     let profileView = ProfileView()
+    let editProfileViewController = EditProfileViewController()
     let friendProfileViewController = FriendProfileViewController()
     let bottomSheetViewController = BottomFriendProfileViewController()
     let paymentPlusViewController = PaymentPlusViewController()
@@ -33,8 +34,7 @@ final class ProfileViewController: BaseViewController {
         Amplitude.instance().setUserProperties(["user_friends": profileView.friendCount,
                                                 "user_message_received": profileView.myYelloCount,
                                                 "user_subscription": profileView.isYelloPlus ? "yes" : "no",
-                                                "user_ticket": profileView.ticketCount,
-                                                "user_name": profileView.myProfileHeaderView.myProfileView.nameLabel.text ?? ""])
+                                                "user_ticket": profileView.ticketCount])
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -51,6 +51,7 @@ final class ProfileViewController: BaseViewController {
         friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         profileView.handleShopButton = self
+        profileView.handleEditButton = self
     }
     
     override func setLayout() {
@@ -128,5 +129,12 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
 extension ProfileViewController: HandleShopButton {
     func shopButtonTapped() {
         navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+}
+
+extension ProfileViewController: HandleEditButton {
+    func editButtonTapped() {
+        editProfileViewController.userInfoList = profileView.myProfileHeaderView.userInfoList
+        navigationController?.pushViewController(editProfileViewController, animated: true)
     }
 }
