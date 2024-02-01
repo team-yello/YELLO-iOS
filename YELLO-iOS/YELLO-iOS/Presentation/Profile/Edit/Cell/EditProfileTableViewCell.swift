@@ -65,7 +65,7 @@ class EditProfileTableViewCell: UITableViewCell {
         }
         
         infoLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(3.adjustedHeight)
             $0.leading.equalTo(titleLabel.snp.leading)
         }
         
@@ -76,8 +76,9 @@ class EditProfileTableViewCell: UITableViewCell {
         
         separatorView.snp.makeConstraints {
             $0.height.equalTo(1)
-            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.top.equalTo(infoLabel.snp.bottom).offset(7.adjustedHeight)
             $0.bottom.equalToSuperview().inset(12.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
     }
     

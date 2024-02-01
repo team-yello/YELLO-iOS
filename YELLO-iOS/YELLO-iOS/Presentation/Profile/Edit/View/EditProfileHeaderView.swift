@@ -65,11 +65,10 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
             $0.top.equalTo(profileImageView.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
         }
-        
     }
     
     @objc func kakaoSyncButtonDidTapped() {
-        UserApi.shared.me() {(user, error) in
+        UserApi.shared.me () {(user, error) in
             if let error = error {
                 print(error)
             } else {
@@ -78,6 +77,7 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
                         if let profileImage = kakaoAccount.profile?.profileImageUrl {
                             UserManager.shared.profileImage = profileImage.absoluteString
                             self.profileImageView.kfSetImage(url: profileImage.absoluteString)
+                            self.updateProfile()
                         }
                     }
                 }
@@ -85,4 +85,25 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
             
         }
     }
+}
+
+extension EditProfileHeaderView {
+    private func updateProfile() {
+        let request = EditProfileRequestDTO(name: UserManager.shared.name,
+                                            yelloID: UserManager.shared.yelloId,
+                                            gender: UserManager.shared.gender,
+                                            email: UserManager.shared.email,
+                                            profileImageURL: UserManager.shared.profileImage,
+                                            groupID: UserManager.shared.groupId,
+                                            groupAdmissionYear: UserManager.shared.groupAdmissionYear)
+        NetworkService.shared.profileService.editProfile(requestDTO: request) { result in
+            switch result {
+            case .success(_):
+                break
+            default:
+                print("프로필 변경 통신 실패")
+            }
+        }
+    }
+    
 }
