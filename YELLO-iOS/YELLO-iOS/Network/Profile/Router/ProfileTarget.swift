@@ -15,6 +15,7 @@ enum ProfileTarget {
     case profileDeleteFriend(id: Int)
     case deleteUser
     case purchaseInfo
+    case accountUpdatedAt
 }
 
 extension ProfileTarget: TargetType {
@@ -29,6 +30,8 @@ extension ProfileTarget: TargetType {
         case .deleteUser:
             return .authorization
         case .purchaseInfo:
+            return .authorization
+        case .accountUpdatedAt:
             return .authorization
         }
     }
@@ -45,6 +48,8 @@ extension ProfileTarget: TargetType {
             return .plain
         case .purchaseInfo:
             return .plain
+        case .accountUpdatedAt:
+            return .plain
         }
     }
     
@@ -60,13 +65,15 @@ extension ProfileTarget: TargetType {
             return .delete
         case .purchaseInfo:
             return .get
+        case .accountUpdatedAt:
+            return .get
         }
     }
     
     var path: String {
         switch self {
         case .profileUser:
-            return "/v1/user"
+            return "/v2/user"
         case .profileFriend(_):
             return "/v1/friend"
         case .profileDeleteFriend(let id):
@@ -75,6 +82,8 @@ extension ProfileTarget: TargetType {
             return "/v1/user"
         case .purchaseInfo:
             return "/v1/purchase"
+        case .accountUpdatedAt:
+            return "/v1/user/data/account-updated-at"
         }
     }
 
@@ -89,6 +98,8 @@ extension ProfileTarget: TargetType {
         case .deleteUser:
             return .requestPlain
         case .purchaseInfo:
+            return .requestPlain
+        case .accountUpdatedAt:
             return .requestPlain
         }
     }

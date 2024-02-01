@@ -17,6 +17,7 @@ protocol ProfileServiceProtocol {
     func userDelete(completion: @escaping (NetworkResult<BaseResponse<Bool>>) -> Void)
     
     func purchaseInfo(completion: @escaping (NetworkResult<BaseResponse<PurchaseInfoResponseDTO>>) -> Void)
+    func getAccountUpdateAt(completion: @escaping (NetworkResult<BaseResponse<ProfileUpadateDateResponseDTO>>) -> Void)
 }
 
 final class ProfileService: APIRequestLoader<ProfileTarget>, ProfileServiceProtocol {
@@ -41,5 +42,9 @@ final class ProfileService: APIRequestLoader<ProfileTarget>, ProfileServiceProto
     
     func purchaseInfo(completion: @escaping (NetworkResult<BaseResponse<PurchaseInfoResponseDTO>>) -> Void) {
         fetchData(target: .purchaseInfo, responseData: BaseResponse<PurchaseInfoResponseDTO>.self, completion: completion)
+    }
+    
+    func getAccountUpdateAt(completion: @escaping (NetworkResult<BaseResponse<ProfileUpadateDateResponseDTO>>) -> Void) {
+        fetchData(target: .accountUpdatedAt, responseData: BaseResponse<ProfileUpadateDateResponseDTO>.self, completion: completion)
     }
 }
