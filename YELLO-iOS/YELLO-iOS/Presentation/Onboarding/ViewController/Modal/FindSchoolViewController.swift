@@ -106,7 +106,7 @@ extension FindSchoolViewController: UITableViewDelegate {
         guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
             return
         }
-        delegate?.didSelectSchoolResult(currentCell.titleLabel.text ?? "")
+        schoolSearchDelegate?.didSelectSchoolResult(currentCell.titleLabel.text ?? "")
         self.dismiss(animated: true)
     }
 }

@@ -113,7 +113,7 @@ extension UniversityViewController: UITextFieldDelegate {
         switch textField {
         case baseView.schoolSearchTextField:
             let nextViewController = FindSchoolViewController()
-            nextViewController.delegate = self
+            nextViewController.schoolSearchDelegate = self
             self.present(nextViewController, animated: true)
         case baseView.majorSearchTextField:
             let nextViewController = majorSearchViewController
