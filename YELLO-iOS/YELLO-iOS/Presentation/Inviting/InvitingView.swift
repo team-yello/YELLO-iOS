@@ -60,27 +60,29 @@ final class InvitingView: BaseView {
         }
         
         textLabelOne.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.firstText, lineHeight: 20.adjustedHeight)
+            $0.text = StringLiterals.Inviting.firstText
             $0.textColor = .grayscales600
             $0.font = .uiLabelLarge
         }
         
         textLabelTwo.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.secondText, lineHeight: 20.adjustedHeight)
+            $0.text = StringLiterals.Inviting.secondText
             $0.textColor = .white
+            $0.textAlignment = .center
             $0.backgroundColor = .purpleSub500
             $0.font = .uiLabelLarge
         }
         
         textLabelThree.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.thirdText, lineHeight: 20.adjustedHeight)
+            $0.text = StringLiterals.Inviting.thirdText
             $0.textColor = .grayscales600
             $0.font = .uiLabelLarge
         }
         
         textLabelFour.do {
-            $0.setTextWithLineHeight(text: StringLiterals.Inviting.fourthText, lineHeight: 20.adjustedHeight)
+            $0.text = StringLiterals.Inviting.fourthText
             $0.textColor = .white
+            $0.textAlignment = .center
             $0.backgroundColor = .purpleSub500
             $0.font = .uiLabelLarge
         }
@@ -152,23 +154,25 @@ final class InvitingView: BaseView {
         textLabelOne.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(18.adjustedHeight)
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(16.adjustedHeight)
         }
         
         textLabelTwo.snp.makeConstraints {
             $0.top.equalTo(textLabelOne.snp.bottom).offset(1.adjusted)
             $0.leading.trailing.equalToSuperview().inset(70.adjusted)
-            $0.height.equalTo(20.adjusted)
+            $0.height.equalTo(20.adjustedHeight)
         }
         
         textLabelThree.snp.makeConstraints {
             $0.top.equalTo(textLabelTwo.snp.bottom).offset(14.adjusted)
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(16.adjustedHeight)
         }
         
         textLabelFour.snp.makeConstraints {
             $0.top.equalTo(textLabelThree.snp.bottom).offset(3.adjusted)
             $0.leading.trailing.equalToSuperview().inset(94.adjusted)
-            $0.height.equalTo(20.adjusted)
+            $0.height.equalTo(20.adjustedHeight)
         }
         
         backGroundView.snp.makeConstraints {
@@ -183,7 +187,7 @@ final class InvitingView: BaseView {
         }
         
         recommenderID.snp.makeConstraints {
-            $0.top.equalTo(recommender.snp.bottom)
+            $0.top.equalTo(recommender.snp.bottom).offset(3.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
