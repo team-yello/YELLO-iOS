@@ -125,7 +125,7 @@ final class InvitingView: BaseView {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(50.adjustedHeight)
+            $0.top.equalToSuperview().inset(38.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         

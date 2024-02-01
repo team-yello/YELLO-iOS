@@ -113,8 +113,10 @@ enum StringLiterals {
     
     enum Inviting {
         static let title = "친구 초대하기"
-        static let firstText = "친구가 내 추천인 코드로 가입하면"
-        static let secondText = "40분 대기 초기화 + 100포인트 지급!"
+        static let firstText = "친구가 내 추천인 코드로 가입하면,"
+        static let secondText = "40분 대기 초기화 + 100포인트"
+        static let thirdText = "내 추천인 코드가 처음 쓰였다면?!"
+        static let fourthText = "열람권 1개 추가 지급!"
         static let toastMessage = "링크가 복사되었습니다."
     }
     
