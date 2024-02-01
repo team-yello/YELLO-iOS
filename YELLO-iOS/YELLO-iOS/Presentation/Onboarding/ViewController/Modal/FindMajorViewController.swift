@@ -83,6 +83,7 @@ class FindMajorViewController: SearchBaseViewController {
             guard let text = textField.text else { return }
             self.pageCount = 0
             self.allArr.removeAll()
+            self.allMajor.removeAll()
             self.searchMajor(text)
         }
     }
@@ -103,7 +104,6 @@ extension FindMajorViewController: UITableViewDelegate {
         let selectedItem = allMajor[indexPath.row]
         print(selectedItem.groupID)
         majorDelegate?.didDismissFindMajorViewController(with: selectedItem)
-        allArr.removeAll()
         searchView.searchResultTableView.reloadData()
         self.dismiss(animated: true)
     }
