@@ -18,9 +18,14 @@ protocol ProfileServiceProtocol {
     
     func purchaseInfo(completion: @escaping (NetworkResult<BaseResponse<PurchaseInfoResponseDTO>>) -> Void)
     func getAccountUpdateAt(completion: @escaping (NetworkResult<BaseResponse<ProfileUpadateDateResponseDTO>>) -> Void)
+    func editProfile(requestDTO: EditProfileRequestDTO, completion: @escaping (NetworkResult<BaseResponse<Int>>) -> Void)
 }
 
 final class ProfileService: APIRequestLoader<ProfileTarget>, ProfileServiceProtocol {
+    func editProfile(requestDTO: EditProfileRequestDTO, completion: @escaping (NetworkResult<BaseResponse<Int>>) -> Void) {
+        fetchData(target: .editProfile(requestDTO), responseData: BaseResponse<Int>.self, completion: completion)
+    }
+    
     func profileUser(completion: @escaping (NetworkResult<BaseResponse<ProfileUserResponseDTO>>) -> Void) {
         fetchData(target: .profileUser,
                   responseData: BaseResponse<ProfileUserResponseDTO>.self, completion: completion)

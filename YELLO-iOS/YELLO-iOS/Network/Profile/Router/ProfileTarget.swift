@@ -16,6 +16,7 @@ enum ProfileTarget {
     case deleteUser
     case purchaseInfo
     case accountUpdatedAt
+    case editProfile(_ request: EditProfileRequestDTO)
 }
 
 extension ProfileTarget: TargetType {
@@ -32,6 +33,8 @@ extension ProfileTarget: TargetType {
         case .purchaseInfo:
             return .authorization
         case .accountUpdatedAt:
+            return .authorization
+        case .editProfile:
             return .authorization
         }
     }
@@ -50,6 +53,8 @@ extension ProfileTarget: TargetType {
             return .plain
         case .accountUpdatedAt:
             return .plain
+        case .editProfile:
+            return .plain
         }
     }
     
@@ -67,6 +72,8 @@ extension ProfileTarget: TargetType {
             return .get
         case .accountUpdatedAt:
             return .get
+        case .editProfile:
+            return .delete
         }
     }
     
@@ -84,6 +91,8 @@ extension ProfileTarget: TargetType {
             return "/v1/purchase"
         case .accountUpdatedAt:
             return "/v1/user/data/account-updated-at"
+        case .editProfile:
+            return ""
         }
     }
 
@@ -101,6 +110,8 @@ extension ProfileTarget: TargetType {
             return .requestPlain
         case .accountUpdatedAt:
             return .requestPlain
+        case let .editProfile(request):
+            return .requestWithBody(request)
         }
     }
 }
