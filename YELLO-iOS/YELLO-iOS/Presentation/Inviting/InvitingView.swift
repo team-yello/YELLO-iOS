@@ -24,6 +24,8 @@ final class InvitingView: BaseView {
     let titleLabel = UILabel()
     let textLabelOne = UILabel()
     let textLabelTwo = UILabel()
+    let textLabelThree = UILabel()
+    let textLabelFour = UILabel()
     
     let backGroundView = UIView()
     let recommender = UILabel()
@@ -60,13 +62,27 @@ final class InvitingView: BaseView {
         textLabelOne.do {
             $0.setTextWithLineHeight(text: StringLiterals.Inviting.firstText, lineHeight: 20.adjustedHeight)
             $0.textColor = .grayscales600
-            $0.font = .uiBody03
+            $0.font = .uiLabelLarge
         }
         
         textLabelTwo.do {
             $0.setTextWithLineHeight(text: StringLiterals.Inviting.secondText, lineHeight: 20.adjustedHeight)
-            $0.textColor = .black
-            $0.font = .uiBody04
+            $0.textColor = .white
+            $0.backgroundColor = .purpleSub500
+            $0.font = .uiLabelLarge
+        }
+        
+        textLabelThree.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.thirdText, lineHeight: 20.adjustedHeight)
+            $0.textColor = .grayscales600
+            $0.font = .uiLabelLarge
+        }
+        
+        textLabelFour.do {
+            $0.setTextWithLineHeight(text: StringLiterals.Inviting.fourthText, lineHeight: 20.adjustedHeight)
+            $0.textColor = .white
+            $0.backgroundColor = .purpleSub500
+            $0.font = .uiLabelLarge
         }
         
         backGroundView.do {
@@ -103,12 +119,14 @@ final class InvitingView: BaseView {
         self.addSubview(contentsView)
         
         contentsView.addSubviews(closeButton,
-                         titleLabel,
-                         textLabelOne,
-                         textLabelTwo,
-                         backGroundView,
-                         kakaoButton,
-                         copyButton)
+                                 titleLabel,
+                                 textLabelOne,
+                                 textLabelTwo,
+                                 textLabelThree,
+                                 textLabelFour,
+                                 backGroundView,
+                                 kakaoButton,
+                                 copyButton)
         
         backGroundView.addSubviews(recommender,
                                    recommenderID)
