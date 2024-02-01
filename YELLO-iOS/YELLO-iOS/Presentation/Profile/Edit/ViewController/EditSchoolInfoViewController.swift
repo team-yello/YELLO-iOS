@@ -13,7 +13,7 @@ import Then
 final class EditSchoolInfoViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
-    var isEditAvaliable: Bool = true
+    var isEditAvailable: Bool = true
     var isMajorSearchError: Bool = false
     var groupName: String = UserManager.shared.groupName
     var subgroupName: String = UserManager.shared.subGroupName
@@ -114,7 +114,7 @@ final class EditSchoolInfoViewController: BaseViewController {
                     valueArray = data.value.split(separator: "|")
                 }
                 if !valueArray.isEmpty {
-                    self.isEditAvaliable = valueArray[0] == "true" ? true : false
+                    self.isEditAvailable = valueArray[0] == "true" ? true : false
                     self.createDate = DateConverter.convertDateString(String(valueArray[2])) ?? ""
                     if valueArray[1] != "null" {
                         self.lastEditDate = DateConverter.convertDateString(String(valueArray[1])) ?? ""
@@ -275,12 +275,12 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
             editSchoolInfoView.editTableView.reloadData()
         }
         
-        if isEditAvaliable && !isMajorSearchError {
+        if isEditAvailable && !isMajorSearchError {
             updateProfile()
             navigationController?.popViewController(animated: true)
         } else if isMajorSearchError {
             
-        } else if !isEditAvaliable {
+        } else if !isEditAvailable {
             self.view.showToast(message: StringLiterals.Profile.EditProfile.editDateErrorMessage, at: 82.adjustedHeight)
         }
     }
