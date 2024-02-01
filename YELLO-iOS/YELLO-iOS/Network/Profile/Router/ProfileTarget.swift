@@ -73,7 +73,7 @@ extension ProfileTarget: TargetType {
         case .accountUpdatedAt:
             return .get
         case .editProfile:
-            return .delete
+            return .post
         }
     }
     
@@ -81,7 +81,7 @@ extension ProfileTarget: TargetType {
         switch self {
         case .profileUser:
             return "/v2/user"
-        case .profileFriend(_):
+        case .profileFriend:
             return "/v1/friend"
         case .profileDeleteFriend(let id):
             return "/v1/friend/\(id)"
@@ -92,7 +92,7 @@ extension ProfileTarget: TargetType {
         case .accountUpdatedAt:
             return "/v1/user/data/account-updated-at"
         case .editProfile:
-            return ""
+            return "/v1/user"
         }
     }
 
