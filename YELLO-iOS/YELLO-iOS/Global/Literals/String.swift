@@ -340,10 +340,13 @@ enum StringLiterals {
             static let studentId = "학번"
             static let grade = "학년"
             static let schoolClass = "반"
+            static let defaultText = "-"
             
             static let profileEditTitle = "프로필 수정"
             static let guideText = "1년에 한 번만 수정할 수 있어요.\n신중히 수정해 주세요!"
             static let modifireDateText = "마지막 수정일 : "
+            static let majorErrorMessage = "학과를 입력해야 수정할 수 있어요."
+            static let editDateErrorMessage = "1년 내에 수정한 기록이 있어요."
             
             static let saveButton = "저장"
             static let convertHighButton = "중/고등학생으로 전환"
