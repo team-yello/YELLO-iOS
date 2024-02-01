@@ -28,11 +28,11 @@ class EditProfileView: UIView {
     }
     
     private func setUI() {
-        setStlye()
+        setStyle()
         setLayout()
     }
     
-    private func setStlye() {
+    private func setStyle() {
         self.backgroundColor = .black
         
         navigationBarView.do {

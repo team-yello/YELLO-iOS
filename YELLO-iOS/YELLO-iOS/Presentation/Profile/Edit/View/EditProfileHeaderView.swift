@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import KakaoSDKUser
 
-class EditProfileHeaderView: UITableViewHeaderFooterView {
+final class EditProfileHeaderView: UITableViewHeaderFooterView {
     // MARK: - Variables
     static let reusableId = "EditProfileView"
     // MARK: Component
