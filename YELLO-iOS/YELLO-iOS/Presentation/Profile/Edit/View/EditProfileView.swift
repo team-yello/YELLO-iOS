@@ -46,6 +46,7 @@ class EditProfileView: UIView {
             $0.register(EditProfileTableViewCell.self, forCellReuseIdentifier: EditProfileTableViewCell.reusableId)
             $0.register(EditProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: EditProfileHeaderView.reusableId)
             $0.rowHeight = 75.adjustedHeight
+            $0.separatorStyle = .none
         }
     }
     

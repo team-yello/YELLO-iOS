@@ -87,6 +87,7 @@ class EditSchoolInfoView: UIView {
             $0.showsHorizontalScrollIndicator = false
             $0.backgroundColor = .clear
             $0.isScrollEnabled = false
+            $0.separatorStyle = .none
         }
         
         convertButton.do {

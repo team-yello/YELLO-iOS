@@ -53,6 +53,7 @@ class StudentIdViewController: BaseViewController {
             $0.backgroundColor = .grayscales900
             $0.separatorStyle = .none
             $0.tableHeaderView = UIView()
+            $0.showsVerticalScrollIndicator = false
         }
     }
     
