@@ -74,19 +74,11 @@ class UniversityViewController: OnboardingBaseViewController {
     
     private func studentIDSelect() {
         
-        if #available(iOS 16.0, *) {
-            let nav = UINavigationController(rootViewController: studentIdViewController)
-            if let sheet = nav.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-                sheet.invalidateDetents()
-                present(nav, animated: true, completion: nil)
-            }
-            
-        } else {
-            bottomSheet.setCustomView(view: studentIdView)
-            bottomSheet.modalPresentationStyle = .overFullScreen
-            present(bottomSheet, animated: false)
+        let nav = UINavigationController(rootViewController: studentIdViewController)
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            present(nav, animated: true, completion: nil)
         }
     }
     

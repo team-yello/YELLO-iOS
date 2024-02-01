@@ -68,20 +68,11 @@ class HighSchoolViewController: OnboardingBaseViewController {
     }
     
     private func classModalPresent() {
-        
-        if #available(iOS 16.0, *) {
-            let nav = UINavigationController(rootViewController: studentIdViewController)
-            if let sheet = nav.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-                sheet.invalidateDetents()
-                present(nav, animated: true, completion: nil)
-            }
-            
-        } else {
-            bottomSheetViewController.setCustomView(view: studentIdView)
-            bottomSheetViewController.modalPresentationStyle = .overFullScreen
-            present(bottomSheetViewController, animated: false)
+        let nav = UINavigationController(rootViewController: studentIdViewController)
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            present(nav, animated: true, completion: nil)
         }
     }
     

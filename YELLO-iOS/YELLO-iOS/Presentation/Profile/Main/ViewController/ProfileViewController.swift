@@ -99,15 +99,10 @@ extension ProfileViewController: HandleFriendCellDelegate {
         
         let nav = UINavigationController(rootViewController: friendProfileViewController)
         
-        if #available(iOS 15.0, *) {
-            if let sheet = nav.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-                present(nav, animated: true, completion: nil)
-            }
-        } else {
-            bottomSheetViewController.modalPresentationStyle = .overFullScreen
-            present(bottomSheetViewController, animated: false)
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            present(nav, animated: true, completion: nil)
         }
         
     }
@@ -117,12 +112,7 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
     func deleteFriendButtonTapped() {
         profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].name + StringLiterals.Profile.Friend.toastMessage)
         
-        if #available(iOS 15.0, *) {
-            friendProfileViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
-        } else {
-            bottomSheetViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
-        }
-
+        friendProfileViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
         // 삭제 작업이 적용된 후에 UI 업데이트
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
