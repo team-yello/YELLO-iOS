@@ -109,72 +109,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 selectedIndex = 3
                 rootViewController.selectedIndex = selectedIndex
                 let myYelloDetailViewController = MyYelloDetailViewController()
-                NetworkService.shared.myYelloService.myYelloDetail(voteId: Int(messageNumber) ?? 0) { response in
-                    switch response {
-                    case .success(let data):
-                        guard let data = data.data else { return }
-
-                        myYelloDetailViewController.myYelloDetailView.voteIdNumber = Int(messageNumber) ?? 0
-                        myYelloDetailViewController.colorIndex = data.colorIndex
-                        myYelloDetailViewController.myYelloDetailView.currentPoint = data.currentPoint
-                        myYelloDetailViewController.myYelloDetailView.detailSenderView.isHidden = false
-                        myYelloDetailViewController.myYelloDetailView.detailKeywordView.isHidden = false
-                        myYelloDetailViewController.myYelloDetailView.genderLabel.isHidden = false
-                        myYelloDetailViewController.myYelloDetailView.instagramView.isHidden = false
-                        myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = false
-                        myYelloDetailViewController.myYelloDetailView.senderButton.isHidden = false
-                        myYelloDetailViewController.setBackgroundView()
-                        
-                        if data.senderGender == "MALE" {
-                            myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.male
-                        } else {
-                            myYelloDetailViewController.myYelloDetailView.genderLabel.text = StringLiterals.MyYello.Detail.female
-                        }
-                        
-                        if data.vote.nameHead == nil {
-                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = "너" + (data.vote.nameFoot ?? "")
-                        } else {
-                            myYelloDetailViewController.myYelloDetailView.detailKeywordView.nameKeywordLabel.text = (data.vote.nameHead ?? "") + " 너" + (data.vote.nameFoot ?? "")
-                        }
-                        
-                        myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordHeadLabel.text = (data.vote.keywordHead ?? "")
-                        myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordLabel.text = data.vote.keyword
-                        myYelloDetailViewController.myYelloDetailView.detailKeywordView.keywordFootLabel.text = (data.vote.keywordFoot ?? "")
-                        
-                        myYelloDetailViewController.myYelloDetailView.isKeywordUsed = data.isAnswerRevealed
-                        
-                        if data.nameHint == 0 {
-                            myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
-                            if let initial = myYelloDetailViewController.getFirstInitial(data.senderName as NSString, index: 0) {
-                                myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
-                            }
-                        } else if data.nameHint == 1 {
-                            myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
-                            if let initial = myYelloDetailViewController.getSecondInitial(data.senderName as NSString, index: 1) {
-                                myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = initial
-                            }
-                        } else if data.nameHint == -3 {
-                            myYelloDetailViewController.myYelloDetailView.isSenderUsed = true
-                            myYelloDetailViewController.myYelloDetailView.detailSenderView.senderLabel.text = data.senderName
-                            myYelloDetailViewController.myYelloDetailView.isKeywordUsed = true
-                            myYelloDetailViewController.myYelloDetailView.senderButton.setButtonState(state: .noTicket)
-                            myYelloDetailViewController.myYelloDetailView.keywordButton.isHidden = true
-                            myYelloDetailViewController.myYelloDetailView.haveTicket = false
-                            myYelloDetailViewController.myYelloDetailView.senderButton.snp.makeConstraints {
-                                $0.top.equalTo(myYelloDetailViewController.myYelloDetailView.instagramView.snp.bottom).offset(77.adjustedHeight)
-                            }
-                        }
-                        if data.isSubscribe {
-                            myYelloDetailViewController.myYelloDetailView.isPlus = true
-                        }
-                        myYelloDetailViewController.myYelloDetailView.ticketCount = data.ticketCount
-                        
-                        navigationController.pushViewController(myYelloDetailViewController, animated: true)
-                    default:
-                        print("network fail")
-                        return
-                    }
-                }
+                myYelloDetailViewController.myYelloDetail(voteId:  Int(messageNumber) ?? 0)
+                navigationController.pushViewController(myYelloDetailViewController, animated: true)
             }
         }
     }

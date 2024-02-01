@@ -60,9 +60,9 @@ extension RecommendingTarget: TargetType {
     var path: String {
         switch self {
         case .recommendingKakaoFriend(_, _):
-            return "/friend/recommend/kakao"
+            return "/v1/friend/recommend/kakao"
         case .recommendingSchoolFriend(_):
-            return "/friend/recommend/school"
+            return "/v1/friend/recommend/school"
         case .recommendingAddFriend(let friendId):
             return "friend/\(friendId)"
         case .recommendingDetailFriend(let friendId):

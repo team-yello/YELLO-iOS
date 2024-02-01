@@ -102,25 +102,25 @@ extension OnboardingTarget: TargetType {
     var path: String {
         switch self {
         case .postTokenChange:
-            return "/auth/oauth"
+            return "/v1/auth/oauth"
         case .getSchoolList:
-            return "/auth/group/univ/name"
+            return "/v1/auth/group/univ/name"
         case .getCheckDuplicate:
-            return "/auth/valid"
+            return "/v1/auth/valid"
         case .postUserInfo:
-            return "/auth/signup"
+            return "/v1/auth/signup"
         case .getMajorList:
-            return "/auth/group/univ/department"
+            return "/v1/auth/group/univ/department"
         case .postFirendsList:
-            return "/auth/friend"
+            return "/v1/auth/friend"
         case .postRefreshToken:
-            return "/auth/token/issue"
+            return "/v1/auth/token/issue"
         case .putDeviceToken:
-            return "/user/device"
+            return "/v1/user/device"
         case .getHighschoolList:
-            return "/auth/group/high/name"
+            return "/v1/auth/group/high/name"
         case .getHighschoolClass:
-            return "/auth/group/high/class"
+            return "/v1/auth/group/high/class"
         }
     }
     

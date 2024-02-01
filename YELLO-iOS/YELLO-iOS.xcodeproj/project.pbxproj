@@ -27,6 +27,10 @@
 		2A3705EE2A62E3DF001AAC93 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */; };
 		2A423DF12A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A423DF02A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift */; };
 		2A4C549D2A8622B200FFDF80 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4C549C2A8622B200FFDF80 /* Kingfisher */; };
+		2A55DDA52B669BCC00290FE8 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A55DDA42B669BCC00290FE8 /* NotificationView.swift */; };
+		2A5E08FA2B6692DD00CDB3DF /* NotificationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08F92B6692DD00CDB3DF /* NotificationResponseDTO.swift */; };
+		2A5E08FC2B66935B00CDB3DF /* NotificationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08FB2B66935B00CDB3DF /* NotificationTarget.swift */; };
+		2A5E08FE2B6693FD00CDB3DF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */; };
 		2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1AD2A657AA6008F636C /* VotingData.swift */; };
 		2A5FE1B62A66FA07008F636C /* VoteAnswerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
@@ -128,6 +132,12 @@
 		36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A52AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift */; };
 		36C4C4A82AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */; };
 		36C5E1CD2A91273400184AAE /* TokenRefreshRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */; };
+		36CFF9A82B67F5FB008DDB9D /* EditProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */; };
+		36D98F352B5FB2B7003B2B11 /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */; };
+		36D98F372B602442003B2B11 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F362B602442003B2B11 /* InfoView.swift */; };
+		36D98F392B617B5D003B2B11 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */; };
+		36D98F3B2B617BBD003B2B11 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F3A2B617BBD003B2B11 /* EditProfileView.swift */; };
+		36D98F3D2B617DD7003B2B11 /* EditProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F3C2B617DD7003B2B11 /* EditProfileTableViewCell.swift */; };
 		36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */; };
 		36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */; };
 		36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */; };
@@ -179,6 +189,12 @@
 		36E60EC52AE6DFC4005035D3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 36E60EC42AE6DFC4005035D3 /* FirebaseStorageCombine-Community */; };
 		36EA2AB72A66FC0B003603C7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA2AB62A66FC0B003603C7 /* UserManager.swift */; };
 		C303C8202B5FC3730077C423 /* RecommendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C81F2B5FC3730077C423 /* RecommendProfileViewController.swift */; };
+		36ECE0E82B68B2EE000FCCBF /* EditSchoolInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0E72B68B2EE000FCCBF /* EditSchoolInfoViewController.swift */; };
+		36ECE0EA2B68B4EC000FCCBF /* EditSchoolInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */; };
+		36ECE0EF2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0EE2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift */; };
+		C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */; };
+		C303C8242B6005980077C423 /* WithdrawalReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8232B6005980077C423 /* WithdrawalReasonView.swift */; };
+		C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */; };
 		C305A5B22A85F997007C4A69 /* PaymentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */; };
 		C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306E7262A630BB70031514C /* KeychainHandler.swift */; };
 		C306E72A2A630BD10031514C /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C306E7292A630BD10031514C /* SwiftKeychainWrapper */; };
@@ -292,6 +308,7 @@
 		C3C57BF52A5C093D00B84CAA /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF42A5C093D00B84CAA /* FriendModel.swift */; };
 		C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */; };
 		C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */; };
+		C3C5D8232B628AC500C8D27C /* ReasonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */; };
 		C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */; };
 		C3D2663B2A5C720F0041C7C7 /* CountCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */; };
 		C3D2663D2A5C73360041C7C7 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */; };
@@ -357,6 +374,10 @@
 		2A3705EB2A62E3D4001AAC93 /* ProfileTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTarget.swift; sourceTree = "<group>"; };
 		2A3705ED2A62E3DF001AAC93 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		2A423DF02A8F6F4E00F56C06 /* MyYelloDetailFullNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailFullNameResponseDTO.swift; sourceTree = "<group>"; };
+		2A55DDA42B669BCC00290FE8 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		2A5E08F92B6692DD00CDB3DF /* NotificationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationResponseDTO.swift; sourceTree = "<group>"; };
+		2A5E08FB2B66935B00CDB3DF /* NotificationTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTarget.swift; sourceTree = "<group>"; };
+		2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2A5FE1AD2A657AA6008F636C /* VotingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingData.swift; sourceTree = "<group>"; };
 		2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAnswerList.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
@@ -459,6 +480,12 @@
 		36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolSearchResponseDTO.swift; sourceTree = "<group>"; };
 		36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
 		36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequestDTO.swift; sourceTree = "<group>"; };
+		36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderView.swift; sourceTree = "<group>"; };
+		36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileView.swift; sourceTree = "<group>"; };
+		36D98F362B602442003B2B11 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		36D98F3A2B617BBD003B2B11 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		36D98F3C2B617DD7003B2B11 /* EditProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewCell.swift; sourceTree = "<group>"; };
 		36E2181D2A5D17D000FB3C9C /* SearchBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
 		36E2181F2A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		36E427582A5BCE860050B34E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -483,6 +510,12 @@
 		36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndView.swift; sourceTree = "<group>"; };
 		36EA2AB62A66FC0B003603C7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		C303C81F2B5FC3730077C423 /* RecommendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendProfileViewController.swift; sourceTree = "<group>"; };
+		36ECE0E72B68B2EE000FCCBF /* EditSchoolInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoViewController.swift; sourceTree = "<group>"; };
+		36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoView.swift; sourceTree = "<group>"; };
+		36ECE0EE2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoTableViewCell.swift; sourceTree = "<group>"; };
+		C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonViewController.swift; sourceTree = "<group>"; };
+		C303C8232B6005980077C423 /* WithdrawalReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonView.swift; sourceTree = "<group>"; };
+		C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonCollectionViewCell.swift; sourceTree = "<group>"; };
 		C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmView.swift; sourceTree = "<group>"; };
 		C306E7262A630BB70031514C /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C306E73A2A64557D0031514C /* RecommendingFriendRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendingFriendRequestDTO.swift; sourceTree = "<group>"; };
@@ -593,6 +626,7 @@
 		C3C57BF42A5C093D00B84CAA /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		C3C57BF62A5C0BD700B84CAA /* EmptyFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFriendView.swift; sourceTree = "<group>"; };
 		C3C57BF82A5C181A00B84CAA /* SchoolFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolFriendView.swift; sourceTree = "<group>"; };
+		C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonHeaderView.swift; sourceTree = "<group>"; };
 		C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountCustomView.swift; sourceTree = "<group>"; };
 		C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
@@ -1007,6 +1041,56 @@
 			path = NetworkEntity;
 			sourceTree = "<group>";
 		};
+		2A55DDA32B669AF900290FE8 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				2A55DDA42B669BCC00290FE8 /* NotificationView.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		2A5E08F42B66925C00CDB3DF /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E08F52B66926D00CDB3DF /* DTO */,
+				2A5E08F62B66927900CDB3DF /* Router */,
+				2A5E08F72B66928000CDB3DF /* Service */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		2A5E08F52B66926D00CDB3DF /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E08F82B6692C000CDB3DF /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		2A5E08F62B66927900CDB3DF /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E08FB2B66935B00CDB3DF /* NotificationTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		2A5E08F72B66928000CDB3DF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2A5E08F82B6692C000CDB3DF /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E08F92B6692DD00CDB3DF /* NotificationResponseDTO.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		2A5FE1AF2A657B52008F636C /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -1094,6 +1178,7 @@
 		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				36CFF9A32B67F53F008DDB9D /* Edit */,
 				C3D2664A2A5D1F2D0041C7C7 /* Main */,
 				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
 				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
@@ -1219,6 +1304,44 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		36CFF9A32B67F53F008DDB9D /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				36CFF9A42B67F547008DDB9D /* ViewController */,
+				36CFF9A52B67F54E008DDB9D /* View */,
+				36CFF9A62B67F555008DDB9D /* Cell */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		36CFF9A42B67F547008DDB9D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */,
+				36ECE0E72B68B2EE000FCCBF /* EditSchoolInfoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		36CFF9A52B67F54E008DDB9D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36D98F3A2B617BBD003B2B11 /* EditProfileView.swift */,
+				36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */,
+				36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36CFF9A62B67F555008DDB9D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				36D98F3C2B617DD7003B2B11 /* EditProfileTableViewCell.swift */,
+				36ECE0EE2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		36E2181C2A5D158E00FB3C9C /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1315,6 +1438,14 @@
 				367113692A7D2AC50037E0D2 /* YelloNavigationBarView.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		C303C8272B6009CE0077C423 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C305A5B02A85F2CE007C4A69 /* Button */ = {
@@ -1636,6 +1767,7 @@
 				2A37057F2A62AECC001AAC93 /* MyYello */,
 				2A3705802A62AEEC001AAC93 /* Profile */,
 				C3C560CA2A8BB9300074E988 /* Purchase */,
+				2A5E08F42B66925C00CDB3DF /* Notification */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1643,6 +1775,7 @@
 		C3A799C92A494B8E00D3EFD8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2A55DDA32B669AF900290FE8 /* Notification */,
 				2A8D66D52A9A3512009DEC3F /* Subscription */,
 				36C209EC2A8B69D9001BF12C /* Tutorial */,
 				C3A799CE2A494C9200D3EFD8 /* Base */,
@@ -1844,12 +1977,14 @@
 			isa = PBXGroup;
 			children = (
 				C3D266442A5C776F0041C7C7 /* ProfileView.swift */,
-				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 				C3D2663C2A5C73360041C7C7 /* MyProfileView.swift */,
+				36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */,
+				36D98F362B602442003B2B11 /* InfoView.swift */,
 				C307ECB52A607357000F5BA9 /* FriendCountView.swift */,
 				C3D266422A5C771F0041C7C7 /* MyProfileHeaderView.swift */,
 				C3D2663A2A5C720F0041C7C7 /* CountCustomView.swift */,
 				C3FF24782A5D798700A97D40 /* FriendProfileView.swift */,
+				C3D266382A5C710D0041C7C7 /* NavigationBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1907,6 +2042,7 @@
 			children = (
 				C3FF24A92A5F330700A97D40 /* ViewController */,
 				C3FF24AA2A5F331000A97D40 /* View */,
+				C303C8272B6009CE0077C423 /* Cell */,
 			);
 			path = Withdrawal;
 			sourceTree = "<group>";
@@ -1964,8 +2100,9 @@
 		C3FF24A92A5F330700A97D40 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
 				C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */,
+				C3FF24722A5D47EB00A97D40 /* WithdrawalCheckViewController.swift */,
+				C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1973,9 +2110,11 @@
 		C3FF24AA2A5F331000A97D40 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
 				C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */,
+				C3FF24702A5D47DD00A97D40 /* WithdrawalCheckView.swift */,
+				C303C8232B6005980077C423 /* WithdrawalReasonView.swift */,
 				C3FF24742A5D6E9500A97D40 /* WithdrawalAlertView.swift */,
+				C3C5D8222B628AC500C8D27C /* ReasonHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2188,6 +2327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36ECE0EA2B68B4EC000FCCBF /* EditSchoolInfoView.swift in Sources */,
 				36C209F62A8B8190001BF12C /* SecondTutorialView.swift in Sources */,
 				C37DFC512A854FE700D3B685 /* PaymentNameKeyButton.swift in Sources */,
 				C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */,
@@ -2221,6 +2361,7 @@
 				C3FF248E2A5E8DB700A97D40 /* TabBarHeight.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
+				36D98F392B617B5D003B2B11 /* EditProfileViewController.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C348B6D72A8FBBD600674371 /* PurchaseInfoResponseDTO.swift in Sources */,
 				36C4C4A82AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift in Sources */,
@@ -2228,6 +2369,7 @@
 				C307ECB42A60657C000F5BA9 /* UITableView+.swift in Sources */,
 				36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */,
 				C306E7472A656D170031514C /* ProfileFriendRequestQueryDTO.swift in Sources */,
+				36ECE0EF2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift in Sources */,
 				2AD1A1AE2A571ED500CB988B /* BaseVotingETCView.swift in Sources */,
 				C303C8202B5FC3730077C423 /* RecommendProfileViewController.swift in Sources */,
 				C3A799E82A494D6800D3EFD8 /* UILabel+.swift in Sources */,
@@ -2245,10 +2387,12 @@
 				3662A0E82A64414800F482EF /* OnboardingService.swift in Sources */,
 				C37DFC4A2A85022B00D3B685 /* PaymentNavigationBarView.swift in Sources */,
 				C3FF248C2A5E846D00A97D40 /* MyYelloNavigationBarView.swift in Sources */,
+				36CFF9A82B67F5FB008DDB9D /* EditProfileHeaderView.swift in Sources */,
 				367113642A7D082C0037E0D2 /* ProgressBarManager.swift in Sources */,
 				3662A0F82A6577E000F482EF /* IdValidRequestQueryDTO.swift in Sources */,
 				C3FF24992A5EAEA400A97D40 /* MyYelloModel.swift in Sources */,
 				3662A0EC2A64477300F482EF /* SignUpRequestDTO.swift in Sources */,
+				2A5E08FC2B66935B00CDB3DF /* NotificationTarget.swift in Sources */,
 				C30F81072A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift in Sources */,
 				C3A799E42A494D6800D3EFD8 /* UIImageView+.swift in Sources */,
 				36E4276D2A5BCE860050B34E /* AddFriendsViewController.swift in Sources */,
@@ -2258,6 +2402,7 @@
 				2A3705E62A62E3BC001AAC93 /* MyYelloService.swift in Sources */,
 				2A3705D62A62E346001AAC93 /* RecommendingService.swift in Sources */,
 				C305A5B22A85F997007C4A69 /* PaymentConfirmView.swift in Sources */,
+				36D98F3B2B617BBD003B2B11 /* EditProfileView.swift in Sources */,
 				C31315B22A7CBA6F00FB8B43 /* MyYelloButton.swift in Sources */,
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
 				3662A0E42A63F6C300F482EF /* CheckDuplicateResponeDTO.swift in Sources */,
@@ -2281,6 +2426,7 @@
 				3662A0F42A654A6000F482EF /* MajorSearchResponseDTO.swift in Sources */,
 				C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */,
 				C3A799D22A494CFF00D3EFD8 /* NetworkResult.swift in Sources */,
+				2A55DDA52B669BCC00290FE8 /* NotificationView.swift in Sources */,
 				C3D266472A5C77A20041C7C7 /* MyFriendTableViewCell.swift in Sources */,
 				36E427752A5BCE860050B34E /* YelloHelperButton.swift in Sources */,
 				C3FF24752A5D6E9500A97D40 /* WithdrawalAlertView.swift in Sources */,
@@ -2311,6 +2457,7 @@
 				C3FF24952A5E906B00A97D40 /* MyYelloKeywordTableViewCell.swift in Sources */,
 				C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */,
 				C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */,
+				2A5E08FE2B6693FD00CDB3DF /* NotificationService.swift in Sources */,
 				C32322F52A619E92006DA50B /* PaymentView.swift in Sources */,
 				36E427732A5BCE860050B34E /* YelloTextField.swift in Sources */,
 				2A3705CA2A62E2A2001AAC93 /* KakaoLoginResponseDTO.swift in Sources */,
@@ -2318,10 +2465,13 @@
 				2AD1A1D42A5C3FC200CB988B /* VotingDummy.swift in Sources */,
 				C3B472122A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift in Sources */,
 				C39D3D842A8F511B00DE93EC /* PurchaseSubscibeNeedResponseDTO.swift in Sources */,
+				36D98F352B5FB2B7003B2B11 /* MainProfileView.swift in Sources */,
 				C3D2664C2A5D1F4C0041C7C7 /* ProfileSettingViewController.swift in Sources */,
 				363D815F2B2616040095F6CC /* NameCheckView.swift in Sources */,
+				36ECE0E82B68B2EE000FCCBF /* EditSchoolInfoViewController.swift in Sources */,
 				367113732A7D6CED0037E0D2 /* UniversityViewController.swift in Sources */,
 				C3291A082A920D84007F2CF5 /* AppStoreCheck.swift in Sources */,
+				36D98F3D2B617DD7003B2B11 /* EditProfileTableViewCell.swift in Sources */,
 				3662A0F62A654B8D00F482EF /* JoinedFriendsRequestDTO.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
@@ -2329,7 +2479,9 @@
 				C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */,
 				C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
+				2A5E08FA2B6692DD00CDB3DF /* NotificationResponseDTO.swift in Sources */,
 				C390B8142A8A1DD800EA5A23 /* AroundResponseDTO.swift in Sources */,
+				C3C5D8232B628AC500C8D27C /* ReasonHeaderView.swift in Sources */,
 				2A3705DA2A62E35F001AAC93 /* VotingAvailableResponseDTO.swift in Sources */,
 				36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */,
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
@@ -2391,12 +2543,14 @@
 				C3A799C22A494B0F00D3EFD8 /* Font.swift in Sources */,
 				C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */,
 				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
+				C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */,
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
 				362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */,
 				C3A799CB2A494C7500D3EFD8 /* BaseViewController.swift in Sources */,
 				C30F81092A7F732B009DBB8D /* HintButton.swift in Sources */,
+				C303C8242B6005980077C423 /* WithdrawalReasonView.swift in Sources */,
 				C3FF24A42A5EEBF100A97D40 /* DetailSenderView.swift in Sources */,
 				C3B83E682A8E08D500A39CAC /* PurchaseService.swift in Sources */,
 				36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */,
@@ -2405,6 +2559,7 @@
 				2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */,
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
 				367DA01B2A863CE60043D23C /* HighSchoolViewController.swift in Sources */,
+				C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,
 				2A3705C82A62E297001AAC93 /* SignUpResponseDTO.swift in Sources */,
@@ -2421,6 +2576,7 @@
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
 				C3A799E32A494D6800D3EFD8 /* NSObject+.swift in Sources */,
+				36D98F372B602442003B2B11 /* InfoView.swift in Sources */,
 				3662A0EA2A64437900F482EF /* KakaoLoginRequestDTO.swift in Sources */,
 				36BF1DE82A7A5FCF00C58E74 /* YelloProgressBarView.swift in Sources */,
 				C3A799CD2A494C8600D3EFD8 /* BaseView.swift in Sources */,
@@ -2554,7 +2710,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2717,7 +2873,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2758,7 +2914,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

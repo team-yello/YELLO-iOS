@@ -52,11 +52,11 @@ extension PurchaseTarget: TargetType {
     var path: String {
         switch self {
         case .purchaseSubscibe(_):
-            return "/purchase/apple/verify/subscribe"
+            return "/v1/purchase/apple/verify/subscribe"
         case .purchaseTicket(_):
-            return "/purchase/apple/verify/ticket"
+            return "/v1/purchase/apple/verify/ticket"
         case .purchaseSubscibeNeed:
-            return "/purchase/subscribe"
+            return "/v1/user/subscribe"
         }
     }
     
@@ -66,7 +66,7 @@ extension PurchaseTarget: TargetType {
             return .requestWithBody(requestDTO)
         case let .purchaseTicket(requestDTO):
             return .requestWithBody(requestDTO)
-        case let .purchaseSubscibeNeed:
+        case .purchaseSubscibeNeed:
             return .requestPlain
         }
     }

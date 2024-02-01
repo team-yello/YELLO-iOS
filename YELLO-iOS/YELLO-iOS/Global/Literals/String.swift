@@ -226,7 +226,7 @@ enum StringLiterals {
             static let send = "님이 보냄"
             static let female = "익명의 여학생"
             static let male = "익명의 남학생"
-            static let instagram = "스토리 공유하기"
+            static let instagram = "스토리 공유"
             static let keywordButton = "100포인트로 키워드 확인하기"
             static let sendButton = "300포인트로 초성 1개 확인하기"
             static let plusSendButton = "0포인트로 초성 1개 확인하기"
@@ -330,6 +330,26 @@ enum StringLiterals {
             static let toastMessage = " 님과 친구 끊기를 완료했어요."
         }
         
+        enum EditProfile {
+            static let profileInfoTitle = "프로필 정보"
+            static let kakaoSync = "카카오톡 동기화"
+            static let name = "이름"
+            static let id = "아이디"
+            static let school = "학교"
+            static let major = "학과"
+            static let studentId = "학번"
+            static let grade = "학년"
+            static let schoolClass = "반"
+            
+            static let profileEditTitle = "프로필 수정"
+            static let guideText = "1년에 한 번만 수정할 수 있어요.\n신중히 수정해 주세요!"
+            static let modifireDateText = "마지막 수정일 : "
+            
+            static let saveButton = "저장"
+            static let convertHighButton = "중/고등학생으로 전환"
+            static let convertUnivButton = "대학생으로 전환"
+        }
+        
         enum Setting {
             static let setting = "프로필 관리"
             static let center = "고객센터"
@@ -366,6 +386,20 @@ enum StringLiterals {
             static let no = "아니요"
             static let yes = "네, 탈퇴합니다"
         }
+        
+        enum WithdrawalReason {
+            static let title = "탈퇴 사유를 적어주세요."
+            static let nobody = "앱에 아는 사람들이 없어서"
+            static let expensive = "구독권과 열람권의 가격이 비싸서"
+            static let error = "오류가 많아서"
+            static let notFunny = "재밌는 콘텐츠 또는 질문이 없어서"
+            static let lessPoint = "포인트를 너무 적게 줘서"
+            static let delete = "내 정보를 삭제하고 싶어서"
+            static let otherApp = "다른 앱이 더 재밌어서"
+            static let etc = "기타"
+            static let etcReason = "사유를 적어주세요.(최대 30자)"
+            static let complete = "완료"
+        }
     }
     
     enum PushAlarm {
@@ -382,5 +416,10 @@ enum StringLiterals {
         static let dateOfTerminationLabel = "에 만료 예정인"
         static let unsubscribeLabel = "옐로플러스의 구독을 해지했어요."
         static let benefitLabel = "곧 위와 같은 혜택을 누릴 수 없게 돼요.\n\n옐로플러스의 특별한 서비스를\n계속 이용하시려면, 버튼을 눌러\n구독을 계속해 보세요!"
+    }
+    
+    enum Notification {
+        static let doNotSeeAgainLabel = "다시 보지 않기"
+        static let close = "닫기"
     }
 }

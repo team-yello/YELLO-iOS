@@ -31,7 +31,6 @@ final class ProfileSettingViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
-    
     // MARK: Layout Helpers
     override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)

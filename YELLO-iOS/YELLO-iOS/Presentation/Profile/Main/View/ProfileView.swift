@@ -16,12 +16,17 @@ protocol HandleFriendCellDelegate: AnyObject {
     func presentModal(index: Int)
 }
 
+protocol HandleEditButton: AnyObject {
+    func editButtonTapped()
+}
+
 final class ProfileView: UIView {
     
     // MARK: - Variables
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
     weak var handleShopButton: HandleShopButton?
+    weak var handleEditButton: HandleEditButton?
     var indexNumber: Int = -1
     var friendCount: Int = 0
     
@@ -158,6 +163,10 @@ extension ProfileView {
         handleShopButton?.shopButtonTapped()
     }
     
+    @objc func editButtonTapped() {
+        handleEditButton?.editButtonTapped()
+    }
+    
     private func presentModal(index: Int) {
         handleFriendCellDelegate?.presentModal(index: index)
     }
@@ -267,11 +276,12 @@ extension ProfileView: UITableViewDataSource {
             DispatchQueue.main.async { [self] in
                 view?.addBottomBorderWithColor(color: .black)
                 view?.profileUser()
-                view?.myProfileView.nameSkeletonLabel.isHidden = true
-                view?.myProfileView.schoolSkeletonLabel.isHidden = true
+                view?.myProfileView.mainProfileView.nameSkeletonLabel.isHidden = true
+                view?.myProfileView.mainProfileView.schoolSkeletonLabel.isHidden = true
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
-                view?.myProfileView.isYelloPlus = self.isYelloPlus
-                view?.myProfileView.updateProfileView()
+                view?.myProfileView.mainProfileView.editProfileButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+                view?.myProfileView.mainProfileView.isYelloPlus = self.isYelloPlus
+                view?.myProfileView.mainProfileView.updateProfileView()
             }
             return view
         default:
