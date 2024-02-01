@@ -225,7 +225,7 @@ extension InvitingView {
                 guard let data = data.data else { return }
                 self.copyButton.isEnabled = false
                 self.kakaoButton.isEnabled = false
-                self.recommenderID.text = "@" + data.yelloId
+                self.recommenderID.text = "@" + data.yelloID
                 self.copyButton.isEnabled = true
                 self.kakaoButton.isEnabled = true
                 
