@@ -168,7 +168,7 @@ extension HighSchoolViewController: SearchResultTableViewSelectDelegate {
 }
 
 extension HighSchoolViewController: SelectStudentIdDelegate {
-    func didSelectStudentId(_ result: Int) {
+    func didSelectStudentId(_ result: Int, type: SelectType ) {
         baseView.classSearchTextField.text = "\(result)반"
         getSchoolClass(keyword: String(result))
         checkButtonEnable()

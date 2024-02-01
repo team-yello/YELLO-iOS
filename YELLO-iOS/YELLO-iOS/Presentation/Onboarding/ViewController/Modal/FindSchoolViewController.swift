@@ -17,9 +17,14 @@ class FindSchoolViewController: SearchBaseViewController {
     var totalItemCount: Int = 0
     
     // MARK: LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        allArr.removeAll()
+        searchView.searchResultTableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        allSchool.removeAll()
         customView(titleText: "우리 학교 검색하기", helperText: "우리 학교가 없나요? 학교를 추가해보세요!")
         addTarget()
     }
