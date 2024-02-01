@@ -177,7 +177,7 @@ final class InvitingView: BaseView {
         
         backGroundView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(14.adjustedWidth)
-            $0.top.equalTo(textLabelFour.snp.bottom).offset(18.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(102.adjustedHeight)
             $0.height.equalTo(80.adjustedHeight)
         }
         
