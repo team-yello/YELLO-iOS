@@ -51,8 +51,7 @@ final class FourthTutorial: UIView {
         self.addSubviews(tutorialImageView)
         
         tutorialImageView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.center.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
 
     }
