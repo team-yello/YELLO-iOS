@@ -40,6 +40,8 @@ class EditSchoolInfoView: UIView {
     let editTableView = UITableView(frame: .zero, style: .plain)
     let convertButton = UIButton()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -49,6 +51,7 @@ class EditSchoolInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()

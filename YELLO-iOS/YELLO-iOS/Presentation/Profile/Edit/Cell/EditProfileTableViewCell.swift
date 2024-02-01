@@ -23,6 +23,8 @@ class EditProfileTableViewCell: UITableViewCell {
     let editButton = UIButton()
     let separatorView = UIView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -31,6 +33,8 @@ class EditProfileTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -82,6 +86,7 @@ class EditProfileTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: Custom Function
     func configureCell(isEditable: Bool, title: String, info: String) {
         titleLabel.text = title
         infoLabel.text = info

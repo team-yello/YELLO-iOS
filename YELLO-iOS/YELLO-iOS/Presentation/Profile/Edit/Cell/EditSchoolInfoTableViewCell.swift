@@ -46,15 +46,9 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
     let separatorView = UIView()
     
     let errorLabel = UILabel()
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        editBackgroundView.makeBorder(width: 0, color: .clear)
-        editBackgroundView.backgroundColor = .grayscales900
-        separatorView.backgroundColor = .grayscales700
-        errorLabel.isHidden = true
-    }
-    
+
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -64,7 +58,8 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -148,6 +143,15 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
             $0.top.equalTo(separatorView.snp.bottom).offset(4.adjustedHeight)
             $0.leading.equalTo(separatorView.snp.leading)
         }
+    }
+    
+    // MARK: Custom Function
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        editBackgroundView.makeBorder(width: 0, color: .clear)
+        editBackgroundView.backgroundColor = .grayscales900
+        separatorView.backgroundColor = .grayscales700
+        errorLabel.isHidden = true
     }
     
     func configureCell(iconType: IconType, titleText: String, InfoText: String) {

@@ -7,17 +7,21 @@
 
 import UIKit
 
-import KakaoSDKUser
-
 final class EditProfileViewController: BaseViewController {
+    
+    // MARK: - Variables
+    // MARK: Property
     var userGroupType: UserGroupType = UserManager.shared.groupType
     var universityTitleList = [StringLiterals.Profile.EditProfile.major,
                                StringLiterals.Profile.EditProfile.studentId]
     var highschoolTitleList = [StringLiterals.Profile.EditProfile.grade,
                                StringLiterals.Profile.EditProfile.schoolClass]
     
+    // MARK: Component
     let editProfileView = EditProfileView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override func loadView() {
         self.view = editProfileView
     }
@@ -33,10 +37,12 @@ final class EditProfileViewController: BaseViewController {
         setDelegate()
     }
     
+    // MARK: Layout Helpers
     override func setStyle() {
         editProfileView.editHeaderView.profileImageView.kfSetImage(url: UserManager.shared.profileImage)
     }
     
+    // MARK: Custom Function
     private func setDelegate() {
         editProfileView.profileTableView.dataSource = self
         editProfileView.profileTableView.delegate = self
@@ -44,6 +50,8 @@ final class EditProfileViewController: BaseViewController {
     }
 }
 
+// MARK: - extension
+// MARK: UITableViewDataSource
 extension EditProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -103,6 +111,7 @@ extension EditProfileViewController: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
 extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.item > 1 {
@@ -113,6 +122,7 @@ extension EditProfileViewController: UITableViewDelegate {
     }
 }
 
+// MARK: HandleBackButtonDelegate
 extension EditProfileViewController: HandleBackButtonDelegate {
     func popView() {
         navigationController?.popViewController(animated: true)

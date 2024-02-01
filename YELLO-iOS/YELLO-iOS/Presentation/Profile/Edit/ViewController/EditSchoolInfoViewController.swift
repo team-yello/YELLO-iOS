@@ -147,6 +147,8 @@ final class EditSchoolInfoViewController: BaseViewController {
     }
 }
 
+// MARK: - extension
+// MARK: UITableViewDataSource
 extension EditSchoolInfoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -192,6 +194,7 @@ extension EditSchoolInfoViewController: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
 extension EditSchoolInfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
