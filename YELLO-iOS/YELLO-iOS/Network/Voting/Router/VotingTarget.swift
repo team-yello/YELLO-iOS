@@ -66,15 +66,15 @@ extension VotingTarget: TargetType {
     var path: String {
         switch self {
         case .getVotingAvailable:
-            return "/vote/available"
+            return "/v1/vote/available"
         case .getVotingSuffle:
-            return "/friend/shuffle"
+            return "/v1/friend/shuffle"
         case .getVotingList:
-            return "/vote/question"
+            return "/v1/vote/question"
         case .postVotingAnswerList:
-            return "/vote"
+            return "/v1/vote"
         case .getUnreadCount:
-            return "/vote/count"
+            return "/v1/vote/count"
         }
     }
 

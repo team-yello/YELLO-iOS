@@ -73,17 +73,17 @@ extension MyYelloTarget: TargetType {
     var path: String {
         switch self {
         case .myYello(_):
-            return "/vote"
+            return "/v1/vote"
         case .myYelloDetail(let voteId):
-            return "/vote/\(voteId)"
+            return "/v1/vote/\(voteId)"
         case .myYelloDetailKeyword(let voteId):
-            return "/vote/\(voteId)/keyword"
+            return "/v1/vote/\(voteId)/keyword"
         case .myYelloDetailName(let voteId):
-            return "/vote/\(voteId)/name"
+            return "/v1/vote/\(voteId)/name"
         case .myYelloDetailFullName(let voteId):
-            return "/vote/\(voteId)/fullname"
+            return "/v1/vote/\(voteId)/fullname"
         case .payCheck(_):
-            return "/pay"
+            return "/v1/pay"
         }
     }
 

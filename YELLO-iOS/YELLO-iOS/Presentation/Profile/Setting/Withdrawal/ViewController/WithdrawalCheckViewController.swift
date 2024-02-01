@@ -17,6 +17,11 @@ final class WithdrawalCheckViewController: BaseViewController {
     private let withdrawalCheckView = WithdrawalCheckView()
     
     // MARK: - Function
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setAddTarget()
+    }
+    
     // MARK: - Layout
     override func setStyle() {
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -32,6 +37,15 @@ final class WithdrawalCheckViewController: BaseViewController {
         withdrawalCheckView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    private func setAddTarget() {
+        withdrawalCheckView.withdrawalButton.addTarget(self, action: #selector(withdrawalButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func withdrawalButtonTapped() {
+        let withdrawalReasonViewController = WithdrawalReasonViewController()
+        navigationController?.pushViewController(withdrawalReasonViewController, animated: true)
     }
 }
 

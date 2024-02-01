@@ -1,51 +1,51 @@
 //
-//  AroundTarget.swift
+//  UserNotificationTarget.swift
 //  YELLO-iOS
 //
-//  Created by 정채은 on 2023/08/14.
+//  Created by 변희주 on 1/28/24.
 //
 
 import Foundation
 
 import Alamofire
 
-enum AroundTarget {
-    case around(_ queryDTO: AroundRequestQueryDTO)
+enum NotificationTarget {
+    case userNotification
 }
 
-extension AroundTarget: TargetType {
+extension NotificationTarget: TargetType {
     var authorization: Authorization {
         switch self {
-        case .around(_):
+        case .userNotification:
             return .authorization
         }
     }
     
     var headerType: HTTPHeaderType {
         switch self {
-        case .around(_):
+        case .userNotification:
             return .plain
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .around:
+        case .userNotification:
             return .get
         }
     }
     
     var path: String {
         switch self {
-        case .around(_):
-            return "/v1/vote/friend"
+        case .userNotification:
+            return "/v1/notice"
         }
     }
-
+    
     var parameters: RequestParams {
         switch self {
-        case let .around(queryDTO):
-            return .requestQuery(queryDTO)
+        case .userNotification:
+            return .requestPlain
         }
     }
 }

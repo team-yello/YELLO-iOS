@@ -66,15 +66,15 @@ extension ProfileTarget: TargetType {
     var path: String {
         switch self {
         case .profileUser:
-            return "/user"
+            return "/v1/user"
         case .profileFriend(_):
-            return "/friend"
+            return "/v1/friend"
         case .profileDeleteFriend(let id):
-            return "/friend/\(id)"
+            return "/v1/friend/\(id)"
         case .deleteUser:
-            return "/user"
+            return "/v1/user"
         case .purchaseInfo:
-            return "/purchase"
+            return "/v1/purchase"
         }
     }
 
