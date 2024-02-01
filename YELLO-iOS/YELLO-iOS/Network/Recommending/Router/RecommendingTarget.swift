@@ -64,9 +64,9 @@ extension RecommendingTarget: TargetType {
         case .recommendingSchoolFriend(_):
             return "/v1/friend/recommend/school"
         case .recommendingAddFriend(let friendId):
-            return "friend/\(friendId)"
+            return "/v1/friend/\(friendId)"
         case .recommendingDetailFriend(let friendId):
-            return "user/\(friendId)"
+            return "/v1/user/\(friendId)"
         }
     }
 
