@@ -15,7 +15,8 @@ final class MyProfileHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Variables
     // MARK: Property
-    var userInfoList: [String?] = []
+    var groupType: String?
+
     // MARK: Component
     let myProfileView = MyProfileView()
     let friendCountView = FriendCountView()
@@ -24,6 +25,7 @@ final class MyProfileHeaderView: UITableViewHeaderFooterView {
     // MARK: LifeCycle
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        print(UserManager.shared.groupType)
         setUI()
     }
     
@@ -49,7 +51,7 @@ extension MyProfileHeaderView {
     
     private func setLayout() {
         self.addSubviews(myProfileView,
-                        friendCountView)
+                         friendCountView)
         
         myProfileView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12.adjustedHeight)
@@ -69,14 +71,14 @@ extension MyProfileHeaderView {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                
-                if data.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
-                    self.myProfileView.mainProfileView.profileImageView.kfSetImage(url: data.profileImageUrl)
+                updateUserInfo(data)
+                if data.profileImageURL != StringLiterals.Recommending.Title.defaultProfileImageLink {
+                    self.myProfileView.mainProfileView.profileImageView.kfSetImage(url: data.profileImageURL)
                 } else {
                     self.myProfileView.mainProfileView.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
                 }
                 self.myProfileView.mainProfileView.nameLabel.text = data.name
-                self.myProfileView.mainProfileView.instagramLabel.text = "@" + data.yelloId
+                self.myProfileView.mainProfileView.instagramLabel.text = "@" + data.yelloID
                 self.myProfileView.mainProfileView.schoolLabel.text = data.group
                 self.myProfileView.messageInfoView.infoLabel.text = String(data.yelloCount)
                 self.myProfileView.friendInfoView.infoLabel.text = String(data.friendCount)
@@ -88,10 +90,6 @@ extension MyProfileHeaderView {
                 Amplitude.instance().setUserProperties(["user_friends": data.friendCount,
                                                         "user_message_received": data.yelloCount,
                                                         "user_name": data.name])
-                self.userInfoList = [data.profileImageUrl, data.name, data.yelloId]
-                /* v2로 변경 후
-                 self.userInfoList = [data.profileImageUrl, data.name, data.yelloId, data.groupName, data.subGroupName, data.groupAdmissionYear]
-                 */
                 
                 print("내 프로필 통신 성공")
             default:
