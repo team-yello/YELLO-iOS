@@ -11,7 +11,28 @@ import SnapKit
 import Then
 
 class EditSchoolInfoView: UIView {
+    // MARK: - Variables
+    // MARK: Property
+    var groupType: UserGroupType = UserManager.shared.groupType {
+        didSet {
+            if groupType == .high || groupType == .middle {
+                convertButton.setTitle(StringLiterals.Profile.EditProfile.convertUnivButton, for: .normal)
+            } else {
+                convertButton.setTitle(StringLiterals.Profile.EditProfile.convertHighButton, for: .normal)
+                return
+            }
+        }
+    }
     
+    lazy var convertButtonText: String  = {
+        if groupType == .high || groupType == .middle {
+            return StringLiterals.Profile.EditProfile.convertUnivButton
+        } else {
+            return StringLiterals.Profile.EditProfile.convertHighButton
+        }
+    }()
+    
+    // MARK: Component
     let navigationBarView = SettingNavigationBarView()
     let iconImageView = UIImageView()
     let guideLabel = UILabel()
@@ -60,7 +81,8 @@ class EditSchoolInfoView: UIView {
         editTableView.do {
             $0.register(EditSchoolInfoTableViewCell.self,
                         forCellReuseIdentifier: EditSchoolInfoTableViewCell.reuseId)
-            $0.rowHeight = 75.adjustedHeight
+            $0.rowHeight = UITableView.automaticDimension
+            $0.estimatedRowHeight = UITableView.automaticDimension
             $0.showsVerticalScrollIndicator = false
             $0.showsHorizontalScrollIndicator = false
             $0.backgroundColor = .clear
@@ -68,7 +90,7 @@ class EditSchoolInfoView: UIView {
         }
         
         convertButton.do {
-            $0.setTitle(StringLiterals.Profile.EditProfile.convertHighButton, for: .normal)
+            $0.setTitle(convertButtonText, for: .normal)
             $0.setTitleColor(.yelloMain500, for: .normal)
             $0.setImage(ImageLiterals.Profile.icRightSmall, for: .normal)
             $0.titleLabel?.font = .uiLabelLarge

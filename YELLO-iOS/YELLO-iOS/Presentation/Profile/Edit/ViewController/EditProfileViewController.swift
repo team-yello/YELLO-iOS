@@ -7,9 +7,10 @@
 
 import UIKit
 
+import KakaoSDKUser
+
 final class EditProfileViewController: BaseViewController {
-    var userInfoList: [String?] = []
-    var isUniversity: Bool = false
+    var userGroupType: UserGroupType = UserManager.shared.groupType
     var universityTitleList = [StringLiterals.Profile.EditProfile.major,
                                StringLiterals.Profile.EditProfile.studentId]
     var highschoolTitleList = [StringLiterals.Profile.EditProfile.grade,
@@ -23,6 +24,7 @@ final class EditProfileViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        editProfileView.profileTableView.reloadData()
         self.tabBarController?.tabBar.isHidden = true
     }
     
@@ -32,9 +34,7 @@ final class EditProfileViewController: BaseViewController {
     }
     
     override func setStyle() {
-        if !userInfoList.isEmpty {
-            editProfileView.editHeaderView.profileImageView.kfSetImage(url: userInfoList[0])
-        }
+        editProfileView.editHeaderView.profileImageView.kfSetImage(url: UserManager.shared.profileImage)
     }
     
     private func setDelegate() {
@@ -51,36 +51,42 @@ extension EditProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EditProfileTableViewCell.reusableId) as? EditProfileTableViewCell else { return UITableViewCell() }
-        if userInfoList.isEmpty {
-            return cell
-        } else {
-            // v2 적용 후 변경 예정
-            switch indexPath.item {
-            case 0:
-                cell.configureCell(isEditable: false,
-                                   title: StringLiterals.Profile.EditProfile.name,
-                                   info: userInfoList[1] ?? "")
-            case 1:
-                cell.configureCell(isEditable: false,
-                                   title: StringLiterals.Profile.EditProfile.id,
-                                   info: userInfoList[2] ?? "")
-            case 2:
+        userGroupType = UserManager.shared.groupType
+        switch indexPath.item {
+        case 0:
+            cell.configureCell(isEditable: false,
+                               title: StringLiterals.Profile.EditProfile.name,
+                               info: UserManager.shared.name)
+        case 1:
+            cell.configureCell(isEditable: false,
+                               title: StringLiterals.Profile.EditProfile.id,
+                               info: UserManager.shared.yelloId)
+        case 2:
+            cell.configureCell(isEditable: true,
+                               title: StringLiterals.Profile.EditProfile.school,
+                               info: UserManager.shared.groupName)
+        case 3:
+            if userGroupType == .univ || userGroupType == .SOPT {
                 cell.configureCell(isEditable: true,
-                                   title: StringLiterals.Profile.EditProfile.school,
-                                   info: "")
-            case 3...4:
-                if isUniversity {
-                    cell.configureCell(isEditable: true,
-                                       title: universityTitleList[indexPath.item - 3],
-                                       info: "")
-                } else {
-                    cell.configureCell(isEditable: true,
-                                       title: highschoolTitleList[indexPath.item - 3],
-                                       info: "")
-                }
-            default:
-                return cell
+                                   title: universityTitleList[indexPath.item - 3],
+                                   info: UserManager.shared.subGroupName)
+            } else if userGroupType == .high || userGroupType == .middle {
+                cell.configureCell(isEditable: true,
+                                   title: highschoolTitleList[indexPath.item - 3],
+                                   info: "\(UserManager.shared.groupAdmissionYear)학년")
             }
+        case 4:
+            if userGroupType == .univ || userGroupType == .SOPT {
+                cell.configureCell(isEditable: true,
+                                   title: universityTitleList[indexPath.item - 3],
+                                   info: String(UserManager.shared.groupAdmissionYear))
+            } else if userGroupType == .high || userGroupType == .middle {
+                cell.configureCell(isEditable: true,
+                                   title: highschoolTitleList[indexPath.item - 3],
+                                   info: "\(UserManager.shared.subGroupName)반")
+            }
+        default:
+            return cell
         }
         cell.selectionStyle = .none
         return cell
@@ -88,7 +94,7 @@ extension EditProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: EditProfileHeaderView.reusableId) as? EditProfileHeaderView
-        view?.profileImageView.kfSetImage(url: userInfoList[0])
+        view?.profileImageView.kfSetImage(url: UserManager.shared.profileImage)
         return view
     }
     
@@ -100,8 +106,9 @@ extension EditProfileViewController: UITableViewDataSource {
 extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.item > 1 {
-            // 변경 가능 셀 부터
-            navigationController?.pushViewController(EditSchoolInfoViewController(), animated: true)
+            let editSchoolInfoViewController = EditSchoolInfoViewController()
+            navigationController?.pushViewController(editSchoolInfoViewController, animated: true)
+            
         }
     }
 }

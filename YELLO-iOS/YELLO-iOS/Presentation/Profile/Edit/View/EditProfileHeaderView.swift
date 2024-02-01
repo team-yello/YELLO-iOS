@@ -68,7 +68,7 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     @objc func kakaoSyncButtonDidTapped() {
-        UserApi.shared.me () {(user, error) in
+        UserApi.shared.me() {(user, error) in
             if let error = error {
                 print(error)
             } else {
@@ -98,7 +98,7 @@ extension EditProfileHeaderView {
                                             groupAdmissionYear: UserManager.shared.groupAdmissionYear)
         NetworkService.shared.profileService.editProfile(requestDTO: request) { result in
             switch result {
-            case .success(_):
+            case .success:
                 break
             default:
                 print("프로필 변경 통신 실패")

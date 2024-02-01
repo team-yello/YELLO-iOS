@@ -20,12 +20,12 @@ final class EditSchoolInfoViewController: BaseViewController {
     var groupAdmissionYear: Int = UserManager.shared.groupAdmissionYear
     var groupId: Int = UserManager.shared.groupId
     var userGroupType = UserManager.shared.groupType
-    
     var lastEditDate: String = "" {
         didSet {
             editSchoolInfoView.modificationDateLabel.text?.append(lastEditDate)
         }
     }
+    var createDate: String = ""
     
     // MARK: Component
     let editSchoolInfoView = EditSchoolInfoView()
@@ -42,7 +42,7 @@ final class EditSchoolInfoViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        checkUpdateAvailable()
         self.tabBarController?.tabBar.isHidden = true
     }
     
@@ -65,28 +65,6 @@ final class EditSchoolInfoViewController: BaseViewController {
         majorSearchViewController.majorDelegate = self
         schoolSearchViewController.schoolSearchDelegate = self
         studentIdViewController.delegate = self
-    }
-    
-    func updateData(avaliable: Bool, date: String) {
-        self.isEditAvaliable = avaliable
-        self.lastEditDate = date
-    }
-    
-    // MARK: Objc Function
-    @objc func convertButtonTapped() {
-        schoolSearchViewController.allArr.removeAll()
-        schoolSearchViewController.searchView.searchResultTableView.reloadData()
-        if userGroupType == .high || userGroupType == .middle {
-            userGroupType = .univ
-        } else {
-            userGroupType = .high
-        }
-        groupName = StringLiterals.Profile.EditProfile.defaultText
-        subgroupName =  userGroupType == .univ ? StringLiterals.Profile.EditProfile.defaultText : "1"
-        groupAdmissionYear = userGroupType == .univ ? 24 : 1
-        
-        editSchoolInfoView.groupType = userGroupType
-        editSchoolInfoView.editTableView.reloadData()
     }
     
     private func updateProfile() {
@@ -125,6 +103,47 @@ final class EditSchoolInfoViewController: BaseViewController {
                 print("network Error")
             }
         }
+    }
+    
+    private func checkUpdateAvailable() {
+        NetworkService.shared.profileService.getAccountUpdateAt { result in
+            switch result {
+            case .success(let response):
+                var valueArray: [String.SubSequence] = []
+                if let data =  response.data {
+                    valueArray = data.value.split(separator: "|")
+                }
+                if !valueArray.isEmpty {
+                    self.isEditAvaliable = valueArray[0] == "true" ? true : false
+                    self.createDate = DateConverter.convertDateString(String(valueArray[2])) ?? ""
+                    if valueArray[1] != "null" {
+                        self.lastEditDate = DateConverter.convertDateString(String(valueArray[1])) ?? ""
+                    } else {
+                        // 변경한 이력이 없는 경우 프로필 생성일을 마지막 수정일로 설정
+                        self.lastEditDate = self.createDate
+                    }
+                }
+            default:
+                print("프로필 수정 가능 여부 확인 실패")
+            }
+        }
+    }
+    
+    // MARK: Objc Function
+    @objc func convertButtonTapped() {
+        schoolSearchViewController.allArr.removeAll()
+        schoolSearchViewController.searchView.searchResultTableView.reloadData()
+        if userGroupType == .high || userGroupType == .middle {
+            userGroupType = .univ
+        } else {
+            userGroupType = .high
+        }
+        groupName = StringLiterals.Profile.EditProfile.defaultText
+        subgroupName =  userGroupType == .univ ? StringLiterals.Profile.EditProfile.defaultText : "1"
+        groupAdmissionYear = userGroupType == .univ ? 24 : 1
+        
+        editSchoolInfoView.groupType = userGroupType
+        editSchoolInfoView.editTableView.reloadData()
     }
 }
 
