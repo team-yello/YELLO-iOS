@@ -13,6 +13,8 @@ protocol RecommendingServiceProtocol {
     func recommendingSchoolFriend(queryDTO: RecommendingRequestQueryDTO, completion: @escaping (NetworkResult<BaseResponse<RecommendingFriendResponseDTO>>) -> Void)
     
     func recommendingAddFriend(friendId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
+    
+    func recommendingDetailFriend(friendId: Int, completion: @escaping (NetworkResult<BaseResponse<ProfileFriendResponseDetail>>) -> Void)
 }
 
 final class RecommendingService: APIRequestLoader<RecommendingTarget>, RecommendingServiceProtocol {
@@ -29,5 +31,10 @@ final class RecommendingService: APIRequestLoader<RecommendingTarget>, Recommend
     func recommendingAddFriend(friendId: Int, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
         fetchData(target: .recommendingAddFriend(friendId),
                   responseData: BaseResponse<String?>.self, completion: completion)
+    }
+    
+    func recommendingDetailFriend(friendId: Int, completion: @escaping (NetworkResult<BaseResponse<ProfileFriendResponseDetail>>) -> Void) {
+        fetchData(target: .recommendingDetailFriend(friendId),
+                  responseData: BaseResponse<ProfileFriendResponseDetail>.self, completion: completion)
     }
 }
