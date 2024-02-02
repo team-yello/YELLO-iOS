@@ -151,7 +151,6 @@ extension RecommendingViewController {
             case .success(let data):
                 guard let data = data.data else { return }
                 self.recommendProfileViewController.recommendFriendProfileView.configureMyProfileFriendDetailCell(data)
-                print("통신 성공")
             default:
                 print("network fail")
                 return
@@ -199,12 +198,10 @@ extension RecommendingViewController: HandleFriendCellDelegate {
         
         let nav = UINavigationController(rootViewController: recommendProfileViewController)
         
-        if #available(iOS 15.0, *) {
-            if let sheet = nav.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-                present(nav, animated: true, completion: nil)
-            }
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            present(nav, animated: true, completion: nil)
         }
     }
 }
