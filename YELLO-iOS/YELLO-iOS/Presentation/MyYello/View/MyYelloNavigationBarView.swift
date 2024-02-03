@@ -69,6 +69,7 @@ final class MyYelloNavigationBarView: BaseView {
             $0.textColor = .yelloMain500
             $0.font = .uiLabelLarge
             $0.isUserInteractionEnabled = false
+            $0.isHidden = true
         }
         
         shopButton.do {
