@@ -199,14 +199,23 @@ extension MyYelloViewController {
         myYelloView.myYelloListView.myYelloTableView.reloadData()
         MyYelloListView.myYelloModelDummy = []
         myYelloView.myYelloListView.myYello()
+        myYelloNotice()
         refresh.endRefreshing()
     }
     
     func myYelloNotice() {
-        // 공지 서버 통신 함수
-        myYelloView.myYellowNavigationBarView.noticeButtonLabel.text = "지금 옐로는 학교 대항전 진행 중!"
-        myYelloView.myYellowNavigationBarView.clickMeButtonLabel.isHidden = false
-        self.noticeURL = "https://www.naver.com"
+        NetworkService.shared.notificationService.userNotification(type: "BANNER") { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self.myYelloView.myYellowNavigationBarView.noticeButtonLabel.text = data.title
+                self.myYelloView.myYellowNavigationBarView.clickMeButtonLabel.isHidden = data.redirectUrl.isEmpty
+                self.myYelloView.myYellowNavigationBarView.noticeButton.isEnabled = !data.redirectUrl.isEmpty
+                self.noticeURL = data.redirectUrl
+            default:
+                print("서버 통신 오류")
+            }
+        }
     }
     
     @objc func myYelloNoticeButtonTapped() {
