@@ -124,6 +124,8 @@ enum ImageLiterals {
     enum Around {
         static var imgAround: UIImage { .load(named: "imgAround") }
         static var icPolygon: UIImage { .load(named: "icPolygon") }
+        static var icInformation: UIImage { .load(named: "icInformation") }
+        static var icChevronDownGray: UIImage { .load(named: "icChevronDownGray") }
     }
     
     enum MyYello {
@@ -151,8 +153,13 @@ enum ImageLiterals {
         static var icPlus: UIImage { .load(named: "icPlus") }
         static var icArrowUp: UIImage { .load(named: "icArrowUp") }
         static var icArrowLeftWhite: UIImage { .load(named: "icArrowLeftWhite") }
+        static var icRight: UIImage { .load(named: "icRight")}
+        static var icRightSmall: UIImage { .load(named: "chevron-right-small")}
         static var btnDelete: UIImage { .load(named: "btnDelete") }
         static var icProfileStar: UIImage { .load(named: "icProfileStar") }
+        static var icEdit: UIImage { .load(named: "ic_Edit") }
+        static var icRotate: UIImage { .load(named: "rotate-ccw") }
+        static var icAlert: UIImage { .load(named: "alert-circle") }
     }
     
     enum Recommending {
@@ -163,6 +170,7 @@ enum ImageLiterals {
         static var icSearchWhite: UIImage { .load(named: "icSearchWhite")}
         static var imgFriendSearch: UIImage { .load(named: "imgFriendSearch")}
         static var imgSearchNoResult: UIImage { .load(named: "imgSearchNoResult")}
+        static var btnAddFriend: UIImage { .load(named: "btnAddFriend")}
     }
     
     enum Payment {

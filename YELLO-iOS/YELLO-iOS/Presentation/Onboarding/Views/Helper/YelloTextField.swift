@@ -39,7 +39,6 @@ final class YelloTextField: UITextField {
     private var delay: Double = 0
     private var callback: ((String?) -> Void)? = nil
     
-    
     // MARK: Components
     private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
     lazy var cancelButton = UIButton()
@@ -89,6 +88,8 @@ extension YelloTextField {
             $0.addLeftPadding(20)
             $0.rightViewMode = .always
             $0.leftViewMode = .always
+            $0.autocorrectionType = .no
+            $0.spellCheckingType = .no
             $0.makeCornerRound(radius: 8)
         }
         

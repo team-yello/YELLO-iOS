@@ -14,6 +14,8 @@ import Then
 final class MyProfileHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Variables
+    // MARK: Property
+    var userInfoList: [String?] = []
     // MARK: Component
     let myProfileView = MyProfileView()
     let friendCountView = FriendCountView()
@@ -69,24 +71,27 @@ extension MyProfileHeaderView {
                 guard let data = data.data else { return }
                 
                 if data.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
-                    self.myProfileView.profileImageView.kfSetImage(url: data.profileImageUrl)
+                    self.myProfileView.mainProfileView.profileImageView.kfSetImage(url: data.profileImageUrl)
                 } else {
-                    self.myProfileView.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+                    self.myProfileView.mainProfileView.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
                 }
-                self.myProfileView.nameLabel.text = data.name
-                self.myProfileView.instagramLabel.text = "@" + data.yelloId
-                self.myProfileView.schoolLabel.text = data.group
-                self.myProfileView.messageView.countLabel.text = String(data.yelloCount)
-                self.myProfileView.friendView.countLabel.text = String(data.friendCount)
-                self.myProfileView.pointView.countLabel.text = String(data.point)
+                self.myProfileView.mainProfileView.nameLabel.text = data.name
+                self.myProfileView.mainProfileView.instagramLabel.text = "@" + data.yelloId
+                self.myProfileView.mainProfileView.schoolLabel.text = data.group
+                self.myProfileView.messageInfoView.infoLabel.text = String(data.yelloCount)
+                self.myProfileView.friendInfoView.infoLabel.text = String(data.friendCount)
+                self.myProfileView.pointInfoView.infoLabel.text = String(data.point)
                 
                 self.friendCountView.friendCountLabel.text = String(data.friendCount) + "명"
                 self.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
                 
-                
                 Amplitude.instance().setUserProperties(["user_friends": data.friendCount,
                                                         "user_message_received": data.yelloCount,
                                                         "user_name": data.name])
+                self.userInfoList = [data.profileImageUrl, data.name, data.yelloId]
+                /* v2로 변경 후
+                 self.userInfoList = [data.profileImageUrl, data.name, data.yelloId, data.groupName, data.subGroupName, data.groupAdmissionYear]
+                 */
                 
                 print("내 프로필 통신 성공")
             default:
