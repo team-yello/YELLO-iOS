@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum NotificationTarget {
-    case userNotification
+    case userNotification(type: String)
 }
 
 extension NotificationTarget: TargetType {
@@ -37,8 +37,8 @@ extension NotificationTarget: TargetType {
     
     var path: String {
         switch self {
-        case .userNotification:
-            return "/v1/notice"
+        case .userNotification(let type):
+            return "/v1/notice/\(type)"
         }
     }
     

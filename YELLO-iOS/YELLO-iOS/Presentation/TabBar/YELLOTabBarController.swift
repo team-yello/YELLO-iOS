@@ -234,7 +234,7 @@ extension YELLOTabBarController {
     }
     
     func getUserNotification() {
-        NetworkService.shared.notificationService.userNotification { result in
+        NetworkService.shared.notificationService.userNotification(type: "NOTICE") { result in
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
