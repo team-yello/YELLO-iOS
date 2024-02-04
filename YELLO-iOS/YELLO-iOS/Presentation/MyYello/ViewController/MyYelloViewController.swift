@@ -204,7 +204,7 @@ extension MyYelloViewController {
     }
     
     func myYelloNotice() {
-        NetworkService.shared.notificationService.userNotification(type: "BANNER") { result in
+        NetworkService.shared.notificationService.userNotification(typeName: "BANNER") { result in
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
