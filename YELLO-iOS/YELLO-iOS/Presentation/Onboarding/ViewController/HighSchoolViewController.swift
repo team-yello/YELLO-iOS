@@ -57,7 +57,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
     private func addTarget() {
         baseView.schoolSearchTextField.delegate = self
         baseView.classSearchTextField.delegate = self
-        schoolSearchViewController.delegate = self
+        schoolSearchViewController.schoolSearchDelegate = self
         studentIdViewController.delegate = self
     }
     
@@ -115,8 +115,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
     /// 학년 추출
     func extractNumbers(from text: String) -> Int {
         let numberCharacterSet = CharacterSet.decimalDigits
-        let numbers = Int(text.components(separatedBy: numberCharacterSet.inverted).joined()) ??
-        0
+        let numbers = Int(text.components(separatedBy: numberCharacterSet.inverted).joined()) ?? 0
         return numbers
     }
     
@@ -143,7 +142,7 @@ extension HighSchoolViewController: UITextFieldDelegate {
         case baseView.schoolSearchTextField:
             let nextViewController = FindSchoolViewController()
             nextViewController.isHighSchool = true
-            nextViewController.delegate = self
+            nextViewController.schoolSearchDelegate = self
             self.present(nextViewController, animated: true)
             baseView.classSearchTextField.text = ""
         case baseView.classSearchTextField:
@@ -169,7 +168,7 @@ extension HighSchoolViewController: SearchResultTableViewSelectDelegate {
 }
 
 extension HighSchoolViewController: SelectStudentIdDelegate {
-    func didSelectStudentId(_ result: Int) {
+    func didSelectStudentId(_ result: Int, type: SelectType ) {
         baseView.classSearchTextField.text = "\(result)반"
         getSchoolClass(keyword: String(result))
         checkButtonEnable()

@@ -64,6 +64,7 @@ final class MainProfileView: UIView {
         
         profileStarGradientView.do {
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"), startPointY: 0.5, endPointY: 0.5)
+            
             $0.layer.cornerCurve = .continuous
             $0.isHidden = true
         }
@@ -164,15 +165,18 @@ final class MainProfileView: UIView {
             $0.height.equalTo(16.adjustedHeight)
             $0.width.equalTo(243.adjustedWidth)
         }
+        
+        profileStarImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(10.adjustedHeight)
+            $0.leading.equalToSuperview().inset(18.adjustedWidth)
+        }
     }
     
     func updateProfileView() {
         if isYelloPlus {
-            self.roundCorners(cornerRadius: 12.adjustedHeight, maskedCorners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
             profileStarGradientView.isHidden = false
             profileStarImageView.isHidden = false
         } else {
-            self.roundCorners(cornerRadius: 12.adjustedHeight, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner])
             profileStarGradientView.isHidden = true
             profileStarImageView.isHidden = true
         }

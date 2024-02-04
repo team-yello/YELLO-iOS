@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import KakaoSDKAuth
 import KakaoSDKUser
 
 final class EditProfileHeaderView: UITableViewHeaderFooterView {
@@ -18,6 +19,8 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
     let profileImageView = UIImageView()
     let kakaoSyncButton = UIButton()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setUI()
@@ -26,6 +29,8 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -33,7 +38,12 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
     
     private func setStyle() {
         profileImageView.do {
-            $0.image = ImageLiterals.Profile.imgDefaultProfile
+            print("🥰🥰🥰🥰\(UserManager.shared.profileImage)")
+            if UserManager.shared.profileImage == StringLiterals.Profile.EditProfile.KakaoDefaultProfileURL {
+                $0.image = ImageLiterals.Profile.imgDefaultProfile
+            } else {
+                $0.kfSetImage(url: UserManager.shared.profileImage)
+            }
             $0.makeCornerRound(radius: 36.adjusted)
             $0.contentMode = .scaleAspectFill
         }
@@ -65,11 +75,31 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
             $0.top.equalTo(profileImageView.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
         }
-        
     }
     
+    // MARK: Custom Function
+    private func updateProfile() {
+        let request = EditProfileRequestDTO(name: UserManager.shared.name,
+                                            yelloID: UserManager.shared.yelloId,
+                                            gender: UserManager.shared.gender,
+                                            email: UserManager.shared.email,
+                                            profileImageURL: UserManager.shared.profileImage,
+                                            groupID: UserManager.shared.groupId,
+                                            groupAdmissionYear: UserManager.shared.groupAdmissionYear)
+        NetworkService.shared.profileService.editProfile(requestDTO: request) { result in
+            switch result {
+            case .success:
+                break
+            default:
+                print("프로필 변경 통신 실패")
+            }
+        }
+    }
+    
+    // MARK: Objc Function
     @objc func kakaoSyncButtonDidTapped() {
-        UserApi.shared.me() {(user, error) in
+        AuthApi.shared.refreshToken(completion: {_, _ in })
+        UserApi.shared.me () {(user, error) in
             if let error = error {
                 print(error)
             } else {
@@ -77,7 +107,12 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
                     if let kakaoAccount = user.kakaoAccount {
                         if let profileImage = kakaoAccount.profile?.profileImageUrl {
                             UserManager.shared.profileImage = profileImage.absoluteString
-                            self.profileImageView.kfSetImage(url: profileImage.absoluteString)
+                            if profileImage.absoluteString == StringLiterals.Profile.EditProfile.KakaoDefaultProfileURL {
+                                self.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+                            } else {
+                                self.profileImageView.kfSetImage(url: profileImage.absoluteString)
+                            }
+                            self.updateProfile()
                         }
                     }
                 }

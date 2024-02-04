@@ -12,9 +12,13 @@ import SnapKit
 
 class InfoView: UIView {
     
+    // MARK: - Variables
+    // MARK: Component
     let infoLabel = UILabel()
     let descriptionLabel = UILabel()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -23,6 +27,8 @@ class InfoView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Layout Helpers
     private func setUI(){
         setStyle()
         setLayout()

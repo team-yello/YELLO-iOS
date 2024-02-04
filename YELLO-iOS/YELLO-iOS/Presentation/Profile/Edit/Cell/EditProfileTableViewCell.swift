@@ -23,6 +23,8 @@ class EditProfileTableViewCell: UITableViewCell {
     let editButton = UIButton()
     let separatorView = UIView()
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -31,6 +33,8 @@ class EditProfileTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -65,7 +69,7 @@ class EditProfileTableViewCell: UITableViewCell {
         }
         
         infoLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(3.adjustedHeight)
             $0.leading.equalTo(titleLabel.snp.leading)
         }
         
@@ -76,11 +80,13 @@ class EditProfileTableViewCell: UITableViewCell {
         
         separatorView.snp.makeConstraints {
             $0.height.equalTo(1)
-            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
+            $0.top.equalTo(infoLabel.snp.bottom).offset(7.adjustedHeight)
             $0.bottom.equalToSuperview().inset(12.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
     }
     
+    // MARK: Custom Function
     func configureCell(isEditable: Bool, title: String, info: String) {
         titleLabel.text = title
         infoLabel.text = info

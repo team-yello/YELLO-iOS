@@ -15,6 +15,8 @@ enum ProfileTarget {
     case profileDeleteFriend(id: Int)
     case deleteUser
     case purchaseInfo
+    case accountUpdatedAt
+    case editProfile(_ request: EditProfileRequestDTO)
 }
 
 extension ProfileTarget: TargetType {
@@ -29,6 +31,10 @@ extension ProfileTarget: TargetType {
         case .deleteUser:
             return .authorization
         case .purchaseInfo:
+            return .authorization
+        case .accountUpdatedAt:
+            return .authorization
+        case .editProfile:
             return .authorization
         }
     }
@@ -45,6 +51,10 @@ extension ProfileTarget: TargetType {
             return .plain
         case .purchaseInfo:
             return .plain
+        case .accountUpdatedAt:
+            return .plain
+        case .editProfile:
+            return .plain
         }
     }
     
@@ -60,14 +70,18 @@ extension ProfileTarget: TargetType {
             return .delete
         case .purchaseInfo:
             return .get
+        case .accountUpdatedAt:
+            return .get
+        case .editProfile:
+            return .post
         }
     }
     
     var path: String {
         switch self {
         case .profileUser:
-            return "/v1/user"
-        case .profileFriend(_):
+            return "/v2/user"
+        case .profileFriend:
             return "/v1/friend"
         case .profileDeleteFriend(let id):
             return "/v1/friend/\(id)"
@@ -75,6 +89,10 @@ extension ProfileTarget: TargetType {
             return "/v1/user"
         case .purchaseInfo:
             return "/v1/purchase"
+        case .accountUpdatedAt:
+            return "/v1/user/data/account-updated-at"
+        case .editProfile:
+            return "/v1/user"
         }
     }
 
@@ -90,6 +108,10 @@ extension ProfileTarget: TargetType {
             return .requestPlain
         case .purchaseInfo:
             return .requestPlain
+        case .accountUpdatedAt:
+            return .requestPlain
+        case let .editProfile(request):
+            return .requestWithBody(request)
         }
     }
 }

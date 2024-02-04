@@ -22,6 +22,21 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
     static let reuseId = "EditSchoolInfoTableViewCell"
     // MARK: Property
     var iconType: IconType = .search
+    var isError = false {
+        didSet {
+            if isError {
+                editBackgroundView.backgroundColor = UIColor(hex: "#F04646").withAlphaComponent(0.3)
+                editBackgroundView.makeBorder(width: 1, color: .red)
+                errorLabel.isHidden = false
+                separatorView.backgroundColor = .white
+            } else {
+                editBackgroundView.makeBorder(width: 0, color: .clear)
+                editBackgroundView.backgroundColor = .grayscales900
+                separatorView.backgroundColor = .grayscales700
+                errorLabel.isHidden = true
+            }
+        }
+    }
     
     // MARK: Component
     let editBackgroundView = UIView()
@@ -29,16 +44,22 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
     let infoLabel = UILabel()
     let iconImageView = UIImageView()
     let separatorView = UIView()
-   
+    
+    let errorLabel = UILabel()
+
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
+        errorLabel.isHidden = !isError
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -50,7 +71,7 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
         }
         
         editBackgroundView.do {
-            $0.backgroundColor = .grayscales900
+            $0.backgroundColor = isError ? UIColor(hex: "#F04646").withAlphaComponent(0.3) : .grayscales900
             $0.makeCornerRound(radius: 10)
         }
         
@@ -68,6 +89,12 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
             $0.backgroundColor = .grayscales700
         }
         
+        errorLabel.do {
+            $0.text = StringLiterals.Profile.EditProfile.majorErrorMessage
+            $0.font = .uiLabelLarge
+            $0.textColor = .semanticStatusRed500
+        }
+        
         switch iconType {
         case .search:
             iconImageView.image = ImageLiterals.OnBoarding.icSearch.withTintColor(.yelloMain500)
@@ -80,9 +107,10 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
         contentView.addSubview(editBackgroundView)
         
         editBackgroundView.addSubviews(titleLabel,
-                                infoLabel,
-                                iconImageView,
-                                separatorView)
+                                       infoLabel,
+                                       iconImageView,
+                                       separatorView,
+                                       errorLabel)
         
         editBackgroundView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -106,10 +134,24 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
         }
         
         separatorView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(12.adjustedHeight)
+            $0.top.equalTo(infoLabel.snp.bottom).offset(7.adjustedHeight)
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.height.equalTo(1)
         }
+        
+        errorLabel.snp.makeConstraints {
+            $0.top.equalTo(separatorView.snp.bottom).offset(4.adjustedHeight)
+            $0.leading.equalTo(separatorView.snp.leading)
+        }
+    }
+    
+    // MARK: Custom Function
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        editBackgroundView.makeBorder(width: 0, color: .clear)
+        editBackgroundView.backgroundColor = .grayscales900
+        separatorView.backgroundColor = .grayscales700
+        errorLabel.isHidden = true
     }
     
     func configureCell(iconType: IconType, titleText: String, InfoText: String) {

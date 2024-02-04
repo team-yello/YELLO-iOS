@@ -18,6 +18,8 @@ class EditProfileView: UIView {
     let editHeaderView = EditProfileHeaderView()
     let profileTableView = UITableView(frame: .zero, style: .grouped)
     
+    // MARK: - Function
+    // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -27,6 +29,7 @@ class EditProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Layout Helpers
     private func setUI() {
         setStyle()
         setLayout()
@@ -46,6 +49,7 @@ class EditProfileView: UIView {
             $0.register(EditProfileTableViewCell.self, forCellReuseIdentifier: EditProfileTableViewCell.reusableId)
             $0.register(EditProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: EditProfileHeaderView.reusableId)
             $0.rowHeight = 75.adjustedHeight
+            $0.separatorStyle = .none
         }
     }
     

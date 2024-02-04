@@ -24,7 +24,7 @@ class SearchBaseViewController: BaseViewController {
     
     // MARK: Component
     let searchView = SearchView()
-    weak var delegate: SearchResultTableViewSelectDelegate?
+    weak var schoolSearchDelegate: SearchResultTableViewSelectDelegate?
     weak var majorSearchDelegate: MajorSearchResultSelectDelegate?
     
     // MARK: - Function

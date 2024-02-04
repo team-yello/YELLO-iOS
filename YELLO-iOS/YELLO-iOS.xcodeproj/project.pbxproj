@@ -122,6 +122,9 @@
 		36B2349E2A61A6A8007933E4 /* KakaoConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */; };
 		36B234A02A61A6BC007933E4 /* KakaoConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */; };
 		36B234A22A61B447007933E4 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234A12A61B447007933E4 /* UINavigationController+.swift */; };
+		36B7CAAF2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7CAAE2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift */; };
+		36B7CAB32B6BE721003C57FF /* EditProfileRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7CAB22B6BE718003C57FF /* EditProfileRequestDTO.swift */; };
+		36B7CAB52B6BECF2003C57FF /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7CAB42B6BECF2003C57FF /* DateConverter.swift */; };
 		36BE79BE2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */; };
 		36BE79C02AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */; };
 		36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */; };
@@ -469,6 +472,9 @@
 		36B2349D2A61A6A8007933E4 /* KakaoConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectViewController.swift; sourceTree = "<group>"; };
 		36B2349F2A61A6BC007933E4 /* KakaoConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConnectView.swift; sourceTree = "<group>"; };
 		36B234A12A61B447007933E4 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		36B7CAAE2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpadateDateResponseDTO.swift; sourceTree = "<group>"; };
+		36B7CAB22B6BE718003C57FF /* EditProfileRequestDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileRequestDTO.swift; sourceTree = "<group>"; };
+		36B7CAB42B6BECF2003C57FF /* DateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		36BE79BD2AC081A000F4AB83 /* HighSchoolClassRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolClassRequestQueryDTO.swift; sourceTree = "<group>"; };
 		36BE79BF2AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolClassResponseDTO.swift; sourceTree = "<group>"; };
 		36BF1DE32A7A30CF00C58E74 /* SchoolSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelectView.swift; sourceTree = "<group>"; };
@@ -1011,6 +1017,7 @@
 				C306E7422A6520830031514C /* ProfileUserResponseDTO.swift */,
 				C306E7442A656AC40031514C /* ProfileFriendResponseDTO.swift */,
 				C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */,
+				36B7CAAE2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1018,6 +1025,7 @@
 		2A3705C62A62E248001AAC93 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				36B7CAB22B6BE718003C57FF /* EditProfileRequestDTO.swift */,
 				C306E7462A656D170031514C /* ProfileFriendRequestQueryDTO.swift */,
 			);
 			path = Request;
@@ -1178,9 +1186,10 @@
 		2AA0DBAE2A546DBC002B1370 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				36B7CAB72B6BF92F003C57FF /* Model */,
+				36B7CAB62B6BED04003C57FF /* Helper */,
 				36CFF9A32B67F53F008DDB9D /* Edit */,
 				C3D2664A2A5D1F2D0041C7C7 /* Main */,
-				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
 				C3D2664D2A5D1F4F0041C7C7 /* Setting */,
 			);
 			path = Profile;
@@ -1274,6 +1283,22 @@
 				36E4278C2A5C92EC0050B34E /* FindMajorViewController.swift */,
 			);
 			path = Modal;
+			sourceTree = "<group>";
+		};
+		36B7CAB62B6BED04003C57FF /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				36B7CAB42B6BECF2003C57FF /* DateConverter.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		36B7CAB72B6BF92F003C57FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		36C209EC2A8B69D9001BF12C /* Tutorial */ = {
@@ -2340,6 +2365,7 @@
 				C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */,
 				36E427702A5BCE860050B34E /* YelloButton.swift in Sources */,
 				C3B472102A65E0A200770530 /* MyYelloDetailKeywordResponseDTO.swift in Sources */,
+				36B7CAB32B6BE721003C57FF /* EditProfileRequestDTO.swift in Sources */,
 				367113682A7D21330037E0D2 /* SchoolSelectViewController.swift in Sources */,
 				C31315AD2A7B78EE00FB8B43 /* FriendSearchTableViewCell.swift in Sources */,
 				366CE5F02A819DA800BE5F66 /* PushSettingViewController.swift in Sources */,
@@ -2473,6 +2499,7 @@
 				C3291A082A920D84007F2CF5 /* AppStoreCheck.swift in Sources */,
 				36D98F3D2B617DD7003B2B11 /* EditProfileTableViewCell.swift in Sources */,
 				3662A0F62A654B8D00F482EF /* JoinedFriendsRequestDTO.swift in Sources */,
+				36B7CAB52B6BECF2003C57FF /* DateConverter.swift in Sources */,
 				C3C57BC12A56FCA600B84CAA /* AroundView.swift in Sources */,
 				C3C57BC52A5715E600B84CAA /* KakaoFriendViewController.swift in Sources */,
 				36E2181E2A5D17D000FB3C9C /* SearchBaseViewController.swift in Sources */,
@@ -2491,6 +2518,7 @@
 				C306E7432A6520830031514C /* ProfileUserResponseDTO.swift in Sources */,
 				C3BF63022AF7DE09000C7900 /* InstagramButton.swift in Sources */,
 				C363D4722A780F0D00FD583D /* AroundEmptyView.swift in Sources */,
+				36B7CAAF2B6BD822003C57FF /* ProfileUpadateDateResponseDTO.swift in Sources */,
 				C3C57BC32A5715C600B84CAA /* RecommendingSegmentedControl.swift in Sources */,
 				2A8D66D22A97C5AE009DEC3F /* NetworkCheck.swift in Sources */,
 				3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */,

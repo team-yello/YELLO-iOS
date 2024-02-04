@@ -19,3 +19,4 @@ opt_in_rules:
 
 excluded:
 - YELLO-iOS/Application
+- YELLO-iOS/Global

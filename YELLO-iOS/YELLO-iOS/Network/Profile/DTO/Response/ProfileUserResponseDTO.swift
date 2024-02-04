@@ -8,12 +8,23 @@
 import Foundation
 
 struct ProfileUserResponseDTO: Codable {
-    let userId: Int
-    let name: String
-    let profileImageUrl: String?
-    let group: String
-    let yelloId: String
-    let yelloCount: Int
-    let friendCount: Int
-    let point: Int
+    let userID: Int
+    let name, yelloID, gender, email: String
+    let profileImageURL, social, uuid, deviceToken: String
+    let groupID: Int
+    let group, groupType, groupName, subGroupName: String
+    let groupAdmissionYear, recommendCount, ticketCount, point: Int
+    let subscribe: String
+    let yelloCount, friendCount: Int
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "userId"
+        case name
+        case yelloID = "yelloId"
+        case gender, email
+        case profileImageURL = "profileImageUrl"
+        case social, uuid, deviceToken
+        case groupID = "groupId"
+        case group, groupType, groupName, subGroupName, groupAdmissionYear, recommendCount, ticketCount, point, subscribe, yelloCount, friendCount
+    }
 }

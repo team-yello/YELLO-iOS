@@ -113,7 +113,7 @@ extension UniversityViewController: UITextFieldDelegate {
         switch textField {
         case baseView.schoolSearchTextField:
             let nextViewController = FindSchoolViewController()
-            nextViewController.delegate = self
+            nextViewController.schoolSearchDelegate = self
             self.present(nextViewController, animated: true)
         case baseView.majorSearchTextField:
             let nextViewController = majorSearchViewController
@@ -155,7 +155,7 @@ extension UniversityViewController: MajorSearchResultSelectDelegate {
 
 // MARK: SelectStudentIdDelegate
 extension UniversityViewController: SelectStudentIdDelegate {
-    func didSelectStudentId(_ result: Int) {
+    func didSelectStudentId(_ result: Int, type: SelectType) {
         baseView.studentIdTextField.setButtonState(state: .done)
         baseView.studentIdTextField.text = "\(result)학번"
         groupAdmissionYear = result
@@ -175,7 +175,7 @@ extension UniversityViewController: UITableViewDelegate {
         // 학번 문자열에서 숫자 부분 추출
         let studentId = cellTitle.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         guard let studentId = Int(studentId) else { return }
-        delegate?.didSelectStudentId(studentId)
+        delegate?.didSelectStudentId(studentId, type: .studentId)
         self.dismiss(animated: true)
     }
 }

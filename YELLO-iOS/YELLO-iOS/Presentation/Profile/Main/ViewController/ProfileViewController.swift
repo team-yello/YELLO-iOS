@@ -134,7 +134,6 @@ extension ProfileViewController: HandleShopButton {
 
 extension ProfileViewController: HandleEditButton {
     func editButtonTapped() {
-        editProfileViewController.userInfoList = profileView.myProfileHeaderView.userInfoList
         navigationController?.pushViewController(editProfileViewController, animated: true)
     }
 }
