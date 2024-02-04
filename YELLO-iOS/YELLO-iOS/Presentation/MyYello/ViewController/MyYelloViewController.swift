@@ -17,6 +17,7 @@ final class MyYelloViewController: BaseViewController {
     // MARK: Component
     let myYelloView = MyYelloView()
     let paymentPlusViewController = PaymentPlusViewController()
+    var noticeURL: String?
 
     var countFetchingMore: Bool = false {
         didSet {
@@ -46,14 +47,7 @@ final class MyYelloViewController: BaseViewController {
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.myYelloView.myYelloListView.myYelloTableView.reloadData()
         self.myYelloCount()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        self.myYelloNotice()
     }
     
     // MARK: Layout Helpers
@@ -89,6 +83,7 @@ final class MyYelloViewController: BaseViewController {
     private func setAddTarget() {
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshCount), for: .valueChanged)
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
+        myYelloView.myYellowNavigationBarView.noticeButton.addTarget(self, action: #selector(myYelloNoticeButtonTapped), for: .touchUpInside)
 
     }
     
@@ -204,6 +199,28 @@ extension MyYelloViewController {
         myYelloView.myYelloListView.myYelloTableView.reloadData()
         MyYelloListView.myYelloModelDummy = []
         myYelloView.myYelloListView.myYello()
+        myYelloNotice()
         refresh.endRefreshing()
+    }
+    
+    func myYelloNotice() {
+        NetworkService.shared.notificationService.userNotification(typeName: "BANNER") { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self.myYelloView.myYellowNavigationBarView.noticeButtonLabel.text = data.title
+                self.myYelloView.myYellowNavigationBarView.clickMeButtonLabel.isHidden = data.redirectUrl.isEmpty
+                self.myYelloView.myYellowNavigationBarView.noticeButton.isEnabled = !data.redirectUrl.isEmpty
+                self.noticeURL = data.redirectUrl
+            default:
+                print("서버 통신 오류")
+            }
+        }
+    }
+    
+    @objc func myYelloNoticeButtonTapped() {
+        let url = URL(string: noticeURL ?? "") ?? URL(fileURLWithPath: "")
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        
     }
 }

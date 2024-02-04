@@ -9,13 +9,13 @@ import Foundation
 
 protocol NotificationServiceProtocol {
     
-    func userNotification(completion: @escaping (NetworkResult<BaseResponse<NotificationResponseDTO>>) -> Void)
+    func userNotification(typeName: String, completion: @escaping (NetworkResult<BaseResponse<NotificationResponseDTO>>) -> Void)
     
 }
 
 final class NotificationService: APIRequestLoader<NotificationTarget>, NotificationServiceProtocol {
     
-    func userNotification(completion: @escaping (NetworkResult<BaseResponse<NotificationResponseDTO>>) -> Void) {
-        fetchData(target: .userNotification, responseData: BaseResponse<NotificationResponseDTO>.self, completion: completion)
+    func userNotification(typeName: String, completion: @escaping (NetworkResult<BaseResponse<NotificationResponseDTO>>) -> Void) {
+        fetchData(target: .userNotification(type: typeName), responseData: BaseResponse<NotificationResponseDTO>.self, completion: completion)
     }
 }
