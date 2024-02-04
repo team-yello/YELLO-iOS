@@ -37,11 +37,6 @@ final class EditProfileViewController: BaseViewController {
         setDelegate()
     }
     
-    // MARK: Layout Helpers
-    override func setStyle() {
-        editProfileView.editHeaderView.profileImageView.kfSetImage(url: UserManager.shared.profileImage)
-    }
-    
     // MARK: Custom Function
     private func setDelegate() {
         editProfileView.profileTableView.dataSource = self
@@ -102,7 +97,6 @@ extension EditProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: EditProfileHeaderView.reusableId) as? EditProfileHeaderView
-        view?.profileImageView.kfSetImage(url: UserManager.shared.profileImage)
         return view
     }
     

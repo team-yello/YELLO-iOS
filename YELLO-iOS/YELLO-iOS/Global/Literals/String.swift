@@ -331,6 +331,7 @@ enum StringLiterals {
         }
         
         enum EditProfile {
+            static let KakaoDefaultProfileURL = "https://k.kakaocdn.net/dn/1G9kp/btsAot8liOn/8CWudi3uy07rvFNUkk3ER0/img_640x640.jpg"
             static let profileInfoTitle = "프로필 정보"
             static let kakaoSync = "카카오톡 동기화"
             static let name = "이름"

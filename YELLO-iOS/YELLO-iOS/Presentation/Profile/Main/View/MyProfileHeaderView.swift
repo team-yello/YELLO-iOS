@@ -72,7 +72,9 @@ extension MyProfileHeaderView {
             case .success(let data):
                 guard let data = data.data else { return }
                 updateUserInfo(data)
-                if data.profileImageURL != StringLiterals.Recommending.Title.defaultProfileImageLink {
+                print(data.profileImageURL)
+                if data.profileImageURL != StringLiterals.Recommending.Title.defaultProfileImageLink &&
+                    data.profileImageURL != StringLiterals.Profile.EditProfile.KakaoDefaultProfileURL {
                     self.myProfileView.mainProfileView.profileImageView.kfSetImage(url: data.profileImageURL)
                 } else {
                     self.myProfileView.mainProfileView.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile

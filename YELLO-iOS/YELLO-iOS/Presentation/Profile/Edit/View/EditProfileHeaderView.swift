@@ -38,7 +38,12 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
     
     private func setStyle() {
         profileImageView.do {
-            $0.image = ImageLiterals.Profile.imgDefaultProfile
+            print("🥰🥰🥰🥰\(UserManager.shared.profileImage)")
+            if UserManager.shared.profileImage == StringLiterals.Profile.EditProfile.KakaoDefaultProfileURL {
+                $0.image = ImageLiterals.Profile.imgDefaultProfile
+            } else {
+                $0.kfSetImage(url: UserManager.shared.profileImage)
+            }
             $0.makeCornerRound(radius: 36.adjusted)
             $0.contentMode = .scaleAspectFill
         }
@@ -91,7 +96,6 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
         }
     }
     
-    
     // MARK: Objc Function
     @objc func kakaoSyncButtonDidTapped() {
         AuthApi.shared.refreshToken(completion: {_, _ in })
@@ -103,7 +107,11 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
                     if let kakaoAccount = user.kakaoAccount {
                         if let profileImage = kakaoAccount.profile?.profileImageUrl {
                             UserManager.shared.profileImage = profileImage.absoluteString
-                            self.profileImageView.kfSetImage(url: profileImage.absoluteString)
+                            if profileImage.absoluteString == StringLiterals.Profile.EditProfile.KakaoDefaultProfileURL {
+                                self.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+                            } else {
+                                self.profileImageView.kfSetImage(url: profileImage.absoluteString)
+                            }
                             self.updateProfile()
                         }
                     }
