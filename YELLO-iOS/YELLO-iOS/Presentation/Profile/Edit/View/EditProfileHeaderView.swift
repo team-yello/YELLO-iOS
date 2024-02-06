@@ -38,7 +38,6 @@ final class EditProfileHeaderView: UITableViewHeaderFooterView {
     
     private func setStyle() {
         profileImageView.do {
-            print("🥰🥰🥰🥰\(UserManager.shared.profileImage)")
             if UserManager.shared.profileImage == StringLiterals.Profile.EditProfile.KakaoDefaultProfileURL {
                 $0.image = ImageLiterals.Profile.imgDefaultProfile
             } else {
