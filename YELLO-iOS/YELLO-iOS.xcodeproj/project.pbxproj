@@ -1139,8 +1139,8 @@
 		2A81728A2B71D9E3004C0B9C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2A8172882B71D9DE004C0B9C /* EventPointView.swift */,
 				2A8172802B71CCD5004C0B9C /* LunchEventView.swift */,
+				2A8172882B71D9DE004C0B9C /* EventPointView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

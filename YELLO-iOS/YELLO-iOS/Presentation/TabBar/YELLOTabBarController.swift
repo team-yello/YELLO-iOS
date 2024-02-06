@@ -303,10 +303,14 @@ extension YELLOTabBarController {
     }
     
     func lunchEvent() {
-        let viewController = LunchEventViewController()
-        UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.3, options: .transitionCrossDissolve, animations: {
-            self.navigationController?.pushViewController(viewController, animated: false)
-        })
+//        UserDefaults.standard.set(true, forKey: "lunchEventAvailable")
+        // 점심시간이고, 이벤트에 참여하지 않은 경우만 push
+        if UserDefaults.standard.bool(forKey: "lunchEventAvailable") {
+            let viewController = LunchEventViewController()
+            UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.navigationController?.pushViewController(viewController, animated: false)
+            })
+        }
     }
     
     // MARK: -  Notification

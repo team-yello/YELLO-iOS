@@ -31,13 +31,12 @@ final class LunchEventViewController: BaseViewController {
 
 extension LunchEventViewController {
     private func getLunchEvent() {
-        
     }
     
     private func setAnimationView() {
         animationView = .init(name: "eventbox_default")
         let animationWidth: CGFloat = 400.adjustedWidth
-        let animationHeight: CGFloat = 450.adjustedHeight
+        let animationHeight: CGFloat = 534.adjustedHeight
         animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
@@ -56,19 +55,39 @@ extension LunchEventViewController {
     
     @objc
     private func animationViewTapped() {
+        self.originView.touchLabel.isHidden = true
+        
         animationView.removeFromSuperview()
         animationView = .init(name: "eventbox_open")
         let animationWidth: CGFloat = 400.adjustedWidth
-        let animationHeight: CGFloat = 450.adjustedHeight
+        let animationHeight: CGFloat = 534.adjustedHeight
         animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
         animationView.contentMode = .scaleAspectFill
-        animationView.loopMode = .loop
+        animationView.loopMode = .playOnce
         animationView.animationSpeed = 1.0
         let centerX = view.bounds.midX
         let centerY = view.bounds.midY
         animationView.center = CGPoint(x: centerX, y: centerY)
-        animationView.play()
+        animationView.play(completion: { _ in
+            self.showEventPointView()
+        })
         view.addSubview(animationView)
+    }
+    
+    private func showEventPointView() {
         animationView.removeFromSuperview()
+        UserDefaults.standard.set(false, forKey: "lunchEventAvailable")
+        
+        self.eventPointView.frame = self.view.bounds
+        self.eventPointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(self.eventPointView)
+        
+        self.eventPointView.checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    private func checkButtonTapped() {
+        self.eventPointView.removeFromSuperview()
+        self.navigationController?.popViewController(animated: false)
     }
 }

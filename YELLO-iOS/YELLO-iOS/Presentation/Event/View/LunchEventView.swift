@@ -12,12 +12,12 @@ import Then
 
 final class LunchEventView: BaseView {
         
-    let evnetTimeLabel = UILabel()
-    let presentLabel = UILabel()
-    let timeDescriptionLabel = UILabel()
+    private let evnetTimeLabel = UILabel()
+    private let presentLabel = UILabel()
+    private let timeDescriptionLabel = UILabel()
     let touchLabel = UILabel()
 
-    let itemImage = UIImageView()
+    private let itemImage = UIImageView()
     
     override func setStyle() {
         self.backgroundColor = .black
@@ -91,8 +91,8 @@ final class LunchEventView: BaseView {
         }
         
         itemImage.snp.makeConstraints {
-            $0.width.equalTo(257.adjustedWidth)
-            $0.height.equalTo(150.adjustedHeight)
+            $0.width.equalTo(257.adjusted)
+            $0.height.equalTo(150.adjusted)
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(40.adjustedHeight)
         }

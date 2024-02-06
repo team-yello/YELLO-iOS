@@ -12,22 +12,22 @@ import Then
 
 final class EventPointView: BaseView {
     
+    private let contentView = UIView()
     let pointLabel = UILabel()
-    let nextTimeLabel = UILabel()
-    let pointImage = UIImageView()
+    private let nextTimeLabel = UILabel()
+    private let pointImage = UIImageView()
     let checkButton = UIButton()
     
     override func setStyle() {
-        self.backgroundColor = .grayscales900
-        self.makeCornerRound(radius: 10.adjustedHeight)
+        self.backgroundColor = .black.withAlphaComponent(0.5)
+
+        contentView.backgroundColor = .grayscales900
+        contentView.makeCornerRound(radius: 10.adjustedHeight)
         
         pointLabel.do {
             $0.text = StringLiterals.Event.point
             $0.textColor = .white
             $0.font = .uiSubtitle01
-            $0.backgroundColor = .yelloMain500
-            $0.textAlignment = .center
-            $0.transform = CGAffineTransform(rotationAngle: CGFloat.pi / -60)
         }
         
         nextTimeLabel.do {
@@ -55,32 +55,39 @@ final class EventPointView: BaseView {
             .statusBarManager?
             .statusBarFrame.height ?? 20
         
-        self.addSubviews(pointLabel,
-                         nextTimeLabel,
-                         pointImage,
-                         checkButton)
+        self.addSubview(contentView)
+        contentView.addSubviews(pointLabel,
+                                nextTimeLabel,
+                                pointImage,
+                                checkButton)
+        
+        contentView.snp.makeConstraints {
+            $0.width.equalTo(300.adjusted)
+            $0.height.equalTo(374.adjusted)
+            $0.center.equalToSuperview()
+        }
         
         pointLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(38.adjustedHeight)
+            $0.top.equalToSuperview().inset(38.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         nextTimeLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(66.adjustedHeight)
+            $0.top.equalToSuperview().inset(66.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         pointImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(100.adjustedHeight)
             $0.centerX.equalToSuperview()
             $0.size.equalTo(200.adjusted)
+            $0.top.equalToSuperview().inset(100.adjusted)
         }
-        
+                
         checkButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(48.adjusted)
             $0.leading.trailing.equalToSuperview().inset(20.adjusted)
-            $0.bottom.equalToSuperview().inset(12.adjustedHeight)
+            $0.bottom.equalToSuperview().inset(12.adjusted)
         }
     }
 }
