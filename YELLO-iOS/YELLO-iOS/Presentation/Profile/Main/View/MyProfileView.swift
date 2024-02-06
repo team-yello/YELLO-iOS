@@ -36,6 +36,7 @@ final class MyProfileView: UIView {
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        loadProfileNoti()
         setUI()
     }
     
@@ -43,6 +44,22 @@ final class MyProfileView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Custom Function
+    func loadProfileNoti() {
+        NetworkService.shared.notificationService.userNotification(typeName: "PROFILE-BANNER") { result in
+            switch result {
+            case .success(let data):
+                if let data = data.data {
+                    self.notificationImageView.kfSetImage(url: data.imageUrl)
+                    self.redirectionURL = data.redirectUrl
+                }
+            default:
+                print("프로필 공지사항")
+            }
+        }
+    }
+    
 }
 
 // MARK: - extension
