@@ -5,6 +5,7 @@
 //  Created by 변희주 on 2023/07/05.
 //
 
+import SafariServices
 import UIKit
 
 import SnapKit
@@ -335,7 +336,13 @@ extension YELLOTabBarController {
     
     @objc
     func imageViewTapped() {
-        
+        let notiView: SFSafariViewController
+        if let url = URL(string: self.redirectUrl) {
+            notiView = SFSafariViewController(url: url)
+            self.present(notiView, animated: true, completion: nil)
+        } else {
+            print("유효하지 않은 URL 입니다")
+        }
     }
 }
 
