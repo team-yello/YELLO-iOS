@@ -40,6 +40,11 @@ extension TargetType {
                 HTTPHeaderFieldKey.xAccessAuth.rawValue: "Bearer \(KeychainHandler.shared.accessToken)",
                 HTTPHeaderFieldKey.xRefreshAuth.rawValue: "Bearer \(KeychainHandler.shared.refreshToken)"
             ]
+        case .idempotencyKey:
+            return [
+                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
+                HTTPHeaderFieldKey.idempotencyKey.rawValue: generateUUID4()
+            ]
         }
     }
 }
@@ -70,6 +75,9 @@ extension TargetType {
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
             urlRequest.setValue("Bearer \(KeychainHandler.shared.accessToken)", forHTTPHeaderField: HTTPHeaderFieldKey.xAccessAuth.rawValue)
             urlRequest.setValue("Bearer \(KeychainHandler.shared.refreshToken)", forHTTPHeaderField: HTTPHeaderFieldKey.xRefreshAuth.rawValue)
+        case .idempotencyKey:
+            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
+            urlRequest.setValue(generateUUID4(), forHTTPHeaderField: HTTPHeaderFieldKey.idempotencyKey.rawValue)
         }
         
         switch parameters {
@@ -103,6 +111,11 @@ extension TargetType {
             break
         }
         return urlRequest
+    }
+    
+    func generateUUID4() -> String {
+        let uuid = UUID()
+        return uuid.uuidString
     }
 }
 

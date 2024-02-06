@@ -41,6 +41,7 @@
 		2A8172962B726BC8004C0B9C /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8172952B726BC8004C0B9C /* EventService.swift */; };
 		2A81729C2B727A93004C0B9C /* eventbox_open-4.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A81729B2B727A93004C0B9C /* eventbox_open-4.json */; };
 		2A81729E2B727A99004C0B9C /* eventbox_default-4.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A81729D2B727A99004C0B9C /* eventbox_default-4.json */; };
+		2A8172A12B72A1B3004C0B9C /* EventRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8172A02B72A1B3004C0B9C /* EventRequestDTO.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
 		2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */; };
 		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
@@ -399,6 +400,7 @@
 		2A8172952B726BC8004C0B9C /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		2A81729B2B727A93004C0B9C /* eventbox_open-4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "eventbox_open-4.json"; sourceTree = "<group>"; };
 		2A81729D2B727A99004C0B9C /* eventbox_default-4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "eventbox_default-4.json"; sourceTree = "<group>"; };
+		2A8172A02B72A1B3004C0B9C /* EventRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRequestDTO.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingListResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
@@ -1172,6 +1174,7 @@
 		2A81728D2B726ACD004C0B9C /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				2A81729F2B72A1A5004C0B9C /* Request */,
 				2A8172902B726B43004C0B9C /* Response */,
 			);
 			path = DTO;
@@ -1199,6 +1202,14 @@
 				2A8172952B726BC8004C0B9C /* EventService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		2A81729F2B72A1A5004C0B9C /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2A8172A02B72A1B3004C0B9C /* EventRequestDTO.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		2A8D66D52A9A3512009DEC3F /* Subscription */ = {
@@ -2603,6 +2614,7 @@
 				C3C5D8232B628AC500C8D27C /* ReasonHeaderView.swift in Sources */,
 				2A3705DA2A62E35F001AAC93 /* VotingAvailableResponseDTO.swift in Sources */,
 				36BF1DE42A7A30CF00C58E74 /* SchoolSelectView.swift in Sources */,
+				2A8172A12B72A1B3004C0B9C /* EventRequestDTO.swift in Sources */,
 				C3D266392A5C710D0041C7C7 /* NavigationBarView.swift in Sources */,
 				36BE79C02AC0820100F4AB83 /* HighSchoolClassResponseDTO.swift in Sources */,
 				3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */,

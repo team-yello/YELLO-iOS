@@ -22,8 +22,6 @@ final class LunchEventViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // 점심시간 이벤트 서버통신
-        getLunchEvent()
         setAnimationView()
         tabBarController?.tabBar.isHidden = false
     }
@@ -31,9 +29,6 @@ final class LunchEventViewController: BaseViewController {
 }
 
 extension LunchEventViewController {
-    private func getLunchEvent() {
-    }
-    
     private func setAnimationView() {
         animationView = .init(name: "eventbox_default-4")
         let animationWidth: CGFloat = 400.adjustedWidth
@@ -61,6 +56,9 @@ extension LunchEventViewController {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.prepare()
         generator.impactOccurred()
+        
+        // 점심시간 이벤트 서버통신
+        getLunchEvent()
         
         animationView.removeFromSuperview()
         animationView = .init(name: "eventbox_open-4")
@@ -95,4 +93,18 @@ extension LunchEventViewController {
         self.eventPointView.removeFromSuperview()
         self.navigationController?.popViewController(animated: false)
     }
+    
+    private func getLunchEvent() {
+        NetworkService.shared.eventService.lunchEventStart(requestDTO: EventRequestDTO(tag: "LUNCH_EVENT")) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                print("이벤트 참여 성공")
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
 }

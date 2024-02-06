@@ -303,7 +303,7 @@ extension YELLOTabBarController {
     }
     
     func lunchEvent() {
-        NetworkService.shared.eventService.lunchEvent { result in
+        NetworkService.shared.eventService.lunchEventCheck { result in
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
