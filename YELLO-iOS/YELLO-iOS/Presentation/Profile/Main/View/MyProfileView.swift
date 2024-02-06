@@ -15,7 +15,14 @@ final class MyProfileView: UIView {
     
     // MARK: - Variables
     // MARK: Property
-    var redirectionURL: String = ""
+    var height = 57.adjustedHeight
+    var isAvailable = false {
+        didSet {
+            self.notificationImageView.isHidden = !isAvailable
+            height = isAvailable ? 57.adjustedHeight : 0.adjustedHeight
+            setUI()
+        }
+    }
     
     // MARK: Component
     let mainProfileView = MainProfileView()
@@ -36,34 +43,12 @@ final class MyProfileView: UIView {
     // MARK: LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        loadProfileNoti()
         setUI()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: Custom Function
-    func loadProfileNoti() {
-        NetworkService.shared.notificationService.userNotification(typeName: "PROFILE-BANNER") { result in
-            switch result {
-            case .success(let data):
-                if let data = data.data {
-                    self.notificationImageView.kfSetImage(url: data.imageUrl)
-                    self.redirectionURL = data.redirectUrl
-                }
-            default:
-                print("프로필 공지사항")
-            }
-        }
-    }
-    
-    // MARK: Objc Function
-    @objc func tapNotification() {
-        let url = URL(string: redirectionURL)!
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 
@@ -122,11 +107,8 @@ extension MyProfileView {
         }
         
         notificationImageView.do {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapNotification))
             $0.makeCornerRound(radius: 12.adjusted)
-            $0.addGestureRecognizer(tapGesture)
-            $0.isUserInteractionEnabled = true
-            $0.backgroundColor = .red
+            $0.contentMode = .scaleAspectFill
         }
     }
     
@@ -172,9 +154,9 @@ extension MyProfileView {
         
         notificationImageView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(shopButton.snp.bottom).offset(10.adjusted)
+            $0.top.equalTo(shopBackgroundView.snp.bottom).offset(10.adjusted)
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(57.adjusted)
+            $0.height.equalTo(height)
         }
     }
 }
