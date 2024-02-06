@@ -433,4 +433,11 @@ enum StringLiterals {
         static let doNotSeeAgainLabel = "다시 보지 않기"
         static let close = "닫기"
     }
+    
+    enum Event {
+        static let eventTime = "EVENT TIME"
+        static let present = "점심시간 깜짝 선물!"
+        static let time = "평일 12~14시 최대 1회까지 참여 가능"
+        static let touch = "어떤 게 나올까요? 아래 박스를 터치해보세요!"
+    }
 }

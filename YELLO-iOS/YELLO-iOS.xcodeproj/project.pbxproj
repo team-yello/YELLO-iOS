@@ -33,6 +33,7 @@
 		2A5E08FE2B6693FD00CDB3DF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */; };
 		2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1AD2A657AA6008F636C /* VotingData.swift */; };
 		2A5FE1B62A66FA07008F636C /* VoteAnswerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */; };
+		2A8172812B71CCD5004C0B9C /* LunchEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8172802B71CCD5004C0B9C /* LunchEventView.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
 		2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */; };
 		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
@@ -191,10 +192,10 @@
 		36E60EC32AE6DFC4005035D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 36E60EC22AE6DFC4005035D3 /* FirebaseStorage */; };
 		36E60EC52AE6DFC4005035D3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 36E60EC42AE6DFC4005035D3 /* FirebaseStorageCombine-Community */; };
 		36EA2AB72A66FC0B003603C7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA2AB62A66FC0B003603C7 /* UserManager.swift */; };
-		C303C8202B5FC3730077C423 /* RecommendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C81F2B5FC3730077C423 /* RecommendProfileViewController.swift */; };
 		36ECE0E82B68B2EE000FCCBF /* EditSchoolInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0E72B68B2EE000FCCBF /* EditSchoolInfoViewController.swift */; };
 		36ECE0EA2B68B4EC000FCCBF /* EditSchoolInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */; };
 		36ECE0EF2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECE0EE2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift */; };
+		C303C8202B5FC3730077C423 /* RecommendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C81F2B5FC3730077C423 /* RecommendProfileViewController.swift */; };
 		C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */; };
 		C303C8242B6005980077C423 /* WithdrawalReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8232B6005980077C423 /* WithdrawalReasonView.swift */; };
 		C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */; };
@@ -383,6 +384,7 @@
 		2A5E08FD2B6693FD00CDB3DF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2A5FE1AD2A657AA6008F636C /* VotingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingData.swift; sourceTree = "<group>"; };
 		2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAnswerList.swift; sourceTree = "<group>"; };
+		2A8172802B71CCD5004C0B9C /* LunchEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchEventView.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingListResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
@@ -515,10 +517,10 @@
 		36E427942A5CA59F0050B34E /* OnboardingEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndViewController.swift; sourceTree = "<group>"; };
 		36E427962A5CA5AF0050B34E /* OnboardingEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEndView.swift; sourceTree = "<group>"; };
 		36EA2AB62A66FC0B003603C7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		C303C81F2B5FC3730077C423 /* RecommendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendProfileViewController.swift; sourceTree = "<group>"; };
 		36ECE0E72B68B2EE000FCCBF /* EditSchoolInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoViewController.swift; sourceTree = "<group>"; };
 		36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoView.swift; sourceTree = "<group>"; };
 		36ECE0EE2B68BC8D000FCCBF /* EditSchoolInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolInfoTableViewCell.swift; sourceTree = "<group>"; };
+		C303C81F2B5FC3730077C423 /* RecommendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendProfileViewController.swift; sourceTree = "<group>"; };
 		C303C8212B6005500077C423 /* WithdrawalReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonViewController.swift; sourceTree = "<group>"; };
 		C303C8232B6005980077C423 /* WithdrawalReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonView.swift; sourceTree = "<group>"; };
 		C303C8252B6009C70077C423 /* ReasonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1113,6 +1115,14 @@
 				2AD1A1AD2A571ED500CB988B /* BaseVotingETCView.swift */,
 			);
 			path = BaseVotingETCView;
+			sourceTree = "<group>";
+		};
+		2A81727F2B71CCC6004C0B9C /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				2A8172802B71CCD5004C0B9C /* LunchEventView.swift */,
+			);
+			path = Event;
 			sourceTree = "<group>";
 		};
 		2A8D66D52A9A3512009DEC3F /* Subscription */ = {
@@ -1800,6 +1810,7 @@
 		C3A799C92A494B8E00D3EFD8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2A81727F2B71CCC6004C0B9C /* Event */,
 				2A55DDA32B669AF900290FE8 /* Notification */,
 				2A8D66D52A9A3512009DEC3F /* Subscription */,
 				36C209EC2A8B69D9001BF12C /* Tutorial */,
@@ -2551,6 +2562,7 @@
 				2AD1A1B82A57476C00CB988B /* VotingStartViewController.swift in Sources */,
 				2A8D66D92A9A363A009DEC3F /* SubscriptionExtensionView.swift in Sources */,
 				C3A4615B2A4FD44800734EF8 /* adjust+.swift in Sources */,
+				2A8172812B71CCD5004C0B9C /* LunchEventView.swift in Sources */,
 				36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */,
 				C3BF63042AF7E1EA000C7900 /* TimeLineTableViewCell.swift in Sources */,
 				366CE5EC2A819CA600BE5F66 /* PushSettingView.swift in Sources */,

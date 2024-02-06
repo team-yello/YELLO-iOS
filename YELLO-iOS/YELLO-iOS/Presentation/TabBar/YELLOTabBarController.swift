@@ -294,6 +294,13 @@ extension YELLOTabBarController {
                 return
             }
         }
+        
+        // 구독 연장 여부 확인 후 점심시간 이벤트
+        lunchEvent()
+    }
+    
+    func lunchEvent() {
+        
     }
     
     // MARK: -  Notification
