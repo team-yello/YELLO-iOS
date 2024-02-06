@@ -81,7 +81,7 @@ final class LunchEventView: BaseView {
         }
         
         timeDescriptionLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(statusBarHeight + 128.adjustedHeight)
+            $0.top.equalTo(presentLabel.snp.bottom).offset(8.adjustedHeight)
             $0.centerX.equalToSuperview()
         }
         
