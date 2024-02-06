@@ -21,4 +21,5 @@ final class NetworkService {
     let profileService: ProfileServiceProtocol = ProfileService(apiLogger: APIEventLogger())
     let purchaseService: PurchaseServiceProtocol = PurchaseService(apiLogger: APIEventLogger())
     let notificationService: NotificationServiceProtocol = NotificationService(apiLogger: APIEventLogger())
+    let eventService: EventServiceProtocol = EventService(apiLogger: APIEventLogger())
 }
