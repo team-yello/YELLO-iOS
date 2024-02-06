@@ -35,7 +35,7 @@ extension LunchEventViewController {
     }
     
     private func setAnimationView() {
-        animationView = .init(name: "eventbox_default")
+        animationView = .init(name: "eventbox_default-4")
         let animationWidth: CGFloat = 400.adjustedWidth
         let animationHeight: CGFloat = 534.adjustedHeight
         animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
@@ -63,7 +63,7 @@ extension LunchEventViewController {
         generator.impactOccurred()
         
         animationView.removeFromSuperview()
-        animationView = .init(name: "eventbox_open")
+        animationView = .init(name: "eventbox_open-4")
         let animationWidth: CGFloat = 400.adjustedWidth
         let animationHeight: CGFloat = 534.adjustedHeight
         animationView.frame = CGRect(x: 0, y: 0, width: animationWidth, height: animationHeight)
