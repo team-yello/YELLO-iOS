@@ -34,6 +34,7 @@
 		2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1AD2A657AA6008F636C /* VotingData.swift */; };
 		2A5FE1B62A66FA07008F636C /* VoteAnswerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */; };
 		2A8172812B71CCD5004C0B9C /* LunchEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8172802B71CCD5004C0B9C /* LunchEventView.swift */; };
+		2A8172832B71D279004C0B9C /* LunchEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8172822B71D279004C0B9C /* LunchEventViewController.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
 		2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */; };
 		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
@@ -385,6 +386,7 @@
 		2A5FE1AD2A657AA6008F636C /* VotingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingData.swift; sourceTree = "<group>"; };
 		2A5FE1B52A66FA07008F636C /* VoteAnswerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAnswerList.swift; sourceTree = "<group>"; };
 		2A8172802B71CCD5004C0B9C /* LunchEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchEventView.swift; sourceTree = "<group>"; };
+		2A8172822B71D279004C0B9C /* LunchEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchEventViewController.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingListResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
@@ -1121,6 +1123,7 @@
 			isa = PBXGroup;
 			children = (
 				2A8172802B71CCD5004C0B9C /* LunchEventView.swift */,
+				2A8172822B71D279004C0B9C /* LunchEventViewController.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -2585,6 +2588,7 @@
 				C3FF24B32A5F4D1F00A97D40 /* BasePaddingLabel.swift in Sources */,
 				C303C8262B6009C70077C423 /* ReasonCollectionViewCell.swift in Sources */,
 				C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */,
+				2A8172832B71D279004C0B9C /* LunchEventViewController.swift in Sources */,
 				362EC3192A8BAC8E00121BDD /* ThirdTutorialView.swift in Sources */,
 				C3A799C02A494B0200D3EFD8 /* String.swift in Sources */,
 				C306E73D2A6455CA0031514C /* RecommendingFriendResponseDTO.swift in Sources */,

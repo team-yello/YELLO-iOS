@@ -58,6 +58,12 @@ final class YELLOTabBarController: UITabBarController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        lunchEvent()
+    }
+    
     // MARK: - TabBar Height
     
     override func viewDidLayoutSubviews() {
@@ -294,13 +300,13 @@ extension YELLOTabBarController {
                 return
             }
         }
-        
-        // 구독 연장 여부 확인 후 점심시간 이벤트
-        lunchEvent()
     }
     
     func lunchEvent() {
-        
+        let viewController = LunchEventViewController()
+        UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.navigationController?.pushViewController(viewController, animated: false)
+        })
     }
     
     // MARK: -  Notification
