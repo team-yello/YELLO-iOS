@@ -12,6 +12,7 @@ final class LunchEventViewController: BaseViewController {
     
     private let originView = LunchEventView()
     private var animationView = LottieAnimationView()
+    private let eventPointView = EventPointView()
     
     override func loadView() {
         self.view = originView

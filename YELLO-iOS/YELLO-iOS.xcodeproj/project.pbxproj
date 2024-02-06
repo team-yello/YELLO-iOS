@@ -37,6 +37,7 @@
 		2A8172832B71D279004C0B9C /* LunchEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8172822B71D279004C0B9C /* LunchEventViewController.swift */; };
 		2A8172862B71D531004C0B9C /* eventbox_default.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8172842B71D531004C0B9C /* eventbox_default.json */; };
 		2A8172872B71D531004C0B9C /* eventbox_open.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8172852B71D531004C0B9C /* eventbox_open.json */; };
+		2A8172892B71D9DF004C0B9C /* EventPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8172882B71D9DE004C0B9C /* EventPointView.swift */; };
 		2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */; };
 		2A8AA7032A64AA6B005A664D /* VotingListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */; };
 		2A8AA7052A6514F2005A664D /* VotingAnswerListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */; };
@@ -391,6 +392,7 @@
 		2A8172822B71D279004C0B9C /* LunchEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchEventViewController.swift; sourceTree = "<group>"; };
 		2A8172842B71D531004C0B9C /* eventbox_default.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eventbox_default.json; sourceTree = "<group>"; };
 		2A8172852B71D531004C0B9C /* eventbox_open.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eventbox_open.json; sourceTree = "<group>"; };
+		2A8172882B71D9DE004C0B9C /* EventPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPointView.swift; sourceTree = "<group>"; };
 		2A8AA7002A64A333005A664D /* VotingSuffleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingSuffleResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7022A64AA6B005A664D /* VotingListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingListResponseDTO.swift; sourceTree = "<group>"; };
 		2A8AA7042A6514F2005A664D /* VotingAnswerListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingAnswerListRequestDTO.swift; sourceTree = "<group>"; };
@@ -1128,10 +1130,27 @@
 			children = (
 				2A8172842B71D531004C0B9C /* eventbox_default.json */,
 				2A8172852B71D531004C0B9C /* eventbox_open.json */,
-				2A8172802B71CCD5004C0B9C /* LunchEventView.swift */,
-				2A8172822B71D279004C0B9C /* LunchEventViewController.swift */,
+				2A81728B2B71D9F8004C0B9C /* ViewController */,
+				2A81728A2B71D9E3004C0B9C /* View */,
 			);
 			path = Event;
+			sourceTree = "<group>";
+		};
+		2A81728A2B71D9E3004C0B9C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A8172882B71D9DE004C0B9C /* EventPointView.swift */,
+				2A8172802B71CCD5004C0B9C /* LunchEventView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2A81728B2B71D9F8004C0B9C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2A8172822B71D279004C0B9C /* LunchEventViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		2A8D66D52A9A3512009DEC3F /* Subscription */ = {
@@ -2456,6 +2475,7 @@
 				3662A0E42A63F6C300F482EF /* CheckDuplicateResponeDTO.swift in Sources */,
 				C3C560CF2A8BB96B0074E988 /* IAPService.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
+				2A8172892B71D9DF004C0B9C /* EventPointView.swift in Sources */,
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
 				2AFB01482A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift in Sources */,
 				367113712A7D6C740037E0D2 /* UniversityView.swift in Sources */,

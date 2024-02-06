@@ -439,5 +439,7 @@ enum StringLiterals {
         static let present = "점심시간 깜짝 선물!"
         static let time = "평일 12~14시 최대 1회까지 참여 가능"
         static let touch = "어떤 게 나올까요? 아래 박스를 터치해보세요!"
+        static let point = "포인트를 얻었어요!"
+        static let nextTime = "다음 점심 시간에 또 만나요!"
     }
 }

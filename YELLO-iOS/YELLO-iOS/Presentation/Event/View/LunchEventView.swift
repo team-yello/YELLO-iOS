@@ -98,7 +98,3 @@ final class LunchEventView: BaseView {
         }
     }
 }
-
-extension LunchEventView {
-    
-}
