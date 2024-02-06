@@ -362,7 +362,7 @@ enum StringLiterals {
         }
         
         enum Setting {
-            static let setting = "프로필 관리"
+            static let setting = "설정"
             static let center = "고객센터"
             static let privacy = "개인정보 처리방침"
             static let service = "이용약관"
