@@ -60,6 +60,11 @@ final class MyProfileView: UIView {
         }
     }
     
+    // MARK: Objc Function
+    @objc func tapNotification() {
+        let url = URL(string: redirectionURL)!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
 }
 
 // MARK: - extension
