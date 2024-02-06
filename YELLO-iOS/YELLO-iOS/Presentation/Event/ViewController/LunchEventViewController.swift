@@ -5,8 +5,9 @@
 //  Created by 변희주 on 2/6/24.
 //
 
-import Lottie
 import UIKit
+
+import Lottie
 
 final class LunchEventViewController: BaseViewController {
     
@@ -56,6 +57,10 @@ extension LunchEventViewController {
     @objc
     private func animationViewTapped() {
         self.originView.touchLabel.isHidden = true
+        
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.prepare()
+        generator.impactOccurred()
         
         animationView.removeFromSuperview()
         animationView = .init(name: "eventbox_open")
