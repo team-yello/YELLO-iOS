@@ -11,7 +11,7 @@ protocol EventServiceProtocol {
     
     func lunchEventCheck(completion: @escaping (NetworkResult<BaseResponse<[EventResponseDTO]>>) -> Void)
     func lunchEventStart(requestDTO: EventRequestDTO, completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
-    func eventReward(completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void)
+    func eventReward(completion: @escaping (NetworkResult<BaseResponse<EventRewardRsponseDTO>>) -> Void)
 }
 
 final class EventService: APIRequestLoader<EventTarget>, EventServiceProtocol {
@@ -25,9 +25,9 @@ final class EventService: APIRequestLoader<EventTarget>, EventServiceProtocol {
                   responseData: BaseResponse<String?>.self, completion: completion)
     }
     
-    func eventReward(completion: @escaping (NetworkResult<BaseResponse<String?>>) -> Void) {
+    func eventReward(completion: @escaping (NetworkResult<BaseResponse<EventRewardRsponseDTO>>) -> Void) {
         fetchData(target: .eventReward,
-                  responseData: BaseResponse<String?>.self, completion: completion)
+                  responseData: BaseResponse<EventRewardRsponseDTO>.self, completion: completion)
     }
 
 }

@@ -114,8 +114,13 @@ extension TargetType {
     }
     
     func generateUUID4() -> String {
-        let uuid = UUID()
-        return uuid.uuidString
+        if UserDefaults.standard.string(forKey: "uuid.uuidString") == nil {
+            let uuid = UUID()
+            UserDefaults.standard.set(uuid.uuidString, forKey: "uuid.uuidString")
+            return uuid.uuidString
+        } else {
+            return UserDefaults.standard.string(forKey: "uuid.uuidString") ?? ""
+        }
     }
 }
 

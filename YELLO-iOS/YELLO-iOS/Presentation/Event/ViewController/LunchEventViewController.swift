@@ -75,6 +75,7 @@ extension LunchEventViewController {
             self.showEventPointView()
         })
         view.addSubview(animationView)
+        getRewardPoint()
     }
     
     private func showEventPointView() {
@@ -98,8 +99,20 @@ extension LunchEventViewController {
         NetworkService.shared.eventService.lunchEventStart(requestDTO: EventRequestDTO(tag: "LUNCH_EVENT")) { result in
             switch result {
             case .success(let data):
+                return
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
+    private func getRewardPoint() {
+        NetworkService.shared.eventService.eventReward { result in
+            switch result {
+            case .success(let data):
                 guard let data = data.data else { return }
-                print("이벤트 참여 성공")
+                self.eventPointView.pointLabel.text = data.rewardTitle
             default:
                 print("network failure")
                 return

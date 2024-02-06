@@ -34,7 +34,7 @@ extension EventTarget: TargetType {
         case .lunchEventStart(_):
             return .idempotencyKey
         case .eventReward:
-            return .plain
+            return .idempotencyKey
         }
     }
     
