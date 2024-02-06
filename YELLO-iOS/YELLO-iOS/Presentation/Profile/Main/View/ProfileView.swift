@@ -290,7 +290,7 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 304.adjustedHeight : 0
+        return section == 0 ? 347.adjusted : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

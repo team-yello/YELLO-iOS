@@ -59,7 +59,7 @@ extension MyProfileHeaderView {
         }
         
         friendCountView.snp.makeConstraints {
-            $0.top.equalTo(myProfileView.snp.bottom).offset(40.adjustedHeight)
+            $0.top.equalTo(myProfileView.snp.bottom).offset(12.adjustedHeight)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(8.adjustedHeight)
         }
@@ -72,7 +72,6 @@ extension MyProfileHeaderView {
             case .success(let data):
                 guard let data = data.data else { return }
                 updateUserInfo(data)
-                print(data.profileImageURL)
                 if data.profileImageURL != StringLiterals.Recommending.Title.defaultProfileImageLink &&
                     data.profileImageURL != StringLiterals.Profile.EditProfile.KakaoDefaultProfileURL {
                     self.myProfileView.mainProfileView.profileImageView.kfSetImage(url: data.profileImageURL)

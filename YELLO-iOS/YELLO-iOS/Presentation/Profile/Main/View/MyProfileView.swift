@@ -14,6 +14,9 @@ import Then
 final class MyProfileView: UIView {
     
     // MARK: - Variables
+    // MARK: Property
+    var redirectionURL: String = ""
+    
     // MARK: Component
     let mainProfileView = MainProfileView()
     
@@ -26,6 +29,8 @@ final class MyProfileView: UIView {
     lazy var shopButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 44.adjustedHeight))
     let shopBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 343.adjustedWidth, height: 48.adjustedHeight))
     let saleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 22.adjustedHeight))
+    
+    let notificationImageView = UIImageView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -93,6 +98,14 @@ extension MyProfileView {
             $0.makeCornerRound(radius: 4.adjustedHeight)
             $0.textAlignment = .center
         }
+        
+        notificationImageView.do {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapNotification))
+            $0.makeCornerRound(radius: 12.adjusted)
+            $0.addGestureRecognizer(tapGesture)
+            $0.isUserInteractionEnabled = true
+            $0.backgroundColor = .red
+        }
     }
     
     private func setLayout() {
@@ -100,12 +113,13 @@ extension MyProfileView {
             mainProfileView,
             infoStackView,
             shopBackgroundView,
-            saleLabel)
+            saleLabel,
+            notificationImageView)
         
         shopBackgroundView.addSubviews(shopButton)
         
         mainProfileView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12.adjustedHeight)
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(88.adjustedHeight)
         }
@@ -119,7 +133,6 @@ extension MyProfileView {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(48.adjustedHeight)
             $0.top.equalTo(infoStackView.snp.bottom).offset(12.adjustedHeight)
-            $0.bottom.equalToSuperview()
         }
         
         shopButton.snp.makeConstraints {
@@ -133,6 +146,13 @@ extension MyProfileView {
             $0.width.equalTo(48.adjustedWidth)
             $0.trailing.equalTo(shopBackgroundView).inset(6.adjustedWidth)
             $0.top.equalTo(infoStackView.snp.bottom).offset(4.adjustedHeight)
+        }
+        
+        notificationImageView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(shopButton.snp.bottom).offset(10.adjusted)
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(57.adjusted)
         }
     }
 }
