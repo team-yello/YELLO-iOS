@@ -52,7 +52,6 @@ final class MyProfileView: UIView {
     func updateNotification() {
         self.notificationImageView.isHidden = !isAvailable
         height = isAvailable ? 57.adjustedHeight : 0
-        
         notificationImageView.snp.remakeConstraints {
             $0.height.equalTo(height)
             $0.leading.trailing.equalToSuperview()

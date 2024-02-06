@@ -312,7 +312,6 @@ extension ProfileView: UITableViewDataSource {
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
                 view?.myProfileView.mainProfileView.editProfileButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
                 view?.myProfileView.isAvailable = self.isAvailable
-                view?.myProfileView.updateNotification()
                 view?.myProfileView.notificationImageView.kfSetImage(url: notiBannerImageURL)
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapNotification))
                 view?.myProfileView.notificationImageView.addGestureRecognizer(tapGesture)
