@@ -24,6 +24,7 @@ final class YELLOTabBarController: UITabBarController {
         }
     }
     private var messageIndex: Int = 0
+    private var redirectUrl: String = ""
     let recommendingViewController = RecommendingViewController()
     let aroundViewController = AroundViewController()
     let myYelloViewController = MyYelloViewController()
@@ -245,6 +246,9 @@ extension YELLOTabBarController {
                         self.userNotificationView.frame = self.view.bounds
                         self.userNotificationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                         self.userNotificationView.notificationImageView.kfSetImage(url: data.imageUrl)
+                        self.redirectUrl = data.redirectUrl
+                        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTapped))
+                        self.userNotificationView.notificationImageView.addGestureRecognizer(tapGesture)
                         self.view.addSubview(self.userNotificationView)
                     }
                 }
@@ -327,6 +331,11 @@ extension YELLOTabBarController {
     func goToShop(_ notification: Notification) {
         self.selectedIndex = 3
         self.navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+    
+    @objc
+    func imageViewTapped() {
+        
     }
 }
 

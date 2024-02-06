@@ -25,6 +25,7 @@ final class NotificationView: BaseView {
         notificationImageView.do {
             $0.contentMode = .scaleAspectFill
             $0.clipsToBounds = true
+            $0.isUserInteractionEnabled = true
         }
 
         doNotSeeAgainButton.do {
