@@ -18,9 +18,7 @@ final class MyProfileView: UIView {
     var height = 57.adjustedHeight
     var isAvailable = false {
         didSet {
-            self.notificationImageView.isHidden = !isAvailable
-            height = isAvailable ? 57.adjustedHeight : 0.adjustedHeight
-            setUI()
+            updateNotification()
         }
     }
     
@@ -49,6 +47,18 @@ final class MyProfileView: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateNotification() {
+        self.notificationImageView.isHidden = !isAvailable
+        height = isAvailable ? 57.adjustedHeight : 0
+        
+        notificationImageView.snp.remakeConstraints {
+            $0.height.equalTo(height)
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(shopBackgroundView.snp.bottom).offset(10.adjusted)
+            $0.bottom.equalToSuperview()
+        }
     }
 }
 
@@ -153,10 +163,10 @@ extension MyProfileView {
         }
         
         notificationImageView.snp.makeConstraints {
+            $0.height.equalTo(height)
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(shopBackgroundView.snp.bottom).offset(10.adjusted)
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(height)
         }
     }
 }

@@ -311,14 +311,14 @@ extension ProfileView: UITableViewDataSource {
                 view?.myProfileView.mainProfileView.schoolSkeletonLabel.isHidden = true
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
                 view?.myProfileView.mainProfileView.editProfileButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
-                view?.myProfileView.mainProfileView.isYelloPlus = self.isYelloPlus
-                
-                view?.myProfileView.mainProfileView.updateProfileView()
                 view?.myProfileView.isAvailable = self.isAvailable
+                view?.myProfileView.updateNotification()
                 view?.myProfileView.notificationImageView.kfSetImage(url: notiBannerImageURL)
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapNotification))
                 view?.myProfileView.notificationImageView.addGestureRecognizer(tapGesture)
                 view?.myProfileView.notificationImageView.isUserInteractionEnabled = true
+                view?.myProfileView.mainProfileView.isYelloPlus = self.isYelloPlus
+                view?.myProfileView.mainProfileView.updateProfileView()
             }
             return view
         default:
