@@ -25,7 +25,6 @@ final class LunchEventViewController: BaseViewController {
         setAnimationView()
         tabBarController?.tabBar.isHidden = false
     }
-    
 }
 
 extension LunchEventViewController {
@@ -75,7 +74,6 @@ extension LunchEventViewController {
             self.showEventPointView()
         })
         view.addSubview(animationView)
-        getRewardPoint()
     }
     
     private func showEventPointView() {
@@ -93,13 +91,16 @@ extension LunchEventViewController {
     private func checkButtonTapped() {
         self.eventPointView.removeFromSuperview()
         self.navigationController?.popViewController(animated: false)
+        UserDefaults.standard.set(nil, forKey: "uuid.uuidString")
     }
     
     private func getLunchEvent() {
         NetworkService.shared.eventService.lunchEventStart(requestDTO: EventRequestDTO(tag: "LUNCH_EVENT")) { result in
             switch result {
-            case .success(let data):
-                return
+            case .success(_):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    self.getRewardPoint()
+                }
             default:
                 print("network failure")
                 return
@@ -112,12 +113,15 @@ extension LunchEventViewController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
-                self.eventPointView.pointLabel.text = data.rewardTitle
+                if data.rewardTag == "TICKET" {
+                    self.eventPointView.pointLabel.text = StringLiterals.Event.ticket
+                } else {
+                    self.eventPointView.pointLabel.text = String(data.rewardValue) + " " + StringLiterals.Event.point
+                }
             default:
                 print("network failure")
                 return
             }
         }
     }
-    
 }

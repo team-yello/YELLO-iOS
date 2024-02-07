@@ -441,5 +441,6 @@ enum StringLiterals {
         static let touch = "어떤 게 나올까요? 아래 박스를 터치해보세요!"
         static let point = "포인트를 얻었어요!"
         static let nextTime = "다음 점심 시간에 또 만나요!"
+        static let ticket = "열람권 1개를 얻었어요!"
     }
 }
