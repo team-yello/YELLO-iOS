@@ -89,7 +89,7 @@ class OnboardingBaseViewController: UIViewController {
             $0.addArrangedSubviews(skipButton, nextButton)
             $0.axis = .vertical
             $0.alignment = .center
-            $0.spacing = 14
+            $0.spacing = 10.adjustedHeight
         }
         
         skipButton.isHidden = !(isSkipable)
