@@ -309,7 +309,7 @@ enum StringLiterals {
     enum Profile {
         enum NavigationBar {
             static let profile = "프로필"
-            static let setting = "관리"
+            static let setting = "설정"
         }
         
         enum Count {
