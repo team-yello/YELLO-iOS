@@ -117,7 +117,7 @@ extension MyProfileView {
         
         notificationImageView.do {
             $0.makeCornerRound(radius: 12.adjusted)
-            $0.contentMode = .scaleAspectFill
+            $0.contentMode = .scaleAspectFit
         }
     }
     
