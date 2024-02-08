@@ -5,6 +5,7 @@
 //  Created by 변희주 on 2023/07/05.
 //
 
+import SafariServices
 import UIKit
 
 import SnapKit
@@ -24,6 +25,7 @@ final class YELLOTabBarController: UITabBarController {
         }
     }
     private var messageIndex: Int = 0
+    private var redirectUrl: String = ""
     let recommendingViewController = RecommendingViewController()
     let aroundViewController = AroundViewController()
     let myYelloViewController = MyYelloViewController()
@@ -54,6 +56,12 @@ final class YELLOTabBarController: UITabBarController {
         
         self.delegate = self
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        lunchEvent()
     }
     
     // MARK: - TabBar Height
@@ -245,6 +253,9 @@ extension YELLOTabBarController {
                         self.userNotificationView.frame = self.view.bounds
                         self.userNotificationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                         self.userNotificationView.notificationImageView.kfSetImage(url: data.imageUrl)
+                        self.redirectUrl = data.redirectUrl
+                        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTapped))
+                        self.userNotificationView.notificationImageView.addGestureRecognizer(tapGesture)
                         self.view.addSubview(self.userNotificationView)
                     }
                 }
@@ -291,6 +302,28 @@ extension YELLOTabBarController {
         }
     }
     
+    func lunchEvent() {
+        NetworkService.shared.eventService.lunchEventCheck { result in
+            switch result {
+            case .success(let data):
+                guard let data = data.data else { return }
+                let tags = data.map { $0.tag }
+                let containsLunchEvent = tags.contains("LUNCH_EVENT")
+                let index = tags.firstIndex(of: "LUNCH_EVENT") ?? 0
+                
+                if containsLunchEvent && data[index].eventReward != nil {
+                    let viewController = LunchEventViewController()
+                    UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.3, options: .transitionCrossDissolve, animations: {
+                        self.navigationController?.pushViewController(viewController, animated: false)
+                    })
+                }
+            default:
+                print("network failure")
+                return
+            }
+        }
+    }
+    
     // MARK: -  Notification
     
     @objc
@@ -327,6 +360,17 @@ extension YELLOTabBarController {
     func goToShop(_ notification: Notification) {
         self.selectedIndex = 3
         self.navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+    
+    @objc
+    func imageViewTapped() {
+        let notiView: SFSafariViewController
+        if let url = URL(string: self.redirectUrl) {
+            notiView = SFSafariViewController(url: url)
+            self.present(notiView, animated: true, completion: nil)
+        } else {
+            print("유효하지 않은 URL 입니다")
+        }
     }
 }
 

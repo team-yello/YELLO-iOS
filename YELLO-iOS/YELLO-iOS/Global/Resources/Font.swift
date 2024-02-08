@@ -148,4 +148,8 @@ extension UIFont {
     class var uiPopUpTitle: UIFont {
         return UIFont(name: "Pretendard-ExtraBold", size: 16.0.adjusted)!
     }
+    
+    class var uiEventLabel: UIFont {
+        return UIFont(name: "Unbounded-Medium", size: 12.0.adjusted)!
+    }
 }
