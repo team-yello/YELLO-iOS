@@ -177,15 +177,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print(splitCurrentProjectVersion)
                 
                 if splitCurrentProjectVersion.count > 0 && splitMarketingVersion.count > 0 {
-                    if splitCurrentProjectVersion[0] < splitMarketingVersion[0] {
-                        self.showUpdateAlert(version: marketingVersion)
-                    } else if splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
+                    
+                    if splitCurrentProjectVersion[0] > splitMarketingVersion[0] {
+                        print("현재 최신 버전입니다.")
+                    } else if splitCurrentProjectVersion[0] < splitMarketingVersion[0] || splitCurrentProjectVersion[1] < splitMarketingVersion[1] {
                         self.showUpdateAlert(version: marketingVersion)
                     } else {
-//                        print(marketingVersion)
-//                        print(currentProjectVersion)
-//                        print(splitMarketingVersion)
-//                        print(splitCurrentProjectVersion)
                         print("현재 최신 버전입니다.")
                     }
                 }
