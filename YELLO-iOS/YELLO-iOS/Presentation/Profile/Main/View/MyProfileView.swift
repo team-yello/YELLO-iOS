@@ -14,6 +14,14 @@ import Then
 final class MyProfileView: UIView {
     
     // MARK: - Variables
+    // MARK: Property
+    var height = 57.adjustedHeight
+    var isAvailable = false {
+        didSet {
+            updateNotification()
+        }
+    }
+    
     // MARK: Component
     let mainProfileView = MainProfileView()
     
@@ -27,6 +35,8 @@ final class MyProfileView: UIView {
     let shopBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 343.adjustedWidth, height: 48.adjustedHeight))
     let saleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 22.adjustedHeight))
     
+    let notificationImageView = UIImageView()
+    
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {
@@ -37,6 +47,17 @@ final class MyProfileView: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateNotification() {
+        self.notificationImageView.isHidden = !isAvailable
+        height = isAvailable ? 57.adjustedHeight : 0
+        notificationImageView.snp.remakeConstraints {
+            $0.height.equalTo(height)
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(shopBackgroundView.snp.bottom).offset(10.adjusted)
+            $0.bottom.equalToSuperview()
+        }
     }
 }
 
@@ -93,6 +114,11 @@ extension MyProfileView {
             $0.makeCornerRound(radius: 4.adjustedHeight)
             $0.textAlignment = .center
         }
+        
+        notificationImageView.do {
+            $0.makeCornerRound(radius: 12.adjusted)
+            $0.contentMode = .scaleAspectFit
+        }
     }
     
     private func setLayout() {
@@ -100,12 +126,13 @@ extension MyProfileView {
             mainProfileView,
             infoStackView,
             shopBackgroundView,
-            saleLabel)
+            saleLabel,
+            notificationImageView)
         
         shopBackgroundView.addSubviews(shopButton)
         
         mainProfileView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12.adjustedHeight)
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(88.adjustedHeight)
         }
@@ -119,7 +146,6 @@ extension MyProfileView {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(48.adjustedHeight)
             $0.top.equalTo(infoStackView.snp.bottom).offset(12.adjustedHeight)
-            $0.bottom.equalToSuperview()
         }
         
         shopButton.snp.makeConstraints {
@@ -133,6 +159,13 @@ extension MyProfileView {
             $0.width.equalTo(48.adjustedWidth)
             $0.trailing.equalTo(shopBackgroundView).inset(6.adjustedWidth)
             $0.top.equalTo(infoStackView.snp.bottom).offset(4.adjustedHeight)
+        }
+        
+        notificationImageView.snp.makeConstraints {
+            $0.height.equalTo(height)
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(shopBackgroundView.snp.bottom).offset(10.adjusted)
+            $0.bottom.equalToSuperview()
         }
     }
 }

@@ -37,6 +37,13 @@ final class ProfileView: UIView {
             self.myFriendTableView.reloadData()
         }
     }
+    var redirectionURL: String = ""
+    var notiBannerImageURL = ""
+    var isAvailable = false {
+        didSet {
+            self.myFriendTableView.reloadData()
+        }
+    }
     var pageCount = -1
     var myYelloCount = 0
     var profileFriendPage: Int = 0
@@ -235,6 +242,30 @@ extension ProfileView {
             }
         }
     }
+    
+    // MARK: Custom Function
+    func loadProfileNoti() {
+        NetworkService.shared.notificationService.userNotification(typeName: "PROFILE-BANNER") { result in
+            switch result {
+            case .success(let data):
+                if let data = data.data {
+                   self.isAvailable = data.isAvailable
+                    if data.isAvailable {
+                        self.notiBannerImageURL = data.imageUrl
+                        self.redirectionURL = data.redirectUrl
+                    }
+                }
+            default:
+                print("프로필 공지사항 Network Error")
+            }
+        }
+    }
+    
+    // MARK: Objc Function
+    @objc func tapNotification() {
+        let url = URL(string: redirectionURL)!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
 }
 
 // MARK: UITableViewDelegate
@@ -280,6 +311,11 @@ extension ProfileView: UITableViewDataSource {
                 view?.myProfileView.mainProfileView.schoolSkeletonLabel.isHidden = true
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
                 view?.myProfileView.mainProfileView.editProfileButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+                view?.myProfileView.isAvailable = self.isAvailable
+                view?.myProfileView.notificationImageView.kfSetImage(url: notiBannerImageURL)
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapNotification))
+                view?.myProfileView.notificationImageView.addGestureRecognizer(tapGesture)
+                view?.myProfileView.notificationImageView.isUserInteractionEnabled = true
                 view?.myProfileView.mainProfileView.isYelloPlus = self.isYelloPlus
                 view?.myProfileView.mainProfileView.updateProfileView()
             }
@@ -290,7 +326,7 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 304.adjustedHeight : 0
+        return isAvailable ? 347.adjusted : 307.adjusted
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

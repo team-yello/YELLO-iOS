@@ -10,12 +10,13 @@ import UIKit
 import Then
 import SnapKit
 
-class InfoView: UIView {
+final class InfoView: UIView {
     
     // MARK: - Variables
     // MARK: Component
     let infoLabel = UILabel()
     let descriptionLabel = UILabel()
+    let stackView = UIStackView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -43,31 +44,31 @@ class InfoView: UIView {
         infoLabel.do {
             $0.font = .uiHeadline02
             $0.textColor = .white
-            $0.setTextWithLineHeight(text: $0.text, lineHeight: 30.adjustedHeight)
         }
         
         descriptionLabel.do {
             $0.font = .uiLabelMedium
             $0.textColor = .grayscales500
         }
+        
+        stackView.do {
+            $0.addArrangedSubviews(infoLabel, descriptionLabel)
+            $0.axis = .vertical
+            $0.alignment = .center
+        }
     }
     
     private func setLayout() {
-        self.addSubviews(infoLabel, descriptionLabel)
+        self.addSubviews(stackView)
         
         self.snp.makeConstraints {
             $0.width.equalTo(109.adjustedWidth)
             $0.height.equalTo(68.adjustedHeight)
         }
         
-        infoLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12.adjustedHeight)
-            $0.centerX.equalToSuperview()
-        }
-        
-        descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(infoLabel.snp.bottom)
-            $0.centerX.equalToSuperview()
+        stackView.snp.makeConstraints {
+            $0.height.equalTo(45.adjustedHeight)
+            $0.center.equalToSuperview()
         }
     }
     
