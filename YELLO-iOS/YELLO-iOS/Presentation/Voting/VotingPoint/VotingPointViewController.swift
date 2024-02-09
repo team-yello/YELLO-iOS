@@ -38,6 +38,7 @@ final class VotingPointViewController: BaseViewController {
         originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
         originView.plusPoint.setTextWithLineHeight(text: "+ " + String(votingPlusPoint) + " Point", lineHeight: 22)
         originView.plusPoint.asColor(targetString: String(votingPlusPoint), color: .yelloMain500)
+        VotingViewController.pushCount = 0
     }
     
     // MARK: - Style
