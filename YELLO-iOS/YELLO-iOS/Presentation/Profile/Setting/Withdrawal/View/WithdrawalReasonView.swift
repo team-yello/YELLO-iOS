@@ -28,6 +28,7 @@ final class WithdrawalReasonView: BaseView {
     }
     var etcReason: String = ""
     var tap = UITapGestureRecognizer()
+    var withdrawalReason: String = ""
     
     let withdrawalNavigationBarView = SettingNavigationBarView()
     let reasonHeaderView = ReasonHeaderView()
@@ -164,11 +165,15 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
         print(indexPath.row)
         if indexPath.row != selectedIndex {
             selectedIndex = indexPath.row
+            
             isCompleteEnabled = selectedIndex != 7 ? true : false
             reasonCollectionView.reloadData()
             if indexPath.row == 7 {
                 let indexPath = IndexPath(item: self.reasonList.count - 1, section: 0)
                 reasonCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                withdrawalReason = etcReason
+            } else {
+                withdrawalReason = reasonList[indexPath.row]
             }
         }
     }
@@ -203,6 +208,7 @@ extension WithdrawalReasonView: UITextViewDelegate {
             self.isCompleteEnabled = true
             self.etcReason = textView.text
         }
+        withdrawalReason = etcReason
         textView.resignFirstResponder()
         return true
     }

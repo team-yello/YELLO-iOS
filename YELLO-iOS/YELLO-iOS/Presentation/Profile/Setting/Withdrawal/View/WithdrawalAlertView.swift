@@ -22,6 +22,8 @@ final class WithdrawalAlertView: BaseView {
     let noButton = UIButton()
     let yesButton = UIButton()
     
+    var withdrawalReason: String = ""
+    
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
@@ -101,7 +103,7 @@ extension WithdrawalAlertView {
     
     @objc func yesButtonClicked() {
         Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button": "withdrawal4"])
-        NetworkService.shared.profileService.userDelete { result in
+        NetworkService.shared.profileService.userDelete(requestDTO: DeleteRequestDTO(value: withdrawalReason)) { result in
             switch result {
             case .success(let data):
                 if data.status == 200 {
