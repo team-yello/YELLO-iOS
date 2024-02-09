@@ -125,7 +125,7 @@ enum StringLiterals {
             static let recommend = "추천친구"
             static let kakaoFriend = "카톡 친구들"
             static let schoolFriend = "학교 친구들"
-            static let defaultProfileImageLink = "https://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg"
+            static let defaultProfileImageLink = "https://k.kakaocdn.net/dn/1G9kp/btsAot8liOn/8CWudi3uy07rvFNUkk3ER0/img_640x640.jpg"
         }
         
         enum Empty {
