@@ -277,8 +277,6 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
         if isEditAvailable && !isMajorSearchError {
             updateProfile()
             navigationController?.popViewController(animated: true)
-        } else if isMajorSearchError {
-            
         } else if !isEditAvailable {
             self.view.showToast(message: StringLiterals.Profile.EditProfile.editDateErrorMessage, at: 82.adjustedHeight)
         }
@@ -296,19 +294,11 @@ extension EditSchoolInfoViewController: SchoolSearchResultSelectDelegate {
 
 // MARK: MajorSearchResultSelectDelegate
 extension EditSchoolInfoViewController: MajorSearchResultSelectDelegate {
-    func didSelectMajorResult(_ result: String) {
-        subgroupName = result
+    func didSelectMajorResult(_ result: GroupList) {
+        subgroupName = result.departmentName
+        groupId = result.groupID
         isMajorSearchError = false
-        editSchoolInfoView.editTableView.reloadData()
-    }
-}
-
-// MARK: FindMajorViewControllerDelegate
-extension EditSchoolInfoViewController: FindMajorViewControllerDelegate {
-    func didDismissFindMajorViewController(with groupList: GroupList) {
-        subgroupName = groupList.departmentName
-        groupId = groupList.groupID
-        isMajorSearchError = false
+        print(result.departmentName)
         editSchoolInfoView.editTableView.reloadData()
     }
 }

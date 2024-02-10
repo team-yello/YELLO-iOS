@@ -131,36 +131,6 @@ extension UniversityViewController: UITextFieldDelegate {
     
 }
 
-// MARK: SearchResultTableViewSelectDelegate
-extension UniversityViewController: SearchResultTableViewSelectDelegate {
-    
-    func didSelectSchoolResult(_ result: String) {
-        baseView.schoolSearchTextField.setButtonState(state: .done)
-        baseView.schoolSearchTextField.text = result
-        self.schoolName = result
-        checkButtonEnable()
-    }
-}
-
-extension UniversityViewController: MajorSearchResultSelectDelegate {
-    func didSelectMajorResult(_ result: String) {
-        baseView.majorSearchTextField.setButtonState(state: .done)
-        baseView.majorSearchTextField.text = result
-        checkButtonEnable()
-    }
-}
-
-// MARK: SelectStudentIdDelegate
-extension UniversityViewController: SelectStudentIdDelegate {
-    func didSelectStudentId(_ result: Int, type: SelectType) {
-        baseView.studentIdTextField.setButtonState(state: .done)
-        baseView.studentIdTextField.text = "\(result)학번"
-        groupAdmissionYear = result
-        checkButtonEnable()
-        bottomSheet.dismiss(animated: false)
-    }
-}
-
 // MARK: StudentIdView
 extension UniversityViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -177,8 +147,32 @@ extension UniversityViewController: UITableViewDelegate {
     }
 }
 
-extension UniversityViewController: FindMajorViewControllerDelegate {
-    func didDismissFindMajorViewController(with groupList: GroupList) {
-        self.groupId = groupList.groupID
+// MARK: SearchResultTableViewSelectDelegate
+extension UniversityViewController: SchoolSearchResultSelectDelegate {
+    func didSelectSchoolResult(_ result: String) {
+        baseView.schoolSearchTextField.setButtonState(state: .done)
+        baseView.schoolSearchTextField.text = result
+        self.schoolName = result
+        checkButtonEnable()
+    }
+}
+
+extension UniversityViewController: MajorSearchResultSelectDelegate {
+    func didSelectMajorResult(_ result: GroupList) {
+        baseView.majorSearchTextField.setButtonState(state: .done)
+        baseView.majorSearchTextField.text = result.departmentName
+        self.groupId = result.groupID
+        checkButtonEnable()
+    }
+}
+
+// MARK: SelectStudentIdDelegate
+extension UniversityViewController: SelectStudentIdDelegate {
+    func didSelectStudentId(_ result: Int, type: SelectType) {
+        baseView.studentIdTextField.setButtonState(state: .done)
+        baseView.studentIdTextField.text = "\(result)학번"
+        groupAdmissionYear = result
+        checkButtonEnable()
+        studentIdViewController.dismiss(animated: true)
     }
 }
