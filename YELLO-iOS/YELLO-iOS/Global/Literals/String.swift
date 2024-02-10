@@ -43,6 +43,14 @@ enum StringLiterals {
             static let selectHighText = "중/고등학생"
             static let selectUnivText = "대학생"
         }
+        
+        enum Search {
+            static let schoolSearchTitle = "우리 학교 검색하기"
+            static let schoolHelperText = "우리 학교가 없나요? 학교를 추가해보세요!"
+            static let majorSearchTitle = "학과 검색하기"
+            static let majorHelperText = "찾는 과가 없다면 클릭하세요!"
+        }
+        
         enum School {
             static let schoolSearchText = "학교가 어디인가요?"
             static let highSchoolSearchPlaceholder = "ex. 옐로중/고등학교"
