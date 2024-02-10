@@ -50,8 +50,9 @@ class FindSchoolViewController: SearchBaseViewController {
                         self.searchView.searchResultTableView.reloadData()
                     }
                 default:
-                    print(ErrorPointer.self)
-                    return
+#if DEBUG
+                    print("학교 검색 에러 발생\(ErrorPointer.self)")
+#endif
                 }
             }
         case .high, .middle:
@@ -66,8 +67,9 @@ class FindSchoolViewController: SearchBaseViewController {
                         self.searchView.searchResultTableView.reloadData()
                     }
                 default:
-                    print(ErrorPointer.self)
-                    return
+#if DEBUG
+                    print("학교 검색 에러 발생\(ErrorPointer.self)")
+#endif
                 }
             }
         }
@@ -87,7 +89,6 @@ class FindSchoolViewController: SearchBaseViewController {
     }
     // MARK: Objc Function
     @objc func textFieldDidChange(_ textField: YelloTextField) {
-        guard let text = textField.text else { return }
         textField.debounce(delay: 0.5) { text in
             guard let text = textField.text else { return }
             self.pageCount = 0
@@ -106,10 +107,14 @@ class FindSchoolViewController: SearchBaseViewController {
 // MARK: UITableViewDelegate
 extension FindSchoolViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
-            return
+        if let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell,
+           let selectedItem = searchResults[safe: indexPath.row] {
+            schoolSearchDelegate?.didSelectSchoolResult(currentCell.titleLabel.text ?? "")
+        } else {
+#if DEBUG
+            debugPrint("index가 잘못되었습니다. index out of range")
+#endif
         }
-        schoolSearchDelegate?.didSelectSchoolResult(currentCell.titleLabel.text ?? "")
         self.dismiss(animated: true)
     }
 }

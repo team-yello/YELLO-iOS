@@ -90,14 +90,17 @@ class FindMajorViewController: SearchBaseViewController {
 extension FindMajorViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell,
+           let selectedText = searchResults[safe: indexPath.row],
+           let  selectedItem = allMajor[safe: indexPath.row] {
+            majorSearchDelegate?.didSelectMajorResult(selectedItem)
+            searchView.searchResultTableView.reloadData()
+            self.dismiss(animated: true)
+            debugPrint("groupId: \(selectedItem.groupID)")
+        }
         guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
             return
         }
-        majorSearchDelegate?.didSelectMajorResult(currentCell.titleLabel.text ?? "")
-        let selectedItem = allMajor[indexPath.row]
-        print(selectedItem.groupID)
-        majorDelegate?.didDismissFindMajorViewController(with: selectedItem)
-        searchView.searchResultTableView.reloadData()
-        self.dismiss(animated: true)
+        
     }
 }
