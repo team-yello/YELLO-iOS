@@ -17,7 +17,7 @@ final class EmptyFriendView: UIView {
     // MARK: Component
     private let containView = UIView()
     private let emptyImageView = UIImageView()
-    private let emptyDescriptionLabel = UILabel()
+    let emptyDescriptionLabel = UILabel()
     lazy var inviteButton = UIButton(frame: CGRect(x: 0, y: 0, width: 236.adjustedWidth, height: 48.adjustedHeight))
     
     var viewControllerName = ""

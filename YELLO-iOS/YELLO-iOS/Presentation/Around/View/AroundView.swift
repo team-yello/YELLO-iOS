@@ -55,6 +55,8 @@ final class AroundView: BaseView {
         self.backgroundColor = .clear
         
         aroundEmptyView.do {
+            $0.emptyDescriptionLabel.setTextWithLineHeight(text: StringLiterals.Recommending.Empty.timeLineTitle,
+                                                           lineHeight: 24)
             $0.isHidden = true
         }
         
