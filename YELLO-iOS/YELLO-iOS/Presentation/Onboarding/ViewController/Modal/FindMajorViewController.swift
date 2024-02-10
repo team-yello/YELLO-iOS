@@ -90,17 +90,13 @@ class FindMajorViewController: SearchBaseViewController {
 extension FindMajorViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell,
-           let selectedText = searchResults[safe: indexPath.row],
-           let  selectedItem = allMajor[safe: indexPath.row] {
+        if let  selectedItem = allMajor[safe: indexPath.row] {
             majorSearchDelegate?.didSelectMajorResult(selectedItem)
             searchView.searchResultTableView.reloadData()
             self.dismiss(animated: true)
             debugPrint("groupId: \(selectedItem.groupID)")
+        } else {
+            debugPrint("index가 잘못되었습니다. index out of range")
         }
-        guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
-            return
-        }
-        
     }
 }
