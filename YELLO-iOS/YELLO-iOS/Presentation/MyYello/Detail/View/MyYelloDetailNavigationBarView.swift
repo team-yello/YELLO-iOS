@@ -17,7 +17,7 @@ final class MyYelloDetailNavigationBarView: BaseView {
     weak var handleBackButtonDelegate: HandleBackButtonDelegate?
     
     // MARK: Component
-    lazy var backButton = UIButton()
+    lazy var backButton = BaseIconButton()
     let titleLabel = UILabel()
     let pointView = UIView()
     let pointImageView = UIImageView()
