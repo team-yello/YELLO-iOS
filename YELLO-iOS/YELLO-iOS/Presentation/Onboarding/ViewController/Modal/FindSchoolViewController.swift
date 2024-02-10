@@ -11,21 +11,21 @@ class FindSchoolViewController: SearchBaseViewController {
     
     // MARK: - Variables
     // MARK: Property
-    var isHighSchool = false
-    var allSchool: [String] = []
+    var userType: UserGroupType = UserManager.shared.groupType
     var pageCount: Int = 0
     var totalItemCount: Int = 0
     
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        allArr.removeAll()
+        searchResults.removeAll()
         searchView.searchResultTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customView(titleText: "우리 학교 검색하기", helperText: "우리 학교가 없나요? 학교를 추가해보세요!")
+        customTitle(titleText: StringLiterals.Onboarding.Search.schoolSearchTitle,
+                    helperText: StringLiterals.Onboarding.Search.schoolHelperText)
         addTarget()
     }
     
@@ -46,7 +46,7 @@ class FindSchoolViewController: SearchBaseViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
                     DispatchQueue.main.async {
-                        self.allArr.append(contentsOf: data.groupNameList)
+                        self.searchResults.append(contentsOf: data.groupNameList)
                         self.totalItemCount = data.totalCount
                         self.searchView.searchResultTableView.reloadData()
                     }
@@ -63,7 +63,7 @@ class FindSchoolViewController: SearchBaseViewController {
                 case .success(let data):
                     guard let data = data.data else { return }
                     DispatchQueue.main.async {
-                        self.allArr.append(contentsOf: data.groupNameList)
+                        self.searchResults.append(contentsOf: data.groupNameList)
                         self.totalItemCount = data.totalCount
                         self.searchView.searchResultTableView.reloadData()
                     }
@@ -81,7 +81,7 @@ class FindSchoolViewController: SearchBaseViewController {
         let contentHeight = tableView.contentSize.height
         let visibleHeight = tableView.bounds.height
         self.searchView.searchTextField.endEditing(true)
-        if offsetY > contentHeight - visibleHeight, allArr.count < totalItemCount {
+        if offsetY > contentHeight - visibleHeight, searchResults.count < totalItemCount {
             pageCount += 1
             guard let text = searchView.searchTextField.text else { return }
             searchSchool(text)
@@ -93,7 +93,7 @@ class FindSchoolViewController: SearchBaseViewController {
         textField.debounce(delay: 0.5) { text in
             guard let text = textField.text else { return }
             self.pageCount = 0
-            self.allArr.removeAll()
+            self.searchResults.removeAll()
             self.searchSchool(text)
         }
     }
