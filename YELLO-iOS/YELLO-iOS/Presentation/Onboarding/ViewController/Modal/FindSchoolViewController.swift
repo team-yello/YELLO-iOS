@@ -37,11 +37,10 @@ class FindSchoolViewController: SearchBaseViewController {
     }
     
     func searchSchool(_ word: String) {
-        
-        if isHighSchool {
-            /// 고등학교인 경우
-            let highschoolQueryDTO: HighSchoolSearchRequestQueryDTO = HighSchoolSearchRequestQueryDTO(keyword: word, page: pageCount)
-            NetworkService.shared.onboardingService.getHighSchoolList(queryDTO: highschoolQueryDTO) { result in
+        switch userType {
+        case .univ, .SOPT:
+            let schoolQueryDTO: SchoolSearchRequestQueryDTO = SchoolSearchRequestQueryDTO(keyword: word, page: pageCount)
+            NetworkService.shared.onboardingService.getSchoolList(queryDTO: schoolQueryDTO) { result in
                 switch result {
                 case .success(let data):
                     guard let data = data.data else { return }
@@ -55,10 +54,9 @@ class FindSchoolViewController: SearchBaseViewController {
                     return
                 }
             }
-        } else {
-            /// 대학교인 경우
-            let schoolQueryDTO: SchoolSearchRequestQueryDTO = SchoolSearchRequestQueryDTO(keyword: word, page: pageCount)
-            NetworkService.shared.onboardingService.getSchoolList(queryDTO: schoolQueryDTO) { result in
+        case .high, .middle:
+            let queryDTO = HighSchoolSearchRequestQueryDTO(keyword: word, page: pageCount)
+            NetworkService.shared.onboardingService.getHighSchoolList(queryDTO: queryDTO) { result in
                 switch result {
                 case .success(let data):
                     guard let data = data.data else { return }
@@ -99,7 +97,7 @@ class FindSchoolViewController: SearchBaseViewController {
     }
     
     @objc func helperButtonDidTap() {
-        let url = isHighSchool ? URL(string: "https://forms.gle/sMyn6uq7oHDovSdi8")! : URL(string: "https://bit.ly/46Yv0Hc")!
+        let url = userType == .high || userType == .middle ? URL(string: "https://forms.gle/sMyn6uq7oHDovSdi8")! : URL(string: "https://bit.ly/46Yv0Hc")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }

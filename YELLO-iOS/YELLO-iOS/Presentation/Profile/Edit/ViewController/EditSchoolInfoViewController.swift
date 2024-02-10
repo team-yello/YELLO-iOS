@@ -199,11 +199,7 @@ extension EditSchoolInfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            if userGroupType == .univ || userGroupType == .SOPT {
-                schoolSearchViewController.isHighSchool = false
-            } else if userGroupType == .high || userGroupType == .middle {
-                schoolSearchViewController.isHighSchool = true
-            }
+            schoolSearchViewController.userType = userGroupType
             self.present(schoolSearchViewController, animated: true)
         case 1:
             if userGroupType == .univ || userGroupType == .SOPT {
