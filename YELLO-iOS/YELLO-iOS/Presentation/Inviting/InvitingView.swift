@@ -19,7 +19,7 @@ final class InvitingView: BaseView {
     let contentsView = UIView()
 
     // 컴포넌트 위치 순서대로
-    let closeButton = UIButton()
+    let closeButton = CloseButton()
 
     let titleLabel = UILabel()
     let textLabelOne = UILabel()

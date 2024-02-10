@@ -1,5 +1,5 @@
 //
-//  BaseIconButton.swift
+//  CloseButton.swift
 //  YELLO-iOS
 //
 //  Created by 정채은 on 2/10/24.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class BaseIconButton: UIButton {
+class CloseButton: UIButton {
 
     // MARK: - Functions
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        let expandedBounds = bounds.insetBy(dx: -20.adjustedWidth, dy: -20.adjustedHeight)
+        let expandedBounds = bounds.insetBy(dx: -12.adjustedWidth, dy: -14.adjustedHeight)
         return expandedBounds.contains(point)
     }
 

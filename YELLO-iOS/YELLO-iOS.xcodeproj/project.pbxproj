@@ -225,6 +225,7 @@
 		C3081E492A82451D0088CA44 /* AroundSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */; };
 		C3081E4B2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */; };
 		C30F45242B775DCF00803BE5 /* BaseIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F45232B775DCF00803BE5 /* BaseIconButton.swift */; };
+		C30F45262B77649700803BE5 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F45252B77649700803BE5 /* CloseButton.swift */; };
 		C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81022A7F51E6009DBB8D /* UseTicketView.swift */; };
 		C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */; };
 		C30F81072A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */; };
@@ -559,6 +560,7 @@
 		C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundSkeletonTableViewCell.swift; sourceTree = "<group>"; };
 		C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendSkeletonTableViewCell.swift; sourceTree = "<group>"; };
 		C30F45232B775DCF00803BE5 /* BaseIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseIconButton.swift; sourceTree = "<group>"; };
+		C30F45252B77649700803BE5 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		C30F81022A7F51E6009DBB8D /* UseTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseTicketView.swift; sourceTree = "<group>"; };
 		C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFullNameView.swift; sourceTree = "<group>"; };
 		C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloOnlyNameTableViewCell.swift; sourceTree = "<group>"; };
@@ -1321,6 +1323,7 @@
 			isa = PBXGroup;
 			children = (
 				2AD1A1B32A5739B300CB988B /* InvitingView.swift */,
+				C30F45252B77649700803BE5 /* CloseButton.swift */,
 			);
 			path = Inviting;
 			sourceTree = "<group>";
@@ -2645,6 +2648,7 @@
 				C390B8182A8A1DF600EA5A23 /* AroundService.swift in Sources */,
 				C3B4720E2A65DEC700770530 /* MyYelloDetailResponseDTO.swift in Sources */,
 				363D81612B261ABF0095F6CC /* NameCheckViewController.swift in Sources */,
+				C30F45262B77649700803BE5 /* CloseButton.swift in Sources */,
 				C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */,
 				2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */,
 				3662A0F22A65498800F482EF /* MajorSearchRequestQueryDTO.swift in Sources */,
