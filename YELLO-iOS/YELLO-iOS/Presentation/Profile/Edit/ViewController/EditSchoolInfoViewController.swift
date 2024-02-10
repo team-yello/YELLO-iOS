@@ -62,8 +62,8 @@ final class EditSchoolInfoViewController: BaseViewController {
         editSchoolInfoView.editTableView.delegate = self
         editSchoolInfoView.navigationBarView.handleSaveButtonDelegate = self
         editSchoolInfoView.navigationBarView.handleBackButtonDelegate = self
-        majorSearchViewController.majorDelegate = self
         schoolSearchViewController.schoolSearchDelegate = self
+        majorSearchViewController.majorSearchDelegate = self
         studentIdViewController.delegate = self
     }
     
@@ -131,7 +131,7 @@ final class EditSchoolInfoViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func convertButtonTapped() {
-        schoolSearchViewController.allArr.removeAll()
+        schoolSearchViewController.searchResults.removeAll()
         schoolSearchViewController.searchView.searchResultTableView.reloadData()
         if userGroupType == .high || userGroupType == .middle {
             userGroupType = .univ
@@ -290,7 +290,7 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
 }
 
 // MARK: SearchResultTableViewSelectDelegate
-extension EditSchoolInfoViewController: SearchResultTableViewSelectDelegate {
+extension EditSchoolInfoViewController: SchoolSearchResultSelectDelegate {
     func didSelectSchoolResult(_ result: String) {
         groupName = result
         if userGroupType == .univ || userGroupType == .SOPT { subgroupName = StringLiterals.Profile.EditProfile.defaultText }
