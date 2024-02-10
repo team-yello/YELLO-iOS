@@ -7,12 +7,6 @@
 
 import UIKit
 
-// MARK: - Protocol
-// MARK: FindMajorViewControllerDelegate
-protocol FindMajorViewControllerDelegate: AnyObject {
-    func didDismissFindMajorViewController(with groupList: GroupList)
-}
-
 class FindMajorViewController: SearchBaseViewController {
     // MARK: - Variables
     // MARK: Property
@@ -21,8 +15,6 @@ class FindMajorViewController: SearchBaseViewController {
     
     var pageCount: Int = 0
     var totalItemCount: Int = 0
-    
-    weak var majorDelegate: FindMajorViewControllerDelegate?
     
     // MARK: - Function
     // MARK: LifeCycle
