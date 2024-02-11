@@ -125,30 +125,15 @@ class RecommendIdViewController: OnboardingBaseViewController {
                     print("no data")
                     return
                 }
-                dump(data)
+                
                 KeychainHandler.shared.accessToken = data.accessToken
                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
-                setAcessToken(accessToken: data.accessToken)
-                setRefreshToken(refreshToken: data.refreshToken)
+                
                 print("유저 토큰 저장 완료: acess \(KeychainHandler.shared.accessToken) \n refresh \(KeychainHandler.shared.refreshToken)")
                 setUsername(username: data.yelloID)
                 Amplitude.instance().logEvent("complete_onboarding_finish")
+                setAmplitude()
                 
-                let currentDate = Date()
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                
-                let formattedDate = dateFormatter.string(from: currentDate)
-                
-                var userProperties: [AnyHashable : Any] = [:]
-                userProperties["user_id"] = UserManager.shared.yelloId
-                userProperties["user_name"] = UserManager.shared.name
-                userProperties["user_sex"] = UserManager.shared.gender
-                userProperties["user_grade"] = UserManager.shared.groupAdmissionYear
-                userProperties["user_recommend"] = UserManager.shared.recommendId.isEmpty ? "yes" : "no"
-                userProperties["user_signup_date"] = formattedDate
-                Amplitude.instance().setUserProperties(userProperties)
                 self.didPostUserInfo = true
                 self.navigationController?.pushViewController(pushViewController, animated: false)
             case .requestErr(let data):
@@ -163,6 +148,25 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 return
             }
         }
+    }
+    
+    private func setAmplitude() {
+        
+        let currentDate = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let formattedDate = dateFormatter.string(from: currentDate)
+        
+        var userProperties: [AnyHashable : Any] = [:]
+        userProperties["user_id"] = UserManager.shared.yelloId
+        userProperties["user_name"] = UserManager.shared.name
+        userProperties["user_sex"] = UserManager.shared.gender
+        userProperties["user_grade"] = UserManager.shared.groupAdmissionYear
+        userProperties["user_recommend"] = UserManager.shared.recommendId.isEmpty ? "yes" : "no"
+        userProperties["user_signup_date"] = formattedDate
+        Amplitude.instance().setUserProperties(userProperties)
     }
     
     override func setUser() {
