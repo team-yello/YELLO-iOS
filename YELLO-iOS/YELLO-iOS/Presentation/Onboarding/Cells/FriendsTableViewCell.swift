@@ -82,7 +82,7 @@ class FriendsTableViewCell: UITableViewCell {
                 contentView.bringSubviewToFront(selectedOverlayView)
                 selectedOverlayView.snp.makeConstraints {
                     $0.top.leading.bottom.equalToSuperview()
-                    $0.trailing.equalToSuperview().inset(50)
+                    $0.trailing.equalToSuperview().inset(50.adjustedWidth)
                 }
             }
         } else {
