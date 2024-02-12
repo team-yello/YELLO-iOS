@@ -37,6 +37,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
         
         nextButton.do {
             $0.setTitle("완료", for: .normal)
+            $0.setButtonEnable(state: false)
         }
     }
     
