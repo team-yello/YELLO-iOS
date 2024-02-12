@@ -174,12 +174,20 @@ extension YelloTextField {
             self.backgroundColor = .semanticStatusRed500.withAlphaComponent(0.2)
             self.layer.borderColor = UIColor.semanticStatusRed500.cgColor
         case .id:
+            self.placeholder = StringLiterals.Onboarding.Id.idPlaceholder
             cancelButton.setImage(cancelImage, for: .normal)
+            self.leftView = idLabelStackView
             guard let text = self.text else { break }
             self.rightViewMode = (text.isEmpty) ? .never : .always
             let borderWidth: CGFloat = (text.isEmpty) ? 1 : 0
             self.makeBorder(width: borderWidth, color: .grayscales700)
-            self.leftView = idLabelStackView
+            self.attributedPlaceholder = NSAttributedString(
+                string: self.placeholder ?? "",
+                attributes: [
+                    .foregroundColor: UIColor.grayscales600,
+                    .font: self.font ?? .uiBodyLarge
+                ]
+            )
             return
         case .done:
             self.makeBorder(width: 1, color: .grayscales700)
@@ -204,13 +212,13 @@ extension YelloTextField {
         self.rightViewMode = .never
         self.text = ""
     }
-
+    
     @objc private func editingChanged(_ sender: UITextField) {
-      self.workItem?.cancel()
-      let workItem = DispatchWorkItem(block: { [weak self] in
-          self?.callback?(sender.text)
-      })
-      self.workItem = workItem
-      DispatchQueue.main.asyncAfter(deadline: .now() + self.delay, execute: workItem)
+        self.workItem?.cancel()
+        let workItem = DispatchWorkItem(block: { [weak self] in
+            self?.callback?(sender.text)
+        })
+        self.workItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + self.delay, execute: workItem)
     }
 }
