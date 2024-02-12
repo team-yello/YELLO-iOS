@@ -131,12 +131,12 @@ extension YelloTextField {
     private func setLayout() {
         
         self.snp.makeConstraints {
-            $0.height.equalTo(52)
+            $0.height.equalTo(52.adjustedHeight)
         }
         
         [labelPaddingView, paddingView].forEach {
             $0.snp.makeConstraints {
-                $0.width.equalTo(20)
+                $0.width.equalTo(20.adjustedWidth)
             }
         }
         

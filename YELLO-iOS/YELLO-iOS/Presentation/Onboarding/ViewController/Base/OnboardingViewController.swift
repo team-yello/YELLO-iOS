@@ -77,7 +77,7 @@ class OnboardingBaseViewController: UIViewController {
         }
         
         skipButton.do {
-            $0.makeCornerRound(radius: 24.adjusted)
+            $0.makeCornerRound(radius: 24.adjustedHeight)
             $0.makeBorder(width: 1, color: .grayscales200)
             $0.setTitle("건너뛰기", for: .normal)
             $0.titleLabel?.font = .uiBody01
