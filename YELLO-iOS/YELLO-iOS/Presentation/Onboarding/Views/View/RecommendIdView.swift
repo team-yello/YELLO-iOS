@@ -33,7 +33,6 @@ class RecommendIdView: BaseView {
             $0.textColor = .grayscales600
             $0.asColor(targetString: "+100", color: .yelloMain500)
         }
-        recommendIdTextField.textField.placeholder = "추천인 아이디"
     }
     
     override func setLayout() {
