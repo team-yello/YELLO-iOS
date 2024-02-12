@@ -278,6 +278,12 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
             editSchoolInfoView.editTableView.reloadData()
         }
         
+        if groupName == UserManager.shared.groupName &&
+            subgroupName == UserManager.shared.subGroupName &&
+            groupAdmissionYear == UserManager.shared.groupAdmissionYear {
+            self.view.showToast(message: StringLiterals.Profile.EditProfile.notYetErrorMessage, at: 82.adjustedHeight)
+        }
+        
         if isEditAvailable && !isMajorSearchError {
             updateProfile()
             navigationController?.popViewController(animated: true)
