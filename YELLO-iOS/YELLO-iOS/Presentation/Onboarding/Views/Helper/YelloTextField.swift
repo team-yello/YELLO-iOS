@@ -150,6 +150,7 @@ extension YelloTextField {
         let cancelImage = xCircleImage.withTintColor(.yelloMain500)
         switch state {
         case .normal:
+            self.makeBorder(width: 0, color: .grayscales700)
             self.backgroundColor = .grayscales800
             self.rightViewMode = .never
         case .search:
