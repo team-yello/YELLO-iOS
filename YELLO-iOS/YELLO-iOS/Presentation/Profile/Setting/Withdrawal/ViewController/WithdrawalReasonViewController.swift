@@ -45,6 +45,8 @@ extension WithdrawalReasonViewController {
         Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
         
         let withdrawalAlertView = WithdrawalAlertView()
+        withdrawalAlertView.withdrawalReason = withdrawalReasonView.withdrawalReason
+        print(withdrawalAlertView.withdrawalReason)
         self.view.addSubview(withdrawalAlertView)
         withdrawalAlertView.snp.makeConstraints {
             $0.edges.equalToSuperview()
