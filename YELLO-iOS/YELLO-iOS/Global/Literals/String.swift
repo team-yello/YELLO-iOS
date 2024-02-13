@@ -355,7 +355,7 @@ enum StringLiterals {
             static let modifireDateText = "마지막 수정일 : "
             static let majorErrorMessage = "학과를 입력해야 수정할 수 있어요."
             static let editDateErrorMessage = "1년 내에 수정한 기록이 있어요."
-            static let notYetErrorMessage = "수정사항이 없습니다."
+            static let notYetErrorMessage = "수정할 정보가 없어요"
             
             static let saveButton = "저장"
             static let convertHighButton = "중/고등학생으로 전환"
