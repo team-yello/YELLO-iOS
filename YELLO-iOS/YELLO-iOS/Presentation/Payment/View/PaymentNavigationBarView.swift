@@ -17,7 +17,7 @@ final class PaymentNavigationBarView: BaseView {
     weak var handleBackButtonDelegate: HandleBackButtonDelegate?
     
     // MARK: Component
-    lazy var backButton = UIButton()
+    lazy var backButton = BaseIconButton()
     let subscribeView = UIView()
     let yelloPlusImageView = UIImageView()
     let yelloPlusLabel = UILabel()

@@ -30,7 +30,7 @@ final class InfoView: UIView {
     }
     
     // MARK: Layout Helpers
-    private func setUI(){
+    private func setUI() {
         setStyle()
         setLayout()
     }

@@ -15,7 +15,7 @@ final class RecommendingNavigationBarView: BaseView {
     // MARK: - Variables
     // MARK: Component
     private let titleLabel = UILabel()
-    lazy var searchButton = UIButton()
+    lazy var searchButton = BaseIconButton()
     
     // MARK: - Function
     // MARK: Layout Helpers

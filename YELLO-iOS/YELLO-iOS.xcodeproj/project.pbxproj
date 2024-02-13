@@ -224,6 +224,8 @@
 		C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */; };
 		C3081E492A82451D0088CA44 /* AroundSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */; };
 		C3081E4B2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */; };
+		C30F45242B775DCF00803BE5 /* BaseIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F45232B775DCF00803BE5 /* BaseIconButton.swift */; };
+		C30F45262B77649700803BE5 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F45252B77649700803BE5 /* CloseButton.swift */; };
 		C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81022A7F51E6009DBB8D /* UseTicketView.swift */; };
 		C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */; };
 		C30F81072A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */; };
@@ -558,6 +560,8 @@
 		C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileFriendModel.swift; sourceTree = "<group>"; };
 		C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundSkeletonTableViewCell.swift; sourceTree = "<group>"; };
 		C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendSkeletonTableViewCell.swift; sourceTree = "<group>"; };
+		C30F45232B775DCF00803BE5 /* BaseIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseIconButton.swift; sourceTree = "<group>"; };
+		C30F45252B77649700803BE5 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		C30F81022A7F51E6009DBB8D /* UseTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseTicketView.swift; sourceTree = "<group>"; };
 		C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFullNameView.swift; sourceTree = "<group>"; };
 		C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloOnlyNameTableViewCell.swift; sourceTree = "<group>"; };
@@ -1322,6 +1326,7 @@
 			isa = PBXGroup;
 			children = (
 				2AD1A1B32A5739B300CB988B /* InvitingView.swift */,
+				C30F45252B77649700803BE5 /* CloseButton.swift */,
 			);
 			path = Inviting;
 			sourceTree = "<group>";
@@ -1930,6 +1935,7 @@
 				C3FF24B22A5F4D1F00A97D40 /* BasePaddingLabel.swift */,
 				C3A799CC2A494C8600D3EFD8 /* BaseView.swift */,
 				36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */,
+				C30F45232B775DCF00803BE5 /* BaseIconButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2467,6 +2473,7 @@
 				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
 				36621BD32A693D4C00010D84 /* BottomFriendProfileViewController.swift in Sources */,
 				36871C7D2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift in Sources */,
+				C30F45242B775DCF00803BE5 /* BaseIconButton.swift in Sources */,
 				C3C560C62A8A6F350074E988 /* FriendSearchResponseDTO.swift in Sources */,
 				36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */,
 				C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */,
@@ -2644,6 +2651,7 @@
 				C390B8182A8A1DF600EA5A23 /* AroundService.swift in Sources */,
 				C3B4720E2A65DEC700770530 /* MyYelloDetailResponseDTO.swift in Sources */,
 				363D81612B261ABF0095F6CC /* NameCheckViewController.swift in Sources */,
+				C30F45262B77649700803BE5 /* CloseButton.swift in Sources */,
 				C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */,
 				2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */,
 				3662A0F22A65498800F482EF /* MajorSearchRequestQueryDTO.swift in Sources */,

@@ -56,6 +56,7 @@ final class ProfileView: UIView {
     let myProfileHeaderView = MyProfileHeaderView()
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
     let refreshControl = UIRefreshControl()
+    let headerBorder = CALayer()
     
     lazy var topButton = UIButton()
     private var isButtonHidden: Bool = false
@@ -96,7 +97,7 @@ extension ProfileView {
             $0.register(MyFriendTableViewCell.self, forCellReuseIdentifier: MyFriendTableViewCell.identifier)
             $0.register(MyFriendSkeletonTableViewCell.self, forCellReuseIdentifier: MyFriendSkeletonTableViewCell.identifier)
             $0.register(MyProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "MyProfileHeaderView")
-            $0.backgroundColor = .black
+            $0.backgroundColor = .clear
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
@@ -114,6 +115,10 @@ extension ProfileView {
             $0.addTarget(self, action: #selector(topButtonTapped), for: .touchUpInside)
             $0.isHidden = true
             $0.layer.applyShadow(color: .black, alpha: 0.6, x: 0, y: 0, blur: 8)
+        }
+        
+        headerBorder.do {
+            $0.backgroundColor = UIColor.black.cgColor
         }
     }
     
@@ -288,6 +293,7 @@ extension ProfileView: UITableViewDelegate {
 }
 
 // MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension ProfileView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -305,7 +311,6 @@ extension ProfileView: UITableViewDataSource {
             }
             
             DispatchQueue.main.async { [self] in
-                view?.addBottomBorderWithColor(color: .black)
                 view?.profileUser()
                 view?.myProfileView.mainProfileView.nameSkeletonLabel.isHidden = true
                 view?.myProfileView.mainProfileView.schoolSkeletonLabel.isHidden = true
@@ -318,6 +323,9 @@ extension ProfileView: UITableViewDataSource {
                 view?.myProfileView.notificationImageView.isUserInteractionEnabled = true
                 view?.myProfileView.mainProfileView.isYelloPlus = self.isYelloPlus
                 view?.myProfileView.mainProfileView.updateProfileView()
+                headerBorder.removeFromSuperlayer()
+                headerBorder.frame = CGRect(x: 0, y: view?.frame.size.height ?? CGFloat(), width: UIScreen.main.bounds.width, height: 1)
+                view?.layer.addSublayer(headerBorder)
             }
             return view
         default:
