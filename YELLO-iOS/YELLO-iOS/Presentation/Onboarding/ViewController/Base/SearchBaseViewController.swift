@@ -8,23 +8,23 @@
 import UIKit
 
 // MARK: - Delegate
-protocol SearchResultTableViewSelectDelegate: AnyObject {
+protocol SchoolSearchResultSelectDelegate: AnyObject {
     func didSelectSchoolResult(_ result: String)
 }
 
 protocol MajorSearchResultSelectDelegate: AnyObject {
-    func didSelectMajorResult(_ result: String)
+    func didSelectMajorResult(_ result: GroupList)
 }
 
 class SearchBaseViewController: BaseViewController {
     
     // MARK: - Variables
     // MARK: Property
-    var allArr: [String] = []
+    var searchResults: [String] = []
     
     // MARK: Component
     let searchView = SearchView()
-    weak var schoolSearchDelegate: SearchResultTableViewSelectDelegate?
+    weak var schoolSearchDelegate: SchoolSearchResultSelectDelegate?
     weak var majorSearchDelegate: MajorSearchResultSelectDelegate?
     
     // MARK: - Function
@@ -47,7 +47,7 @@ class SearchBaseViewController: BaseViewController {
     }
     
     // MARK: Custom Function
-    func customView(titleText: String, helperText: String) {
+    func customTitle(titleText: String, helperText: String) {
         searchView.titleLabel.text = titleText
         searchView.helperButton.setTitle(helperText, for: .normal)
         searchView.helperButton.setUnderline()
@@ -91,14 +91,19 @@ extension SearchBaseViewController: UITextFieldDelegate {
 // MARK: UITableViewDataSource
 extension SearchBaseViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allArr.count
+        searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let searchResult = allArr[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier) as! SearchResultTableViewCell
-        cell.titleLabel.text = searchResult
-        cell.selectionStyle = .none
-        return cell 
+        if let searchResult = searchResults[safe: indexPath.row],
+           let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier) as? SearchResultTableViewCell {
+            cell.titleLabel.text = searchResult
+            cell.selectionStyle = .none
+            return cell
+        } else {
+            print("index out of range")
+            return UITableViewCell()
+        }
+        
     }
 }

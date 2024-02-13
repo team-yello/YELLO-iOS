@@ -62,8 +62,8 @@ final class EditSchoolInfoViewController: BaseViewController {
         editSchoolInfoView.editTableView.delegate = self
         editSchoolInfoView.navigationBarView.handleSaveButtonDelegate = self
         editSchoolInfoView.navigationBarView.handleBackButtonDelegate = self
-        majorSearchViewController.majorDelegate = self
         schoolSearchViewController.schoolSearchDelegate = self
+        majorSearchViewController.majorSearchDelegate = self
         studentIdViewController.delegate = self
     }
     
@@ -131,7 +131,7 @@ final class EditSchoolInfoViewController: BaseViewController {
     
     // MARK: Objc Function
     @objc func convertButtonTapped() {
-        schoolSearchViewController.allArr.removeAll()
+        schoolSearchViewController.searchResults.removeAll()
         schoolSearchViewController.searchView.searchResultTableView.reloadData()
         if userGroupType == .high || userGroupType == .middle {
             userGroupType = .univ
@@ -199,11 +199,7 @@ extension EditSchoolInfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            if userGroupType == .univ || userGroupType == .SOPT {
-                schoolSearchViewController.isHighSchool = false
-            } else if userGroupType == .high || userGroupType == .middle {
-                schoolSearchViewController.isHighSchool = true
-            }
+            schoolSearchViewController.userType = userGroupType
             self.present(schoolSearchViewController, animated: true)
         case 1:
             if userGroupType == .univ || userGroupType == .SOPT {
@@ -281,8 +277,6 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
         if isEditAvailable && !isMajorSearchError {
             updateProfile()
             navigationController?.popViewController(animated: true)
-        } else if isMajorSearchError {
-            
         } else if !isEditAvailable {
             self.view.showToast(message: StringLiterals.Profile.EditProfile.editDateErrorMessage, at: 82.adjustedHeight)
         }
@@ -290,7 +284,7 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
 }
 
 // MARK: SearchResultTableViewSelectDelegate
-extension EditSchoolInfoViewController: SearchResultTableViewSelectDelegate {
+extension EditSchoolInfoViewController: SchoolSearchResultSelectDelegate {
     func didSelectSchoolResult(_ result: String) {
         groupName = result
         if userGroupType == .univ || userGroupType == .SOPT { subgroupName = StringLiterals.Profile.EditProfile.defaultText }
@@ -300,19 +294,11 @@ extension EditSchoolInfoViewController: SearchResultTableViewSelectDelegate {
 
 // MARK: MajorSearchResultSelectDelegate
 extension EditSchoolInfoViewController: MajorSearchResultSelectDelegate {
-    func didSelectMajorResult(_ result: String) {
-        subgroupName = result
+    func didSelectMajorResult(_ result: GroupList) {
+        subgroupName = result.departmentName
+        groupId = result.groupID
         isMajorSearchError = false
-        editSchoolInfoView.editTableView.reloadData()
-    }
-}
-
-// MARK: FindMajorViewControllerDelegate
-extension EditSchoolInfoViewController: FindMajorViewControllerDelegate {
-    func didDismissFindMajorViewController(with groupList: GroupList) {
-        subgroupName = groupList.departmentName
-        groupId = groupList.groupID
-        isMajorSearchError = false
+        print(result.departmentName)
         editSchoolInfoView.editTableView.reloadData()
     }
 }

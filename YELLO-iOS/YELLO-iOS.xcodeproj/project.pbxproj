@@ -108,6 +108,7 @@
 		3662A0F62A654B8D00F482EF /* JoinedFriendsRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0F52A654B8D00F482EF /* JoinedFriendsRequestDTO.swift */; };
 		3662A0F82A6577E000F482EF /* IdValidRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */; };
 		3662A0FC2A65795200F482EF /* IdValidResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0FB2A65795200F482EF /* IdValidResponseDTO.swift */; };
+		366885AC2B775FA9009AFB0C /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366885AB2B775FA9009AFB0C /* Array+.swift */; };
 		366CE5EC2A819CA600BE5F66 /* PushSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CE5EB2A819CA600BE5F66 /* PushSettingView.swift */; };
 		366CE5F02A819DA800BE5F66 /* PushSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CE5EF2A819DA800BE5F66 /* PushSettingViewController.swift */; };
 		367113642A7D082C0037E0D2 /* ProgressBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367113632A7D082C0037E0D2 /* ProgressBarManager.swift */; };
@@ -472,6 +473,7 @@
 		3662A0F52A654B8D00F482EF /* JoinedFriendsRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsRequestDTO.swift; sourceTree = "<group>"; };
 		3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdValidRequestQueryDTO.swift; sourceTree = "<group>"; };
 		3662A0FB2A65795200F482EF /* IdValidResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdValidResponseDTO.swift; sourceTree = "<group>"; };
+		366885AB2B775FA9009AFB0C /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		366CE5EB2A819CA600BE5F66 /* PushSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingView.swift; sourceTree = "<group>"; };
 		366CE5EF2A819DA800BE5F66 /* PushSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingViewController.swift; sourceTree = "<group>"; };
 		367113632A7D082C0037E0D2 /* ProgressBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarManager.swift; sourceTree = "<group>"; };
@@ -1387,8 +1389,8 @@
 			isa = PBXGroup;
 			children = (
 				36E427762A5BD5AA0050B34E /* FindSchoolViewController.swift */,
-				36621BD02A69318200010D84 /* StudentIdViewController.swift */,
 				36E4278C2A5C92EC0050B34E /* FindMajorViewController.swift */,
+				36621BD02A69318200010D84 /* StudentIdViewController.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -1847,6 +1849,7 @@
 				365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */,
 				362EC31C2A8BB5A400121BDD /* UIScreen+.swift */,
 				363D815C2B25E7B60095F6CC /* UIApplication.swift */,
+				366885AB2B775FA9009AFB0C /* Array+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2707,6 +2710,7 @@
 				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
 				2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */,
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
+				366885AC2B775FA9009AFB0C /* Array+.swift in Sources */,
 				367DA01B2A863CE60043D23C /* HighSchoolViewController.swift in Sources */,
 				C32CEABA2B760DED00692982 /* DeleteRequestDTO.swift in Sources */,
 				C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */,
