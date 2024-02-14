@@ -108,6 +108,7 @@
 		3662A0F62A654B8D00F482EF /* JoinedFriendsRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0F52A654B8D00F482EF /* JoinedFriendsRequestDTO.swift */; };
 		3662A0F82A6577E000F482EF /* IdValidRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */; };
 		3662A0FC2A65795200F482EF /* IdValidResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0FB2A65795200F482EF /* IdValidResponseDTO.swift */; };
+		366885AC2B775FA9009AFB0C /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366885AB2B775FA9009AFB0C /* Array+.swift */; };
 		366CE5EC2A819CA600BE5F66 /* PushSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CE5EB2A819CA600BE5F66 /* PushSettingView.swift */; };
 		366CE5F02A819DA800BE5F66 /* PushSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CE5EF2A819DA800BE5F66 /* PushSettingViewController.swift */; };
 		367113642A7D082C0037E0D2 /* ProgressBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367113632A7D082C0037E0D2 /* ProgressBarManager.swift */; };
@@ -224,6 +225,8 @@
 		C307ECBA2A612831000F5BA9 /* MyProfileFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */; };
 		C3081E492A82451D0088CA44 /* AroundSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */; };
 		C3081E4B2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */; };
+		C30F45242B775DCF00803BE5 /* BaseIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F45232B775DCF00803BE5 /* BaseIconButton.swift */; };
+		C30F45262B77649700803BE5 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F45252B77649700803BE5 /* CloseButton.swift */; };
 		C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81022A7F51E6009DBB8D /* UseTicketView.swift */; };
 		C30F81052A7F51F3009DBB8D /* GetFullNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */; };
 		C30F81072A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */; };
@@ -237,6 +240,7 @@
 		C32322F52A619E92006DA50B /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F42A619E92006DA50B /* PaymentView.swift */; };
 		C32322F92A61ABF2006DA50B /* PaymentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */; };
 		C3291A082A920D84007F2CF5 /* AppStoreCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3291A072A920D84007F2CF5 /* AppStoreCheck.swift */; };
+		C32CEABA2B760DED00692982 /* DeleteRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32CEAB92B760DED00692982 /* DeleteRequestDTO.swift */; };
 		C348B6D72A8FBBD600674371 /* PurchaseInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */; };
 		C363D46D2A78050600FD583D /* AroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C363D46C2A78050600FD583D /* AroundTableViewCell.swift */; };
 		C363D4722A780F0D00FD583D /* AroundEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C363D4712A780F0D00FD583D /* AroundEmptyView.swift */; };
@@ -469,6 +473,7 @@
 		3662A0F52A654B8D00F482EF /* JoinedFriendsRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsRequestDTO.swift; sourceTree = "<group>"; };
 		3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdValidRequestQueryDTO.swift; sourceTree = "<group>"; };
 		3662A0FB2A65795200F482EF /* IdValidResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdValidResponseDTO.swift; sourceTree = "<group>"; };
+		366885AB2B775FA9009AFB0C /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		366CE5EB2A819CA600BE5F66 /* PushSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingView.swift; sourceTree = "<group>"; };
 		366CE5EF2A819DA800BE5F66 /* PushSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingViewController.swift; sourceTree = "<group>"; };
 		367113632A7D082C0037E0D2 /* ProgressBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarManager.swift; sourceTree = "<group>"; };
@@ -557,6 +562,8 @@
 		C307ECB92A612831000F5BA9 /* MyProfileFriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileFriendModel.swift; sourceTree = "<group>"; };
 		C3081E482A82451D0088CA44 /* AroundSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundSkeletonTableViewCell.swift; sourceTree = "<group>"; };
 		C3081E4A2A82B06B0088CA44 /* MyFriendSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendSkeletonTableViewCell.swift; sourceTree = "<group>"; };
+		C30F45232B775DCF00803BE5 /* BaseIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseIconButton.swift; sourceTree = "<group>"; };
+		C30F45252B77649700803BE5 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		C30F81022A7F51E6009DBB8D /* UseTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseTicketView.swift; sourceTree = "<group>"; };
 		C30F81042A7F51F3009DBB8D /* GetFullNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFullNameView.swift; sourceTree = "<group>"; };
 		C30F81062A7F6A63009DBB8D /* MyYelloOnlyNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloOnlyNameTableViewCell.swift; sourceTree = "<group>"; };
@@ -570,6 +577,7 @@
 		C32322F42A619E92006DA50B /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		C32322F82A61ABF2006DA50B /* PaymentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3291A072A920D84007F2CF5 /* AppStoreCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreCheck.swift; sourceTree = "<group>"; };
+		C32CEAB92B760DED00692982 /* DeleteRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRequestDTO.swift; sourceTree = "<group>"; };
 		C348B6D62A8FBBD600674371 /* PurchaseInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseInfoResponseDTO.swift; sourceTree = "<group>"; };
 		C363D46C2A78050600FD583D /* AroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundTableViewCell.swift; sourceTree = "<group>"; };
 		C363D4712A780F0D00FD583D /* AroundEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundEmptyView.swift; sourceTree = "<group>"; };
@@ -1047,6 +1055,7 @@
 			children = (
 				36B7CAB22B6BE718003C57FF /* EditProfileRequestDTO.swift */,
 				C306E7462A656D170031514C /* ProfileFriendRequestQueryDTO.swift */,
+				C32CEAB92B760DED00692982 /* DeleteRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1319,6 +1328,7 @@
 			isa = PBXGroup;
 			children = (
 				2AD1A1B32A5739B300CB988B /* InvitingView.swift */,
+				C30F45252B77649700803BE5 /* CloseButton.swift */,
 			);
 			path = Inviting;
 			sourceTree = "<group>";
@@ -1379,8 +1389,8 @@
 			isa = PBXGroup;
 			children = (
 				36E427762A5BD5AA0050B34E /* FindSchoolViewController.swift */,
-				36621BD02A69318200010D84 /* StudentIdViewController.swift */,
 				36E4278C2A5C92EC0050B34E /* FindMajorViewController.swift */,
+				36621BD02A69318200010D84 /* StudentIdViewController.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -1839,6 +1849,7 @@
 				365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */,
 				362EC31C2A8BB5A400121BDD /* UIScreen+.swift */,
 				363D815C2B25E7B60095F6CC /* UIApplication.swift */,
+				366885AB2B775FA9009AFB0C /* Array+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1927,6 +1938,7 @@
 				C3FF24B22A5F4D1F00A97D40 /* BasePaddingLabel.swift */,
 				C3A799CC2A494C8600D3EFD8 /* BaseView.swift */,
 				36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */,
+				C30F45232B775DCF00803BE5 /* BaseIconButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2464,6 +2476,7 @@
 				2AA0DBB02A546E1D002B1370 /* RecommendingViewController.swift in Sources */,
 				36621BD32A693D4C00010D84 /* BottomFriendProfileViewController.swift in Sources */,
 				36871C7D2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift in Sources */,
+				C30F45242B775DCF00803BE5 /* BaseIconButton.swift in Sources */,
 				C3C560C62A8A6F350074E988 /* FriendSearchResponseDTO.swift in Sources */,
 				36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */,
 				C3FF24902A5E8ED000A97D40 /* MyYelloListView.swift in Sources */,
@@ -2641,6 +2654,7 @@
 				C390B8182A8A1DF600EA5A23 /* AroundService.swift in Sources */,
 				C3B4720E2A65DEC700770530 /* MyYelloDetailResponseDTO.swift in Sources */,
 				363D81612B261ABF0095F6CC /* NameCheckViewController.swift in Sources */,
+				C30F45262B77649700803BE5 /* CloseButton.swift in Sources */,
 				C30F81032A7F51E6009DBB8D /* UseTicketView.swift in Sources */,
 				2A3705AC2A62DCB2001AAC93 /* NetworkService.swift in Sources */,
 				3662A0F22A65498800F482EF /* MajorSearchRequestQueryDTO.swift in Sources */,
@@ -2696,7 +2710,9 @@
 				C3FF24732A5D47EB00A97D40 /* WithdrawalCheckViewController.swift in Sources */,
 				2A3705DC2A62E386001AAC93 /* VotingTarget.swift in Sources */,
 				C3DC4ADA2A5FE713001DCE04 /* PaymentViewController.swift in Sources */,
+				366885AC2B775FA9009AFB0C /* Array+.swift in Sources */,
 				367DA01B2A863CE60043D23C /* HighSchoolViewController.swift in Sources */,
+				C32CEABA2B760DED00692982 /* DeleteRequestDTO.swift in Sources */,
 				C303C8222B6005500077C423 /* WithdrawalReasonViewController.swift in Sources */,
 				2AD1A1D62A5C952000CB988B /* VotingFunction.swift in Sources */,
 				C3D2664F2A5D1FA50041C7C7 /* SettingNavigationBarView.swift in Sources */,

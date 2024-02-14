@@ -25,9 +25,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
     let baseView = HighSchoolView()
     let schoolSearchViewController = FindSchoolViewController()
     let studentIdViewController = StudentIdViewController()
-    lazy var studentIdView = StudentIdView()
     lazy var userViewController = UserInfoViewController()
-    let bottomSheetViewController = BaseBottomViewController()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -40,7 +38,6 @@ class HighSchoolViewController: OnboardingBaseViewController {
     
     // MARK: Layout Helpers
     override func setStyle() {
-        studentIdView.studentIdList = (1...20).map { "\($0)반" }
         studentIdViewController.studentIdList = (1...20).map { "\($0)반" }
     }
     
@@ -141,7 +138,6 @@ extension HighSchoolViewController: UITextFieldDelegate {
         switch textField {
         case baseView.schoolSearchTextField:
             let nextViewController = FindSchoolViewController()
-            nextViewController.isHighSchool = true
             nextViewController.schoolSearchDelegate = self
             self.present(nextViewController, animated: true)
             baseView.classSearchTextField.text = ""
@@ -159,7 +155,7 @@ extension HighSchoolViewController: UITextFieldDelegate {
     
 }
 
-extension HighSchoolViewController: SearchResultTableViewSelectDelegate {
+extension HighSchoolViewController: SchoolSearchResultSelectDelegate {
     func didSelectSchoolResult(_ result: String) {
         baseView.schoolSearchTextField.text = result
         self.highSchoolName = result

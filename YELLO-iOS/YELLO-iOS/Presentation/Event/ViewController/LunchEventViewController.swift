@@ -115,8 +115,10 @@ extension LunchEventViewController {
                 guard let data = data.data else { return }
                 if data.rewardTag == "TICKET" {
                     self.eventPointView.pointLabel.text = StringLiterals.Event.ticket
+                    self.eventPointView.pointImage.image = UIImage(imageLiteralResourceName: "imgTicket")
                 } else {
                     self.eventPointView.pointLabel.text = String(data.rewardValue) + " " + StringLiterals.Event.point
+                    self.eventPointView.pointImage.image = UIImage(imageLiteralResourceName: "imgPoint")
                 }
             default:
                 print("network failure")

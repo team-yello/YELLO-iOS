@@ -45,7 +45,7 @@ extension MyProfileHeaderView {
     }
     
     private func setStyle() {
-        self.backgroundColor = .black
+        self.backgroundColor = .clear
         backgroundView?.backgroundColor = .clear
     }
     

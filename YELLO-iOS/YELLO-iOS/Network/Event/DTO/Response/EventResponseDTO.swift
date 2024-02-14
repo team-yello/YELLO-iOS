@@ -7,18 +7,13 @@
 
 import Foundation
 
-// MARK: - Datum
+// MARK: - EventResponseDTO
 struct EventResponseDTO: Codable {
     let tag: String
     let startDate, endDate: String
     let title, subTitle: String
-    let animationList: [AnimationList]
+    let animationList: [String]
     let eventReward: EventReward?
-}
-
-// MARK: - AnimationList
-struct AnimationList: Codable {
-    let v: String
 }
 
 // MARK: - EventReward

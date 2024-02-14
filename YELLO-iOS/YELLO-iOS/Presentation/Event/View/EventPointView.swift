@@ -15,7 +15,7 @@ final class EventPointView: BaseView {
     private let contentView = UIView()
     let pointLabel = UILabel()
     private let nextTimeLabel = UILabel()
-    private let pointImage = UIImageView()
+    let pointImage = UIImageView()
     let checkButton = UIButton()
     
     override func setStyle() {

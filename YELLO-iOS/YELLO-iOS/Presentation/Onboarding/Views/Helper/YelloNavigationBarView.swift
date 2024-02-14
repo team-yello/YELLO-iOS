@@ -8,7 +8,7 @@
 import UIKit
 
 final class YelloNavigationBarView: UIView {
-    let backButton = UIButton()
+    let backButton = BaseIconButton()
     let progressBar = ProgressBarManager.shared.progressBarView
     
     override init(frame: CGRect) {

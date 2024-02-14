@@ -20,8 +20,8 @@ final class NotificationView: BaseView {
     var isTapped: Bool = false
 
     override func setStyle() {
-        self.backgroundColor = .black
-        
+        self.backgroundColor = .black.withAlphaComponent(0.8)
+
         notificationImageView.do {
             $0.contentMode = .scaleAspectFill
             $0.clipsToBounds = true

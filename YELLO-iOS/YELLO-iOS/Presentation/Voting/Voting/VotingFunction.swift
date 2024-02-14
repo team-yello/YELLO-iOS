@@ -157,7 +157,6 @@ extension VotingViewController {
     func setNextViewController() {
         // 투표 끝나면 포인트뷰컨으로 push
         if VotingViewController.pushCount > 6 {
-            VotingViewController.pushCount = 0
             
             let identify = AMPIdentify()
                 .add("user_instagram", value: NSNumber(value: votingAnswer.count))
@@ -200,6 +199,16 @@ extension VotingViewController {
             let nameAnimatedViews = [viewController.originView.nameOneButton, viewController.originView.nameTwoButton, viewController.originView.nameThreeButton, viewController.originView.nameFourButton]
             let keywordAnimatedViews = [viewController.originView.keywordOneButton, viewController.originView.keywordTwoButton, viewController.originView.keywordThreeButton, viewController.originView.keywordFourButton]
             
+            // 모든 버튼 비활성화
+            nameAnimatedViews.forEach { $0.isEnabled = false }
+            keywordAnimatedViews.forEach { $0.isEnabled = false }
+            
+            // 0.6초 후에 다시 활성화
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                nameAnimatedViews.forEach { $0.isEnabled = true }
+                keywordAnimatedViews.forEach { $0.isEnabled = true }
+            }
+                        
             let transition = CATransition()
             transition.type = CATransitionType.fade
             transition.duration = 0.6
@@ -219,7 +228,6 @@ extension VotingViewController {
                     for keywordView in keywordAnimatedViews {
                         keywordView.frame.origin.x = CGFloat(newXPosition + 148.adjusted)
                     }
-                    
                     self.navigationController?.pushViewController(viewController, animated: false)
                 })
             }
@@ -403,7 +411,7 @@ extension VotingViewController {
     @objc
     func skipButtonClicked() {
         self.originView.skipButton.isEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             self.originView.skipButton.isEnabled = true
         }
         if keywordButtonClick {

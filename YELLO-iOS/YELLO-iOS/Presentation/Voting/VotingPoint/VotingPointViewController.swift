@@ -38,6 +38,7 @@ final class VotingPointViewController: BaseViewController {
         originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
         originView.plusPoint.setTextWithLineHeight(text: "+ " + String(votingPlusPoint) + " Point", lineHeight: 22)
         originView.plusPoint.asColor(targetString: String(votingPlusPoint), color: .yelloMain500)
+        VotingViewController.pushCount = 0
     }
     
     // MARK: - Style
@@ -156,7 +157,7 @@ final class VotingPointViewController: BaseViewController {
         let viewController = YELLOTabBarController()
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
         viewController.startStatus = 2
-        
+        viewController.notificationReadCount = 1
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: viewController)
             self.originView.yellowButton.isEnabled = true

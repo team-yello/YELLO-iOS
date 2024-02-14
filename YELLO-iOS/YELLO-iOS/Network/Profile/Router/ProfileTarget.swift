@@ -13,7 +13,7 @@ enum ProfileTarget {
     case profileUser
     case profileFriend(_ queryDTO: ProfileFriendRequestQueryDTO)
     case profileDeleteFriend(id: Int)
-    case deleteUser
+    case deleteUser(_ requestBody: DeleteRequestDTO)
     case purchaseInfo
     case accountUpdatedAt
     case editProfile(_ request: EditProfileRequestDTO)
@@ -86,7 +86,7 @@ extension ProfileTarget: TargetType {
         case .profileDeleteFriend(let id):
             return "/v1/friend/\(id)"
         case .deleteUser:
-            return "/v1/user"
+            return "/v2/user"
         case .purchaseInfo:
             return "/v1/purchase"
         case .accountUpdatedAt:
@@ -104,8 +104,8 @@ extension ProfileTarget: TargetType {
             return .requestQuery(queryDTO)
         case .profileDeleteFriend:
             return .requestPlain
-        case .deleteUser:
-            return .requestPlain
+        case .deleteUser(let requestBody):
+            return .requestWithBody(requestBody)
         case .purchaseInfo:
             return .requestPlain
         case .accountUpdatedAt:

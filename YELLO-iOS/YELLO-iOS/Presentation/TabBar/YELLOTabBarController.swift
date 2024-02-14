@@ -34,6 +34,7 @@ final class YELLOTabBarController: UITabBarController {
     let subscriptionExtensionView = SubscriptionExtensionView()
     let paymentPlusViewController = PaymentPlusViewController()
     let userNotificationView = NotificationView()
+    var notificationReadCount = 0
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -246,8 +247,7 @@ extension YELLOTabBarController {
             switch result {
             case .success(let data):
                 guard let data = data.data else { return }
-                
-                if data.isAvailable {
+                if data.isAvailable && self.notificationReadCount == 0 {
                     // 다시 보지 않기 버튼을 안눌렀거나 이전 공지와 현재 공지의 title이 다른 경우에만 표시
                     if !UserDefaults.standard.bool(forKey: "isTapped") || UserDefaults.standard.string(forKey: "notificationTitle") != data.title {
                         self.userNotificationView.frame = self.view.bounds

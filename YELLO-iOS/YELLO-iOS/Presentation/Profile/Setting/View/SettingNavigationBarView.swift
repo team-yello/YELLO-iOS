@@ -32,7 +32,7 @@ final class SettingNavigationBarView: UIView {
     }
     
     // MARK: Component
-    lazy var backButton = UIButton()
+    lazy var backButton = BaseIconButton()
     let titleLabel = UILabel()
     let saveButton = UIButton()
     

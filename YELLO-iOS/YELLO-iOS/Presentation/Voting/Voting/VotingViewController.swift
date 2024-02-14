@@ -73,9 +73,22 @@ final class VotingViewController: BaseViewController {
     // name, keyword 버튼이 모두 클릭되었을 때 동작
     var bothButtonClicked: Bool = false {
         didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
-                self.setNextViewController()
+            guard bothButtonClicked && !oldValue else { return }
+            self.setNextViewController()
+            
+            let allNameButtons = [self.originView.nameOneButton, self.originView.nameTwoButton, self.originView.nameThreeButton, self.originView.nameFourButton]
+            let allKeywordButtons = [self.originView.keywordOneButton, self.originView.keywordTwoButton, self.originView.keywordThreeButton, self.originView.keywordFourButton]
+            
+            // 모든 버튼 비활성화
+            allNameButtons.forEach { $0.isEnabled = false }
+            allKeywordButtons.forEach { $0.isEnabled = false }
+            
+            // 0.6초 후에 다시 활성화
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                allNameButtons.forEach { $0.isEnabled = true }
+                allKeywordButtons.forEach { $0.isEnabled = true }
             }
+            
             if VotingViewController.pushCount <= 8 {
                 
                 DispatchQueue.global(qos: .background).async {
@@ -89,7 +102,6 @@ final class VotingViewController: BaseViewController {
                     myColorIndex = myColorIndex - 12
                 }
                 votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount].questionId, keywordName: keyword, colorIndex: myColorIndex))
-                print(myColorIndex)
             }
         }
     }
