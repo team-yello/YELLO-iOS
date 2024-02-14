@@ -138,6 +138,7 @@ final class EditSchoolInfoViewController: BaseViewController {
         } else {
             userGroupType = .high
         }
+        isMajorSearchError = false
         groupName = StringLiterals.Profile.EditProfile.defaultText
         subgroupName =  userGroupType == .univ ? StringLiterals.Profile.EditProfile.defaultText : "1"
         groupAdmissionYear = userGroupType == .univ ? 24 : 1
@@ -272,6 +273,12 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
         if subgroupName == StringLiterals.Profile.EditProfile.defaultText {
             isMajorSearchError = true
             editSchoolInfoView.editTableView.reloadData()
+        }
+        
+        if groupName == UserManager.shared.groupName &&
+            subgroupName == UserManager.shared.subGroupName &&
+            groupAdmissionYear == UserManager.shared.groupAdmissionYear {
+            self.view.showToast(message: StringLiterals.Profile.EditProfile.notYetErrorMessage, at: 82.adjustedHeight)
         }
         
         if isEditAvailable && !isMajorSearchError {

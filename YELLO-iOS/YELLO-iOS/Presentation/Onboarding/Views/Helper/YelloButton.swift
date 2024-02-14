@@ -56,7 +56,7 @@ extension YelloButton {
     private func setStyle() {
         self.setTitle(buttonText, for: .normal)
         self.makeCornerRound(radius: buttonHeight/2)
-        self.titleLabel?.font = .uiButton
+        self.titleLabel?.font = .uiBody01
         setButtonEnable(state: self.buttonState)
     }
     

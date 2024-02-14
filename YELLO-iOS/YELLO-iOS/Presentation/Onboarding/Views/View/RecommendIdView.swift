@@ -16,7 +16,8 @@ class RecommendIdView: BaseView {
     // MARK:
     let stringLiteral = StringLiterals.Onboarding.self
     // MARK: Component
-    let guideLabel = YelloGuideLabel(labelText: "추천인 코드")
+    let guideLabel = YelloGuideLabel(labelText: 
+                                        StringLiterals.Onboarding.Recommand.recommandTitle)
     let subGuideLabel = UILabel()
     lazy var recommendIdTextField = YelloTextFieldView(title: "", state: .id,
                                                        placeholder: stringLiteral.Id.idPlaceholder,
@@ -32,7 +33,6 @@ class RecommendIdView: BaseView {
             $0.textColor = .grayscales600
             $0.asColor(targetString: "+100", color: .yelloMain500)
         }
-        
     }
     
     override func setLayout() {

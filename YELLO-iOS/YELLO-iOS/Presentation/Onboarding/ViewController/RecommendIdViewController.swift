@@ -37,6 +37,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
         
         nextButton.do {
             $0.setTitle("완료", for: .normal)
+            $0.setButtonEnable(state: false)
         }
     }
     
@@ -184,8 +185,8 @@ class RecommendIdViewController: OnboardingBaseViewController {
     }
     
     override func didTapButton(sender: UIButton) {
-        nextButton.isEnabled = true
-        skipButton.isEnabled = true
+        setUser()
+        
         if isFail {
             self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
             return
@@ -196,8 +197,6 @@ class RecommendIdViewController: OnboardingBaseViewController {
         } else if sender == nextButton {
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
         }
-        
-        setUser()
         postUserInfo()
     }
 }

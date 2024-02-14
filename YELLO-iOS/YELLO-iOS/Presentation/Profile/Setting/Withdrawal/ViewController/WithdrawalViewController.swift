@@ -41,7 +41,7 @@ final class WithdrawalViewController: BaseViewController {
 // MARK: HandleBackButtonDelegate
 extension WithdrawalViewController: HandleBackButtonDelegate {
     func popView() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 

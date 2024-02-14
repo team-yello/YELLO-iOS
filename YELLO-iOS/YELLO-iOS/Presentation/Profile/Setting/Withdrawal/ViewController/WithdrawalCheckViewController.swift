@@ -52,6 +52,6 @@ final class WithdrawalCheckViewController: BaseViewController {
 // MARK: HandleBackButtonDelegate
 extension WithdrawalCheckViewController: HandleBackButtonDelegate {
     func popView() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
