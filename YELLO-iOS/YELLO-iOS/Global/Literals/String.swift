@@ -291,14 +291,14 @@ enum StringLiterals {
             static let forWeek = "/주"
             
             static let sale = "SALE!"
-            static let nameKeyOne = "이름 열람권 1개"
+            static let nameKeyOne = "이름 열람권\n1개"
             static let nameKeyOnePrice = "1400원"
             static let nameKeyOneSalePrice = "990원"
-            static let nameKeyTwo = "이름 열람권 2개"
+            static let nameKeyTwo = "이름 열람권\n2개"
             static let nameKeyTwoPrice = "2800원"
             static let nameKeyTwoSalePrice = "1900원"
-            static let nameKeyFive = "이름 열람권 5개"
-            static let discount = "   할인!"
+            static let nameKeyFive = "이름 열람권\n5개"
+            static let discount = "할인!"
             static let nameKeyFivePriceBefore = "7000원"
             static let nameKeyFivePrice = "3900원"
             
