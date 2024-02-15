@@ -93,6 +93,7 @@
 		363D81642B262A460095F6CC /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81622B262A450095F6CC /* NameViewController.swift */; };
 		363D81652B262A460095F6CC /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81632B262A460095F6CC /* NameView.swift */; };
 		365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */; };
+		365CD6AF2B7DEFDD00245CDD /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 365CD6AE2B7DEFDD00245CDD /* GoogleMobileAds */; };
 		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
 		36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCE2A692A7700010D84 /* StudentIdView.swift */; };
 		36621BD12A69318200010D84 /* StudentIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BD02A69318200010D84 /* StudentIdViewController.swift */; };
@@ -737,6 +738,7 @@
 				C3C560C92A8BB7E50074E988 /* StoreKit.framework in Frameworks */,
 				2ADE23AA2A5EB7660088FCB3 /* Lottie in Frameworks */,
 				36E60EAF2AE6DFC4005035D3 /* FirebaseFunctions in Frameworks */,
+				365CD6AF2B7DEFDD00245CDD /* GoogleMobileAds in Frameworks */,
 				36A3B26F2A8D233600BA7CE0 /* Amplitude in Frameworks */,
 				36E60E912AE6DFC4005035D3 /* FirebaseAnalytics in Frameworks */,
 				36E60EA12AE6DFC4005035D3 /* FirebaseCrashlytics in Frameworks */,
@@ -2329,6 +2331,7 @@
 				36E60EC02AE6DFC4005035D3 /* FirebaseRemoteConfigSwift */,
 				36E60EC22AE6DFC4005035D3 /* FirebaseStorage */,
 				36E60EC42AE6DFC4005035D3 /* FirebaseStorageCombine-Community */,
+				365CD6AE2B7DEFDD00245CDD /* GoogleMobileAds */,
 			);
 			productName = "YELLO-iOS";
 			productReference = C3A799932A49490A00D3EFD8 /* YELLO-iOS.app */;
@@ -2368,6 +2371,7 @@
 				2A4C549B2A8622B200FFDF80 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				36A3B26D2A8D233600BA7CE0 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 				36E60E8F2AE6DFC4005035D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				365CD6AD2B7DEFDD00245CDD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = C3A799942A49490A00D3EFD8 /* Products */;
 			projectDirPath = "";
@@ -3133,6 +3137,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		365CD6AD2B7DEFDD00245CDD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.1;
+			};
+		};
 		36A3B26D2A8D233600BA7CE0 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
@@ -3201,6 +3213,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2ADE23A82A5EB7660088FCB3 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		365CD6AE2B7DEFDD00245CDD /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 365CD6AD2B7DEFDD00245CDD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 		36A3B26E2A8D233600BA7CE0 /* Amplitude */ = {
 			isa = XCSwiftPackageProductDependency;
