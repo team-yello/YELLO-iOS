@@ -190,6 +190,7 @@ enum ImageLiterals {
         static var imgNameKeyOneCheck: UIImage { .load(named: "imgNameKeyOneCheck")}
         static var imgNameKeyTwoCheck: UIImage { .load(named: "imgNameKeyTwoCheck")}
         static var imgNameKeyFiveCheck: UIImage { .load(named: "imgNameKeyFiveCheck")}
+        static var imgCoin: UIImage { .load(named: "coin")}
     }
   
     enum Withdrawal {
