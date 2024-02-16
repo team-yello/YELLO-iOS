@@ -283,7 +283,7 @@ enum StringLiterals {
             static let paymentSender = "쪽지를 열고 싶다면?"
             
             static let yelloPlusTitle = "옐로플러스의 특별한 혜택은?"
-            static let subscribing = "옐로플러스 구독 중"
+            static let subscribing = "구독 중"
             static let yelloPlusSubscribe = "옐로플러스 구독하기"
             static let discount50Percent = "(63%할인)"
             static let yelloPlusPriceBefore = "7900원"
