@@ -67,6 +67,8 @@ final class PaymentPlusViewController: BaseViewController {
         
         tabBarController?.tabBar.isHidden = true
         paymentPlusView.paymentView.bannerTimer()
+        paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
+        paymentPlusView.paymentNavigationBarView.keyCountView.countLabel.text = String(UserManager.shared.userTicketCount)
         purchaseSubscribeNeed()
     }
     
