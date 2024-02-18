@@ -28,6 +28,7 @@ enum HTTPHeaderType {
     case hasToken
     case refreshToken
     case idempotencyKey
+    case adUUID
 }
 
 @frozen
