@@ -94,9 +94,9 @@
 		363D81652B262A460095F6CC /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81632B262A460095F6CC /* NameView.swift */; };
 		365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */; };
 		365CD6AF2B7DEFDD00245CDD /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 365CD6AE2B7DEFDD00245CDD /* GoogleMobileAds */; };
-		365CD6FA2B81D86600245CDD /* AppTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CD6F92B81D86600245CDD /* AppTracking.swift */; };
 		365CD6F62B7E918F00245CDD /* PointButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CD6F52B7E918F00245CDD /* PointButton.swift */; };
 		365CD6F82B7EA13800245CDD /* NavigationBarCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CD6F72B7EA13800245CDD /* NavigationBarCountView.swift */; };
+		365CD6FA2B81D86600245CDD /* AppTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CD6F92B81D86600245CDD /* AppTracking.swift */; };
 		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
 		36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCE2A692A7700010D84 /* StudentIdView.swift */; };
 		36621BD12A69318200010D84 /* StudentIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BD02A69318200010D84 /* StudentIdViewController.swift */; };
@@ -150,6 +150,12 @@
 		36C4C4A62AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A52AB8C29400F968B7 /* HighSchoolSearchRequestQueryDTO.swift */; };
 		36C4C4A82AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */; };
 		36C5E1CD2A91273400184AAE /* TokenRefreshRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */; };
+		36CDA9082B82078000AC248E /* RewardPossibleRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CDA9072B82078000AC248E /* RewardPossibleRequestQueryDTO.swift */; };
+		36CDA90A2B8207B900AC248E /* RewardPossibleResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CDA9092B8207B900AC248E /* RewardPossibleResponseDTO.swift */; };
+		36CDA90E2B82084000AC248E /* RewardRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CDA90D2B82084000AC248E /* RewardRequestDTO.swift */; };
+		36CDA9102B82084D00AC248E /* RewardResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CDA90F2B82084D00AC248E /* RewardResponseDTO.swift */; };
+		36CDA9122B8208B700AC248E /* RewardTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CDA9112B8208B700AC248E /* RewardTarget.swift */; };
+		36CDA9142B8208C400AC248E /* RewardServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CDA9132B8208C400AC248E /* RewardServices.swift */; };
 		36CFF9A82B67F5FB008DDB9D /* EditProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */; };
 		36D98F352B5FB2B7003B2B11 /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */; };
 		36D98F372B602442003B2B11 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F362B602442003B2B11 /* InfoView.swift */; };
@@ -461,9 +467,9 @@
 		363D81622B262A450095F6CC /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		363D81632B262A460095F6CC /* NameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
-		365CD6F92B81D86600245CDD /* AppTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTracking.swift; sourceTree = "<group>"; };
 		365CD6F52B7E918F00245CDD /* PointButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointButton.swift; sourceTree = "<group>"; };
 		365CD6F72B7EA13800245CDD /* NavigationBarCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarCountView.swift; sourceTree = "<group>"; };
+		365CD6F92B81D86600245CDD /* AppTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTracking.swift; sourceTree = "<group>"; };
 		36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
 		36621BCE2A692A7700010D84 /* StudentIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentIdView.swift; sourceTree = "<group>"; };
 		36621BD02A69318200010D84 /* StudentIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentIdViewController.swift; sourceTree = "<group>"; };
@@ -518,6 +524,12 @@
 		36C4C4A72AB8C2F700F968B7 /* HighSchoolSearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSchoolSearchResponseDTO.swift; sourceTree = "<group>"; };
 		36C5E1CB2A8FCBAC00184AAE /* Config_dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_dev.xcconfig; sourceTree = "<group>"; };
 		36C5E1CC2A91273400184AAE /* TokenRefreshRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequestDTO.swift; sourceTree = "<group>"; };
+		36CDA9072B82078000AC248E /* RewardPossibleRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardPossibleRequestQueryDTO.swift; sourceTree = "<group>"; };
+		36CDA9092B8207B900AC248E /* RewardPossibleResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardPossibleResponseDTO.swift; sourceTree = "<group>"; };
+		36CDA90D2B82084000AC248E /* RewardRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardRequestDTO.swift; sourceTree = "<group>"; };
+		36CDA90F2B82084D00AC248E /* RewardResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardResponseDTO.swift; sourceTree = "<group>"; };
+		36CDA9112B8208B700AC248E /* RewardTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTarget.swift; sourceTree = "<group>"; };
+		36CDA9132B8208C400AC248E /* RewardServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardServices.swift; sourceTree = "<group>"; };
 		36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderView.swift; sourceTree = "<group>"; };
 		36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileView.swift; sourceTree = "<group>"; };
 		36D98F362B602442003B2B11 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -1447,6 +1459,59 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		36CDA9032B82072E00AC248E /* RewardAd */ = {
+			isa = PBXGroup;
+			children = (
+				36CDA9062B82075300AC248E /* DTO */,
+				36CDA9052B82074800AC248E /* Service */,
+				36CDA9042B82073B00AC248E /* Router */,
+			);
+			path = RewardAd;
+			sourceTree = "<group>";
+		};
+		36CDA9042B82073B00AC248E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				36CDA9112B8208B700AC248E /* RewardTarget.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		36CDA9052B82074800AC248E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				36CDA9132B8208C400AC248E /* RewardServices.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		36CDA9062B82075300AC248E /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				36CDA90B2B82081C00AC248E /* Request */,
+				36CDA90C2B82082300AC248E /* Response */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		36CDA90B2B82081C00AC248E /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				36CDA9072B82078000AC248E /* RewardPossibleRequestQueryDTO.swift */,
+				36CDA90D2B82084000AC248E /* RewardRequestDTO.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		36CDA90C2B82082300AC248E /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				36CDA9092B8207B900AC248E /* RewardPossibleResponseDTO.swift */,
+				36CDA90F2B82084D00AC248E /* RewardResponseDTO.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		36CFF9A32B67F53F008DDB9D /* Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1905,6 +1970,7 @@
 		C3A799C82A494B8800D3EFD8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				36CDA9032B82072E00AC248E /* RewardAd */,
 				2A37057B2A62AE80001AAC93 /* Base */,
 				2A37057C2A62AE8D001AAC93 /* Onboarding */,
 				C390B80A2A8A1D0400EA5A23 /* Around */,
@@ -2506,6 +2572,7 @@
 				C3A799E22A494D6800D3EFD8 /* UIButton+.swift in Sources */,
 				36621BD12A69318200010D84 /* StudentIdViewController.swift in Sources */,
 				C3FF24A22A5EEBD600A97D40 /* DetailKeywordView.swift in Sources */,
+				36CDA9122B8208B700AC248E /* RewardTarget.swift in Sources */,
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				C3DC4AD82A5FDF4B001DCE04 /* PaymentReadyViewController.swift in Sources */,
 				C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */,
@@ -2517,6 +2584,7 @@
 				2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */,
 				362EC31D2A8BB5A400121BDD /* UIScreen+.swift in Sources */,
 				C3FF248E2A5E8DB700A97D40 /* TabBarHeight.swift in Sources */,
+				36CDA90E2B82084000AC248E /* RewardRequestDTO.swift in Sources */,
 				36E427932A5C9BE30050B34E /* RecommendIdView.swift in Sources */,
 				36E4278D2A5C92EC0050B34E /* FindMajorViewController.swift in Sources */,
 				36D98F392B617B5D003B2B11 /* EditProfileViewController.swift in Sources */,
@@ -2639,6 +2707,7 @@
 				C3C57BF92A5C181A00B84CAA /* SchoolFriendView.swift in Sources */,
 				C3C57BEC2A5C03BA00B84CAA /* InviteBannerView.swift in Sources */,
 				2A8172942B726B79004C0B9C /* EventTarget.swift in Sources */,
+				36CDA9142B8208C400AC248E /* RewardServices.swift in Sources */,
 				C3A799E92A494D6800D3EFD8 /* UITextField+.swift in Sources */,
 				2A5E08FA2B6692DD00CDB3DF /* NotificationResponseDTO.swift in Sources */,
 				C390B8142A8A1DD800EA5A23 /* AroundResponseDTO.swift in Sources */,
@@ -2691,6 +2760,7 @@
 				36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */,
 				C3BF63042AF7E1EA000C7900 /* TimeLineTableViewCell.swift in Sources */,
 				365CD6FA2B81D86600245CDD /* AppTracking.swift in Sources */,
+				36CDA9082B82078000AC248E /* RewardPossibleRequestQueryDTO.swift in Sources */,
 				366CE5EC2A819CA600BE5F66 /* PushSettingView.swift in Sources */,
 				2A3705A42A62DC5C001AAC93 /* TargetType.swift in Sources */,
 				2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */,
@@ -2742,6 +2812,7 @@
 				36E218202A5D2E3B00FB3C9C /* SearchResultTableViewCell.swift in Sources */,
 				2A3705DE2A62E392001AAC93 /* VotingService.swift in Sources */,
 				36B2349C2A61A22F007933E4 /* KakaoLoginView.swift in Sources */,
+				36CDA9102B82084D00AC248E /* RewardResponseDTO.swift in Sources */,
 				362EC31B2A8BAD1E00121BDD /* FourthTutorialView.swift in Sources */,
 				36E4276C2A5BCE860050B34E /* OnboardingViewController.swift in Sources */,
 				367F1CD42A54193700CDF47B /* UIColor+.swift in Sources */,
@@ -2774,6 +2845,7 @@
 				C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */,
 				C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */,
 				36E427952A5CA59F0050B34E /* OnboardingEndViewController.swift in Sources */,
+				36CDA90A2B8207B900AC248E /* RewardPossibleResponseDTO.swift in Sources */,
 				2AA0DBB22A546E4B002B1370 /* AroundViewController.swift in Sources */,
 				C307ECB82A60FE2D000F5BA9 /* NextButton.swift in Sources */,
 				C3B472162A65EB0900770530 /* PaymenyResponseDTO.swift in Sources */,
