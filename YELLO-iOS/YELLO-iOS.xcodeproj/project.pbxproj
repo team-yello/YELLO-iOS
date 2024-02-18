@@ -93,6 +93,8 @@
 		363D81642B262A460095F6CC /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81622B262A450095F6CC /* NameViewController.swift */; };
 		363D81652B262A460095F6CC /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81632B262A460095F6CC /* NameView.swift */; };
 		365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */; };
+		365CD6F62B7E918F00245CDD /* PointButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CD6F52B7E918F00245CDD /* PointButton.swift */; };
+		365CD6F82B7EA13800245CDD /* NavigationBarCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CD6F72B7EA13800245CDD /* NavigationBarCountView.swift */; };
 		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
 		36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCE2A692A7700010D84 /* StudentIdView.swift */; };
 		36621BD12A69318200010D84 /* StudentIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BD02A69318200010D84 /* StudentIdViewController.swift */; };
@@ -457,6 +459,8 @@
 		363D81622B262A450095F6CC /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		363D81632B262A460095F6CC /* NameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
+		365CD6F52B7E918F00245CDD /* PointButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointButton.swift; sourceTree = "<group>"; };
+		365CD6F72B7EA13800245CDD /* NavigationBarCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarCountView.swift; sourceTree = "<group>"; };
 		36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
 		36621BCE2A692A7700010D84 /* StudentIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentIdView.swift; sourceTree = "<group>"; };
 		36621BD02A69318200010D84 /* StudentIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentIdViewController.swift; sourceTree = "<group>"; };
@@ -1588,6 +1592,7 @@
 			children = (
 				C37DFC502A854FE700D3B685 /* PaymentNameKeyButton.swift */,
 				C37DFC4E2A8515D500D3B685 /* PaymentYelloPlusButton.swift */,
+				365CD6F52B7E918F00245CDD /* PointButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -1700,6 +1705,7 @@
 				C37DFC492A85022B00D3B685 /* PaymentNavigationBarView.swift */,
 				C32322F42A619E92006DA50B /* PaymentView.swift */,
 				C305A5B12A85F997007C4A69 /* PaymentConfirmView.swift */,
+				365CD6F72B7EA13800245CDD /* NavigationBarCountView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2470,6 +2476,7 @@
 			files = (
 				36ECE0EA2B68B4EC000FCCBF /* EditSchoolInfoView.swift in Sources */,
 				36C209F62A8B8190001BF12C /* SecondTutorialView.swift in Sources */,
+				365CD6F82B7EA13800245CDD /* NavigationBarCountView.swift in Sources */,
 				C37DFC512A854FE700D3B685 /* PaymentNameKeyButton.swift in Sources */,
 				C307ECB62A607357000F5BA9 /* FriendCountView.swift in Sources */,
 				C3FF248A2A5E845A00A97D40 /* MyYelloEmptyView.swift in Sources */,
@@ -2495,6 +2502,7 @@
 				2AD1A1B42A5739B300CB988B /* InvitingView.swift in Sources */,
 				C3DC4AD82A5FDF4B001DCE04 /* PaymentReadyViewController.swift in Sources */,
 				C306E7272A630BB70031514C /* KeychainHandler.swift in Sources */,
+				365CD6F62B7E918F00245CDD /* PointButton.swift in Sources */,
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
 				369BF9682A6AFC640091CB85 /* TokenRefreshResponseDTO.swift in Sources */,
 				C3C560C02A8A6ED50074E988 /* SearchTarget.swift in Sources */,

@@ -14,13 +14,16 @@ final class PaymentNavigationBarView: BaseView {
     
     // MARK: - Variables
     // MARK: Property
+    var keyCount = 0
+    var point = 0
     weak var handleBackButtonDelegate: HandleBackButtonDelegate?
     
     // MARK: Component
     lazy var backButton = BaseIconButton()
-    let subscribeView = UIView()
-    let yelloPlusImageView = UIImageView()
-    let yelloPlusLabel = UILabel()
+    let titleLabel = UILabel()
+    
+    lazy var keyCountView = NavigationBarCountView(image: ImageLiterals.MyYello.icKey, count: String(keyCount))
+    lazy var pointCountView = NavigationBarCountView(image: ImageLiterals.MyYello.icPoint, count: String(point))
     
     override func setStyle() {
         self.backgroundColor = .black
@@ -30,50 +33,38 @@ final class PaymentNavigationBarView: BaseView {
             $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         }
         
-        subscribeView.do {
-            $0.backgroundColor = .grayscales900
-            $0.makeCornerRound(radius: 8.adjustedHeight)
-            $0.isHidden = true
+        titleLabel.do {
+            $0.text = StringLiterals.MyYello.NavigationBar.shop
+            $0.font = .uiSubtitle05
+            $0.textColor = .white
         }
         
-        yelloPlusImageView.do {
-            $0.image = ImageLiterals.Payment.imgYelloPlusStar
-        }
-        
-        yelloPlusLabel.do {
-            $0.text = StringLiterals.MyYello.Payment.subscribing
-            $0.font = .uiBodySmall
-            $0.textColor = .grayscales100
-        }
     }
     
     override func setLayout() {
         self.addSubviews(backButton,
-                         subscribeView)
-        
-        subscribeView.addSubviews(yelloPlusImageView,
-                                  yelloPlusLabel)
+                         titleLabel,
+                         keyCountView,
+                         pointCountView)
         
         backButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
         
-        subscribeView.snp.makeConstraints {
-            $0.height.equalTo(32.adjustedHeight)
-            $0.width.equalTo(144.adjustedWidth)
+        titleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(backButton.snp.trailing).offset(8.adjustedWidth)
+        }
+        
+        pointCountView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
         
-        yelloPlusImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(10.adjustedWidth)
+        keyCountView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-        }
-        
-        yelloPlusLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(10.adjustedWidth)
+            $0.trailing.equalTo(pointCountView.snp.leading).offset(-4.adjustedWidth)
         }
     }
 }
