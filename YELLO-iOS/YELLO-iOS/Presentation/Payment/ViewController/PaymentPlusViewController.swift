@@ -33,9 +33,9 @@ final class PaymentPlusViewController: BaseViewController {
     var subscribeStatus = "NORMAL" {
         didSet {
             if subscribeStatus == "NORMAL" {
-                paymentPlusView.paymentNavigationBarView.subscribeView.isHidden = true
+                paymentPlusView.subscribeBackgroundView.isHidden = true
             } else {
-                paymentPlusView.paymentNavigationBarView.subscribeView.isHidden = false
+                paymentPlusView.subscribeBackgroundView.isHidden = false
             }
         }
         
@@ -119,6 +119,8 @@ final class PaymentPlusViewController: BaseViewController {
         paymentPlusView.nameKeyFiveButton.addTarget(self, action: #selector(paymentNameKeyFiveButtonTapped), for: .touchUpInside)
         paymentPlusView.serviceButton.addTarget(self, action: #selector(serviceButtonTapped), for: .touchUpInside)
         paymentPlusView.privacyButton.addTarget(self, action: #selector(privacyButtonTapped), for: .touchUpInside)
+        paymentPlusView.votingPointButton.addTarget(self, action: #selector(votingPointButtonTapped), for: .touchUpInside)
+        paymentPlusView.adPointButton.addTarget(self, action: #selector(adPointButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -178,7 +180,7 @@ extension PaymentPlusViewController {
         MyProducts.iapService.buyProduct(products[1])
         print("이름 열람권 1개 구입")
         
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket1"])
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type" : "ticket1"])
     }
     
     @objc private func paymentNameKeyTwoButtonTapped() {
@@ -187,7 +189,7 @@ extension PaymentPlusViewController {
         MyProducts.iapService.buyProduct(products[2])
         print("이름 열람권 2개 구입")
       
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket2"])
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type" : "ticket2"])
     }
     
     @objc private func paymentNameKeyFiveButtonTapped() {
@@ -196,7 +198,19 @@ extension PaymentPlusViewController {
         MyProducts.iapService.buyProduct(products[3])
         print("이름 열람권 5개 구입")
       
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"ticket5"])
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type" : "ticket5"])
+    }
+    
+    
+    @objc private func votingPointButtonTapped() {
+        tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+        tabBarController?.selectedIndex = 2
+        tabBarController?.tabBar.isHidden = false
+        popView()
+    }
+    
+    @objc private func adPointButtonTapped() {
+        // 광고 리워드
     }
     
     func showPaymentConfirmView(state: PaymentStatus) {
