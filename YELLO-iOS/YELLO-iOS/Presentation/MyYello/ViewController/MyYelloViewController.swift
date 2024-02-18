@@ -7,18 +7,31 @@
 
 import UIKit
 
+import Amplitude
+import GoogleMobileAds
+import Lottie
 import SnapKit
 import Then
-import Amplitude
 
 final class MyYelloViewController: BaseViewController {
     
     // MARK: - Variables
+    // MARK: Constants
+    let interstitialId = Config.myYelloAd
+    
+    // MARK: Property
+    private var interstitial: GADInterstitialAd?
+    var myYelloViewCount = UserDefaults.standard.integer(forKey: "myYelloCount")
+    
     // MARK: Component
+    let dimview = UIView()
+    let loadingView = LottieAnimationView(name: "lottie_spinner_loading_profile")
     let myYelloView = MyYelloView()
     let paymentPlusViewController = PaymentPlusViewController()
+    let myYelloDetailViewController = MyYelloDetailViewController()
+    
     var noticeURL: String?
-
+    
     var countFetchingMore: Bool = false {
         didSet {
             if countFetchingMore {
@@ -84,7 +97,45 @@ final class MyYelloViewController: BaseViewController {
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshCount), for: .valueChanged)
         myYelloView.myYelloListView.refreshControl.addTarget(self, action: #selector(refreshTable(refresh:)), for: .valueChanged)
         myYelloView.myYellowNavigationBarView.noticeButton.addTarget(self, action: #selector(myYelloNoticeButtonTapped), for: .touchUpInside)
-
+        
+    }
+    
+    private func setGoogleAds() {
+        let request = GADRequest()
+        GADInterstitialAd.load(withAdUnitID: interstitialId,
+                               request: request) { ad, error in
+            if let error {
+                print("ailed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            self.interstitial = ad
+            ad?.fullScreenContentDelegate = self
+            DispatchQueue.main.async {
+                ad?.present(fromRootViewController: self)
+                self.dimview.isHidden = true
+                self.view.isUserInteractionEnabled = true
+            }
+        }
+    }
+    
+    func showLoading() {
+        dimview.isHidden = false
+        dimview.backgroundColor = .black.withAlphaComponent(0.7)
+        
+        view.addSubview(dimview)
+        dimview.addSubview(loadingView)
+        
+        dimview.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        loadingView.snp.makeConstraints {
+            $0.size.equalTo(60.adjusted)
+            $0.center.equalToSuperview()
+        }
+        
+        loadingView.play()
+        loadingView.loopMode = .loop
     }
     
     @objc func refreshCount() {
@@ -115,14 +166,22 @@ extension MyYelloViewController: HandleShopButton {
 // MARK: HandleMyYelloCellDelegate
 extension MyYelloViewController: HandleMyYelloCellDelegate {
     func pushMyYelloDetailViewController(index: Int) {
-            let myYelloDetailViewController = MyYelloDetailViewController()
+        myYelloViewCount += 1
+        UserDefaults.standard.set(myYelloViewCount, forKey: "myYelloCount")
+        print("My Yello Count = \(myYelloViewCount)")
+        
+        if myYelloViewCount == 3 || myYelloViewCount % 5 == 0 {
+            showLoading()
+            self.setGoogleAds()
+        } else {
             self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
+        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             self.myYelloView.myYelloListView.indexNumber = index
-            myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
-            myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
-            myYelloDetailViewController.myYelloDetailView.indexNumber = index
+            self.myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
+            self.myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
+            self.myYelloDetailViewController.myYelloDetailView.indexNumber = index
         }
     }
 }
@@ -136,34 +195,35 @@ extension MyYelloViewController {
         countFetchingMore = true
         
         let queryDTO = MyYelloRequestQueryDTO(page: 0)
-
+        
         NetworkService.shared.myYelloService.myYello(queryDTO: queryDTO) { [weak self] response in
             guard let self = self else { return }
-                switch response {
-                case .success(let data):
-                    guard let data = data.data else { return }
-                    self.myYelloView.myYelloCount = data.totalCount
-                    if data.ticketCount == 0 {
-                        self.myYelloView.haveTicket = false
-                    } else {
-                        self.myYelloView.haveTicket = true
-                        self.myYelloView.unlockButton.keyCountLabel.text = String(data.ticketCount)
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self.myYelloView.myYelloCount = data.totalCount
+                if data.ticketCount == 0 {
+                    self.myYelloView.haveTicket = false
+                } else {
+                    self.myYelloView.haveTicket = true
+                    self.myYelloView.unlockButton.keyCountLabel.text = String(data.ticketCount)
                     UserManager.shared.userTicketCount = data.ticketCount
-                    
-                    Amplitude.instance().setUserProperties(["user_message_open": data.openCount,
-                                                            "user_message_open_keyword": data.openKeywordCount,
-                                                            "user_message_open_firstletter": data.openNameCount,
-                                                            "user_message_open_fullname": data.openFullNameCount,
-                                                            "user_message_received": data.totalCount])
-                    
-                    print(self.myYelloCount)
-                    print("내 옐로 count 통신 성공")
-                    self.myYelloView.resetLayout()
-                    self.countFetchingMore = false
-                default:
-                    print("network fail")
-                    return
                 }
+                
+                Amplitude.instance().setUserProperties(["user_message_open": data.openCount,
+                                                        "user_message_open_keyword": data.openKeywordCount,
+                                                        "user_message_open_firstletter": data.openNameCount,
+                                                        "user_message_open_fullname": data.openFullNameCount,
+                                                        "user_message_received": data.totalCount])
+                
+                print(self.myYelloCount)
+                print("내 옐로 count 통신 성공")
+                self.myYelloView.resetLayout()
+                self.countFetchingMore = false
+            default:
+                print("network fail")
+                return
+            }
         }
     }
     
@@ -222,5 +282,12 @@ extension MyYelloViewController {
         let url = URL(string: noticeURL ?? "") ?? URL(fileURLWithPath: "")
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
         
+    }
+}
+
+// MARK: - GADInterstitialDelegate
+extension MyYelloViewController: GADFullScreenContentDelegate {
+    func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
     }
 }

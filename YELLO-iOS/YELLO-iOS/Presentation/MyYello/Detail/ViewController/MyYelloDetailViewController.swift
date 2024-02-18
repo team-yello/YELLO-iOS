@@ -20,13 +20,8 @@ struct MyYelloBackgroundColorStringDummy {
 final class MyYelloDetailViewController: BaseViewController {
     
     // MARK: - Variables
-    // MARK: Constants
-    let interstitialId = Config.myYelloAd
-    
     // MARK: Property
     var colorIndex: Int = 1
-    private var interstitial: GADInterstitialAd?
-    private var myYelloCount = UserDefaults.standard.integer(forKey: "myYelloCount")
     
     // MARK: Components
     let myYelloDetailView = MyYelloDetailView()
@@ -65,6 +60,7 @@ final class MyYelloDetailViewController: BaseViewController {
         setDelegate()
         setAddTarget()
         self.paymentPlusViewController.getProducts()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,16 +74,7 @@ final class MyYelloDetailViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-         myYelloCount  +=  1
-         UserDefaults.standard.set(myYelloCount, forKey: "myYelloCount")
-         
-         print("My Yello Count = \(myYelloCount)")
-         
-         if myYelloCount == 3 || myYelloCount % 5 == 0 {
-             print("show ads")
-             print(interstitialId)
-             setGoogleAds()
-         }
+        
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -304,22 +291,6 @@ extension MyYelloDetailViewController {
         return initialName
     }
     
-    private func setGoogleAds() {
-        let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID: interstitialId,
-                               request: request) { ad, error in
-            if let error {
-                print("ailed to load interstitial ad with error: \(error.localizedDescription)")
-                return
-            }
-            self.interstitial = ad
-            ad?.fullScreenContentDelegate = self
-            DispatchQueue.main.async {
-                ad?.present(fromRootViewController: self)
-            }
-        }
-    }
-    
     // MARK: Objc Function
     @objc
     func popViewController(_ notification: Notification) {
@@ -380,19 +351,4 @@ extension MyYelloDetailViewController: HandleInstagramButtonDelegate {
             }
         }
     }
-}
-
-// MARK: - GADInterstitialDelegate
-extension MyYelloDetailViewController : GADFullScreenContentDelegate {
-    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-       print("Ad did fail to present full screen content.")
-     }
-    
-     func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-       print("Ad will present full screen content.")
-     }
-    
-     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-       print("Ad did dismiss full screen content.")
-     }
 }
