@@ -317,6 +317,7 @@ extension VotingStartViewController {
                 guard let data = data.data else { return }
                 let subscribeStatus = data[0].subscribe
                 if subscribeStatus == "CANCELED" || subscribeStatus == "ACTIVE" {
+                    UserManager.shared.isYelloPlus = true
                     self.multiplyByTwoStackView.isHidden = false
                 } else {
                     self.multiplyByTwoStackView.isHidden = true
