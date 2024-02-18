@@ -148,7 +148,7 @@ extension MyYelloViewController {
                     } else {
                         self.myYelloView.haveTicket = true
                         self.myYelloView.unlockButton.keyCountLabel.text = String(data.ticketCount)
-                    }
+                    UserManager.shared.userTicketCount = data.ticketCount
                     
                     Amplitude.instance().setUserProperties(["user_message_open": data.openCount,
                                                             "user_message_open_keyword": data.openKeywordCount,

@@ -238,6 +238,7 @@ extension ProfileView {
                 guard let data = data.data else { return }
                 
                 self.isYelloPlus = data.isSubscribe
+                UserManager.shared.isYelloPlus = data.isSubscribe
                 self.ticketCount = data.ticketCount
                 
                 print("구독 통신 성공")

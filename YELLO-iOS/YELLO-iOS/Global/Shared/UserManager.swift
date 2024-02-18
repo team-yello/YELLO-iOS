@@ -34,10 +34,14 @@ struct UserManager {
     var friends: [Int] = []
     var kakaoFriends: [String] = []
     var recommendId: String = ""
+    var adUUID = ""
+    var userPoint: Int = 0 
+    var userTicketCount: Int = 0 
     
     var isResigned: Bool = false
     var isFirstUser: Bool = false
     var isNeedModName: Bool = false
+    var isYelloPlus: Bool = false
     
     var countVotingSkip = 0
     var countVoting = 0
@@ -56,6 +60,7 @@ func updateUserInfo(_ data: ProfileUserResponseDTO) {
     UserManager.shared.subGroupName = data.subGroupName
     UserManager.shared.groupAdmissionYear = data.groupAdmissionYear
     UserManager.shared.yelloId = data.yelloID
+    UserManager.shared.uuid = data.uuid
     
     switch data.groupType {
     case "UNIVERSITY" :

@@ -243,6 +243,7 @@ extension VotingStartViewController {
                             self.speechBubbleBackground.isHidden = true
                         }
                         let point = data.point
+                        UserManager.shared.userPoint = data.point
                         self.originView.topOfMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 24)
                         self.myPoint = String(point)
                         UserDefaults.standard.set(point, forKey: "UserPoint")
