@@ -8,6 +8,7 @@
 import UIKit
 
 import Amplitude
+import GoogleMobileAds
 import SnapKit
 import StoreKit
 import Then
@@ -24,8 +25,11 @@ final class PaymentPlusViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Constants
     let identify = AMPIdentify().setOnce("user_subscriptionbuy_count", value: NSNumber(value: 0))
-                                .setOnce("", value: NSNumber(value: 0)) ?? AMPIdentify()
+        .setOnce("", value: NSNumber(value: 0)) ?? AMPIdentify()
+    let uuid = UUID().uuidString
+    
     // MARK: Component
+    private var rewardedAd: GADRewardedAd?
     let paymentPlusView = PaymentPlusView()
     var paymentConfirmView = PaymentConfirmView()
     private let loadingIndicator = UIActivityIndicatorView(style: .large)
@@ -64,7 +68,17 @@ final class PaymentPlusViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        checkRewardPossible { isPossible in
+            if isPossible {
+                self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .purpleSub100
+                self.paymentPlusView.adPointButton.pointLabel.textColor = .purpleSub100
+                self.paymentPlusView.adPointButton.isEnabled = true
+            } else {
+                self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .grayscales500
+                self.paymentPlusView.adPointButton.pointLabel.textColor = .grayscales500
+                self.paymentPlusView.adPointButton.isEnabled = false
+            }
+        }
         tabBarController?.tabBar.isHidden = true
         paymentPlusView.paymentView.bannerTimer()
         paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
@@ -146,7 +160,7 @@ extension PaymentPlusViewController {
         let url = URL(string: "https://yell0.notion.site/97f57eaed6c749bbb134c7e8dc81ab3f")!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-        
+    
     @objc private func serviceButtonTapped() {
         // 이용약관 링크 연결
         let url = URL(string: "https://yell0.notion.site/2afc2a1e60774dfdb47c4d459f01b1d9")!
@@ -163,7 +177,7 @@ extension PaymentPlusViewController {
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let formattedDate = dateFormatter.string(from: currentDate)
             identify.setOnce("user_buy_date", value: NSString(string: formattedDate))
-                    .add("user_subscriptionbuy_count", value: NSNumber(value: 1))
+                .add("user_subscriptionbuy_count", value: NSNumber(value: 1))
             Amplitude.instance().identify(identify)
             
             MyProducts.iapService.buyProduct(self.products[0])
@@ -172,17 +186,17 @@ extension PaymentPlusViewController {
             self.showAlertView(title: "현재 구독 중", message: "이미 구독하고 있는 상품입니다.")
             self.hideLoadingIndicator()
         }
-      
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type":"subscribe"])
+        
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type": "subscribe"])
     }
     
     @objc private func paymentNameKeyOneButtonTapped() {
         showLoadingIndicator()
-
+        
         MyProducts.iapService.buyProduct(products[1])
         print("이름 열람권 1개 구입")
         
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type" : "ticket1"])
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type": "ticket1"])
     }
     
     @objc private func paymentNameKeyTwoButtonTapped() {
@@ -190,8 +204,8 @@ extension PaymentPlusViewController {
         
         MyProducts.iapService.buyProduct(products[2])
         print("이름 열람권 2개 구입")
-      
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type" : "ticket2"])
+        
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type": "ticket2"])
     }
     
     @objc private func paymentNameKeyFiveButtonTapped() {
@@ -199,10 +213,9 @@ extension PaymentPlusViewController {
         
         MyProducts.iapService.buyProduct(products[3])
         print("이름 열람권 5개 구입")
-      
-        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type" : "ticket5"])
+        
+        Amplitude.instance().logEvent("click_shop_buy", withEventProperties: ["buy_type": "ticket5"])
     }
-    
     
     @objc private func votingPointButtonTapped() {
         tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
@@ -212,7 +225,49 @@ extension PaymentPlusViewController {
     }
     
     @objc private func adPointButtonTapped() {
-        // 광고 리워드
+        checkRewardPossible { [weak self] isRewardPossible in
+            if isRewardPossible {
+                self?.loadRewardedAd { isEndLoading in
+                    if isEndLoading {
+                        self?.hideLoadingIndicator()
+                        self?.show()
+                    }
+                }
+            } else {
+                self?.view.showToast(message: StringLiterals.MyYello.Payment.adPointErrorToast)
+                
+            }
+        }
+    }
+
+    func checkRewardPossible(completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.rewardService.checkRewardPossible(tag: StringLiterals.Reward.admobReward) { result in
+            switch result {
+            case .success(let data):
+                if let data = data.data {
+                    let isRewardPossible = data.isPossible
+                    completion(isRewardPossible)
+                }
+            default:
+                debugPrint("Failed to communicate availability of rewarded ads")
+                completion(false)
+            }
+        }
+    }
+    
+    func getReward() {
+        let request = RewardRequestDTO(rewardType: StringLiterals.Reward.admobReward,
+                                       randomType: StringLiterals.Reward.fix,
+                                       uuid: uuid,
+                                       rewardNumber: 10)
+        NetworkService.shared.rewardService.postRewardAd(requestDTO: request) { result in
+            switch result {
+            case .success(let data):
+                debugPrint("광고 보상이 완료되었습니다. \(data.data.debugDescription)")
+            default:
+                debugPrint("보상형 광고 보상 실패")
+            }
+        }
     }
     
     func showPaymentConfirmView(state: PaymentStatus) {
@@ -407,7 +462,7 @@ extension PaymentPlusViewController {
         }
     }
     
-    @objc private func hideLoadingIndicator() {        
+    @objc private func hideLoadingIndicator() {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
         loadingIndicator.stopAnimating()
@@ -421,4 +476,37 @@ extension PaymentPlusViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    
+    func loadRewardedAd(completion: @escaping (Bool) -> Void) {
+        showLoadingIndicator()
+        let request = GADRequest()
+        GADRewardedAd.load(withAdUnitID: Config.rewardAd,
+                           request: request,
+                           completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+                return
+            }
+            rewardedAd = ad
+            let options = GADServerSideVerificationOptions()
+            options.customRewardString = uuid
+            rewardedAd?.serverSideVerificationOptions = options
+            print("Rewarded ad loaded.")
+            completion(true)
+        }
+        )
+    }
+    
+    func show() {
+      if let ad = rewardedAd {
+        ad.present(fromRootViewController: self) {
+          let reward = ad.adReward
+          print("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
+            self.getReward()
+        }
+      } else {
+        print("Ad wasn't ready")
+      }
+    }
 }
+
