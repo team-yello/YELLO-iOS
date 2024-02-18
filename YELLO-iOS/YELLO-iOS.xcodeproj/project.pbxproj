@@ -94,6 +94,7 @@
 		363D81652B262A460095F6CC /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D81632B262A460095F6CC /* NameView.swift */; };
 		365AC9EE2A858CAA00FC4772 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */; };
 		365CD6AF2B7DEFDD00245CDD /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 365CD6AE2B7DEFDD00245CDD /* GoogleMobileAds */; };
+		365CD6FA2B81D86600245CDD /* AppTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365CD6F92B81D86600245CDD /* AppTracking.swift */; };
 		36621BCD2A690B2400010D84 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */; };
 		36621BCF2A692A7700010D84 /* StudentIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BCE2A692A7700010D84 /* StudentIdView.swift */; };
 		36621BD12A69318200010D84 /* StudentIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36621BD02A69318200010D84 /* StudentIdViewController.swift */; };
@@ -458,6 +459,7 @@
 		363D81622B262A450095F6CC /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		363D81632B262A460095F6CC /* NameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		365AC9ED2A858CAA00FC4772 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
+		365CD6F92B81D86600245CDD /* AppTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTracking.swift; sourceTree = "<group>"; };
 		36621BCC2A690B2400010D84 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
 		36621BCE2A692A7700010D84 /* StudentIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentIdView.swift; sourceTree = "<group>"; };
 		36621BD02A69318200010D84 /* StudentIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentIdViewController.swift; sourceTree = "<group>"; };
@@ -1813,6 +1815,7 @@
 				C3A799962A49490A00D3EFD8 /* AppDelegate.swift */,
 				C3A799982A49490A00D3EFD8 /* SceneDelegate.swift */,
 				2A8D66D12A97C5AE009DEC3F /* NetworkCheck.swift */,
+				365CD6F92B81D86600245CDD /* AppTracking.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -2679,6 +2682,7 @@
 				2A8172812B71CCD5004C0B9C /* LunchEventView.swift in Sources */,
 				36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */,
 				C3BF63042AF7E1EA000C7900 /* TimeLineTableViewCell.swift in Sources */,
+				365CD6FA2B81D86600245CDD /* AppTracking.swift in Sources */,
 				366CE5EC2A819CA600BE5F66 /* PushSettingView.swift in Sources */,
 				2A3705A42A62DC5C001AAC93 /* TargetType.swift in Sources */,
 				2A8AA7012A64A333005A664D /* VotingSuffleResponseDTO.swift in Sources */,

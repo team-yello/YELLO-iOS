@@ -13,6 +13,7 @@ import FirebaseCore
 import FirebaseMessaging
 import KakaoSDKCommon
 import KakaoSDKAuth
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -52,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .setOnce("user_revenue", value: NSNumber(value: 0))
         guard let identify = identify else { return true }
         Amplitude.instance().identify(identify)
+        
+        /// Mobile Ads SDK
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        AppTracking.requestTrackingAuthorization()
+        
         return true
     }
     
