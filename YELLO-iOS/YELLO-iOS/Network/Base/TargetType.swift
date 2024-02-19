@@ -45,11 +45,6 @@ extension TargetType {
                 HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
                 HTTPHeaderFieldKey.idempotencyKey.rawValue: generateUUID4()
             ]
-        case .adUUID:
-            return [
-                HTTPHeaderFieldKey.contentType.rawValue: HTTPHeaderFieldValue.json.rawValue,
-                HTTPHeaderFieldKey.idempotencyKey.rawValue: randomUUID()
-            ]
         }
     }
 }
@@ -83,9 +78,6 @@ extension TargetType {
         case .idempotencyKey:
             urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
             urlRequest.setValue(generateUUID4(), forHTTPHeaderField: HTTPHeaderFieldKey.idempotencyKey.rawValue)
-        case .adUUID:
-            urlRequest.setValue(HTTPHeaderFieldValue.json.rawValue, forHTTPHeaderField: HTTPHeaderFieldKey.contentType.rawValue)
-            urlRequest.setValue(randomUUID(), forHTTPHeaderField: HTTPHeaderFieldKey.idempotencyKey.rawValue)
         }
         
         switch parameters {
@@ -129,10 +121,6 @@ extension TargetType {
         } else {
             return UserDefaults.standard.string(forKey: "uuid.uuidString") ?? ""
         }
-    }
-    
-    func randomUUID() -> String {
-        return UserManager.shared.adUUID
     }
 }
 

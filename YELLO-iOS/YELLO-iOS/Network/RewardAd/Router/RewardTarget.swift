@@ -30,7 +30,7 @@ extension RewardTarget: TargetType {
         case .rewardPossible:
             return .hasToken
         case .rewardResult:
-            return .adUUID
+            return .hasToken
         }
     }
     
