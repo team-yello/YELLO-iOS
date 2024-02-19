@@ -112,6 +112,7 @@
 		3662A0F62A654B8D00F482EF /* JoinedFriendsRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0F52A654B8D00F482EF /* JoinedFriendsRequestDTO.swift */; };
 		3662A0F82A6577E000F482EF /* IdValidRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */; };
 		3662A0FC2A65795200F482EF /* IdValidResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662A0FB2A65795200F482EF /* IdValidResponseDTO.swift */; };
+		366423CA2B8349A700038F05 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366423C92B8349A700038F05 /* Timer.swift */; };
 		366885AC2B775FA9009AFB0C /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366885AB2B775FA9009AFB0C /* Array+.swift */; };
 		366CE5EC2A819CA600BE5F66 /* PushSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CE5EB2A819CA600BE5F66 /* PushSettingView.swift */; };
 		366CE5F02A819DA800BE5F66 /* PushSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CE5EF2A819DA800BE5F66 /* PushSettingViewController.swift */; };
@@ -487,6 +488,7 @@
 		3662A0F52A654B8D00F482EF /* JoinedFriendsRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsRequestDTO.swift; sourceTree = "<group>"; };
 		3662A0F72A6577E000F482EF /* IdValidRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdValidRequestQueryDTO.swift; sourceTree = "<group>"; };
 		3662A0FB2A65795200F482EF /* IdValidResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdValidResponseDTO.swift; sourceTree = "<group>"; };
+		366423C92B8349A700038F05 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		366885AB2B775FA9009AFB0C /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		366CE5EB2A819CA600BE5F66 /* PushSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingView.swift; sourceTree = "<group>"; };
 		366CE5EF2A819DA800BE5F66 /* PushSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingViewController.swift; sourceTree = "<group>"; };
@@ -1408,6 +1410,14 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		366423C82B83498700038F05 /* AdsTimer */ = {
+			isa = PBXGroup;
+			children = (
+				366423C92B8349A700038F05 /* Timer.swift */,
+			);
+			path = AdsTimer;
+			sourceTree = "<group>";
+		};
 		367113742A7D92B80037E0D2 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1733,6 +1743,7 @@
 		C32322F32A619E4E006DA50B /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				366423C82B83498700038F05 /* AdsTimer */,
 				C3DC4AD72A5FDF4B001DCE04 /* PaymentReadyViewController.swift */,
 				C3DC4AD92A5FE713001DCE04 /* PaymentViewController.swift */,
 				C37DFC4B2A85023000D3B685 /* ViewController */,
@@ -2592,6 +2603,7 @@
 				36E427692A5BCE860050B34E /* FriendsTableViewCell.swift in Sources */,
 				369BF9682A6AFC640091CB85 /* TokenRefreshResponseDTO.swift in Sources */,
 				C3C560C02A8A6ED50074E988 /* SearchTarget.swift in Sources */,
+				366423CA2B8349A700038F05 /* Timer.swift in Sources */,
 				3671136A2A7D2AC50037E0D2 /* YelloNavigationBarView.swift in Sources */,
 				2A5FE1AE2A657AA6008F636C /* VotingData.swift in Sources */,
 				362EC31D2A8BB5A400121BDD /* UIScreen+.swift in Sources */,
