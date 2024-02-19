@@ -33,7 +33,7 @@ final class VotingPointViewController: BaseViewController {
     let adButtonStackView = UIStackView()
     let cancelButton = UIButton()
     let rewardAdButton = UIButton()
-    
+    let dimView = UIView()
     let loadingView = LottieAnimationView(name: "lottie_spinner_loading_profile")
     
     override func loadView() {
@@ -205,7 +205,7 @@ final class VotingPointViewController: BaseViewController {
             rewardedAd?.serverSideVerificationOptions = options
             rewardedAd?.fullScreenContentDelegate = self
             debugPrint("Rewarded ad loaded.")
-            loadingView.isHidden = true
+            dimView.isHidden = true
             rewardAdButton.isEnabled = true
             cancelButton.isEnabled = true
             showAds()
@@ -226,7 +226,7 @@ final class VotingPointViewController: BaseViewController {
                     self.view.showToast(message: "알 수 없는 오류로 보상 받기에 실패했습니다.")
                     return
                 }
-                self.loadingView.isHidden = true
+                self.dimView.isHidden = true
                 self.adButtonStackView.isHidden = true
                 self.originView.yellowButton.isHidden = false
                 if let data = data.data {
@@ -255,12 +255,14 @@ final class VotingPointViewController: BaseViewController {
     }
     
     func showLoading() {
-        loadingView.isHidden = false
-        self.view.addSubview(loadingView)
+        dimView.isHidden = false
+        self.view.addSubview(dimView)
+        dimView.addSubview(loadingView)
         
-        loadingView.do {
-            $0.backgroundColor = .black.withAlphaComponent(0.3)
-            $0.makeCornerRound(radius: 10.adjusted)
+        dimView.backgroundColor = .black.withAlphaComponent(0.5)
+        
+        dimView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         loadingView.snp.makeConstraints {
