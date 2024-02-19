@@ -36,6 +36,7 @@ final class VotingStartViewController: BaseViewController {
         Amplitude.instance().setUserProperties(["user_point": myPoint])
         setAnimationView()
         getVotingAvailable()
+        UserManager.shared.userPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         myPoint = String(UserDefaults.standard.integer(forKey: "UserPoint"))
         originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         getSubscribe()
