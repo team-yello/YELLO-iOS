@@ -27,6 +27,7 @@ final class AppTracking  {
                         print("denied") // 거부됨
                     case .authorized:
                         print("authorized") // 허용됨
+                        debugPrint("사용자의IDFA: \(idfa)")
                     @unknown default:
                         print("error") // 알려지지 않음
                     }
