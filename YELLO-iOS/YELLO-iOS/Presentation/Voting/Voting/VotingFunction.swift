@@ -168,10 +168,7 @@ extension VotingViewController {
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint
             viewController.votingPlusPoint = myPlusPoint
-            let previousData = loadUserData() ?? []
-            let combinedData = previousData + votingAnswer
-            saveUserData(combinedData)
-            
+
             let status = votingList[0].subscribe
             if status == "CANCELED" || status == "ACTIVE" {
                 viewController.multiplyByTwoImageView.isHidden = false
@@ -190,9 +187,7 @@ extension VotingViewController {
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
-            let previousData = loadUserData() ?? []
-            let combinedData = previousData + votingAnswer
-            saveUserData(combinedData)
+            
             VotingViewController.pushCount += 1
             
             let topAnimatedView = viewController.originView.questionBackground
