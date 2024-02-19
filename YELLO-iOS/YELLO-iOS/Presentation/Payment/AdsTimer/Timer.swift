@@ -53,7 +53,7 @@ extension PaymentPlusViewController {
         }
     }
     
-    private func stop() {
+    func stop() {
         self.countdownTimer?.invalidate()
     }
 }

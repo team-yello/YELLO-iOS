@@ -244,6 +244,8 @@ extension ProfileView {
                 print("구독 통신 성공")
             default:
                 print("network fail")
+                UserManager.shared.isYelloPlus = false
+                self.isYelloPlus = false
                 return
             }
         }

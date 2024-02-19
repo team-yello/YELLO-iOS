@@ -34,9 +34,13 @@ final class PaymentPlusViewController: BaseViewController {
     var remainingSeconds: TimeInterval? {
         didSet {
             if let remainingSeconds {
-                self.paymentPlusView.adPointButton.subTitleLabel.text = String(format: "%02d : %02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
+                DispatchQueue.main.async { [weak self] in
+                       self?.paymentPlusView.adPointButton.subTitleLabel.text = String(format: "%02d:%02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
+                   }
             }
             if remainingSeconds == 0 {
+                isRewardPossible = true
+                stop()
                 UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
                     self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .purpleSub100
                     self.paymentPlusView.adPointButton.pointLabel.textColor = .purpleSub100
@@ -55,7 +59,7 @@ final class PaymentPlusViewController: BaseViewController {
     private var dimView = UIView()
     var subscribeStatus = "NORMAL" {
         didSet {
-            if subscribeStatus == "NORMAL" {
+            if subscribeStatus == "NORMAL" || !UserManager.shared.isYelloPlus {
                 paymentPlusView.subscribeBackgroundView.isHidden = true
             } else {
                 paymentPlusView.subscribeBackgroundView.isHidden = false
@@ -89,10 +93,8 @@ final class PaymentPlusViewController: BaseViewController {
         super.viewWillAppear(animated)
         checkRewardPossible()
         tabBarController?.tabBar.isHidden = true
+        setInitialUI()
         paymentPlusView.paymentView.bannerTimer()
-        UserManager.shared.userPoint = UserDefaults.standard.integer(forKey: "UserPoint")
-        paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
-        paymentPlusView.paymentNavigationBarView.keyCountView.countLabel.text = String(UserManager.shared.userTicketCount)
         purchaseSubscribeNeed()
     }
     
@@ -148,6 +150,17 @@ final class PaymentPlusViewController: BaseViewController {
         paymentPlusView.votingPointButton.addTarget(self, action: #selector(votingPointButtonTapped), for: .touchUpInside)
         paymentPlusView.adPointButton.addTarget(self, action: #selector(adPointButtonTapped), for: .touchUpInside)
     }
+    
+    private func setInitialUI() {
+        UserManager.shared.userPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
+        paymentPlusView.paymentNavigationBarView.keyCountView.countLabel.text = String(UserManager.shared.userTicketCount)
+        if UserManager.shared.isYelloPlus {
+            paymentPlusView.subscribeBackgroundView.isHidden = false
+        } else {
+            paymentPlusView.subscribeBackgroundView.isHidden = true
+        }
+    }
 }
 
 // MARK: HandleMyYelloCellDelegate
@@ -188,9 +201,6 @@ extension PaymentPlusViewController {
             paymentConfirmView.titleLabel.text = StringLiterals.MyYello.Payment.paymentAlertKeyFiveTitle
             paymentConfirmView.descriptionLabel.text = StringLiterals.MyYello.Payment.paymentAlertKeyDescription
             paymentConfirmView.paymentImageView.image = ImageLiterals.Payment.imgNameKeyFiveCheck
-            
-        default:
-            return
         }
         
         paymentConfirmView.handleConfirmPaymentButtonDelegate = self
@@ -198,7 +208,6 @@ extension PaymentPlusViewController {
         paymentConfirmView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         viewController.view.addSubview(paymentConfirmView)
     }
-    
     
     private func verifyConsumablePurchase(transactionID: String, productID: String) {
         let productID = productID
@@ -382,7 +391,7 @@ extension PaymentPlusViewController {
                 }
                 
             default:
-                self.view.showToast(message: "광고 보상 포인트 받기에 실패했습니다.\n잠시 후 다시 시도해주세요", at: 120.adjustedHeight)
+                self.view.showToast(message: "광고 보상 포인트 받기에 실패했습니다.\n잠시 후 다시 시도해주세요", at: 100.adjustedHeight)
                 debugPrint("보상형 광고 보상 실패")
             }
         }
@@ -421,6 +430,7 @@ extension PaymentPlusViewController {
     private func showEventPointView() {
         self.eventPointView.frame = self.view.bounds
         self.eventPointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.dateFormatter(Date().toString())
         self.view.addSubview(self.eventPointView)
         
         self.eventPointView.checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
@@ -505,7 +515,7 @@ extension PaymentPlusViewController {
                 }
             }
         } else {
-            self.view.showToast(message: StringLiterals.MyYello.Payment.adPointErrorToast)
+            self.view.showToast(message: StringLiterals.MyYello.Payment.adPointErrorToast, at: 100.adjustedHeight)
         }
     }
     
