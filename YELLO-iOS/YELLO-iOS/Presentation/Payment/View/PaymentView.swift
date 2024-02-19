@@ -53,7 +53,7 @@ final class PaymentView: BaseView {
         collectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(219)
+            $0.height.equalTo(219.adjustedHeight)
             $0.width.equalTo(375.adjustedWidth)
         }
         
@@ -98,7 +98,7 @@ extension PaymentView: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension PaymentView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 375.adjustedWidth, height: 219)
+        return CGSize(width: 375.adjustedWidth, height: 219.adjustedHeight)
     }
 }
 

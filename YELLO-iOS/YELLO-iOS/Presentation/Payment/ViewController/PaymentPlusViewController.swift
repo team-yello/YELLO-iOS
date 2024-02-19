@@ -46,8 +46,6 @@ final class PaymentPlusViewController: BaseViewController {
         }
     }
     
-    
-    
     // MARK: Component
     private var rewardedAd: GADRewardedAd?
     let paymentPlusView = PaymentPlusView()
@@ -92,6 +90,7 @@ final class PaymentPlusViewController: BaseViewController {
         checkRewardPossible()
         tabBarController?.tabBar.isHidden = true
         paymentPlusView.paymentView.bannerTimer()
+        UserManager.shared.userPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
         paymentPlusView.paymentNavigationBarView.keyCountView.countLabel.text = String(UserManager.shared.userTicketCount)
         purchaseSubscribeNeed()
