@@ -14,7 +14,7 @@ final class EventPointView: BaseView {
     
     private let contentView = UIView()
     let pointLabel = UILabel()
-    private let nextTimeLabel = UILabel()
+    let nextTimeLabel = UILabel()
     let pointImage = UIImageView()
     let checkButton = UIButton()
     

@@ -201,9 +201,9 @@ final class VotingPointViewController: BaseViewController {
             
             rewardedAd = ad
             let options = GADServerSideVerificationOptions()
-            options.userIdentifier = UserManager.shared.uuid
             options.customRewardString = uuid
             rewardedAd?.serverSideVerificationOptions = options
+            rewardedAd?.fullScreenContentDelegate = self
             debugPrint("Rewarded ad loaded.")
             loadingView.isHidden = true
             rewardAdButton.isEnabled = true
@@ -230,7 +230,9 @@ final class VotingPointViewController: BaseViewController {
                 self.adButtonStackView.isHidden = true
                 self.originView.yellowButton.isHidden = false
                 if let data = data.data {
-                    self.votingPlusPoint = data.rewardValue
+                    self.myPoint += self.votingPlusPoint
+                    self.votingPlusPoint = self.votingPlusPoint * 2
+                    self.updateUI()
                 }
 
                 debugPrint("광고 보상이 완료되었습니다.")
@@ -246,7 +248,6 @@ final class VotingPointViewController: BaseViewController {
             ad.present(fromRootViewController: self) {
                 let reward = ad.adReward
                 debugPrint("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
-                self.getReward()
             }
         } else {
             debugPrint("Ad wasn't ready")
@@ -268,6 +269,13 @@ final class VotingPointViewController: BaseViewController {
         }
         loadingView.play()
         loadingView.loopMode = .loop
+    }
+    
+    private func updateUI() {
+        originView.topOfMyPoint.text = String(myPoint)
+        originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
+        originView.plusPoint.setTextWithLineHeight(text: "+ " + String(votingPlusPoint) + " Point", lineHeight: 22)
+        originView.plusPoint.asColor(targetString: String(votingPlusPoint), color: .yelloMain500)
     }
     
     // MARK: - Objc Function
@@ -307,5 +315,11 @@ final class VotingPointViewController: BaseViewController {
         cancelButton.isEnabled = false
         rewardAdButton.isEnabled = false
         loadRewardedAd()
+    }
+}
+
+extension VotingPointViewController: GADFullScreenContentDelegate {
+    func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        getReward()
     }
 }
