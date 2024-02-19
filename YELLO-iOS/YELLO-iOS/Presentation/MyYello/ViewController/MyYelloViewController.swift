@@ -170,11 +170,16 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
         UserDefaults.standard.set(myYelloViewCount, forKey: "myYelloCount")
         print("My Yello Count = \(myYelloViewCount)")
         
-        if myYelloViewCount == 3 || myYelloViewCount % 5 == 0 {
-            showLoading()
-            self.setGoogleAds()
-        } else {
+        if UserManager.shared.isYelloPlus {
             self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
+        } else {
+            if myYelloViewCount == 3 || myYelloViewCount % 5 == 3 {
+                showLoading()
+                self.setGoogleAds()
+            } else {
+                self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
+            }
+            
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
