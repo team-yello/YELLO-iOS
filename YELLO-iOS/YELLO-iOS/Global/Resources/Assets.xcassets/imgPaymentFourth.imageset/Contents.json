@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "imgPaymentThird.png",
+      "filename" : "imgPaymentFourth.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "imgPaymentThird@2x.png",
+      "filename" : "imgPaymentFourth@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "imgPaymentThird@3x.png",
+      "filename" : "imgPaymentFourth@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
