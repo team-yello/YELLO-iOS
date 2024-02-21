@@ -286,9 +286,11 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
                 return
             }
         }
+        
         if subgroupName == StringLiterals.Profile.EditProfile.defaultText {
             isMajorSearchError = true
             editSchoolInfoView.editTableView.reloadData()
+            return
         }
         
         if groupName == UserManager.shared.groupName &&
