@@ -15,7 +15,8 @@ final class PaymentView: BaseView {
     var nowPage: Int = 0
     private var paymentImage = [ImageLiterals.Payment.imgPaymentFirst,
                                 ImageLiterals.Payment.imgPaymentSecond,
-                                ImageLiterals.Payment.imgPaymentThird]
+                                ImageLiterals.Payment.imgPaymentThird,
+                                UIImage(imageLiteralResourceName: "imgPaymentFourth")]
     
     private let flowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
@@ -39,7 +40,7 @@ final class PaymentView: BaseView {
         self.backgroundColor = .clear
         
         pageControl.do {
-            $0.numberOfPages = 3
+            $0.numberOfPages = 4
             $0.currentPage = 0
             $0.pageIndicatorTintColor = .grayscales700
             $0.currentPageIndicatorTintColor = .white
