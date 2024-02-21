@@ -11,9 +11,10 @@ import Amplitude
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
+import GoogleMobileAds
 import KakaoSDKCommon
 import KakaoSDKAuth
-import GoogleMobileAds
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
