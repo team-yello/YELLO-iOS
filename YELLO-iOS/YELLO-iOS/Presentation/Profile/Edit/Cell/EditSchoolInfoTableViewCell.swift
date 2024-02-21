@@ -119,11 +119,13 @@ class EditSchoolInfoTableViewCell: UITableViewCell {
         }
         
         titleLabel.snp.makeConstraints {
+            
             $0.top.equalToSuperview().offset(12.adjustedHeight)
             $0.leading.equalToSuperview().offset(16.adjustedWidth)
         }
         
         infoLabel.snp.makeConstraints {
+            $0.width.equalTo(283.adjustedWidth)
             $0.top.equalTo(titleLabel.snp.bottom)
             $0.leading.equalTo(titleLabel.snp.leading)
         }
