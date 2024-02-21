@@ -24,7 +24,6 @@ final class MainProfileView: UIView {
     let instagramLabel = UILabel()
     let schoolLabel = UILabel()
     
-    let nameInstagramStackView = UIStackView()
     let userInfoStackView = UIStackView()
     
     let nameSkeletonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 66.adjustedWidth, height: 16.adjustedHeight))
@@ -104,16 +103,10 @@ final class MainProfileView: UIView {
             $0.lineBreakMode = .byCharWrapping
         }
         
-        nameInstagramStackView.do {
-            $0.axis = .horizontal
-            $0.addArrangedSubviews(nameLabel,
-                                   instagramLabel)
-        }
-        
         userInfoStackView.do {
             $0.axis = .vertical
             $0.alignment = .leading
-            $0.addArrangedSubviews(nameInstagramStackView,
+            $0.addArrangedSubviews(nameLabel,
                                    schoolLabel)
         }
         
@@ -135,6 +128,7 @@ final class MainProfileView: UIView {
     private func setLayout() {
         self.addSubviews(profileImageView,
                          profileStarImageView,
+                         instagramLabel,
                          userInfoStackView,
                          editProfileButton,
                          profileStarGradientView,
@@ -150,6 +144,11 @@ final class MainProfileView: UIView {
         userInfoStackView.snp.makeConstraints {
             $0.leading.equalTo(profileImageView.snp.trailing).offset(12.adjusted)
             $0.centerY.equalToSuperview()
+        }
+        
+        instagramLabel.snp.makeConstraints {
+            $0.leading.equalTo(nameLabel.snp.trailing).offset(10.adjusted)
+            $0.centerY.equalTo(nameLabel)
         }
         
         schoolLabel.snp.makeConstraints {

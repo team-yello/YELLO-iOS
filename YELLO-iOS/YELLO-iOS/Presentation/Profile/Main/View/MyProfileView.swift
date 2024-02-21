@@ -123,7 +123,7 @@ extension MyProfileView {
     
     private func setLayout() {
         let nameLabelHeight = mainProfileView.nameLabel.bounds.height
-        let newMainProfileViewHeight = nameLabelHeight + 74.adjustedHeight
+        let newMainProfileViewHeight = nameLabelHeight + 88.adjustedHeight
         
         self.addSubviews(
             mainProfileView,
