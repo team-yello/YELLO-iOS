@@ -279,13 +279,13 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
             subgroupName == UserManager.shared.subGroupName &&
             groupAdmissionYear == UserManager.shared.groupAdmissionYear {
             self.view.showToast(message: StringLiterals.Profile.EditProfile.notYetErrorMessage, at: 82.adjustedHeight)
-        }
-        
-        if isEditAvailable && !isMajorSearchError {
-            updateProfile()
-            navigationController?.popViewController(animated: true)
-        } else if !isEditAvailable {
-            self.view.showToast(message: StringLiterals.Profile.EditProfile.editDateErrorMessage, at: 82.adjustedHeight)
+        } else {
+            if isEditAvailable && !isMajorSearchError {
+                updateProfile()
+                navigationController?.popViewController(animated: true)
+            } else if !isEditAvailable {
+                self.view.showToast(message: StringLiterals.Profile.EditProfile.editDateErrorMessage, at: 82.adjustedHeight)
+            }
         }
     }
 }
