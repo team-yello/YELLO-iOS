@@ -204,7 +204,11 @@ enum StringLiterals {
         }
         
         enum Point {
+            static let yelloButtonText = "확인"
+            static let cancelButtonText = "그냥 받기"
+            static let rewardAdButtonText = "광고보고 2배로 받기"
             static let title = "투표 포인트 적립!"
+            static let adTitle = "광고보고 2배로 받기"
             static let text = "투표로 포인트를 모아 쪽지를 열어보세요."
         }
         
@@ -314,6 +318,7 @@ enum StringLiterals {
             static let adPointTitle = "광고 보고 포인트 얻기"
             static let adPointsubTitle = "1시간에 한 번"
             static let adPoint = "10p"
+            static let adPointErrorToast = "1시간에 한 번 재생할 수 있어요."
             
             static let descriptionLabel = "옐로플러스 구독안내\n- 구독은 매주 자동으로 갱신되며, Apple을 통해 해지하실 수 있습니다.\n- 결제를 진행하시면 관련 약관에 동의하는 것으로 간주됩니다."
             static let serviceButton = "서비스 이용 약관"
@@ -458,5 +463,12 @@ enum StringLiterals {
         static let point = "포인트를 얻었어요!"
         static let nextTime = "다음 점심 시간에 또 만나요!"
         static let ticket = "열람권 1개를 얻었어요!"
+    }
+    
+    enum Reward {
+        static let admobReward = "ADMOB_POINT"
+        static let admobMultipleReward = "ADMOB_MULTIPLE_POINT"
+        static let fix = "FIXED"
+        static let random = "ADMOB_RANDOM"
     }
 }

@@ -36,6 +36,7 @@ final class VotingStartViewController: BaseViewController {
         Amplitude.instance().setUserProperties(["user_point": myPoint])
         setAnimationView()
         getVotingAvailable()
+        UserManager.shared.userPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         myPoint = String(UserDefaults.standard.integer(forKey: "UserPoint"))
         originView.topOfMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 24)
         getSubscribe()
@@ -243,6 +244,7 @@ extension VotingStartViewController {
                             self.speechBubbleBackground.isHidden = true
                         }
                         let point = data.point
+                        UserManager.shared.userPoint = data.point
                         self.originView.topOfMyPoint.setTextWithLineHeight(text: String(point), lineHeight: 24)
                         self.myPoint = String(point)
                         UserDefaults.standard.set(point, forKey: "UserPoint")
@@ -316,6 +318,7 @@ extension VotingStartViewController {
                 guard let data = data.data else { return }
                 let subscribeStatus = data[0].subscribe
                 if subscribeStatus == "CANCELED" || subscribeStatus == "ACTIVE" {
+                    UserManager.shared.isYelloPlus = true
                     self.multiplyByTwoStackView.isHidden = false
                 } else {
                     self.multiplyByTwoStackView.isHidden = true

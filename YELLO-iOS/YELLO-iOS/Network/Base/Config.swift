@@ -16,6 +16,8 @@ enum Config {
             static let kakaoAppKey = "KAKAO_APP_KEY"
             static let amplitudeKey = "AMPLITUDE_KEY"
             static let kakaoTempleteId = "KAKAO_TEMPLATE_ID"
+            static let myYelloAd = "MY_YELLO_AD"
+            static let rewardAd = "REWARD_AD"
         }
     }
     
@@ -60,6 +62,20 @@ extension Config {
     static let kakaoTempleteId: String = {
         guard let key = Config.infoDictionary[Keys.Plist.kakaoTempleteId] as? String else {
             fatalError("kakaoTempleteId is not set in plist for this configuration.")
+        }
+        return key
+    }()
+    
+    static let myYelloAd: String = {
+        guard let key = Config.infoDictionary[Keys.Plist.myYelloAd] as? String else {
+            fatalError("myYelloAd is not set in plist for this configuration.")
+        }
+        return key
+    }()
+    
+    static let rewardAd: String = {
+        guard let key = Config.infoDictionary[Keys.Plist.rewardAd] as? String else {
+            fatalError("rewardAd is not set in plist for this configuration.")
         }
         return key
     }()

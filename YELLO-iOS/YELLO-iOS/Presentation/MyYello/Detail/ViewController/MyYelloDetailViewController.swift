@@ -8,6 +8,7 @@
 import UIKit
 
 import Amplitude
+import GoogleMobileAds
 import SnapKit
 import Then
 
@@ -19,11 +20,12 @@ struct MyYelloBackgroundColorStringDummy {
 final class MyYelloDetailViewController: BaseViewController {
     
     // MARK: - Variables
-    // MARK: Constants
+    // MARK: Property
+    var colorIndex: Int = 1
+    
+    // MARK: Components
     let myYelloDetailView = MyYelloDetailView()
     let paymentPlusViewController = PaymentPlusViewController()
-
-    var colorIndex: Int = 1
     
     var myYelloBackgroundColorStringDummy: [MyYelloBackgroundColorStringDummy] =
     [MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.one,
@@ -58,6 +60,7 @@ final class MyYelloDetailViewController: BaseViewController {
         setDelegate()
         setAddTarget()
         self.paymentPlusViewController.getProducts()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -241,7 +244,6 @@ extension MyYelloDetailViewController {
                 }
                 
                 self.myYelloDetailView.ticketCount = data.ticketCount
-
                 Amplitude.instance().setUserProperties(["user_subscription": data.isSubscribe ? "yes" : "no",
                                                         "user_ticket": data.ticketCount])
                 
@@ -289,6 +291,7 @@ extension MyYelloDetailViewController {
         return initialName
     }
     
+    // MARK: Objc Function
     @objc
     func popViewController(_ notification: Notification) {
         tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)

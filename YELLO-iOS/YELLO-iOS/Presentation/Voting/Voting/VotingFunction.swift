@@ -175,10 +175,14 @@ extension VotingViewController {
             let status = votingList[0].subscribe
             if status == "CANCELED" || status == "ACTIVE" {
                 viewController.multiplyByTwoImageView.isHidden = false
+                viewController.adButtonStackView.isHidden = true
+                viewController.originView.yellowButton.isHidden = false
                 viewController.myPoint += myPlusPoint
                 viewController.votingPlusPoint *= 2
             } else {
                 viewController.multiplyByTwoImageView.isHidden = true
+                viewController.adButtonStackView.isHidden = false
+                viewController.originView.yellowButton.isHidden = true
             }
             
             UserDefaults.standard.set(viewController.myPoint, forKey: "UserPoint")
