@@ -133,17 +133,23 @@ final class EditSchoolInfoViewController: BaseViewController {
     @objc func convertButtonTapped() {
         schoolSearchViewController.searchResults.removeAll()
         schoolSearchViewController.searchView.searchResultTableView.reloadData()
+        self.groupId = 0
+        majorSearchViewController.schoolName = ""
+        
         if userGroupType == .high || userGroupType == .middle {
             userGroupType = .univ
         } else {
             userGroupType = .high
+            isMajorSearchError = false
         }
-        isMajorSearchError = false
+        
         groupName = StringLiterals.Profile.EditProfile.defaultText
-        subgroupName =  userGroupType == .univ ? StringLiterals.Profile.EditProfile.defaultText : "1"
+        subgroupName =  (userGroupType == .univ) ? StringLiterals.Profile.EditProfile.defaultText : "1"
         groupAdmissionYear = userGroupType == .univ ? 24 : 1
         
         editSchoolInfoView.groupType = userGroupType
+        
+        print("유저 타입 변경 완료 \n - 그룹 타입: \(userGroupType) \n - 그룹명: \(groupName) \n - 서브그룹명: \(subgroupName)")
         editSchoolInfoView.editTableView.reloadData()
     }
 }
@@ -204,8 +210,12 @@ extension EditSchoolInfoViewController: UITableViewDelegate {
             self.present(schoolSearchViewController, animated: true)
         case 1:
             if userGroupType == .univ || userGroupType == .SOPT {
-                majorSearchViewController.schoolName = groupName
-                self.present(majorSearchViewController, animated: true)
+                if groupName == StringLiterals.Profile.EditProfile.defaultText {
+                    self.view.showToast(message: "학교를 먼저 선택해주세요", at: 82.adjustedHeight)
+                } else {
+                    majorSearchViewController.schoolName = groupName
+                    self.present(majorSearchViewController, animated: true)
+                }
             } else if userGroupType == .high || userGroupType == .middle {
                 if userGroupType == .high || userGroupType == .middle {
                     studentIdViewController.selectType = .grade
@@ -270,6 +280,12 @@ extension EditSchoolInfoViewController: HandleBackButtonDelegate {
 // MARK: HandleSaveButtonDelegate
 extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
     func saveModifiedInfo() {
+        if groupId == 0 {
+            if groupName == StringLiterals.Profile.EditProfile.defaultText {
+                self.view.showToast(message: StringLiterals.Profile.EditProfile.notYetErrorMessage, at: 82.adjustedHeight)
+                return
+            }
+        }
         if subgroupName == StringLiterals.Profile.EditProfile.defaultText {
             isMajorSearchError = true
             editSchoolInfoView.editTableView.reloadData()
@@ -278,12 +294,14 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
         if groupName == UserManager.shared.groupName &&
             subgroupName == UserManager.shared.subGroupName &&
             groupAdmissionYear == UserManager.shared.groupAdmissionYear {
+            // 변경 내역이 없는 경우
             self.view.showToast(message: StringLiterals.Profile.EditProfile.notYetErrorMessage, at: 82.adjustedHeight)
         } else {
             if isEditAvailable && !isMajorSearchError {
                 updateProfile()
                 navigationController?.popViewController(animated: true)
             } else if !isEditAvailable {
+                // 1년이내 변경한 경우
                 self.view.showToast(message: StringLiterals.Profile.EditProfile.editDateErrorMessage, at: 82.adjustedHeight)
             }
         }
@@ -294,7 +312,9 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
 extension EditSchoolInfoViewController: SchoolSearchResultSelectDelegate {
     func didSelectSchoolResult(_ result: String) {
         groupName = result
-        if userGroupType == .univ || userGroupType == .SOPT { subgroupName = StringLiterals.Profile.EditProfile.defaultText }
+        if userGroupType == .univ || userGroupType == .SOPT { 
+            subgroupName = StringLiterals.Profile.EditProfile.defaultText
+        }
         editSchoolInfoView.editTableView.reloadData()
     }
 }
