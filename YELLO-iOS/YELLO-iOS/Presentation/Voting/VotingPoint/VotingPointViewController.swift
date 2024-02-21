@@ -33,8 +33,7 @@ final class VotingPointViewController: BaseViewController {
     let adButtonStackView = UIStackView()
     let cancelButton = UIButton()
     let rewardAdButton = UIButton()
-    let dimView = UIView()
-    let loadingView = LottieAnimationView(name: "lottie_spinner_loading_profile")
+    let loadingView = YelloLoadingView()
     
     override func loadView() {
         self.view = originView
@@ -124,7 +123,7 @@ final class VotingPointViewController: BaseViewController {
         
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 60
         
-        view.addSubviews(multiplyByTwoImageView, adButtonStackView)
+        view.addSubviews(multiplyByTwoImageView, adButtonStackView, loadingView)
         
         originView.topOfPointIcon.snp.makeConstraints {
             $0.centerY.equalTo(originView.topOfMyPoint)
@@ -186,10 +185,14 @@ final class VotingPointViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalTo(view.safeAreaInsets.bottom).inset(tabBarHeight + 28.adjustedHeight)
         }
+        
+        loadingView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func loadRewardedAd() {
-        showLoading()
+        loadingView.showIndicator()
         let request = GADRequest()
         GADRewardedAd.load(withAdUnitID: Config.rewardAd,
                            request: request,
@@ -205,7 +208,7 @@ final class VotingPointViewController: BaseViewController {
             rewardedAd?.serverSideVerificationOptions = options
             rewardedAd?.fullScreenContentDelegate = self
             debugPrint("Rewarded ad loaded.")
-            dimView.isHidden = true
+            loadingView.stopIndicator()
             rewardAdButton.isEnabled = true
             cancelButton.isEnabled = true
             showAds()
@@ -226,7 +229,7 @@ final class VotingPointViewController: BaseViewController {
                     self.view.showToast(message: "알 수 없는 오류로 보상 받기에 실패했습니다.")
                     return
                 }
-                self.dimView.isHidden = true
+                self.loadingView.stopIndicator()
                 self.adButtonStackView.isHidden = true
                 self.originView.yellowButton.isHidden = false
                 if let data = data.data {
@@ -252,25 +255,6 @@ final class VotingPointViewController: BaseViewController {
         } else {
             debugPrint("Ad wasn't ready")
         }
-    }
-    
-    func showLoading() {
-        dimView.isHidden = false
-        self.view.addSubview(dimView)
-        dimView.addSubview(loadingView)
-        
-        dimView.backgroundColor = .black.withAlphaComponent(0.5)
-        
-        dimView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        loadingView.snp.makeConstraints {
-            $0.size.equalTo(100.adjusted)
-            $0.center.equalToSuperview()
-        }
-        loadingView.play()
-        loadingView.loopMode = .loop
     }
     
     private func updateUI() {
