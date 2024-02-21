@@ -12,9 +12,7 @@ class FindMajorViewController: SearchBaseViewController {
     // MARK: Property
     var allMajor: [GroupList] = []
     var schoolName: String = "" 
-    
     var pageCount: Int = 0
-    var totalItemCount: Int = 0
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -72,7 +70,7 @@ class FindMajorViewController: SearchBaseViewController {
     
     // MARK: Objc Function
     @objc func textFieldDidChange(_ textField: YelloTextField) {
-        textField.debounce(delay: 0.5) { text in
+        textField.debounce(delay: 0.3) { text in
             guard let text = textField.text else { return }
             self.pageCount = 0
             self.searchResults.removeAll()

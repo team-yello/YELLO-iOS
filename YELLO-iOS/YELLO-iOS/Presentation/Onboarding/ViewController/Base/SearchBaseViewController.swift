@@ -21,6 +21,7 @@ class SearchBaseViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Property
     var searchResults: [String] = []
+    var totalItemCount: Int = 0
     
     // MARK: Component
     let searchView = SearchView()
