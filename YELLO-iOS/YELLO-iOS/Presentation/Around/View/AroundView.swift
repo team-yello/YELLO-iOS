@@ -55,7 +55,7 @@ final class AroundView: BaseView {
         self.backgroundColor = .clear
         
         aroundEmptyView.do {
-            $0.emptyDescriptionLabel.setTextWithLineHeight(text: StringLiterals.Recommending.Empty.timeLineTitle,
+            $0.emptyDescriptionLabel.setTextWithLineHeight(text: StringLiterals.Recommending.Empty.timeLineAllTitle,
                                                            lineHeight: 24)
             $0.isHidden = true
         }
@@ -335,12 +335,18 @@ extension AroundView {
             filterButtonStackView.snp.updateConstraints {
                 $0.leading.equalToSuperview().inset(8.adjustedWidth)
             }
+            aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
+                text: StringLiterals.Recommending.Empty.timeLineMyTitle,
+                lineHeight: 24)
         } else {
             filterButtonLabel.text = StringLiterals.Around.allYello
             filterButtonStackView.spacing = 6.adjustedWidth
             filterButtonStackView.snp.updateConstraints {
                 $0.leading.equalToSuperview().inset(20.adjustedWidth)
             }
+            aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
+                text: StringLiterals.Recommending.Empty.timeLineAllTitle,
+                lineHeight: 24)
         }
 
         self.aroundPage = -1
