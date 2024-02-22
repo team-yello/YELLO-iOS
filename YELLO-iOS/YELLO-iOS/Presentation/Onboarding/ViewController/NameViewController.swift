@@ -41,6 +41,10 @@ final class NameViewController: OnboardingBaseViewController {
         if !initialName.isEmpty {
             baseView.nameTextFieldView.textField.text = initialName
         }
+        
+        nextButton.setTitle(StringLiterals.Onboarding.CheckName.nextButtonText,
+                            for: .normal)
+        
         baseView.nameTextFieldView.textField.cancelButton.do {
             $0.addTarget(self, action: #selector(nameCancelTapped), for: .touchUpInside)
             checkButtonEnable()

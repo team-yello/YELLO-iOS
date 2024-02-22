@@ -130,6 +130,7 @@
 		36871C7D2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36871C7C2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift */; };
 		369BF9682A6AFC640091CB85 /* TokenRefreshResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */; };
 		36A3B26F2A8D233600BA7CE0 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 36A3B26E2A8D233600BA7CE0 /* Amplitude */; };
+		36AD1FB22B85D35F004E2083 /* YelloLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AD1FB12B85D35F004E2083 /* YelloLoadingView.swift */; };
 		36AD441A2A6812420087D7E0 /* YelloRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AD44192A6812420087D7E0 /* YelloRequestInterceptor.swift */; };
 		36B234962A61466A007933E4 /* YelloHelperLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B234952A61466A007933E4 /* YelloHelperLabel.swift */; };
 		36B234982A619853007933E4 /* onboarding_end.json in Resources */ = {isa = PBXBuildFile; fileRef = 36B234972A619853007933E4 /* onboarding_end.json */; };
@@ -505,6 +506,7 @@
 		36871C7A2A664C69001CA514 /* JoinedFriendsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsResponseDTO.swift; sourceTree = "<group>"; };
 		36871C7C2A664CD8001CA514 /* JoinedFriendsRequestQueryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedFriendsRequestQueryDTO.swift; sourceTree = "<group>"; };
 		369BF9672A6AFC640091CB85 /* TokenRefreshResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshResponseDTO.swift; sourceTree = "<group>"; };
+		36AD1FB12B85D35F004E2083 /* YelloLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloLoadingView.swift; sourceTree = "<group>"; };
 		36AD44192A6812420087D7E0 /* YelloRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloRequestInterceptor.swift; sourceTree = "<group>"; };
 		36B234952A61466A007933E4 /* YelloHelperLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelloHelperLabel.swift; sourceTree = "<group>"; };
 		36B234972A619853007933E4 /* onboarding_end.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_end.json; sourceTree = "<group>"; };
@@ -1428,6 +1430,14 @@
 			path = Modal;
 			sourceTree = "<group>";
 		};
+		36AD1FB02B85D1CD004E2083 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				36AD1FB12B85D35F004E2083 /* YelloLoadingView.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		36B7CAB62B6BED04003C57FF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -2011,6 +2021,7 @@
 		C3A799C92A494B8E00D3EFD8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				36AD1FB02B85D1CD004E2083 /* Global */,
 				2A81727F2B71CCC6004C0B9C /* Event */,
 				2A55DDA32B669AF900290FE8 /* Notification */,
 				2A8D66D52A9A3512009DEC3F /* Subscription */,
@@ -2656,6 +2667,7 @@
 				C31315B22A7CBA6F00FB8B43 /* MyYelloButton.swift in Sources */,
 				C3C57BF72A5C0BD700B84CAA /* EmptyFriendView.swift in Sources */,
 				3662A0E42A63F6C300F482EF /* CheckDuplicateResponeDTO.swift in Sources */,
+				36AD1FB22B85D35F004E2083 /* YelloLoadingView.swift in Sources */,
 				C3C560CF2A8BB96B0074E988 /* IAPService.swift in Sources */,
 				C3A799EC2A494D6800D3EFD8 /* UIStackView+.swift in Sources */,
 				2A8172892B71D9DF004C0B9C /* EventPointView.swift in Sources */,

@@ -122,6 +122,9 @@ extension MyProfileView {
     }
     
     private func setLayout() {
+        let nameLabelHeight = mainProfileView.nameLabel.bounds.height
+        let newMainProfileViewHeight = nameLabelHeight + 88.adjustedHeight
+        
         self.addSubviews(
             mainProfileView,
             infoStackView,
@@ -134,7 +137,7 @@ extension MyProfileView {
         mainProfileView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(88.adjustedHeight)
+            $0.height.equalTo(newMainProfileViewHeight)
         }
         
         infoStackView.snp.makeConstraints {

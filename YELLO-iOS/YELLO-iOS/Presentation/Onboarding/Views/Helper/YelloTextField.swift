@@ -131,7 +131,7 @@ extension YelloTextField {
     private func setLayout() {
         
         self.snp.makeConstraints {
-            $0.height.equalTo(52.adjustedHeight)
+            $0.height.equalTo(52.adjusted)
         }
         
         [labelPaddingView, paddingView].forEach {
@@ -180,15 +180,15 @@ extension YelloTextField {
             self.leftView = idLabelStackView
             guard let text = self.text else { break }
             self.rightViewMode = (text.isEmpty) ? .never : .always
-            let borderWidth: CGFloat = (text.isEmpty) ? 1 : 0
-            self.makeBorder(width: borderWidth, color: .grayscales700)
             self.attributedPlaceholder = NSAttributedString(
                 string: self.placeholder ?? "",
                 attributes: [
                     .foregroundColor: UIColor.grayscales600,
-                    .font: self.font ?? .uiBodyLarge
+                    .font: self.font ?? .uiBodyLarge,
                 ]
             )
+            let borderWidth: CGFloat = (text.isEmpty) ? 1 : 0
+            self.makeBorder(width: borderWidth, color: .grayscales700)
             return
         case .done:
             self.makeBorder(width: 1, color: .grayscales700)

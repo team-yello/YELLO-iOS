@@ -13,7 +13,6 @@ class FindSchoolViewController: SearchBaseViewController {
     // MARK: Property
     var userType: UserGroupType = UserManager.shared.groupType
     var pageCount: Int = 0
-    var totalItemCount: Int = 0
     
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -89,7 +88,7 @@ class FindSchoolViewController: SearchBaseViewController {
     }
     // MARK: Objc Function
     @objc func textFieldDidChange(_ textField: YelloTextField) {
-        textField.debounce(delay: 0.5) { text in
+        textField.debounce(delay: 0.3) { text in
             guard let text = textField.text else { return }
             self.pageCount = 0
             self.searchResults.removeAll()

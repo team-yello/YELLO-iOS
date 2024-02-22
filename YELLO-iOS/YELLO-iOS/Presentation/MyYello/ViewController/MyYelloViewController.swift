@@ -24,8 +24,7 @@ final class MyYelloViewController: BaseViewController {
     var myYelloViewCount = UserDefaults.standard.integer(forKey: "myYelloCount")
     
     // MARK: Component
-    let dimview = UIView()
-    let loadingView = LottieAnimationView(name: "lottie_spinner_loading_profile")
+    let loadingView = YelloLoadingView()
     let myYelloView = MyYelloView()
     let paymentPlusViewController = PaymentPlusViewController()
     let myYelloDetailViewController = MyYelloDetailViewController()
@@ -69,7 +68,7 @@ final class MyYelloViewController: BaseViewController {
     }
     
     override func setLayout() {
-        view.addSubviews(myYelloView)
+        view.addSubviews(myYelloView, loadingView)
         
         let tabbarHeight = 60 + safeAreaBottomInset()
         
@@ -83,6 +82,10 @@ final class MyYelloViewController: BaseViewController {
             $0.top.equalTo(view.safeAreaInsets).offset(statusBarHeight)
             $0.width.equalToSuperview()
             $0.bottom.equalToSuperview().inset(tabbarHeight)
+        }
+        
+        loadingView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -112,30 +115,10 @@ final class MyYelloViewController: BaseViewController {
             ad?.fullScreenContentDelegate = self
             DispatchQueue.main.async {
                 ad?.present(fromRootViewController: self)
-                self.dimview.isHidden = true
+                self.loadingView.stopIndicator()
                 self.view.isUserInteractionEnabled = true
             }
         }
-    }
-    
-    func showLoading() {
-        dimview.isHidden = false
-        dimview.backgroundColor = .black.withAlphaComponent(0.7)
-        
-        view.addSubview(dimview)
-        dimview.addSubview(loadingView)
-        
-        dimview.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        loadingView.snp.makeConstraints {
-            $0.size.equalTo(60.adjusted)
-            $0.center.equalToSuperview()
-        }
-        
-        loadingView.play()
-        loadingView.loopMode = .loop
     }
     
     @objc func refreshCount() {
@@ -174,7 +157,7 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
             self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
         } else {
             if myYelloViewCount == 3 || myYelloViewCount % 5 == 3 {
-                showLoading()
+                self.loadingView.showIndicator()
                 self.setGoogleAds()
             } else {
                 self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
