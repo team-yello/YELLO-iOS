@@ -102,6 +102,9 @@ final class VotingViewController: BaseViewController {
                     myColorIndex = myColorIndex - 12
                 }
                 votingAnswer.append(VoteAnswerList(friendId: friendID, questionId: votingList[VotingViewController.pushCount].questionId, keywordName: keyword, colorIndex: myColorIndex))
+                let previousData = loadUserData() ?? []
+                let combinedData = previousData + votingAnswer
+                saveUserData(combinedData)
             }
         }
     }
