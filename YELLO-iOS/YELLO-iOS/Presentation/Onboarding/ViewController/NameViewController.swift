@@ -49,6 +49,7 @@ final class NameViewController: OnboardingBaseViewController {
             $0.addTarget(self, action: #selector(nameCancelTapped), for: .touchUpInside)
             checkButtonEnable()
         }
+        baseView.nameTextFieldView.helperLabel.asCustomFont(targetString: "실제 이름", color: .yelloMain500, font: .uiBody05)
     }
     
     override func setLayout() {
@@ -83,6 +84,7 @@ final class NameViewController: OnboardingBaseViewController {
         } else if isNameEmpty {
             nameTextFieldView.textField.setButtonState(state: .normal)
             nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Name.nameHelper, State: .normal)
+            nameTextFieldView.helperLabel.asCustomFont(targetString: "실제 이름", color: .yelloMain500, font: .uiBody05)
         }
         
         if !isNameEmpty, isKoreanOnly {
@@ -101,6 +103,7 @@ final class NameViewController: OnboardingBaseViewController {
     // MARK: objc Function
     @objc func nameCancelTapped() {
         baseView.nameTextFieldView.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Name.nameHelper, State: .normal)
+        baseView.nameTextFieldView.helperLabel.asCustomFont(targetString: "실제 이름", color: .yelloMain500, font: .uiBody05)
         nextButton.setButtonEnable(state: false)
     }
     
