@@ -43,6 +43,7 @@ final class PaymentPlusViewController: BaseViewController {
                 UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
                     self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .purpleSub100
                     self.paymentPlusView.adPointButton.pointLabel.textColor = .purpleSub100
+                    self.paymentPlusView.adPointButton.makeBorder(width: 1, color: .purpleSub800)
                     self.paymentPlusView.adPointButton.subTitleLabel.text = StringLiterals.MyYello.Payment.adPointsubTitle
                 })
             }
@@ -56,9 +57,9 @@ final class PaymentPlusViewController: BaseViewController {
     private let eventPointView = EventPointView()
     private let loadingIndicator = UIActivityIndicatorView(style: .large)
     private var dimView = UIView()
-    var subscribeStatus = "NORMAL" {
+    var subscribeStatus = "normal" {
         didSet {
-            if subscribeStatus == "NORMAL" || !UserManager.shared.isYelloPlus {
+            if subscribeStatus == "normal" || !UserManager.shared.isYelloPlus {
                 paymentPlusView.subscribeBackgroundView.isHidden = true
             } else {
                 paymentPlusView.subscribeBackgroundView.isHidden = false
@@ -151,7 +152,7 @@ final class PaymentPlusViewController: BaseViewController {
     }
     
     private func setInitialUI() {
-        UserManager.shared.userPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        self.paymentPlusView.adPointButton.isEnabled = true
         paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
         paymentPlusView.paymentNavigationBarView.keyCountView.countLabel.text = String(UserManager.shared.userTicketCount)
         if UserManager.shared.isYelloPlus {
@@ -359,10 +360,12 @@ extension PaymentPlusViewController {
                         self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .purpleSub100
                         self.paymentPlusView.adPointButton.pointLabel.textColor = .purpleSub100
                         self.paymentPlusView.adPointButton.subTitleLabel.text = StringLiterals.MyYello.Payment.adPointsubTitle
+                        self.paymentPlusView.adPointButton.makeBorder(width: 1, color: .purpleSub800)
                     } else {
                         self.startTimerFormat(data.createdAt)
                         self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .grayscales500
                         self.paymentPlusView.adPointButton.pointLabel.textColor = .grayscales500
+                        self.paymentPlusView.adPointButton.makeBorder(width: 1, color: .grayscales800)
                     }
                 }
             default:
@@ -386,6 +389,8 @@ extension PaymentPlusViewController {
                     self.paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
                     self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .grayscales500
                     self.paymentPlusView.adPointButton.pointLabel.textColor = .grayscales500
+                    self.paymentPlusView.adPointButton.makeBorder(width: 1, color: .grayscales800)
+                    self.paymentPlusView.adPointButton.isEnabled = false
                     self.showEventPointView()
                 }
                 
