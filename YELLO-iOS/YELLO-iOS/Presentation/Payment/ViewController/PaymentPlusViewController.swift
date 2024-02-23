@@ -33,10 +33,9 @@ final class PaymentPlusViewController: BaseViewController {
     var countdownTimer: Timer?
     var remainingSeconds: TimeInterval? {
         didSet {
+            paymentPlusView.adPointButton.isEnabled = true
             if let remainingSeconds {
-                DispatchQueue.main.async { [weak self] in
-                       self?.paymentPlusView.adPointButton.subTitleLabel.text = String(format: "%02d:%02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
-                   }
+                paymentPlusView.adPointButton.subTitleLabel.text = String(format: "%02d:%02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
             }
             if remainingSeconds == 0 {
                 isRewardPossible = true
