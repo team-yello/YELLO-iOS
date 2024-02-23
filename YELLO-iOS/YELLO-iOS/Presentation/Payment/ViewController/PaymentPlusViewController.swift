@@ -360,7 +360,7 @@ extension PaymentPlusViewController {
                         self.paymentPlusView.adPointButton.pointLabel.textColor = .purpleSub100
                         self.paymentPlusView.adPointButton.subTitleLabel.text = StringLiterals.MyYello.Payment.adPointsubTitle
                     } else {
-                        self.dateFormatter(data.createdAt)
+                        self.startTimerFormat(data.createdAt)
                         self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .grayscales500
                         self.paymentPlusView.adPointButton.pointLabel.textColor = .grayscales500
                     }
@@ -429,7 +429,7 @@ extension PaymentPlusViewController {
     private func showEventPointView() {
         self.eventPointView.frame = self.view.bounds
         self.eventPointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.dateFormatter(Date().toString())
+        self.startTimerFormat(Date().toString())
         self.view.addSubview(self.eventPointView)
         
         self.eventPointView.checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)

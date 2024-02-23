@@ -9,7 +9,7 @@ import UIKit
 
 extension PaymentPlusViewController {
     
-    func dateFormatter(_ createdAtDate: String)  {
+    func startTimerFormat(_ createdAtDate: String)  {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
