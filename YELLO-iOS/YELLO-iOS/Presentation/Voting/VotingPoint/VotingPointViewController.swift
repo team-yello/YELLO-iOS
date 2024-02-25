@@ -22,10 +22,11 @@ final class VotingPointViewController: BaseViewController {
     var myPoint = 0
     var votingPlusPoint = 0
     var votingPlusPointToPost = 0
-    var isFinishLoadAd = false
     var votingAnswer: [VoteAnswerList] = []
     private var rewardedAd: GADRewardedAd?
     var uuid = UUID().uuidString
+    private var isWatchAd: Bool = false
+    private var isYelloPlus: Bool = false
     
     // MARK: Component
     let originView = BaseVotingETCView()
@@ -47,12 +48,28 @@ final class VotingPointViewController: BaseViewController {
         myPoint = UserDefaults.standard.integer(forKey: "UserPoint")
         votingPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPointNotPost")
         votingPlusPointToPost = UserDefaults.standard.integer(forKey: "UserPlusPoint")
+        isWatchAd = UserDefaults.standard.bool(forKey: "isWatchAd")
+        isYelloPlus = UserDefaults.standard.bool(forKey: "isYelloPlus")
         
         originView.topOfMyPoint.text = String(myPoint)
         originView.realMyPoint.setTextWithLineHeight(text: String(myPoint), lineHeight: 22)
         originView.plusPoint.setTextWithLineHeight(text: "+ " + String(votingPlusPoint) + " Point", lineHeight: 22)
         originView.plusPoint.asColor(targetString: String(votingPlusPoint), color: .yelloMain500)
         VotingViewController.pushCount = 0
+        
+        if isYelloPlus {
+            multiplyByTwoImageView.isHidden = false
+        } else {
+            multiplyByTwoImageView.isHidden = true
+        }
+        
+        if isWatchAd {
+            adButtonStackView.isHidden = true
+            originView.yellowButton.isHidden = false
+        } else {
+            adButtonStackView.isHidden = false
+            originView.yellowButton.isHidden = true
+        }
     }
     
     // MARK: - Style
@@ -237,7 +254,10 @@ final class VotingPointViewController: BaseViewController {
                     self.votingPlusPoint = self.votingPlusPoint * 2
                     self.updateUI()
                 }
-
+                UserDefaults.standard.set(true, forKey: "isWatchAd")
+                UserDefaults.standard.set(self.myPoint, forKey: "UserPoint")
+                UserDefaults.standard.set(self.votingPlusPoint, forKey: "UserPlusPointNotPost")
+                
                 debugPrint("광고 보상이 완료되었습니다.")
                 
             default:
@@ -291,7 +311,7 @@ final class VotingPointViewController: BaseViewController {
             sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: viewController)
             self.originView.yellowButton.isEnabled = true
         }
-        
+        UserDefaults.standard.removeObject(forKey: "isWatchAd")
         UserDefaults.standard.removeObject(forKey: "UserDataKey")
         UserDefaults.standard.removeObject(forKey: "UserPlusPoint")
     }
@@ -307,5 +327,12 @@ final class VotingPointViewController: BaseViewController {
 extension VotingPointViewController: GADFullScreenContentDelegate {
     func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         getReward()
+    }
+    
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        debugPrint("광고 로드 실패")
+        loadingView.stopIndicator()
+        adButtonStackView.isHidden = true
+        originView.yellowButton.isHidden = false
     }
 }
