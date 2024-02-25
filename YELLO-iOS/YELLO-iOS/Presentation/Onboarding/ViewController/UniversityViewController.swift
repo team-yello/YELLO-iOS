@@ -33,6 +33,7 @@ class UniversityViewController: OnboardingBaseViewController {
         step = 2
         UserManager.shared.isFirstUser = true
         super.viewDidLoad()
+        addTarget()
         setDelegate()
     }
     
@@ -44,7 +45,12 @@ class UniversityViewController: OnboardingBaseViewController {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(nextButton.snp.top)
         }
-        
+    }
+    
+    private func addTarget() {
+        baseView.schoolSearchTextField.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        baseView.majorSearchTextField.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        baseView.studentIdTextField.toggleButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
     
     private func setDelegate() {
@@ -91,6 +97,25 @@ class UniversityViewController: OnboardingBaseViewController {
         let isButtonEnabled = isSchoolTextFilled && isMajorTextFilled && isStudentIDTextFilled
         
         nextButton.setButtonEnable(state: isButtonEnabled)
+    }
+    
+    @objc
+    func searchButtonTapped(_ sender: UIButton) {
+        switch sender {
+        case baseView.schoolSearchTextField.searchButton:
+            let nextViewController = FindSchoolViewController()
+            nextViewController.schoolSearchDelegate = self
+            self.present(nextViewController, animated: true)
+        case baseView.majorSearchTextField.searchButton:
+            let nextViewController = majorSearchViewController
+            nextViewController.schoolName = self.schoolName
+            nextViewController.majorSearchDelegate = self
+            self.present(nextViewController, animated: true)
+        case baseView.studentIdTextField.toggleButton:
+            studentIDSelect()
+        default:
+            return
+        }
     }
     
 }
