@@ -56,8 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Amplitude.instance().identify(identify)
         
         /// Mobile Ads SDK
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
         AppTracking.requestTrackingAuthorization()
+        let ads = GADMobileAds.sharedInstance()
+        ads.start { status in
+            // Optional: Log each adapter's initialization latency.
+            let adapterStatuses = status.adapterStatusesByClassName
+            for adapter in adapterStatuses {
+                let adapterStatus = adapter.value
+                NSLog("Adapter Name: %@, Description: %@, Latency: %f", adapter.key,
+                      adapterStatus.description, adapterStatus.latency)
+                print("\(adapterStatus.description)")
+            }
+        }
+        
         
         return true
     }
