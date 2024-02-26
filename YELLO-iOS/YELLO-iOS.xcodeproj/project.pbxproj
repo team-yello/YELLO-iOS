@@ -81,6 +81,7 @@
 		2AFB01682A8D2EAC001BB2C7 /* pagenation_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01602A8D2EAC001BB2C7 /* pagenation_8.json */; };
 		2AFB01692A8D2EAC001BB2C7 /* pagenation_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */; };
 		2AFB016A2A8D2EAC001BB2C7 /* pagenation_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */; };
+		3609E96D2B87B600004B68AB /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3609E96C2B87B600004B68AB /* AppTrackingTransparency.framework */; };
 		3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAE72A608F0200D5FA40 /* SplashViewController.swift */; };
 		3628EAEA2A60903A00D5FA40 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE92A60903A00D5FA40 /* splash.json */; };
 		3628EAEC2A609E1D00D5FA40 /* SplashTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */; };
@@ -458,6 +459,7 @@
 		2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_6.json; sourceTree = "<group>"; };
 		2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pagenation_1.json; sourceTree = "<group>"; };
 		3608F9052A80E25600B09D82 /* YELLO-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YELLO-iOS.entitlements"; sourceTree = "<group>"; };
+		3609E96C2B87B600004B68AB /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		3628EAE72A608F0200D5FA40 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3628EAE92A60903A00D5FA40 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		3628EAEB2A609E1D00D5FA40 /* SplashTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashTitleView.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 				36E60EA92AE6DFC4005035D3 /* FirebaseFirestore in Frameworks */,
 				36E60E932AE6DFC4005035D3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				36E60EC32AE6DFC4005035D3 /* FirebaseStorage in Frameworks */,
+				3609E96D2B87B600004B68AB /* AppTrackingTransparency.framework in Frameworks */,
 				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
 				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
@@ -2144,6 +2147,7 @@
 		C3C560C72A8BB7E50074E988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3609E96C2B87B600004B68AB /* AppTrackingTransparency.framework */,
 				C3C560C82A8BB7E50074E988 /* StoreKit.framework */,
 			);
 			name = Frameworks;
@@ -2985,7 +2989,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "관심사에 맞는 콘텐츠와 광고를 제공하고 부적절한 광고를 제어하는 데에 사용합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
@@ -3149,7 +3153,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "관심사에 맞는 콘텐츠와 광고를 제공하고 부적절한 광고를 제어하는 데에 사용합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
@@ -3191,7 +3195,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "관심사에 맞는 콘텐츠와 광고를 제공하고 부적절한 광고를 제어하는 데에 사용합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
