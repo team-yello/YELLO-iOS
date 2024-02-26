@@ -409,6 +409,8 @@ extension PaymentPlusViewController {
                            completionHandler: { [self] ad, error in
             if let error = error {
                 print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+                view.showToast(message: "광고 보기에 실패했습니다.", at: 100.adjustedHeight)
+                self.hideLoadingIndicator()
                 return
             }
             rewardedAd = ad
@@ -563,5 +565,10 @@ extension PaymentPlusViewController {
 extension PaymentPlusViewController: GADFullScreenContentDelegate {
     func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         self.getReward()
+    }
+    
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        debugPrint("광고 로드 실패")
+        loadingIndicator.stopAnimating()
     }
 }

@@ -216,6 +216,9 @@ final class VotingPointViewController: BaseViewController {
                            completionHandler: { [self] ad, error in
             if let error = error {
                 print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+                loadingView.stopIndicator()
+                adButtonStackView.isHidden = true
+                originView.yellowButton.isHidden = false
                 return
             }
             
@@ -318,8 +321,6 @@ final class VotingPointViewController: BaseViewController {
     
     @objc
     func rewardAdsButtonClicked() {
-        cancelButton.isEnabled = false
-        rewardAdButton.isEnabled = false
         loadRewardedAd()
     }
 }
