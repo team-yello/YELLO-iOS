@@ -22,12 +22,12 @@ final class MyYelloViewController: BaseViewController {
     // MARK: Property
     private var interstitial: GADInterstitialAd?
     var myYelloViewCount = UserDefaults.standard.integer(forKey: "myYelloCount")
+    var indexNumber: Int = 0
     
     // MARK: Component
     let loadingView = YelloLoadingView()
     let myYelloView = MyYelloView()
     let paymentPlusViewController = PaymentPlusViewController()
-    let myYelloDetailViewController = MyYelloDetailViewController()
     
     var noticeURL: String?
     
@@ -149,6 +149,14 @@ extension MyYelloViewController: HandleShopButton {
 // MARK: HandleMyYelloCellDelegate
 extension MyYelloViewController: HandleMyYelloCellDelegate {
     func pushMyYelloDetailViewController(index: Int) {
+        self.indexNumber = index
+        let myYelloDetailViewController = MyYelloDetailViewController()
+
+        self.myYelloView.myYelloListView.indexNumber = self.indexNumber
+        myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[self.indexNumber].id
+        myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[self.indexNumber].id)
+        myYelloDetailViewController.myYelloDetailView.indexNumber = self.indexNumber
+        
         myYelloViewCount += 1
         UserDefaults.standard.set(myYelloViewCount, forKey: "myYelloCount")
         print("My Yello Count = \(myYelloViewCount)")
@@ -163,13 +171,6 @@ extension MyYelloViewController: HandleMyYelloCellDelegate {
                 self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
             }
             
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.myYelloView.myYelloListView.indexNumber = index
-            self.myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[index].id
-            self.myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[index].id)
-            self.myYelloDetailViewController.myYelloDetailView.indexNumber = index
         }
     }
 }
@@ -276,6 +277,13 @@ extension MyYelloViewController {
 // MARK: - GADInterstitialDelegate
 extension MyYelloViewController: GADFullScreenContentDelegate {
     func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        let myYelloDetailViewController = MyYelloDetailViewController()
+
+        self.myYelloView.myYelloListView.indexNumber = self.indexNumber
+        myYelloDetailViewController.myYelloDetailView.voteIdNumber = MyYelloListView.myYelloModelDummy[self.indexNumber].id
+        myYelloDetailViewController.myYelloDetail(voteId: MyYelloListView.myYelloModelDummy[self.indexNumber].id)
+        myYelloDetailViewController.myYelloDetailView.indexNumber = self.indexNumber
+        
         self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
     }
 }
