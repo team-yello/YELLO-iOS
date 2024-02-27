@@ -193,9 +193,7 @@ extension VotingViewController {
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
-            
-            VotingViewController.pushCount += 1
-            
+    
             let topAnimatedView = viewController.originView.questionBackground
             let nameAnimatedViews = [viewController.originView.nameOneButton, viewController.originView.nameTwoButton, viewController.originView.nameThreeButton, viewController.originView.nameFourButton]
             let keywordAnimatedViews = [viewController.originView.keywordOneButton, viewController.originView.keywordTwoButton, viewController.originView.keywordThreeButton, viewController.originView.keywordFourButton]
@@ -229,6 +227,7 @@ extension VotingViewController {
                     for keywordView in keywordAnimatedViews {
                         keywordView.frame.origin.x = CGFloat(newXPosition + 148.adjusted)
                     }
+                    VotingViewController.pushCount += 1
                     self.navigationController?.pushViewController(viewController, animated: false)
                 })
             }
