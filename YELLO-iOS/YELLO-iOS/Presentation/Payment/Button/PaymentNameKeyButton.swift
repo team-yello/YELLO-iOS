@@ -58,6 +58,7 @@ final class PaymentNameKeyButton: UIButton {
         self.backgroundColor = .black
         
         infoContainerView.do {
+            $0.isUserInteractionEnabled = false
             $0.makeBorder(width: 1, color: .purpleSub700)
             $0.makeCornerRound(radius: 10.adjustedHeight)
         }

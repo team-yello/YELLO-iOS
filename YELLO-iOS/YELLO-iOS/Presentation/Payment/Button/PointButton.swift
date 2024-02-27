@@ -51,7 +51,6 @@ final class PointButton: UIButton {
         self.makeBorder(width: 1, color: .purpleSub700)
         self.makeCornerRound(radius: 10.adjustedHeight)
         self.backgroundColor = .black
-        self.isUserInteractionEnabled = true
         
         pointImageView.do {
             $0.image = ImageLiterals.Payment.imgCoin
@@ -72,11 +71,13 @@ final class PointButton: UIButton {
             $0.spacing = 0
             $0.alignment = .leading
             $0.addArrangedSubviews(pointTitleLabel, subTitleLabel)
+            $0.isUserInteractionEnabled = false
         }
         
         pointLabel.do {
             $0.textColor = .white
             $0.font = .uiBodyMedium
+            $0.isUserInteractionEnabled = false
         }
     }
     
