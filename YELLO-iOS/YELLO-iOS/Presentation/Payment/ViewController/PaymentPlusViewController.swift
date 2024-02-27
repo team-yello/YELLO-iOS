@@ -145,11 +145,6 @@ final class PaymentPlusViewController: BaseViewController {
         paymentPlusView.nameKeyOneButton.addTarget(self, action: #selector(paymentNameKeyOneButtonTapped), for: .touchUpInside)
         paymentPlusView.nameKeyTwoButton.addTarget(self, action: #selector(paymentNameKeyTwoButtonTapped), for: .touchUpInside)
         paymentPlusView.nameKeyFiveButton.addTarget(self, action: #selector(paymentNameKeyFiveButtonTapped), for: .touchUpInside)
-        
-        paymentPlusView.nameKeyOneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(paymentNameKeyOneButtonTapped)))
-        paymentPlusView.nameKeyTwoButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(paymentNameKeyTwoButtonTapped)))
-        paymentPlusView.nameKeyFiveButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(paymentNameKeyFiveButtonTapped)))
-        
         paymentPlusView.serviceButton.addTarget(self, action: #selector(serviceButtonTapped), for: .touchUpInside)
         paymentPlusView.privacyButton.addTarget(self, action: #selector(privacyButtonTapped), for: .touchUpInside)
         paymentPlusView.votingPointButton.addTarget(self, action: #selector(votingPointButtonTapped), for: .touchUpInside)
