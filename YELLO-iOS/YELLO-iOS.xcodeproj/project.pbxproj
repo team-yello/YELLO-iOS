@@ -81,10 +81,6 @@
 		2AFB01682A8D2EAC001BB2C7 /* pagenation_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01602A8D2EAC001BB2C7 /* pagenation_8.json */; };
 		2AFB01692A8D2EAC001BB2C7 /* pagenation_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01612A8D2EAC001BB2C7 /* pagenation_6.json */; };
 		2AFB016A2A8D2EAC001BB2C7 /* pagenation_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2AFB01622A8D2EAC001BB2C7 /* pagenation_1.json */; };
-		36013AB22B8D04B7000557F4 /* ISAdMobAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367DD7DE2B8CD42400E0E7EF /* ISAdMobAdapter.xcframework */; };
-		36013AB52B8D04BA000557F4 /* IronSourceAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36013AA92B8D0346000557F4 /* IronSourceAdapter.xcframework */; };
-		36013AB72B8D04BB000557F4 /* IronSource.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36013AAD2B8D0358000557F4 /* IronSource.xcframework */; };
-		36013ABA2B8D081A000557F4 /* IronSourceAdQualitySDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36013AB92B8D081A000557F4 /* IronSourceAdQualitySDK.xcframework */; };
 		3609E96D2B87B600004B68AB /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3609E96C2B87B600004B68AB /* AppTrackingTransparency.framework */; };
 		3628EAE82A608F0200D5FA40 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628EAE72A608F0200D5FA40 /* SplashViewController.swift */; };
 		3628EAEA2A60903A00D5FA40 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3628EAE92A60903A00D5FA40 /* splash.json */; };
@@ -759,7 +755,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E60EBF2AE6DFC4005035D3 /* FirebaseRemoteConfig in Frameworks */,
-				36013AB72B8D04BB000557F4 /* IronSource.xcframework in Frameworks */,
 				36E60EBB2AE6DFC4005035D3 /* FirebaseMessaging in Frameworks */,
 				36E60EA52AE6DFC4005035D3 /* FirebaseDatabaseSwift in Frameworks */,
 				36E60E972AE6DFC4005035D3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -768,11 +763,9 @@
 				36E60E952AE6DFC4005035D3 /* FirebaseAnalyticsSwift in Frameworks */,
 				36E60EBD2AE6DFC4005035D3 /* FirebasePerformance in Frameworks */,
 				36E60E9B2AE6DFC4005035D3 /* FirebaseAppDistribution-Beta in Frameworks */,
-				36013AB52B8D04BA000557F4 /* IronSourceAdapter.xcframework in Frameworks */,
 				36E60EC12AE6DFC4005035D3 /* FirebaseRemoteConfigSwift in Frameworks */,
 				36E60E9F2AE6DFC4005035D3 /* FirebaseAuthCombine-Community in Frameworks */,
 				36E60EA72AE6DFC4005035D3 /* FirebaseDynamicLinks in Frameworks */,
-				36013AB22B8D04B7000557F4 /* ISAdMobAdapter.xcframework in Frameworks */,
 				C3A799B82A4949C600D3EFD8 /* KakaoSDK in Frameworks */,
 				2A4C549D2A8622B200FFDF80 /* Kingfisher in Frameworks */,
 				36E60E992AE6DFC4005035D3 /* FirebaseAppCheck in Frameworks */,
@@ -782,7 +775,6 @@
 				36E60EC32AE6DFC4005035D3 /* FirebaseStorage in Frameworks */,
 				3609E96D2B87B600004B68AB /* AppTrackingTransparency.framework in Frameworks */,
 				C3A799B22A4949A700D3EFD8 /* Alamofire in Frameworks */,
-				36013ABA2B8D081A000557F4 /* IronSourceAdQualitySDK.xcframework in Frameworks */,
 				C3A799AC2A49499500D3EFD8 /* Then in Frameworks */,
 				C3A799AF2A49499F00D3EFD8 /* SnapKit in Frameworks */,
 				36E60EAB2AE6DFC4005035D3 /* FirebaseFirestoreCombine-Community in Frameworks */,

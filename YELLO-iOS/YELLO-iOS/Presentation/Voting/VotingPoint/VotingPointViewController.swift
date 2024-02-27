@@ -292,7 +292,8 @@ final class VotingPointViewController: BaseViewController {
     @objc
     func yellowButtonClicked() {
         originView.yellowButton.isEnabled = false
-        guard let loadedUserArray = loadUserData() else { return }
+        cancelButton.isEnabled = false
+        let loadedUserArray = loadUserData() ?? []
         let requestDTO = VotingAnswerListRequestDTO(voteAnswerList: loadedUserArray, totalPoint: votingPlusPointToPost)
         NetworkService.shared.votingService.postVotingAnswerList(requestDTO: requestDTO) { result in
             switch result {
@@ -313,6 +314,7 @@ final class VotingPointViewController: BaseViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: viewController)
             self.originView.yellowButton.isEnabled = true
+            self.cancelButton.isEnabled = true
         }
         UserDefaults.standard.removeObject(forKey: "isWatchAd")
         UserDefaults.standard.removeObject(forKey: "UserDataKey")
