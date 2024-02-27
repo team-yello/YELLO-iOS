@@ -61,15 +61,15 @@ final class VotingPointViewController: BaseViewController {
             multiplyByTwoImageView.isHidden = false
         } else {
             multiplyByTwoImageView.isHidden = true
+            if isWatchAd {
+                adButtonStackView.isHidden = true
+                originView.yellowButton.isHidden = false
+            } else {
+                adButtonStackView.isHidden = false
+                originView.yellowButton.isHidden = true
+            }
         }
         
-        if isWatchAd {
-            adButtonStackView.isHidden = true
-            originView.yellowButton.isHidden = false
-        } else {
-            adButtonStackView.isHidden = false
-            originView.yellowButton.isHidden = true
-        }
     }
     
     // MARK: - Style
