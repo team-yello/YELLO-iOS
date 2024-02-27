@@ -495,8 +495,7 @@ extension MyYelloDetailView {
                 if self.indexNumber != -1 {
                     MyYelloListView.myYelloModelDummy[self.indexNumber].nameHint = -2
                 }
-                
-                
+                UserManager.shared.userTicketCount -= 1
                 if !self.isKeywordUsed {
                     Amplitude.instance().logEvent("view_open_fullnamefirst")
                 } else {
