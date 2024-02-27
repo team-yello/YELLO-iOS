@@ -58,6 +58,7 @@ final class PaymentNameKeyButton: UIButton {
         self.backgroundColor = .black
         
         infoContainerView.do {
+            $0.isUserInteractionEnabled = true
             $0.makeBorder(width: 1, color: .purpleSub700)
             $0.makeCornerRound(radius: 10.adjustedHeight)
         }
@@ -72,6 +73,7 @@ final class PaymentNameKeyButton: UIButton {
         }
         
         priceView.do {
+            $0.isUserInteractionEnabled = true
             $0.makeCornerRound(radius: 15.adjustedHeight)
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"), startPointY: 0.5, endPointY: 0.5)
             $0.isUserInteractionEnabled = false
