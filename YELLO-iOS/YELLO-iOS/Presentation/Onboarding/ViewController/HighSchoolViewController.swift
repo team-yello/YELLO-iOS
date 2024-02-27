@@ -60,7 +60,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
     
     private func setDelegate() {
         baseView.buttonArray.forEach {
-            $0.addTarget(self, action: #selector(didTapClassButton), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(classButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -117,7 +117,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
     }
     
     // MARK: Objc Function
-    @objc func didTapClassButton(sender: UIButton) {
+    @objc func classButtonTapped(sender: UIButton) {
         sender.makeBorder(width: 1, color: .yelloMain500)
         sender.setTitleColor(.yelloMain500, for: .normal)
         baseView.buttonArray.forEach { button in
@@ -129,6 +129,20 @@ class HighSchoolViewController: OnboardingBaseViewController {
         isSelectLevel = true
         guard let buttonTitleLabel = sender.titleLabel else { return }
         self.schoolLevel = extractNumbers(from: buttonTitleLabel.text ?? "")
+    }
+    
+    @objc func textfieldButtonTapped(_ sender: UIButton) {
+        switch sender {
+        case baseView.schoolSearchTextField.searchButton:
+            let nextViewController = FindSchoolViewController()
+            nextViewController.schoolSearchDelegate = self
+            self.present(nextViewController, animated: true)
+            baseView.classSearchTextField.text = ""
+        case baseView.classSearchTextField.toggleButton:
+            classModalPresent()
+        default:
+            return
+        }
     }
 }
 

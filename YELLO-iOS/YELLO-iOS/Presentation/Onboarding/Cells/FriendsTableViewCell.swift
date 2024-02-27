@@ -163,6 +163,7 @@ extension FriendsTableViewCell {
         }
         
         stackView.snp.makeConstraints {
+            $0.width.equalTo(230.adjustedWidth)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(8.adjusted)
             $0.centerY.equalToSuperview()
         }

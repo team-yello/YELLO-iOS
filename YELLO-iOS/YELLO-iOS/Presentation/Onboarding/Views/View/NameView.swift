@@ -15,7 +15,9 @@ final class NameView: UIView {
     // MARK: Property
     // MARK: Component
     let nameGuideImageView = UIImageView()
-    let nameTextFieldView = YelloTextFieldView(title: "나의 이름은?", state: .normal, placeholder: "ex.김옐로", helper: "이후에는 이름 수정이 어려우니 실제 이름을 적어주세요.")
+    let nameTextFieldView = YelloTextFieldView(title: StringLiterals.Onboarding.Name.title,
+                                               state: .normal, placeholder: StringLiterals.Onboarding.Name.namePlaceHolder,
+                                               helper: StringLiterals.Onboarding.Name.nameHelper)
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -37,10 +39,6 @@ final class NameView: UIView {
     private func setStyle() {
         nameGuideImageView.do {
             $0.image = ImageLiterals.OnBoarding.nameGuide
-        }
-        
-        nameTextFieldView.helperLabel.do {
-            $0.asColor(targetString: "실제 이름", color: .yelloMain500)
         }
     }
     

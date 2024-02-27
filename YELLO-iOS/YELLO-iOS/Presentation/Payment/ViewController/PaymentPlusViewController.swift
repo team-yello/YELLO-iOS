@@ -33,10 +33,9 @@ final class PaymentPlusViewController: BaseViewController {
     var countdownTimer: Timer?
     var remainingSeconds: TimeInterval? {
         didSet {
+            paymentPlusView.adPointButton.isEnabled = true
             if let remainingSeconds {
-                DispatchQueue.main.async { [weak self] in
-                       self?.paymentPlusView.adPointButton.subTitleLabel.text = String(format: "%02d:%02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
-                   }
+                paymentPlusView.adPointButton.subTitleLabel.text = String(format: "%02d:%02d", Int(remainingSeconds/60), Int(remainingSeconds.truncatingRemainder(dividingBy: 60)))
             }
             if remainingSeconds == 0 {
                 isRewardPossible = true
@@ -44,6 +43,7 @@ final class PaymentPlusViewController: BaseViewController {
                 UIView.transition(with: self.navigationController!.view, duration: 0.001, options: .transitionCrossDissolve, animations: {
                     self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .purpleSub100
                     self.paymentPlusView.adPointButton.pointLabel.textColor = .purpleSub100
+                    self.paymentPlusView.adPointButton.makeBorder(width: 1, color: .purpleSub800)
                     self.paymentPlusView.adPointButton.subTitleLabel.text = StringLiterals.MyYello.Payment.adPointsubTitle
                 })
             }
@@ -57,9 +57,9 @@ final class PaymentPlusViewController: BaseViewController {
     private let eventPointView = EventPointView()
     private let loadingIndicator = UIActivityIndicatorView(style: .large)
     private var dimView = UIView()
-    var subscribeStatus = "NORMAL" {
+    var subscribeStatus = "normal" {
         didSet {
-            if subscribeStatus == "NORMAL" || !UserManager.shared.isYelloPlus {
+            if subscribeStatus == "normal" || !UserManager.shared.isYelloPlus {
                 paymentPlusView.subscribeBackgroundView.isHidden = true
             } else {
                 paymentPlusView.subscribeBackgroundView.isHidden = false
@@ -152,7 +152,7 @@ final class PaymentPlusViewController: BaseViewController {
     }
     
     private func setInitialUI() {
-        UserManager.shared.userPoint = UserDefaults.standard.integer(forKey: "UserPoint")
+        self.paymentPlusView.adPointButton.isEnabled = true
         paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
         paymentPlusView.paymentNavigationBarView.keyCountView.countLabel.text = String(UserManager.shared.userTicketCount)
         if UserManager.shared.isYelloPlus {
@@ -360,10 +360,12 @@ extension PaymentPlusViewController {
                         self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .purpleSub100
                         self.paymentPlusView.adPointButton.pointLabel.textColor = .purpleSub100
                         self.paymentPlusView.adPointButton.subTitleLabel.text = StringLiterals.MyYello.Payment.adPointsubTitle
+                        self.paymentPlusView.adPointButton.makeBorder(width: 1, color: .purpleSub800)
                     } else {
-                        self.dateFormatter(data.createdAt)
+                        self.startTimerFormat(data.createdAt)
                         self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .grayscales500
                         self.paymentPlusView.adPointButton.pointLabel.textColor = .grayscales500
+                        self.paymentPlusView.adPointButton.makeBorder(width: 1, color: .grayscales800)
                     }
                 }
             default:
@@ -387,6 +389,8 @@ extension PaymentPlusViewController {
                     self.paymentPlusView.paymentNavigationBarView.pointCountView.countLabel.text = String(UserManager.shared.userPoint)
                     self.paymentPlusView.adPointButton.pointTitleLabel.textColor = .grayscales500
                     self.paymentPlusView.adPointButton.pointLabel.textColor = .grayscales500
+                    self.paymentPlusView.adPointButton.makeBorder(width: 1, color: .grayscales800)
+                    self.paymentPlusView.adPointButton.isEnabled = false
                     self.showEventPointView()
                 }
                 
@@ -405,6 +409,8 @@ extension PaymentPlusViewController {
                            completionHandler: { [self] ad, error in
             if let error = error {
                 print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+                view.showToast(message: "광고 보기에 실패했습니다.", at: 100.adjustedHeight)
+                self.hideLoadingIndicator()
                 return
             }
             rewardedAd = ad
@@ -430,7 +436,7 @@ extension PaymentPlusViewController {
     private func showEventPointView() {
         self.eventPointView.frame = self.view.bounds
         self.eventPointView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.dateFormatter(Date().toString())
+        self.startTimerFormat(Date().toString())
         self.view.addSubview(self.eventPointView)
         
         self.eventPointView.checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
@@ -559,5 +565,10 @@ extension PaymentPlusViewController {
 extension PaymentPlusViewController: GADFullScreenContentDelegate {
     func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         self.getReward()
+    }
+    
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        debugPrint("광고 로드 실패")
+        loadingIndicator.stopAnimating()
     }
 }

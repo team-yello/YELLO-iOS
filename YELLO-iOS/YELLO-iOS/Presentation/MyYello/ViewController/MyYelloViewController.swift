@@ -108,7 +108,8 @@ final class MyYelloViewController: BaseViewController {
         GADInterstitialAd.load(withAdUnitID: interstitialId,
                                request: request) { ad, error in
             if let error {
-                print("ailed to load interstitial ad with error: \(error.localizedDescription)")
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                self.loadingView.stopIndicator()
                 return
             }
             self.interstitial = ad

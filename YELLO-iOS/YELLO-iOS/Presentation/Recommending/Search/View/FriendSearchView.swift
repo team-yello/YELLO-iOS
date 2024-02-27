@@ -52,7 +52,8 @@ final class FriendSearchView: BaseView {
             $0.textColor = .white
             $0.placeholder = StringLiterals.Recommending.Search.placeholder
             $0.setPlaceholderColor(.grayscales300)
-            $0.searchImageView.image = ImageLiterals.Recommending.icSearchWhite
+            $0.searchButton.setImage(ImageLiterals.Recommending.icSearchWhite,
+                                     for: .normal) 
             $0.tintColor = .white
         }
         

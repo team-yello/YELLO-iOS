@@ -18,6 +18,7 @@ class FindSchoolViewController: SearchBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchResults.removeAll()
+        searchView.searchTextField.text = ""
         searchView.searchResultTableView.reloadData()
     }
     

@@ -42,8 +42,8 @@ final class YelloTextField: UITextField {
     // MARK: Components
     private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
     lazy var cancelButton = UIButton()
-    private lazy var toggleImageView = UIImageView()
-    lazy var searchImageView = UIImageView()
+    lazy var toggleButton = UIButton()
+    lazy var searchButton = UIButton()
     private let errorImageView = UIImageView()
     
     private let labelPaddingView = UIView()
@@ -93,21 +93,24 @@ extension YelloTextField {
             $0.makeCornerRound(radius: 8)
         }
         
-        searchImageView.do {
-            $0.image = ImageLiterals.OnBoarding.icSearch
+        searchButton.do {
+            let searchImage = ImageLiterals.OnBoarding.icSearch
                 .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
+            $0.setImage(searchImage, for: .normal)
+            $0.isUserInteractionEnabled = true
         }
         
         cancelButton.do {
-            let image = ImageLiterals.OnBoarding.icXCircle
+            let cancelImage = ImageLiterals.OnBoarding.icXCircle
                 .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
-            $0.setImage(image, for: .normal)
+            $0.setImage(cancelImage, for: .normal)
             $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         }
         
-        toggleImageView.do {
-            $0.image = ImageLiterals.OnBoarding.icChevronDown
+        toggleButton.do {
+            let toggleimage = ImageLiterals.OnBoarding.icChevronDown
                 .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
+            $0.setImage(toggleimage, for: .normal)
         }
         
         errorImageView.do {
@@ -154,7 +157,7 @@ extension YelloTextField {
             self.backgroundColor = .grayscales800
             self.rightViewMode = .never
         case .search:
-            buttonStackView.addArrangedSubviews(searchImageView, paddingView)
+            buttonStackView.addArrangedSubviews(searchButton, paddingView)
         case .editing:
             self.backgroundColor = .grayscales800
             self.makeBorder(width: 1, color: .grayscales700)
@@ -165,7 +168,7 @@ extension YelloTextField {
             buttonStackView.addArrangedSubviews(cancelButton, paddingView)
             self.rightViewMode = .always
         case .toggle:
-            buttonStackView.addArrangedSubviews(toggleImageView, paddingView)
+            buttonStackView.addArrangedSubviews(toggleButton, paddingView)
         case .error:
             buttonStackView.clearSubViews()
             let errorImage = xCircleImage.withTintColor(.semanticStatusRed500)
