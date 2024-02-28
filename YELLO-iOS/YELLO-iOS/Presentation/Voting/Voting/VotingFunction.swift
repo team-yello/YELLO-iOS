@@ -22,7 +22,7 @@ extension VotingViewController {
         view.insertSubview(gradientView, at: 0)
         
         let progressPercent = Float(VotingViewController.pushCount + 1) / 8.0
-        self.originView.progressView.setProgress(progressPercent, animated: true)
+        self.originView.progressView.setProgress(progressPercent, animated: false)
         setAnimationView()
         self.originView.yelloProgress.image =
         dummy[VotingViewController.pushCount].yelloProgress
@@ -157,7 +157,6 @@ extension VotingViewController {
     func setNextViewController() {
         // 투표 끝나면 포인트뷰컨으로 push
         if VotingViewController.pushCount > 6 {
-            VotingViewController.pushCount = 0
             
             let identify = AMPIdentify()
                 .add("user_instagram", value: NSNumber(value: votingAnswer.count))
@@ -169,17 +168,20 @@ extension VotingViewController {
             let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
             viewController.myPoint = myPoint + myPlusPoint
             viewController.votingPlusPoint = myPlusPoint
-            let previousData = loadUserData() ?? []
-            let combinedData = previousData + votingAnswer
-            saveUserData(combinedData)
-            
+
             let status = votingList[0].subscribe
             if status == "CANCELED" || status == "ACTIVE" {
                 viewController.multiplyByTwoImageView.isHidden = false
+                UserDefaults.standard.set(true, forKey: "isYelloPlus")
+                viewController.adButtonStackView.isHidden = true
+                viewController.originView.yellowButton.isHidden = false
                 viewController.myPoint += myPlusPoint
                 viewController.votingPlusPoint *= 2
             } else {
                 viewController.multiplyByTwoImageView.isHidden = true
+                UserDefaults.standard.set(false, forKey: "isYelloPlus")
+                viewController.adButtonStackView.isHidden = false
+                viewController.originView.yellowButton.isHidden = true
             }
             
             UserDefaults.standard.set(viewController.myPoint, forKey: "UserPoint")
@@ -191,16 +193,45 @@ extension VotingViewController {
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
-            let previousData = loadUserData() ?? []
-            let combinedData = previousData + votingAnswer
-            saveUserData(combinedData)
-            print(combinedData)
+    
+            let topAnimatedView = viewController.originView.questionBackground
+            let nameAnimatedViews = [viewController.originView.nameOneButton, viewController.originView.nameTwoButton, viewController.originView.nameThreeButton, viewController.originView.nameFourButton]
+            let keywordAnimatedViews = [viewController.originView.keywordOneButton, viewController.originView.keywordTwoButton, viewController.originView.keywordThreeButton, viewController.originView.keywordFourButton]
             
-            UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.5, options: .transitionCrossDissolve, animations: {
-                // 전환 시 스르륵 바뀌는 애니메이션 적용
-                VotingViewController.pushCount += 1
-                self.navigationController?.pushViewController(viewController, animated: false)
-            })
+            // 모든 버튼 비활성화
+            nameAnimatedViews.forEach { $0.isEnabled = false }
+            keywordAnimatedViews.forEach { $0.isEnabled = false }
+            
+            // 0.6초 후에 다시 활성화
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                nameAnimatedViews.forEach { $0.isEnabled = true }
+                keywordAnimatedViews.forEach { $0.isEnabled = true }
+            }
+                        
+            let transition = CATransition()
+            transition.type = CATransitionType.fade
+            transition.duration = 0.6
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.3, options: .allowUserInteraction, animations: {
+                    
+                    // 검정색 배경들이 밀리는 것과 같은 애니메이션 구현
+                    let newXPosition = -500.adjusted
+                    topAnimatedView.frame.origin.x = CGFloat(newXPosition)
+
+                    for nameView in nameAnimatedViews {
+                        nameView.frame.origin.x = CGFloat(newXPosition)
+                    }
+
+                    for keywordView in keywordAnimatedViews {
+                        keywordView.frame.origin.x = CGFloat(newXPosition + 148.adjusted)
+                    }
+                    VotingViewController.pushCount += 1
+                    self.navigationController?.pushViewController(viewController, animated: false)
+                })
+            }
+
         }
     }
     
@@ -379,6 +410,10 @@ extension VotingViewController {
     
     @objc
     func skipButtonClicked() {
+        self.originView.skipButton.isEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+            self.originView.skipButton.isEnabled = true
+        }
         if keywordButtonClick {
             originView.skipButton.isEnabled = false
             originView.skipButton.isEnabled = true

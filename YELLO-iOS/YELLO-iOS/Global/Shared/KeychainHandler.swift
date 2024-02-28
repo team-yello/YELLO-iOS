@@ -21,7 +21,6 @@ struct KeychainHandler {
     private let accessTokenKey = "accessToken"
     private let refreshTokenKey = "refreshToken"
     
-    
     var accessToken: String {
         get {
             return KeychainWrapper.standard.string(forKey: accessTokenKey) ?? "" 

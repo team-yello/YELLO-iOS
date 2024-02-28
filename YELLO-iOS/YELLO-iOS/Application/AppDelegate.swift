@@ -11,8 +11,10 @@ import Amplitude
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
+import GoogleMobileAds
 import KakaoSDKCommon
 import KakaoSDKAuth
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -52,6 +54,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .setOnce("user_revenue", value: NSNumber(value: 0))
         guard let identify = identify else { return true }
         Amplitude.instance().identify(identify)
+        
+        /// Mobile Ads SDK
+        AppTracking.requestTrackingAuthorization()
+        let ads = GADMobileAds.sharedInstance()
+        ads.start { status in
+            // Optional: Log each adapter's initialization latency.
+            let adapterStatuses = status.adapterStatusesByClassName
+            for adapter in adapterStatuses {
+                let adapterStatus = adapter.value
+                NSLog("Adapter Name: %@, Description: %@, Latency: %f", adapter.key,
+                      adapterStatus.description, adapterStatus.latency)
+                print("\(adapterStatus.description)")
+            }
+        }
+        
+        
         return true
     }
     
@@ -116,20 +134,6 @@ extension AppDelegate: MessagingDelegate {
         print("FirebaseMessaging")
         guard let fcmToken = fcmToken else { return }
         let deviceToken:[String: String] = ["token": fcmToken]
-        if UserManager.shared.deviceToken.isEmpty {
-            let requestDTO = DeviceTokenRefreshRequestDTO(deviceToken: fcmToken)
-            NetworkService.shared.onboardingService.putRefreshDeviceToken(requsetDTO: requestDTO) { result in
-                switch result {
-                case .success(let data):
-                    if data.status == 200 || data.status == 201 {
-                        UserManager.shared.deviceToken = fcmToken
-                        print("Device token 재발급 완료:", deviceToken)
-                    }
-                default:
-                    print("deviceToken 재발급 오류")
-                }
-            }
-        }
         UserManager.shared.deviceToken = fcmToken
         print("Device token:", deviceToken)
     }

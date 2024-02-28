@@ -37,12 +37,21 @@ enum StringLiterals {
             static let checkYesButton = "네, 맞아요"
             static let checkNoButton = "제 이름이 아니에요"
             static let checkTitle = "님이 맞으신가요?"
+            static let nextButtonText = "수정 완료"
         }
         
         enum SchoolSelect {
             static let selectHighText = "중/고등학생"
             static let selectUnivText = "대학생"
         }
+        
+        enum Search {
+            static let schoolSearchTitle = "우리 학교 검색하기"
+            static let schoolHelperText = "우리 학교가 없나요? 학교를 추가해보세요!"
+            static let majorSearchTitle = "학과 검색하기"
+            static let majorHelperText = "찾는 과가 없다면 클릭하세요!"
+        }
+        
         enum School {
             static let schoolSearchText = "학교가 어디인가요?"
             static let highSchoolSearchPlaceholder = "ex. 옐로중/고등학교"
@@ -61,7 +70,7 @@ enum StringLiterals {
             static let title = "나의 이름은?"
             static let namePlaceHolder = "ex.김옐로"
             static let nameHelper = "이후에는 이름 수정이 어려우니 실제 이름을 적어주세요."
-            static let nameError = "특수문자, 한글 외 문자는 입력할 수 없어요."
+            static let nameError = "한글만 입력 가능해요."
         }
         
         enum Id {
@@ -113,8 +122,10 @@ enum StringLiterals {
     
     enum Inviting {
         static let title = "친구 초대하기"
-        static let firstText = "친구가 내 추천인 코드로 가입하면"
-        static let secondText = "40분 대기 초기화 + 100포인트 지급!"
+        static let firstText = "친구가 내 추천인 코드로 가입하면,"
+        static let secondText = "40분 대기 초기화 + 100포인트"
+        static let thirdText = "내 추천인 코드가 처음 쓰였다면?!"
+        static let fourthText = "열람권 1개 추가 지급!"
         static let toastMessage = "링크가 복사되었습니다."
     }
     
@@ -123,12 +134,14 @@ enum StringLiterals {
             static let recommend = "추천친구"
             static let kakaoFriend = "카톡 친구들"
             static let schoolFriend = "학교 친구들"
-            static let defaultProfileImageLink = "https://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg"
+            static let defaultProfileImageLink = "https://k.kakaocdn.net/dn/1G9kp/btsAot8liOn/8CWudi3uy07rvFNUkk3ER0/img_640x640.jpg"
         }
         
         enum Empty {
             static let title = "찾는 친구가 없다면\n친구를 초대해볼까요?"
-            static let inviteButton = "친구 초대하고 100포인트받기"
+            static let timeLineAllTitle = "친구들이 받은 쪽지가 궁금하다면\n친구를 초대해볼까요?"
+            static let timeLineMyTitle = "쪽지를 보낼 친구가 없다면\n친구를 초대하세요!"
+            static let inviteButton = "친구 초대하고 리워드 받기"
         }
         
         enum Invite {
@@ -138,7 +151,7 @@ enum StringLiterals {
         
         enum Search {
             static let title = "친구 검색"
-            static let placeholder = " 이름 또는 아이디를 입력해보세요!"
+            static let placeholder = " 이름/학교/아이디로 검색해보세요!"
             static let myFriend = "내 친구"
             static let loading = "친구를 찾는 중이에요..."
             static let searching = "찾는 친구의 결과가 없어요."
@@ -152,13 +165,18 @@ enum StringLiterals {
         static let male = "남학생"
         static let receiveFemale = "여학생에게 받음"
         static let receiveMale = "남학생에게 받음"
+        static let info = "쪽지를 보낸 사람의 이름은 공개되지 않아요."
+        static let allYello = "모든 쪽지"
+        static let myYello = "내가 보낸 쪽지"
+        static let fromMe = "나에게 받음"
         
     }
     
     enum Voting {
         enum Locked {
             static let title = "옐로를 시작하고 싶다면?"
-            static let text = "친구가 4명 이상 모이면 투표할 수 있어요.\n친구들을 초대해볼까요?"
+            static let text = "친구가 1명 이상 있어야 투표할 수 있어요.\n친구들을 초대해볼까요?"
+            static let button = "친구 초대하고 옐로 시작하기"
         }
         
         enum Start {
@@ -189,7 +207,11 @@ enum StringLiterals {
         }
         
         enum Point {
+            static let yelloButtonText = "확인"
+            static let cancelButtonText = "그냥 받기"
+            static let rewardAdButtonText = "광고보고 2배로 받기"
             static let title = "투표 포인트 적립!"
+            static let adTitle = "광고보고 2배로 받기"
             static let text = "투표로 포인트를 모아 쪽지를 열어보세요."
         }
         
@@ -202,6 +224,7 @@ enum StringLiterals {
     enum MyYello {
         enum NavigationBar {
             static let myYello = "내 쪽지"
+            static let clickMe = "CLICK ME"
             static let yelloNumber = "받은 쪽지"
             static let shop = "상점"
             static let sale = "SALE"
@@ -226,7 +249,7 @@ enum StringLiterals {
             static let send = "님이 보냄"
             static let female = "익명의 여학생"
             static let male = "익명의 남학생"
-            static let instagram = "스토리 공유하기"
+            static let instagram = "스토리 공유"
             static let keywordButton = "100포인트로 키워드 확인하기"
             static let sendButton = "300포인트로 초성 1개 확인하기"
             static let plusSendButton = "0포인트로 초성 1개 확인하기"
@@ -264,10 +287,10 @@ enum StringLiterals {
             static let description = "결제 기능은 아직 구현되지 않았어요.\n곧 기능을 준비할게요!"
             static let back = "나가기"
             static let paymentTitle = "옐로플러스로\n친구들의 속마음을 열어보세요!"
-            static let paymentSender = "쪽지 보낸 사람을 알고 싶다면?"
+            static let paymentSender = "쪽지를 열고 싶다면?"
             
             static let yelloPlusTitle = "옐로플러스의 특별한 혜택은?"
-            static let subscribing = "옐로플러스 구독 중"
+            static let subscribing = "구독 중"
             static let yelloPlusSubscribe = "옐로플러스 구독하기"
             static let discount50Percent = "(63%할인)"
             static let yelloPlusPriceBefore = "7900원"
@@ -275,14 +298,14 @@ enum StringLiterals {
             static let forWeek = "/주"
             
             static let sale = "SALE!"
-            static let nameKeyOne = "이름 열람권 1개"
+            static let nameKeyOne = "이름 열람권\n1개"
             static let nameKeyOnePrice = "1400원"
             static let nameKeyOneSalePrice = "990원"
-            static let nameKeyTwo = "이름 열람권 2개"
+            static let nameKeyTwo = "이름 열람권\n2개"
             static let nameKeyTwoPrice = "2800원"
             static let nameKeyTwoSalePrice = "1900원"
-            static let nameKeyFive = "이름 열람권 5개"
-            static let discount = "   할인!"
+            static let nameKeyFive = "이름 열람권\n5개"
+            static let discount = "할인!"
             static let nameKeyFivePriceBefore = "7000원"
             static let nameKeyFivePrice = "3900원"
             
@@ -293,6 +316,13 @@ enum StringLiterals {
             static let paymentAlertKeyFiveTitle = "열람권 5개를 얻었어요!"
             static let paymentAlertKeyDescription = "열람권으로 누가 쪽지를 보냈는지 알아보세요."
             
+            static let votingPointTitle = "투표하고 포인트 얻기"
+            static let votingPoint = "최대 200p"
+            static let adPointTitle = "광고 보고 포인트 얻기"
+            static let adPointsubTitle = "1시간에 한 번"
+            static let adPoint = "10p"
+            static let adPointErrorToast = "1시간에 한 번 재생할 수 있어요."
+            
             static let descriptionLabel = "옐로플러스 구독안내\n- 구독은 매주 자동으로 갱신되며, Apple을 통해 해지하실 수 있습니다.\n- 결제를 진행하시면 관련 약관에 동의하는 것으로 간주됩니다."
             static let serviceButton = "서비스 이용 약관"
             static let privacyButton = "개인정보처리방침"
@@ -302,7 +332,7 @@ enum StringLiterals {
     enum Profile {
         enum NavigationBar {
             static let profile = "프로필"
-            static let setting = "관리"
+            static let setting = "설정"
         }
         
         enum Count {
@@ -330,8 +360,33 @@ enum StringLiterals {
             static let toastMessage = " 님과 친구 끊기를 완료했어요."
         }
         
+        enum EditProfile {
+            static let KakaoDefaultProfileURL = "https://k.kakaocdn.net/dn/1G9kp/btsAot8liOn/8CWudi3uy07rvFNUkk3ER0/img_640x640.jpg"
+            static let profileInfoTitle = "프로필 정보"
+            static let kakaoSync = "카카오톡 동기화"
+            static let name = "이름"
+            static let id = "아이디"
+            static let school = "학교"
+            static let major = "학과"
+            static let studentId = "학번"
+            static let grade = "학년"
+            static let schoolClass = "반"
+            static let defaultText = "-"
+            
+            static let profileEditTitle = "프로필 수정"
+            static let guideText = "1년에 한 번만 수정할 수 있어요.\n신중히 수정해 주세요!"
+            static let modifireDateText = "마지막 수정일 : "
+            static let majorErrorMessage = "학과를 입력해야 수정할 수 있어요."
+            static let editDateErrorMessage = "올해 안에 수정한 기록이 있어요."
+            static let notYetErrorMessage = "수정할 정보가 없어요"
+            
+            static let saveButton = "저장"
+            static let convertHighButton = "중/고등학생으로 전환"
+            static let convertUnivButton = "대학생으로 전환"
+        }
+        
         enum Setting {
-            static let setting = "프로필 관리"
+            static let setting = "설정"
             static let center = "고객센터"
             static let privacy = "개인정보 처리방침"
             static let service = "이용약관"
@@ -366,6 +421,20 @@ enum StringLiterals {
             static let no = "아니요"
             static let yes = "네, 탈퇴합니다"
         }
+        
+        enum WithdrawalReason {
+            static let title = "탈퇴 사유를 적어주세요."
+            static let nobody = "앱에 아는 사람들이 없어서"
+            static let expensive = "구독권과 열람권의 가격이 비싸서"
+            static let error = "오류가 많아서"
+            static let notFunny = "재밌는 콘텐츠 또는 질문이 없어서"
+            static let lessPoint = "포인트를 너무 적게 줘서"
+            static let delete = "내 정보를 삭제하고 싶어서"
+            static let otherApp = "다른 앱이 더 재밌어서"
+            static let etc = "기타"
+            static let etcReason = "사유를 적어주세요.(최대 30자)"
+            static let complete = "완료"
+        }
     }
     
     enum PushAlarm {
@@ -382,5 +451,27 @@ enum StringLiterals {
         static let dateOfTerminationLabel = "에 만료 예정인"
         static let unsubscribeLabel = "옐로플러스의 구독을 해지했어요."
         static let benefitLabel = "곧 위와 같은 혜택을 누릴 수 없게 돼요.\n\n옐로플러스의 특별한 서비스를\n계속 이용하시려면, 버튼을 눌러\n구독을 계속해 보세요!"
+    }
+    
+    enum Notification {
+        static let doNotSeeAgainLabel = "다시 보지 않기"
+        static let close = "닫기"
+    }
+    
+    enum Event {
+        static let eventTime = "EVENT TIME"
+        static let present = "점심시간 깜짝 선물!"
+        static let time = "평일 12~14시 최대 1회까지 참여 가능"
+        static let touch = "어떤 게 나올까요? 아래 박스를 터치해보세요!"
+        static let point = "포인트를 얻었어요!"
+        static let nextTime = "다음 점심 시간에 또 만나요!"
+        static let ticket = "열람권 1개를 얻었어요!"
+    }
+    
+    enum Reward {
+        static let admobReward = "ADMOB_POINT"
+        static let admobMultipleReward = "ADMOB_MULTIPLE_POINT"
+        static let fix = "FIXED"
+        static let random = "ADMOB_RANDOM"
     }
 }

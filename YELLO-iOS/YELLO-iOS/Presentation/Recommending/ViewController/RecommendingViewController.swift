@@ -20,6 +20,10 @@ final class RecommendingViewController: UIViewController {
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     let kakaoFriendViewController = KakaoFriendViewController()
     let schoolFriendViewController = SchoolFriendViewController()
+    let recommendProfileViewController = RecommendProfileViewController()
+    var currentFriendViewController: UIViewController {
+        return dataViewControllers[currentPage]
+    }
     
     // MARK: Property
     var dataViewControllers: [UIViewController] {
@@ -110,6 +114,9 @@ extension RecommendingViewController {
     private func setDelegate() {
         pageViewController.delegate = self
         pageViewController.dataSource = self
+        schoolFriendViewController.schoolFriendView.handleFriendCellDelegate = self
+        kakaoFriendViewController.kakaoFriendView.handleFriendCellDelegate = self
+        recommendProfileViewController.recommendFriendProfileView.handleAddFriendButtonDelegate = self
     }
     
     private func setAddTarget() {
@@ -135,6 +142,20 @@ extension RecommendingViewController {
         let searchViewController = FriendSearchViewController()
         Amplitude.instance().logEvent("click_search_button")
         self.navigationController?.pushViewController(searchViewController, animated: true)
+    }
+    
+    // MARK: Network Helpers
+    private func friendsDetailProfile(id: Int) {
+        NetworkService.shared.recommendingService.recommendingDetailFriend(friendId: id) {  response in
+            switch response {
+            case .success(let data):
+                guard let data = data.data else { return }
+                self.recommendProfileViewController.recommendFriendProfileView.configureMyProfileFriendDetailCell(data)
+            default:
+                print("network fail")
+                return
+            }
+        }
     }
 }
 
@@ -167,5 +188,30 @@ extension RecommendingViewController: UIPageViewControllerDataSource {
         else { return }
         self.currentPage = index
         self.segmentedControl.selectedSegmentIndex = index
+    }
+}
+
+// MARK: HandleFriendCellDelegate
+extension RecommendingViewController: HandleFriendCellDelegate {
+    func presentModal(index: Int) {
+        friendsDetailProfile(id: index)
+        
+        let nav = UINavigationController(rootViewController: recommendProfileViewController)
+        
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            present(nav, animated: true, completion: nil)
+        }
+    }
+}
+
+extension RecommendingViewController: HandleAddFriendButtonDelegate {
+    func addFriendButtonTapped(id: Int) {
+        if currentFriendViewController == schoolFriendViewController {
+            schoolFriendViewController.schoolFriendView.addFriendAtModal(friendId: id)
+        } else if currentFriendViewController == kakaoFriendViewController {
+            kakaoFriendViewController.kakaoFriendView.addFriendAtModal(friendId: id)
+        }
     }
 }

@@ -14,6 +14,9 @@ import Then
 final class MyProfileHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Variables
+    // MARK: Property
+    var groupType: String?
+
     // MARK: Component
     let myProfileView = MyProfileView()
     let friendCountView = FriendCountView()
@@ -22,6 +25,7 @@ final class MyProfileHeaderView: UITableViewHeaderFooterView {
     // MARK: LifeCycle
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        print(UserManager.shared.groupType)
         setUI()
     }
     
@@ -41,13 +45,13 @@ extension MyProfileHeaderView {
     }
     
     private func setStyle() {
-        self.backgroundColor = .black
+        self.backgroundColor = .clear
         backgroundView?.backgroundColor = .clear
     }
     
     private func setLayout() {
         self.addSubviews(myProfileView,
-                        friendCountView)
+                         friendCountView)
         
         myProfileView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12.adjustedHeight)
@@ -55,7 +59,7 @@ extension MyProfileHeaderView {
         }
         
         friendCountView.snp.makeConstraints {
-            $0.top.equalTo(myProfileView.snp.bottom).offset(40.adjustedHeight)
+            $0.top.equalTo(myProfileView.snp.bottom).offset(12.adjustedHeight)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(8.adjustedHeight)
         }
@@ -67,22 +71,22 @@ extension MyProfileHeaderView {
             switch response {
             case .success(let data):
                 guard let data = data.data else { return }
-                
-                if data.profileImageUrl != StringLiterals.Recommending.Title.defaultProfileImageLink {
-                    self.myProfileView.profileImageView.kfSetImage(url: data.profileImageUrl)
+                updateUserInfo(data)
+                if data.profileImageURL != StringLiterals.Recommending.Title.defaultProfileImageLink &&
+                    data.profileImageURL != StringLiterals.Profile.EditProfile.KakaoDefaultProfileURL {
+                    self.myProfileView.mainProfileView.profileImageView.kfSetImage(url: data.profileImageURL)
                 } else {
-                    self.myProfileView.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
+                    self.myProfileView.mainProfileView.profileImageView.image = ImageLiterals.Profile.imgDefaultProfile
                 }
-                self.myProfileView.nameLabel.text = data.name
-                self.myProfileView.instagramLabel.text = "@" + data.yelloId
-                self.myProfileView.schoolLabel.text = data.group
-                self.myProfileView.messageView.countLabel.text = String(data.yelloCount)
-                self.myProfileView.friendView.countLabel.text = String(data.friendCount)
-                self.myProfileView.pointView.countLabel.text = String(data.point)
+                self.myProfileView.mainProfileView.nameLabel.text = data.name
+                self.myProfileView.mainProfileView.instagramLabel.text = "@" + data.yelloID
+                self.myProfileView.mainProfileView.schoolLabel.text = data.group
+                self.myProfileView.messageInfoView.infoLabel.text = String(data.yelloCount)
+                self.myProfileView.friendInfoView.infoLabel.text = String(data.friendCount)
+                self.myProfileView.pointInfoView.infoLabel.text = String(data.point)
                 
                 self.friendCountView.friendCountLabel.text = String(data.friendCount) + "명"
                 self.friendCountView.friendCountLabel.asColor(targetString: "명", color: .grayscales500)
-                
                 
                 Amplitude.instance().setUserProperties(["user_friends": data.friendCount,
                                                         "user_message_received": data.yelloCount,

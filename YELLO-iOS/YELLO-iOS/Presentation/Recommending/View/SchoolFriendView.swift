@@ -14,6 +14,7 @@ final class SchoolFriendView: UIView {
     
     // MARK: - Variables
     // MARK: Property
+    weak var handleFriendCellDelegate: HandleFriendCellDelegate?
     var fetchingMore = false
     var isRefreshing = false
     var isFinishPaging = false
@@ -216,6 +217,26 @@ extension SchoolFriendView {
             }
         }
     }
+    
+    func addFriendAtModal(friendId: Int) {
+        recommendingAddFriend(friendId: friendId)
+        
+        if let index = self.recommendingSchoolFriendTableViewDummy.firstIndex(where: { $0.friends.id == friendId }) {
+            recommendingSchoolFriendTableViewDummy.remove(at: index)
+            schoolFriendCount = recommendingSchoolFriendTableViewDummy.count
+            let indexPath = IndexPath(row: index, section: 0)
+            schoolFriendTableView.deleteRows(at: [indexPath], with: .right)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.schoolFriendTableView.reloadData()
+            }
+            self.updateView()
+        }
+    }
+    
+    private func presentModal(index: Int) {
+        handleFriendCellDelegate?.presentModal(index: index)
+    }
 }
 
 extension SchoolFriendView: HandleAddFriendButton {
@@ -225,7 +246,7 @@ extension SchoolFriendView: HandleAddFriendButton {
         let point = sender.convert(CGPoint.zero, to: schoolFriendTableView)
         guard let indexPath = schoolFriendTableView.indexPathForRow(at: point) else { return }
         
-        // 삭제 서버통신
+        // 친구 추가 서버통신
         recommendingAddFriend(friendId: recommendingSchoolFriendTableViewDummy[indexPath.row].friends.id)
         
         recommendingSchoolFriendTableViewDummy[indexPath.row].isButtonSelected = true
@@ -298,5 +319,13 @@ extension SchoolFriendView: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if fetchingMore {
+            return
+        } else {
+            self.presentModal(index: self.recommendingSchoolFriendTableViewDummy[indexPath.row].friends.id)
+        }
     }
 }

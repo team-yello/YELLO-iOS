@@ -20,4 +20,5 @@ struct FriendVote: Codable {
     let vote: Vote
     let isHintUsed: Bool
     let createdAt: String
+    let isUserSenderVote: Bool
 }

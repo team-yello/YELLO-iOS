@@ -77,9 +77,11 @@ class OnboardingBaseViewController: UIViewController {
         }
         
         skipButton.do {
+            $0.makeCornerRound(radius: 24.adjustedHeight)
+            $0.makeBorder(width: 1, color: .grayscales200)
             $0.setTitle("건너뛰기", for: .normal)
             $0.titleLabel?.font = .uiBody01
-            $0.setTitleColor(.white, for: .normal)
+            $0.setTitleColor(.grayscales200, for: .normal)
             $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         }
         
@@ -87,7 +89,7 @@ class OnboardingBaseViewController: UIViewController {
             $0.addArrangedSubviews(skipButton, nextButton)
             $0.axis = .vertical
             $0.alignment = .center
-            $0.spacing = 14
+            $0.spacing = 10.adjustedHeight
         }
         
         skipButton.isHidden = !(isSkipable)
@@ -104,7 +106,8 @@ class OnboardingBaseViewController: UIViewController {
         }
         
         skipButton.snp.makeConstraints {
-            $0.height.equalTo(32)
+            $0.height.equalTo(48.adjustedHeight)
+            $0.leading.trailing.equalToSuperview()
         }
         
         buttonStackView.snp.makeConstraints {
@@ -125,7 +128,7 @@ class OnboardingBaseViewController: UIViewController {
         
         self.bottomConstraint = NSLayoutConstraint(item: self.nextButton, attribute: .bottom,
                                                    relatedBy: .equal, toItem: safeArea,
-                                                   attribute: .bottom, multiplier: 1.0, constant: -34.adjusted)
+                                                   attribute: .bottom, multiplier: 1.0, constant: -34.adjustedHeight)
         self.bottomConstraint?.isActive = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

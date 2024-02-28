@@ -16,6 +16,7 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Variables
     // MARK: Component
     let profileView = ProfileView()
+    let editProfileViewController = EditProfileViewController()
     let friendProfileViewController = FriendProfileViewController()
     let bottomSheetViewController = BottomFriendProfileViewController()
     let paymentPlusViewController = PaymentPlusViewController()
@@ -33,13 +34,13 @@ final class ProfileViewController: BaseViewController {
         Amplitude.instance().setUserProperties(["user_friends": profileView.friendCount,
                                                 "user_message_received": profileView.myYelloCount,
                                                 "user_subscription": profileView.isYelloPlus ? "yes" : "no",
-                                                "user_ticket": profileView.ticketCount,
-                                                "user_name": profileView.myProfileHeaderView.myProfileView.nameLabel.text ?? ""])
+                                                "user_ticket": profileView.ticketCount])
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.profileView.myProfileHeaderView.profileUser()
         self.profileView.purchaseInfo()
+        self.profileView.loadProfileNoti()
         self.resetProfileView()
         self.paymentPlusViewController.getProducts()
     }
@@ -51,6 +52,7 @@ final class ProfileViewController: BaseViewController {
         friendProfileViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         bottomSheetViewController.friendProfileView.handleDeleteFriendButtonDelegate = self
         profileView.handleShopButton = self
+        profileView.handleEditButton = self
     }
     
     override func setLayout() {
@@ -99,15 +101,10 @@ extension ProfileViewController: HandleFriendCellDelegate {
         
         let nav = UINavigationController(rootViewController: friendProfileViewController)
         
-        if #available(iOS 15.0, *) {
-            if let sheet = nav.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-                present(nav, animated: true, completion: nil)
-            }
-        } else {
-            bottomSheetViewController.modalPresentationStyle = .overFullScreen
-            present(bottomSheetViewController, animated: false)
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            present(nav, animated: true, completion: nil)
         }
         
     }
@@ -117,12 +114,7 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
     func deleteFriendButtonTapped() {
         profileView.showToast(message: profileView.myProfileFriendModelDummy[profileView.indexNumber].name + StringLiterals.Profile.Friend.toastMessage)
         
-        if #available(iOS 15.0, *) {
-            friendProfileViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
-        } else {
-            bottomSheetViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
-        }
-
+        friendProfileViewController.friendProfileView.profileDeleteFriend(id: profileView.myProfileFriendModelDummy[profileView.indexNumber].userId)
         // 삭제 작업이 적용된 후에 UI 업데이트
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
@@ -138,5 +130,11 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
 extension ProfileViewController: HandleShopButton {
     func shopButtonTapped() {
         navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+}
+
+extension ProfileViewController: HandleEditButton {
+    func editButtonTapped() {
+        navigationController?.pushViewController(editProfileViewController, animated: true)
     }
 }

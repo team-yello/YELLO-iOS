@@ -15,7 +15,8 @@ final class PaymentView: BaseView {
     var nowPage: Int = 0
     private var paymentImage = [ImageLiterals.Payment.imgPaymentFirst,
                                 ImageLiterals.Payment.imgPaymentSecond,
-                                ImageLiterals.Payment.imgPaymentThird]
+                                ImageLiterals.Payment.imgPaymentThird,
+                                UIImage(imageLiteralResourceName: "imgPaymentFourth")]
     
     private let flowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
@@ -39,7 +40,7 @@ final class PaymentView: BaseView {
         self.backgroundColor = .clear
         
         pageControl.do {
-            $0.numberOfPages = 3
+            $0.numberOfPages = 4
             $0.currentPage = 0
             $0.pageIndicatorTintColor = .grayscales700
             $0.currentPageIndicatorTintColor = .white
@@ -53,7 +54,7 @@ final class PaymentView: BaseView {
         collectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(219)
+            $0.height.equalTo(219.adjustedHeight)
             $0.width.equalTo(375.adjustedWidth)
         }
         
@@ -98,7 +99,7 @@ extension PaymentView: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension PaymentView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 375.adjustedWidth, height: 219)
+        return CGSize(width: 375.adjustedWidth, height: 219.adjustedHeight)
     }
 }
 

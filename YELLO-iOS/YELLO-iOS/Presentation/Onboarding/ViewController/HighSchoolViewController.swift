@@ -25,9 +25,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
     let baseView = HighSchoolView()
     let schoolSearchViewController = FindSchoolViewController()
     let studentIdViewController = StudentIdViewController()
-    lazy var studentIdView = StudentIdView()
     lazy var userViewController = UserInfoViewController()
-    let bottomSheetViewController = BaseBottomViewController()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -40,7 +38,6 @@ class HighSchoolViewController: OnboardingBaseViewController {
     
     // MARK: Layout Helpers
     override func setStyle() {
-        studentIdView.studentIdList = (1...20).map { "\($0)반" }
         studentIdViewController.studentIdList = (1...20).map { "\($0)반" }
     }
     
@@ -57,31 +54,22 @@ class HighSchoolViewController: OnboardingBaseViewController {
     private func addTarget() {
         baseView.schoolSearchTextField.delegate = self
         baseView.classSearchTextField.delegate = self
-        schoolSearchViewController.delegate = self
+        schoolSearchViewController.schoolSearchDelegate = self
         studentIdViewController.delegate = self
     }
     
     private func setDelegate() {
         baseView.buttonArray.forEach {
-            $0.addTarget(self, action: #selector(didTapClassButton), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(classButtonTapped), for: .touchUpInside)
         }
     }
     
     private func classModalPresent() {
-        
-        if #available(iOS 16.0, *) {
-            let nav = UINavigationController(rootViewController: studentIdViewController)
-            if let sheet = nav.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-                sheet.invalidateDetents()
-                present(nav, animated: true, completion: nil)
-            }
-            
-        } else {
-            bottomSheetViewController.setCustomView(view: studentIdView)
-            bottomSheetViewController.modalPresentationStyle = .overFullScreen
-            present(bottomSheetViewController, animated: false)
+        let nav = UINavigationController(rootViewController: studentIdViewController)
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            present(nav, animated: true, completion: nil)
         }
     }
     
@@ -124,13 +112,12 @@ class HighSchoolViewController: OnboardingBaseViewController {
     /// 학년 추출
     func extractNumbers(from text: String) -> Int {
         let numberCharacterSet = CharacterSet.decimalDigits
-        let numbers = Int(text.components(separatedBy: numberCharacterSet.inverted).joined()) ??
-        0
+        let numbers = Int(text.components(separatedBy: numberCharacterSet.inverted).joined()) ?? 0
         return numbers
     }
     
     // MARK: Objc Function
-    @objc func didTapClassButton(sender: UIButton) {
+    @objc func classButtonTapped(sender: UIButton) {
         sender.makeBorder(width: 1, color: .yelloMain500)
         sender.setTitleColor(.yelloMain500, for: .normal)
         baseView.buttonArray.forEach { button in
@@ -143,6 +130,20 @@ class HighSchoolViewController: OnboardingBaseViewController {
         guard let buttonTitleLabel = sender.titleLabel else { return }
         self.schoolLevel = extractNumbers(from: buttonTitleLabel.text ?? "")
     }
+    
+    @objc func textfieldButtonTapped(_ sender: UIButton) {
+        switch sender {
+        case baseView.schoolSearchTextField.searchButton:
+            let nextViewController = FindSchoolViewController()
+            nextViewController.schoolSearchDelegate = self
+            self.present(nextViewController, animated: true)
+            baseView.classSearchTextField.text = ""
+        case baseView.classSearchTextField.toggleButton:
+            classModalPresent()
+        default:
+            return
+        }
+    }
 }
 
 extension HighSchoolViewController: UITextFieldDelegate {
@@ -151,8 +152,7 @@ extension HighSchoolViewController: UITextFieldDelegate {
         switch textField {
         case baseView.schoolSearchTextField:
             let nextViewController = FindSchoolViewController()
-            nextViewController.isHighSchool = true
-            nextViewController.delegate = self
+            nextViewController.schoolSearchDelegate = self
             self.present(nextViewController, animated: true)
             baseView.classSearchTextField.text = ""
         case baseView.classSearchTextField:
@@ -169,7 +169,7 @@ extension HighSchoolViewController: UITextFieldDelegate {
     
 }
 
-extension HighSchoolViewController: SearchResultTableViewSelectDelegate {
+extension HighSchoolViewController: SchoolSearchResultSelectDelegate {
     func didSelectSchoolResult(_ result: String) {
         baseView.schoolSearchTextField.text = result
         self.highSchoolName = result
@@ -178,7 +178,7 @@ extension HighSchoolViewController: SearchResultTableViewSelectDelegate {
 }
 
 extension HighSchoolViewController: SelectStudentIdDelegate {
-    func didSelectStudentId(_ result: Int) {
+    func didSelectStudentId(_ result: Int, type: SelectType ) {
         baseView.classSearchTextField.text = "\(result)반"
         getSchoolClass(keyword: String(result))
         checkButtonEnable()

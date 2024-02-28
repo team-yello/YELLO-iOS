@@ -22,13 +22,20 @@ final class WithdrawalAlertView: BaseView {
     let noButton = UIButton()
     let yesButton = UIButton()
     
+    var withdrawalReason: String = ""
+    
     // MARK: - Function
     // MARK: Layout Helpers
     override func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
-        contentsView.makeCornerRound(radius: 12.adjustedHeight)
-        contentsView.backgroundColor = .grayscales900
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(noButtonClicked))
+        self.addGestureRecognizer(tapGestureRecognizer)
+        
+        contentsView.do {
+            $0.makeCornerRound(radius: 12.adjustedHeight)
+            $0.backgroundColor = .grayscales900
+        }
         
         titleLabel.do {
             $0.setTextWithLineHeight(text: StringLiterals.Profile.WithdrawalAlert.title, lineHeight: 22.adjustedHeight)
@@ -96,7 +103,7 @@ extension WithdrawalAlertView {
     
     @objc func yesButtonClicked() {
         Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button": "withdrawal4"])
-        NetworkService.shared.profileService.userDelete { result in
+        NetworkService.shared.profileService.userDelete(requestDTO: DeleteRequestDTO(value: withdrawalReason)) { result in
             switch result {
             case .success(let data):
                 if data.status == 200 {

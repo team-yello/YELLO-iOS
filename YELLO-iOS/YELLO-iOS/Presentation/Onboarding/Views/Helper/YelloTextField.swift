@@ -39,12 +39,11 @@ final class YelloTextField: UITextField {
     private var delay: Double = 0
     private var callback: ((String?) -> Void)? = nil
     
-    
     // MARK: Components
     private lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
     lazy var cancelButton = UIButton()
-    private lazy var toggleImageView = UIImageView()
-    lazy var searchImageView = UIImageView()
+    lazy var toggleButton = UIButton()
+    lazy var searchButton = UIButton()
     private let errorImageView = UIImageView()
     
     private let labelPaddingView = UIView()
@@ -89,24 +88,29 @@ extension YelloTextField {
             $0.addLeftPadding(20)
             $0.rightViewMode = .always
             $0.leftViewMode = .always
+            $0.autocorrectionType = .no
+            $0.spellCheckingType = .no
             $0.makeCornerRound(radius: 8)
         }
         
-        searchImageView.do {
-            $0.image = ImageLiterals.OnBoarding.icSearch
+        searchButton.do {
+            let searchImage = ImageLiterals.OnBoarding.icSearch
                 .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
+            $0.setImage(searchImage, for: .normal)
+            $0.isUserInteractionEnabled = true
         }
         
         cancelButton.do {
-            let image = ImageLiterals.OnBoarding.icXCircle
+            let cancelImage = ImageLiterals.OnBoarding.icXCircle
                 .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
-            $0.setImage(image, for: .normal)
+            $0.setImage(cancelImage, for: .normal)
             $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         }
         
-        toggleImageView.do {
-            $0.image = ImageLiterals.OnBoarding.icChevronDown
+        toggleButton.do {
+            let toggleimage = ImageLiterals.OnBoarding.icChevronDown
                 .withTintColor(.yelloMain500, renderingMode: .alwaysOriginal)
+            $0.setImage(toggleimage, for: .normal)
         }
         
         errorImageView.do {
@@ -130,12 +134,12 @@ extension YelloTextField {
     private func setLayout() {
         
         self.snp.makeConstraints {
-            $0.height.equalTo(52)
+            $0.height.equalTo(52.adjusted)
         }
         
         [labelPaddingView, paddingView].forEach {
             $0.snp.makeConstraints {
-                $0.width.equalTo(20)
+                $0.width.equalTo(20.adjustedWidth)
             }
         }
         
@@ -149,10 +153,11 @@ extension YelloTextField {
         let cancelImage = xCircleImage.withTintColor(.yelloMain500)
         switch state {
         case .normal:
+            self.makeBorder(width: 0, color: .grayscales700)
             self.backgroundColor = .grayscales800
             self.rightViewMode = .never
         case .search:
-            buttonStackView.addArrangedSubviews(searchImageView, paddingView)
+            buttonStackView.addArrangedSubviews(searchButton, paddingView)
         case .editing:
             self.backgroundColor = .grayscales800
             self.makeBorder(width: 1, color: .grayscales700)
@@ -163,7 +168,7 @@ extension YelloTextField {
             buttonStackView.addArrangedSubviews(cancelButton, paddingView)
             self.rightViewMode = .always
         case .toggle:
-            buttonStackView.addArrangedSubviews(toggleImageView, paddingView)
+            buttonStackView.addArrangedSubviews(toggleButton, paddingView)
         case .error:
             buttonStackView.clearSubViews()
             let errorImage = xCircleImage.withTintColor(.semanticStatusRed500)
@@ -173,12 +178,20 @@ extension YelloTextField {
             self.backgroundColor = .semanticStatusRed500.withAlphaComponent(0.2)
             self.layer.borderColor = UIColor.semanticStatusRed500.cgColor
         case .id:
+            self.placeholder = StringLiterals.Onboarding.Id.idPlaceholder
             cancelButton.setImage(cancelImage, for: .normal)
+            self.leftView = idLabelStackView
             guard let text = self.text else { break }
             self.rightViewMode = (text.isEmpty) ? .never : .always
+            self.attributedPlaceholder = NSAttributedString(
+                string: self.placeholder ?? "",
+                attributes: [
+                    .foregroundColor: UIColor.grayscales600,
+                    .font: self.font ?? .uiBodyLarge,
+                ]
+            )
             let borderWidth: CGFloat = (text.isEmpty) ? 1 : 0
             self.makeBorder(width: borderWidth, color: .grayscales700)
-            self.leftView = idLabelStackView
             return
         case .done:
             self.makeBorder(width: 1, color: .grayscales700)
@@ -203,13 +216,13 @@ extension YelloTextField {
         self.rightViewMode = .never
         self.text = ""
     }
-
+    
     @objc private func editingChanged(_ sender: UITextField) {
-      self.workItem?.cancel()
-      let workItem = DispatchWorkItem(block: { [weak self] in
-          self?.callback?(sender.text)
-      })
-      self.workItem = workItem
-      DispatchQueue.main.asyncAfter(deadline: .now() + self.delay, execute: workItem)
+        self.workItem?.cancel()
+        let workItem = DispatchWorkItem(block: { [weak self] in
+            self?.callback?(sender.text)
+        })
+        self.workItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + self.delay, execute: workItem)
     }
 }

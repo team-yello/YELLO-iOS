@@ -11,6 +11,10 @@ import FirebaseCrashlytics
 
 class RecommendIdViewController: OnboardingBaseViewController {
     // MARK: - Variables
+    // MARK: Constants
+    let maxLength = 20
+    
+    // MARK: Property
     var isExisted = false
     private var didPostUserInfo = false
     private var isFail = false
@@ -37,6 +41,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
         
         nextButton.do {
             $0.setTitle("완료", for: .normal)
+            $0.setButtonEnable(state: false)
         }
     }
     
@@ -50,6 +55,10 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     // MARK: Custom Function
     func setDelegate() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: baseView.recommendIdTextField.textField)
         baseView.recommendIdTextField.textField.delegate = self
     }
     
@@ -57,7 +66,6 @@ class RecommendIdViewController: OnboardingBaseViewController {
         nextButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         skipButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         baseView.recommendIdTextField.textField.cancelButton.addTarget(self, action: #selector(idCancelTapped), for: .touchUpInside)
-        baseView.recommendIdTextField.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     func checkButtonEnable() {
@@ -177,15 +185,30 @@ class RecommendIdViewController: OnboardingBaseViewController {
         nextButton.setButtonEnable(state: false)
     }
     
-    @objc func textFieldDidChange() {
+    @objc func textDidChange(_ notification: Notification) {
         guard let text = baseView.recommendIdTextField.textField.text else { return }
         checkIdValid(text: text)
+        if let textField = notification.object as? UITextField {
+            if let text = textField.text {
+                
+                if text.count > maxLength {
+                    textField.resignFirstResponder()
+                }
+                
+                // 초과되는 텍스트 제거
+                if text.count >= maxLength {
+                    let index = text.index(text.startIndex, offsetBy: maxLength)
+                    let newString = text[text.startIndex..<index]
+                    textField.text = String(newString)
+                }
+            }
+        }
         checkButtonEnable()
     }
     
     override func didTapButton(sender: UIButton) {
-        nextButton.isEnabled = true
-        skipButton.isEnabled = true
+        setUser()
+        
         if isFail {
             self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
             return
@@ -196,8 +219,6 @@ class RecommendIdViewController: OnboardingBaseViewController {
         } else if sender == nextButton {
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
         }
-        
-        setUser()
         postUserInfo()
     }
 }
@@ -205,6 +226,17 @@ class RecommendIdViewController: OnboardingBaseViewController {
 // MARK: - extension
 // MARK: UITextFieldDelegate
 extension RecommendIdViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else {return false}
+        
+        // 최대 글자수 이상을 입력한 이후에는 중간에 다른 글자를 추가할 수 없게끔 작동
+        if text.count >= maxLength && range.length == 0 && range.location < maxLength {
+            return false
+        }
+        
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         baseView.recommendIdTextField.textField.setButtonState(state: .cancel)
     }

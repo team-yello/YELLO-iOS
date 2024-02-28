@@ -36,7 +36,7 @@ class APIRequestLoader<T: TargetType> {
         var dataRequest = session.request(target)
         
         if target.authorization == .authorization {
-            dataRequest = interceptorSession.request(target).validate()
+            dataRequest = interceptorSession.request(target).validate(statusCode: 200...400)
         }
         
         dataRequest.responseData { response in

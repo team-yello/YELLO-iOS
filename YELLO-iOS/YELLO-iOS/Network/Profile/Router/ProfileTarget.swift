@@ -13,8 +13,10 @@ enum ProfileTarget {
     case profileUser
     case profileFriend(_ queryDTO: ProfileFriendRequestQueryDTO)
     case profileDeleteFriend(id: Int)
-    case deleteUser
+    case deleteUser(_ requestBody: DeleteRequestDTO)
     case purchaseInfo
+    case accountUpdatedAt
+    case editProfile(_ request: EditProfileRequestDTO)
 }
 
 extension ProfileTarget: TargetType {
@@ -29,6 +31,10 @@ extension ProfileTarget: TargetType {
         case .deleteUser:
             return .authorization
         case .purchaseInfo:
+            return .authorization
+        case .accountUpdatedAt:
+            return .authorization
+        case .editProfile:
             return .authorization
         }
     }
@@ -45,6 +51,10 @@ extension ProfileTarget: TargetType {
             return .plain
         case .purchaseInfo:
             return .plain
+        case .accountUpdatedAt:
+            return .plain
+        case .editProfile:
+            return .plain
         }
     }
     
@@ -60,21 +70,29 @@ extension ProfileTarget: TargetType {
             return .delete
         case .purchaseInfo:
             return .get
+        case .accountUpdatedAt:
+            return .get
+        case .editProfile:
+            return .post
         }
     }
     
     var path: String {
         switch self {
         case .profileUser:
-            return "/user"
-        case .profileFriend(_):
-            return "/friend"
+            return "/v2/user"
+        case .profileFriend:
+            return "/v1/friend"
         case .profileDeleteFriend(let id):
-            return "/friend/\(id)"
+            return "/v1/friend/\(id)"
         case .deleteUser:
-            return "/user"
+            return "/v2/user"
         case .purchaseInfo:
-            return "/purchase"
+            return "/v1/purchase"
+        case .accountUpdatedAt:
+            return "/v1/user/data/account-updated-at"
+        case .editProfile:
+            return "/v1/user"
         }
     }
 
@@ -86,10 +104,14 @@ extension ProfileTarget: TargetType {
             return .requestQuery(queryDTO)
         case .profileDeleteFriend:
             return .requestPlain
-        case .deleteUser:
-            return .requestPlain
+        case .deleteUser(let requestBody):
+            return .requestWithBody(requestBody)
         case .purchaseInfo:
             return .requestPlain
+        case .accountUpdatedAt:
+            return .requestPlain
+        case let .editProfile(request):
+            return .requestWithBody(request)
         }
     }
 }

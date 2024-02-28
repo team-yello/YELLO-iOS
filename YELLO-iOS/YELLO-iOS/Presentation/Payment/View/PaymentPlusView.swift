@@ -17,18 +17,29 @@ final class PaymentPlusView: BaseView {
     let paymentLabel = UILabel()
     let paymentView = PaymentView()
     lazy var paymentYelloPlusButton = PaymentYelloPlusButton()
+    
+    let subscribeView = UIView(frame: .init(x: 0, y: 0, width: 78.adjustedWidth, height: 30.adjustedHeight))
+    let subscribeBackgroundView = UIView(frame: .init(x: 0, y: 0, width: 80.adjustedWidth, height: 32.adjustedHeight))
+    let subscribeImageView = UIImageView()
+    let subscribeLabel = UILabel()
+    
     let nameKeyLabel = UILabel()
+    let nameKeyButtonStackView = UIStackView()
     
     lazy var nameKeyOneButton = PaymentNameKeyButton(state: .one)
     lazy var nameKeyTwoButton = PaymentNameKeyButton(state: .two)
     lazy var nameKeyFiveButton = PaymentNameKeyButton(state: .five)
+    
+    let pointButtonStackView = UIStackView()
+    lazy var votingPointButton = PointButton(reward: .voting)
+    lazy var adPointButton = PointButton(reward: .ad)
     
     let descriptionLabel = UILabel()
     let descriptionStackView = UIStackView()
     let serviceButton = UIButton()
     let seperateLine = UIView()
     let privacyButton = UIButton()
-
+    
     override func setStyle() {
         self.backgroundColor = .black
         
@@ -42,6 +53,27 @@ final class PaymentPlusView: BaseView {
             $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.yelloPlusTitle, lineHeight: 28.adjustedHeight)
             $0.font = .uiHeadline03
             $0.textColor = .white
+        }
+        
+        subscribeBackgroundView.do {
+            $0.makeCornerRound(radius: 16.adjustedHeight)
+            $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"), startPointY: 0.5, endPointY: 0.5)
+            $0.layer.cornerCurve = .continuous
+        }
+        
+        subscribeView.do {
+            $0.backgroundColor = .grayscales900
+            $0.makeCornerRound(radius: 15.adjustedHeight)
+        }
+        
+        subscribeLabel.do {
+            $0.textColor = .white
+            $0.font = .uiBodySmall
+            $0.text = StringLiterals.MyYello.Payment.subscribing
+        }
+        
+        subscribeImageView.do {
+            $0.image = ImageLiterals.Profile.icProfileStar
         }
         
         nameKeyLabel.do {
@@ -62,6 +94,19 @@ final class PaymentPlusView: BaseView {
         
         nameKeyFiveButton.do {
             $0.makeShadow(radius: 8, color: UIColor(hex: "6437FF", alpha: 0.25), offset: CGSize(width: 0, height: 0), opacity: 0.25)
+        }
+        
+        nameKeyButtonStackView.do {
+            $0.axis = .horizontal
+            $0.spacing = 10.adjustedWidth
+            $0.alignment = .center
+            $0.addArrangedSubviews(nameKeyOneButton, nameKeyTwoButton, nameKeyFiveButton)
+        }
+        
+        pointButtonStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 10.adjustedHeight
+            $0.addArrangedSubviews(votingPointButton, adPointButton)
         }
         
         descriptionLabel.do {
@@ -111,13 +156,15 @@ final class PaymentPlusView: BaseView {
         scrollView.addSubviews(paymentLabel,
                                paymentView,
                                paymentYelloPlusButton,
+                               subscribeBackgroundView,
                                nameKeyLabel,
-                               nameKeyOneButton,
-                               nameKeyTwoButton,
-                               nameKeyFiveButton,
+                               nameKeyButtonStackView,
+                               pointButtonStackView,
                                descriptionLabel,
                                descriptionStackView
         )
+        subscribeBackgroundView.addSubview(subscribeView)
+        subscribeView.addSubviews(subscribeImageView, subscribeLabel)
         
         paymentNavigationBarView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaInsets).offset(statusBarHeight)
@@ -139,7 +186,7 @@ final class PaymentPlusView: BaseView {
             $0.top.equalTo(paymentLabel.snp.bottom).offset(16.adjustedHeight)
             $0.leading.trailing.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(228)
+            $0.height.equalTo(228.adjustedHeight)
         }
         
         paymentYelloPlusButton.snp.makeConstraints {
@@ -150,29 +197,49 @@ final class PaymentPlusView: BaseView {
             $0.width.equalTo(343.adjustedWidth)
         }
         
+        subscribeBackgroundView.snp.makeConstraints {
+            $0.height.equalTo(32.adjustedHeight)
+            $0.width.equalTo(80.adjustedWidth)
+            
+            $0.top.equalTo(paymentYelloPlusButton.snp.bottom).offset(8.adjustedHeight)
+            $0.centerX.equalToSuperview()
+        }
+        
+        subscribeView.snp.makeConstraints {
+            $0.height.equalTo(30.adjustedHeight)
+            $0.width.equalTo(78.adjustedWidth)
+            
+            $0.center.equalToSuperview()
+        }
+        
+        subscribeImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(10.adjustedWidth)
+        }
+        
+        subscribeLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(subscribeImageView.snp.trailing).offset(4.adjustedWidth)
+        }
+        
         nameKeyLabel.snp.makeConstraints {
-            $0.top.equalTo(paymentYelloPlusButton.snp.bottom).offset(28.adjustedHeight)
+            $0.top.equalTo(paymentYelloPlusButton.snp.bottom).offset(63.adjustedHeight)
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
         
-        nameKeyOneButton.snp.makeConstraints {
-            $0.top.equalTo(nameKeyLabel.snp.bottom).offset(12.adjustedHeight)
-            $0.centerX.equalToSuperview()
+        nameKeyButtonStackView.snp.makeConstraints {
+            $0.top.equalTo(nameKeyLabel.snp.bottom).offset(16.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
         
-        nameKeyTwoButton.snp.makeConstraints {
-            $0.top.equalTo(nameKeyOneButton.snp.bottom).offset(10.adjustedHeight)
-            $0.centerX.equalToSuperview()
-        }
-        
-        nameKeyFiveButton.snp.makeConstraints {
-            $0.top.equalTo(nameKeyTwoButton.snp.bottom).offset(10.adjustedHeight)
-            $0.centerX.equalToSuperview()
+        pointButtonStackView.snp.makeConstraints {
+            $0.top.equalTo(nameKeyButtonStackView.snp.bottom).offset(12.adjustedHeight)
+            $0.leading.trailing.equalToSuperview().inset(16.adjustedWidth)
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(nameKeyFiveButton.snp.bottom).offset(36.adjustedHeight)
-            $0.centerX.equalToSuperview()
+            $0.top.equalTo(pointButtonStackView.snp.bottom).offset(112.adjustedHeight)
+            $0.leading.equalToSuperview().offset(18.adjustedWidth)
         }
         
         descriptionStackView.snp.makeConstraints {

@@ -15,16 +15,27 @@ protocol HandleBackButtonDelegate: AnyObject {
     func popView()
 }
 
+protocol HandleSaveButtonDelegate: AnyObject {
+    func saveModifiedInfo()
+}
+
 final class SettingNavigationBarView: UIView {
     
     // MARK: - Variables
     // MARK: Property
     weak var handleBackButtonDelegate: HandleBackButtonDelegate?
+    weak var handleSaveButtonDelegate: HandleSaveButtonDelegate?
+    var isHasSaveButton: Bool = false {
+        didSet {
+            setUI()
+        }
+    }
     
     // MARK: Component
-    lazy var backButton = UIButton()
+    lazy var backButton = BaseIconButton()
     let titleLabel = UILabel()
-
+    let saveButton = UIButton()
+    
     // MARK: - Function
     // MARK: LifeCycle
     override init(frame: CGRect) {
@@ -61,25 +72,44 @@ extension SettingNavigationBarView {
             $0.imageView?.tintColor = .white
             $0.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         }
+        
+        saveButton.do {
+            $0.setTitle(StringLiterals.Profile.EditProfile.saveButton, for: .normal)
+            $0.titleLabel?.font = .uiButton
+            $0.setTitleColor(.white, for: .normal)
+            $0.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
+        }
     }
     
     private func setLayout() {
         self.addSubviews(backButton,
-                         titleLabel)
+                         titleLabel,
+                         saveButton)
         
         backButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16.adjustedWidth)
         }
-
+        
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(backButton.snp.trailing).offset(8.adjustedWidth)
         }
+        
+        saveButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().inset(16.adjustedWidth)
+        }
+        
+        saveButton.isHidden = !isHasSaveButton
     }
     
     // MARK: Objc Function
     @objc private func backButtonDidTap() {
         self.handleBackButtonDelegate?.popView()
+    }
+    
+    @objc private func saveButtonDidTap() {
+        self.handleSaveButtonDelegate?.saveModifiedInfo()
     }
 }

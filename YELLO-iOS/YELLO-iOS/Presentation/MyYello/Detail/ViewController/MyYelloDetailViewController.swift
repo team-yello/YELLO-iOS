@@ -8,6 +8,7 @@
 import UIKit
 
 import Amplitude
+import GoogleMobileAds
 import SnapKit
 import Then
 
@@ -19,11 +20,12 @@ struct MyYelloBackgroundColorStringDummy {
 final class MyYelloDetailViewController: BaseViewController {
     
     // MARK: - Variables
-    // MARK: Constants
+    // MARK: Property
+    var colorIndex: Int = 1
+    
+    // MARK: Components
     let myYelloDetailView = MyYelloDetailView()
     let paymentPlusViewController = PaymentPlusViewController()
-
-    var colorIndex: Int = 1
     
     var myYelloBackgroundColorStringDummy: [MyYelloBackgroundColorStringDummy] =
     [MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.one,
@@ -58,6 +60,7 @@ final class MyYelloDetailViewController: BaseViewController {
         setDelegate()
         setAddTarget()
         self.paymentPlusViewController.getProducts()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,7 +146,6 @@ extension MyYelloDetailViewController {
             myYelloDetailView.genderLabel.textColor = .black
             myYelloDetailView.senderButton.findLabel.textColor = .black
             myYelloDetailView.instagramButton.setTitleColor(.black, for: .normal)
-            myYelloDetailView.instagramLabel.textColor = .black
         }
         
         let gradientView = UIView(frame: view.bounds)
@@ -169,7 +171,7 @@ extension MyYelloDetailViewController {
                 self.myYelloDetailView.detailSenderView.isHidden = false
                 self.myYelloDetailView.detailKeywordView.isHidden = false
                 self.myYelloDetailView.genderLabel.isHidden = false
-                self.myYelloDetailView.instagramView.isHidden = false
+                self.myYelloDetailView.instagramButton.isHidden = false
                 self.myYelloDetailView.keywordButton.isHidden = false
                 self.myYelloDetailView.senderButton.isHidden = false
                 self.setBackgroundView()
@@ -233,7 +235,7 @@ extension MyYelloDetailViewController {
                     self.myYelloDetailView.isKeywordUsed = true
                     self.myYelloDetailView.keywordButton.isHidden = true
                     self.myYelloDetailView.senderButton.snp.makeConstraints {
-                        $0.top.equalTo(self.myYelloDetailView.instagramView.snp.bottom).offset(77.adjustedHeight)
+                        $0.top.equalTo(self.myYelloDetailView.instagramButton.snp.bottom).offset(77.adjustedHeight)
                     }
                 } else if data.nameHint == -2 {
                     self.myYelloDetailView.isTicketUsed = true
@@ -242,8 +244,6 @@ extension MyYelloDetailViewController {
                 }
                 
                 self.myYelloDetailView.ticketCount = data.ticketCount
-
-                
                 Amplitude.instance().setUserProperties(["user_subscription": data.isSubscribe ? "yes" : "no",
                                                         "user_ticket": data.ticketCount])
                 
@@ -291,6 +291,7 @@ extension MyYelloDetailViewController {
         return initialName
     }
     
+    // MARK: Objc Function
     @objc
     func popViewController(_ notification: Notification) {
         tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)

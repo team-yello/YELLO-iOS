@@ -68,6 +68,6 @@ extension StudentIdView: UITableViewDelegate {
         // 학번 문자열에서 숫자 부분 추출
         let studentId = cellTitle.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         guard let studentId = Int(studentId) else { return }
-        idDelegate?.didSelectStudentId(studentId)
+        idDelegate?.didSelectStudentId(studentId, type: .studentId)
     }
 }

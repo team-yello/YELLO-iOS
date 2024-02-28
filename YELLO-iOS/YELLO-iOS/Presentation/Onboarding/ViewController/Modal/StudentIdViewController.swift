@@ -10,18 +10,29 @@ import UIKit
 import SnapKit
 import Then
 
+enum SelectType {
+    case grade // 중고등 학년
+    case schoolClass // 중고등 반
+    case studentId // 대학생 학번
+}
+
 protocol SelectStudentIdDelegate: AnyObject {
-    func didSelectStudentId(_ result: Int)
+    func didSelectStudentId(_ result: Int, type: SelectType)
 }
 
 class StudentIdViewController: BaseViewController {
     // MARK: - Variables
-    // MARK: Constants
-    var studentIdList = (15...23).reversed().map { "\($0)학번" }
-    let studentIdTableView = UITableView()
-    
     // MARK: Property
+    var studentIdList = (15...24).reversed().map { "\($0)학번" } {
+        didSet {
+            studentIdTableView.reloadData()
+        }
+    }
+    var selectType: SelectType = .studentId
     weak var delegate: SelectStudentIdDelegate?
+    
+    // MARK: Component
+    let studentIdTableView = UITableView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -42,6 +53,7 @@ class StudentIdViewController: BaseViewController {
             $0.backgroundColor = .grayscales900
             $0.separatorStyle = .none
             $0.tableHeaderView = UIView()
+            $0.showsVerticalScrollIndicator = false
         }
     }
     
@@ -84,7 +96,7 @@ extension StudentIdViewController: UITableViewDelegate {
         // 학번 문자열에서 숫자 부분 추출
         let studentId = cellTitle.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         guard let studentId = Int(studentId) else { return }
-        delegate?.didSelectStudentId(studentId)
+        delegate?.didSelectStudentId(studentId, type: self.selectType)
         self.dismiss(animated: true)
         
     }

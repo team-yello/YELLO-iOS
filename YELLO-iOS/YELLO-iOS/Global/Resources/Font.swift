@@ -17,6 +17,10 @@ extension UIFont {
         return UIFont(name: "Pretendard-Bold", size: 24.0.adjusted)!
     }
     
+    class var uiLittleLage: UIFont {
+        return UIFont(name: "Pretendard-Bold", size: 23.0.adjusted)!
+    }
+    
     class var uiHeadline00: UIFont {
         return UIFont(name: "Pretendard-Bold", size: 26.0.adjusted)!
     }
@@ -143,5 +147,9 @@ extension UIFont {
     
     class var uiPopUpTitle: UIFont {
         return UIFont(name: "Pretendard-ExtraBold", size: 16.0.adjusted)!
+    }
+    
+    class var uiEventLabel: UIFont {
+        return UIFont(name: "Unbounded-Medium", size: 12.0.adjusted)!
     }
 }

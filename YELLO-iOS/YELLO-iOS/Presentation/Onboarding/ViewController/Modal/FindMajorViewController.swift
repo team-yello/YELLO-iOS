@@ -7,28 +7,19 @@
 
 import UIKit
 
-// MARK: - Protocol
-// MARK: FindMajorViewControllerDelegate
-protocol FindMajorViewControllerDelegate: AnyObject {
-    func didDismissFindMajorViewController(with groupList: GroupList)
-}
-
 class FindMajorViewController: SearchBaseViewController {
     // MARK: - Variables
     // MARK: Property
     var allMajor: [GroupList] = []
     var schoolName: String = "" 
-    
     var pageCount: Int = 0
-    var totalItemCount: Int = 0
-    
-    weak var majorDelegate: FindMajorViewControllerDelegate?
     
     // MARK: - Function
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.customView(titleText: "학과 검색하기", helperText: "찾는 과가 없다면 클릭하세요!")
+        super.customTitle(titleText: StringLiterals.Onboarding.Search.majorSearchTitle,
+                          helperText: StringLiterals.Onboarding.Search.majorHelperText )
         addTarget()
         setDelegate()
     }
@@ -49,7 +40,7 @@ class FindMajorViewController: SearchBaseViewController {
         let contentHeight = tableView.contentSize.height
         let visibleHeight = tableView.bounds.height
         self.searchView.searchTextField.endEditing(true)
-        if offsetY > contentHeight - visibleHeight, allArr.count < totalItemCount {
+        if offsetY > contentHeight - visibleHeight, searchResults.count < totalItemCount {
             pageCount += 1
             guard let text = searchView.searchTextField.text else { return }
             searchMajor(text)
@@ -66,7 +57,7 @@ class FindMajorViewController: SearchBaseViewController {
                 guard let data = data.data else { return }
                 DispatchQueue.main.async {
                     self?.allMajor.append(contentsOf: data.groupList)
-                    self?.allArr.append(contentsOf: data.groupList.map { $0.departmentName })
+                    self?.searchResults.append(contentsOf: data.groupList.map { $0.departmentName })
                     self?.totalItemCount = data.totalCount
                     self?.searchView.searchResultTableView.reloadData()
                 }
@@ -79,10 +70,11 @@ class FindMajorViewController: SearchBaseViewController {
     
     // MARK: Objc Function
     @objc func textFieldDidChange(_ textField: YelloTextField) {
-        textField.debounce(delay: 0.5) { text in
+        textField.debounce(delay: 0.3) { text in
             guard let text = textField.text else { return }
             self.pageCount = 0
-            self.allArr.removeAll()
+            self.searchResults.removeAll()
+            self.allMajor.removeAll()
             self.searchMajor(text)
         }
     }
@@ -96,15 +88,13 @@ class FindMajorViewController: SearchBaseViewController {
 extension FindMajorViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let currentCell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell else {
-            return
+        if let  selectedItem = allMajor[safe: indexPath.row] {
+            majorSearchDelegate?.didSelectMajorResult(selectedItem)
+            searchView.searchResultTableView.reloadData()
+            self.dismiss(animated: true)
+            debugPrint("groupId: \(selectedItem.groupID)")
+        } else {
+            debugPrint("index가 잘못되었습니다. index out of range")
         }
-        majorSearchDelegate?.didSelectMajorResult(currentCell.titleLabel.text ?? "")
-        let selectedItem = allMajor[indexPath.row]
-        print(selectedItem.groupID)
-        majorDelegate?.didDismissFindMajorViewController(with: selectedItem)
-        allArr.removeAll()
-        searchView.searchResultTableView.reloadData()
-        self.dismiss(animated: true)
     }
 }

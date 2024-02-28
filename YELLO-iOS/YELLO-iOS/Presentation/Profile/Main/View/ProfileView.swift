@@ -16,18 +16,30 @@ protocol HandleFriendCellDelegate: AnyObject {
     func presentModal(index: Int)
 }
 
+protocol HandleEditButton: AnyObject {
+    func editButtonTapped()
+}
+
 final class ProfileView: UIView {
     
     // MARK: - Variables
     // MARK: Property
     weak var handleFriendCellDelegate: HandleFriendCellDelegate?
     weak var handleShopButton: HandleShopButton?
+    weak var handleEditButton: HandleEditButton?
     var indexNumber: Int = -1
     var friendCount: Int = 0
     
     var fetchingMore = false
     var isFinishPaging = false
     var isYelloPlus = false {
+        didSet {
+            self.myFriendTableView.reloadData()
+        }
+    }
+    var redirectionURL: String = ""
+    var notiBannerImageURL = ""
+    var isAvailable = false {
         didSet {
             self.myFriendTableView.reloadData()
         }
@@ -44,6 +56,7 @@ final class ProfileView: UIView {
     let myProfileHeaderView = MyProfileHeaderView()
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
     let refreshControl = UIRefreshControl()
+    let headerBorder = CALayer()
     
     lazy var topButton = UIButton()
     private var isButtonHidden: Bool = false
@@ -84,7 +97,7 @@ extension ProfileView {
             $0.register(MyFriendTableViewCell.self, forCellReuseIdentifier: MyFriendTableViewCell.identifier)
             $0.register(MyFriendSkeletonTableViewCell.self, forCellReuseIdentifier: MyFriendSkeletonTableViewCell.identifier)
             $0.register(MyProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "MyProfileHeaderView")
-            $0.backgroundColor = .black
+            $0.backgroundColor = .clear
             $0.separatorColor = .grayscales800
             $0.separatorStyle = .singleLine
             $0.showsVerticalScrollIndicator = false
@@ -102,6 +115,10 @@ extension ProfileView {
             $0.addTarget(self, action: #selector(topButtonTapped), for: .touchUpInside)
             $0.isHidden = true
             $0.layer.applyShadow(color: .black, alpha: 0.6, x: 0, y: 0, blur: 8)
+        }
+        
+        headerBorder.do {
+            $0.backgroundColor = UIColor.black.cgColor
         }
     }
     
@@ -156,6 +173,10 @@ extension ProfileView {
     
     @objc func shopButtonTapped() {
         handleShopButton?.shopButtonTapped()
+    }
+    
+    @objc func editButtonTapped() {
+        handleEditButton?.editButtonTapped()
     }
     
     private func presentModal(index: Int) {
@@ -217,14 +238,41 @@ extension ProfileView {
                 guard let data = data.data else { return }
                 
                 self.isYelloPlus = data.isSubscribe
+                UserManager.shared.isYelloPlus = data.isSubscribe
                 self.ticketCount = data.ticketCount
                 
                 print("구독 통신 성공")
             default:
                 print("network fail")
+                UserManager.shared.isYelloPlus = false
+                self.isYelloPlus = false
                 return
             }
         }
+    }
+    
+    // MARK: Custom Function
+    func loadProfileNoti() {
+        NetworkService.shared.notificationService.userNotification(typeName: "PROFILE-BANNER") { result in
+            switch result {
+            case .success(let data):
+                if let data = data.data {
+                   self.isAvailable = data.isAvailable
+                    if data.isAvailable {
+                        self.notiBannerImageURL = data.imageUrl
+                        self.redirectionURL = data.redirectUrl
+                    }
+                }
+            default:
+                print("프로필 공지사항 Network Error")
+            }
+        }
+    }
+    
+    // MARK: Objc Function
+    @objc func tapNotification() {
+        let url = URL(string: redirectionURL)!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 
@@ -248,6 +296,7 @@ extension ProfileView: UITableViewDelegate {
 }
 
 // MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension ProfileView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -265,13 +314,21 @@ extension ProfileView: UITableViewDataSource {
             }
             
             DispatchQueue.main.async { [self] in
-                view?.addBottomBorderWithColor(color: .black)
                 view?.profileUser()
-                view?.myProfileView.nameSkeletonLabel.isHidden = true
-                view?.myProfileView.schoolSkeletonLabel.isHidden = true
+                view?.myProfileView.mainProfileView.nameSkeletonLabel.isHidden = true
+                view?.myProfileView.mainProfileView.schoolSkeletonLabel.isHidden = true
                 view?.myProfileView.shopButton.addTarget(self, action: #selector(shopButtonTapped), for: .touchUpInside)
-                view?.myProfileView.isYelloPlus = self.isYelloPlus
-                view?.myProfileView.updateProfileView()
+                view?.myProfileView.mainProfileView.editProfileButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+                view?.myProfileView.isAvailable = self.isAvailable
+                view?.myProfileView.notificationImageView.kfSetImage(url: notiBannerImageURL)
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapNotification))
+                view?.myProfileView.notificationImageView.addGestureRecognizer(tapGesture)
+                view?.myProfileView.notificationImageView.isUserInteractionEnabled = true
+                view?.myProfileView.mainProfileView.isYelloPlus = self.isYelloPlus
+                view?.myProfileView.mainProfileView.updateProfileView()
+                headerBorder.removeFromSuperlayer()
+                headerBorder.frame = CGRect(x: 0, y: view?.frame.size.height ?? CGFloat(), width: UIScreen.main.bounds.width, height: 1)
+                view?.layer.addSublayer(headerBorder)
             }
             return view
         default:
@@ -280,7 +337,7 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 304.adjustedHeight : 0
+        return isAvailable ? 347.adjusted : 307.adjusted
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

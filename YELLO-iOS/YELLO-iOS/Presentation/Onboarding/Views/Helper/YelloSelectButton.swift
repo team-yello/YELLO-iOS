@@ -160,7 +160,6 @@ extension YelloSelectButton {
         superview?.subviews.forEach { subview in
             if let button = subview as? YelloSelectButton, button != self {
                 button.isSelected = false
-                button.backgroundColor = .grayscales900
                 button.makeBorder(width: 1, color: .grayscales700)
                 var image = UIImage()
                 switch buttonFormat {
