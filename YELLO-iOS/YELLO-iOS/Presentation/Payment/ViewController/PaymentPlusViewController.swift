@@ -94,7 +94,7 @@ final class PaymentPlusViewController: BaseViewController {
         checkRewardPossible()
         tabBarController?.tabBar.isHidden = true
         setInitialUI()
-        paymentPlusView.paymentView.bannerTimer()
+        paymentPlusView.paymentView.startBannerTimer()
         purchaseSubscribeNeed()
     }
     
