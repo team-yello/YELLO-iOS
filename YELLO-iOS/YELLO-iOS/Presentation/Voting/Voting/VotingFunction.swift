@@ -164,32 +164,35 @@ extension VotingViewController {
             guard let identify = identify else {return}
             Amplitude.instance().identify(identify)
             
-            let viewController = VotingPointViewController()
-            let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
-            viewController.myPoint = myPoint + myPlusPoint
-            viewController.votingPlusPoint = myPlusPoint
-
-            let status = votingList[0].subscribe
-            if status == "CANCELED" || status == "ACTIVE" {
-                viewController.multiplyByTwoImageView.isHidden = false
-                UserDefaults.standard.set(true, forKey: "isYelloPlus")
-                viewController.adButtonStackView.isHidden = true
-                viewController.originView.yellowButton.isHidden = false
-                viewController.myPoint += myPlusPoint
-                viewController.votingPlusPoint *= 2
-            } else {
-                viewController.multiplyByTwoImageView.isHidden = true
-                UserDefaults.standard.set(false, forKey: "isYelloPlus")
-                viewController.adButtonStackView.isHidden = false
-                viewController.originView.yellowButton.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                
+                let viewController = VotingPointViewController()
+                let myPlusPoint = UserDefaults.standard.integer(forKey: "UserPlusPoint")
+                viewController.myPoint = self.myPoint + myPlusPoint
+                viewController.votingPlusPoint = myPlusPoint
+                
+                let status = self.votingList[0].subscribe
+                if status == "CANCELED" || status == "ACTIVE" {
+                    viewController.multiplyByTwoImageView.isHidden = false
+                    UserDefaults.standard.set(true, forKey: "isYelloPlus")
+                    viewController.adButtonStackView.isHidden = true
+                    viewController.originView.yellowButton.isHidden = false
+                    viewController.myPoint += myPlusPoint
+                    viewController.votingPlusPoint *= 2
+                } else {
+                    viewController.multiplyByTwoImageView.isHidden = true
+                    UserDefaults.standard.set(false, forKey: "isYelloPlus")
+                    viewController.adButtonStackView.isHidden = false
+                    viewController.originView.yellowButton.isHidden = true
+                }
+                
+                UserDefaults.standard.set(viewController.myPoint, forKey: "UserPoint")
+                UserDefaults.standard.set(viewController.votingPlusPoint, forKey: "UserPlusPointNotPost")
+                
+                UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.1, options: .transitionCrossDissolve, animations: {
+                    self.navigationController?.pushViewController(viewController, animated: false)
+                })
             }
-            
-            UserDefaults.standard.set(viewController.myPoint, forKey: "UserPoint")
-            UserDefaults.standard.set(viewController.votingPlusPoint, forKey: "UserPlusPointNotPost")
-            
-            UIView.transition(with: self.navigationController?.view ?? UIView(), duration: 0.001, options: .transitionCrossDissolve, animations: {
-                self.navigationController?.pushViewController(viewController, animated: false)
-            })
         } else {
             let viewController = VotingViewController()
             viewController.votingList = votingList
