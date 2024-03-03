@@ -161,6 +161,7 @@
 		36CDA9142B8208C400AC248E /* RewardServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CDA9132B8208C400AC248E /* RewardServices.swift */; };
 		36CDA9172B823CE900AC248E /* lottie_spinner_loading_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 36CDA9162B823CE900AC248E /* lottie_spinner_loading_profile.json */; };
 		36CFF9A82B67F5FB008DDB9D /* EditProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */; };
+		36D7D0502B949699008DB7A2 /* EditCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D7D04F2B949699008DB7A2 /* EditCheckView.swift */; };
 		36D98F352B5FB2B7003B2B11 /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */; };
 		36D98F372B602442003B2B11 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F362B602442003B2B11 /* InfoView.swift */; };
 		36D98F392B617B5D003B2B11 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */; };
@@ -555,6 +556,7 @@
 		36CDA9132B8208C400AC248E /* RewardServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardServices.swift; sourceTree = "<group>"; };
 		36CDA9162B823CE900AC248E /* lottie_spinner_loading_profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottie_spinner_loading_profile.json; sourceTree = "<group>"; };
 		36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderView.swift; sourceTree = "<group>"; };
+		36D7D04F2B949699008DB7A2 /* EditCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCheckView.swift; sourceTree = "<group>"; };
 		36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileView.swift; sourceTree = "<group>"; };
 		36D98F362B602442003B2B11 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -1623,6 +1625,7 @@
 				36D98F3A2B617BBD003B2B11 /* EditProfileView.swift */,
 				36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */,
 				36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */,
+				36D7D04F2B949699008DB7A2 /* EditCheckView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2940,6 +2943,7 @@
 				3662A0FC2A65795200F482EF /* IdValidResponseDTO.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */,
+				36D7D0502B949699008DB7A2 /* EditCheckView.swift in Sources */,
 				C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */,
 				C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */,
 				36E427952A5CA59F0050B34E /* OnboardingEndViewController.swift in Sources */,
