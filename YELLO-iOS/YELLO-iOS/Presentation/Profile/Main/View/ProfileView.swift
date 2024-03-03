@@ -28,7 +28,11 @@ final class ProfileView: UIView {
     weak var handleShopButton: HandleShopButton?
     weak var handleEditButton: HandleEditButton?
     var indexNumber: Int = -1
-    var friendCount: Int = 0
+    var friendCount: Int = 0 {
+        didSet {
+            emptyLabel.isHidden = friendCount == 0 ? false : true
+        }
+    }
     
     var fetchingMore = false
     var isFinishPaging = false
@@ -57,6 +61,7 @@ final class ProfileView: UIView {
     lazy var myFriendTableView = UITableView(frame: .zero, style: .grouped)
     let refreshControl = UIRefreshControl()
     let headerBorder = CALayer()
+    private let emptyLabel = UILabel()
     
     lazy var topButton = UIButton()
     private var isButtonHidden: Bool = false
@@ -120,12 +125,19 @@ extension ProfileView {
         headerBorder.do {
             $0.backgroundColor = UIColor.black.cgColor
         }
+        
+        emptyLabel.do {
+            $0.text = StringLiterals.Profile.Friend.empty
+            $0.textColor = .grayscales600
+            $0.font = .uiLabelLarge
+        }
     }
     
     private func setLayout() {
         self.addSubviews(navigationBarView,
                          myFriendTableView,
                          topButton)
+        myFriendTableView.addSubviews(emptyLabel)
         
         navigationBarView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -143,6 +155,11 @@ extension ProfileView {
             $0.width.height.equalTo(48.adjusted)
             $0.trailing.equalToSuperview().inset(16.adjustedWidth)
             $0.bottom.equalTo(myFriendTableView.snp.bottom).inset(16.adjustedHeight)
+        }
+        
+        emptyLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(389.adjustedHeight)
         }
     }
     
@@ -205,6 +222,7 @@ extension ProfileView {
             case .success(let data):
                 guard let data = data.data else { return }
                 
+                self.friendCount = data.totalCount
                 let friendModels = data.friends.map { profileFriend in
                     
                     return ProfileFriendResponseDetail(userId: profileFriend.userId, name: profileFriend.name, profileImageUrl: profileFriend.profileImageUrl, group: profileFriend.group, yelloId: profileFriend.yelloId, yelloCount: profileFriend.yelloCount, friendCount: profileFriend.friendCount)

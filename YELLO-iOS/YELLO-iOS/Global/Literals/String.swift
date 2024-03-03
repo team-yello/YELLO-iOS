@@ -359,6 +359,7 @@ enum StringLiterals {
             static let cancel = "취소"
             static let confirm = "네, 친구를 끊을게요"
             static let toastMessage = " 님과 친구 끊기를 완료했어요."
+            static let empty = "아직 친구가 없네요, 친구를 초대해 보세요!"
         }
         
         enum EditProfile {
