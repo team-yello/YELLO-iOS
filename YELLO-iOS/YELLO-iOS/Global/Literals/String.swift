@@ -317,7 +317,7 @@ enum StringLiterals {
             static let paymentAlertKeyDescription = "열람권으로 누가 쪽지를 보냈는지 알아보세요."
             
             static let votingPointTitle = "투표하고 포인트 얻기"
-            static let votingPoint = "최대 200p"
+            static let votingPoint = "최대 400p"
             static let adPointTitle = "광고 보고 포인트 얻기"
             static let adPointsubTitle = "1시간에 한 번"
             static let adPoint = "10p"
@@ -383,6 +383,10 @@ enum StringLiterals {
             static let saveButton = "저장"
             static let convertHighButton = "중/고등학생으로 전환"
             static let convertUnivButton = "대학생으로 전환"
+            
+            static let editCheckTitle = "올해 안에 한 번만 수정할 수 있어요.\n정말 변경하실 건가요?"
+            static let noButton = "아니요"
+            static let yesButton = "변경할게요"
         }
         
         enum Setting {
