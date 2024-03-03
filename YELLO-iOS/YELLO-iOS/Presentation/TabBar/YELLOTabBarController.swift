@@ -339,17 +339,25 @@ extension YELLOTabBarController {
     func showPage(_ notification: Notification) {
         if let userInfo = notification.userInfo {
             if let index = userInfo["index"] as? Int {
-                self.selectedIndex = index
+                if index != 5 {
+                    self.selectedIndex = index
+                }
                 if selectedIndex == 2 {
                     tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
                 } else if selectedIndex == 3 {
                     tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                     
                     let myYelloDetailViewController = MyYelloDetailViewController()
-                    myYelloDetailViewController.myYelloDetail(voteId:  Int(messageIndex))
+                    myYelloDetailViewController.myYelloDetail(voteId: Int(messageIndex))
                     self.navigationController?.pushViewController(myYelloDetailViewController, animated: true)
                     
                 } else if selectedIndex == 4 {
+                    tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                } else if selectedIndex == 1 {
+                    tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                    NotificationCenter.default.post(name: Notification.Name("changeMode"), object: nil, userInfo: nil)
+                } else if index == 5 {
+                    self.selectedIndex = 3
                     tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 }
             }

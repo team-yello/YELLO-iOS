@@ -23,6 +23,7 @@ final class AroundViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        NotificationCenter.default.addObserver(self, selector: #selector(changeMode(_:)), name: NSNotification.Name("changeMode"), object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -65,5 +66,10 @@ extension AroundViewController {
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
         
+    }
+    
+    @objc
+    private func changeMode(_ notification: Notification) {
+        self.aroundView.isUserSenderVote = true
     }
 }
