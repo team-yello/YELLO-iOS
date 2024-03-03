@@ -26,7 +26,7 @@ final class FriendSearchTableViewCell: UITableViewCell {
     let nameLabel = UILabel()
     let yelloIdLabel = UILabel()
     let schoolLabel = UILabel()
-    let addButton = UIButton()
+    let addButton = FriendAddButton()
     let myFriendLabel = UILabel()
 
     var isFriend: Bool = false {
