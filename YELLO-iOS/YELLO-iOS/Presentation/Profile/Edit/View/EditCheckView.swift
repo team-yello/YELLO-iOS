@@ -36,7 +36,7 @@ final class EditCheckView: UIView {
     private func setStyle() {
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(noButtonClicked))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(noButtonTapped))
         self.addGestureRecognizer(tapGestureRecognizer)
         
         contentsView.do {
@@ -58,7 +58,7 @@ final class EditCheckView: UIView {
             $0.setTitle(StringLiterals.Profile.EditProfile.noButton, for: .normal)
             $0.setTitleColor(.grayscales600, for: .normal)
             $0.titleLabel?.font = .uiButton
-            $0.addTarget(self, action: #selector(noButtonClicked), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
         }
         
         yesButton.do {
@@ -102,7 +102,7 @@ final class EditCheckView: UIView {
     }
     
     // MARK: Objc Function
-    @objc func noButtonClicked() {
+    @objc func noButtonTapped() {
         self.isHidden = true
         self.removeFromSuperview()
     }
