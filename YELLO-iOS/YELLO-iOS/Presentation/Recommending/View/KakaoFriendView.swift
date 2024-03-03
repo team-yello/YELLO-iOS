@@ -9,6 +9,8 @@ import UIKit
 
 import SnapKit
 import Then
+import KakaoSDKAuth
+import KakaoSDKUser
 import KakaoSDKTalk
 
 final class KakaoFriendView: UIView {
@@ -244,7 +246,8 @@ extension KakaoFriendView {
     }
     
     func kakaoFriends(completion: @escaping () -> Void) {
-        TalkApi.shared.friends(limit: 100) { [weak self] (friends, error) in
+        checkKakaoToken()
+        TalkApi.shared.friends(limit: 100) { (friends, error) in
             if let error = error {
                 print(error)
             } else {
@@ -259,6 +262,21 @@ extension KakaoFriendView {
             completion()
         }
     }
+    
+    func checkKakaoToken() {
+        if AuthApi.hasToken() {
+            UserApi.shared.accessTokenInfo { accesstokenInfo, error in
+                if let error = error {
+                   print(error)
+                } else {
+                    debugPrint("kakao accessToken 유효성 확인")
+                }
+            }
+        } else {
+            self.showToast(message: "카카오톡 친구 불러오기에 실패했습니다. 다시 로그인 해주세요.", at: 100.adjustedHeight)
+        }
+    }
+    
 }
 
 extension KakaoFriendView: HandleAddFriendButton {
