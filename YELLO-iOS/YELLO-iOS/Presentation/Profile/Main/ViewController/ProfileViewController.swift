@@ -120,6 +120,7 @@ extension ProfileViewController: HandleDeleteFriendButtonDelegate {
             self.profileView.myProfileFriendModelDummy.remove(at: self.profileView.indexNumber)
             self.profileView.myFriendTableView.deleteRows(at: [[0, self.profileView.indexNumber]], with: .right)
             self.profileView.myProfileHeaderView.profileUser()
+            self.profileView.friendCount -= 1
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.profileView.myFriendTableView.reloadData()
             }
