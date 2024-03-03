@@ -318,7 +318,7 @@ enum StringLiterals {
             
             static let votingPointTitle = "투표하고 포인트 얻기"
             static let votingPoint = "최대 400p"
-            static let adPointTitle = "광고 보고 포인트 얻기"
+            static let adPointTitle = "광고 보고 무료 포인트 얻기"
             static let adPointsubTitle = "1시간에 한 번"
             static let adPoint = "10p"
             static let adPointErrorToast = "1시간에 한 번 재생할 수 있어요."
