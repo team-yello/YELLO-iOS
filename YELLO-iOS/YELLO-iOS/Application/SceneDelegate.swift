@@ -107,8 +107,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     selectedIndex = 1
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
-                    NotificationCenter.default.post(name: Notification.Name("changeMode"), object: nil, userInfo: nil)
                     self.window?.makeKeyAndVisible()
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: Notification.Name("changeMode"), object: nil, userInfo: nil)
+                    }
                     if NetworkCheck.shared.isConnected {
                         self.checkAndUpdateIfNeeded()
                     }
