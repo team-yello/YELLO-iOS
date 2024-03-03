@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FriendAddButton: UIButton {
+final class FriendAddButton: UIButton {
 
     // MARK: - Functions
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {

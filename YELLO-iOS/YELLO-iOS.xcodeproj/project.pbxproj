@@ -1305,9 +1305,9 @@
 				C3C57BEE2A5C066B00B84CAA /* ViewController */,
 				C3C57BED2A5C066200B84CAA /* View */,
 				C3C57BF12A5C087600B84CAA /* Cells */,
-				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
-				C31315A92A7A5F8100FB8B43 /* Search */,
+				C3E562712B94D68F003AFC6C /* Model */,
 				C3E562702B94B375003AFC6C /* Components */,
+				C31315A92A7A5F8100FB8B43 /* Search */,
 			);
 			path = Recommending;
 			sourceTree = "<group>";
@@ -2357,6 +2357,14 @@
 				C3E5626E2B94B33C003AFC6C /* FriendAddButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C3E562712B94D68F003AFC6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C3FF246D2A5D477400A97D40 /* Withdrawal */ = {
