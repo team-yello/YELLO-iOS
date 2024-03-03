@@ -76,7 +76,7 @@ final class AroundView: BaseView {
         
         filterButton.do {
             $0.backgroundColor = .black
-            $0.makeBorder(width: 1, color: .grayscales800)
+            $0.makeBorder(width: 1, color: .grayscales600)
             $0.makeCornerRound(radius: 14.adjustedHeight)
             $0.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         }
@@ -338,6 +338,7 @@ extension AroundView {
             aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
                 text: StringLiterals.Recommending.Empty.timeLineMyTitle,
                 lineHeight: 24)
+            aroundEmptyView.inviteButton.setTitle(StringLiterals.Recommending.Empty.myInviteButton, for: .normal)
         } else {
             filterButtonLabel.text = StringLiterals.Around.allYello
             filterButtonStackView.spacing = 6.adjustedWidth
@@ -347,6 +348,7 @@ extension AroundView {
             aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
                 text: StringLiterals.Recommending.Empty.timeLineAllTitle,
                 lineHeight: 24)
+            aroundEmptyView.inviteButton.setTitle(StringLiterals.Recommending.Empty.inviteButton, for: .normal)
         }
 
         self.aroundPage = -1
