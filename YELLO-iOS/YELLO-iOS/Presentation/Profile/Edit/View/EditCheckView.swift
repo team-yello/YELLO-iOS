@@ -27,7 +27,8 @@ final class EditCheckView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUI(){
+    
+    private func setUI() {
         setStyle()
         setLayout()
     }
@@ -41,6 +42,10 @@ final class EditCheckView: UIView {
         contentsView.do {
             $0.makeCornerRound(radius: 12.adjustedHeight)
             $0.backgroundColor = .grayscales900
+            $0.makeShadow(radius: 12,
+                          color: .black,
+                          offset: CGSize(width: 0, height: 0),
+                          opacity: 0.55)
         }
         
         titleLabel.do {
