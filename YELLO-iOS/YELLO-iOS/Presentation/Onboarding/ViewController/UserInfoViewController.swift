@@ -51,8 +51,8 @@ class UserInfoViewController: OnboardingBaseViewController {
     // MARK: Custom Function
     func setDelegate() {
         NotificationCenter.default.addObserver(self,
-                                                       selector: #selector(textDidChange(_:)),
-                                                       name: UITextField.textDidChangeNotification,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
                                                object: baseView.idTextField.textField)
         baseView.idTextField.textField.delegate = self
     }
@@ -106,32 +106,40 @@ class UserInfoViewController: OnboardingBaseViewController {
         UserManager.shared.yelloId = id
     }
     
-    // MARK: objc Function
-    @objc private func textDidChange(_ notification: Notification) {
-        guard let idText = baseView.idTextField.textField.text else { return }
-            self.checkDuplicate(id: idText)
-        self.checkButtonEnable()
-            if let textField = notification.object as? UITextField {
-                if let text = textField.text {
-                    
-                    if text.count > maxLength {
-                        textField.resignFirstResponder()
-                    }
-                    
-                    // 초과되는 텍스트 제거
-                    if text.count >= maxLength {
-                        let index = text.index(text.startIndex, offsetBy: maxLength)
-                        let newString = text[text.startIndex..<index]
-                        textField.text = String(newString)
-                    }
-                }
-            }
-        }
-    
-    @objc func idCancelTapped() {
+    private func setInitialStyle() {
         baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Id.idHelper, State: .id)
         baseView.idTextField.textField.setButtonState(state: .id)
         nextButton.setButtonEnable(state: false)
+    }
+    
+    // MARK: objc Function
+    @objc private func textDidChange(_ notification: Notification) {
+        guard let idText = baseView.idTextField.textField.text else { return }
+        if idText.isEmpty {
+            setInitialStyle()
+            return
+        }
+        self.checkDuplicate(id: idText)
+        self.checkButtonEnable()
+        if let textField = notification.object as? UITextField {
+            if let text = textField.text {
+                
+                if text.count > maxLength {
+                    textField.resignFirstResponder()
+                }
+                
+                // 초과되는 텍스트 제거
+                if text.count >= maxLength {
+                    let index = text.index(text.startIndex, offsetBy: maxLength)
+                    let newString = text[text.startIndex..<index]
+                    textField.text = String(newString)
+                }
+            }
+        }
+    }
+    
+    @objc func idCancelTapped() {
+        setInitialStyle()
     }
     
 }
@@ -142,19 +150,19 @@ extension UserInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         baseView.idTextField.textField.setButtonState(state: .cancel)
         baseView.idTextField.helperLabel.setLabelStyle(text: StringLiterals.Onboarding.Id.idHelper, State: .normal)
-    
+        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            guard let text = textField.text else {return false}
-            
-            // 최대 글자수 이상을 입력한 이후에는 중간에 다른 글자를 추가할 수 없게끔 작동
-            if text.count >= maxLength && range.length == 0 && range.location < maxLength {
-                return false
-            }
-            
-            return true
+        guard let text = textField.text else {return false}
+        
+        // 최대 글자수 이상을 입력한 이후에는 중간에 다른 글자를 추가할 수 없게끔 작동
+        if text.count >= maxLength && range.length == 0 && range.location < maxLength {
+            return false
         }
+        
+        return true
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
@@ -164,6 +172,10 @@ extension UserInfoViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == baseView.idTextField.textField {
             guard let idText = textField.text else { return }
+            if idText.isEmpty {
+                setInitialStyle()
+                return
+            }
             self.checkDuplicate(id: idText)
         }
         self.checkButtonEnable()
