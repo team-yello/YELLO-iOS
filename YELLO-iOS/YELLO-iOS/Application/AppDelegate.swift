@@ -112,16 +112,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         guard let type = userInfo["type"] as? String else { return }
         guard let path = userInfo["path"] as? String,
               let messageNumber = path.split(separator: "/").last else {
-            if type == StringLiterals.PushAlarm.TypeName.available || type == StringLiterals.PushAlarm.TypeName.recommend {
-                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2])
+            if type == StringLiterals.PushAlarm.TypeName.available || type == StringLiterals.PushAlarm.TypeName.recommend 
+                || type == StringLiterals.PushAlarm.TypeName.lunchEvent {
+                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":2]) // 40분 초기화, 추천인 포인트, 점심시간 이벤트
             } else if type == StringLiterals.PushAlarm.TypeName.newFriend {
-                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":4])
+                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":4]) // 새친구
+            } else if type == StringLiterals.PushAlarm.TypeName.firstRecommend {
+                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":5]) // 추천인 열람권
+            } else if type == StringLiterals.PushAlarm.TypeName.openVote {
+                NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":1]) // 내가 보낸 쪽지 열람
             }
             return
         }
         
         NotificationCenter.default.post(name: Notification.Name("showMessage"), object: nil, userInfo: ["message":Int(messageNumber) ?? 0])
-        
+
         if type == StringLiterals.PushAlarm.TypeName.newVote {
             NotificationCenter.default.post(name: Notification.Name("showPage"), object: nil, userInfo: ["index":3])
         }
