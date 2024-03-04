@@ -25,7 +25,7 @@ final class FriendTableViewCell: UITableViewCell {
     let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 42.adjusted, height: 42.adjusted))
     let nameLabel = UILabel()
     let schoolLabel = UILabel()
-    lazy var addButton = UIButton()
+    lazy var addButton = FriendAddButton()
     let separatorLine = UIView()
     var isTapped: Bool = false
     var friendId: Int = -1

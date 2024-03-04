@@ -140,8 +140,9 @@ enum StringLiterals {
         enum Empty {
             static let title = "찾는 친구가 없다면\n친구를 초대해볼까요?"
             static let timeLineAllTitle = "친구들이 받은 쪽지가 궁금하다면\n친구를 초대해볼까요?"
-            static let timeLineMyTitle = "쪽지를 보낼 친구가 없다면\n친구를 초대하세요!"
+            static let timeLineMyTitle = "전하고 싶은 말이 있는 친구에게\n쪽지를 보내 보세요!"
             static let inviteButton = "친구 초대하고 리워드 받기"
+            static let myInviteButton = "지금 바로 쪽지 보내기"
         }
         
         enum Invite {
@@ -317,8 +318,8 @@ enum StringLiterals {
             static let paymentAlertKeyDescription = "열람권으로 누가 쪽지를 보냈는지 알아보세요."
             
             static let votingPointTitle = "투표하고 포인트 얻기"
-            static let votingPoint = "최대 200p"
-            static let adPointTitle = "광고 보고 포인트 얻기"
+            static let votingPoint = "최대 400p"
+            static let adPointTitle = "광고 보고 무료 포인트 얻기"
             static let adPointsubTitle = "1시간에 한 번"
             static let adPoint = "10p"
             static let adPointErrorToast = "1시간에 한 번 재생할 수 있어요."
@@ -358,6 +359,7 @@ enum StringLiterals {
             static let cancel = "취소"
             static let confirm = "네, 친구를 끊을게요"
             static let toastMessage = " 님과 친구 끊기를 완료했어요."
+            static let empty = "아직 친구가 없네요, 친구를 초대해 보세요!"
         }
         
         enum EditProfile {
@@ -383,6 +385,10 @@ enum StringLiterals {
             static let saveButton = "저장"
             static let convertHighButton = "중/고등학생으로 전환"
             static let convertUnivButton = "대학생으로 전환"
+            
+            static let editCheckTitle = "올해 안에 한 번만 수정할 수 있어요.\n정말 변경하실 건가요?"
+            static let noButton = "아니요"
+            static let yesButton = "변경할게요"
         }
         
         enum Setting {

@@ -107,7 +107,7 @@ final class AroundView: BaseView {
         
         filterButton.do {
             $0.backgroundColor = .black
-            $0.makeBorder(width: 1, color: .grayscales800)
+            $0.makeBorder(width: 1, color: .grayscales600)
             $0.makeCornerRound(radius: 14.adjustedHeight)
             $0.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         }
