@@ -97,7 +97,7 @@ extension NotificationView {
         doNotSeeAgainButton.setImage(UIImage(imageLiteralResourceName: isTapped ? "btnCheckBox" : "btnNotCheckBox"), for: .normal)
         UserDefaults.standard.set(isTapped, forKey: "isTapped")
         if isTapped {
-            UserDefaults.standard.set(Date(), forKey: "whenTapped")
+            UserDefaults.standard.set(Date(), forKey: "tapDate")
         }
     }
     
@@ -107,7 +107,7 @@ extension NotificationView {
         doNotSeeAgainButton.setImage(UIImage(imageLiteralResourceName: isTapped ? "btnCheckBox" : "btnNotCheckBox"), for: .normal)
         UserDefaults.standard.set(isTapped, forKey: "isTapped")
         if isTapped {
-            UserDefaults.standard.set(Date(), forKey: "whenTapped")
+            UserDefaults.standard.set(Date(), forKey: "tapDate")
         }
     }
     

@@ -250,7 +250,7 @@ extension YELLOTabBarController {
                 if data.isAvailable && self.notificationReadCount == 0 {
                     // 다시 보지 않기 버튼을 안눌렀거나 하루가 지났거나 이전 공지와 현재 공지의 title이 다른 경우에만 표시
                     if !UserDefaults.standard.bool(forKey: "isTapped") ||
-                        self.hasDayPassed(from: UserDefaults.standard.object(forKey: "whenTapped") as? Date ?? Date()) ||
+                        self.hasDayPassed(from: UserDefaults.standard.object(forKey: "tapDate") as? Date ?? Date()) ||
                         UserDefaults.standard.string(forKey: "notificationTitle") != data.title {
                         self.userNotificationView.frame = self.view.bounds
                         self.userNotificationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
