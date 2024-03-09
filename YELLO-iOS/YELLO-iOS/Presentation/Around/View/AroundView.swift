@@ -28,34 +28,7 @@ final class AroundView: BaseView {
     var scrollCount = 0
     var isUserSenderVote = false {
         didSet {
-            if isUserSenderVote {
-                filterButtonLabel.text = StringLiterals.Around.myYello
-                filterButtonStackView.spacing = 0
-                filterButtonStackView.snp.updateConstraints {
-                    $0.leading.equalToSuperview().inset(8.adjustedWidth)
-                }
-                aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
-                    text: StringLiterals.Recommending.Empty.timeLineMyTitle,
-                    lineHeight: 24)
-            } else {
-                filterButtonLabel.text = StringLiterals.Around.allYello
-                filterButtonStackView.spacing = 6.adjustedWidth
-                filterButtonStackView.snp.updateConstraints {
-                    $0.leading.equalToSuperview().inset(20.adjustedWidth)
-                }
-                aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
-                    text: StringLiterals.Recommending.Empty.timeLineAllTitle,
-                    lineHeight: 24)
-            }
-            
-            self.aroundPage = -1
-            self.aroundCount = -1
-            self.isFinishPaging = false
-            self.fetchingMore = false
-            self.aroundTableView.reloadData()
-            self.aroundModelDummy = []
-            self.around()
-            self.updateView()
+            updateAroundView()
         }
     }
     
@@ -221,10 +194,6 @@ final class AroundView: BaseView {
         }
     }
     
-    private func setAroundViewMode() {
-        
-    }
-    
     // MARK: Custom Function
     /// 친구가 없을 때 초대 뷰를 띄우는 로직
     func updateView() {
@@ -234,6 +203,37 @@ final class AroundView: BaseView {
         } else {
             self.aroundEmptyView.isHidden = true
         }
+    }
+    
+    private func updateAroundView() {
+        if isUserSenderVote {
+            filterButtonLabel.text = StringLiterals.Around.myYello
+            filterButtonStackView.spacing = 0
+            filterButtonStackView.snp.updateConstraints {
+                $0.leading.equalToSuperview().inset(8.adjustedWidth)
+            }
+            aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
+                text: StringLiterals.Recommending.Empty.timeLineMyTitle,
+                lineHeight: 24)
+        } else {
+            filterButtonLabel.text = StringLiterals.Around.allYello
+            filterButtonStackView.spacing = 6.adjustedWidth
+            filterButtonStackView.snp.updateConstraints {
+                $0.leading.equalToSuperview().inset(20.adjustedWidth)
+            }
+            aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
+                text: StringLiterals.Recommending.Empty.timeLineAllTitle,
+                lineHeight: 24)
+        }
+        
+        self.aroundPage = -1
+        self.aroundCount = -1
+        self.isFinishPaging = false
+        self.fetchingMore = false
+        self.aroundTableView.reloadData()
+        self.aroundModelDummy = []
+        self.around()
+        self.updateView()
     }
     
     // MARK: Objc Function

@@ -248,8 +248,10 @@ extension YELLOTabBarController {
             case .success(let data):
                 guard let data = data.data else { return }
                 if data.isAvailable && self.notificationReadCount == 0 {
-                    // 다시 보지 않기 버튼을 안눌렀거나 이전 공지와 현재 공지의 title이 다른 경우에만 표시
-                    if !UserDefaults.standard.bool(forKey: "isTapped") || UserDefaults.standard.string(forKey: "notificationTitle") != data.title {
+                    // 다시 보지 않기 버튼을 안눌렀거나 하루가 지났거나 이전 공지와 현재 공지의 title이 다른 경우에만 표시
+                    if !UserDefaults.standard.bool(forKey: "isTapped") ||
+                        self.hasDayPassed(from: UserDefaults.standard.object(forKey: "tapDate") as? Date ?? Date()) ||
+                        UserDefaults.standard.string(forKey: "notificationTitle") != data.title {
                         self.userNotificationView.frame = self.view.bounds
                         self.userNotificationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                         self.userNotificationView.notificationImageView.kfSetImage(url: data.imageUrl)
@@ -273,6 +275,17 @@ extension YELLOTabBarController {
         purchaseSubscribeNeed()
     }
     
+    // 하루 지났는지 확인하는 함수
+    func hasDayPassed(from date: Date) -> Bool {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        
+        let startOfToday = calendar.startOfDay(for: currentDate)
+        let startOfTappedDate = calendar.startOfDay(for: date)
+        
+        return calendar.dateComponents([.day], from: startOfTappedDate, to: startOfToday).day ?? 0 > 0
+    }
+
     /// 구독 연장 여부 서버통신
     func purchaseSubscribeNeed() {
         NetworkService.shared.purchaseService.purchaseSubscibeNeed { result in

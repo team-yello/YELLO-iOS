@@ -463,7 +463,7 @@ enum StringLiterals {
     }
     
     enum Notification {
-        static let doNotSeeAgainLabel = "다시 보지 않기"
+        static let doNotSeeAgainLabel = "오늘 하루 보지 않기"
         static let close = "닫기"
     }
     
