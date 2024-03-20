@@ -161,6 +161,7 @@
 		36CDA9142B8208C400AC248E /* RewardServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CDA9132B8208C400AC248E /* RewardServices.swift */; };
 		36CDA9172B823CE900AC248E /* lottie_spinner_loading_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 36CDA9162B823CE900AC248E /* lottie_spinner_loading_profile.json */; };
 		36CFF9A82B67F5FB008DDB9D /* EditProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */; };
+		36D7D0502B949699008DB7A2 /* EditCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D7D04F2B949699008DB7A2 /* EditCheckView.swift */; };
 		36D98F352B5FB2B7003B2B11 /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */; };
 		36D98F372B602442003B2B11 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F362B602442003B2B11 /* InfoView.swift */; };
 		36D98F392B617B5D003B2B11 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */; };
@@ -356,6 +357,7 @@
 		C3DC4ADE2A6042B5001DCE04 /* MyYelloDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC4ADD2A6042B5001DCE04 /* MyYelloDetailModel.swift */; };
 		C3E4B6FF2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */; };
 		C3E4B7012A682A4C001A0355 /* FriendEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */; };
+		C3E5626F2B94B33C003AFC6C /* FriendAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5626E2B94B33C003AFC6C /* FriendAddButton.swift */; };
 		C3EC57332A6AB2F300676388 /* Unbounded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3EC57322A6AB2F300676388 /* Unbounded-Regular.ttf */; };
 		C3FF246C2A5D476D00A97D40 /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */; };
 		C3FF246F2A5D47D100A97D40 /* WithdrawalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */; };
@@ -555,6 +557,7 @@
 		36CDA9132B8208C400AC248E /* RewardServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardServices.swift; sourceTree = "<group>"; };
 		36CDA9162B823CE900AC248E /* lottie_spinner_loading_profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottie_spinner_loading_profile.json; sourceTree = "<group>"; };
 		36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderView.swift; sourceTree = "<group>"; };
+		36D7D04F2B949699008DB7A2 /* EditCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCheckView.swift; sourceTree = "<group>"; };
 		36D98F342B5FB2B7003B2B11 /* MainProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileView.swift; sourceTree = "<group>"; };
 		36D98F362B602442003B2B11 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		36D98F382B617B5D003B2B11 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -720,6 +723,7 @@
 		C3DC4ADD2A6042B5001DCE04 /* MyYelloDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailModel.swift; sourceTree = "<group>"; };
 		C3E4B6FE2A68080A001A0355 /* MyYelloEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		C3E4B7002A682A4C001A0355 /* FriendEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		C3E5626E2B94B33C003AFC6C /* FriendAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAddButton.swift; sourceTree = "<group>"; };
 		C3EC57322A6AB2F300676388 /* Unbounded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Regular.ttf"; sourceTree = "<group>"; };
 		C3FF246B2A5D476D00A97D40 /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
 		C3FF246E2A5D47D100A97D40 /* WithdrawalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalView.swift; sourceTree = "<group>"; };
@@ -1303,7 +1307,8 @@
 				C3C57BEE2A5C066B00B84CAA /* ViewController */,
 				C3C57BED2A5C066200B84CAA /* View */,
 				C3C57BF12A5C087600B84CAA /* Cells */,
-				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
+				C3E562712B94D68F003AFC6C /* Model */,
+				C3E562702B94B375003AFC6C /* Components */,
 				C31315A92A7A5F8100FB8B43 /* Search */,
 			);
 			path = Recommending;
@@ -1623,6 +1628,7 @@
 				36D98F3A2B617BBD003B2B11 /* EditProfileView.swift */,
 				36CFF9A72B67F5FB008DDB9D /* EditProfileHeaderView.swift */,
 				36ECE0E92B68B4EC000FCCBF /* EditSchoolInfoView.swift */,
+				36D7D04F2B949699008DB7A2 /* EditCheckView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2348,6 +2354,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C3E562702B94B375003AFC6C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C3E5626E2B94B33C003AFC6C /* FriendAddButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C3E562712B94D68F003AFC6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3C57BF42A5C093D00B84CAA /* FriendModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C3FF246D2A5D477400A97D40 /* Withdrawal */ = {
 			isa = PBXGroup;
 			children = (
@@ -2736,6 +2758,7 @@
 				C3A799E62A494D6800D3EFD8 /* Int+.swift in Sources */,
 				2AFB01482A8A79A5001BB2C7 /* VotingUnreadResponseDTO.swift in Sources */,
 				367113712A7D6C740037E0D2 /* UniversityView.swift in Sources */,
+				C3E5626F2B94B33C003AFC6C /* FriendAddButton.swift in Sources */,
 				363D81642B262A460095F6CC /* NameViewController.swift in Sources */,
 				C3FF24972A5E907D00A97D40 /* MyYelloNameTableViewCell.swift in Sources */,
 				C37DFC482A8501F300D3B685 /* PaymentPlusView.swift in Sources */,
@@ -2940,6 +2963,7 @@
 				3662A0FC2A65795200F482EF /* IdValidResponseDTO.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */,
+				36D7D0502B949699008DB7A2 /* EditCheckView.swift in Sources */,
 				C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */,
 				C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */,
 				36E427952A5CA59F0050B34E /* OnboardingEndViewController.swift in Sources */,
@@ -3058,7 +3082,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS.dev;
 				PRODUCT_NAME = "$(Yello_Bundle_Name)";
@@ -3222,7 +3246,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3264,7 +3288,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.1.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";

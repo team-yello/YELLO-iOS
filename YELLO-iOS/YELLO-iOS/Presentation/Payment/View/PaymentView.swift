@@ -13,6 +13,7 @@ import Then
 final class PaymentView: BaseView {
     
     var nowPage: Int = 0
+    private var bannerTimer: Timer?
     private var paymentImage = [ImageLiterals.Payment.imgPaymentFirst,
                                 ImageLiterals.Payment.imgPaymentSecond,
                                 ImageLiterals.Payment.imgPaymentThird,
@@ -105,11 +106,18 @@ extension PaymentView: UICollectionViewDelegateFlowLayout {
 
 extension PaymentView {
     /// 3초마다 실행되는 타이머
-    func bannerTimer() {
-        let _: Timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (Timer) in
+    func startBannerTimer() {
+        stopBannerTimer()
+        
+        bannerTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { timer in
             self.bannerMove()
-        }
+        })
     }
+    
+    func stopBannerTimer() {
+        bannerTimer?.invalidate()
+    }
+    
     // 배너 움직이는 매서드
     func bannerMove() {
         /// 현재페이지가 마지막 페이지일 경우

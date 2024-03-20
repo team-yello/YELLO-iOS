@@ -26,7 +26,38 @@ final class AroundView: BaseView {
         }
     }
     var scrollCount = 0
-    var isUserSenderVote = false
+    var isUserSenderVote = false {
+        didSet {
+            if isUserSenderVote {
+                filterButtonLabel.text = StringLiterals.Around.myYello
+                filterButtonStackView.spacing = 0
+                filterButtonStackView.snp.updateConstraints {
+                    $0.leading.equalToSuperview().inset(8.adjustedWidth)
+                }
+                aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
+                    text: StringLiterals.Recommending.Empty.timeLineMyTitle,
+                    lineHeight: 24)
+            } else {
+                filterButtonLabel.text = StringLiterals.Around.allYello
+                filterButtonStackView.spacing = 6.adjustedWidth
+                filterButtonStackView.snp.updateConstraints {
+                    $0.leading.equalToSuperview().inset(20.adjustedWidth)
+                }
+                aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
+                    text: StringLiterals.Recommending.Empty.timeLineAllTitle,
+                    lineHeight: 24)
+            }
+            
+            self.aroundPage = -1
+            self.aroundCount = -1
+            self.isFinishPaging = false
+            self.fetchingMore = false
+            self.aroundTableView.reloadData()
+            self.aroundModelDummy = []
+            self.around()
+            self.updateView()
+        }
+    }
     
     var aroundModelDummy: [FriendVote] = []
     
@@ -76,7 +107,7 @@ final class AroundView: BaseView {
         
         filterButton.do {
             $0.backgroundColor = .black
-            $0.makeBorder(width: 1, color: .grayscales800)
+            $0.makeBorder(width: 1, color: .grayscales600)
             $0.makeCornerRound(radius: 14.adjustedHeight)
             $0.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         }
@@ -188,6 +219,10 @@ final class AroundView: BaseView {
         aroundEmptyView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+    }
+    
+    private func setAroundViewMode() {
+        
     }
     
     // MARK: Custom Function
@@ -328,34 +363,5 @@ extension AroundView: UITableViewDataSource {
 extension AroundView {
     @objc private func filterButtonTapped() {
         isUserSenderVote.toggle()
-        
-        if isUserSenderVote {
-            filterButtonLabel.text = StringLiterals.Around.myYello
-            filterButtonStackView.spacing = 0
-            filterButtonStackView.snp.updateConstraints {
-                $0.leading.equalToSuperview().inset(8.adjustedWidth)
-            }
-            aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
-                text: StringLiterals.Recommending.Empty.timeLineMyTitle,
-                lineHeight: 24)
-        } else {
-            filterButtonLabel.text = StringLiterals.Around.allYello
-            filterButtonStackView.spacing = 6.adjustedWidth
-            filterButtonStackView.snp.updateConstraints {
-                $0.leading.equalToSuperview().inset(20.adjustedWidth)
-            }
-            aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
-                text: StringLiterals.Recommending.Empty.timeLineAllTitle,
-                lineHeight: 24)
-        }
-
-        self.aroundPage = -1
-        self.aroundCount = -1
-        self.isFinishPaging = false
-        self.fetchingMore = false
-        self.aroundTableView.reloadData()
-        self.aroundModelDummy = []
-        self.around()
-        self.updateView()
     }
 }

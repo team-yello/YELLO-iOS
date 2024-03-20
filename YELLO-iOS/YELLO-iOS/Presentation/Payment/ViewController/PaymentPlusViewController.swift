@@ -94,7 +94,7 @@ final class PaymentPlusViewController: BaseViewController {
         checkRewardPossible()
         tabBarController?.tabBar.isHidden = true
         setInitialUI()
-        paymentPlusView.paymentView.bannerTimer()
+        paymentPlusView.paymentView.startBannerTimer()
         purchaseSubscribeNeed()
     }
     
@@ -457,7 +457,7 @@ extension PaymentPlusViewController {
     
     @objc private func paymentYelloPlusButtonTapped() {
         showLoadingIndicator()
-        if self.subscribeStatus == "NORMAL" {
+        if self.subscribeStatus == "normal" {
             print("구독하고 있지 않는 사용자입니다.")
             // 첫 구매 일자 구하기
             let currentDate = Date()

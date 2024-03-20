@@ -38,6 +38,9 @@ final class NotificationView: BaseView {
             $0.text = StringLiterals.Notification.doNotSeeAgainLabel
             $0.textColor = .white
             $0.font = .uiBody02
+            $0.isUserInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(doNotSeeLabelTapped))
+            $0.addGestureRecognizer(tapGesture)
         }
         
         closeButton.do {
@@ -90,6 +93,13 @@ final class NotificationView: BaseView {
 extension NotificationView {
     @objc
     private func doNotSeeButtonTapped() {
+        isTapped.toggle()
+        doNotSeeAgainButton.setImage(UIImage(imageLiteralResourceName: isTapped ? "btnCheckBox" : "btnNotCheckBox"), for: .normal)
+        UserDefaults.standard.set(isTapped, forKey: "isTapped")
+    }
+    
+    @objc
+    private func doNotSeeLabelTapped() {
         isTapped.toggle()
         doNotSeeAgainButton.setImage(UIImage(imageLiteralResourceName: isTapped ? "btnCheckBox" : "btnNotCheckBox"), for: .normal)
         UserDefaults.standard.set(isTapped, forKey: "isTapped")

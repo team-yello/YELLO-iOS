@@ -31,6 +31,13 @@ final class AroundViewController: UIViewController {
         aroundView.scrollCount = 0 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(changeMode(_:)), name: NSNotification.Name("changeMode"), object: nil)
+        self.tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("changeMode"), object: nil)
     }
     
 }
@@ -65,5 +72,10 @@ extension AroundViewController {
             $0.bottom.equalToSuperview().inset(tabbarHeight)
         }
         
+    }
+    
+    @objc
+    private func changeMode(_ notification: Notification) {
+        self.aroundView.isUserSenderVote = true
     }
 }

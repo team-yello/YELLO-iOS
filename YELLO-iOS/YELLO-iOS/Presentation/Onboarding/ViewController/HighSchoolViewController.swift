@@ -129,6 +129,7 @@ class HighSchoolViewController: OnboardingBaseViewController {
         isSelectLevel = true
         guard let buttonTitleLabel = sender.titleLabel else { return }
         self.schoolLevel = extractNumbers(from: buttonTitleLabel.text ?? "")
+        checkButtonEnable()
     }
     
     @objc func textfieldButtonTapped(_ sender: UIButton) {

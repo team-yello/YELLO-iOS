@@ -28,11 +28,12 @@ final class EditSchoolInfoViewController: BaseViewController {
     var createDate: String = ""
     
     // MARK: Component
-    let editSchoolInfoView = EditSchoolInfoView()
-    let studentIdViewController = StudentIdViewController()
-    let schoolSearchViewController = FindSchoolViewController()
-    let majorSearchViewController = FindMajorViewController()
-    lazy var studentIdView = StudentIdView()
+    private let editSchoolInfoView = EditSchoolInfoView()
+    private let studentIdViewController = StudentIdViewController()
+    private let schoolSearchViewController = FindSchoolViewController()
+    private let majorSearchViewController = FindMajorViewController()
+    private lazy var studentIdView = StudentIdView()
+    private let editCheckView = EditCheckView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -55,6 +56,16 @@ final class EditSchoolInfoViewController: BaseViewController {
     // MARK: Custom Function
     private func addTarget() {
         editSchoolInfoView.convertButton.addTarget(self, action: #selector(convertButtonTapped), for: .touchUpInside)
+        editCheckView.yesButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+    }
+    
+    override func setLayout() {
+        view.addSubview(editCheckView)
+        editCheckView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        editCheckView.isHidden = true
     }
     
     private func setDelegate() {
@@ -149,8 +160,12 @@ final class EditSchoolInfoViewController: BaseViewController {
         
         editSchoolInfoView.groupType = userGroupType
         
-        print("유저 타입 변경 완료 \n - 그룹 타입: \(userGroupType) \n - 그룹명: \(groupName) \n - 서브그룹명: \(subgroupName)")
         editSchoolInfoView.editTableView.reloadData()
+    }
+    
+    @objc func checkButtonTapped() {
+        updateProfile()
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -300,8 +315,7 @@ extension EditSchoolInfoViewController: HandleSaveButtonDelegate {
             self.view.showToast(message: StringLiterals.Profile.EditProfile.notYetErrorMessage, at: 82.adjustedHeight)
         } else {
             if isEditAvailable && !isMajorSearchError {
-                updateProfile()
-                navigationController?.popViewController(animated: true)
+                editCheckView.isHidden = false
             } else if !isEditAvailable {
                 // 1년이내 변경한 경우
                 self.view.showToast(message: StringLiterals.Profile.EditProfile.editDateErrorMessage, at: 82.adjustedHeight)

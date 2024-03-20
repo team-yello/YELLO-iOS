@@ -83,16 +83,20 @@ extension YelloSelectButton {
             $0.image = IconImage
             
         }
+        
         buttonLabel.do {
             $0.text = buttonText
             $0.font = .uiSubtitle02
         }
+        
         stackView.do {
             $0.addArrangedSubviews(iconImageView, buttonLabel)
             $0.axis = .vertical
             $0.alignment = .center
             $0.spacing = 4
+            $0.isUserInteractionEnabled = false
         }
+        
         checkButton.do {
             $0.backgroundColor = .grayscales800
             $0.makeCornerRound(radius: 10)

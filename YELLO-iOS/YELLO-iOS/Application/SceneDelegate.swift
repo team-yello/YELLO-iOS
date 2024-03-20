@@ -78,7 +78,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                   let messageNumber = path.split(separator: "/").last else {
                 let rootViewController = YELLOTabBarController()
                 let navigationController = UINavigationController(rootViewController: rootViewController)
-                if type == StringLiterals.PushAlarm.TypeName.available || type == StringLiterals.PushAlarm.TypeName.recommend {
+                if type == StringLiterals.PushAlarm.TypeName.available || type == StringLiterals.PushAlarm.TypeName.recommend
+                    || type == StringLiterals.PushAlarm.TypeName.lunchEvent {
                     selectedIndex = 2
                     rootViewController.selectedIndex = selectedIndex
                     self.window?.rootViewController = navigationController
@@ -94,7 +95,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     if NetworkCheck.shared.isConnected {
                         self.checkAndUpdateIfNeeded()
                     }
+                } else if type == StringLiterals.PushAlarm.TypeName.firstRecommend {
+                    selectedIndex = 3
+                    rootViewController.selectedIndex = selectedIndex
+                    self.window?.rootViewController = navigationController
+                    self.window?.makeKeyAndVisible()
+                    if NetworkCheck.shared.isConnected {
+                        self.checkAndUpdateIfNeeded()
+                    }
+                } else if type == StringLiterals.PushAlarm.TypeName.openVote {
+                    selectedIndex = 1
+                    rootViewController.selectedIndex = selectedIndex
+                    self.window?.rootViewController = navigationController
+                    self.window?.makeKeyAndVisible()
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: Notification.Name("changeMode"), object: nil, userInfo: nil)
+                    }
+                    if NetworkCheck.shared.isConnected {
+                        self.checkAndUpdateIfNeeded()
+                    }
                 }
+                
                 return
             }
             
