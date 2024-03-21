@@ -215,6 +215,11 @@ final class AroundView: BaseView {
             aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
                 text: StringLiterals.Recommending.Empty.timeLineMyTitle,
                 lineHeight: 24)
+            aroundEmptyView.inviteButton.setTitle(
+                StringLiterals.Recommending.Empty.myInviteButton,
+                for: .normal)
+            aroundEmptyView.removeAddTargetInvite()
+            aroundEmptyView.setAddTargetMove()
         } else {
             filterButtonLabel.text = StringLiterals.Around.allYello
             filterButtonStackView.spacing = 6.adjustedWidth
@@ -224,6 +229,11 @@ final class AroundView: BaseView {
             aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
                 text: StringLiterals.Recommending.Empty.timeLineAllTitle,
                 lineHeight: 24)
+            aroundEmptyView.inviteButton.setTitle(
+                StringLiterals.Recommending.Empty.inviteButton,
+                for: .normal)
+            aroundEmptyView.removeAddTargetMove()
+            aroundEmptyView.setAddTargetInvite()
         }
         
         self.aroundPage = -1
