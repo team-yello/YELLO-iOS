@@ -25,7 +25,7 @@
       "location" : "https://github.com/amplitude/Amplitude-iOS",
       "state" : {
         "branch" : "main",
-        "revision" : "d78cc410fceec0716a83f225967b139537d99ac5"
+        "revision" : "d4a71f3e06b5108696ca7b33567d0fc539597d82"
       }
     },
     {
@@ -115,7 +115,7 @@
       "location" : "https://github.com/kakao/kakao-ios-sdk",
       "state" : {
         "branch" : "master",
-        "revision" : "56e37b22eb91eb6a103130f0678c04a40ea6e568"
+        "revision" : "fd5935d1702ce217a3f98771968b61dbdfb2df1a"
       }
     },
     {
