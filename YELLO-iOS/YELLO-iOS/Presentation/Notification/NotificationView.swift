@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -99,6 +100,7 @@ extension NotificationView {
         if isTapped {
             UserDefaults.standard.set(Date(), forKey: "tapDate")
         }
+        Amplitude.instance().logEvent("click_notice_popup_no")
     }
     
     @objc
@@ -109,6 +111,7 @@ extension NotificationView {
         if isTapped {
             UserDefaults.standard.set(Date(), forKey: "tapDate")
         }
+        Amplitude.instance().logEvent("click_notice_popup_no")
     }
     
     @objc

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -183,6 +184,7 @@ extension SubscriptionExtensionView {
     func subscriptionButtonClicked() {
         
         NotificationCenter.default.post(name: Notification.Name("goToShop"), object: nil)
+        Amplitude.instance().logEvent("click_resubscribe")
 
         self.isHidden = true
         self.removeFromSuperview()
