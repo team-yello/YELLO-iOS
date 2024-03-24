@@ -289,6 +289,7 @@ extension ProfileView {
     
     // MARK: Objc Function
     @objc func tapNotification() {
+        Amplitude.instance().logEvent("click_profile_banner")
         let url = URL(string: redirectionURL)!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }

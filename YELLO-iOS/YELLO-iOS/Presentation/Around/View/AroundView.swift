@@ -207,6 +207,7 @@ final class AroundView: BaseView {
     
     private func updateAroundView() {
         if isUserSenderVote {
+            Amplitude.instance().logEvent("view_timeline_myMessage")
             filterButtonLabel.text = StringLiterals.Around.myYello
             filterButtonStackView.spacing = 0
             filterButtonStackView.snp.updateConstraints {
