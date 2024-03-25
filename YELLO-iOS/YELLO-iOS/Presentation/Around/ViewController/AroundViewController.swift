@@ -23,6 +23,7 @@ final class AroundViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        NotificationCenter.default.addObserver(self, selector: #selector(moveViewController(_:)), name: NSNotification.Name("moveToYello"), object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +40,6 @@ final class AroundViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name("changeMode"), object: nil)
     }
-    
 }
 
 // MARK: - extension
@@ -74,8 +74,17 @@ extension AroundViewController {
         
     }
     
+    // MARK: Objc Function
+
     @objc
     private func changeMode(_ notification: Notification) {
         self.aroundView.isUserSenderVote = true
+    }
+
+    @objc
+    func moveViewController(_ notification: Notification) {
+        tabBarController?.tabBar.items?[2].imageInsets = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+        tabBarController?.selectedIndex = 2
+        tabBarController?.tabBar.isHidden = false
     }
 }

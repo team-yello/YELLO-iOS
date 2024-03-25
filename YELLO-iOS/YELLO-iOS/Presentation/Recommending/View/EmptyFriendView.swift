@@ -28,6 +28,7 @@ final class EmptyFriendView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
+        setAddTargetInvite()
     }
     
     @available(*, unavailable)
@@ -66,8 +67,27 @@ extension EmptyFriendView {
             $0.backgroundColor = .grayscales800
             $0.makeCornerRound(radius: 24.adjustedHeight)
             $0.layer.cornerCurve = .continuous
-            $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         }
+    }
+    
+    func setAddTargetInvite() {
+        inviteButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+    }
+    
+    func removeAddTargetInvite() {
+        inviteButton.removeTarget(self, action: #selector(showAlert), for: .touchUpInside)
+    }
+    
+    func setAddTargetMove() {
+        inviteButton.addTarget(self, action: #selector(moveToYello), for: .touchUpInside)
+    }
+    
+    func removeAddTargetMove() {
+        inviteButton.removeTarget(self, action: #selector(moveToYello), for: .touchUpInside)
+    }
+    
+    @objc func moveToYello() {
+        NotificationCenter.default.post(name: Notification.Name("moveToYello"), object: nil)
     }
     
     private func setLayout() {

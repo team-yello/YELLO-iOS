@@ -207,6 +207,7 @@ final class AroundView: BaseView {
     
     private func updateAroundView() {
         if isUserSenderVote {
+            Amplitude.instance().logEvent("view_timeline_myMessage")
             filterButtonLabel.text = StringLiterals.Around.myYello
             filterButtonStackView.spacing = 0
             filterButtonStackView.snp.updateConstraints {
@@ -215,6 +216,11 @@ final class AroundView: BaseView {
             aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
                 text: StringLiterals.Recommending.Empty.timeLineMyTitle,
                 lineHeight: 24)
+            aroundEmptyView.inviteButton.setTitle(
+                StringLiterals.Recommending.Empty.myInviteButton,
+                for: .normal)
+            aroundEmptyView.removeAddTargetInvite()
+            aroundEmptyView.setAddTargetMove()
         } else {
             filterButtonLabel.text = StringLiterals.Around.allYello
             filterButtonStackView.spacing = 6.adjustedWidth
@@ -224,6 +230,11 @@ final class AroundView: BaseView {
             aroundEmptyView.emptyDescriptionLabel.setTextWithLineHeight(
                 text: StringLiterals.Recommending.Empty.timeLineAllTitle,
                 lineHeight: 24)
+            aroundEmptyView.inviteButton.setTitle(
+                StringLiterals.Recommending.Empty.inviteButton,
+                for: .normal)
+            aroundEmptyView.removeAddTargetMove()
+            aroundEmptyView.setAddTargetInvite()
         }
         
         self.aroundPage = -1
