@@ -8,6 +8,7 @@
 import SafariServices
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -392,6 +393,7 @@ extension YELLOTabBarController {
         } else {
             print("유효하지 않은 URL 입니다")
         }
+        Amplitude.instance().logEvent("click_notice_popup")
     }
 }
 
