@@ -156,6 +156,16 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 userProperties["user_grade"] = UserManager.shared.groupAdmissionYear
                 userProperties["user_recommend"] = UserManager.shared.recommendId.isEmpty ? "yes" : "no"
                 userProperties["user_signup_date"] = formattedDate
+                switch UserManager.shared.groupType {
+                case .univ:
+                    userProperties["user_student_type"] = "university"
+                case .high:
+                    userProperties["user_student_type"] = "highschool"
+                case .middle:
+                    userProperties["user_student_type"] = "middleschool"
+                case .SOPT:
+                    userProperties["user_student_type"] = "university"
+                }
                 Amplitude.instance().setUserProperties(userProperties)
                 self.didPostUserInfo = true
                 self.navigationController?.pushViewController(pushViewController, animated: false)
