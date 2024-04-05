@@ -177,7 +177,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 return
             default:
                 self.isFail = true
-                self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
+                self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
                 return
             }
         }
@@ -220,7 +220,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
         setUser()
         
         if isFail {
-            self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
+            self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
             return
         }
         if sender == skipButton {
