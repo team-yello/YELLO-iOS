@@ -24,6 +24,7 @@ final class ProfileViewController: BaseViewController {
     var isFinishPaging = false
     var isLoadingData = false
     
+    var userType = ""
     var pageCount = -1
     
     // MARK: - Function

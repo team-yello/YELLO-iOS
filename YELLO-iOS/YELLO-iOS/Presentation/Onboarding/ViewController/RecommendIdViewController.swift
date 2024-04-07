@@ -156,6 +156,16 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 userProperties["user_grade"] = UserManager.shared.groupAdmissionYear
                 userProperties["user_recommend"] = UserManager.shared.recommendId.isEmpty ? "yes" : "no"
                 userProperties["user_signup_date"] = formattedDate
+                switch UserManager.shared.groupType {
+                case .univ:
+                    userProperties["user_student_type"] = "university"
+                case .high:
+                    userProperties["user_student_type"] = "highschool"
+                case .middle:
+                    userProperties["user_student_type"] = "middleschool"
+                case .SOPT:
+                    userProperties["user_student_type"] = "university"
+                }
                 Amplitude.instance().setUserProperties(userProperties)
                 self.didPostUserInfo = true
                 self.navigationController?.pushViewController(pushViewController, animated: false)
@@ -167,7 +177,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 return
             default:
                 self.isFail = true
-                self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
+                self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
                 return
             }
         }
@@ -210,7 +220,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
         setUser()
         
         if isFail {
-            self.view.showToast(message: "알 수 없는 오류가 발생하였습니다.")
+            self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
             return
         }
         if sender == skipButton {
