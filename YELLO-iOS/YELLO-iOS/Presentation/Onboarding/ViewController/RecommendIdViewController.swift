@@ -219,10 +219,6 @@ class RecommendIdViewController: OnboardingBaseViewController {
     override func didTapButton(sender: UIButton) {
         setUser()
         
-        if isFail {
-            self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
-            return
-        }
         if sender == skipButton {
             UserManager.shared.recommendId = ""
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
@@ -230,6 +226,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "next"] )
         }
         postUserInfo()
+        
     }
 }
 
