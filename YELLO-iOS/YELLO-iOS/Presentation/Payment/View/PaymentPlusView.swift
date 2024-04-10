@@ -26,7 +26,8 @@ final class PaymentPlusView: BaseView {
     let nameKeyLabel = UILabel()
     let nameKeyButtonStackView = UIStackView()
     
-    lazy var nameKeyOneButton = PaymentNameKeyButton(state: .one)
+    lazy var nameKeyOneButton = PaymentNameKeyButton(state: .one,
+                                                     isNonSale: true)
     lazy var nameKeyTwoButton = PaymentNameKeyButton(state: .two)
     lazy var nameKeyFiveButton = PaymentNameKeyButton(state: .five)
     
@@ -63,7 +64,7 @@ final class PaymentPlusView: BaseView {
         
         subscribeView.do {
             $0.backgroundColor = .grayscales900
-            $0.makeCornerRound(radius: 15.adjustedHeight)
+            $0.makeCornerRound(radius: 15.adjusted)
         }
         
         subscribeLabel.do {
