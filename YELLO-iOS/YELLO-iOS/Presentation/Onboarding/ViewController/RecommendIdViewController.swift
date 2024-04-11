@@ -21,6 +21,7 @@ class RecommendIdViewController: OnboardingBaseViewController {
     
     // MARK: Component
     let pushViewController = PushSettingViewController()
+    let kakaoLoginViewController = KakaoLoginViewController()
     let baseView = RecommendIdView()
     let text = ""
     
@@ -133,7 +134,6 @@ class RecommendIdViewController: OnboardingBaseViewController {
                     print("no data")
                     return
                 }
-                dump(data)
                 KeychainHandler.shared.accessToken = data.accessToken
                 UserDefaults.standard.setValue(true, forKey: "isLoggined")
                 setAcessToken(accessToken: data.accessToken)
@@ -169,15 +169,13 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 Amplitude.instance().setUserProperties(userProperties)
                 self.didPostUserInfo = true
                 self.navigationController?.pushViewController(pushViewController, animated: false)
-            case .requestErr(let data):
-                self.isFail = true
-                self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
-                Crashlytics.crashlytics().setUserID(UserManager.shared.yelloId)
-                Crashlytics.crashlytics().log("dto: \(requestDTO) \n message: \(data.message)")
-                return
             default:
                 self.isFail = true
                 self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                kakaoLoginViewController.isFromOnboarding = true
+                sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: kakaoLoginViewController)
+                
                 return
             }
         }
@@ -221,8 +219,8 @@ class RecommendIdViewController: OnboardingBaseViewController {
         
         if isFail {
             self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
-            return
         }
+        
         if sender == skipButton {
             UserManager.shared.recommendId = ""
             Amplitude.instance().logEvent("click_onboarding_recommend", withEventProperties: ["rec_exist": "pass"] )
