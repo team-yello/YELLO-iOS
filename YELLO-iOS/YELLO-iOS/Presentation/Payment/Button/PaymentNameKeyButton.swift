@@ -28,7 +28,6 @@ final class PaymentNameKeyButton: UIButton {
     
     let discountLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 35.adjustedWidth, height: 21.adjustedHeight))
     let priceBeforeLabel = UILabel()
-    let priceBeforeView = UIView()
     
     // MARK: - Function
     // MARK: LifeCycle
@@ -42,9 +41,10 @@ final class PaymentNameKeyButton: UIButton {
         setUI()
     }
     
-    init(state: KeyCount) {
+    init(state: KeyCount, isNonSale: Bool = false) {
         super.init(frame: CGRect())
         setUI()
+        self.discountLabel.isHidden = isNonSale
         setButtonState(state: state)
     }
     
@@ -60,7 +60,11 @@ final class PaymentNameKeyButton: UIButton {
         infoContainerView.do {
             $0.isUserInteractionEnabled = false
             $0.makeBorder(width: 1, color: .purpleSub700)
-            $0.makeCornerRound(radius: 10.adjustedHeight)
+            $0.makeCornerRound(radius: 10.adjusted)
+        }
+        
+        keyImageView.do {
+            $0.contentMode = .scaleAspectFit
         }
         
         nameKeyTitleLabel.do {
@@ -68,12 +72,13 @@ final class PaymentNameKeyButton: UIButton {
             $0.textColor = .purpleSub100
             $0.numberOfLines = 2
             $0.textAlignment = .center
-            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.nameKeyOne, lineHeight: 20.adjustedHeight)
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.nameKeyOne,
+                                     lineHeight: 20.adjustedHeight)
             $0.isUserInteractionEnabled = false
         }
         
         priceView.do {
-            $0.makeCornerRound(radius: 15.adjustedHeight)
+            $0.makeCornerRound(radius: 15.adjusted)
             $0.applyGradientBackground(topColor: UIColor(hex: "D96AFF"), bottomColor: UIColor(hex: "7C57FF"), startPointY: 0.5, endPointY: 0.5)
             $0.isUserInteractionEnabled = false
         }
@@ -97,11 +102,7 @@ final class PaymentNameKeyButton: UIButton {
         priceBeforeLabel.do {
             $0.font = .uiLabelSmall
             $0.textColor = .grayscales400
-            $0.isUserInteractionEnabled = false
-        }
-        
-        priceBeforeView.do {
-            $0.backgroundColor = .grayscales400
+            $0.setTextWithLineHeight(text: StringLiterals.MyYello.Payment.nameKeyFivePriceBefore, lineHeight: 14.adjusted)
             $0.isUserInteractionEnabled = false
         }
     }
@@ -109,18 +110,19 @@ final class PaymentNameKeyButton: UIButton {
     private func setLayout() {
         self.addSubviews(infoContainerView,
                          keyImageView)
-        
-        infoContainerView.addSubviews(nameKeyTitleLabel,priceView,discountLabel,priceBeforeLabel)
+        infoContainerView.addSubviews(nameKeyTitleLabel,
+                                      priceView,
+                                      discountLabel,
+                                      priceBeforeLabel)
         priceView.addSubview(priceLabel)
-        priceBeforeLabel.addSubviews(priceBeforeView)
         
         self.snp.makeConstraints {
-            $0.height.equalTo(172.adjustedHeight)
-            $0.width.equalTo(108.adjustedWidth)
+            $0.height.equalTo(172.adjusted)
+            $0.width.equalTo(108.adjusted)
         }
         
         infoContainerView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
+            $0.top.equalToSuperview().offset(10.adjusted)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -131,14 +133,15 @@ final class PaymentNameKeyButton: UIButton {
         
         nameKeyTitleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(keyImageView.snp.bottom).offset(10.adjustedHeight)
+            $0.top.equalTo(keyImageView.snp.bottom).offset(10.adjusted)
         }
         
         priceView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(priceBeforeLabel.snp.bottom).offset(24.adjustedHeight)
-            $0.height.equalTo(30.adjustedHeight)
-            $0.width.equalTo(78.adjustedWidth)
+            $0.top.equalTo(priceBeforeLabel.snp.bottom).offset(24.adjusted)
+            $0.bottom.equalToSuperview().inset(12.adjusted)
+            $0.height.equalTo(30.adjusted)
+            $0.width.equalTo(78.adjusted)
         }
         
         priceLabel.snp.makeConstraints {
@@ -148,19 +151,13 @@ final class PaymentNameKeyButton: UIButton {
         discountLabel.snp.makeConstraints {
             $0.top.equalTo(priceView.snp.top).offset(-16.adjusted)
             $0.leading.equalToSuperview().offset(7.adjusted)
-            $0.height.equalTo(21.adjustedHeight)
-            $0.width.equalTo(35.adjustedWidth)
+            $0.height.equalTo(21.adjusted)
+            $0.width.equalTo(35.adjusted)
         }
         
         priceBeforeLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(nameKeyTitleLabel.snp.bottom)
-        }
-        
-        priceBeforeView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.height.equalTo(1)
-            $0.width.equalToSuperview()
         }
     }
     

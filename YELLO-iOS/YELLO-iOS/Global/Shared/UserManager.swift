@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Amplitude
+
 // MARK: - Enum
 enum UserGroupType {
     case univ
@@ -51,6 +53,8 @@ struct UserManager {
 }
 
 func updateUserInfo(_ data: ProfileUserResponseDTO) {
+    var userType = ""
+    
     UserManager.shared.name = data.name
     UserManager.shared.profileImage = data.profileImageURL
     UserManager.shared.gender = data.gender
@@ -70,13 +74,18 @@ func updateUserInfo(_ data: ProfileUserResponseDTO) {
     switch data.groupType {
     case "UNIVERSITY" :
         UserManager.shared.groupType = .univ
+        userType = "university"
     case "HIGH_SCHOOL":
         UserManager.shared.groupType = .high
+        userType = "highschool"
     case "MIDDLE_SCHOOL":
         UserManager.shared.groupType = .middle
+        userType = "middleschool"
     case "SOPT":
         UserManager.shared.groupType = .SOPT
+        userType = "university"
     default:
         UserManager.shared.groupType = .univ
     }
+    Amplitude.instance().setUserProperties(["user_student_type": userType])
 }

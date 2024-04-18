@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -96,6 +97,10 @@ extension NotificationView {
         isTapped.toggle()
         doNotSeeAgainButton.setImage(UIImage(imageLiteralResourceName: isTapped ? "btnCheckBox" : "btnNotCheckBox"), for: .normal)
         UserDefaults.standard.set(isTapped, forKey: "isTapped")
+        if isTapped {
+            UserDefaults.standard.set(Date(), forKey: "tapDate")
+        }
+        Amplitude.instance().logEvent("click_notice_popup_no")
     }
     
     @objc
@@ -103,6 +108,10 @@ extension NotificationView {
         isTapped.toggle()
         doNotSeeAgainButton.setImage(UIImage(imageLiteralResourceName: isTapped ? "btnCheckBox" : "btnNotCheckBox"), for: .normal)
         UserDefaults.standard.set(isTapped, forKey: "isTapped")
+        if isTapped {
+            UserDefaults.standard.set(Date(), forKey: "tapDate")
+        }
+        Amplitude.instance().logEvent("click_notice_popup_no")
     }
     
     @objc

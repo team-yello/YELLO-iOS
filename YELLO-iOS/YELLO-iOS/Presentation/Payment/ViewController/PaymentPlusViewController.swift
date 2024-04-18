@@ -223,8 +223,8 @@ extension PaymentPlusViewController {
             Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "subscribe", "buy_price": 2900])
             identify.add("user_revenue", value: NSNumber(value: 2900))
         case MyProducts.nameKeyOneProductID:
-            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket1", "buy_price": 990])
-            identify.add("user_revenue", value: NSNumber(value: 990))
+            Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket1", "buy_price": 1400])
+            identify.add("user_revenue", value: NSNumber(value: 1400))
         case MyProducts.nameKeyTwoProductID:
             Amplitude.instance().logEvent("complete_shop_buy", withEventProperties: ["buy_type": "ticket2", "buy_price": 1900])
             identify.add("user_revenue", value: NSNumber(value: 1900))
@@ -382,6 +382,7 @@ extension PaymentPlusViewController {
         NetworkService.shared.rewardService.postRewardAd(requestDTO: request) { result in
             switch result {
             case .success(let data):
+                Amplitude.instance().logEvent("complete_adsense", withEventProperties: ["adsense_view": "shop"])
                 if let data = data.data {
                     self.eventPointView.pointLabel.text = data.rewardTitle
                     self.eventPointView.nextTimeLabel.text = ""
@@ -513,6 +514,7 @@ extension PaymentPlusViewController {
     }
     
     @objc private func adPointButtonTapped() {
+        Amplitude.instance().logEvent("click_adsense", withEventProperties: ["adsense_view": "shop"])
         if isRewardPossible {
             loadRewardedAd { isEndLoading in
                 if isEndLoading {

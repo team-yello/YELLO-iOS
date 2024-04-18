@@ -269,6 +269,7 @@ final class VotingPointViewController: BaseViewController {
             ad.present(fromRootViewController: self) {
                 let reward = ad.adReward
                 debugPrint("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
+                Amplitude.instance().logEvent("complete_adsense", withEventProperties: ["adsense_view": "vote"])
             }
         } else {
             debugPrint("Ad wasn't ready")
@@ -318,6 +319,7 @@ final class VotingPointViewController: BaseViewController {
     
     @objc
     func rewardAdsButtonClicked() {
+        Amplitude.instance().logEvent("click_adsense", withEventProperties: ["adsense_view": "vote"])
         loadRewardedAd()
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import Lottie
 
 final class LunchEventViewController: BaseViewController {
@@ -120,6 +121,7 @@ extension LunchEventViewController {
                     self.eventPointView.pointLabel.text = String(data.rewardValue) + " " + StringLiterals.Event.point
                     self.eventPointView.pointImage.image = UIImage(imageLiteralResourceName: "imgPoint")
                 }
+                Amplitude.instance().logEvent("complete_lunch_event")
             default:
                 print("network failure")
                 return

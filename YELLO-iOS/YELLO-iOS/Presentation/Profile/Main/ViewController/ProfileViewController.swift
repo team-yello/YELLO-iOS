@@ -24,6 +24,7 @@ final class ProfileViewController: BaseViewController {
     var isFinishPaging = false
     var isLoadingData = false
     
+    var userType = ""
     var pageCount = -1
     
     // MARK: - Function
@@ -136,6 +137,7 @@ extension ProfileViewController: HandleShopButton {
 
 extension ProfileViewController: HandleEditButton {
     func editButtonTapped() {
+        Amplitude.instance().logEvent("click_profile_info")
         navigationController?.pushViewController(editProfileViewController, animated: true)
     }
 }

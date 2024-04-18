@@ -289,6 +289,7 @@ extension ProfileView {
     
     // MARK: Objc Function
     @objc func tapNotification() {
+        Amplitude.instance().logEvent("click_profile_banner")
         let url = URL(string: redirectionURL)!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
@@ -325,10 +326,12 @@ extension ProfileView: UITableViewDataSource {
                 view?.friendCountView.skeletonLabel.isHidden = false
                 view?.friendCountView.skeletonLabel.animateShimmer()
                 view?.friendCountView.countStackView.isHidden = true
+                emptyLabel.isHidden = true
             } else {
                 view?.friendCountView.skeletonLabel.stopShimmering()
                 view?.friendCountView.skeletonLabel.isHidden = true
                 view?.friendCountView.countStackView.isHidden = false
+                emptyLabel.isHidden = friendCount == 0 ? false : true
             }
             
             DispatchQueue.main.async { [self] in

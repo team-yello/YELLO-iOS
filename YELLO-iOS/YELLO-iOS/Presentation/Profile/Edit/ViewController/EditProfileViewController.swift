@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Amplitude
+
 final class EditProfileViewController: BaseViewController {
     
     // MARK: - Variables
@@ -109,9 +111,9 @@ extension EditProfileViewController: UITableViewDataSource {
 extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.item > 1 {
+            Amplitude.instance().logEvent("click_profile_change")
             let editSchoolInfoViewController = EditSchoolInfoViewController()
             navigationController?.pushViewController(editSchoolInfoViewController, animated: true)
-            
         }
     }
 }

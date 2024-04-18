@@ -104,6 +104,7 @@ final class MyYelloViewController: BaseViewController {
     }
     
     private func setGoogleAds() {
+        Amplitude.instance().logEvent("click_adsense", withEventProperties: ["adsense_view": "message"])
         let request = GADRequest()
         GADInterstitialAd.load(withAdUnitID: interstitialId,
                                request: request) { ad, error in
@@ -271,13 +272,15 @@ extension MyYelloViewController {
     @objc func myYelloNoticeButtonTapped() {
         let url = URL(string: noticeURL ?? "") ?? URL(fileURLWithPath: "")
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        
+        Amplitude.instance().logEvent("click_message_banner")
     }
 }
 
 // MARK: - GADInterstitialDelegate
 extension MyYelloViewController: GADFullScreenContentDelegate {
     func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        Amplitude.instance().logEvent("complete_adsense", withEventProperties: ["adsense_view": "message"])
+
         let myYelloDetailViewController = MyYelloDetailViewController()
 
         self.myYelloView.myYelloListView.indexNumber = self.indexNumber

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Amplitude
 import SnapKit
 import Then
 
@@ -95,6 +96,7 @@ final class EditSchoolInfoViewController: BaseViewController {
         NetworkService.shared.profileService.editProfile(requestDTO: request) { result in
             switch result {
             case .success(let response):
+                Amplitude.instance().logEvent("complete_profile_change")
                 break
             default:
                 print("프로필 변경 통신 실패")
