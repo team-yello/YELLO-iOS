@@ -55,7 +55,11 @@ extension WithdrawalReasonViewController {
     
     @objc func completeButtonTapped() {
         if withdrawalReasonView.isNoFriendSelected {
-            print("앱에 아는 친구가 없단다..")
+            let withdrawalNoFriendView = WithdrawalNoFriendView()
+            self.view.addSubview(withdrawalNoFriendView)
+            withdrawalNoFriendView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
         } else {
             showAlert()
         }
