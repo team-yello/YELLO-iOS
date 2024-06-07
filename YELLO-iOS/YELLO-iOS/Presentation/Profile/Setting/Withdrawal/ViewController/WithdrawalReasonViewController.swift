@@ -42,8 +42,6 @@ final class WithdrawalReasonViewController: BaseViewController {
 extension WithdrawalReasonViewController {
     // MARK: Objc Function
     @objc func showAlert() {
-        Amplitude.instance().logEvent("click_profile_withdrawal", withEventProperties: ["withdrawal_button":"withdrawal3"])
-        
         let withdrawalAlertView = WithdrawalAlertView()
         withdrawalAlertView.withdrawalReason = withdrawalReasonView.withdrawalReason
         print(withdrawalAlertView.withdrawalReason)
@@ -54,6 +52,8 @@ extension WithdrawalReasonViewController {
     }
     
     @objc func completeButtonTapped() {
+        Amplitude.instance().logEvent("click_profile_withdrawal",
+                                      withEventProperties: ["withdrawal_button":"withdrawal3"])
         if withdrawalReasonView.isNoFriendSelected {
             let withdrawalNoFriendView = WithdrawalNoFriendView()
             self.view.addSubview(withdrawalNoFriendView)
@@ -64,6 +64,7 @@ extension WithdrawalReasonViewController {
                 self.showAlert()
             }
             withdrawalNoFriendView.wowButtonAction = {
+                Amplitude.instance().logEvent("click_withdrawal_recommend")
                 NotificationCenter.default.post(name: Notification.Name("moveToRecommend"), object: nil)
             }
         } else {
