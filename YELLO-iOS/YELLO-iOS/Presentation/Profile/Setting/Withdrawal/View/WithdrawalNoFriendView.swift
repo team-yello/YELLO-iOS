@@ -14,18 +14,19 @@ final class WithdrawalNoFriendView: BaseView {
     // MARK: - Variables
     // MARK: Property
     let contentsView = UIView()
-    
     private let titleLabel = UILabel()
     private let noFriendImageView = UIImageView()
     let nextButton = UIButton()
     let wowButton = UIButton()
+    
+    var nextButtonAction: (() -> Void) = {}
     
     override func setStyle() {
         // MARK: - Function
         // MARK: Layout Helpers
         self.backgroundColor = .black.withAlphaComponent(0.5)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(nextButtonTapped))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeView))
         self.addGestureRecognizer(tapGestureRecognizer)
         
         contentsView.do {
@@ -102,14 +103,18 @@ final class WithdrawalNoFriendView: BaseView {
 }
 
 extension WithdrawalNoFriendView {
-    @objc private func nextButtonTapped() {
+    @objc private func closeView() {
         self.isHidden = true
         self.removeFromSuperview()
     }
     
+    @objc private func nextButtonTapped() {
+        closeView()
+        nextButtonAction()
+    }
+    
     @objc private func wowButtonTapped() {
-        self.isHidden = true
-        self.removeFromSuperview()
+        closeView()
         print("노티피케이션 추가")
     }
 }

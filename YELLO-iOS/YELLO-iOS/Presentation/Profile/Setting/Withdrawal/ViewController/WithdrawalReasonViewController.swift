@@ -60,6 +60,9 @@ extension WithdrawalReasonViewController {
             withdrawalNoFriendView.snp.makeConstraints {
                 $0.edges.equalToSuperview()
             }
+            withdrawalNoFriendView.nextButtonAction = {
+                self.showAlert()
+            }
         } else {
             showAlert()
         }
