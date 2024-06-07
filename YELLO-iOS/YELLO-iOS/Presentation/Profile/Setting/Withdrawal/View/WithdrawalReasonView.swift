@@ -173,11 +173,9 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
                 let indexPath = IndexPath(item: self.reasonList.count - 1, section: 0)
                 reasonCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
                 withdrawalReason = etcReason
-            } else if indexPath.row == 0 {
-                isNoFriendSelected = true
             } else {
                 withdrawalReason = reasonList[indexPath.row]
-                isNoFriendSelected = false
+                isNoFriendSelected = indexPath.row == 0 ? true : false
             }
         }
     }
