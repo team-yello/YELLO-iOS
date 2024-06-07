@@ -387,6 +387,9 @@ extension YELLOTabBarController {
     
     @objc
     func moveToRecommend(_ notification: Notification) {
+        if let navigationController = self.viewControllers?[4] as? UINavigationController {
+            navigationController.popToRootViewController(animated: false)
+        }
         self.selectedIndex = 0
         self.recommendingViewController.kakaoFriendViewController.kakaoFriendView.inviteBannerView.showAlert()
     }
