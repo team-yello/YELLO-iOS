@@ -35,7 +35,7 @@ final class WithdrawalReasonViewController: BaseViewController {
     }
     
     private func setAddTarget() {
-        withdrawalReasonView.completeButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        withdrawalReasonView.completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -50,6 +50,14 @@ extension WithdrawalReasonViewController {
         self.view.addSubview(withdrawalAlertView)
         withdrawalAlertView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+    }
+    
+    @objc func completeButtonTapped() {
+        if withdrawalReasonView.isNoFriendSelected {
+            print("앱에 아는 친구가 없단다..")
+        } else {
+            showAlert()
         }
     }
 }
