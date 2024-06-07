@@ -20,6 +20,7 @@ final class WithdrawalNoFriendView: BaseView {
     let wowButton = UIButton()
     
     var nextButtonAction: (() -> Void) = {}
+    var wowButtonAction: (() -> Void) = {}
     
     override func setStyle() {
         // MARK: - Function
@@ -115,6 +116,6 @@ extension WithdrawalNoFriendView {
     
     @objc private func wowButtonTapped() {
         closeView()
-        print("노티피케이션 추가")
+        wowButtonAction()
     }
 }

@@ -31,7 +31,7 @@ final class KakaoFriendView: UIView {
     var recommendingKakaoFriendTableViewDummy: [FriendModel] = []
     
     // MARK: Component
-    private let inviteBannerView = InviteBannerView()
+    let inviteBannerView = InviteBannerView()
     lazy var kakaoFriendTableView = UITableView()
     let refreshControl = UIRefreshControl()
     let emptyView = EmptyFriendView()

@@ -63,6 +63,9 @@ extension WithdrawalReasonViewController {
             withdrawalNoFriendView.nextButtonAction = {
                 self.showAlert()
             }
+            withdrawalNoFriendView.wowButtonAction = {
+                NotificationCenter.default.post(name: Notification.Name("moveToRecommend"), object: nil)
+            }
         } else {
             showAlert()
         }
