@@ -200,6 +200,7 @@ enum ImageLiterals {
         static var imgWithdrawalThird: UIImage { .load(named: "imgWithdrawalThird")}
         static var imgWarning: UIImage { .load(named: "imgWarning")}
         static var imgWithdrawalPoint: UIImage { .load(named: "imgWithdrawalPoint")}
+        static var imgWithdrawalNoFriend: UIImage { .load(named: "imgWithdrawalNoFriend")}
     }
 
     enum SubscriptionExtension {
