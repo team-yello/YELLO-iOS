@@ -26,6 +26,7 @@ final class WithdrawalReasonView: BaseView {
             self.setCompleteButton(isEnabled: isCompleteEnabled)
         }
     }
+    var isNoFriendSelected = false
     var etcReason: String = ""
     var tap = UITapGestureRecognizer()
     var withdrawalReason: String = ""
@@ -174,6 +175,7 @@ extension WithdrawalReasonView: UICollectionViewDataSource {
                 withdrawalReason = etcReason
             } else {
                 withdrawalReason = reasonList[indexPath.row]
+                isNoFriendSelected = indexPath.row == 0 ? true : false
             }
         }
     }

@@ -428,9 +428,15 @@ enum StringLiterals {
             static let yes = "네, 탈퇴합니다"
         }
         
+        enum WithdrawalNoFriend {
+            static let title = "친구가 없다면\n친구를 초대할 수도 있어요."
+            static let nextLabel = "다음에 할게요"
+            static let wowLabel = "오, 그런 방법이!"
+        }
+        
         enum WithdrawalReason {
             static let title = "탈퇴 사유를 적어주세요."
-            static let nobody = "앱에 아는 사람들이 없어서"
+            static let nobody = "앱에 아는 친구들이 없어서"
             static let expensive = "구독권과 열람권의 가격이 비싸서"
             static let error = "오류가 많아서"
             static let notFunny = "재밌는 콘텐츠 또는 질문이 없어서"

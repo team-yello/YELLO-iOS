@@ -51,6 +51,7 @@ final class YELLOTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(showMessage(_:)), name: NSNotification.Name("showMessage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPage(_:)), name: NSNotification.Name("showPage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToShop(_:)), name: NSNotification.Name("goToShop"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moveToRecommend(_:)), name: NSNotification.Name("moveToRecommend"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -382,6 +383,15 @@ extension YELLOTabBarController {
     func goToShop(_ notification: Notification) {
         self.selectedIndex = 3
         self.navigationController?.pushViewController(paymentPlusViewController, animated: true)
+    }
+    
+    @objc
+    func moveToRecommend(_ notification: Notification) {
+        if let navigationController = self.viewControllers?[4] as? UINavigationController {
+            navigationController.popToRootViewController(animated: false)
+        }
+        self.selectedIndex = 0
+        self.recommendingViewController.kakaoFriendViewController.kakaoFriendView.inviteBannerView.showAlert()
     }
     
     @objc
