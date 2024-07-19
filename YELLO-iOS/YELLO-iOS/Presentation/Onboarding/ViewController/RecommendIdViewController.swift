@@ -169,6 +169,14 @@ class RecommendIdViewController: OnboardingBaseViewController {
                 Amplitude.instance().setUserProperties(userProperties)
                 self.didPostUserInfo = true
                 self.navigationController?.pushViewController(pushViewController, animated: false)
+            case .requestErr(let statusCode):
+              self.view.showToast(message: "오류가 발생했습니다. code: \(statusCode)", at: 180.adjusted)
+            case .serverErr(let statusCode):
+              self.view.showToast(message: "오류가 발생했습니다. code: \(statusCode)", at: 180.adjusted)
+              let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+              kakaoLoginViewController.isFromOnboarding = true
+              sceneDelegate.window?.rootViewController = UINavigationController(rootViewController: kakaoLoginViewController)
+              return
             default:
                 self.isFail = true
                 self.view.showToast(message: "오류가 발생했습니다. 잠시후 다시 시도해주세요.")
