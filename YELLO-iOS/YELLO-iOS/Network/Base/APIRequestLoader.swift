@@ -55,8 +55,8 @@ class APIRequestLoader<T: TargetType> {
     
     private func judgeStatus<M: Decodable>(by statusCode: Int, _ data: Data, type: M.Type) -> NetworkResult<M> {
         switch statusCode {
-        case 200...299, 403: return isValidData(data: data, type: M.self)
-        case 400, 405...499: return .requestErr(statusCode: statusCode)
+        case 200...299, 403, 404: return isValidData(data: data, type: M.self)
+        case 400, 402, 405...499: return .requestErr(statusCode: statusCode)
         case 500: return .serverErr(statusCode: statusCode)
         case 401: return .failure
         default: return .networkErr
