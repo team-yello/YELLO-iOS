@@ -327,6 +327,8 @@ enum StringLiterals {
             static let descriptionLabel = "옐로플러스 구독안내\n- 구독은 매주 자동으로 갱신되며, Apple을 통해 해지하실 수 있습니다.\n- 결제를 진행하시면 관련 약관에 동의하는 것으로 간주됩니다."
             static let serviceButton = "서비스 이용 약관"
             static let privacyButton = "개인정보처리방침"
+            
+            static let fix = "페이지를 개선 중이에요!\n조금만 기다려 주세요"
         }
     }
     

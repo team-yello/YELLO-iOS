@@ -7,23 +7,30 @@
 
 import UIKit
 
-class PaymentFixViewController: UIViewController {
+import SnapKit
+import Then
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+final class PaymentFixViewController: BaseViewController {
+    
+    let fixLabel = UILabel()
+    
+    override func setLayout() {
+        view.addSubviews(fixLabel)
+        
+        fixLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func setStyle() {
+        view.backgroundColor = .black
+        
+        fixLabel.do {
+            $0.text = StringLiterals.MyYello.Payment.fix
+            $0.textAlignment = .center
+            $0.textColor = .white
+            $0.font = .uiBody01
+            $0.numberOfLines = 0
+        }
     }
-    */
-
 }
