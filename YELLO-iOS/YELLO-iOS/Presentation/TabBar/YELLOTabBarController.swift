@@ -33,7 +33,7 @@ final class YELLOTabBarController: UITabBarController {
     let profileViewController = ProfileViewController()
     let votingStartViewController = VotingStartViewController()
     let subscriptionExtensionView = SubscriptionExtensionView()
-    let paymentPlusViewController = PaymentPlusViewController()
+    let paymentPlusViewController = PaymentFixViewController()
     let userNotificationView = NotificationView()
     var notificationReadCount = 0
     
@@ -241,7 +241,7 @@ extension YELLOTabBarController {
         profileViewController.profileView.myProfileHeaderView.profileUser()
         
         /// 상점 상품 얻기
-        paymentPlusViewController.getProducts()
+//        paymentPlusViewController.getProducts()
     }
     
     func getUserNotification() {

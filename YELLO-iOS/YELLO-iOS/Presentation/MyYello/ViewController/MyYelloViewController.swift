@@ -27,7 +27,7 @@ final class MyYelloViewController: BaseViewController {
     // MARK: Component
     let loadingView = YelloLoadingView()
     let myYelloView = MyYelloView()
-    let paymentPlusViewController = PaymentPlusViewController()
+    let paymentPlusViewController = PaymentFixViewController()
     
     var noticeURL: String?
     
@@ -47,7 +47,7 @@ final class MyYelloViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
-        self.paymentPlusViewController.getProducts()
+//        self.paymentPlusViewController.getProducts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
