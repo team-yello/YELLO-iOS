@@ -3032,7 +3032,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.3.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS.dev;
 				PRODUCT_NAME = "$(Yello_Bundle_Name)";
@@ -3196,7 +3196,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.3.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3223,7 +3223,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 32CGJPPY5G;
+				DEVELOPMENT_TEAM = 6H688X3AHM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YELLO-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "YELL:O";
@@ -3238,9 +3238,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.3.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "YELLO.iOS.-";
+				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
