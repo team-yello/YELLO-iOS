@@ -19,7 +19,7 @@ final class ProfileViewController: BaseViewController {
     let editProfileViewController = EditProfileViewController()
     let friendProfileViewController = FriendProfileViewController()
     let bottomSheetViewController = BottomFriendProfileViewController()
-    let paymentPlusViewController = PaymentPlusViewController()
+    let paymentPlusViewController = PaymentFixViewController()
     
     var isFinishPaging = false
     var isLoadingData = false
@@ -43,7 +43,7 @@ final class ProfileViewController: BaseViewController {
         self.profileView.purchaseInfo()
         self.profileView.loadProfileNoti()
         self.resetProfileView()
-        self.paymentPlusViewController.getProducts()
+//        self.paymentPlusViewController.getProducts()
     }
     
     override func setStyle() {

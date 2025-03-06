@@ -16,7 +16,7 @@ import Then
 
 final class YELLOTabBarController: UITabBarController {
     
-    private var tabs: [UIViewController] = []
+    private var yelloTabs: [UIViewController] = []
     
     var startStatus: Int = 1 {
         didSet {
@@ -33,7 +33,7 @@ final class YELLOTabBarController: UITabBarController {
     let profileViewController = ProfileViewController()
     let votingStartViewController = VotingStartViewController()
     let subscriptionExtensionView = SubscriptionExtensionView()
-    let paymentPlusViewController = PaymentPlusViewController()
+    let paymentPlusViewController = PaymentFixViewController()
     let userNotificationView = NotificationView()
     var notificationReadCount = 0
     
@@ -91,7 +91,7 @@ final class YELLOTabBarController: UITabBarController {
             rootViewController = VotingLockedViewController()
         }
         
-        tabs = [
+        yelloTabs = [
             UINavigationController(rootViewController: recommendingViewController),
             UINavigationController(rootViewController: aroundViewController),
             UINavigationController(rootViewController: rootViewController),
@@ -100,11 +100,11 @@ final class YELLOTabBarController: UITabBarController {
         ]
         
         TabBarItem.allCases.forEach {
-            tabs[$0.rawValue].tabBarItem = $0.asTabBarItem()
-            tabs[$0.rawValue].tabBarItem.tag = $0.rawValue
+            yelloTabs[$0.rawValue].tabBarItem = $0.asTabBarItem()
+            yelloTabs[$0.rawValue].tabBarItem.tag = $0.rawValue
         }
         
-        setViewControllers(tabs, animated: true)
+        setViewControllers(yelloTabs, animated: true)
     }
     
     // MARK: - TabBar Style
@@ -241,7 +241,7 @@ extension YELLOTabBarController {
         profileViewController.profileView.myProfileHeaderView.profileUser()
         
         /// 상점 상품 얻기
-        paymentPlusViewController.getProducts()
+//        paymentPlusViewController.getProducts()
     }
     
     func getUserNotification() {

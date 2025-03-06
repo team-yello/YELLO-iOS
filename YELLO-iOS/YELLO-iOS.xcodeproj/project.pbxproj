@@ -317,6 +317,7 @@
 		C3B472122A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B472112A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift */; };
 		C3B472142A65E24900770530 /* PayRequestBodyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B472132A65E24900770530 /* PayRequestBodyDTO.swift */; };
 		C3B472162A65EB0900770530 /* PaymenyResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B472152A65EB0900770530 /* PaymenyResponseDTO.swift */; };
+		C3B5F7532D61BE7D00918155 /* PaymentFixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F7522D61BE7D00918155 /* PaymentFixViewController.swift */; };
 		C3B83E622A8E046000A39CAC /* PurchaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E612A8E046000A39CAC /* PurchaseTarget.swift */; };
 		C3B83E642A8E04C800A39CAC /* PurchaseRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E632A8E04C800A39CAC /* PurchaseRequestDTO.swift */; };
 		C3B83E662A8E051800A39CAC /* PurchaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B83E652A8E051800A39CAC /* PurchaseResponseDTO.swift */; };
@@ -668,6 +669,7 @@
 		C3B472112A65E17E00770530 /* MyYelloDetailNameResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYelloDetailNameResponseDTO.swift; sourceTree = "<group>"; };
 		C3B472132A65E24900770530 /* PayRequestBodyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRequestBodyDTO.swift; sourceTree = "<group>"; };
 		C3B472152A65EB0900770530 /* PaymenyResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymenyResponseDTO.swift; sourceTree = "<group>"; };
+		C3B5F7522D61BE7D00918155 /* PaymentFixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFixViewController.swift; sourceTree = "<group>"; };
 		C3B83E612A8E046000A39CAC /* PurchaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTarget.swift; sourceTree = "<group>"; };
 		C3B83E632A8E04C800A39CAC /* PurchaseRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseRequestDTO.swift; sourceTree = "<group>"; };
 		C3B83E652A8E051800A39CAC /* PurchaseResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseResponseDTO.swift; sourceTree = "<group>"; };
@@ -1806,6 +1808,7 @@
 			isa = PBXGroup;
 			children = (
 				C37DFC452A8501E300D3B685 /* PaymentPlusViewController.swift */,
+				C3B5F7522D61BE7D00918155 /* PaymentFixViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2909,6 +2912,7 @@
 				3662A0FC2A65795200F482EF /* IdValidResponseDTO.swift in Sources */,
 				C3A799992A49490A00D3EFD8 /* SceneDelegate.swift in Sources */,
 				2A3705A82A62DC90001AAC93 /* BaseResponse.swift in Sources */,
+				C3B5F7532D61BE7D00918155 /* PaymentFixViewController.swift in Sources */,
 				36D7D0502B949699008DB7A2 /* EditCheckView.swift in Sources */,
 				C31315A62A7A5E9400FB8B43 /* FriendSearchViewController.swift in Sources */,
 				C3FF24932A5E903C00A97D40 /* MyYelloDefaultTableViewCell.swift in Sources */,
@@ -3028,7 +3032,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.3.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS.dev;
 				PRODUCT_NAME = "$(Yello_Bundle_Name)";
@@ -3192,7 +3196,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.3.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3234,7 +3238,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.3.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = YELLO.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";

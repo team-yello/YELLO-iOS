@@ -25,7 +25,7 @@ final class MyYelloDetailViewController: BaseViewController {
     
     // MARK: Components
     let myYelloDetailView = MyYelloDetailView()
-    let paymentPlusViewController = PaymentPlusViewController()
+    let paymentPlusViewController = PaymentFixViewController()
     
     var myYelloBackgroundColorStringDummy: [MyYelloBackgroundColorStringDummy] =
     [MyYelloBackgroundColorStringDummy(backgroundColorTop: BackGroundColor.BackgroundColorTop.one,
@@ -59,7 +59,7 @@ final class MyYelloDetailViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         setAddTarget()
-        self.paymentPlusViewController.getProducts()
+//        self.paymentPlusViewController.getProducts()
         
     }
     
